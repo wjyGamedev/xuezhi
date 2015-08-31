@@ -11,7 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import de.greenrobot.event.EventBus;
+import event.EventBus;
 
 public class ErrorDialogFragments {
     /** TODO Use config:  Icon res ID to use for all error dialogs. May be configured by each app (optional). */

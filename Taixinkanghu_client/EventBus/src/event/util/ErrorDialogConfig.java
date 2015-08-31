@@ -3,7 +3,7 @@ package event.util;
 import android.content.res.Resources;
 import android.util.Log;
 
-import de.greenrobot.event.EventBus;
+import event.EventBus;
 
 public class ErrorDialogConfig {
     final Resources resources;

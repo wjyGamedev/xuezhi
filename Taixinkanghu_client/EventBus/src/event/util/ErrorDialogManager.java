@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
-import de.greenrobot.event.EventBus;
+import event.EventBus;
 
 /**
  * Central class for app that want to use event based error dialogs.<br/>
