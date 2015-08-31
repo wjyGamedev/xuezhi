@@ -1,1 +1,1 @@
-include ':taixinkanghu', ':eventbus'
+include ':taixinkanghu', ':eventbus', ':calendar'
