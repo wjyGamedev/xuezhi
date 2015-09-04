@@ -1,1 +1,1 @@
-include ':taixinkanghu', ':eventbus', ':calendar', ':volley'
+include ':taixinkanghu', ':eventbus', ':calendar', ':volley', ':sMSSDK'

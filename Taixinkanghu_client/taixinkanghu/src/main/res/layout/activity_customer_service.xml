@@ -1,0 +1,127 @@
+<LinearLayout android:id="@+id/title"
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical"
+			  tools:context="com.taixinkanghu.app.ui.activity.CustomerServiceActivity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:orientation="vertical">
+
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="240dp"
+			android:background="@drawable/img_company"/>
+
+		<LinearLayout
+			android:id="@+id/call"
+			android:layout_width="match_parent"
+			android:layout_height="54dp"
+			android:layout_gravity="center_vertical"
+			android:layout_marginTop="10dp"
+			android:background="@drawable/bg_bule_frame_top"
+			android:gravity="center_vertical"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="客服热线"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginRight="20dp"
+					android:layout_weight="1"
+					android:gravity="right"
+					android:text="@string/service_phone_number"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="54dp"
+			android:layout_gravity="center_vertical"
+			android:background="@drawable/bg_order_btn"
+			android:gravity="center_vertical"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="微信公众号"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginRight="20dp"
+					android:layout_weight="1"
+					android:gravity="right"
+					android:text="泰心康护"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/question_feedback"
+			android:layout_width="match_parent"
+			android:layout_height="54dp"
+			android:layout_gravity="center_vertical"
+			android:background="@drawable/bg_bule_frame_bottom"
+			android:gravity="center_vertical"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:text="问题反馈"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginRight="35dp"
+					android:layout_weight="1"
+					android:gravity="right"
+					android:text=">"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

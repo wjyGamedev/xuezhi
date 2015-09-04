@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="divider_color">#ff028df2</color>
+
+	<string name="main_persional_popmenu_nursing_order_name">陪护订单</string>
+	<string name="main_persional_popmenu_shopping_order_name">产品订单</string>
+	<string name="main_persional_popmenu_wealth_name">我的财富</string>
+	<string name="main_persional_popmenu_setting_name">我的设置</string>
+
+	<string name="main_home_tab_text">首页</string>
+	<string name="main_personal_tab_text">我的</string>
+	<string name="main_service_tab_text">服务</string>
+	<string name="main_compant_tab_text">泰心</string>
+
+	<string name="default_text">默认文字</string>
+
+	<dimen name="func_imageview_width">100dp</dimen>
+	<dimen name="func_imageview_height">100dp</dimen>
+	<dimen name="tab_imageview_width">32dp</dimen>
+	<dimen name="tab_imageview_height">32dp</dimen>
+
+	<string name="display_complay_decription">company displays</string>
+
+	<string name="main_activity_name">@string/name_taixinkanghu</string>
+
+	<style name="Theme.InCallScreen"
+		   parent="@android:style/Theme.Holo.Light.NoActionBar">
+		<item name="android:popupMenuStyle">@style/Theme.PopupMenu</item>
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+
+	<style name="Theme.AppTheme" parent="@android:style/Theme.Light.NoTitleBar"/>
+
+	<style name="home_radio_button_style">
+		<item name="android:textSize">12.0sp</item>
+		<item name="android:textColor">@color/date_select_green</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:background">@null</item>
+		<item name="android:layout_width">0.0dip</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:button">@null</item>
+		<item name="android:layout_weight">1.0</item>
+	</style>
+
+</resources>

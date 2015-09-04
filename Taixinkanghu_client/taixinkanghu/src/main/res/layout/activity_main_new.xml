@@ -1,0 +1,73 @@
+<LinearLayout
+	android:id="@+id/main_page_ll"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/main_bg_color"
+	android:orientation="vertical"
+	tools:context="com.taixinkanghu.app.ui.activity.MainActivity">
+
+	<!--<include layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/header_common_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<ScrollView
+		android:id="@+id/func_region_sv"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<FrameLayout
+			android:id="@+id/func_region_fl"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1.0">
+
+
+		</FrameLayout>
+
+	</ScrollView>
+
+	<include layout="@layout/item_dividing_line_horizontal"/>
+
+	<RadioGroup
+		android:id="@+id/tabs_rg"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:background="#ffffffff"
+		android:orientation="horizontal"
+		android:paddingTop="2.5dp"
+		>
+
+		<RadioButton
+			android:id="@+id/home_rbtn"
+			style="@style/home_radio_button_style"
+			android:drawableTop="@drawable/tab_rg_main"
+			android:checked="true"
+			android:text="首页"/>
+
+		<RadioButton
+			android:id="@+id/personal_rbtn"
+			style="@style/home_radio_button_style"
+			android:drawableTop="@drawable/tab_rg_personal"
+			android:text="我的"/>
+
+		<RadioButton
+			android:id="@+id/service_rbtn"
+			style="@style/home_radio_button_style"
+			android:drawableTop="@drawable/tab_rg_service"
+			android:text="客服"/>
+
+		<RadioButton
+			android:id="@+id/company_rbtn"
+			style="@style/home_radio_button_style"
+			android:drawableTop="@drawable/tab_rg_company"
+			android:text="泰心"/>
+
+	</RadioGroup>
+</LinearLayout>

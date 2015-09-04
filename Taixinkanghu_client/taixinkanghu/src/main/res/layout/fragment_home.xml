@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:id="@+id/home_fragment_ll"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<!--展示图片：公司/优惠信息-->
+	<LinearLayout
+		android:id="@+id/imgs_display_region_ll"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="top|center_vertical"
+		android:orientation="vertical">
+
+		<ViewFlipper
+			android:id="@+id/imgs_display_vf"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+	</LinearLayout>
+
+	<!--主要功能按钮-->
+	<LinearLayout
+		android:id="@+id/func_region_ll"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_gravity="bottom|center_vertical"
+		android:orientation="vertical">
+
+		<ScrollView
+			android:id="@+id/func_region_sv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<GridLayout
+				android:id="@+id/func_region_gl"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			</GridLayout>
+		</ScrollView>
+	</LinearLayout>
+</LinearLayout>

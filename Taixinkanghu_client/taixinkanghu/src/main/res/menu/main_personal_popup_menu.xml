@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/nursing_order"
+		android:title="@string/main_persional_popmenu_nursing_order_name"/>
+
+	<item
+		android:id="@+id/shopping_order"
+		android:title="@string/main_persional_popmenu_shopping_order_name"/>
+
+	<item
+		android:id="@+id/personal_wealth"
+		android:title="@string/main_persional_popmenu_wealth_name"/>
+
+	<item
+		android:id="@+id/personal_setting"
+		android:title="@string/main_persional_popmenu_setting_name"/>
+
+</menu>

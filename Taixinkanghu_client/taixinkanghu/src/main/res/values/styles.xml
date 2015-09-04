@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<!-- Customize your theme here. -->
+	<style name="Theme.PopupMenu"
+		   parent="@android:style/Theme.Light.NoTitleBar">
+		<item name="android:popupBackground">@drawable/bg_popup_menu_btn</item>
+		<item name="android:textColor">@color/text_color_black</item>
 	</style>
-
 </resources>

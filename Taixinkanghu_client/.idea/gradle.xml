@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/calendar" />
             <option value="$PROJECT_DIR$/eventbus" />
+            <option value="$PROJECT_DIR$/sMSSDK" />
             <option value="$PROJECT_DIR$/taixinkanghu" />
             <option value="$PROJECT_DIR$/volley" />
           </set>

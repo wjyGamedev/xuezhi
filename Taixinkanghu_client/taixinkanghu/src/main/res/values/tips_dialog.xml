@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="info_i_known">知道了</string>
+	<string name="info_register_success">成功</string>
+	<string name="info_confirm">确定</string>
+	<string name="info_cancel">取消</string>
+</resources>

@@ -1,12 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
+	signingConfigs {
+		taixinkanghu {
+			keyAlias 'taixinkanghu'
+			keyPassword 'sanrenxing123'
+			storeFile file('D:/tool_datas/android_studio/signed_apk/taixinkanghu')
+			storePassword 'sanrenxing123'
+		}
+	}
 	compileSdkVersion 22
 	buildToolsVersion '22.0.0'
-
 	defaultConfig {
-		applicationId "com.taixinkanghu.hiworld.taixinkanghu_client"
-		minSdkVersion 16
+		applicationId 'com.taixinkanghu'
+		minSdkVersion 14
 		targetSdkVersion 22
 		versionCode 1
 		versionName "1.0"
@@ -17,9 +24,16 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
+	productFlavors {
+	}
 }
 
 dependencies {
 	compile fileTree(include: ['*.jar'], dir: 'libs')
 	compile 'com.android.support:appcompat-v7:22.2.0'
+	compile project(':calendar')
+	compile project(':eventbus')
+	compile project(':sMSSDK')
+	compile project(':volley')
+	compile files('libs/butterknife-7.0.1.jar')
 }
