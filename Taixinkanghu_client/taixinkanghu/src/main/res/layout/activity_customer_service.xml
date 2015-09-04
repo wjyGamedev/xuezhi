@@ -22,7 +22,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="54dp"
 			android:layout_gravity="center_vertical"
-			android:layout_marginTop="10dp"
 			android:background="@drawable/bg_bule_frame_top"
 			android:gravity="center_vertical"
 			android:orientation="vertical">
@@ -115,11 +114,17 @@
 					android:layout_width="wrap_content"
 					android:layout_height="match_parent"
 					android:layout_marginRight="35dp"
-					android:layout_weight="1"
 					android:gravity="right"
-					android:text=">"
+					android:layout_weight="1"
+					android:text=""
 					android:textColor="@color/text_color_black"
 					android:textSize="16.0sp"/>
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="20dp"
+					android:layout_marginRight="35dp"
+					android:background="@drawable/img_right"/>
 
 			</LinearLayout>
 		</LinearLayout>
