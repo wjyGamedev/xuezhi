@@ -1,28 +1,27 @@
 /**
  * Copyright (c) 213Team
  *
- * @className : com.taixinkanghu.app.ui.register_page.${type_name}
+ * @className : com.taixinkanghu.app.model.event.net.recv.${type_name}
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/8/3		WangJY		1.0.0		create
+ * 2015/8/16		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.register_flow.msg_handler;
+package com.taixinkanghu_client.data_module.nurse_list.msg_handler;
 
 
 import com.module.event.EventID;
 import com.taixinkanghu_client.net.event.BaseNetEvent;
 
-public class AnswerRegisterEvent extends BaseNetEvent
+public class AnswerNurseBasicListEvent extends BaseNetEvent
 {
-	public AnswerRegisterEvent()
+	public AnswerNurseBasicListEvent()
 	{
-		super(EventID.RESPONSE_REGISTER);
+		super(EventID.FINISHED_NURSE_BASIC_LIST);
 	}
-
 }

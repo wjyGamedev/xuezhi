@@ -36,4 +36,5 @@ dependencies {
 	compile project(':sMSSDK')
 	compile project(':volley')
 	compile files('libs/butterknife-7.0.1.jar')
+	compile files('libs/alipaySDK-20150724.jar')
 }

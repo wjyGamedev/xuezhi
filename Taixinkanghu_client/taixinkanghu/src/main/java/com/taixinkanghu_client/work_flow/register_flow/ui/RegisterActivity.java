@@ -32,8 +32,8 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.work_flow.register_flow.msg_handler.RegisterMsgManager;
-import com.taixinkanghu_client.work_flow.register_flow.msg_handler.RequestRegisterEvent;
+import com.taixinkanghu_client.work_flow.register_flow.msg_handler.RegisterActivityMsg;
+import com.taixinkanghu_client.data_module.register_account.msg_handler.RequestRegisterEvent;
 import com.third.part.sms.DSmsAutho;
 import com.third.part.sms.SmsAutho;
 import com.third.part.sms.SmsConfig;
@@ -53,10 +53,10 @@ public class RegisterActivity extends BaseActivity
 	//title
 	private HeaderCommon m_headerCommon = null;//new HeaderCommon(this);
 
-	@Bind (R.id.phone_num_et) EditText m_phoneNumTV      = null;    //手机号
+	@Bind (R.id.phone_num_et)     EditText m_phoneNumTV      = null;    //手机号
 	@Bind (R.id.verification_btn) Button   m_verificationBtn = null;    //点击，获取验证码
-	@Bind (R.id.auth_code_et) TextView m_authTV          = null;    //验证码输入区域
-	@Bind (R.id.register_btn) Button   m_registerBtn     = null;    //注册按钮
+	@Bind (R.id.auth_code_et)     TextView m_authTV          = null;    //验证码输入区域
+	@Bind (R.id.register_btn)     Button   m_registerBtn     = null;    //注册按钮
 
 	//logical
 	private final String ERR_INFO_INVALID_PHONE            = getResources().getString(R.string.err_info_invalid_phone);
@@ -64,10 +64,10 @@ public class RegisterActivity extends BaseActivity
 	private final String INFO_SECOND                       = getResources().getString(R.string.rf_content_second);
 	private final String INFO_VERIFICATION_CONTEXT         = getResources().getString(R.string.rf_verification_context);
 
-	private RegisterMsgManager m_registerMsgManager = new RegisterMsgManager(this);
-	private TimeCount          m_timeCount          = new TimeCount(DataConfig.REGISTER_WAITTING_TIME, DataConfig.REGISTER_DELTA_TIME);
-	private String             m_phoneNum           = null;
-	private String             m_CountryZipCode     = null;
+	private RegisterActivityMsg m_registerActivityMsg = new RegisterActivityMsg(this);
+	private TimeCount           m_timeCount          = new TimeCount(DataConfig.REGISTER_WAITTING_TIME, DataConfig.REGISTER_DELTA_TIME);
+	private String              m_phoneNum           = null;
+	private String              m_CountryZipCode     = null;
 
 
 	@Override
@@ -78,7 +78,6 @@ public class RegisterActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
-		reqSupportedCountriesAction();
 	}
 
 	@Override
@@ -106,14 +105,10 @@ public class RegisterActivity extends BaseActivity
 		return true;
 	}
 
-	private void reqSupportedCountriesAction()
-	{
-		m_registerMsgManager.reqSupportedCountriesAction();
-	}
-
 	private void init()
 	{
-		SmsAutho.GetInstance().init(this);
+		m_registerActivityMsg.initSmsAutho(this);
+		m_registerActivityMsg.requestSupportedCountriesAction();
 	}
 
 	private void updateContent()

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 213Team
  *
- * @className : com.taixinkanghu_client.work_flow.register_flow.msg_handler.${type_name}
+ * @className : com.taixinkanghu_client.data_module.register_account.msg_handler.${type_name}
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
@@ -9,41 +9,45 @@
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/9/2		WangJY		1.0.0		create
+ * 2015/9/7		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.register_flow.msg_handler;
+package com.taixinkanghu_client.data_module.register_account.msg_handler;
+
+import android.content.Context;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequestForm;
 import com.module.net.NetConfig;
-import com.taixinkanghu_client.net.BaseHttp;
-import com.taixinkanghu_client.net.handler.BaseErrorListener;
-import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
+import com.taixinkanghu_client.net.BaseMsgHandler;
 import com.third.part.sms.SmsAutho;
 import com.third.part.sms.SmsConfig;
 
 import java.util.HashMap;
 
-import event.EventBus;
-
-public class RegisterMsgManager
+public class RegisterAccountMsgHandler extends BaseMsgHandler
 {
-	private EventBus     m_eventBus     = EventBus.getDefault();
-	private RequestQueue m_requestQueue = BaseHttp.getInstance().getRequestQueue();
+	private static RegisterAccountMsgHandler s_registerAccountMsgHandler = new RegisterAccountMsgHandler();
 
-	private BaseErrorListener     m_baseErrorListener     = new BaseErrorListener();
 	private AnswerRegisterHandler m_answerRegisterHandler = new AnswerRegisterHandler();
 
-	private RegisterActivity m_registerActivity = null;
-
-	public RegisterMsgManager(RegisterActivity registerActivity)
+	private RegisterAccountMsgHandler()
 	{
-		m_registerActivity = registerActivity;
+		super();
 	}
 
-	public void reqSupportedCountriesAction()
+	public static RegisterAccountMsgHandler GetInstance()
+	{
+		return s_registerAccountMsgHandler;
+	}
+
+
+	public void initSmsAutho(Context context)
+	{
+		SmsAutho.GetInstance().init(context);
+	}
+
+	public void requestSupportedCountriesAction()
 	{
 		RequestSupportedCountriesEvent event = new RequestSupportedCountriesEvent();
 		m_eventBus.post(event);
@@ -71,16 +75,11 @@ public class RegisterMsgManager
 																NetConfig.s_registerAddress,
 																registerData,
 																m_answerRegisterHandler,
-																m_baseErrorListener);
+																m_baseErrorListener
+		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	//接受注册成功event
-	public void onEventMainThread(AnswerRegisterEvent event)
-	{
-		m_registerActivity.registerSuccessAction();
-		return;
-	}
 
 }

@@ -4,12 +4,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.widget.PopupMenu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -28,7 +27,7 @@ public class MainActivity extends BaseActivity
 {
 	//widget
 	//	@Bind (R.id.header_common_fragment) HeaderCommon m_headerCommon = null;
-	HeaderCommon m_headerCommon = null;
+	private HeaderCommon m_headerCommon = null;
 	@Bind (R.id.func_region_sv) ScrollView  m_funcRegionSV = null;
 	@Bind (R.id.func_region_fl) FrameLayout m_funcRegionFL = null;
 	@Bind (R.id.tabs_rg)        RadioGroup  m_tabsRG       = null;
@@ -39,7 +38,7 @@ public class MainActivity extends BaseActivity
 
 	private PopupMenu m_popupMenu = null;
 
-	//logicla
+	//logical
 	private FragmentManager          m_fragmentManager          = getFragmentManager();
 	private HandleMenuItemClickEvent m_handleMenuItemClickEvent = new HandleMenuItemClickEvent();
 
@@ -49,10 +48,8 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_new);
 		ButterKnife.bind(this);
-		m_headerCommon = (HeaderCommon)m_fragmentManager.findFragmentById(R.id.header_common_fragment);
 
-		initContent();
-		initUI();
+		init();
 	}
 
 	@Override
@@ -70,11 +67,6 @@ public class MainActivity extends BaseActivity
 		ButterKnife.bind(this);
 	}
 
-	public boolean onDown(MotionEvent e)
-	{
-		return false;
-	}
-
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
@@ -88,18 +80,9 @@ public class MainActivity extends BaseActivity
 
 	}
 
-	private void initContent()
+	private void init()
 	{
-		m_homeRBtn.setSelected(true);
-
-		m_popupMenu = new PopupMenu(this, m_personalRBtn);
-		m_popupMenu.inflate(R.menu.main_personal_popup_menu);
-		m_popupMenu.setOnMenuItemClickListener(m_handleMenuItemClickEvent);
-
-	}
-
-	private void initUI()
-	{
+		m_headerCommon = (HeaderCommon)m_fragmentManager.findFragmentById(R.id.common_header_fragment);
 		if (m_headerCommon.getBackIBtn() == null)
 		{
 			TipsDialog.GetInstance().setMsg("m_headerCommon.getBackIBtn() == null", this);
@@ -115,7 +98,12 @@ public class MainActivity extends BaseActivity
 			return;
 		}
 		m_headerCommon.getHeaderTV().setTextSize(24.0f);
-		return;
+
+		m_homeRBtn.setSelected(true);
+
+		m_popupMenu = new PopupMenu(this, m_personalRBtn);
+		m_popupMenu.inflate(R.menu.main_personal_popup_menu);
+		m_popupMenu.setOnMenuItemClickListener(m_handleMenuItemClickEvent);
 
 	}
 

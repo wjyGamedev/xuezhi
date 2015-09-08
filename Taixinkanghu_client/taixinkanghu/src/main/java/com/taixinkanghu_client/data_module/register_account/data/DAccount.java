@@ -12,7 +12,7 @@
  * 2015/8/1		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.register_flow.data;
+package com.taixinkanghu_client.data_module.register_account.data;
 
 import android.text.TextUtils;
 
@@ -69,7 +69,7 @@ public class DAccount implements Serializable
 		JSONObject jsonObject = response.getJSONObject(RegisterConfig.USER_KEY);
 		if (jsonObject == null)
 		{
-			String errMsg = DGlobal.GetInstance().getAppContext().getString(R.string.err_info_json_serilization);
+			String errMsg = DGlobal.GetInstance().getAppContext().getString(R.string.net_error_json_serilization);
 			throw new JsonSerializationException(errMsg + ":" + RegisterConfig.NAME);
 		}
 

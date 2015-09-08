@@ -20,7 +20,7 @@ import android.content.SharedPreferences;
 import com.module.exception.RuntimeExceptions.logical.OwnerPreferencesException;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.net.config.RegisterConfig;
-import com.taixinkanghu_client.work_flow.register_flow.data.DAccount;
+import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;

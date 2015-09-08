@@ -12,12 +12,12 @@
  * 2015/8/1		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.register_flow.msg_handler;
+package com.taixinkanghu_client.data_module.register_account.msg_handler;
 
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.net.IResponseListener;
-import com.taixinkanghu_client.work_flow.register_flow.data.DAccount;
+import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;

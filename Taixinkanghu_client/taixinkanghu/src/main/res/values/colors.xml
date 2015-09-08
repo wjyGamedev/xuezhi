@@ -8,4 +8,5 @@
 	<color name="main_color_disable">#ffcccccc</color>
 	<color name="main_bg_color">#fff7f7f7</color>
 	<color name="date_select_green">#008000</color>
+	<color name="text_color_red">#fff04847</color>
 </resources>

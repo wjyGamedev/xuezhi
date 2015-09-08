@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="apponintment_page_hint_text">请填写以下信息\n我们将根据您的实际情况为您匹配相应的护理员</string>
+	<string name="name_text">姓名：</string>
+	<string name="name_hint_text">点击填写患者姓名</string>
+	<string name="protocol_confirm_text">点击确认表示已阅读并同意</string>
+
+
+	<!-- 选择医院列表-->
+	<string name="content_all">全部</string>
+	<string name="hospital_content_tips">请选择医院</string>
+	<string name="hospital_more_content_tips">更多医院敬请期待</string>
+
+	<!-- 选择科室列表-->
+	<string name="department_content_tips">请选择科室</string>
+	<string name="department_more_content_tips">更多科室敬请期待</string>
+
+</resources>

@@ -10,7 +10,7 @@
 
 	<!--<include layout="@layout/include_header"/>-->
 	<fragment
-		android:id="@+id/header_common_fragment"
+		android:id="@+id/common_header_fragment"
 		android:name="com.module.widget.header.HeaderCommon"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

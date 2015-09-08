@@ -38,7 +38,7 @@ import android.widget.ViewFlipper;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.work_flow.main_page.data.DMainPageImages;
-import com.taixinkanghu_client.work_flow.register_flow.data.DAccount;
+import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${对应于include_header.xml}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -30,15 +30,14 @@ import butterknife.OnClick;
 
 public class HeaderCommon extends Fragment
 {
-	@Bind (R.id.title_tv) TextView    m_headerTV = null;    //title
+	@Bind (R.id.title_tv)  TextView    m_headerTV = null;    //title
 	@Bind (R.id.back_ibtn) ImageButton m_backIBtn = null;    //back btn
 
 	private View m_view = null;
 
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState)
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.include_header, container, false);
 		ButterKnife.bind(this, m_view);

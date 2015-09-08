@@ -12,7 +12,7 @@
  * 2015/9/2		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.register_flow.msg_handler;
+package com.taixinkanghu_client.data_module.register_account.msg_handler;
 
 import com.module.event.BaseEvent;
 import com.module.event.EventID;

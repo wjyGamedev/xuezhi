@@ -32,7 +32,7 @@
 
 		<!-- 欢迎界面 -->
 		<activity
-			android:name="com.taixinkanghu_client.work_flow.welcome.WelcomeActivity"
+			android:name="com.taixinkanghu_client.work_flow.welcome.ui.WelcomeActivity"
 			android:label="@string/welcome_activity_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>

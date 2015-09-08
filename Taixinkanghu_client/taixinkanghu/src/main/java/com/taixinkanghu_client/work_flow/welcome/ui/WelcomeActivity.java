@@ -12,7 +12,7 @@
  * 2015/7/9		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.welcome;
+package com.taixinkanghu_client.work_flow.welcome.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +21,16 @@ import com.module.frame.BaseActivity;
 import com.module.util.timer.TimerTaskWrapper;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
+import com.taixinkanghu_client.work_flow.welcome.msg_handler.WelcomeMsgHandler;
 
 public class WelcomeActivity extends BaseActivity
 {
 	private final static long DELAY_TIME_MILLISENCENDS = 2000;
 
-	private TimerTaskWrapper m_waitTimerTask = new TimerTaskWrapper();
-	private TimerTaskHandler m_timerTaskHandler   = new TimerTaskHandler();
+	private TimerTaskWrapper m_waitTimerTask    = new TimerTaskWrapper();
+	private TimerTaskHandler m_timerTaskHandler = new TimerTaskHandler();
+
+	private WelcomeMsgHandler m_welcomeMsgHandler = new WelcomeMsgHandler(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,8 +43,14 @@ public class WelcomeActivity extends BaseActivity
 
 	private void initWaitAction()
 	{
+		//01. 倒计时时间
 		m_waitTimerTask.setTimerTaskListener(m_timerTaskHandler);
 		m_waitTimerTask.schedule(DELAY_TIME_MILLISENCENDS);
+
+		//02. 请求列表
+		m_welcomeMsgHandler.requestHospitalList();
+		m_welcomeMsgHandler.requestDepartmentList();
+
 	}
 
 	/**
