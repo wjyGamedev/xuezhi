@@ -17,21 +17,23 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:weightSum="1">
 
 			<ImageView
 				android:id="@+id/company_logo"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+				android:layout_width="250dp"
+				android:layout_height="150dp"
 				android:layout_marginRight="10dp"
-				android:layout_marginTop="60dp"
-				android:src="@drawable/logo_img"/>
+				android:layout_marginTop="35dp"
+				android:src="@drawable/logo_img"
+				android:layout_weight="0.09"/>
 
 			<TextView
 				android:id="@+id/edition_number"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="60dp"
+				android:layout_marginBottom="35dp"
 				android:layout_marginTop="10dp"
 				android:text="v1.0 for Android"
 				android:textColor="@color/au_text_color_gray"
