@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 01. 问题反馈-->
+	<string name="question_feedback_title">问题反馈</string>
+
+</resources>

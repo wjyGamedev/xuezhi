@@ -41,7 +41,7 @@ import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
 import com.taixinkanghu_client.work_flow.main_page.data.DMainPageImages;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
-import com.taixinkanghu_client.work_flow.show_flow.company_show.ui.CompanyShowActivity;
+import com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity;
 import com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity;
 
 import java.util.ArrayList;

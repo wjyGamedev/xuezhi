@@ -149,12 +149,7 @@
 		</activity>
 
 		<!-- 12. show flow-->
-		<!-- 公司展示信息页面-->
-		<activity
-			android:name="com.taixinkanghu_client.work_flow.show_flow.company_show.ui.CompanyShowActivity"
-			android:label="CompanyShowActivity">
-		</activity>
-
+		<!-- 公司展示信息页面，等同于下面的公司介绍页面-->
 		<!-- 促销产品展示信息页面-->
 		<activity
 			android:name="com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity"
@@ -166,6 +161,31 @@
 		<activity
 			android:name="com.taixinkanghu_client.work_flow.service_flow.question_feed_page.ui.QuestionFeedBackActivity"
 			android:label="QuestionFeedBackActivity">
+		</activity>
+
+		<!-- 14. 公司流程-->
+		<!-- 公司介绍-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity"
+			android:label="CompanyShowActivity">
+		</activity>
+
+		<!-- 服务介绍-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.company_flow.service_introduction_page.ui.ServiceIntroductionActivity"
+			android:label="ServiceIntroductionActivity">
+		</activity>
+
+		<!-- 护理员级别-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.company_flow.nurse_level_introduction_page.ui.NurseLevelActivity"
+			android:label="NurseLevelActivity">
+		</activity>
+
+		<!-- 常见问题-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.company_flow.faq_page.ui.FaqActivity"
+			android:label="FaqActivity">
 		</activity>
 
 	</application>

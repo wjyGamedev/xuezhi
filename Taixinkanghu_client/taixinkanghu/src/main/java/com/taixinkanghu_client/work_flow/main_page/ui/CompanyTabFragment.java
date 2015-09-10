@@ -15,6 +15,7 @@
 package com.taixinkanghu_client.work_flow.main_page.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +25,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity;
+import com.taixinkanghu_client.work_flow.company_flow.faq_page.ui.FaqActivity;
+import com.taixinkanghu_client.work_flow.company_flow.nurse_level_introduction_page.ui.NurseLevelActivity;
+import com.taixinkanghu_client.work_flow.company_flow.service_introduction_page.ui.ServiceIntroductionActivity;
 
 
 public class CompanyTabFragment extends Fragment
 {
 
-    private ImageButton btn_back;
-    private TextView page_title;
     private LinearLayout company_info;
     private LinearLayout service_introduction;
     private LinearLayout worker_level;
@@ -41,43 +44,39 @@ public class CompanyTabFragment extends Fragment
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.activity_about_us, container, false);
-//
-//        btn_back = (ImageButton) view.findViewById(R.id.btn_back);
-//        page_title = (TextView) view.findViewById(R.id.page_title);
-//        company_info = (LinearLayout) view.findViewById(R.id.company_info);
-//        service_introduction = (LinearLayout) view.findViewById(R.id.service_introduction);
-//        worker_level = (LinearLayout) view.findViewById(R.id.worker_level);
-//        goto_faq = (LinearLayout) view.findViewById(R.id.goto_faq);
-//
-//        page_title.setText(R.string.about_us_title);
-//        btn_back.setVisibility(View.GONE);
-//        service_introduction.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), ServiceIntroductionActivity.class));
-//            }
-//        });
-//
-//        company_info.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), CompanyInfoActivity.class));
-//            }
-//        });
-//
-//        worker_level.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), WorkerLevelActivity.class));
-//            }
-//        });
-//
-//        goto_faq.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), FaqActivity.class));
-//            }
-//        });
+
+        company_info = (LinearLayout) view.findViewById(R.id.company_info);
+        service_introduction = (LinearLayout) view.findViewById(R.id.service_introduction);
+        worker_level = (LinearLayout) view.findViewById(R.id.worker_level);
+        goto_faq = (LinearLayout) view.findViewById(R.id.goto_faq);
+
+        service_introduction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ServiceIntroductionActivity.class));
+            }
+        });
+
+        company_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CompanyShowActivity.class));
+            }
+        });
+
+        worker_level.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NurseLevelActivity.class));
+            }
+        });
+
+        goto_faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), FaqActivity.class));
+            }
+        });
 
 
         return view;

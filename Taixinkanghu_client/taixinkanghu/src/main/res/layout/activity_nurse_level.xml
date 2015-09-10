@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/white"
+			  android:orientation="vertical">
+
+	<!--<include layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<RadioGroup
+		android:id="@+id/rg_worker_level"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:orientation="horizontal"
+		android:layout_marginTop="10dp">
+
+		<RadioButton
+			android:id="@+id/three_star_btn"
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="@string/nurse_junior"/>
+
+		<RadioButton
+			android:id="@+id/four_star_btn"
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="@string/intermediates_junior"/>
+
+
+		<RadioButton
+			android:id="@+id/five_star_btn"
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="@string/senior_junior"/>
+
+		<RadioButton
+			android:id="@+id/six_star_btn"
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="@string/super_junior"/>
+
+	</RadioGroup>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="20dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="20dp"
+		android:layout_weight="1"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/worker_level_explain_tv"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/three_star_worker_explain"/>
+
+	</LinearLayout>
+
+	<!--<include layout="@layout/include_main_button"/>-->
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+</LinearLayout>

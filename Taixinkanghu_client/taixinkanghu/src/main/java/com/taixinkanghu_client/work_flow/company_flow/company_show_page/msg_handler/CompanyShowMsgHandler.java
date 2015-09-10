@@ -12,13 +12,13 @@
  * 2015/9/11		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.show_flow.company_show.msg_handler;
+package com.taixinkanghu_client.work_flow.company_flow.company_show_page.msg_handler;
 
 import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
-import com.taixinkanghu_client.work_flow.show_flow.company_show.ui.CompanyShowActivity;
+import com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity;
 
 public class CompanyShowMsgHandler extends BaseUIMsgHandler
 {

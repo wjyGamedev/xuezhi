@@ -12,7 +12,7 @@
  * 2015/7/27		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.show_flow.company_show.ui;
+package com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +21,7 @@ import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.work_flow.show_flow.company_show.msg_handler.CompanyShowMsgHandler;
+import com.taixinkanghu_client.work_flow.company_flow.company_show_page.msg_handler.CompanyShowMsgHandler;
 
 import butterknife.ButterKnife;
 
@@ -57,7 +57,6 @@ public class CompanyShowActivity extends BaseActivity
 			m_companyShowMsgHandler.go2MainPage();
 		}
 	}
-
 
 	/**
 	 * inner func
