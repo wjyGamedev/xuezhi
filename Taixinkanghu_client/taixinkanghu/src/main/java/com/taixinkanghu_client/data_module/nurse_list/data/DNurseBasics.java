@@ -31,7 +31,7 @@ public class DNurseBasics implements Serializable
 	/**
 	 * 数据区
 	 */
-	private int    m_ID           = 0;          //ID
+	private int    m_ID           = DataConfig.DEFAULT_VALUE;          //ID
 	private int    m_hospitalID   = 0;             //hospital ID
 	private String m_name         = null;      //姓名
 	private String m_gender       = null;      //性别
@@ -61,7 +61,7 @@ public class DNurseBasics implements Serializable
 		m_ID = response.getInt(NurseBasicListConfig.ID);
 		m_hospitalID = response.getInt(NurseBasicListConfig.HOSPITAL_ID);
 		m_name = response.getString(NurseBasicListConfig.NAME);
-		int genderType = response.getInt(NurseBasicListConfig.GENDER);
+		int                     genderType   = response.getInt(NurseBasicListConfig.GENDER);
 		EnumConfig.GenderStatus genderStatus = EnumConfig.GenderStatus.valueOf(genderType);
 		if (genderStatus != null)
 		{
@@ -94,7 +94,7 @@ public class DNurseBasics implements Serializable
 		EnumConfig.NurseServiceStatus nurseServiceStatus = EnumConfig.NurseServiceStatus.valueOf(itmp);
 		if (nurseServiceStatus != null)
 		{
-			m_serviceStatus = 	nurseServiceStatus.getName();
+			m_serviceStatus = nurseServiceStatus.getName();
 		}
 
 		//同步到全局容器中
@@ -227,81 +227,81 @@ public class DNurseBasics implements Serializable
 	{
 		if (dayType < DataConfig.SELECT_DAY_TYEP_ALL || dayType > DataConfig.SELECT_DAY_TYEP_NIGHT)
 		{
-			TipsDialog.GetInstance().setMsg("dayType is invalid![dayType:="+dayType+"]");
+			TipsDialog.GetInstance().setMsg("dayType is invalid![dayType:=" + dayType + "]");
 			TipsDialog.GetInstance().show();
 			return 0;
 		}
 
 		if (dayType == DataConfig.SELECT_DAY_TYEP_ALL)
 		{
-			switch(patientState)
+			switch (patientState)
 			{
-				case PATIENT_STATE_CARE_MYSELF:
-				{
-					return getServiceChargePerAllCare();
-				}
-				case PATIENT_STATE_HALF_CARE_MYSELF:
-				{
-					return getServiceChargePerAllHalfCare();
-				}
-				case PATIENT_STATE_CANNT_CARE_MYSELF:
-				{
-					return getServiceChargePerAllCanntCare();
-				}
-				default:
-				{
-					TipsDialog.GetInstance().setMsg("patientState is invalid!"+patientState.toString());
-					TipsDialog.GetInstance().show();
-					return 0;
-				}
+			case PATIENT_STATE_CARE_MYSELF:
+			{
+				return getServiceChargePerAllCare();
+			}
+			case PATIENT_STATE_HALF_CARE_MYSELF:
+			{
+				return getServiceChargePerAllHalfCare();
+			}
+			case PATIENT_STATE_CANNT_CARE_MYSELF:
+			{
+				return getServiceChargePerAllCanntCare();
+			}
+			default:
+			{
+				TipsDialog.GetInstance().setMsg("patientState is invalid!" + patientState.toString());
+				TipsDialog.GetInstance().show();
+				return 0;
+			}
 			}
 		}
 		else if (dayType == DataConfig.SELECT_DAY_TYEP_DAY)
 		{
-			switch(patientState)
+			switch (patientState)
 			{
-				case PATIENT_STATE_CARE_MYSELF:
-				{
-					return getServiceChargePerDayCare();
-				}
-				case PATIENT_STATE_HALF_CARE_MYSELF:
-				{
-					return getServiceChargePerDayHalfCare();
-				}
-				case PATIENT_STATE_CANNT_CARE_MYSELF:
-				{
-					return getServiceChargePerDayCanntCare();
-				}
-				default:
-				{
-					TipsDialog.GetInstance().setMsg("patientState is invalid!"+patientState.toString());
-					TipsDialog.GetInstance().show();
-					return 0;
-				}
+			case PATIENT_STATE_CARE_MYSELF:
+			{
+				return getServiceChargePerDayCare();
+			}
+			case PATIENT_STATE_HALF_CARE_MYSELF:
+			{
+				return getServiceChargePerDayHalfCare();
+			}
+			case PATIENT_STATE_CANNT_CARE_MYSELF:
+			{
+				return getServiceChargePerDayCanntCare();
+			}
+			default:
+			{
+				TipsDialog.GetInstance().setMsg("patientState is invalid!" + patientState.toString());
+				TipsDialog.GetInstance().show();
+				return 0;
+			}
 			}
 		}
 		else
 		{
-			switch(patientState)
+			switch (patientState)
 			{
-				case PATIENT_STATE_CARE_MYSELF:
-				{
-					return getServiceChargePerNightCare();
-				}
-				case PATIENT_STATE_HALF_CARE_MYSELF:
-				{
-					return getServiceChargePerNightHalfCare();
-				}
-				case PATIENT_STATE_CANNT_CARE_MYSELF:
-				{
-					return getServiceChargePerNightCanntCare();
-				}
-				default:
-				{
-					TipsDialog.GetInstance().setMsg("patientState is invalid!"+patientState.toString());
-					TipsDialog.GetInstance().show();
-					return 0;
-				}
+			case PATIENT_STATE_CARE_MYSELF:
+			{
+				return getServiceChargePerNightCare();
+			}
+			case PATIENT_STATE_HALF_CARE_MYSELF:
+			{
+				return getServiceChargePerNightHalfCare();
+			}
+			case PATIENT_STATE_CANNT_CARE_MYSELF:
+			{
+				return getServiceChargePerNightCanntCare();
+			}
+			default:
+			{
+				TipsDialog.GetInstance().setMsg("patientState is invalid!" + patientState.toString());
+				TipsDialog.GetInstance().show();
+				return 0;
+			}
 			}
 		}
 

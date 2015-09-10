@@ -84,19 +84,9 @@ public class RequestNurseBasicListEvent extends BaseNetEvent
 
 	}
 
-	public String getName()
-	{
-		return m_name;
-	}
-
 	public void setName(String name)
 	{
 		m_name = name;
-	}
-
-	public String getMobileNum()
-	{
-		return m_mobileNum;
 	}
 
 	public void setMobileNum(String mobileNum)
@@ -104,19 +94,9 @@ public class RequestNurseBasicListEvent extends BaseNetEvent
 		m_mobileNum = mobileNum;
 	}
 
-	public int getGenderID()
-	{
-		return m_genderID;
-	}
-
 	public void setGenderID(int genderID)
 	{
 		m_genderID = genderID;
-	}
-
-	public String getAgeRage()
-	{
-		return m_ageRage;
 	}
 
 	public void setAgeRage(String ageRage)
@@ -124,19 +104,10 @@ public class RequestNurseBasicListEvent extends BaseNetEvent
 		m_ageRage = ageRage;
 	}
 
-	public String getWeightRage()
-	{
-		return m_weightRage;
-	}
 
 	public void setWeightRage(String weightRage)
 	{
 		m_weightRage = weightRage;
-	}
-
-	public int getHospitalID()
-	{
-		return m_hospitalID;
 	}
 
 	public void setHospitalID(int hospitalID)
@@ -144,19 +115,9 @@ public class RequestNurseBasicListEvent extends BaseNetEvent
 		m_hospitalID = hospitalID;
 	}
 
-	public int getDepartmentID()
-	{
-		return m_departmentID;
-	}
-
 	public void setDepartmentID(int departmentID)
 	{
 		m_departmentID = departmentID;
-	}
-
-	public int getPatientStateID()
-	{
-		return m_patientStateID;
 	}
 
 	public void setPatientStateID(int patientStateID)
@@ -164,29 +125,14 @@ public class RequestNurseBasicListEvent extends BaseNetEvent
 		m_patientStateID = patientStateID;
 	}
 
-	public String getSchedualAll()
-	{
-		return m_schedualAll;
-	}
-
 	public void setSchedualAll(String schedualAll)
 	{
 		m_schedualAll = schedualAll;
 	}
 
-	public String getSchedualDay()
-	{
-		return m_schedualDay;
-	}
-
 	public void setSchedualDay(String schedualDay)
 	{
 		m_schedualDay = schedualDay;
-	}
-
-	public String getSchedualNight()
-	{
-		return m_schedualNight;
 	}
 
 	public void setSchedualNight(String schedualNight)

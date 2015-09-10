@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	android:id="@+id/title"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<!--<include layout="@layout/include_header"/>-->
+		<fragment
+			android:id="@+id/common_header_fragment"
+			android:name="com.module.widget.header.HeaderCommon"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="10dp"
+			android:layout_weight="1.0"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:id="@+id/btn_screening"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="10dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+
+				<RadioGroup
+					android:id="@+id/order_option_rg"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:orientation="horizontal">
+
+					<RadioButton
+						android:id="@+id/all_rbtn"
+						style="@style/home_radio_button_style"
+						android:layout_width="20dp"
+						android:layout_height="match_parent"
+						android:background="@drawable/bg_top_tab"
+						android:text="全部"/>
+
+					<RadioButton
+						android:id="@+id/wait_pay_rbtn"
+						style="@style/home_radio_button_style"
+						android:layout_width="20dp"
+						android:layout_height="match_parent"
+						android:background="@drawable/bg_top_tab"
+						android:text="未付款"/>
+
+					<RadioButton
+						android:id="@+id/wait_service_rbtn"
+						style="@style/home_radio_button_style"
+						android:layout_width="20dp"
+						android:layout_height="match_parent"
+						android:background="@drawable/bg_top_tab"
+						android:text="已完成"/>
+
+					<RadioButton
+						style="@style/home_radio_button_style"
+						android:layout_width="20dp"
+						android:layout_height="match_parent"
+						android:background="@drawable/bg_top_tab"
+						android:text="服务中"
+						android:visibility="gone"/>
+
+				</RadioGroup>
+
+			</LinearLayout>
+
+			<!--<android.support.v4.widget.SwipeRefreshLayout-->
+			<!--android:id="@id/swipeRefreshLayout"-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="match_parent"-->
+			<!--android:layout_weight="1.0">-->
+
+
+			<LinearLayout
+				android:id="@+id/display_region"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1.0"
+				android:background="#fff"
+				android:orientation="vertical">
+
+				<ListView
+					android:id="@+id/order_info_lv"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginTop="5dp"
+					android:layout_weight="1.0"
+					android:gravity="center_vertical">
+
+				</ListView>
+			</LinearLayout>
+
+			<!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+		</LinearLayout>
+
+		<!--<include layout="@layout/include_main_button"/>-->
+		<fragment
+			android:id="@+id/common_bottom_fragment"
+			android:name="com.module.widget.bottom.BottomCommon"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			/>
+
+	</LinearLayout>
+</FrameLayout>
+
+

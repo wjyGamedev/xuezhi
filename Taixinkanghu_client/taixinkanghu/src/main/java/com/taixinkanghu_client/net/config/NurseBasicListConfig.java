@@ -58,4 +58,5 @@ public class NurseBasicListConfig
 	public final static String SCHEDULE_SPLIT = ",";
 	public final static String OLD_ID         = "old_id";
 	public final static String NEW_ID         = "new_id";
+	public final static String SELECTED_NURSE_ID         = "selected_nurse_id";
 }

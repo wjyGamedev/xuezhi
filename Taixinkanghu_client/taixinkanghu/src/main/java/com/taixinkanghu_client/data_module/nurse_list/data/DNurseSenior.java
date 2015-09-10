@@ -17,6 +17,7 @@ package com.taixinkanghu_client.data_module.nurse_list.data;
 
 import com.module.data.DGlobal;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
 
 import org.json.JSONException;
@@ -30,7 +31,7 @@ public class DNurseSenior implements Serializable
 	/**
 	 * 数据区
 	 */
-	private int m_ID = 0;                         //ID
+	private int m_ID = DataConfig.DEFAULT_VALUE;                         //ID
 
 	private String m_jobNum         = null;       //工号
 	private String m_languageLevel  = null;   //语言水平

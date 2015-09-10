@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<!-- 01. 预约陪护-->
+	<!-- error info-->
+	<string name="ap_err_info_fill_required_options">请填写必填选项</string>
+
 	<string name="apponintment_page_hint_text">请填写以下信息\n我们将根据您的实际情况为您匹配相应的护理员</string>
 	<string name="name_text">姓名：</string>
 	<string name="name_hint_text">点击填写患者姓名</string>
 	<string name="protocol_confirm_text">点击确认表示已阅读并同意</string>
-
+	<string name="appointment_nursing_title">预约陪护</string>
+	<string name="confirm_btn_text">确认</string>
 
 	<!-- 选择医院列表-->
 	<string name="content_all">全部</string>
@@ -15,5 +20,95 @@
 	<!-- 选择科室列表-->
 	<string name="department_content_tips">请选择科室</string>
 	<string name="department_more_content_tips">更多科室敬请期待</string>
+
+	<!--协议-->
+	<string name="agreement_text">尊敬的用户：\n\t\t\t您即将通过本页面确认使用由泰心康护（天津）健康管理有限公司（以下简称“本公司”）研发的优爱医护系统为您提供优质的病患陪护预约服务。 为了给您带来完美的服务体验，以及更好的享受方便快捷预约的乐趣，请您仔细阅读本协议。 如果对本协议有疑问，请通过本公司客服渠道（400-9696-218）进行详细咨询，由本公司专业客服为您解释条款内容，其他非本公司解释或声明都是非官方渠道，一概与本公司无关，请知晓。\n用户通过网络页面点击确认或以其他方式选择接受本协议，即表示您在享受护理员服务期间同意并接受以下全部内容：\n \n一、护理员服务范围：\n1.负责照顾患者的日常生活起居，协助患者洗脸、刷牙、梳头、刮胡须、剪指（趾）甲、擦洗、换洗内衣裤（条件允许的情况下）。\n2.负责患者的床单位干净整洁。\n3.在护士站的需要和指导下并经患者同意，协助护士完成留取患者体液、分泌物等标本，但由此产生的后果护理人员和本公司不承担责任。\n4.在医护人员指导下协助患者服药、进食、喝水、就寝。\n5.在患者需要时，协助患者排便。\n6.在患者需要时，遵医嘱护送患者到医疗机构指定的地点做检查、理疗、康复等活动。\n7.在患者病情及家属和患者允许的情况下，与患者互动、沟通、聊天及做一些有益于身心健康的活动。\n8.经患者或家属要求，帮助患者购置生活必需品、清洗餐具，此期间护理员属于在岗状态，患者在此期间发生任何意外责任均自负。\n9.尽量满足患者的陪护要求，但不涉及医疗护理项目（如：推拿、按摩等）。\n10.本公司为用户所提供的服务仅限于以上各项生活护理，不涉及任何医疗、康复等行为，如用户私自要求本公司护理员超出上述服务范围，本公司对此产生的一切后果不负责任。\n \n二、	注意事项：\n1.我们的服务时间是早上9点到次日早上9点为一天，不足一天按一天收取费用。收费方式为预收，即按用户的委托天数提前收取。依国家规定，每年的法定节日将收取三倍服务费。（除夕、大年初一、初二、初三、元旦、清明、五一、端午、中秋、10月1日、10月2日、10月3日）\n2.用户的贵重物品及现金应自行妥善保管，若因自身原因保管不当导致丢失，请立即报案，本公司对此不承担责任。\n3.用户不得私自允许护理员外出或给假，不得与护理员私自续约或增加工作时间、工作内容，由此引发的一切后果由用户方承担。\n4.如用户方隐瞒患者病情、病史，本公司有权终止服务，并由用户方自己承担由此引发的后果。\n5.用户方应保证护理员的就餐时间，护理员外出就餐期间患者由用户方负责。\n6.若用户需要继续服务应在费用到期前24小时告知本公司进行续单操作，缴纳费用，否则到期视为终止服务。由此引发的一切后果由用户负责。\n7.陪护人员应用户的要求，为患者提供喂药、使用热水袋或冰袋等服务，导致患者出现意外，由用户承担责任。\n8.如用户或患者不配合服务或擅自活动（如：患者需要大小便等活动未叫醒或未等待陪护人员到场协助的）而造成的意外事故应由用户承担责任。\n9.护理员在陪护服务期间，受到用户或患者造成的人身伤害，由用户方承担医疗费用和赔偿责任。\n10.本公司有权根据市场情况进行收费调整，用户应遵循新收费标准预付费用。收费以本公司最新修订的标准为准。\n \n三、	陪护声明：\n1.在委托期间内出现以下情况，公司责任免除。\n2.患者病情突然变化造成的病理后果，如：痉挛、心脑血管疾病等引发的意外。\n3.患者不按医院规定住院，私自离开医院在院外出现的交通事故和其他事故。\n4.由于患者吵架、打架、酗酒、自杀或他杀引发的意外。\n5.患者不听护理员劝阻自行活动、或夜间不叫护理员陪同私自进行起居活动导致的意外。\n6.由于患者自身的精神状况、病情、体质的特殊性（如患者高龄、患有骨质疏松、吞咽功能障碍），所引发的难以预料的意外（如：骨折、摔伤、噎食、烫伤等不可预测的意外情况）。\n7.公司有对精神异常患者、传染病患者、有自杀自残倾向等患者不提供服务的权利。如用户方坚持要求，须经签字确认以下内容：本公司对此服务过程出现的意外不承担责任。 用户还应承担在服务期间患者给公司护理员造成的人身或财产的意外伤害。\n8.护理员按用户或患者的意愿进行与陪护理员作无关的操作，所引发的意外。\n \n泰心康护（天津）健康管理有限公司</string>
+
+	<!-- 02. 用户协议-->
+	<string name="user_protocal_title">用户协议</string>
+
+	<!-- 03. 选择护理员-->
+	<string name="select_nurse_title">选择护理员</string>
+	<string name="select_nurse_tips">以下护理员均为根据您的信息精细化匹配生成</string>
+	<string name="content_main_page">首页</string>
+	<string name="content_age">岁</string>
+	<string name="wait_tips">等待中...</string>
+
+	<!-- 04. 护工详细信息-->
+	<string name="basic_information_text">基础信息</string>
+	<string name="service_price_text">服务价格</string>
+	<string name="nurse_info">护理员信息</string>
+	<string name="content_yuan_per_day">元/天</string>
+
+	<!-- 05. 评价-->
+	<string name="service_commnet">服务评价</string>
+
+	<!-- 06. 确认订单页面-->
+	<string name="order_content_text">订单内容</string>
+	<string name="nursing_worker_text">护理员:</string>
+	<string name="job_number_text">工号：</string>
+	<string name="worker_level_text">级别：</string>
+	<string name="service_time_text">服务时间:</string>
+	<string name="service_location_text">服务地点:</string>
+	<string name="patient_text">被护理人:</string>
+	<string name="patient_state_text">被护理人状态：</string>
+	<string name="order_amount_text">订单金额</string>
+	<string name="service_type_all_text">全天24小时陪护服务：</string>
+	<string name="service_type_day_text">白天12小时陪护服务：</string>
+	<string name="service_type_night_text">夜间12小时陪护服务：</string>
+	<string name="multiplication_sign_text">x</string>
+	<string name="insurance_text">保险(暂无)</string>
+	<string name="total_text">合计：</string>
+	<string name="user_protocol_text">用户协议</string>
+	<string name="click_ok_text">点击确定预约表示已阅读并同意</string>
+	<string name="determine_appointment_text">确定预约</string>
+	<string name="determine_order_title">确认订单</string>
+	<string name="content_day">天</string>
+	<string name="content_yuan">元</string>
+
+	<!-- TODO:tips 内容,以后更改命名规则-->
+	<string name="patient_data_text">王某人</string>
+	<string name="service_time_datda_text">6月24日 - 6月26日 共3天</string>
+	<string name="service_location_data_text">北京朝阳医院心血管内科</string>
+	<string name="insurance_price_text">+0元</string>
+	<string name="total_price_text">200元</string>
+
+	<!-- 07. 患者信息页面-->
+	<string name="content_confirm">确定</string>
+	<string name="content_patient_info">患者信息</string>
+
+	<!-- 08. 支付页面-->
+	<string name="pay_the_way_text">支付方式</string>
+	<string name="cash_pay_text">现金支付</string>
+	<string name="cash_pay_hint_text">提交成功后，工作人员会上门收取现金</string>
+	<string name="ali_pay_text">支付宝支付</string>
+	<string name="ali_pay_hint_text">推荐有支付宝账号的用户使用</string>
+	<string name="weixin_pay_text">微信支付</string>
+	<string name="weixin_pay_hint_text">推荐安装微信5.0版本以上的用户使用</string>
+
+	<style name="tick_radio_button_style">
+		<item name="android:textSize">16.0sp</item>
+		<item name="android:textColor">@color/main_color</item>
+		<item name="android:gravity">center</item>
+		<item name="android:background">@null</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:button">@null</item>
+	</style>
+
+	<string name="pay_page_title">支付页面</string>
+	<string name="pay_button">确认支付</string>
+	<string name="cancel_title">确定要放弃付款？</string>
+	<string name="cancel_btn">确定</string>
+	<string name="confirm_btn">取消</string>
+	<string name="determine_pay_title">确认支付</string>
+
+	<string name="error_tips_select_pay_option">请选择支付方式？</string>
+	<string name="error_tips_pay_aciton_invalid">该支付方式暂未开通。</string>
+	<string name="error_tips_pay_more_aciton_no_cash">补差价暂不允许使用现金支付。</string>
+	<string name="error_tips_cash_cannt_in_wait_pay">当前模式下，不允许使用现金支付。</string>
+
+	<string name="tips_cash_success">您的订单已经生成，服务人员会在1小时内和您联系，请您保持手机畅通。</string>
+
 
 </resources>

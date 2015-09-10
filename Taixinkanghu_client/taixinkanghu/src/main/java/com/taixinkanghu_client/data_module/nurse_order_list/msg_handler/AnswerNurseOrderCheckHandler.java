@@ -14,9 +14,11 @@
 
 package com.taixinkanghu_client.data_module.nurse_order_list.msg_handler;
 
+import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.net.IResponseListener;
+import com.taixinkanghu_client.net.config.NurseOrderConfig;
 import com.taixinkanghu_client.net.config.ProtocalConfig;
 
 import org.json.JSONException;
@@ -32,26 +34,22 @@ public class AnswerNurseOrderCheckHandler extends IResponseListener
 		{
 			httpStatus = response.getInt(ProtocalConfig.HTTP_STATUS);
 
-//			//01. 失败
-//			if (!LogicalUtil.IsHttpSuccess(httpStatus))
-//			{
-//				String errorMsg = response.getString(ProtocalConfig.HTTP_ERROR_MSG);
-//				TipsDialog.GetInstance().setMsg(errorMsg);
-//				TipsDialog.GetInstance().show();
-//
-//				//0101. 占用情况，需跳转UI界面。
-//				if (httpStatus == NurseOrderConfig.NURSE_IN_SERVICE)
-//				{
-//					FailedNurseOrderCheckEvent event = new FailedNurseOrderCheckEvent();
-//					m_eventBus.post(event);
-//					return;
-//				}
-//				//0102. 其他错误情况，不跳转，直接显示失败信息。
-//				else
-//				{
-//					return;
-//				}
-//			}
+			//01. 失败,但不是占用的情况，我们提示出来。
+			if (!LogicalUtil.IsHttpSuccess(httpStatus))
+			{
+				//0101. 占用情况，在相应的UI的msg进行处理，这里不处理
+				if (httpStatus == NurseOrderConfig.NURSE_IN_SERVICE)
+				{
+				}
+				//0102. 其他错误情况，不跳转，直接显示失败信息。
+				else
+				{
+					String errorMsg = response.getString(ProtocalConfig.HTTP_ERROR_MSG);
+					TipsDialog.GetInstance().setMsg(errorMsg);
+					TipsDialog.GetInstance().show();
+					return;
+				}
+			}
 		}
 		catch (JSONException e)
 		{

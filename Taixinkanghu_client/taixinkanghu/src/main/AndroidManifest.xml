@@ -57,6 +57,18 @@
 			android:label="RegisterActivity">
 		</activity>
 
+		<!-- 预约陪护流程-->
+		<!-- 预约陪护页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity"
+			android:label="ApoitNursingActivity">
+		</activity>
+
+		<!-- 用户协议页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.user_protocal_page.UserProtocalActivity"
+			android:label="UserProtocalActivity">
+		</activity>
 	</application>
 
 </manifest>

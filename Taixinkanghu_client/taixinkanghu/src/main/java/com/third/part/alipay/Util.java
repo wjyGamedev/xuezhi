@@ -15,19 +15,19 @@
 package com.third.part.alipay;
 
 import com.module.net.NetConfig;
-import com.taixinkanghu_client.config.EnumConfig;
 
 public class Util
 {
-	public static String GetNurseOrderInfo(String orderID, EnumConfig.NursingModuleStatus nursingModuleStatus)
+	public static String GetNurseOrderInfoInNormal(String orderID)
+	{
+		//01. 正常支付
+		return "rid="+ orderID + "taixintype="+"order";
+	}
+
+	public static String GetNurseOrderInfoInPayMore(String orderID)
 	{
 		//01. 补差价
-		if (nursingModuleStatus == EnumConfig.NursingModuleStatus.PAY_MORE)
-		{
-			return "rid="+ orderID + "taixintype="+"addon";
-		}
-		//02. 正常支付
-		return "rid="+ orderID + "taixintype="+"order";
+		return "rid="+ orderID + "taixintype="+"addon";
 	}
 
 	public static String GetNurseOrder(String nurseOrderID, String price)

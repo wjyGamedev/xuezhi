@@ -22,34 +22,17 @@ public class BaseUIMsgHandler
 {
 	protected EventBus m_eventBus = EventBus.getDefault();
 
-	private boolean m_initFlag = false;
 	protected Context m_context = null;
 
 	public BaseUIMsgHandler(Context context)
 	{
 		m_context = context;
-		checkInitAndTry();
+		init();
 	}
 
 	protected void init()
 	{
 		m_eventBus.register(this);
-		m_initFlag = true;
 	}
 
-	protected void clearup()
-	{
-		m_eventBus.unregister(this);
-	}
-
-	protected void checkInitAndTry()
-	{
-		if (m_initFlag == true)
-			return;
-
-		if (m_initFlag == false)
-		{
-			init();
-		}
-	}
 }

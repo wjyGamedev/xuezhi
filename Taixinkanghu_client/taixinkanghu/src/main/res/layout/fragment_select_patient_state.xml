@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical"
+			  android:id="@+id/select_patient_state_fragment_page">
+
+
+	<LinearLayout
+		android:id="@+id/patient_state_func_region"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+
+		<LinearLayout
+			android:id="@+id/patient_state_header_ll"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@color/mask"
+			android:orientation="vertical">
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/patient_state_care_myself_tv"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@drawable/bg_order_btn"
+			android:gravity="center"
+			android:text="@string/content_care_myself"
+			android:textColor="#ff666666"
+			android:textSize="14.0sp"/>
+
+		<TextView
+			android:id="@+id/patient_state_half_care_myself_tv"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@drawable/bg_order_btn"
+			android:gravity="center"
+			android:text="@string/content_half_care_myself"
+			android:textColor="#ff666666"
+			android:textSize="14.0sp"/>
+
+		<TextView
+			android:id="@+id/patient_state_not_care_myself_tv"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@drawable/bg_order_btn"
+			android:gravity="center"
+			android:text="@string/content_not_care_myself"
+			android:textColor="#ff666666"
+			android:textSize="14.0sp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/patient_state_bottom_ll"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/all_null"
+		android:layout_weight="1"
+		android:orientation="vertical">
+
+	</LinearLayout>
+</LinearLayout>

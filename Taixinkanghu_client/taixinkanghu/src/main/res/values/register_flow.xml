@@ -3,7 +3,6 @@
 
 	<string name="err_info_invalid_phone">请输入有效的手机号码</string>
 	<string name="err_info_invalid_country_zip_code">当前国家不支持手机验证服务</string>
-	<string name="err_info_fill_required_options">请填写必填选项</string>
 
 	<string name="rf_title">注册页面</string>
 	<string name="rf_content_second">秒</string>

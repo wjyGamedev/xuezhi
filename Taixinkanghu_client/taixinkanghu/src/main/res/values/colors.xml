@@ -9,4 +9,9 @@
 	<color name="main_bg_color">#fff7f7f7</color>
 	<color name="date_select_green">#008000</color>
 	<color name="text_color_red">#fff04847</color>
+	<color name="all_null">#00000000</color>
+	<color name="mask">#55000000</color>
+	<color name="color_main_focus">#ff2aa384</color>
+	<color name="color_main_disable">#ffcccccc</color>
+	<color name="umeng_fb_gray">#ffd8d8d8</color>
 </resources>

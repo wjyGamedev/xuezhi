@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<!--<include layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0.5dp"
+		android:background="#40000000"/>
+
+	<!--底部功能菜单-->
+	<RadioGroup
+		android:id="@+id/rg_dingdan"
+		android:layout_width="match_parent"
+		android:layout_height="55dp"
+		android:layout_marginTop="10dp"
+		android:layout_alignParentBottom="true"
+		android:background="#fff"
+		android:orientation="horizontal">
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="#40000000"/>
+
+		<RadioButton
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="非常满意"/>
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="#40000000"/>
+
+		<RadioButton
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="满意"/>
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="#40000000"/>
+
+		<RadioButton
+			style="@style/home_radio_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/bg_top_tab"
+			android:text="一般"/>
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="#40000000"/>
+
+	</RadioGroup>
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<ListView
+		android:layout_weight="1"
+		android:id="@+id/listView_reviews"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/white"
+		android:divider="@color/divider_color"
+		android:dividerHeight="0.5dp"
+		android:listSelector="@drawable/bg_btn_translucent"
+		android:scrollbars="none"
+		android:choiceMode="singleChoice">
+
+		</ListView>
+
+	</ScrollView>
+
+	<!--<include layout="@layout/include_main_button"/>-->
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+</LinearLayout>

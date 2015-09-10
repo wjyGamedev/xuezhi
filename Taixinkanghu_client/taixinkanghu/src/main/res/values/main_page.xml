@@ -43,4 +43,6 @@
 		<item name="android:layout_weight">1.0</item>
 	</style>
 
+	<string name="function_is_not_open">功能未开放</string>
+
 </resources>

@@ -1,7 +1,6 @@
 package com.taixinkanghu_client.work_flow.main_page.ui;
 
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +17,7 @@ import com.module.frame.BaseActivity;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.taixinkanghu_client.work_flow.main_page.msg_handler.MainMsgHandler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,18 +27,19 @@ public class MainActivity extends BaseActivity
 {
 	//widget
 	//	@Bind (R.id.header_common_fragment) HeaderCommon m_headerCommon = null;
-	private HeaderCommon m_headerCommon = null;
-	@Bind (R.id.func_region_sv) ScrollView  m_funcRegionSV = null;
-	@Bind (R.id.func_region_fl) FrameLayout m_funcRegionFL = null;
-	@Bind (R.id.tabs_rg)        RadioGroup  m_tabsRG       = null;
-	@Bind (R.id.home_rbtn)      RadioButton m_homeRBtn     = null;
-	@Bind (R.id.personal_rbtn)  RadioButton m_personalRBtn = null;
-	@Bind (R.id.service_rbtn)   RadioButton m_serviceRBtn  = null;
-	@Bind (R.id.company_rbtn)   RadioButton m_companyRBtn  = null;
+	private                     HeaderCommon m_headerCommon = null;
+	@Bind (R.id.func_region_sv) ScrollView   m_funcRegionSV = null;
+	@Bind (R.id.func_region_fl) FrameLayout  m_funcRegionFL = null;
+	@Bind (R.id.tabs_rg)        RadioGroup   m_tabsRG       = null;
+	@Bind (R.id.home_rbtn)      RadioButton  m_homeRBtn     = null;
+	@Bind (R.id.personal_rbtn)  RadioButton  m_personalRBtn = null;
+	@Bind (R.id.service_rbtn)   RadioButton  m_serviceRBtn  = null;
+	@Bind (R.id.company_rbtn)   RadioButton  m_companyRBtn  = null;
 
 	private PopupMenu m_popupMenu = null;
 
 	//logical
+	private MainMsgHandler           m_mainMsgHandler           = new MainMsgHandler(this);
 	private FragmentManager          m_fragmentManager          = getFragmentManager();
 	private HandleMenuItemClickEvent m_handleMenuItemClickEvent = new HandleMenuItemClickEvent();
 
@@ -80,6 +81,74 @@ public class MainActivity extends BaseActivity
 
 	}
 
+	/**
+	 * widget event
+	 */
+	@OnClick (R.id.home_rbtn)
+	public void clickHomeTab()
+	{
+		m_mainMsgHandler.go2HomeFragment();
+		return;
+	}
+
+	@OnClick (R.id.personal_rbtn)
+	public void clickPersonalTab()
+	{
+		m_popupMenu.show();
+	}
+
+	@OnClick (R.id.service_rbtn)
+	public void clickServiceTab()
+	{
+		m_mainMsgHandler.go2ServiceFragment();
+	}
+
+	@OnClick (R.id.company_rbtn)
+	public void clickCompanyTab()
+	{
+		m_mainMsgHandler.go2CompanyFragment();
+	}
+
+	/**
+	 * override func
+	 */
+	private class HandleMenuItemClickEvent implements PopupMenu.OnMenuItemClickListener
+	{
+		@Override
+		public boolean onMenuItemClick(MenuItem item)
+		{
+			switch (item.getItemId())
+			{
+			case R.id.nursing_order:
+			{
+				m_mainMsgHandler.go2NurseOrderAction();
+			}
+			return true;
+			case R.id.shopping_order:
+			{
+				m_mainMsgHandler.go2ShoppingOrderAction();
+			}
+			return true;
+			case R.id.personal_wealth:
+			{
+				m_mainMsgHandler.go2PersonalWealthAction();
+			}
+			return true;
+			case R.id.personal_setting:
+			{
+				m_mainMsgHandler.go2SettingAction();
+			}
+			return true;
+			default:
+				break;
+			}
+			return false;
+		}
+	}
+
+	/**
+	 * inner func
+	 */
 	private void init()
 	{
 		m_headerCommon = (HeaderCommon)m_fragmentManager.findFragmentById(R.id.common_header_fragment);
@@ -117,7 +186,7 @@ public class MainActivity extends BaseActivity
 		int resID = m_tabsRG.getCheckedRadioButtonId();
 		if (resID == R.id.home_rbtn)
 		{
-			startHomeFragment();
+			m_mainMsgHandler.go2HomeFragment();
 		}
 		else if (resID == R.id.personal_rbtn)
 		{
@@ -126,113 +195,17 @@ public class MainActivity extends BaseActivity
 		}
 		else if (resID == R.id.service_rbtn)
 		{
-			startServiceFragment();
+			m_mainMsgHandler.go2ServiceFragment();
 		}
 		else if (resID == R.id.company_rbtn)
 		{
-			startCompanyFragment();
+			m_mainMsgHandler.go2CompanyFragment();
 		}
 		else
 		{
-			startHomeFragment();
+			m_mainMsgHandler.go2HomeFragment();
 		}
-	}
-
-	/**
-	 * widget event
-	 */
-	@OnClick (R.id.home_rbtn)
-	public void startHomeFragment()
-	{
-		HomeTabFragment homeTabFragment = new HomeTabFragment();
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.func_region_fl, homeTabFragment);
-		transaction.commit();
-
-	}
-
-	@OnClick (R.id.personal_rbtn)
-	public void onPersionalClickEvent()
-	{
-		m_popupMenu.show();
-	}
-
-	@OnClick (R.id.service_rbtn)
-	public void startServiceFragment()
-	{
-		ServiceTabFragment serviceTabFragment = new ServiceTabFragment();
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.func_region_fl, serviceTabFragment);
-		transaction.commit();
-	}
-
-	@OnClick (R.id.company_rbtn)
-	public void startCompanyFragment()
-	{
-		CompanyTabFragment companyTabFragment = new CompanyTabFragment();
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.func_region_fl, companyTabFragment);
-		transaction.commit();
-	}
-
-	/**
-	 * override func
-	 */
-	private class HandleMenuItemClickEvent implements PopupMenu.OnMenuItemClickListener
-	{
-
-		@Override
-		public boolean onMenuItemClick(MenuItem item)
-		{
-			switch (item.getItemId())
-			{
-			case R.id.nursing_order:
-			{
-				MainActivity.this.nursingOrderAction();
-			}
-			return true;
-			case R.id.shopping_order:
-			{
-				MainActivity.this.productOrderAction();
-			}
-			return true;
-			case R.id.personal_wealth:
-			{
-				MainActivity.this.personalWealthAction();
-			}
-			return true;
-			case R.id.personal_setting:
-			{
-				MainActivity.this.personalSettingAction();
-			}
-			return true;
-			default:
-				break;
-			}
-			return false;
-		}
-	}
-
-	private void nursingOrderAction()
-	{
-
-	}
-
-	private void productOrderAction()
-	{
-
-	}
-
-	private void personalWealthAction()
-	{
-
-	}
-
-	private void personalSettingAction()
-	{
+		return;
 
 	}
 

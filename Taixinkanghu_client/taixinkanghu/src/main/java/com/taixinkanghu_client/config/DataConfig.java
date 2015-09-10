@@ -36,5 +36,10 @@ public class DataConfig
 	public final static int REGISTER_WAITTING_TIME = 60*1000;
 	public final static int REGISTER_DELTA_TIME = 1000;
 
+	//预约陪护
+	public final static int DELAY_TIME_POP_SOFT_INPUT_IN_MILLISECENDS = 300;
+
+	//nurse basic list,nurse order list
+	public final static long DELAY_TIME_MILLISENCENDS = 5000;
 }
 

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<!--<include-->
+		<!--android:id="@+id/titile"-->
+		<!--layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<LinearLayout
+		android:id="@+id/pay_view"
+		android:layout_width="match_parent"
+		android:layout_height="100dp"
+		android:layout_weight="1"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:paddingBottom="5dp"
+			android:paddingLeft="15dp"
+			android:paddingRight="15dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="订单号："
+				android:textColor="@color/text_color_black"
+				android:textSize="14sp"/>
+
+			<TextView
+				android:id="@+id/order_serial_num_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="201506172734270"
+				android:textColor="@color/text_color_black"
+				android:textSize="14.0sp"/>
+
+		</LinearLayout>
+
+		<include layout="@layout/item_dividing_line_horizontal"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:background="@color/white"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginBottom="30dp"
+				android:layout_marginTop="30dp"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:text="￥"
+					android:textColor="@color/date_select_green"
+					android:textSize="40sp"/>
+
+				<TextView
+					android:id="@+id/price_tv"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:text="660"
+					android:textColor="@color/date_select_green"
+					android:textSize="60sp"/>
+
+			</LinearLayout>
+		</LinearLayout>
+
+		<include layout="@layout/item_dividing_line_horizontal"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:paddingBottom="5dp"
+			android:paddingLeft="15dp"
+			android:paddingRight="15dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1.0"
+				android:text="@string/pay_the_way_text"
+				android:textColor="@color/text_color_black"
+				android:textSize="14.0sp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:orientation="vertical">
+
+						<LinearLayout
+							android:id="@+id/cash_region_ll"
+							android:layout_width="match_parent"
+							android:layout_height="60dp"
+							android:background="@color/white"
+							android:gravity="center_vertical"
+							android:orientation="horizontal"
+							android:paddingBottom="10dp"
+							android:paddingTop="10dp">
+
+							<ImageView
+								android:layout_width="40dp"
+								android:layout_height="30dp"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="5dp"
+								android:background="@drawable/bg_pay_icon"
+								android:padding="3dp"
+								android:scaleType="centerInside"
+								android:src="@drawable/icon_pay_cash"/>
+
+							<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_weight="1.0"
+								android:orientation="vertical">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cash_pay_text"
+									android:textColor="@color/text_color_black"
+									android:textSize="14.0sp"/>
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cash_pay_hint_text"
+									android:textColor="@color/text_color_gray"
+									android:textSize="12.0sp"/>
+							</LinearLayout>
+
+							<RadioButton
+								android:id="@+id/cash_rbtn"
+								style="@style/tick_radio_button_style"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:layout_marginBottom="17.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="17.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="15dp"
+							android:layout_marginRight="15dp"
+							android:orientation="vertical">
+
+							<include layout="@layout/item_dividing_line_horizontal_fine"/>
+						</LinearLayout>
+
+						<LinearLayout
+							android:id="@+id/alipay_region_ll"
+							android:layout_width="match_parent"
+							android:layout_height="60dp"
+							android:background="@color/white"
+							android:gravity="center_vertical"
+							android:orientation="horizontal"
+							android:paddingBottom="10dp"
+							android:paddingTop="10dp">
+
+							<ImageView
+								android:layout_width="40dp"
+								android:layout_height="30dp"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="5dp"
+								android:background="@drawable/bg_pay_icon"
+								android:padding="3dp"
+								android:scaleType="centerInside"
+								android:src="@drawable/icon_pay_alipay"/>
+
+							<LinearLayout
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="1.0"
+								android:orientation="vertical">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/ali_pay_text"
+									android:textColor="@color/text_color_black"
+									android:textSize="14.0sp"/>
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/ali_pay_hint_text"
+									android:textColor="@color/text_color_gray"
+									android:textSize="12.0sp"/>
+							</LinearLayout>
+
+							<RadioButton
+								android:id="@+id/alipay_rbtn"
+								style="@style/tick_radio_button_style"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:layout_marginBottom="17.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="17.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="15dp"
+							android:layout_marginRight="15dp"
+							android:orientation="vertical">
+
+							<include
+								android:id="@+id/dividing_line"
+								layout="@layout/item_dividing_line_horizontal_fine"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:id="@+id/weixin_region_ll"
+							android:layout_width="match_parent"
+							android:layout_height="60dp"
+							android:background="@color/white"
+							android:gravity="center_vertical"
+							android:orientation="horizontal"
+							android:paddingBottom="10dp"
+							android:paddingTop="10dp">
+
+							<ImageView
+								android:layout_width="40dp"
+								android:layout_height="30dp"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="5dp"
+								android:background="@drawable/bg_pay_icon"
+								android:padding="3dp"
+								android:scaleType="centerInside"
+								android:src="@drawable/icon_pay_weixin"/>
+
+							<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_weight="1.0"
+								android:orientation="vertical">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/weixin_pay_text"
+									android:textColor="@color/text_color_black"
+									android:textSize="14.0sp"/>
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/weixin_pay_hint_text"
+									android:textColor="@color/text_color_gray"
+									android:textSize="12.0sp"/>
+							</LinearLayout>
+
+							<RadioButton
+								android:id="@+id/weixin_rbtn"
+								style="@style/tick_radio_button_style"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:layout_marginBottom="17.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="17.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+	<!--<include-->
+		<!--android:id="@+id/bottom"-->
+		<!--layout="@layout/include_bottom_btn"/>-->
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+</LinearLayout>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<include layout="@layout/include_header"/>
+
+	<LinearLayout
+		android:id="@+id/swipeRefreshLayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1.0">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:orientation="horizontal"
+			android:paddingBottom="10dp">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="120dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="15dp"
+						android:layout_weight="1"
+						android:text="护理员："
+						android:textSize="16.0sp"/>
+
+					<com.module.widget.circleimageview.CircleImageView
+						android:layout_width="100dp"
+						android:layout_height="100dp"
+						android:layout_centerInParent="true"
+						android:layout_gravity="center_vertical"
+						android:layout_marginRight="10dp"
+						android:src="@drawable/face_1008"
+						app:border_color="@color/main_color"
+						app:border_width="0.5dp"/>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical"
+						android:layout_marginRight="15dp"
+						android:layout_weight="1"
+						android:orientation="vertical">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="姓名："/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="王瑾瑜"/>
+
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="工号："/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="5124"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="级别："/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="中级护理员"/>
+
+
+						</LinearLayout>
+
+					</LinearLayout>
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:paddingTop="10dp">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:layout_marginLeft="15dp"
+						android:layout_weight="1"
+						android:text="服务评价"
+						android:textColor="@color/text_color_black"
+						android:textSize="16.0sp"/>
+
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="15dp"
+						android:layout_marginRight="15dp"
+						android:orientation="horizontal">
+
+						<include layout="@layout/item_dividing_line_horizontal_fine"/>
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="120dp"
+						android:layout_weight="1"
+						android:orientation="horizontal">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="30dp"
+								android:layout_marginLeft="70dp"
+								android:layout_weight="1"
+								android:gravity="center_vertical"
+								android:text="非常满意"
+								android:textColor="@color/text_color_black"
+								android:textSize="16.0sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="30dp"
+								android:layout_marginLeft="70dp"
+								android:layout_weight="1"
+								android:gravity="center_vertical"
+								android:text="满意"
+								android:textColor="@color/text_color_black"
+								android:textSize="16.0sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="30dp"
+								android:layout_marginLeft="70dp"
+								android:layout_weight="1"
+								android:gravity="center_vertical"
+								android:text="一般"
+								android:textColor="@color/text_color_black"
+								android:textSize="16.0sp"/>
+
+
+						</LinearLayout>
+
+
+						<RadioGroup
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_marginBottom="5dp"
+							android:layout_marginTop="5dp"
+							android:layout_weight="1"
+							android:orientation="vertical">
+
+							<RadioButton
+								style="@style/tick_radio_button_style"
+								android:layout_width="27dp"
+								android:layout_height="27dp"
+								android:layout_gravity="center_horizontal"
+								android:layout_marginBottom="4.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="4.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+							<RadioButton
+								style="@style/tick_radio_button_style"
+								android:layout_width="27dp"
+								android:layout_height="27dp"
+								android:layout_gravity="center_horizontal"
+								android:layout_marginBottom="4.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="4.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+							<RadioButton
+								style="@style/tick_radio_button_style"
+								android:layout_width="27dp"
+								android:layout_height="27dp"
+								android:layout_gravity="center_horizontal"
+								android:layout_marginBottom="4.5dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="4.5dp"
+								android:background="@drawable/bg_radio_button_tick"/>
+
+						</RadioGroup>
+
+
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:focusable="true"
+					android:focusableInTouchMode="true"
+					android:orientation="horizontal">
+
+					<EditText
+						android:id="@+id/content"
+						style="@style/my_edittext_style"
+						android:layout_width="match_parent"
+						android:layout_height="100dp"
+						android:layout_marginBottom="15dp"
+						android:layout_marginLeft="15dp"
+						android:layout_marginRight="15dp"
+						android:layout_marginTop="15dp"
+						android:gravity="top|left|center"
+						android:hint="说点什么"/>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@id/btn_goto_main"
+			android:layout_width="80dp"
+			android:layout_height="48dp"
+			android:background="@drawable/bg_btn_main_color"
+			android:text="首页"
+			android:textColor="#ffffffff"
+			android:textSize="20.0sp"/>
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"/>
+
+		<Button
+			android:id="@+id/btn_comment"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_weight="1"
+			android:background="@drawable/bg_btn_main_color"
+			android:text="发表评论"
+			android:textColor="#ffffffff"
+			android:textSize="20.0sp"/>
+
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+              android:id="@+id/gender_fragment_page">
+
+    <LinearLayout
+        android:id="@+id/gender_header_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/all_null"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/male_tv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_order_btn"
+        android:gravity="center"
+        android:text="男"
+        android:textColor="#ff666666"
+        android:textSize="14.0sp" />
+
+    <TextView
+        android:id="@+id/female_tv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_order_btn"
+        android:gravity="center"
+        android:text="女"
+        android:textColor="#ff666666"
+        android:textSize="14.0sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mask"
+        android:id="@+id/gender_bottom_ll"
+        android:orientation="vertical">
+
+    </LinearLayout>
+</LinearLayout>

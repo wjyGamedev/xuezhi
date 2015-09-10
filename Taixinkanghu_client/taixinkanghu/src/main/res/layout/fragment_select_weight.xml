@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical"
+			  android:id="@+id/select_weight_fragment_page">
+
+	<LinearLayout
+		android:id="@+id/weight_header_ll"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/all_null"
+		android:orientation="vertical">
+
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/weight_region_0_35_tv"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@drawable/bg_order_btn"
+		android:gravity="center"
+		android:text="@string/btn_weight_section_0_35_text"
+		android:textColor="#ff666666"
+		android:textSize="14.0sp"/>
+
+	<TextView
+		android:id="@+id/weight_region_35_50_tv"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@drawable/bg_order_btn"
+		android:gravity="center"
+		android:text="@string/btn_weight_section_35_50_text"
+		android:textColor="#ff666666"
+		android:textSize="14.0sp"/>
+
+	<TextView
+		android:id="@+id/weight_region_50_80_tv"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@drawable/bg_order_btn"
+		android:gravity="center"
+		android:text="@string/btn_weight_section_50_80_text"
+		android:textColor="#ff666666"
+		android:textSize="14.0sp"/>
+
+	<TextView
+		android:id="@+id/weight_region_80_120_tv"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@drawable/bg_order_btn"
+		android:gravity="center"
+		android:text="@string/btn_weight_section_80_120_text"
+		android:textColor="#ff666666"
+		android:textSize="14.0sp"/>
+
+	<TextView
+		android:id="@+id/weight_region_above_120_tv"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@drawable/bg_order_btn"
+		android:gravity="center"
+		android:text="@string/btn_weight_section_above_120_text"
+		android:textColor="#ff666666"
+		android:textSize="14.0sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/mask"
+		android:id="@+id/weight_bottom_ll"
+		android:orientation="vertical">
+
+	</LinearLayout>
+</LinearLayout>

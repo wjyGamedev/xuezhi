@@ -125,4 +125,32 @@ public class DNurseList
 		return nurseSenioreList;
 	}
 
+	public synchronized boolean checkNurseID(int nurseID)
+	{
+		return m_nurseHashMap.containsKey(nurseID);
+	}
+
+	public synchronized DNurse getNurseInfoByID(int nurseID)
+	{
+		if (!checkNurseID(nurseID))
+		{
+			return null;
+		}
+
+		return m_nurseHashMap.get(nurseID);
+
+	}
+
+	public synchronized DNurseBasics getNurseBasicByID(int nurseID)
+	{
+		DNurse tmpDNurse = getNurseInfoByID(nurseID);
+		return tmpDNurse.getNurseBasics();
+	}
+
+	public synchronized DNurseSenior getNurseSeniorByID(int nurseID)
+	{
+		DNurse tmpDNurse = getNurseInfoByID(nurseID);
+		return tmpDNurse.getNurseSenior();
+	}
+
 }

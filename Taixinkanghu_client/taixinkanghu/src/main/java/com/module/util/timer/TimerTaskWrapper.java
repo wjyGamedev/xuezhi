@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -20,8 +20,8 @@ import java.util.TimerTask;
 
 public class TimerTaskWrapper extends TimerTask
 {
-	private       TimerTaskListener m_timerTaskListener = null;
-	private final Timer             m_timer             = new Timer();
+	protected       TimerTaskListener m_timerTaskListener = null;
+	protected final Timer             m_timer             = new Timer();
 
 
 	public void schedule(Date when)
