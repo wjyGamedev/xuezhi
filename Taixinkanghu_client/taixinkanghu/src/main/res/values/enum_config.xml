@@ -48,5 +48,9 @@
 	<string name="nuring_module_change_nurse">更换</string>
 	<string name="nuring_module_pay_more">补差价</string>
 
+	<!-- 09. 评论等级-->
+	<string name="comment_level_very_statisfied">非常满意</string>
+	<string name="comment_level_statisfied">满意</string>
+	<string name="comment_level_general">一般</string>
 
 </resources>

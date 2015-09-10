@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="my_edittext_style" parent="@android:style/Widget.EditText">
+		<item name="android:background">@drawable/bg_edittext</item>
+	</style>
+
+	<string name="error_tips_select_comment_level">请选择服务评价。</string>
+	<string name="error_tips_write_comment_content">请填写评论内容、</string>
+
+	<string name="comment_nurse_order_header_content">评论</string>
+
+
+
+</resources>

@@ -503,4 +503,57 @@ public class EnumConfig
 
 	}
 
+	//09. 评论等级
+	public enum CommentLevel
+	{
+		COMMENT_LEVEL_VERY_STATISFIED(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.comment_level_very_statisfied), 1),
+		COMMENT_LEVEL_STATISFIED(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.comment_level_statisfied), 2),
+		COMMENT_LEVEL_GENERAL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.comment_level_general), 3);
+
+		private String m_name = null;
+		private int    m_id   = 0;
+
+		private CommentLevel(String name, int id)
+		{
+			m_name = name;
+			m_id = id;
+		}
+
+		public String getName()
+		{
+			return m_name;
+		}
+
+		public int getId()
+		{
+			return m_id;
+		}
+
+		@Override
+		public String toString()
+		{
+			return ("[id:=" + m_id + "][name:" + m_name + "]");
+		}
+
+		public static CommentLevel valueOf(int id)
+		{
+			switch (id)
+			{
+			case 1:
+				return COMMENT_LEVEL_VERY_STATISFIED;
+			case 2:
+				return COMMENT_LEVEL_STATISFIED;
+			case 3:
+				return COMMENT_LEVEL_GENERAL;
+			default:
+				return null;
+			}
+		}
+	}
+
+
+
+
+
+
 }

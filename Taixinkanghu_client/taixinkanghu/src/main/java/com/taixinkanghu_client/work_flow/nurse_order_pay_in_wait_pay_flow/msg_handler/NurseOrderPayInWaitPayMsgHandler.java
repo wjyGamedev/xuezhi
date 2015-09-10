@@ -39,6 +39,13 @@ import java.net.URLEncoder;
 
 public class NurseOrderPayInWaitPayMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public NurseOrderPayInWaitPayMsgHandler(NurseOrderPayInWaitPayActivity activity)
 	{
 		super(activity);

@@ -37,9 +37,12 @@ import android.widget.ViewFlipper;
 
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.work_flow.main_page.data.DMainPageImages;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
+import com.taixinkanghu_client.work_flow.main_page.data.DMainPageImages;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
+import com.taixinkanghu_client.work_flow.show_flow.company_show.ui.CompanyShowActivity;
+import com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity;
 
 import java.util.ArrayList;
 
@@ -283,12 +286,12 @@ public class HomeTabFragment extends Fragment
 			//01. 公司信息
 			if (tagValue == 0)
 			{
-				//startActivity(new Intent(getActivity(), CompanyShowActivity.class ));
+				startActivity(new Intent(getActivity(), CompanyShowActivity.class ));
 			}
 			//02. 优惠信息
 			else if (tagValue == 1)
 			{
-				//startActivity(new Intent(getActivity(), SaleInfoActivity.class ));
+				startActivity(new Intent(getActivity(), ShoppingShowActivity.class ));
 			}
 			else
 			{
@@ -311,8 +314,7 @@ public class HomeTabFragment extends Fragment
 			}
 			else
 			{
-				//DGlobal.GetInstance().SetNursingModuleStatus(EnumConfig.NursingModuleStatus.APIOT_NURSING);
-				//m_context.startActivity(new Intent(m_context, ApoitNursingActivity.class));
+				context.startActivity(new Intent(context, ApoitNursingActivity.class));
 			}
 
 		}

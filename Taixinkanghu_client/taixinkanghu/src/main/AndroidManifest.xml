@@ -57,11 +57,17 @@
 			android:label="RegisterActivity">
 		</activity>
 
-		<!-- 预约陪护流程-->
+		<!-- 01. 预约陪护流程-->
 		<!-- 预约陪护页面-->
 		<activity
 			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity"
 			android:label="ApoitNursingActivity">
+		</activity>
+
+		<!-- 选择护理员页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_page.ui.SelectNurseActivity"
+			android:label="SelectNurseActivity">
 		</activity>
 
 		<!-- 用户协议页面-->
@@ -69,6 +75,99 @@
 			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.user_protocal_page.UserProtocalActivity"
 			android:label="UserProtocalActivity">
 		</activity>
+
+		<!-- 护理员信息页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.nurse_info_page.ui.NurseInfoActivity"
+			android:label="NurseInfoActivity">
+		</activity>
+
+		<!-- 评论页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.comment_page.ui.CommentActivity"
+			android:label="CommentActivity">
+		</activity>
+
+		<!-- 护理员订单确认页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.order_confirm_page.ui.OrderConfirmActivity"
+			android:label="OrderConfirmActivity">
+		</activity>
+
+		<!-- 患者信息页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.patient_info_page.ui.PatientActivity"
+			android:label="PatientActivity">
+		</activity>
+
+		<!-- 支付页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.appiontment_nursing_flow.nurse_order_pay.ui.NurseOrderPayInNormalActivity"
+			android:label="NurseOrderPayInNormalActivity">
+		</activity>
+
+		<!-- 02. nurse order flow-->
+		<!-- 护理员订单list-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity"
+			android:label="NurseOrderActivity">
+		</activity>
+
+		<!-- 03. comment nurse order flow-->
+		<!-- 护理员订单添加评论-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui.CommentNurseOrderActivity"
+			android:label="CommentNurseOrderActivity">
+		</activity>
+
+		<!-- 04. nurse order pay in wait pay flow-->
+		<!-- 在待支付情况下的，支付页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.nurse_order_pay_in_wait_pay_flow.ui.NurseOrderPayInWaitPayActivity"
+			android:label="NurseOrderPayInWaitPayActivity">
+		</activity>
+
+
+		<!-- 10. personal wealth flow-->
+		<!-- 我的财富页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.personal_wealth_flow.personal_wealth_page.ui.PersonalWealthActivity"
+			android:label="PersonalWealthActivity">
+		</activity>
+
+		<!-- 我的积分页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.personal_wealth_flow.persional_score_page.ui.PersonalScoreActivity"
+			android:label="PersonalScoreActivity">
+		</activity>
+
+		<!-- 11. personal setting flow-->
+		<!-- 我的设置页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.personal_setting_flow.ui.PersonalSettingActivity"
+			android:label="PersonalSettingActivity">
+		</activity>
+
+		<!-- 12. show flow-->
+		<!-- 公司展示信息页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.show_flow.company_show.ui.CompanyShowActivity"
+			android:label="CompanyShowActivity">
+		</activity>
+
+		<!-- 促销产品展示信息页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity"
+			android:label="ShoppingShowActivity">
+		</activity>
+
+		<!-- 13. 服务流程-->
+		<!-- 问题反馈-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.service_flow.question_feed_page.ui.QuestionFeedBackActivity"
+			android:label="QuestionFeedBackActivity">
+		</activity>
+
 	</application>
 
 </manifest>

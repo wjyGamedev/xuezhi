@@ -42,6 +42,13 @@ import java.net.URLEncoder;
 
 public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public NurseOrderPayInNormalMsgHandler(NurseOrderPayInNormalActivity activity)
 	{
 		super(activity);

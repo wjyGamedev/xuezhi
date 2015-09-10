@@ -37,6 +37,13 @@ public class OrderConfirmMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandl
 	private final String UNIT_DAY  = DGlobal.GetInstance().getAppContext().getString(R.string.content_day);
 	private final String UNIT_YUAN = DGlobal.GetInstance().getAppContext().getString(R.string.content_yuan);
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public OrderConfirmMsgHandler(OrderConfirmActivity activity)
 	{
 		super(activity);

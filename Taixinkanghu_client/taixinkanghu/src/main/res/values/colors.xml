@@ -14,4 +14,5 @@
 	<color name="color_main_focus">#ff2aa384</color>
 	<color name="color_main_disable">#ffcccccc</color>
 	<color name="umeng_fb_gray">#ffd8d8d8</color>
+	<color name="main_color_mask">#88028df2</color>
 </resources>

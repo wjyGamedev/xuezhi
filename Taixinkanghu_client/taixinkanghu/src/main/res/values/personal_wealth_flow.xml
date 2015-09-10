@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 01. 我的财富-->
+	<string name="personal_wealth_title">我的财富</string>
+	<string name="personal_wealth_bottom_content">首页</string>
+
+	<!-- 02. 我的积分-->
+	<string name="personal_score_title">我的积分</string>
+</resources>

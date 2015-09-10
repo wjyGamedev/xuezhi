@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<!--<include layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:orientation="vertical">
+
+			<!--<ImageView-->
+				<!--android:layout_width="wrap_content"-->
+				<!--android:layout_height="wrap_content"-->
+				<!--android:layout_marginRight="10dp"-->
+				<!--android:layout_marginTop="60dp"-->
+				<!--android:background="@drawable/logo_img"/>-->
+			<ImageView
+				android:id="@+id/company_logo"
+				android:layout_width="250dp"
+				android:layout_height="150dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="35dp"
+				android:src="@drawable/logo_img"
+				android:layout_weight="0.09"/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="40dp"
+				android:layout_marginTop="10dp"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="v1.0"
+					android:textColor="@color/text_color_gray"
+					android:textSize="18.0sp"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text=" for Android"
+					android:textColor="@color/text_color_gray"
+					android:textSize="18.0sp"/>
+
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/item2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:paddingBottom="15dp"
+				android:paddingTop="15dp">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:layout_weight="1.0"
+					android:text="@string/company_info_text"
+					android:textColor="@color/text_color_black"
+					android:textSize="16.0sp"/>
+
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+</LinearLayout>

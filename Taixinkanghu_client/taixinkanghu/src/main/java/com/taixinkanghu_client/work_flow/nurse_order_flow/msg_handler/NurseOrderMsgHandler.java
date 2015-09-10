@@ -19,6 +19,7 @@ import android.content.Intent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerNurseOrderListEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrderListHandler;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInWaitPayEvent;
+import com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui.CommentNurseOrderActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.BaseNurseOrderFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
@@ -26,6 +27,13 @@ import com.taixinkanghu_client.work_flow.nurse_order_pay_in_wait_pay_flow.ui.Nur
 
 public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public NurseOrderMsgHandler(NurseOrderActivity activity)
 	{
 		super(activity);
@@ -96,7 +104,7 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	public void commentAction()
 	{
 		NurseOrderActivity activity = (NurseOrderActivity)m_context;
-		activity.startActivity(new Intent(activity, NurseOrderCommentActivity.class));
+		activity.startActivity(new Intent(activity, CommentNurseOrderActivity.class));
 		return;
 	}
 

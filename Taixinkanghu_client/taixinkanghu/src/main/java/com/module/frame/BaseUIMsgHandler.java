@@ -32,7 +32,6 @@ public class BaseUIMsgHandler
 
 	protected void init()
 	{
-		m_eventBus.register(this);
 	}
 
 }

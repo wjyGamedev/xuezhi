@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 01. 我的设置-->
+	<string name="personal_setting_title">我的设置</string>
+	<string name="tips_loginout">是否确定退出登录?</string>
+	<string name="tips_logout">您还未登录哦~</string>
+	<string name="login">登录</string>RequestRegisterEvent
+	<string name="logout">退出登录</string>
+</resources>

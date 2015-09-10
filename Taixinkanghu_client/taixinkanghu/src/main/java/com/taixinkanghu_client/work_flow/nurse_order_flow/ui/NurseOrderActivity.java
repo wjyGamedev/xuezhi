@@ -38,7 +38,6 @@ import java.text.SimpleDateFormat;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
 import event.EventBus;
@@ -116,22 +115,22 @@ public class NurseOrderActivity extends BaseActivity
 		m_nurseOrderMsgHandler.go2NurseInfoAction((int)id);
 	}
 
-	@OnCheckedChanged (R.id.order_option_rg)
-	public void clickTabRegion(RadioGroup group, int checkedId)
-	{
-		if (checkedId == m_allRBtn.getId())
-		{
-			updateAllContent();
-		}
-		else if (checkedId == m_waitPayRBtn.getId())
-		{
-			updateWaitPayContent();
-		}
-		else if (checkedId == m_waitServiceRBtn.getId())
-		{
-			updateWaitServiceyContent();
-		}
-	}
+//	@OnCheckedChanged (R.id.order_option_rg)
+//	public void clickTabRegion(RadioGroup group, int checkedId)
+//	{
+//		if (checkedId == m_allRBtn.getId())
+//		{
+//			updateAllContent();
+//		}
+//		else if (checkedId == m_waitPayRBtn.getId())
+//		{
+//			updateWaitPayContent();
+//		}
+//		else if (checkedId == m_waitServiceRBtn.getId())
+//		{
+//			updateWaitServiceyContent();
+//		}
+//	}
 
 	@OnClick (R.id.all_rbtn)
 	public void clickAllTab()

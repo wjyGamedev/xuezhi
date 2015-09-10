@@ -59,10 +59,10 @@ public class RegisterActivity extends BaseActivity
 	@Bind (R.id.register_btn)     Button   m_registerBtn     = null;    //注册按钮
 
 	//logical
-	private final String ERR_INFO_INVALID_PHONE            = getResources().getString(R.string.err_info_invalid_phone);
-	private final String ERR_INFO_INVALID_COUNTRY_ZIP_CODE = getResources().getString(R.string.err_info_invalid_country_zip_code);
-	private final String INFO_SECOND                       = getResources().getString(R.string.rf_content_second);
-	private final String INFO_VERIFICATION_CONTEXT         = getResources().getString(R.string.rf_verification_context);
+	private final String ERR_INFO_INVALID_PHONE            = DGlobal.GetInstance().getAppContext().getString(R.string.err_info_invalid_phone);
+	private final String ERR_INFO_INVALID_COUNTRY_ZIP_CODE = DGlobal.GetInstance().getAppContext().getString(R.string.err_info_invalid_country_zip_code);
+	private final String INFO_SECOND                       = DGlobal.GetInstance().getAppContext().getString(R.string.rf_content_second);
+	private final String INFO_VERIFICATION_CONTEXT         = DGlobal.GetInstance().getAppContext().getString(R.string.rf_verification_context);
 
 	private RegisterActivityMsg m_registerActivityMsg = new RegisterActivityMsg(this);
 	private TimeCount           m_timeCount          = new TimeCount(DataConfig.REGISTER_WAITTING_TIME, DataConfig.REGISTER_DELTA_TIME);

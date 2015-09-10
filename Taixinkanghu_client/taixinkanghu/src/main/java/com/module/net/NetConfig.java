@@ -65,4 +65,6 @@ public class NetConfig
 	//补差价
 	public final static String s_nurseOrderPayMoreAddress = "http://" + IP_ADDREDD_TEST + "/order/orderAddOnPay/";
 
+	//给护工订单添加评论
+	public final static String s_commentNurseOrder= "http://" + IP_ADDREDD_TEST + "/order/comment/";
 }

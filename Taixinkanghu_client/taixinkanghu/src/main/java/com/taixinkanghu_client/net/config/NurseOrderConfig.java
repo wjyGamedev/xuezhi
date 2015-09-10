@@ -71,7 +71,19 @@ public class NurseOrderConfig
 	public final static String CHANGE_NURSE_TODAY = "tody";
 	public final static String CHANGE_NURSE_END_DATE = "end_date";
 	public final static String CHANGE_NURSE_DATE_DESCRIPTION = "date_description";
+
+	//08. comment nurse order
+	//send
+	public final static String COMMENT_LEVEL = "comment_level";
+	public final static String COMMENT_CONTENT  = "comment_content";
+	//recvv
+	public final static String COMMENT_LIST = "comment_list";
+	public final static String COMMENT_DATE = "comment_date";
+	public final static String COMMENT_ID = "comment_id";
+
 	//logical
 	public final static int NURSE_IN_SERVICE = -2;
+
+
 
 }

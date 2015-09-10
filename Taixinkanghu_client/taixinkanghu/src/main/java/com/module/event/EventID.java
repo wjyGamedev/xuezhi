@@ -79,9 +79,12 @@ public class EventID
 	public final static int QUEST_NURSE_ORDER_PAY_MORE = QUEST_NURSE_ORDER_CANCEL_SERVICE + 1;
 	public final static int FINISHED_NURSE_ORDER_PAY_MORE = QUEST_NURSE_ORDER_PAY_MORE + 1;
 
+	//给护工订单添加评价
+	public final static int QUEST_COMMENT_NURSE_ORDER = FINISHED_NURSE_ORDER_PAY_MORE + 1;
+	public final static int ANSWER_COMMENT_NURSE_ORDER = QUEST_COMMENT_NURSE_ORDER + 1;
 
 	//康复用品
-	public final static int QUEST_SHOPPING_BASIC_LIST = FINISHED_NURSE_ORDER_PAY_MORE + 1;
+	public final static int QUEST_SHOPPING_BASIC_LIST = ANSWER_COMMENT_NURSE_ORDER + 1;
 
 	//sms event
 	public final static int SMS_EVENT_DEFAULT = 200;

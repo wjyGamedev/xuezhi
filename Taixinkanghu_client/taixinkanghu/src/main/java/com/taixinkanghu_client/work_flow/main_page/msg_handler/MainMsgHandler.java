@@ -27,6 +27,8 @@ import com.taixinkanghu_client.work_flow.main_page.ui.HomeTabFragment;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.ServiceTabFragment;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
+import com.taixinkanghu_client.work_flow.personal_setting_flow.ui.PersonalSettingActivity;
+import com.taixinkanghu_client.work_flow.personal_wealth_flow.personal_wealth_page.ui.PersonalWealthActivity;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
 
 public class MainMsgHandler extends BaseUIMsgHandler
@@ -148,7 +150,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	private void go2PersonalWealthPage()
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
-		mainActivity.startActivity(new Intent(mainActivity, MyWealthActivity.class));
+		mainActivity.startActivity(new Intent(mainActivity, PersonalWealthActivity.class));
 		return;
 	}
 
@@ -157,7 +159,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	public void go2SettingAction()
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
-		mainActivity.startActivity(new Intent(mainActivity, SettingActivity.class));
+		mainActivity.startActivity(new Intent(mainActivity, PersonalSettingActivity.class));
 	}
 
 

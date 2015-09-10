@@ -107,6 +107,5 @@ public class NurseListHandler extends BaseMsgHandler
 		m_eventBus.post(answerNurseSeniorListEvent);
 		return;
 	}
-
-
+	
 }

@@ -24,6 +24,13 @@ import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
 
 public class RegisterActivityMsg extends BaseUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public RegisterActivityMsg(RegisterActivity registerActivity)
 	{
 		super(registerActivity);
