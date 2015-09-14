@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/eventbus/EventBus.iml" filepath="$PROJECT_DIR$/eventbus/EventBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/Taixinkanghu_client.iml" filepath="$PROJECT_DIR$/Taixinkanghu_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/calendar/calendar.iml" filepath="$PROJECT_DIR$/calendar/calendar.iml" />
       <module fileurl="file://$PROJECT_DIR$/eventbus/eventbus.iml" filepath="$PROJECT_DIR$/eventbus/eventbus.iml" />
