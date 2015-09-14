@@ -17,7 +17,6 @@ package com.taixinkanghu_client.work_flow.company_flow.nurse_level_introduction_
 import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
-import com.taixinkanghu_client.work_flow.company_flow.faq_page.ui.FaqActivity;
 import com.taixinkanghu_client.work_flow.company_flow.nurse_level_introduction_page.ui.NurseLevelActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 
@@ -30,7 +29,7 @@ public class NurseLevelMsgHandler extends BaseUIMsgHandler
 
 	public void go2MainPage()
 	{
-		FaqActivity activity = (FaqActivity)m_context;
+		NurseLevelActivity activity = (NurseLevelActivity)m_context;
 		activity.startActivity(new Intent(activity, MainActivity.class));
 		return;
 	}

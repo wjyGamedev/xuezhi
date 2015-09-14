@@ -31,6 +31,13 @@ public class RegisterAccountMsgHandler extends BaseMsgHandler
 
 	private AnswerRegisterHandler m_answerRegisterHandler = new AnswerRegisterHandler();
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	private RegisterAccountMsgHandler()
 	{
 		super();
@@ -54,9 +61,14 @@ public class RegisterAccountMsgHandler extends BaseMsgHandler
 	}
 
 	//请求获取支持国家列表
-	public void onEventMainThread(RequestSupportedCountriesEvent event)
+	public void onEventAsync(RequestSupportedCountriesEvent event)
 	{
 		SmsAutho.GetInstance().getSupportedCountries();
+	}
+
+	public void requestRegisterAction(RequestRegisterEvent reqRegisterEvent)
+	{
+		m_eventBus.post(reqRegisterEvent);
 	}
 
 	//请求注册event
@@ -80,6 +92,7 @@ public class RegisterAccountMsgHandler extends BaseMsgHandler
 
 		m_requestQueue.add(myReq);
 	}
+
 
 
 }

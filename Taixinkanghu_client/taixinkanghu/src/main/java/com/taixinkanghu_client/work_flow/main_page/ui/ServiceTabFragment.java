@@ -23,9 +23,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
@@ -37,7 +35,9 @@ public class ServiceTabFragment extends Fragment
     private LinearLayout call;
     private LinearLayout question_feedback;
 
-    private String m_phoneNumber;
+    private String m_phoneNumberDisplay;
+    private String m_phoneNumberCall;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,12 +48,13 @@ public class ServiceTabFragment extends Fragment
         call = (LinearLayout) view.findViewById(R.id.call);
         question_feedback = (LinearLayout) view.findViewById(R.id.question_feedback);
 
-        m_phoneNumber = getResources().getString(R.string.service_phone_number);
+        m_phoneNumberDisplay = getResources().getString(R.string.service_phone_number_display);
+        m_phoneNumberCall = getResources().getString(R.string.service_phone_number_call);
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(getActivity()).setTitle("").setMessage(m_phoneNumber)
+                new AlertDialog.Builder(getActivity()).setTitle("").setMessage(m_phoneNumberCall)
                         .setNegativeButton(getResources().getString(R.string.call), new DialogInterface.OnClickListener()
                                            {
                                                public void onClick(DialogInterface dialog, int which)
@@ -64,7 +65,7 @@ public class ServiceTabFragment extends Fragment
                                                                   Toast.LENGTH_SHORT
                                                                  ).show();
                                                    Intent intent = new Intent("android.intent.action.CALL",
-                                                                              Uri.parse("tel:" + m_phoneNumber)
+                                                                              Uri.parse("tel:" + m_phoneNumberCall)
                                                    );
                                                    getActivity().startActivity(intent);
                                                }

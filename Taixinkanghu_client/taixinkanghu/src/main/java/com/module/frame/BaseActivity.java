@@ -18,27 +18,23 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.module.data.DGlobal;
-import com.module.event.BaseEvent;
-import com.module.widget.dialog.TipsDialog;
-
-import event.EventBus;
 
 public class BaseActivity extends FragmentActivity
 {
 	//eventbus
-	protected EventBus m_eventBus = EventBus.getDefault();
+//	protected EventBus m_eventBus = EventBus.getDefault();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		m_eventBus.register(this);
+//		m_eventBus.register(this);
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	protected void onDestroy()
 	{
-		m_eventBus.unregister(this);
+//		m_eventBus.unregister(this);
 		super.onDestroy();
 	}
 
@@ -69,15 +65,15 @@ public class BaseActivity extends FragmentActivity
 		DGlobal.GetInstance().clearupContext(this);
 	}
 
-	/**
-	 * eventbus handler
-	 */
-	public void onEventMainThread(BaseEvent event)
-	{
-		TipsDialog.GetInstance().setMsg("Please implementation eventbus handler!", this);
-		TipsDialog.GetInstance().show();
-		return;
-	}
+//	/**
+//	 * eventbus handler
+//	 */
+//	public void onEventMainThread(BaseEvent event)
+//	{
+//		TipsDialog.GetInstance().setMsg("Please implementation eventbus handler!", this);
+//		TipsDialog.GetInstance().show();
+//		return;
+//	}
 
 }
 

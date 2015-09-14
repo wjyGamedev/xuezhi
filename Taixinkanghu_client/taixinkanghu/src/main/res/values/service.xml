@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="service_phone_number">4009696218</string>
+	<string name="service_phone_number_display">400-9696-218</string>
+	<string name="service_phone_number_call">4009696218</string>
 
 </resources>

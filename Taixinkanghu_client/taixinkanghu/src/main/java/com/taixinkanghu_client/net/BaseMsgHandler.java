@@ -32,7 +32,6 @@ public class BaseMsgHandler
 
 	protected void init()
 	{
-		m_eventBus.register(this);
 	}
 
 }

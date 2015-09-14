@@ -3,7 +3,7 @@
     package="cn.smssdk.test" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="16"
         android:targetSdkVersion="16" />
 
     <instrumentation

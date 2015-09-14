@@ -63,7 +63,7 @@ public class DAccount implements Serializable
 		if (!isHttpSuccess())
 		{
 			m_errorMsg = response.getString(ProtocalConfig.HTTP_ERROR_MSG);
-			return false;
+			throw new JSONException(m_errorMsg);
 		}
 
 		JSONObject jsonObject = response.getJSONObject(RegisterConfig.USER_KEY);

@@ -46,7 +46,7 @@
 					android:layout_marginRight="20dp"
 					android:layout_weight="1"
 					android:gravity="right"
-					android:text="@string/service_phone_number"
+					android:text="@string/service_phone_number_display"
 					android:textColor="@color/text_color_black"
 					android:textSize="16.0sp"/>
 

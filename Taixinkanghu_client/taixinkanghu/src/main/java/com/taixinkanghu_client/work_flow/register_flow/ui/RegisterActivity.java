@@ -32,8 +32,8 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.work_flow.register_flow.msg_handler.RegisterActivityMsg;
 import com.taixinkanghu_client.data_module.register_account.msg_handler.RequestRegisterEvent;
+import com.taixinkanghu_client.work_flow.register_flow.msg_handler.RegisterActivityMsg;
 import com.third.part.sms.DSmsAutho;
 import com.third.part.sms.SmsAutho;
 import com.third.part.sms.SmsConfig;
@@ -83,7 +83,6 @@ public class RegisterActivity extends BaseActivity
 	@Override
 	protected void onStart()
 	{
-		updateContent();
 		super.onStart();
 	}
 
@@ -107,15 +106,15 @@ public class RegisterActivity extends BaseActivity
 
 	private void init()
 	{
+		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon.setTitle(R.string.rf_title);
+
+		m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);
+
+		m_verificationBtn.setEnabled(true);
+
 		m_registerActivityMsg.initSmsAutho(this);
 		m_registerActivityMsg.requestSupportedCountriesAction();
-	}
-
-	private void updateContent()
-	{
-		m_headerCommon.setTitle(R.string.rf_title);
-		m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);
-		m_verificationBtn.setClickable(true);
 
 	}
 
@@ -191,7 +190,7 @@ public class RegisterActivity extends BaseActivity
 		@Override
 		public void onTick(long millisUntilFinished)
 		{
-			m_verificationBtn.setClickable(false);
+			m_verificationBtn.setEnabled(false);
 			m_verificationBtn.setText( millisUntilFinished/1000 + INFO_SECOND);
 		}
 
@@ -199,7 +198,7 @@ public class RegisterActivity extends BaseActivity
 		public void onFinish()
 		{
 			m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);
-			m_verificationBtn.setClickable(true);
+			m_verificationBtn.setEnabled(true);
 		}
 	}
 
@@ -236,7 +235,7 @@ public class RegisterActivity extends BaseActivity
 		//01. 开始计时
 		m_timeCount.start();
 		//02. 关闭点击按钮
-		m_verificationBtn.setClickable(false);
+		m_verificationBtn.setEnabled(false);
 	}
 
 	@OnClick (R.id.register_btn)
@@ -244,6 +243,12 @@ public class RegisterActivity extends BaseActivity
 	{
 		//01. 提交验证码
 		String authCode = m_authTV.getText().toString().trim();
+		if (TextUtils.isEmpty(authCode))
+		{
+			TipsDialog.GetInstance().setMsg(getString(R.string.err_info_verification_code_is_empty), this);
+			TipsDialog.GetInstance().show();
+			return;
+		}
 
 		initPhoneNum();
 
@@ -252,14 +257,8 @@ public class RegisterActivity extends BaseActivity
 
 		RequestRegisterEvent reqRegisterEvent = new RequestRegisterEvent();
 		reqRegisterEvent.init(m_CountryZipCode, m_phoneNum, authCode);
-		m_eventBus.post(reqRegisterEvent);
+		m_registerActivityMsg.requestRegisterAction(reqRegisterEvent);
 
-	}
-
-	public void registerSuccessAction()
-	{
-		finish();
-		return;
 	}
 
 }

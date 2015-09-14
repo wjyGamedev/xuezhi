@@ -48,7 +48,7 @@ public class HandlerEventOnSms extends EventHandler
 		m_eventBus.unregister(this);
 	}
 
-	public void onEventMainThread(BaseSmsEvent baseSmsEvent)
+	public void onEventAsync(BaseSmsEvent baseSmsEvent)
 	{
 		int    event  = baseSmsEvent.getEvent();
 		int    result = baseSmsEvent.getResult();

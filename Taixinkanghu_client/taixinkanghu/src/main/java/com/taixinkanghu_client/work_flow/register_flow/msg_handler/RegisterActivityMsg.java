@@ -15,11 +15,13 @@
 package com.taixinkanghu_client.work_flow.register_flow.msg_handler;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
-import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.data_module.register_account.msg_handler.AnswerRegisterEvent;
 import com.taixinkanghu_client.data_module.register_account.msg_handler.RegisterAccountMsgHandler;
+import com.taixinkanghu_client.data_module.register_account.msg_handler.RequestRegisterEvent;
+import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
 
 public class RegisterActivityMsg extends BaseUIMsgHandler
@@ -50,16 +52,18 @@ public class RegisterActivityMsg extends BaseUIMsgHandler
 	//接受注册成功event
 	public void onEventMainThread(AnswerRegisterEvent event)
 	{
+		//01. 关闭当前页面
 		RegisterActivity registerActivity = (RegisterActivity)m_context;
-		if (registerActivity == null)
-		{
-			TipsDialog.GetInstance().setMsg("registerActivity == null");
-			TipsDialog.GetInstance().show();
-			return;
-		}
+		registerActivity.finish();
 
-		registerActivity.registerSuccessAction();
+		//02. 返回到主页面
+		registerActivity.startActivity(new Intent(registerActivity, MainActivity.class));
 		return;
 	}
 
+	//
+	public void requestRegisterAction(RequestRegisterEvent reqRegisterEvent)
+	{
+		RegisterAccountMsgHandler.GetInstance().requestRegisterAction(reqRegisterEvent);
+	}
 }

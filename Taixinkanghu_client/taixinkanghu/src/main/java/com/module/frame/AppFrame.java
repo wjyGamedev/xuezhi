@@ -17,6 +17,7 @@ package com.module.frame;
 import android.app.Application;
 
 import com.module.data.DGlobal;
+import com.module.storage.StorageWrapper;
 import com.taixinkanghu_client.net.BaseHttp;
 
 public class AppFrame extends Application
@@ -59,6 +60,7 @@ public class AppFrame extends Application
 	{
 		DGlobal.GetInstance().setAppContext(this);
 		BaseHttp.getInstance().init(this);
+		StorageWrapper.GetInstance().init(this);
 	}
 	private void onModuleClearup()
 	{

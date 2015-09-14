@@ -74,13 +74,13 @@ public class HomeTabFragment extends Fragment
 		ButterKnife.bind(this, m_view);
 
 		initData();
+		initContent();
 		return m_view;
 	}
 
 	@Override
 	public void onStart()
 	{
-		initContent();
 		updateContent();
 		super.onStart();
 	}
