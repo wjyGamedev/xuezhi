@@ -25,6 +25,13 @@ public class HospitalMsgHandler extends BaseMsgHandler
 
 	private AnswerHospitalListHandler m_answerHospitalListHandler = new AnswerHospitalListHandler();
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	private HospitalMsgHandler()
 	{
 		super();

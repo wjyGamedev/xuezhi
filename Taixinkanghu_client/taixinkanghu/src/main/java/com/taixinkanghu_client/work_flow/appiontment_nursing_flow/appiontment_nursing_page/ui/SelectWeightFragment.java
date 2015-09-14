@@ -17,6 +17,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -35,17 +36,19 @@ public class SelectWeightFragment extends Fragment
 	//logical
 	private int                          m_weightTitleHight             = DataConfig.DEFAULT_VALUE;
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
+	private View m_view = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_select_weight, container, false);
+		m_view = inflater.inflate(R.layout.fragment_select_weight, container, false);
+		ButterKnife.bind(this, m_view);
 
 		init();
 		//设置顶部LL控件高度
 		updateHeight();
 
-		return view;
+		return m_view;
 	}
 
 	/**
@@ -62,6 +65,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_0_35()
 	{
 		m_appiontmentNursingMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_0_35);
+		cancelAction();
 		return;
 	}
 
@@ -69,6 +73,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_35_50()
 	{
 		m_appiontmentNursingMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_35_50);
+		cancelAction();
 		return;
 	}
 
@@ -76,6 +81,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_50_80()
 	{
 		m_appiontmentNursingMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_50_80);
+		cancelAction();
 		return;
 	}
 
@@ -83,6 +89,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_80_120()
 	{
 		m_appiontmentNursingMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_80_120);
+		cancelAction();
 		return;
 	}
 
@@ -90,6 +97,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_above_75()
 	{
 		m_appiontmentNursingMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_MORE_THAN_120);
+		cancelAction();
 		return;
 	}
 

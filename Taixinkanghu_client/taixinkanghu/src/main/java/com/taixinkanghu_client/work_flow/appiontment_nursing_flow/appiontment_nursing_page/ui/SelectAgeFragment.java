@@ -17,6 +17,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -35,17 +36,18 @@ public class SelectAgeFragment extends Fragment
 	//logical
 	private int                          m_ageTitleHight                = DataConfig.DEFAULT_VALUE;
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
-
+	private View m_view = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_select_age, container, false);
+		m_view = inflater.inflate(R.layout.fragment_select_age, container, false);
+		ButterKnife.bind(this, m_view);
 
 		init();
 		//设置顶部LL控件高度
 		updateHeight();
 
-		return view;
+		return m_view;
 	}
 
 	/**
@@ -62,6 +64,7 @@ public class SelectAgeFragment extends Fragment
 	public void clickAgeRange_0_15()
 	{
 		m_appiontmentNursingMsgHandler.setAgeRage(EnumConfig.AgeRage.AGE_0_15);
+		cancelAction();
 		return;
 	}
 
@@ -69,6 +72,7 @@ public class SelectAgeFragment extends Fragment
 	public void clickAgeRange_16_35()
 	{
 		m_appiontmentNursingMsgHandler.setAgeRage(EnumConfig.AgeRage.AGE_16_35);
+		cancelAction();
 		return;
 	}
 
@@ -76,6 +80,7 @@ public class SelectAgeFragment extends Fragment
 	public void clickAgeRange_36_55()
 	{
 		m_appiontmentNursingMsgHandler.setAgeRage(EnumConfig.AgeRage.AGE_36_55);
+		cancelAction();
 		return;
 	}
 
@@ -83,6 +88,7 @@ public class SelectAgeFragment extends Fragment
 	public void clickAgeRange_56_75()
 	{
 		m_appiontmentNursingMsgHandler.setAgeRage(EnumConfig.AgeRage.AGE_56_75);
+		cancelAction();
 		return;
 	}
 
@@ -90,6 +96,7 @@ public class SelectAgeFragment extends Fragment
 	public void clickAgeRange_above_75()
 	{
 		m_appiontmentNursingMsgHandler.setAgeRage(EnumConfig.AgeRage.AGE_MORE_THAN_76);
+		cancelAction();
 		return;
 	}
 

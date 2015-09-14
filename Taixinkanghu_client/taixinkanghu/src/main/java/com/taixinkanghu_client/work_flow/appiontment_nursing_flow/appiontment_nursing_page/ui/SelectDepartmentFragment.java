@@ -41,6 +41,7 @@ import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nu
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import event.EventBus;
 
@@ -69,6 +70,7 @@ public class SelectDepartmentFragment extends Fragment implements View.OnTouchLi
 	{
 		m_layoutInflater = inflater;
 		m_view = m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
+		ButterKnife.bind(this, m_view);
 		m_eventBus.register(this);
 
 		init();
@@ -211,7 +213,7 @@ public class SelectDepartmentFragment extends Fragment implements View.OnTouchLi
 		return;
 
 	}
-	private void loadDepartmentList()
+	public void loadDepartmentList()
 	{
 		ArrayList<DDepartment> departments = DDepartmentList.GetInstance().getDepartments();
 

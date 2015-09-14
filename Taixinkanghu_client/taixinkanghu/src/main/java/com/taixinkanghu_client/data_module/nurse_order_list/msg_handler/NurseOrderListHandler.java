@@ -47,6 +47,13 @@ public class NurseOrderListHandler extends BaseMsgHandler
 	//添加评论后的返回处理函数
 	private AnswerNurseSeniorListHandler m_answerNurseSeniorListHandler = new AnswerNurseSeniorListHandler();
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	private NurseOrderListHandler()
 	{
 		super();

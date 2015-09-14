@@ -118,12 +118,12 @@ public class DNurserOrderList
 	private synchronized ArrayList<DNurseOrder> getNurseOrdersByOrderStatus(EnumConfig.NurseOrderStatus orderStatus)
 	{
 		ArrayList<DNurseOrder> nurseOrdersByOrderStatus = new ArrayList<>();
+		nurseOrdersByOrderStatus.clear();
+
 		if (m_nurseOrders == null || m_nurseOrders.isEmpty())
 		{
-			return null;
+			return nurseOrdersByOrderStatus;
 		}
-
-		nurseOrdersByOrderStatus.clear();
 
 		for (DNurseOrder nurseOrder : m_nurseOrders)
 		{

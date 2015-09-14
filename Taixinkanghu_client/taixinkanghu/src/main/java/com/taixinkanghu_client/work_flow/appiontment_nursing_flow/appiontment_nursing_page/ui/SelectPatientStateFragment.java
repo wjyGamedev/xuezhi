@@ -16,6 +16,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import event.EventBus;
 
@@ -33,6 +34,7 @@ public class SelectPatientStateFragment extends Fragment
 	//logical
 	private int                          m_patientStateTitleHight       = 0;
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
+	private View m_view = null;
 
 	//TODO:以后放在基类中
 	EventBus m_eventBus = EventBus.getDefault();
@@ -40,13 +42,14 @@ public class SelectPatientStateFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_select_patient_state, container, false);
+		m_view = inflater.inflate(R.layout.fragment_select_patient_state, container, false);
+		ButterKnife.bind(this, m_view);
 
 		init();
 		//设置底部LL控件高度
 		updateHeight();
 
-		return view;
+		return m_view;
 	}
 
 	/**
@@ -63,6 +66,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemCareMyself()
 	{
 		m_appiontmentNursingMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 
@@ -70,6 +74,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemHalfCareMyself()
 	{
 		m_appiontmentNursingMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_HALF_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 
@@ -77,6 +82,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemCanntCareMyself()
 	{
 		m_appiontmentNursingMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_CANNT_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 

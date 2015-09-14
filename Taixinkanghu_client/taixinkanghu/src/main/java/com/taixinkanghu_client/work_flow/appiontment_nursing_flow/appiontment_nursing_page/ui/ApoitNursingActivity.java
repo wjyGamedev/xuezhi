@@ -89,6 +89,7 @@ public class ApoitNursingActivity extends BaseActivity
 	//logical
 	private FragmentManager              m_fragmentManager              = getFragmentManager();
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = new AppiontmentNursingMsgHandler(this);
+	private BottomCommonClickEvent m_bottomCommonClickEvent = new BottomCommonClickEvent();
 
 	private ArrayList<ArrayList<Date>>    m_dateListAll     = new ArrayList<>();
 	private ArrayList<ArrayList<Integer>> m_typeListAll     = new ArrayList<>();
@@ -317,6 +318,7 @@ public class ApoitNursingActivity extends BaseActivity
 
 		m_bottomCommon = (BottomCommon)m_fragmentManager.findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.confirm_btn_text);
+		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_bottomCommonClickEvent);
 	}
 
 	private void initHightValues()

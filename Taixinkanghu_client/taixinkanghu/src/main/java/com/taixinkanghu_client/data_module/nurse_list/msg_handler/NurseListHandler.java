@@ -31,6 +31,13 @@ public class NurseListHandler extends BaseMsgHandler
 
 	private AnswerNurseBasicListHandler m_answerNurseBasicListHandler = new AnswerNurseBasicListHandler();
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	private NurseListHandler()
 	{
 		super();

@@ -16,6 +16,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -29,17 +30,19 @@ public class SelectSexFragment extends Fragment
 	//logical
 	private int                          m_genderTitleHight             = DataConfig.DEFAULT_VALUE;
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
+	private View m_view = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_select_gender, container, false);
+		m_view = inflater.inflate(R.layout.fragment_select_gender, container, false);
+		ButterKnife.bind(this, m_view);
 
 		init();
 		//设置顶部LL控件高度
 		updateHeight();
 
-		return view;
+		return m_view;
 	}
 
 	/**
@@ -56,12 +59,16 @@ public class SelectSexFragment extends Fragment
 	public void clickMaleTV()
 	{
 		m_appiontmentNursingMsgHandler.setGenderStatus(EnumConfig.GenderStatus.MALE);
+		cancelAction();
+		return;
 	}
 
 	@OnClick (R.id.female_tv)
 	public void clickFemalTV()
 	{
 		m_appiontmentNursingMsgHandler.setGenderStatus(EnumConfig.GenderStatus.FEMALE);
+		cancelAction();
+		return;
 	}
 
 	@OnClick (R.id.gender_bottom_ll)

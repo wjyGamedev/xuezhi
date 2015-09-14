@@ -27,6 +27,7 @@ import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nu
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import event.EventBus;
 
@@ -60,6 +61,7 @@ public class SelectHospitalFragment extends Fragment implements View.OnTouchList
 		m_layoutInflater = inflater;
 		m_view = m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
 		m_eventBus.register(this);
+		ButterKnife.bind(this, m_view);
 
 		init();
 		initListener();

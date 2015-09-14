@@ -25,6 +25,13 @@ public class DepartmentMsgHandler extends BaseMsgHandler
 
 	private AnswerDepartmentListHandler m_answerDepartmentListHandler = new AnswerDepartmentListHandler();
 
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	private DepartmentMsgHandler()
 	{
 		super();
