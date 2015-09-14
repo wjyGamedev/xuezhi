@@ -36,6 +36,7 @@ import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_p
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
 public class SelectNurseActivity extends BaseActivity
@@ -60,6 +61,7 @@ public class SelectNurseActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_nurse);
+		ButterKnife.bind(this);
 
 		init();
 		initWaitAction();

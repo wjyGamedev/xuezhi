@@ -134,12 +134,14 @@ public class PersonalSettingActivity extends BaseActivity
 	 */
 	public void popLogoutDialog()
 	{
-		TipsDialog.GetInstance().setMsg(getString(R.string.tips_loginout,
+		TipsDialog.GetInstance().setMsg(getString(R.string.tips_loginout),
 												  this,
 												  m_handleClickEventOnLogoutDialog,
 												  m_handleClickEventOnLogoutDialog
-												 )
 									   );
+		TipsDialog.GetInstance().show();
+		return;
+
 	}
 
 	public void loginUI()

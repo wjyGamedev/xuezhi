@@ -26,8 +26,8 @@ public class TipsDialog
 	private static TipsDialog s_tipsDialog = new TipsDialog();
 
 	private final String INFO_I_KNOW = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.info_i_known);
-	private final String INFO_CONFIRM = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.info_i_known);
-	private final String INFO_CANCEL = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.info_i_known);
+	private final String INFO_CONFIRM = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.info_confirm);
+	private final String INFO_CANCEL = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.info_cancel);
 
 	private AlertDialog.Builder m_builder = null;
 	private String m_msg;
