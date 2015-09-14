@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/eventbus/EventBus.iml" filepath="$PROJECT_DIR$/eventbus/EventBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/Taixinkanghu_client.iml" filepath="$PROJECT_DIR$/Taixinkanghu_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/calendar/calendar.iml" filepath="$PROJECT_DIR$/calendar/calendar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eventbus/eventbus.iml" filepath="$PROJECT_DIR$/eventbus/eventbus.iml" />
       <module fileurl="file://$PROJECT_DIR$/sMSSDK/sMSSDK.iml" filepath="$PROJECT_DIR$/sMSSDK/sMSSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/taixinkanghu/taixinkanghu.iml" filepath="$PROJECT_DIR$/taixinkanghu/taixinkanghu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
     </modules>
   </component>
