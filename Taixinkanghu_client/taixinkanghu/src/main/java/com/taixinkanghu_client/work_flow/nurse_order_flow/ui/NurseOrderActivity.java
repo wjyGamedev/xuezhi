@@ -60,7 +60,7 @@ public class NurseOrderActivity extends BaseActivity
 	private NurseOrderMsgHandler m_nurseOrderMsgHandler = new NurseOrderMsgHandler(this);
 	private ClickBottomCommon    m_clickBottomCommon    = new ClickBottomCommon();
 
-	private ProgressDialog   m_waitProgressDialog = new ProgressDialog(this);
+	private ProgressDialog   m_waitProgressDialog = null;
 	private TimerTaskWrapper m_waitTimerTask      = new TimerTaskWrapper();
 	private TimerTaskHandler m_timerTaskHandler   = new TimerTaskHandler();
 
@@ -79,9 +79,9 @@ public class NurseOrderActivity extends BaseActivity
 
 
 	//logical
-	private OrdersAllAdapter         m_ordersAllAdapter         = new OrdersAllAdapter(this);
-	private OrdersWaitPayAdapter     m_ordersWaitPayAdapter     = new OrdersWaitPayAdapter(this);
-	private OrdersWaitServiceAdapter m_ordersWaitServiceAdapter = new OrdersWaitServiceAdapter(this);
+	private OrdersAllAdapter         m_ordersAllAdapter         = null;
+	private OrdersWaitPayAdapter     m_ordersWaitPayAdapter     = null;
+	private OrdersWaitServiceAdapter m_ordersWaitServiceAdapter = null;
 
 	private EventBus m_eventBus = EventBus.getDefault();
 
@@ -206,6 +206,12 @@ public class NurseOrderActivity extends BaseActivity
 //		m_gestureDetector = new GestureDetector(this, this);
 
 		//02. logical
+		//下面三个放在这里初始化，不放在data 区域，是因为里面用到了m_layoutInflater = LayoutInflater.from(m_context);，所以要保证m_context已经初始化完毕。
+		m_ordersAllAdapter = new OrdersAllAdapter(this);
+		m_ordersWaitPayAdapter = new OrdersWaitPayAdapter(this);
+		m_ordersWaitServiceAdapter = new OrdersWaitServiceAdapter(this);;
+
+		m_waitProgressDialog = new ProgressDialog(this);
 		m_waitProgressDialog.setMessage(getString(R.string.wait_tips));
 		m_waitTimerTask.setTimerTaskListener(m_timerTaskHandler);
 
