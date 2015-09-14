@@ -26,8 +26,8 @@
 				android:layout_height="150dp"
 				android:layout_marginRight="10dp"
 				android:layout_marginTop="35dp"
-				android:src="@drawable/logo_img"
-				android:layout_weight="0.09"/>
+				android:layout_weight="0.09"
+				android:src="@drawable/logo_img"/>
 
 			<TextView
 				android:id="@+id/edition_number"
@@ -39,143 +39,150 @@
 				android:textColor="@color/au_text_color_gray"
 				android:textSize="18.0sp"/>
 
-			<include layout="@layout/item_dividing_line_horizontal"/>
-
 			<LinearLayout
-				android:id="@+id/company_info"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
 				android:background="@color/white"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				android:paddingBottom="15dp"
-				android:paddingTop="15dp">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1.0"
-					android:text="公司介绍"
-					android:textColor="@color/text_color_black"
-					android:textSize="16.0sp"/>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:background="@drawable/img_right"/>
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
 				android:orientation="vertical">
 
-				<include layout="@layout/item_dividing_line_horizontal_fine"/>
-			</LinearLayout>
+				<include layout="@layout/item_dividing_line_horizontal"/>
 
-			<LinearLayout
-				android:id="@+id/service_introduction"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:background="@color/white"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				android:paddingBottom="15dp"
-				android:paddingTop="15dp">
-
-				<TextView
-					android:layout_width="wrap_content"
+				<LinearLayout
+					android:id="@+id/company_info"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_weight="1.0"
-					android:text="服务介绍"
-					android:textColor="@color/text_color_black"
-					android:textSize="16.0sp"/>
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:background="@color/white"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					android:paddingBottom="15dp"
+					android:paddingTop="15dp">
 
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:background="@drawable/img_right"/>
-			</LinearLayout>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1.0"
+						android:text="公司介绍"
+						android:textColor="@color/text_color_black"
+						android:textSize="16.0sp"/>
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:orientation="vertical">
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:background="@drawable/img_right"/>
+				</LinearLayout>
 
-				<include layout="@layout/item_dividing_line_horizontal_fine"/>
-			</LinearLayout>
-
-			<LinearLayout
-				android:id="@+id/worker_level"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:background="@color/white"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				android:paddingBottom="15dp"
-				android:paddingTop="15dp">
-
-				<TextView
-					android:layout_width="wrap_content"
+				<LinearLayout
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_weight="1.0"
-					android:text="护理员级别"
-					android:textColor="@color/text_color_black"
-					android:textSize="16.0sp"/>
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
 
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:background="@drawable/img_right"/>
-			</LinearLayout>
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:orientation="vertical">
-
-				<include layout="@layout/item_dividing_line_horizontal_fine"/>
-			</LinearLayout>
-
-			<LinearLayout
-				android:id="@+id/goto_faq"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:background="@color/white"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				android:paddingBottom="15dp"
-				android:paddingTop="15dp">
-
-				<TextView
-					android:layout_width="wrap_content"
+				<LinearLayout
+					android:id="@+id/service_introduction"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_weight="1.0"
-					android:text="常见问题"
-					android:textColor="@color/text_color_black"
-					android:textSize="16.0sp"/>
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:background="@color/white"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					android:paddingBottom="15dp"
+					android:paddingTop="15dp">
 
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:background="@drawable/img_right"/>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1.0"
+						android:text="服务介绍"
+						android:textColor="@color/text_color_black"
+						android:textSize="16.0sp"/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:background="@drawable/img_right"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/worker_level"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:background="@color/white"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					android:paddingBottom="15dp"
+					android:paddingTop="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1.0"
+						android:text="护理员级别"
+						android:textColor="@color/text_color_black"
+						android:textSize="16.0sp"/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:background="@drawable/img_right"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/goto_faq"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:background="@color/white"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					android:paddingBottom="15dp"
+					android:paddingTop="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1.0"
+						android:text="常见问题"
+						android:textColor="@color/text_color_black"
+						android:textSize="16.0sp"/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:background="@drawable/img_right"/>
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
 			</LinearLayout>
-
-			<include layout="@layout/item_dividing_line_horizontal"/>
 
 		</LinearLayout>
 
