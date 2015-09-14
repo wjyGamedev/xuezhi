@@ -35,7 +35,6 @@ import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.config.UIConfig;
 import com.taixinkanghu_client.data_module.department_list.data.DDepartment;
 import com.taixinkanghu_client.data_module.department_list.data.DDepartmentList;
-import com.taixinkanghu_client.data_module.department_list.msg_handler.AnswerDepartmentListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import java.util.ArrayList;
@@ -43,7 +42,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import event.EventBus;
 
 public class SelectDepartmentFragment extends Fragment implements View.OnTouchListener
 {
@@ -62,16 +60,12 @@ public class SelectDepartmentFragment extends Fragment implements View.OnTouchLi
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
 	private DepartmentItemClickEvent     m_departmentItemClickEvent     = new DepartmentItemClickEvent();
 
-	//TODO:以后放在基类中
-	EventBus m_eventBus = EventBus.getDefault();
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_layoutInflater = inflater;
 		m_view = m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
 		ButterKnife.bind(this, m_view);
-		m_eventBus.register(this);
 
 		init();
 		initListener();
@@ -240,7 +234,7 @@ public class SelectDepartmentFragment extends Fragment implements View.OnTouchLi
 				indexHospital = indexRow * iMaxColumn + indexColumn;
 				if (indexHospital >= size)
 				{
-					return;
+					continue;
 				}
 
 				View view = m_layoutInflater.inflate(R.layout.fragment_select_list_item, m_gridLayout, false);
@@ -290,12 +284,4 @@ public class SelectDepartmentFragment extends Fragment implements View.OnTouchLi
 
 	}
 
-	/**
-	 * EventBus handler
-	 */
-	public void onEventMainThread(AnswerDepartmentListEvent event)
-	{
-		loadDepartmentList();
-		return;
-	}
 }

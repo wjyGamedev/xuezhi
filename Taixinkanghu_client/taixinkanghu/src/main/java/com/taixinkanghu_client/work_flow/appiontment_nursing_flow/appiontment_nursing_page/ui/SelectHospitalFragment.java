@@ -21,7 +21,6 @@ import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.config.UIConfig;
 import com.taixinkanghu_client.data_module.hospital_list.data.DHospital;
 import com.taixinkanghu_client.data_module.hospital_list.data.DHospitalList;
-import com.taixinkanghu_client.data_module.hospital_list.msg_handler.AnswerHospitalListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler.AppiontmentNursingMsgHandler;
 
 import java.util.ArrayList;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,16 +49,11 @@ public class SelectHospitalFragment extends Fragment implements View.OnTouchList
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
 	private HospitalItemClickEvent       m_hospitalItemClickEvent       = new HospitalItemClickEvent();
 
-	//TODO:以后放在基类中
-	EventBus m_eventBus = EventBus.getDefault();
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_layoutInflater = inflater;
 		m_view = m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
-		m_eventBus.register(this);
 		ButterKnife.bind(this, m_view);
 
 		init();
@@ -216,7 +209,7 @@ public class SelectHospitalFragment extends Fragment implements View.OnTouchList
 	}
 
 
-	private void loadHospitalList()
+	public void loadHospitalList()
 	{
 		//填充医院列表
 		ArrayList<DHospital> hospitals = DHospitalList.GetInstance().getHospitals();
@@ -248,7 +241,7 @@ public class SelectHospitalFragment extends Fragment implements View.OnTouchList
 				indexHospital = indexBtn - 1;
 				if (indexHospital >= size)
 				{
-					return;
+					continue;
 				}
 
 				View view = m_layoutInflater.inflate(R.layout.fragment_select_list_item, m_gridLayout, false);
@@ -296,16 +289,6 @@ public class SelectHospitalFragment extends Fragment implements View.OnTouchList
 
 		return;
 
-	}
-
-	/**
-	 * EventBus handler
-	 */
-	public void onEventMainThread(AnswerHospitalListEvent event)
-	{
-		//获取医院列表成功，则重新加载数据
-		loadHospitalList();
-		return;
 	}
 
 }

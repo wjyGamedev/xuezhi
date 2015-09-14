@@ -14,6 +14,7 @@
 
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -22,14 +23,18 @@ import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.data_module.department_list.data.DDepartment;
 import com.taixinkanghu_client.data_module.department_list.data.DDepartmentList;
+import com.taixinkanghu_client.data_module.department_list.msg_handler.AnswerDepartmentListEvent;
 import com.taixinkanghu_client.data_module.department_list.msg_handler.DepartmentMsgHandler;
 import com.taixinkanghu_client.data_module.hospital_list.data.DHospital;
 import com.taixinkanghu_client.data_module.hospital_list.data.DHospitalList;
+import com.taixinkanghu_client.data_module.hospital_list.msg_handler.AnswerHospitalListEvent;
 import com.taixinkanghu_client.data_module.hospital_list.msg_handler.HospitalMsgHandler;
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.NurseListHandler;
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.RequestNurseBasicListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.BaseAppiontmentNursingFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectDepartmentFragment;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectHospitalFragment;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data.DNursingDate;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_page.ui.SelectNurseActivity;
 
@@ -257,6 +262,20 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 		return;
 	}
 
+	public void onEventMainThread(AnswerHospitalListEvent event)
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+		Fragment             fragment = activity.getFragmentManager().findFragmentByTag(SelectHospitalFragment.class.getName());
+		if (fragment == null)
+		{
+			return;
+		}
+
+		SelectHospitalFragment selectHospitalFragment = (SelectHospitalFragment)fragment;
+		selectHospitalFragment.loadHospitalList();
+		return;
+	}
+
 	//07. 请求发送科室列表
 	public void requestDepartmentListAction()
 	{
@@ -264,5 +283,18 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 		return;
 	}
 
+	public void onEventMainThread(AnswerDepartmentListEvent event)
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+		Fragment             fragment = activity.getFragmentManager().findFragmentByTag(SelectDepartmentFragment.class.getName());
+		if (fragment == null)
+		{
+			return;
+		}
+
+		SelectDepartmentFragment selectDepartmentFragment = (SelectDepartmentFragment)fragment;
+		selectDepartmentFragment.loadDepartmentList();
+		return;
+	}
 
 }
