@@ -45,6 +45,10 @@
 
 	<!-- 06. 确认订单页面-->
 	<string name="order_content_text">订单内容</string>
+	<string name="order_id_text">订单编号：</string>
+	<string name="order_state_text">订单状态：</string>
+	<string name="order_state_notpay_text">待支付</string>
+	<string name="order_state_notpay_hint_text">已提交现金支付申请，请等待工作人员上门收款或改用其他方式支付</string>
 	<string name="nursing_worker_text">护理员:</string>
 	<string name="job_number_text">工号：</string>
 	<string name="worker_level_text">级别：</string>
