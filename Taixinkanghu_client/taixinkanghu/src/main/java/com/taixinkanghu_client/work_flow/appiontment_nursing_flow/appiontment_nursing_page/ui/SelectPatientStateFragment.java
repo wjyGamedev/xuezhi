@@ -26,7 +26,7 @@ import event.EventBus;
 public class SelectPatientStateFragment extends Fragment
 {
 	//widget
-	@Bind (R.id.patient_state_header_ll)           LinearLayout m_titleLL           = null;
+	@Bind (R.id.patient_state_func_region)         LinearLayout m_titleLL           = null;
 	@Bind (R.id.patient_state_care_myself_tv)      TextView     m_careMyselfBtn     = null;
 	@Bind (R.id.patient_state_half_care_myself_tv) TextView     m_halfCareMyselfBtn = null;
 	@Bind (R.id.patient_state_not_care_myself_tv)  TextView     m_notCareMyselfBtn  = null;
@@ -34,7 +34,7 @@ public class SelectPatientStateFragment extends Fragment
 	//logical
 	private int                          m_patientStateTitleHight       = 0;
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = null;
-	private View m_view = null;
+	private View                         m_view                         = null;
 
 	//TODO:以后放在基类中
 	EventBus m_eventBus = EventBus.getDefault();
