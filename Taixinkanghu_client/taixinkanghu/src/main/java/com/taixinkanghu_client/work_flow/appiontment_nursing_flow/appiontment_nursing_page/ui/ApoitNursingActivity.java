@@ -15,7 +15,6 @@
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui;
 
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,20 +74,20 @@ public class ApoitNursingActivity extends BaseActivity
 
 	//测量高度用的LL
 	@Bind (R.id.measuring_height_gender) LinearLayout m_measuringGenderHeightLL = null;    //测量性别下拉框所需高度的LL
-	private                              Integer      m_selectGenderTitleHight  = 0;    //性别下拉框所需高度
+	private                              int      m_selectGenderTitleHight  = 0;    //性别下拉框所需高度
 
 	@Bind (R.id.measuring_height_age) LinearLayout m_measuringAgeHeightLL = null;    //测量年龄下拉框所需高度的LL
-	private                           Integer      m_selectAgeTitleHight  = 0;    //年龄下拉框所需高度
+	private                           int      m_selectAgeTitleHight  = 0;    //年龄下拉框所需高度
 
 	@Bind (R.id.measuring_height_weight) LinearLayout m_measuringWeightHeightLL = null;    //测量体重下拉框所需高度的LL
-	private                              Integer      m_selectWeightTitleHight  = 0;    //体重下拉框所需高度
+	private                              int      m_selectWeightTitleHight  = 0;    //体重下拉框所需高度
 
 	@Bind (R.id.measuring_height_patient_state) LinearLayout m_measuringPatientStateHeightLL = null;    //测量患者状态下拉框所需高度的LL
-	private                                     Integer      m_selectPatientStateTitleHight  = 0;    //患者状态下拉框所需高度
+	private                                     int      m_selectPatientStateTitleHight  = 0;    //患者状态下拉框所需高度
 
 	//logical
-	private FragmentManager              m_fragmentManager              = getFragmentManager();
 	private AppiontmentNursingMsgHandler m_appiontmentNursingMsgHandler = new AppiontmentNursingMsgHandler(this);
+	private FragmentManager              m_fragmentManager              = getFragmentManager();
 	private BottomCommonClickEvent m_bottomCommonClickEvent = new BottomCommonClickEvent();
 
 	private ArrayList<ArrayList<Date>>    m_dateListAll     = new ArrayList<>();
@@ -186,87 +185,49 @@ public class ApoitNursingActivity extends BaseActivity
 	@OnClick(R.id.gender_region_ll)
 	public void clickGenderRegion()
 	{
-		SelectSexFragment selectSexFragment = new SelectSexFragment();
-		selectSexFragment.setGenderTitleHight(m_selectGenderTitleHight);
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectSexFragment, selectSexFragment.getClass().getName());
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2SelectGenderFragment();
 		return;
 	}
 
 	@OnClick(R.id.age_region_ll)
 	public void clickAgeRegion()
 	{
-		SelectAgeFragment selectAgeFragment = new SelectAgeFragment();
-		selectAgeFragment.setAgeTitleHight(m_selectAgeTitleHight);
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectAgeFragment, selectAgeFragment.getClass().getName());
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2SelectAgeFragmnet();
 		return;
 	}
 
 	@OnClick(R.id.weight_region_ll)
 	public void clickWeightRegion()
 	{
-		SelectWeightFragment selectWeightFragment = new SelectWeightFragment();
-		selectWeightFragment.setWeightTitleHight(m_selectWeightTitleHight);
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectWeightFragment, selectWeightFragment.getClass().getName());
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2SelectWeightFragmnet();
 		return;
 	}
 
 	@OnClick(R.id.hospital_region_ll)
 	public void clickHospitalRegion()
 	{
-		SelectHospitalFragment selectHospitalFragment = new SelectHospitalFragment();
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectHospitalFragment, selectHospitalFragment.getClass().getName());
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2SelectHospitalFragment();
 		return;
 	}
 
 	@OnClick(R.id.department_region_ll)
 	public void clickDepartmentRegion()
 	{
-		SelectDepartmentFragment selectDepartmentFragment = new SelectDepartmentFragment();
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectDepartmentFragment, selectDepartmentFragment.getClass().getName
-									());
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2SelectDepartmentFragment();
 		return;
-
 	}
 
 	@OnClick(R.id.patient_state_region_ll)
 	public void clickPatientStateRegion()
 	{
-		SelectPatientStateFragment selectPatientStateFragment = new SelectPatientStateFragment();
-		selectPatientStateFragment.setPatientStateTitleHight(m_selectPatientStateTitleHight);
-
-		FragmentTransaction transaction = m_fragmentManager.beginTransaction();
-		transaction.replace(R.id.appointment_nursing_page, selectPatientStateFragment, selectPatientStateFragment.getClass().getName()
-						   );
-		transaction.commit();
-
+		m_appiontmentNursingMsgHandler.go2PatientStateFragment();
 		return;
-
 	}
 
 	@OnClick(R.id.service_date_region_ll)
 	public void clickServiceDateRegion()
 	{
-//		startActivity(new Intent(this, SelectDateActivity.class));
+		m_appiontmentNursingMsgHandler.go2SelectDatePage();
 	}
 
 	@OnClick(R.id.protocol_tv)
@@ -434,6 +395,26 @@ public class ApoitNursingActivity extends BaseActivity
 	public AppiontmentNursingMsgHandler getAppiontmentNursingMsgHandler()
 	{
 		return m_appiontmentNursingMsgHandler;
+	}
+
+	public int getSelectGenderTitleHight()
+	{
+		return m_selectGenderTitleHight;
+	}
+
+	public int getSelectAgeTitleHight()
+	{
+		return m_selectAgeTitleHight;
+	}
+
+	public int getSelectWeightTitleHight()
+	{
+		return m_selectWeightTitleHight;
+	}
+
+	public int getSelectPatientStateTitleHight()
+	{
+		return m_selectPatientStateTitleHight;
 	}
 
 	/**

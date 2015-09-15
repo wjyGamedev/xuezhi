@@ -209,4 +209,13 @@ public class MainActivity extends BaseActivity
 
 	}
 
+	/**
+	 * data:get
+	 */
+	public MainMsgHandler getMainMsgHandler()
+	{
+		return m_mainMsgHandler;
+	}
+
+
 }

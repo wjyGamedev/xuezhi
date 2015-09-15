@@ -22,6 +22,8 @@ import com.module.frame.BaseUIMsgHandler;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrderListHandler;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
+import com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.CompanyTabFragment;
 import com.taixinkanghu_client.work_flow.main_page.ui.HomeTabFragment;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
@@ -30,6 +32,7 @@ import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
 import com.taixinkanghu_client.work_flow.personal_setting_flow.ui.PersonalSettingActivity;
 import com.taixinkanghu_client.work_flow.personal_wealth_flow.personal_wealth_page.ui.PersonalWealthActivity;
 import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
+import com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity;
 
 public class MainMsgHandler extends BaseUIMsgHandler
 {
@@ -103,7 +106,6 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
 		mainActivity.startActivity(new Intent(mainActivity, RegisterActivity.class));
-
 		return;
 	}
 
@@ -161,6 +163,59 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		MainActivity mainActivity = (MainActivity)m_context;
 		mainActivity.startActivity(new Intent(mainActivity, PersonalSettingActivity.class));
 	}
+
+	//12.跳转到公司介绍界面
+	public void go2CompanyShowPage()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, CompanyShowActivity.class));
+		return;
+	}
+
+	//13. 跳转到产品优惠信息页面
+	public void go2ShoppingShowPage()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, ShoppingShowActivity.class));
+		return;
+	}
+
+	//14. 请求跳转到预约陪护页面
+	public void requestAppointmentNursingAction()
+	{
+		//01. 未注册
+		if (!DAccount.GetInstance().isRegisterSuccess())
+		{
+			go2RegisterPage();
+			return;
+		}
+
+		//02. 已注册,跳转到预约陪护页面。
+		go2AppointmentNursingPage();
+
+		return;
+
+	}
+
+	private void go2AppointmentNursingPage()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, ApoitNursingActivity.class));
+		return;
+	}
+
+	//15. 请求跳转到康复辅助用品页面
+	public void requestShoppingAction()
+	{
+		go2ShoppingPage();
+		return;
+	}
+
+	private void go2ShoppingPage()
+	{
+		Toast.makeText(m_context, R.string.function_is_not_open, Toast.LENGTH_SHORT).show();
+	}
+
 
 
 }

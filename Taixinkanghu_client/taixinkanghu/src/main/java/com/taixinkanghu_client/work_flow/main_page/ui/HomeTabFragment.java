@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -15,8 +15,6 @@
 package com.taixinkanghu_client.work_flow.main_page.ui;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Display;
@@ -37,12 +35,8 @@ import android.widget.ViewFlipper;
 
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.data_module.register_account.data.DAccount;
-import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
 import com.taixinkanghu_client.work_flow.main_page.data.DMainPageImages;
-import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
-import com.taixinkanghu_client.work_flow.company_flow.company_show_page.ui.CompanyShowActivity;
-import com.taixinkanghu_client.work_flow.show_flow.shopping_show.ui.ShoppingShowActivity;
+import com.taixinkanghu_client.work_flow.main_page.msg_handler.MainMsgHandler;
 
 import java.util.ArrayList;
 
@@ -60,8 +54,9 @@ public class HomeTabFragment extends Fragment
 	@Bind (R.id.func_region_gl)         GridLayout   m_funcRegionGL        = null;
 
 	//logical
-	private View m_view = null;
-	GestureDetector m_gestureDetector = null;
+	private View            m_view            = null;
+	private GestureDetector m_gestureDetector = null;
+	private MainMsgHandler  m_mainMsgHandler  = null;
 
 	private HandlerClickEventNursingOrder m_handlerClickEventNursingOrder = new HandlerClickEventNursingOrder();
 	private HandlerClickEventShopping     m_handlerClickEventShopping     = new HandlerClickEventShopping();
@@ -73,7 +68,7 @@ public class HomeTabFragment extends Fragment
 		m_view = inflater.inflate(R.layout.fragment_home, container, false);
 		ButterKnife.bind(this, m_view);
 
-		initData();
+		init();
 		initContent();
 		return m_view;
 	}
@@ -85,8 +80,17 @@ public class HomeTabFragment extends Fragment
 		super.onStart();
 	}
 
-	public void initData()
+	public void init()
 	{
+		MainActivity mainActivity = (MainActivity)getActivity();
+		if (mainActivity == null)
+		{
+			TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
+			TipsDialog.GetInstance().show();
+			return;
+		}
+		m_mainMsgHandler = mainActivity.getMainMsgHandler();
+
 		m_gestureDetector = new GestureDetector(m_imgsDisplayVF.getContext(), new MyGestureDetector());
 	}
 
@@ -286,12 +290,12 @@ public class HomeTabFragment extends Fragment
 			//01. 公司信息
 			if (tagValue == 0)
 			{
-				startActivity(new Intent(getActivity(), CompanyShowActivity.class ));
+				m_mainMsgHandler.go2CompanyShowPage();
 			}
 			//02. 优惠信息
 			else if (tagValue == 1)
 			{
-				startActivity(new Intent(getActivity(), ShoppingShowActivity.class ));
+				m_mainMsgHandler.go2ShoppingShowPage();
 			}
 			else
 			{
@@ -307,18 +311,8 @@ public class HomeTabFragment extends Fragment
 		@Override
 		public void onClick(View v)
 		{
-			Context context = HomeTabFragment.this.getActivity();
-			if (DAccount.GetInstance().isRegisterSuccess() == false)
-			{
-				context.startActivity(new Intent(context, RegisterActivity.class));
-			}
-			else
-			{
-				context.startActivity(new Intent(context, ApoitNursingActivity.class));
-			}
-
+			m_mainMsgHandler.requestAppointmentNursingAction();
 		}
-
 	}
 
 	public class HandlerClickEventShopping implements View.OnClickListener
@@ -326,8 +320,7 @@ public class HomeTabFragment extends Fragment
 		@Override
 		public void onClick(View v)
 		{
-			//		Toast.makeText(m_context, R.string.function_is_not_open, Toast.LENGTH_SHORT).show();
-			//m_context.startActivity(new Intent(m_context, ShoppingActivity.class));
+			m_mainMsgHandler.requestShoppingAction();
 		}
 	}
 

@@ -15,6 +15,7 @@
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.msg_handler;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -33,9 +34,14 @@ import com.taixinkanghu_client.data_module.nurse_list.msg_handler.NurseListHandl
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.RequestNurseBasicListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.BaseAppiontmentNursingFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.ApoitNursingActivity;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectAgeFragment;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectDepartmentFragment;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectHospitalFragment;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectPatientStateFragment;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectSexFragment;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.appiontment_nursing_page.ui.SelectWeightFragment;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data.DNursingDate;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_date_page.ui.SelectDateActivity;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_page.ui.SelectNurseActivity;
 
 import java.util.ArrayList;
@@ -297,4 +303,100 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 		return;
 	}
 
+	//08. 跳转到选择性别fragment
+	public void go2SelectGenderFragment()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectSexFragment selectSexFragment = new SelectSexFragment();
+		selectSexFragment.setGenderTitleHight(activity.getSelectGenderTitleHight());
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectSexFragment, selectSexFragment.getClass().getName());
+		transaction.commit();
+
+		return;
+	}
+
+	//09. 跳转到选择年龄fragment
+	public void go2SelectAgeFragmnet()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectAgeFragment selectAgeFragment = new SelectAgeFragment();
+		selectAgeFragment.setAgeTitleHight(activity.getSelectAgeTitleHight());
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectAgeFragment, selectAgeFragment.getClass().getName());
+		transaction.commit();
+
+		return;
+	}
+
+	//10. 跳转到选择体重fragment
+	public void go2SelectWeightFragmnet()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectWeightFragment selectWeightFragment = new SelectWeightFragment();
+		selectWeightFragment.setWeightTitleHight(activity.getSelectWeightTitleHight());
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectWeightFragment, selectWeightFragment.getClass().getName());
+		transaction.commit();
+
+		return;
+	}
+
+	//11. 跳转到选择医院列表fragment
+	public void go2SelectHospitalFragment()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectHospitalFragment selectHospitalFragment = new SelectHospitalFragment();
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectHospitalFragment, selectHospitalFragment.getClass().getName());
+		transaction.commit();
+
+	}
+
+	//12. 跳转到选择科室列表fragment
+	public void go2SelectDepartmentFragment()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectDepartmentFragment selectDepartmentFragment = new SelectDepartmentFragment();
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectDepartmentFragment, selectDepartmentFragment.getClass().getName());
+		transaction.commit();
+
+		return;
+	}
+
+	//13. 跳转到选择护理员状态页面
+	public void go2PatientStateFragment()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+
+		SelectPatientStateFragment selectPatientStateFragment = new SelectPatientStateFragment();
+		selectPatientStateFragment.setPatientStateTitleHight(activity.getSelectPatientStateTitleHight());
+
+		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		transaction.replace(R.id.appointment_nursing_page, selectPatientStateFragment, selectPatientStateFragment.getClass().getName()
+						   );
+		transaction.commit();
+
+		return;
+
+	}
+
+	//14. 跳转到选择日期页面
+	public void go2SelectDatePage()
+	{
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+		activity.startActivity(new Intent(activity, SelectDateActivity.class));
+		return;
+	}
 }

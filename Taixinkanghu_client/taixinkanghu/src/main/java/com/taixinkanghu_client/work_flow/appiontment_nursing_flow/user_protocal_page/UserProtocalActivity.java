@@ -1,14 +1,12 @@
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.user_protocal_page;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -18,7 +16,6 @@ public class UserProtocalActivity extends BaseActivity
 {
     //widget
     private HeaderCommon m_headerCommon = null;    //title：用户协议
-    @Bind (R.id.measuring_height_gender) TextView m_userProtocalContentTV = null;
     private BottomCommon m_bottomCommon = null;    //底部按钮：确定
 
     @Override
