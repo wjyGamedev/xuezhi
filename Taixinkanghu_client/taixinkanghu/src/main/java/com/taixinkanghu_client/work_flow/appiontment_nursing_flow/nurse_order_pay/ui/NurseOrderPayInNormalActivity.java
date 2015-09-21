@@ -43,14 +43,15 @@ public class NurseOrderPayInNormalActivity extends BaseActivity
 	private Button m_payBtn = null;
 
 	//logical
-	private       NurseOrderPayInNormalMsgHandler  m_nurseOrderPayInNormalMsgHandler  = new NurseOrderPayInNormalMsgHandler(this);
-	private       ArrayList<RadioButton>           m_radioButtons                     = new ArrayList<>();
-	private       ClickHeaderCommon                m_clickHeaderCommon                = new ClickHeaderCommon();
-	private       ClickBottomCommon                m_clickBottomCommon                = new ClickBottomCommon();
-	private       HandleClickEventOnExitDialog     m_handleClickEventOnExitDialog     = new HandleClickEventOnExitDialog();
-	private       HandleClickEventOnTipsCashDialog m_handleClickEventOnTipsCashDialog = new HandleClickEventOnTipsCashDialog();
-	private       int                              m_selectedID                       = DataConfig.DEFAULT_VALUE;
-	private final String                           TIPS_CASH_SUCCESS                  = getString(R.string.tips_cash_success);
+	private NurseOrderPayInNormalMsgHandler  m_nurseOrderPayInNormalMsgHandler  = new NurseOrderPayInNormalMsgHandler(this);
+	private ArrayList<RadioButton>           m_radioButtons                     = new ArrayList<>();
+	private ClickHeaderCommon                m_clickHeaderCommon                = new ClickHeaderCommon();
+	private ClickBottomCommon                m_clickBottomCommon                = new ClickBottomCommon();
+	private HandleClickEventOnExitDialog     m_handleClickEventOnExitDialog     = new HandleClickEventOnExitDialog();
+	private NurseInServiceDialog             m_nurseInServiceDialog             = new NurseInServiceDialog();
+	private HandleClickEventOnTipsCashDialog m_handleClickEventOnTipsCashDialog = new HandleClickEventOnTipsCashDialog();
+	private int                              m_selectedID                       = DataConfig.DEFAULT_VALUE;
+	private String                           TIPS_CASH_SUCCESS                  = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -149,6 +150,16 @@ public class NurseOrderPayInNormalActivity extends BaseActivity
 		}
 	}
 
+	public class NurseInServiceDialog implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			m_nurseOrderPayInNormalMsgHandler.checkFailedAction();
+		}
+	}
+
+
 	public class HandleClickEventOnTipsCashDialog implements DialogInterface.OnClickListener
 	{
 		@Override
@@ -175,6 +186,7 @@ public class NurseOrderPayInNormalActivity extends BaseActivity
 		m_radioButtons.add(m_alipayRBtn);
 		m_radioButtons.add(m_weixinRBtn);
 
+		TIPS_CASH_SUCCESS = getString(R.string.tips_cash_success);
 		return;
 	}
 
@@ -193,10 +205,18 @@ public class NurseOrderPayInNormalActivity extends BaseActivity
 
 	public void backAction()
 	{
-		TipsDialog.GetInstance().setMsg(getString(R.string.cancel_title), this,
+		TipsDialog.GetInstance().setMsg(getString(R.string.cancel_title),
+										this,
 										m_handleClickEventOnExitDialog,
 										m_handleClickEventOnExitDialog
 									   );
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
+	public void inServiceAction()
+	{
+		TipsDialog.GetInstance().setMsg(getString(R.string.confirm_content), this, m_nurseInServiceDialog);
 		TipsDialog.GetInstance().show();
 		return;
 	}

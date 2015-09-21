@@ -17,7 +17,7 @@ package com.taixinkanghu_client.data_module.nurse_order_list.msg_handler;
 
 import com.module.event.EventID;
 import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.net.event.BaseNetEvent;
+import com.module.event.BaseNetEvent;
 
 public class AnswerNurseOrderCheckEvent extends BaseNetEvent
 {

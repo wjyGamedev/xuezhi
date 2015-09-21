@@ -17,6 +17,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.patient_info_page.msg_handler.PatientMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -40,6 +41,7 @@ public class SelectWeightFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.fragment_select_weight, container, false);
+		ButterKnife.bind(this, view);
 
 		init();
 		//设置顶部LL控件高度
@@ -62,6 +64,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_0_35()
 	{
 		m_patientMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_0_35);
+		cancelAction();
 		return;
 	}
 
@@ -69,6 +72,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_35_50()
 	{
 		m_patientMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_35_50);
+		cancelAction();
 		return;
 	}
 
@@ -76,6 +80,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_50_80()
 	{
 		m_patientMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_50_80);
+		cancelAction();
 		return;
 	}
 
@@ -83,6 +88,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_80_120()
 	{
 		m_patientMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_80_120);
+		cancelAction();
 		return;
 	}
 
@@ -90,6 +96,7 @@ public class SelectWeightFragment extends Fragment
 	public void clickAgeRange_above_75()
 	{
 		m_patientMsgHandler.setWeightRage(EnumConfig.WeightRage.WEIGHT_MORE_THAN_120);
+		cancelAction();
 		return;
 	}
 

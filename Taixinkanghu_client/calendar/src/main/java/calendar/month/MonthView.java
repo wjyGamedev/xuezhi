@@ -50,10 +50,6 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 
 	private CalendarDay selection = null;
 
-	//add by wangjinyu 2015-8-12
-	//	private ArrayList<CalendarDay> m_calendarDays  = new ArrayList<>();
-	//	private ArrayList<Integer>     m_typeArrayList = new ArrayList<>();
-
 	public MonthView(MonthPagerAdapter monthPagerAdapter, Context context, CalendarDay month, int firstDayOfWeek)
 	{
 		super(context);
@@ -236,6 +232,13 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 		updateUi();
 	}
 
+	public boolean isInRegion(CalendarDay tmpCalendarDay)
+	{
+		if (tmpCalendarDay == null)
+			return false;
+
+		return tmpCalendarDay.isInRange(m_minDate, m_maxDate);
+	}
 	//	public void setSelectedDate(CalendarDay cal)
 	//	{
 	//		selection = cal;
@@ -346,7 +349,7 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 		for (DayView dayView : m_monthDayViews)
 		{
 			CalendarDay day = dayView.getDate();
-			dayView.setupSelection(m_showOtherDates, day.isInRange(m_minDate, m_maxDate), day.getMonth() == ourMonth);
+			dayView.setupSelection(m_showOtherDates, isInRegion(day), day.getMonth() == ourMonth);
 //			dayView.setChecked(day.equals(selection));
 		}
 		postInvalidate();
@@ -360,7 +363,7 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 			facadeAccumulator.reset();
 			for (DecoratorResult result : decoratorResults)
 			{
-				if (result.decorator.shouldDecorate(dayView.getDate()))
+				if (result.decorator.shouldDecorate(dayView.getDate(), this))
 				{
 					result.result.applyTo(facadeAccumulator);
 				}
@@ -397,7 +400,7 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 			CalendarDay day = dayView.getDate();
 			int dayViewMonth = day.getMonth();
 			int dayViewDay = day.getDay();
-			dayView.setupSelection(m_showOtherDates, day.isInRange(m_minDate, m_maxDate), dayViewMonth == ourMonth);
+			dayView.setupSelection(m_showOtherDates, isInRegion(day), dayViewMonth == ourMonth);
 
 			if (dayViewMonth == beginMonth && dayViewDay == beginDay)
 			{
@@ -468,7 +471,7 @@ public class MonthView extends LinearLayout implements View.OnClickListener
 			CalendarDay day = dayView.getDate();
 			int dayViewMonth = day.getMonth();
 			int dayViewDay = day.getDay();
-			dayView.setupSelection(m_showOtherDates, day.isInRange(m_minDate, m_maxDate), dayViewMonth == ourMonth);
+			dayView.setupSelection(m_showOtherDates, isInRegion(day), dayViewMonth == ourMonth);
 
 			boolean isChecked = false;
 			if (bFlag)

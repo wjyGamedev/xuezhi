@@ -17,7 +17,6 @@ package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.patient_info_
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -62,7 +61,6 @@ public class PatientActivity extends BaseActivity
 	@Bind (R.id.patient_state_tv)        TextView     m_patientStateTV       = null;    //患者状态
 	@Bind (R.id.service_date_region_ll)  LinearLayout m_serviceDateRegionLL  = null;    //服务时间点击区域
 	@Bind (R.id.service_date_tv)         TextView     m_serviceDateTV        = null;    //服务时间
-	@Bind (R.id.protocol_tv)             TextView     m_protocolTV           = null;    //用户协议
 	private                              BottomCommon m_bottomCommon         = null;    //底部按钮：返回首页
 
 	//测量高度用的LL
@@ -76,8 +74,9 @@ public class PatientActivity extends BaseActivity
 	private                              Integer      m_selectWeightTitleHight  = 0;    //体重下拉框所需高度
 
 	//logical
-	private FragmentManager   m_fragmentManager   = getFragmentManager();
-	private PatientMsgHandler m_patientMsgHandler = new PatientMsgHandler(this);
+	private FragmentManager        m_fragmentManager        = getFragmentManager();
+	private PatientMsgHandler      m_patientMsgHandler      = new PatientMsgHandler(this);
+	private BottomCommonClickEvent m_bottomCommonClickEvent = new BottomCommonClickEvent();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -216,10 +215,10 @@ public class PatientActivity extends BaseActivity
 		//01. widget
 		m_headerCommon = (HeaderCommon)m_fragmentManager.findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.content_patient_info);
-		m_protocolTV.append(Html.fromHtml("<a href=>" + "《用户协议》" + "</a> "));
 
 		m_bottomCommon = (BottomCommon)m_fragmentManager.findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.content_confirm);
+		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_bottomCommonClickEvent);
 	}
 
 	private void initHightValues()

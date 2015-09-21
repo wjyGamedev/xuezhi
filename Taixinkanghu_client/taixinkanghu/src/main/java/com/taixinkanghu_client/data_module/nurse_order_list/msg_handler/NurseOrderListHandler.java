@@ -20,7 +20,6 @@ import com.alipay.sdk.app.PayTask;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
 import com.module.net.NetConfig;
-import com.taixinkanghu_client.data_module.nurse_list.msg_handler.AnswerNurseSeniorListHandler;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.net.BaseMsgHandler;
 
@@ -45,7 +44,7 @@ public class NurseOrderListHandler extends BaseMsgHandler
 	private AnswerNurseOrderPayMoreHandler m_answerNurseOrderPayMoreHandler = new AnswerNurseOrderPayMoreHandler();
 
 	//添加评论后的返回处理函数
-	private AnswerNurseSeniorListHandler m_answerNurseSeniorListHandler = new AnswerNurseSeniorListHandler();
+	private AnswerCommentNurseOrderHandler m_answerCommentNurseOrderHandler = new AnswerCommentNurseOrderHandler();
 
 	@Override
 	protected void init()
@@ -322,7 +321,7 @@ public class NurseOrderListHandler extends BaseMsgHandler
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
 																NetConfig.s_commentNurseOrder,
 																dataHashMap,
-																m_answerNurseSeniorListHandler, m_baseErrorListener
+																m_answerCommentNurseOrderHandler, m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);

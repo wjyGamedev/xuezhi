@@ -18,7 +18,6 @@ import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.EnumConfig;
-import com.taixinkanghu_client.net.config.NurseBasicListConfig;
 import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
 
 import org.json.JSONArray;
@@ -46,7 +45,7 @@ public class DCommentList
 		if (jsonArray == null)
 		{
 			String errMsg = DGlobal.GetInstance().getAppContext().getString(R.string.net_error_json_serilization);
-			throw new JsonSerializationException(errMsg + ":" + NurseBasicListConfig.LIST);
+			throw new JsonSerializationException(errMsg + ":" + NurseSeniorListConfig.COMMENT_LIST);
 		}
 
 		JSONObject   jsonObject   = null;

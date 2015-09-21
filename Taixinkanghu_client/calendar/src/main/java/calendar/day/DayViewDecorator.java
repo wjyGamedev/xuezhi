@@ -1,6 +1,7 @@
 package calendar.day;
 
 import calendar.CalendarDay;
+import calendar.month.MonthView;
 
 /**
  * Decorate Day views with drawables and text manipulation
@@ -14,7 +15,7 @@ public interface DayViewDecorator {
      *
      * @return true if this decorator should be applied to the provided day
      */
-    boolean shouldDecorate(CalendarDay day);
+    boolean shouldDecorate(CalendarDay day, MonthView monthView);
 
     /**
      * Set decoration options onto a facade to be applied to all relevant days

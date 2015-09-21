@@ -32,6 +32,8 @@ public class CommentMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 	{
 		CommentActivity commentActivity = (CommentActivity)m_context;
 		commentActivity.startActivity(new Intent(commentActivity, MainActivity.class));
+
+		m_dAppiontmentNursingFlow.clearupAll();
 		return;
 	}
 

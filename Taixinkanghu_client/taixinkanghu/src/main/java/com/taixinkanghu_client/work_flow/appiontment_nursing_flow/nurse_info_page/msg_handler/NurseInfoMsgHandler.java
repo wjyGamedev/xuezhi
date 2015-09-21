@@ -19,6 +19,7 @@ import android.content.Intent;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DataConfig;
+import com.taixinkanghu_client.data_module.nurse_list.data.DCommentList;
 import com.taixinkanghu_client.data_module.nurse_list.data.DFaceImages;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurse;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasics;
@@ -49,8 +50,12 @@ public class NurseInfoMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 	//02. 返回主页面
 	public void go2MainPage()
 	{
+		//01. 跳转到主页面
 		NurseInfoActivity activity = (NurseInfoActivity)m_context;
 		activity.startActivity(new Intent(activity, MainActivity.class));
+
+		//02. 清楚流程信息
+		m_dAppiontmentNursingFlow.clearupAll();
 		return;
 	}
 
@@ -124,6 +129,21 @@ public class NurseInfoMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 		nurseInfoActivity.getIntroTV().setText(nurseSenior.getIntro());
 		nurseInfoActivity.getCertificateTV().setText(nurseSenior.getCertificate());
 		nurseInfoActivity.getServiceContentTV().setText(nurseSenior.getServiceContent());
+		//评论
+
+		Integer rate = 0;
+		Integer num = 0;
+		DCommentList commentList = nurseSenior.getCommentList();
+		if (commentList != null)
+		{
+			rate = (int)commentList.getCommentRate()*100;
+			num = commentList.getCommentNum();
+		}
+		String rateDisplay = m_context.getString(R.string.comment_good_rate) + rate.toString();
+		String numDispaly = num.toString() + m_context.getString(R.string.comment_num_person);
+		nurseInfoActivity.getCommentRateTV().setText(rateDisplay);
+		nurseInfoActivity.getCommentNumTV().setText(numDispaly);
+
 		//价格
 		String charge = String.valueOf(nurseBasics.getServiceChargePerAllCare());
 		String unit   = nurseInfoActivity.getString(R.string.content_yuan_per_day);

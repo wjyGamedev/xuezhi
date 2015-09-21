@@ -14,9 +14,15 @@
 
 package com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -33,6 +39,7 @@ import com.taixinkanghu_client.work_flow.comment_nurse_order_flow.msg_handler.Co
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 
 public class CommentNurseOrderActivity extends BaseActivity
 {
@@ -48,8 +55,8 @@ public class CommentNurseOrderActivity extends BaseActivity
 	@Bind (R.id.satisfied_rbtn)      RadioButton     m_satisfiedRBtn     = null;    //满意
 	@Bind (R.id.general_rbtn)        RadioButton     m_generalRBtn       = null;    //一般
 	@Bind (R.id.comment_content_et)  EditText        m_commentContentET  = null;    //评论内容
-	@Bind (R.id.goto_main_btn)       RadioButton     m_toMainBtn         = null;    //返回到主页面
-	@Bind (R.id.comment_btn)         RadioButton     m_commentBtn        = null;    //提交评论
+	@Bind (R.id.goto_main_btn)       Button          m_toMainBtn         = null;    //返回到主页面
+	@Bind (R.id.comment_btn)         Button          m_commentBtn        = null;    //提交评论
 
 	private CommentNurseOrderMsgHandler m_nurseOrderCommentMsgHandler = new CommentNurseOrderMsgHandler(this);
 	private ClickHeaderCommon           m_clickHeaderCommon           = new ClickHeaderCommon();
@@ -64,6 +71,31 @@ public class CommentNurseOrderActivity extends BaseActivity
 		init();
 	}
 
+	//网上复制下来的代码，作用：点击EditText文本框之外任何地方隐藏键盘
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev)
+	{
+		if (ev.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			View v = getCurrentFocus();
+			if (isShouldHideInput(v, ev))
+			{
+
+				InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+				if (imm != null)
+				{
+					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+				}
+			}
+			return super.dispatchTouchEvent(ev);
+		}
+		// 必不可少，否则所有的组件都不会有TouchEvent了
+		if (getWindow().superDispatchTouchEvent(ev))
+		{
+			return true;
+		}
+		return onTouchEvent(ev);
+	}
 	/**
 	 * widget event
 	 */
@@ -83,6 +115,17 @@ public class CommentNurseOrderActivity extends BaseActivity
 		}
 		m_nurseOrderCommentMsgHandler.requestCommentNurseOrderAction();
 		return;
+	}
+
+	@OnEditorAction (R.id.comment_content_et)
+	public boolean nameEditorAction(TextView v, int actionId, KeyEvent event)
+	{
+		if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE)
+		{
+			InputMethodManager imm = (InputMethodManager)CommentNurseOrderActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+		}
+		return true;
 	}
 
 	/**
@@ -112,8 +155,8 @@ public class CommentNurseOrderActivity extends BaseActivity
 	private boolean checkValid()
 	{
 		int selectID = m_funcRegionRGrp.getCheckedRadioButtonId();
-		if (selectID != R.id.very_satisfied_rbtn	&&
-				selectID != R.id.satisfied_rbtn	&&
+		if (selectID != R.id.very_satisfied_rbtn &&
+				selectID != R.id.satisfied_rbtn &&
 				selectID != R.id.general_rbtn)
 		{
 			TipsDialog.GetInstance().setMsg(getString(R.string.error_tips_select_comment_level), this);
@@ -122,7 +165,7 @@ public class CommentNurseOrderActivity extends BaseActivity
 		}
 
 		String commentContent = getCommentContent();
-		if (!TextUtils.isEmpty(commentContent))
+		if (TextUtils.isEmpty(commentContent))
 		{
 			TipsDialog.GetInstance().setMsg(getString(R.string.error_tips_write_comment_content), this);
 			TipsDialog.GetInstance().show();
@@ -131,6 +174,30 @@ public class CommentNurseOrderActivity extends BaseActivity
 
 		return true;
 
+	}
+
+	public boolean isShouldHideInput(View v, MotionEvent event)
+	{
+		if (v != null && (v instanceof EditText))
+		{
+			int[] leftTop = {0, 0};
+			//获取输入框当前的location位置
+			v.getLocationInWindow(leftTop);
+			int left = leftTop[0];
+			int top = leftTop[1];
+			int bottom = top + v.getHeight();
+			int right = left + v.getWidth();
+			if (event.getX() > left && event.getX() < right && event.getY() > top && event.getY() < bottom)
+			{
+				// 点击的是输入框区域，保留点击EditText的事件
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -159,7 +226,7 @@ public class CommentNurseOrderActivity extends BaseActivity
 
 	public String getCommentContent()
 	{
-		return m_commentContentET.getText().toString().trim();
+		return m_commentContentET.getText().toString();
 	}
 
 

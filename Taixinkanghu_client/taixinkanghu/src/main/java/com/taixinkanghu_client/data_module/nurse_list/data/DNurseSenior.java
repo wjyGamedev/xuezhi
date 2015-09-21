@@ -18,6 +18,7 @@ package com.taixinkanghu_client.data_module.nurse_list.data;
 import com.module.data.DGlobal;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DataConfig;
+import com.taixinkanghu_client.net.config.NurseOrderConfig;
 import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
 
 import org.json.JSONException;
@@ -47,6 +48,9 @@ public class DNurseSenior implements Serializable
 
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
+
+//		JSONObject jsonNurseInfo = response.getJSONObject(NurseOrderConfig.NURSE_INFO);
+
 		m_ID = response.getInt(NurseSeniorListConfig.ID);
 		m_jobNum = response.getString(NurseSeniorListConfig.JOB_NUM);
 		m_languageLevel = response.getString(NurseSeniorListConfig.LANGUAGE_LEVEL);
@@ -60,6 +64,32 @@ public class DNurseSenior implements Serializable
 		m_serviceContent = DGlobal.GetInstance().getAppContext().getString(R.string.nurse_service_content) + m_serviceContent;
 
 		m_scheduleList.serialization(response);
+
+		m_commentList.serialization(response);
+
+		//同步到全局容器中
+		DNurseList.GetInstance().syncNurseSenior(m_ID, this);
+
+		return true;
+	}
+
+	public boolean serializationFromOrder(JSONObject response) throws JSONException, ParseException
+	{
+		JSONObject jsonNurseInfo = response.getJSONObject(NurseOrderConfig.NURSE_INFO);
+
+		m_ID = jsonNurseInfo.getInt(NurseSeniorListConfig.ID);
+		m_jobNum = jsonNurseInfo.getString(NurseSeniorListConfig.JOB_NUM);
+		m_languageLevel = jsonNurseInfo.getString(NurseSeniorListConfig.LANGUAGE_LEVEL);
+		m_educationLevel = jsonNurseInfo.getString(NurseSeniorListConfig.EDUCATION);
+		m_nation = jsonNurseInfo.getString(NurseSeniorListConfig.NATION);
+		m_intro = jsonNurseInfo.getString(NurseSeniorListConfig.INTRO);
+		m_intro = DGlobal.GetInstance().getAppContext().getString(R.string.nurse_intro) + m_intro;
+		m_departments = jsonNurseInfo.getString(NurseSeniorListConfig.DEPARTMENTS);
+		m_certificate = jsonNurseInfo.getString(NurseSeniorListConfig.CERTIFICATE);
+		m_serviceContent = jsonNurseInfo.getString(NurseSeniorListConfig.SERVICE_CONTENT);
+		m_serviceContent = DGlobal.GetInstance().getAppContext().getString(R.string.nurse_service_content) + m_serviceContent;
+
+		m_scheduleList.serialization(jsonNurseInfo);
 
 		m_commentList.serialization(response);
 

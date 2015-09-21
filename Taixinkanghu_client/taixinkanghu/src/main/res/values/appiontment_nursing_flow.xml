@@ -10,6 +10,7 @@
 	<string name="name_hint_text">点击填写患者姓名</string>
 	<string name="protocol_confirm_text">点击确认表示已阅读并同意</string>
 	<string name="appointment_nursing_title">预约陪护</string>
+	<string name="reset_btn_text">重置</string>
 	<string name="confirm_btn_text">确认</string>
 
 	<!-- 选择医院列表-->
@@ -25,6 +26,7 @@
 	<string name="select_date_title">选择陪护时间</string>
 	<string name="char_total">共</string>
 	<string name="char_day">天</string>
+	<string name="tips_select_date">选择服务时间</string>
 
 	<!-- 基本样式-->
 	<style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance">
@@ -66,6 +68,10 @@
 	<string name="service_price_text">服务价格</string>
 	<string name="nurse_info">护理员信息</string>
 	<string name="content_yuan_per_day">元/天</string>
+
+	<string name="comment_good_content">好评</string>
+	<string name="comment_good_rate">%</string>
+	<string name="comment_num_person">人评论</string>
 
 	<!-- 05. 评价-->
 	<string name="service_commnet">服务评价</string>
@@ -130,6 +136,7 @@
 	<string name="pay_page_title">支付页面</string>
 	<string name="pay_button">确认支付</string>
 	<string name="cancel_title">确定要放弃付款？</string>
+	<string name="confirm_content">知道了</string>
 	<string name="cancel_btn">确定</string>
 	<string name="confirm_btn">取消</string>
 	<string name="determine_pay_title">确认支付</string>
@@ -138,7 +145,7 @@
 	<string name="error_tips_pay_aciton_invalid">该支付方式暂未开通。</string>
 	<string name="error_tips_pay_more_aciton_no_cash">补差价暂不允许使用现金支付。</string>
 	<string name="error_tips_cash_cannt_in_wait_pay">当前模式下，不允许使用现金支付。</string>
-
+	<string name="error_tips_you_selected_nurse_in_service">您选定的护理员正在服务中，请重新选择。</string>
 	<string name="tips_cash_success">您的订单已经生成，服务人员会在1小时内和您联系，请您保持手机畅通。</string>
 
 

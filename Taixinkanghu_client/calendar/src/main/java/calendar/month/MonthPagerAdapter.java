@@ -424,9 +424,14 @@ public class MonthPagerAdapter extends PagerAdapter
 			monthView.updateSelectedDate(m_beginDate, null);
 		}
 
+		invalidateDecorators();
 		return;
 	}
 
+	public HashMap<CalendarDay, Integer> getSelectedDateHashMap()
+	{
+		return m_selectedDateHashMap;
+	}
 
 	private void updateEndDate()
 	{
@@ -465,8 +470,10 @@ public class MonthPagerAdapter extends PagerAdapter
 				for (; beginDay <= endDay; beginDay++)
 				{
 					Calendar calendar = Calendar.getInstance();
+
 					calendar.set(beginYear, beginMonth, beginDay);
 					CalendarDay calendarDay = CalendarDay.from(calendar);
+					//0:=EnumConfig.NurseServiceDayStatus.ALL.getId()
 					m_selectedDateHashMap.put(calendarDay, 0);
 				}
 			}
@@ -478,6 +485,7 @@ public class MonthPagerAdapter extends PagerAdapter
 			monthView.updateSelectedDate(m_beginDate, m_endDate);
 		}
 
+		invalidateDecorators();
 		return;
 	}
 
@@ -513,7 +521,32 @@ public class MonthPagerAdapter extends PagerAdapter
 		return false;
 	}
 
-	private void resetSelectedDate()
+	public boolean isInRegion(CalendarDay calendarDay)
+	{
+		if (m_beginDate == null	|| m_endDate == null)
+			return false;
+
+//		return calendarDay.isInRange(m_beginDate, m_endDate);
+		return m_selectedDateHashMap.containsKey(calendarDay);
+
+	}
+
+	public void clickSelectedDate(CalendarDay calendarDay)
+	{
+		if (!m_selectedDateHashMap.containsKey(calendarDay))
+			return;
+
+		int selectedType = m_selectedDateHashMap.get(calendarDay);
+		//3:=EnumConfig.NurseServiceDayStatus.MAX.getID();
+ 		int resustType = (++selectedType) % 3;
+		m_selectedDateHashMap.put(calendarDay, resustType);
+
+		invalidateDecorators();
+
+		return;
+	}
+
+	public void resetSelectedDate()
 	{
 		clearupSelectedDate();
 
@@ -521,6 +554,8 @@ public class MonthPagerAdapter extends PagerAdapter
 		{
 			monthView.resetSelectedDate();
 		}
+
+		invalidateDecorators();
 	}
 
 	public void clearupSelectedDate()

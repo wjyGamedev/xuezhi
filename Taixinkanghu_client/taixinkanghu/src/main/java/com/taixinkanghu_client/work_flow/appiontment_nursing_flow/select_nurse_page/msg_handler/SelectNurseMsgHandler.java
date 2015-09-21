@@ -23,6 +23,7 @@ import com.taixinkanghu_client.data_module.nurse_list.msg_handler.RequestNurseBa
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.BaseAppiontmentNursingFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.nurse_info_page.ui.NurseInfoActivity;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_page.ui.SelectNurseActivity;
+import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 
 public class SelectNurseMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 {
@@ -76,4 +77,15 @@ public class SelectNurseMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandle
 
 	}
 
+	//03. 返回主页面
+	public void go2MainPage()
+	{
+		//01. 跳转到主页面
+		SelectNurseActivity activity = (SelectNurseActivity)m_context;
+		activity.startActivity(new Intent(activity, MainActivity.class));
+
+		//02. 清楚流程信息
+		m_dAppiontmentNursingFlow.clearupAll();
+		return;
+	}
 }

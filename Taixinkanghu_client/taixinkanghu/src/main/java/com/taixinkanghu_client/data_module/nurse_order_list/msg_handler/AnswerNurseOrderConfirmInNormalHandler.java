@@ -84,6 +84,7 @@ public class AnswerNurseOrderConfirmInNormalHandler extends IResponseListener
 		answerNurseOrderConfirmInNormalEvent.setNurseID(m_nurseID);
 		answerNurseOrderConfirmInNormalEvent.setOrderID(m_orderID);
 		answerNurseOrderConfirmInNormalEvent.setOrderSerialNum(m_orderSerialNum);
+		//TODO:测试
 		answerNurseOrderConfirmInNormalEvent.setTotalPrice(m_totalPrice);
 
 		NurseOrderListHandler.GetInstance().answerNurseOrderConfirmInNormalAction(answerNurseOrderConfirmInNormalEvent);

@@ -14,6 +14,10 @@
 
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data;
 
+import com.module.data.DGlobal;
+import com.module.util.logcal.LogicalUtil;
+import com.module.widget.dialog.TipsDialog;
+import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DateConfig;
 import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.net.config.NurseBasicListConfig;
@@ -22,12 +26,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import calendar.CalendarDay;
 
 public class DNursingDate
 {
-	private SimpleDateFormat m_simpleDateFormat = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+	private SimpleDateFormat m_monthDaySDF     = new SimpleDateFormat(DateConfig.PATTERN_DATE_MONTH_DAY);
 
-	private Date                m_beingDate         = null;
+	private Date                m_beginDate         = null;
 	private Date                m_endDate           = null;
 	private String              m_dateDescription   = null;
 	private ArrayList<Calendar> m_allCalendarList   = new ArrayList<>();
@@ -37,38 +47,64 @@ public class DNursingDate
 	private int                 m_dayNum            = 0;
 	private int                 m_nightNum          = 0;
 
-	//inner
-	private ArrayList<ArrayList<Date>>    m_dateListAll = new ArrayList<>();
-	private ArrayList<ArrayList<Integer>> m_typeListAll = new ArrayList<>();
-
-	public DNursingDate(Date beingDate, Date endDate, ArrayList<ArrayList<Date>> dateListAll, ArrayList<ArrayList<Integer>> typeListAll,
-						String dateDescription)
+	public DNursingDate(Date beginDate, Date endDate, HashMap<CalendarDay, Integer> selectedDateHashMap)
 	{
-		m_beingDate = beingDate;
+		m_beginDate = beginDate;
 		m_endDate = endDate;
-		m_dateListAll = dateListAll;
-		m_typeListAll = typeListAll;
-		m_dateDescription = dateDescription;
-
-		postHandle(dateListAll, typeListAll);
-
+		postHandler(selectedDateHashMap);
 	}
 
-	public DNursingDate(Date beingDate, Date endDate, ArrayList<Calendar> allCalendarList, ArrayList<Calendar> dayCalendarList,
-						ArrayList<Calendar> nightCalendarList, String dateDescription)
+	private void postHandler(HashMap<CalendarDay, Integer> selectedDateHashMap)
 	{
-		m_beingDate = beingDate;
-		m_endDate = endDate;
-		m_dateDescription = dateDescription;
-		m_allCalendarList = allCalendarList;
-		m_dayCalendarList = dayCalendarList;
-		m_nightCalendarList = nightCalendarList;
+		if (m_beginDate == null || m_endDate == null)
+			return;
 
-		postHandle();
-	}
+		//01. m_dateDescription
+		String beginContent = m_monthDaySDF.format(m_beginDate);
+		String endContent   = m_monthDaySDF.format(m_endDate);
+		int    days         = LogicalUtil.GetDayNums(m_beginDate, m_endDate);
+		String total        = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.char_total);
+		String day          = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.char_day);
+		m_dateDescription = beginContent + " - " + endContent + total + days + day;
 
-	private void postHandle()
-	{
+		//02. m_allCalendarList, m_dayCalendarList, m_nightCalendarList
+		m_allCalendarList.clear();
+		m_dayCalendarList.clear();
+		m_nightCalendarList.clear();
+
+		Iterator<Map.Entry<CalendarDay, Integer>> iterator = selectedDateHashMap.entrySet().iterator();
+		while (iterator.hasNext())
+		{
+			Map.Entry<CalendarDay, Integer> entry = iterator.next();
+			CalendarDay calendarDay = (CalendarDay)entry.getKey();
+			int selectedDateType = (int)entry.getValue();
+			if (selectedDateType == EnumConfig.NurseServiceDayStatus.ALL.getId())
+			{
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(calendarDay.getDate());
+				m_allCalendarList.add(calendar);
+			}
+			else if (selectedDateType == EnumConfig.NurseServiceDayStatus.DAY.getId())
+			{
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(calendarDay.getDate());
+				m_dayCalendarList.add(calendar);
+			}
+			else if (selectedDateType == EnumConfig.NurseServiceDayStatus.NIGHT.getId())
+			{
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(calendarDay.getDate());
+				m_nightCalendarList.add(calendar);
+			}
+			else
+			{
+				TipsDialog.GetInstance().setMsg("selectedDateType is invalid![selectedDateType:=" + selectedDateType + "]");
+				TipsDialog.GetInstance().show();
+				return;
+			}
+		}
+
+		//03. day num
 		if (m_allCalendarList == null)
 			m_allNum = 0;
 
@@ -84,18 +120,8 @@ public class DNursingDate
 
 		m_nightNum = m_nightCalendarList.size();
 
-	}
+		return;
 
-	private void postHandle(ArrayList<ArrayList<Date>> dateListAll, ArrayList<ArrayList<Integer>> typeListAll)
-	{
-		//01. m_allNum,m_dayNum,m_nightNum
-		m_allNum = getDayNumByStatus(typeListAll, EnumConfig.NurseServiceDayStatus.ALL);
-		m_dayNum = getDayNumByStatus(typeListAll, EnumConfig.NurseServiceDayStatus.DAY);
-		m_nightNum = getDayNumByStatus(typeListAll, EnumConfig.NurseServiceDayStatus.NIGHT);
-		//02. m_allCalendarList, m_dayCalendarList, m_nightCalendarList
-		m_allCalendarList = getDateListByStatus(dateListAll, typeListAll, EnumConfig.NurseServiceDayStatus.ALL);
-		m_dayCalendarList = getDateListByStatus(dateListAll, typeListAll, EnumConfig.NurseServiceDayStatus.DAY);
-		m_nightCalendarList = getDateListByStatus(dateListAll, typeListAll, EnumConfig.NurseServiceDayStatus.NIGHT);
 	}
 
 	public String getSchedualAllDescription()
@@ -106,7 +132,7 @@ public class DNursingDate
 		for (Calendar calendar : m_allCalendarList)
 		{
 			Date date = calendar.getTime();
-			dateString = m_simpleDateFormat.format(date);
+			dateString = m_yearMonthDaySDF.format(date);
 			if (schedualDate == null)
 			{
 				schedualDate = (dateString + NurseBasicListConfig.SCHEDULE_SPLIT);
@@ -128,7 +154,7 @@ public class DNursingDate
 		for (Calendar calendar : m_dayCalendarList)
 		{
 			Date date = calendar.getTime();
-			dateString = m_simpleDateFormat.format(date);
+			dateString = m_yearMonthDaySDF.format(date);
 			if (schedualDate == null)
 			{
 				schedualDate = (dateString + NurseBasicListConfig.SCHEDULE_SPLIT);
@@ -150,7 +176,7 @@ public class DNursingDate
 		for (Calendar calendar : m_nightCalendarList)
 		{
 			Date date = calendar.getTime();
-			dateString = m_simpleDateFormat.format(date);
+			dateString = m_yearMonthDaySDF.format(date);
 			if (schedualDate == null)
 			{
 				schedualDate = (dateString + NurseBasicListConfig.SCHEDULE_SPLIT);
@@ -165,53 +191,9 @@ public class DNursingDate
 	}
 
 
-	private int getDayNumByStatus(ArrayList<ArrayList<Integer>> typeListAll, EnumConfig.NurseServiceDayStatus dayType)
+	public Date getBeginDate()
 	{
-		int dayNums = 0;
-		for (ArrayList<Integer> integerList : typeListAll)
-		{
-			for (Integer integer : integerList)
-			{
-				if (integer == dayType.getId())
-				{
-					dayNums++;
-					continue;
-				}
-			}
-		}
-		return dayNums;
-	}
-
-	private ArrayList<Calendar> getDateListByStatus(ArrayList<ArrayList<Date>> dateListAll, ArrayList<ArrayList<Integer>> typeListAll, EnumConfig.NurseServiceDayStatus dayType)
-	{
-		ArrayList<Calendar> calendars = new ArrayList<>();
-		for (int iMonth = 0; iMonth < typeListAll.size(); iMonth++)
-		{
-			ArrayList<Integer> typeArrayList = typeListAll.get(iMonth);
-			ArrayList<Date> dateArrayList = dateListAll.get(iMonth);
-
-			if (typeListAll.size() != dateListAll.size())
-				return null;
-
-			for (int iDay = 0; iDay < typeArrayList.size(); ++iDay)
-			{
-				//DataConfig.SELECT_DAY_TYEP_ALL,SELECT_DAY_TYEP_DAY,SELECT_DAY_TYEP_NIGHT
-				if (typeArrayList.get(iDay) != dayType.getId())
-					continue;
-
-				Date date = dateArrayList.get(iDay);
-				Calendar tmpCalendar = Calendar.getInstance();
-				tmpCalendar.setTime(date);
-				calendars.add(tmpCalendar);
-			}
-		}
-		return calendars;
-	}
-
-
-	public Date getBeingDate()
-	{
-		return m_beingDate;
+		return m_beginDate;
 	}
 
 	public Date getEndDate()

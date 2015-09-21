@@ -202,6 +202,16 @@ public class NurseInfoActivity extends BaseActivity
 		return m_serviceContentTV;
 	}
 
+	public TextView getCommentRateTV()
+	{
+		return m_commentRateTV;
+	}
+
+	public TextView getCommentNumTV()
+	{
+		return m_commentNumTV;
+	}
+
 	public TextView getServiceChargePerAllCareTV()
 	{
 		return m_serviceChargePerAllCareTV;

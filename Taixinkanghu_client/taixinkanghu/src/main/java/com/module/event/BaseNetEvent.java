@@ -12,12 +12,15 @@
  * 2015/7/9		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.net.event;
-
-import com.module.event.BaseEvent;
+package com.module.event;
 
 public class BaseNetEvent extends BaseEvent
 {
+	public BaseNetEvent()
+	{
+		super(EventID.NETWORK_DEFAULT);
+	}
+
 	public BaseNetEvent(int iEventID)
 	{
 		super(iEventID);

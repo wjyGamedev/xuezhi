@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 213Team
  *
- * @className : com.taixinkanghu.app.model.net.event.recv.${type_name}
+ * @className : com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.${type_name}
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
@@ -9,21 +9,18 @@
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/8/19		WangJY		1.0.0		create
+ * 2015/9/22		WangJY		1.0.0		create
  */
 
 package com.taixinkanghu_client.data_module.nurse_order_list.msg_handler;
 
-
-import com.module.event.EventID;
 import com.module.event.BaseNetEvent;
+import com.module.event.EventID;
 
-public class AnswerNurseOrderListEvent extends BaseNetEvent
+public class AnswerCommentNurseOrderEvent extends BaseNetEvent
 {
-	public AnswerNurseOrderListEvent()
+	public AnswerCommentNurseOrderEvent()
 	{
-		super(EventID.FINISHED_NURSE_ORDER_CONFIRM);
+		super(EventID.ANSWER_COMMENT_NURSE_ORDER);
 	}
-
-
 }

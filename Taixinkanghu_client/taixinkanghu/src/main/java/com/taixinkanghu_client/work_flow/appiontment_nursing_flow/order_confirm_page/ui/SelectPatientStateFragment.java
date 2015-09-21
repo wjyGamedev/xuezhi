@@ -16,6 +16,7 @@ import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.order_confirm_page.msg_handler.OrderConfirmMsgHandler;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectPatientStateFragment extends Fragment
@@ -34,6 +35,7 @@ public class SelectPatientStateFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.fragment_select_patient_state, container, false);
+		ButterKnife.bind(this, view);
 
 		init();
 		//设置底部LL控件高度
@@ -56,6 +58,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemCareMyself()
 	{
 		m_orderConfirmMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 
@@ -63,6 +66,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemHalfCareMyself()
 	{
 		m_orderConfirmMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_HALF_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 
@@ -70,6 +74,7 @@ public class SelectPatientStateFragment extends Fragment
 	public void clickPatientStateItemCanntCareMyself()
 	{
 		m_orderConfirmMsgHandler.setPatientState(EnumConfig.PatientState.PATIENT_STATE_CANNT_CARE_MYSELF);
+		cancelAction();
 		return;
 	}
 

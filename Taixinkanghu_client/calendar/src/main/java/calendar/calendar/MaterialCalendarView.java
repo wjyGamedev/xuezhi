@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -144,72 +145,82 @@ public class MaterialCalendarView extends FrameLayout
 		public void onDateChanged(CalendarDay date)
 		{
 			boolean bFlag = false;
-			if (m_monthAdapter.isWaitSelectBeginDate())
+
+			//01. 在已经选择范围之内，则更改类型
+			if (m_monthAdapter.isInRegion(date))
 			{
-				bFlag = true;
-				m_monthAdapter.setBeginDate(date);
+				m_monthAdapter.clickSelectedDate(date);
 			}
-			else if (m_monthAdapter.isWaitSelectEndDate())
+			//02. 在选择范围之外，则重新选择/选择结束时间
+			else
 			{
-				bFlag = true;
-
-				CalendarDay beginDate = m_monthAdapter.getBeginDate();
-				if (beginDate == null)
+				if (m_monthAdapter.isWaitSelectBeginDate())
 				{
-					return;
+					bFlag = true;
+					m_monthAdapter.setBeginDate(date);
 				}
+				else if (m_monthAdapter.isWaitSelectEndDate())
+				{
+					bFlag = true;
 
-				int beginYear = beginDate.getYear();
-				int beginMonth = beginDate.getMonth();
-				int beginDay = beginDate.getDay();
-				boolean bChangeFlag = false;
+					CalendarDay beginDate = m_monthAdapter.getBeginDate();
+					if (beginDate == null)
+					{
+						return;
+					}
 
-				//如果后来选择的日期，小于之前的日期，则置换两个日期。
-				if (date.getYear() < beginYear)
-				{
-					bChangeFlag = true;
-				}
-				else if (date.getYear() > beginYear)
-				{
-					bChangeFlag = false;
-				}
-				else
-				{
-					//在year == 的情况下，查看month
-					if (date.getMonth() < beginMonth)
+					int beginYear = beginDate.getYear();
+					int beginMonth = beginDate.getMonth();
+					int beginDay = beginDate.getDay();
+					boolean bChangeFlag = false;
+
+					//如果后来选择的日期，小于之前的日期，则置换两个日期。
+					if (date.getYear() < beginYear)
 					{
 						bChangeFlag = true;
 					}
-					else if (date.getMonth() > beginMonth)
+					else if (date.getYear() > beginYear)
 					{
 						bChangeFlag = false;
 					}
 					else
 					{
-						//在month == 的情况下，查看day
-						if (date.getDay() < beginDay)
+						//在year == 的情况下，查看month
+						if (date.getMonth() < beginMonth)
 						{
 							bChangeFlag = true;
 						}
-						else if (date.getDay() > beginDay)
+						else if (date.getMonth() > beginMonth)
 						{
 							bChangeFlag = false;
 						}
 						else
 						{
-							bChangeFlag = false;
+							//在month == 的情况下，查看day
+							if (date.getDay() < beginDay)
+							{
+								bChangeFlag = true;
+							}
+							else if (date.getDay() > beginDay)
+							{
+								bChangeFlag = false;
+							}
+							else
+							{
+								bChangeFlag = false;
+							}
 						}
 					}
-				}
 
-				if (bChangeFlag)
-				{
-					m_monthAdapter.setBeginDate(date);
-					m_monthAdapter.setEndDate(beginDate);
-				}
-				else
-				{
-					m_monthAdapter.setEndDate(date);
+					if (bChangeFlag)
+					{
+						m_monthAdapter.setBeginDate(date);
+						m_monthAdapter.setEndDate(beginDate);
+					}
+					else
+					{
+						m_monthAdapter.setEndDate(date);
+					}
 				}
 			}
 
@@ -872,9 +883,15 @@ public class MaterialCalendarView extends FrameLayout
 		m_monthAdapter.setEndDate(endDate);
 	}
 
+	public void clearupSelectedDate()
+	{
+		m_monthAdapter.resetSelectedDate();
+	}
 
-
-
+	public HashMap<CalendarDay, Integer> getSelectedDateHashMap()
+	{
+		return m_monthAdapter.getSelectedDateHashMap();
+	}
 
 
 

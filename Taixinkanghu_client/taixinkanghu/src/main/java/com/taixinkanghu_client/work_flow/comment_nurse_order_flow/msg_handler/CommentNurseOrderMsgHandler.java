@@ -17,7 +17,7 @@ package com.taixinkanghu_client.work_flow.comment_nurse_order_flow.msg_handler;
 import android.content.Intent;
 
 import com.taixinkanghu_client.config.EnumConfig;
-import com.taixinkanghu_client.data_module.nurse_list.msg_handler.AnswerNurseSeniorListEvent;
+import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerCommentNurseOrderEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrderListHandler;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestCommentNurseOrderEvent;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
@@ -58,10 +58,7 @@ public class CommentNurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	{
 		CommentNurseOrderActivity activity = (CommentNurseOrderActivity)m_context;
 
-		//01. 清楚DNurseOrderFlow数据
-		m_dNurseOrderFlow.clearupAll();
-
-		//02. comment nurse order
+		//01. comment nurse order
 		RequestCommentNurseOrderEvent event = new RequestCommentNurseOrderEvent();
 
 		String userID = DAccount.GetInstance().getId();
@@ -77,12 +74,13 @@ public class CommentNurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 		event.setCommentContent(commentContent);
 
 		NurseOrderListHandler.GetInstance().requestCommentNurseOrderAction(event);
+
 		return;
 
 	}
 
 	//03. comment nurse order 返回结果
-	public void onEventMainThread(AnswerNurseSeniorListEvent event)
+	public void onEventMainThread(AnswerCommentNurseOrderEvent event)
 	{
 		backAction();
 	}

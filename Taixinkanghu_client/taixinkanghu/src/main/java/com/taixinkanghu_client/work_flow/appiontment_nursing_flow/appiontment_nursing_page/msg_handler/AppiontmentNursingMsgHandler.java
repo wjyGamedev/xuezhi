@@ -399,4 +399,5 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 		activity.startActivity(new Intent(activity, SelectDateActivity.class));
 		return;
 	}
+
 }

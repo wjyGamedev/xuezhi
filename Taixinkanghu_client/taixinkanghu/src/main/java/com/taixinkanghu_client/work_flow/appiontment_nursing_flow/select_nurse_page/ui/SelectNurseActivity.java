@@ -48,11 +48,13 @@ public class SelectNurseActivity extends BaseActivity
 	private                         BottomCommon m_bottomCommon = null;    //底部按钮：确定
 
 	//logical
-	private SelectNurseMsgHandler m_selectNurseMsgHandler = new SelectNurseMsgHandler(this);
-	private SelectNurseAdapter    m_selectNurseAdapter    = new SelectNurseAdapter(this);
-	private ProgressDialog        m_waitProgressDialog    = new ProgressDialog(this);
-	private TimerTaskWrapper      m_waitTimerTask         = new TimerTaskWrapper();
-	private TimerTaskHandler      m_timerTaskHandler      = new TimerTaskHandler();
+	private SelectNurseMsgHandler  m_selectNurseMsgHandler  = new SelectNurseMsgHandler(this);
+	private BottomCommonClickEvent m_bottomCommonClickEvent = new BottomCommonClickEvent();
+
+	private SelectNurseAdapter m_selectNurseAdapter = null;
+	private ProgressDialog     m_waitProgressDialog = null;
+	private TimerTaskWrapper   m_waitTimerTask      = new TimerTaskWrapper();
+	private TimerTaskHandler   m_timerTaskHandler   = new TimerTaskHandler();
 
 	private final static long DELAY_TIME_MILLISENCENDS = 5000;
 
@@ -87,6 +89,17 @@ public class SelectNurseActivity extends BaseActivity
 	/**
 	 * override func
 	 */
+	class BottomCommonClickEvent implements View.OnClickListener
+	{
+		@Override
+		public void onClick(View v)
+		{
+			//01. 返回主页面
+			m_selectNurseMsgHandler.go2MainPage();
+			return;
+		}
+	}
+
 	class TimerTaskHandler implements TimerTaskWrapper.TimerTaskListener
 	{
 		@Override
@@ -125,11 +138,16 @@ public class SelectNurseActivity extends BaseActivity
 		m_headerCommon.setTitle(R.string.select_nurse_title);
 		m_tipsTV.setText(R.string.select_nurse_tips);
 		m_tipsTV.setTextColor(getResources().getColor(R.color.main_color));
+
+		m_selectNurseAdapter = new SelectNurseAdapter(this);
 		m_NursesLV.setAdapter(m_selectNurseAdapter);
+
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.content_main_page);
+		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_bottomCommonClickEvent);
 
 		//02. logical
+		m_waitProgressDialog = new ProgressDialog(this);
 		m_waitProgressDialog.setMessage(getString(R.string.wait_tips));
 		m_waitTimerTask.setTimerTaskListener(m_timerTaskHandler);
 	}

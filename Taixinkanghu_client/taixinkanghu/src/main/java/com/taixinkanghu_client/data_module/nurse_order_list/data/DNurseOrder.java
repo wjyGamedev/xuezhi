@@ -100,7 +100,7 @@ public class DNurseOrder
 
 		JSONObject jsonNurseInfo = response.getJSONObject(NurseOrderConfig.NURSE_INFO);
 		m_nurseBasics.serialization(jsonNurseInfo);
-		m_nurseSenior.serialization(jsonNurseInfo);
+		m_nurseSenior.serializationFromOrder(response);
 		return true;
 
 	}

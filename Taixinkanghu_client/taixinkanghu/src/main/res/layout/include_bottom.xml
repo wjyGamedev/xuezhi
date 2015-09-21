@@ -26,12 +26,13 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:orientation="horizontal"
-			android:visibility="gone">
+			android:visibility="visible"
+			android:id="@+id/common_bottem_btn_region_ll_2">
 
 			<include layout="@layout/item_dividing_line_vertical_white"/>
 
 			<Button
-				android:id="@+id/common_bottom_btn2"
+				android:id="@+id/common_bottom_btn_2"
 				android:layout_width="match_parent"
 				android:layout_height="48dp"
 				android:background="@drawable/bg_btn_main_color"
@@ -46,12 +47,13 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:orientation="horizontal"
-			android:visibility="gone">
+			android:visibility="visible"
+			android:id="@+id/common_bottem_btn_region_ll_3">
 
 			<include layout="@layout/item_dividing_line_vertical_white"/>
 
 			<Button
-				android:id="@+id/common_bottom_btn3"
+				android:id="@+id/common_bottom_btn_3"
 				android:layout_width="match_parent"
 				android:layout_height="48dp"
 				android:background="@drawable/bg_btn_main_color"

@@ -16,7 +16,7 @@ package com.taixinkanghu_client.data_module.department_list.msg_handler;
 
 
 import com.module.event.EventID;
-import com.taixinkanghu_client.net.event.BaseNetEvent;
+import com.module.event.BaseNetEvent;
 
 public class RequestDepartmentListEvent extends BaseNetEvent
 {

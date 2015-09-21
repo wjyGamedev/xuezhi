@@ -43,14 +43,16 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 	private Button m_payBtn = null;
 
 	//logical
-	private       NurseOrderPayInWaitPayMsgHandler m_nurseOrderPayInNormalMsgHandler  = new NurseOrderPayInWaitPayMsgHandler(this);
-	private       ArrayList<RadioButton>           m_radioButtons                     = new ArrayList<>();
-	private       ClickHeaderCommon                m_clickHeaderCommon                = new ClickHeaderCommon();
-	private       ClickBottomCommon                m_clickBottomCommon                = new ClickBottomCommon();
-	private       HandleClickEventOnExitDialog     m_handleClickEventOnExitDialog     = new HandleClickEventOnExitDialog();
-	private       HandleClickEventOnTipsCashDialog m_handleClickEventOnTipsCashDialog = new HandleClickEventOnTipsCashDialog();
-	private       int                              m_selectedID                       = DataConfig.DEFAULT_VALUE;
-	private final String                           TIPS_CASH_SUCCESS                  = getString(R.string.tips_cash_success);
+	private NurseOrderPayInWaitPayMsgHandler m_nurseOrderPayInNormalMsgHandler  = new NurseOrderPayInWaitPayMsgHandler(this);
+	private ArrayList<RadioButton>           m_radioButtons                     = new ArrayList<>();
+	private ClickHeaderCommon                m_clickHeaderCommon                = new ClickHeaderCommon();
+	private ClickBottomCommon                m_clickBottomCommon                = new ClickBottomCommon();
+
+	private NurseInServiceDialog             m_nurseInServiceDialog             = new NurseInServiceDialog();
+	private HandleClickEventOnExitDialog     m_handleClickEventOnExitDialog     = new HandleClickEventOnExitDialog();
+	private HandleClickEventOnTipsCashDialog m_handleClickEventOnTipsCashDialog = new HandleClickEventOnTipsCashDialog();
+	private int                              m_selectedID                       = DataConfig.DEFAULT_VALUE;
+	private String                           TIPS_CASH_SUCCESS                  = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -103,6 +105,13 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 		selectedRadionBtn(v.getId());
 	}
 
+	public void inServiceAction()
+	{
+		TipsDialog.GetInstance().setMsg(getString(R.string.error_tips_you_selected_nurse_in_service), this, m_nurseInServiceDialog);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
 	/**
 	 * overrioe func
 	 */
@@ -127,6 +136,15 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 			//02. 发送nurse order check action
 			m_nurseOrderPayInNormalMsgHandler.requestNurseOrderCheckAction();
 			return;
+		}
+	}
+
+	public class NurseInServiceDialog implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			m_nurseOrderPayInNormalMsgHandler.checkFailedAction();
 		}
 	}
 
@@ -175,6 +193,7 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 		m_radioButtons.add(m_alipayRBtn);
 		m_radioButtons.add(m_weixinRBtn);
 
+		TIPS_CASH_SUCCESS = getString(R.string.tips_cash_success);
 		return;
 	}
 
@@ -193,7 +212,8 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 
 	public void backAction()
 	{
-		TipsDialog.GetInstance().setMsg(getString(R.string.cancel_title), this,
+		TipsDialog.GetInstance().setMsg(getString(R.string.cancel_title),
+										this,
 										m_handleClickEventOnExitDialog,
 										m_handleClickEventOnExitDialog
 									   );
@@ -238,7 +258,7 @@ public class NurseOrderPayInWaitPayActivity extends BaseActivity
 			return false;
 		}
 
-		if ( m_selectedID == R.id.alipay_rbtn)
+		if (m_selectedID == R.id.alipay_rbtn)
 		{
 			return true;
 		}

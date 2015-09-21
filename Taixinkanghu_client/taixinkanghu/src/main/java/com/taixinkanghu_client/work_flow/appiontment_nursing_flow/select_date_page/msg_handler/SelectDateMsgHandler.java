@@ -15,6 +15,7 @@
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_date_page.msg_handler;
 
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.BaseAppiontmentNursingFlowUIMsgHandler;
+import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data.DNursingDate;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_date_page.ui.SelectDateActivity;
 
 public class SelectDateMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
@@ -22,5 +23,17 @@ public class SelectDateMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 	public SelectDateMsgHandler(SelectDateActivity activity)
 	{
 		super(activity);
+	}
+
+	public void setNursingDate(DNursingDate nursingDate)
+	{
+		//01. 发送event
+		m_dAppiontmentNursingFlow.setNursingDate(nursingDate);
+
+		//02. 关闭当前UI
+		SelectDateActivity activity = (SelectDateActivity)m_context;
+		activity.finish();
+
+		return;
 	}
 }

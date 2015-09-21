@@ -70,7 +70,7 @@
 
 
 							<EditText
-								android:id="@+id/name_tv"
+								android:id="@+id/name_et"
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginRight="60dp"
@@ -102,7 +102,7 @@
 								android:text="手机号码："/>
 
 							<EditText
-								android:id="@+id/phone_num_tv"
+								android:id="@+id/phone_num_et"
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginRight="60dp"
@@ -239,7 +239,7 @@
 			</LinearLayout>
 
 			<LinearLayout
-				android:id="@+id/btn_hospital"
+				android:id="@+id/hospital_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="40dp"
 				android:background="@drawable/bg_bule_frame_all"
@@ -289,7 +289,8 @@
 				android:layout_height="40dp"
 				android:background="@drawable/bg_bule_frame_all"
 				android:gravity="center_vertical"
-				android:orientation="horizontal">
+				android:orientation="horizontal"
+				android:id="@+id/department_region_ll">
 
 				<TextView
 					android:layout_width="10dp"
@@ -395,7 +396,7 @@
 			</LinearLayout>
 
 			<LinearLayout
-				android:id="@+id/btn_patient_state"
+				android:id="@+id/patient_state_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="40dp"
 				android:background="@drawable/bg_bule_frame_all"
@@ -441,7 +442,7 @@
 			</LinearLayout>
 
 			<LinearLayout
-				android:id="@+id/btn_date"
+				android:id="@+id/service_date_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="40dp"
 				android:background="@drawable/bg_bule_frame_bottom"

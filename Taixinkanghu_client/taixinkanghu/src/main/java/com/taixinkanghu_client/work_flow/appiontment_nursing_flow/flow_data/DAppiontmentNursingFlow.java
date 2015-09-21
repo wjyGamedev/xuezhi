@@ -266,7 +266,7 @@ public class DAppiontmentNursingFlow
 		//TODO:以后更改
 		event.setPatientRemark("");
 
-		event.setTotalCharge(getTotalPrice());
+		event.setTotalCharge(getTotalChargeDisplay());
 
 		if (getNursingDate() == null)
 		{

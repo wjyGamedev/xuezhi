@@ -17,6 +17,7 @@ import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.patient_info_p
 
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -35,6 +36,7 @@ public class SelectSexFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.fragment_select_gender, container, false);
+		ButterKnife.bind(this, view);
 
 		init();
 		//设置顶部LL控件高度
@@ -57,12 +59,14 @@ public class SelectSexFragment extends Fragment
 	public void clickMaleTV()
 	{
 		m_patientMsgHandler.setGenderStatus(EnumConfig.GenderStatus.MALE);
+		cancelAction();
 	}
 
 	@OnClick (R.id.female_tv)
 	public void clickFemalTV()
 	{
 		m_patientMsgHandler.setGenderStatus(EnumConfig.GenderStatus.FEMALE);
+		cancelAction();
 	}
 
 	@OnClick (R.id.gender_bottom_ll)

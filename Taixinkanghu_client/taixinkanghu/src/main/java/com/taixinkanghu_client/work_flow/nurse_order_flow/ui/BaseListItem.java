@@ -70,7 +70,7 @@ public class BaseListItem
 	{
 		m_activity = activity;
 		m_view = view;
-		ButterKnife.bind(view);
+		ButterKnife.bind(this, view);
 	}
 
 	/**

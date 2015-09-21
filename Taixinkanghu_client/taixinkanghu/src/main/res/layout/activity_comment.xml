@@ -38,7 +38,8 @@
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="非常满意"/>
+			android:text="非常满意"
+			android:id="@+id/very_good_rbtn"/>
 
 		<View
 			android:layout_width="0.5dp"
@@ -51,7 +52,8 @@
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="满意"/>
+			android:text="满意"
+			android:id="@+id/good_rbtn"/>
 
 		<View
 			android:layout_width="0.5dp"
@@ -64,7 +66,8 @@
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="一般"/>
+			android:text="一般"
+			android:id="@+id/normal_rbtn"/>
 
 		<View
 			android:layout_width="0.5dp"

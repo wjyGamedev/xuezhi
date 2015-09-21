@@ -403,7 +403,8 @@ public class EnumConfig
 	{
 		ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.nurse_service_day_status_all), 0),
 		DAY(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.nurse_service_day_status_day), 1),
-		NIGHT(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.nurse_service_day_status_night), 2);
+		NIGHT(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.nurse_service_day_status_night), 2),
+		MAX("MAX", 3);
 
 
 		private String m_name = null;

@@ -112,9 +112,11 @@ public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowU
 	//03. 对于nurse order check消息回复的处理
 	public void onEventMainThread(AnswerNurseOrderCheckEvent event)
 	{
+		NurseOrderPayInNormalActivity nurseOrderPayInNormalActivity = (NurseOrderPayInNormalActivity)m_context;
+
 		if (event.getHttpStatus() == NurseOrderConfig.NURSE_IN_SERVICE)
 		{
-
+			nurseOrderPayInNormalActivity.inServiceAction();
 		}
 		else
 		{
@@ -124,7 +126,7 @@ public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowU
 	}
 
 	//04. nurse order check failed action
-	private void checkFailedAction()
+	public void checkFailedAction()
 	{
 		//01. 清除：选择护理员数据，护理员详细信息数据，确认订单数据
 		m_dAppiontmentNursingFlow.clearupSelectNurse();

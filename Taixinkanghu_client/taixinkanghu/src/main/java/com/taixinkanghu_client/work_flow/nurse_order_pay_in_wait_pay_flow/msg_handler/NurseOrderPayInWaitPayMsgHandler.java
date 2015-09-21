@@ -109,9 +109,11 @@ public class NurseOrderPayInWaitPayMsgHandler extends BaseNurseOrderFlowUIMsgHan
 	//03. 对于nurse order check消息回复的处理
 	public void onEventMainThread(AnswerNurseOrderCheckEvent event)
 	{
+		NurseOrderPayInWaitPayActivity nurseOrderPayInNormalActivity = (NurseOrderPayInWaitPayActivity)m_context;
+
 		if (event.getHttpStatus() == NurseOrderConfig.NURSE_IN_SERVICE)
 		{
-
+			nurseOrderPayInNormalActivity.inServiceAction();
 		}
 		else
 		{
@@ -121,20 +123,23 @@ public class NurseOrderPayInWaitPayMsgHandler extends BaseNurseOrderFlowUIMsgHan
 	}
 
 	//04. nurse order check failed action
-	private void checkFailedAction()
+	public void checkFailedAction()
 	{
-//		//01. 清除：选择护理员数据，护理员详细信息数据，确认订单数据
-//		m_dAppiontmentNursingFlow.clearupSelectNurse();
-//		m_dAppiontmentNursingFlow.clearupNurseInfo();
-//		m_dAppiontmentNursingFlow.clearupOrderConfirm();
-//
-//		//02. flush nurse basic list
-//		requestNurseBasicListAction();
-//
-//		//03. 跳转到select nurse page
-//		go2SelectNursePage();
+		//01. 清楚流程数据
+		m_dNurseOrderFlow.clearupAll();
+
+		//03. 跳转到主页面
+		go2MainPage();
 
 		return;
+	}
+
+	private void go2MainPage()
+	{
+		NurseOrderPayInWaitPayActivity nurseOrderPayInNormalActivity = (NurseOrderPayInWaitPayActivity)m_context;
+		nurseOrderPayInNormalActivity.startActivity(new Intent(nurseOrderPayInNormalActivity, MainActivity.class));
+		return;
+
 	}
 
 	//05. nurse basic list
