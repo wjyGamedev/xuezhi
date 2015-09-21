@@ -6,15 +6,15 @@ import android.os.Build;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import calendar.format.WeekDayFormatter;
-
 import java.util.Calendar;
+
+import calendar.day.WeekDayFormatter;
 
 /**
  * Display a day of the week
  */
 @SuppressLint("ViewConstructor")
-class WeekDayView extends TextView {
+public class WeekDayView extends TextView {
 
     private WeekDayFormatter formatter = WeekDayFormatter.DEFAULT;
     private int dayOfWeek;

@@ -1,6 +1,8 @@
-package calendar.format;
+package calendar.day;
 
 import calendar.CalendarUtils;
+import calendar.calendar.MaterialCalendarView;
+import calendar.format.CalendarWeekDayFormatter;
 
 /**
  * Supply labels for a given day of the week
@@ -16,7 +18,7 @@ public interface WeekDayFormatter {
     CharSequence format(int dayOfWeek);
 
     /**
-     * Default implementation used by {@linkplain calendar.MaterialCalendarView}
+     * Default implementation used by {@linkplain MaterialCalendarView}
      */
     public static final WeekDayFormatter DEFAULT = new CalendarWeekDayFormatter(CalendarUtils.getInstance());
 }

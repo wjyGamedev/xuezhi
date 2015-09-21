@@ -1,4 +1,6 @@
-package calendar;
+package calendar.day;
+
+import calendar.CalendarDay;
 
 /**
  * Decorate Day views with drawables and text manipulation

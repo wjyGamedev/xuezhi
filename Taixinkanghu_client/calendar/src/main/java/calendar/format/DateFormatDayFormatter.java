@@ -7,11 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import calendar.CalendarDay;
+import calendar.day.DayFormatter;
 
 /**
  * Format using a {@linkplain DateFormat} instance.
  */
-public class DateFormatDayFormatter implements DayFormatter {
+public class DateFormatDayFormatter implements DayFormatter
+{
 
     private final DateFormat dateFormat;
 

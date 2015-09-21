@@ -1,9 +1,12 @@
 package calendar.format;
 
+import calendar.day.WeekDayFormatter;
+
 /**
  * Use an array to supply week day labels
  */
-public class ArrayWeekDayFormatter implements WeekDayFormatter {
+public class ArrayWeekDayFormatter implements WeekDayFormatter
+{
 
     private final CharSequence[] weekDayLabels;
 

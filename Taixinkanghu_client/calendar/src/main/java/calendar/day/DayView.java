@@ -1,4 +1,4 @@
-package calendar;
+package calendar.day;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -22,15 +22,16 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckedTextView;
 
-import calendar.format.DayFormatter;
-
 import java.util.List;
+
+import calendar.CalendarDay;
+import calendar.calendar.MaterialCalendarView;
 
 /**
  * Display one day of a {@linkplain MaterialCalendarView}
  */
 @SuppressLint ("ViewConstructor")
-class DayView extends CheckedTextView
+public class DayView extends CheckedTextView
 {
 
 	private CalendarDay date;
@@ -157,7 +158,7 @@ class DayView extends CheckedTextView
 		setVisibility(isInRange || showOtherDates ? View.VISIBLE : View.INVISIBLE);
 	}
 
-	protected void setupSelection(boolean showOtherDates, boolean inRange, boolean inMonth)
+	public void setupSelection(boolean showOtherDates, boolean inRange, boolean inMonth)
 	{
 		this.showOtherDates = showOtherDates;
 		this.isInRange = inMonth && inRange;
@@ -238,7 +239,7 @@ class DayView extends CheckedTextView
 	/**
 	 * @param facade apply the facade to us
 	 */
-	void applyFacade(DayViewFacade facade)
+	public void applyFacade(DayViewFacade facade)
 	{
 		this.isDecoratedDisabled = facade.areDaysDisabled();
 		setEnabled();

@@ -1,10 +1,12 @@
-package calendar.format;
+package calendar.day;
 
 import android.support.annotation.NonNull;
 
-import calendar.CalendarDay;
-
 import java.text.SimpleDateFormat;
+
+import calendar.CalendarDay;
+import calendar.calendar.MaterialCalendarView;
+import calendar.format.DateFormatDayFormatter;
 
 /**
  * Supply labels for a given day. Default implementation is to format using a {@linkplain SimpleDateFormat}
@@ -22,7 +24,7 @@ public interface DayFormatter {
             CalendarDay day);
 
     /**
-     * Default implementation used by {@linkplain calendar.MaterialCalendarView}
+     * Default implementation used by {@linkplain MaterialCalendarView}
      */
     public static final DayFormatter DEFAULT = new DateFormatDayFormatter();
 }

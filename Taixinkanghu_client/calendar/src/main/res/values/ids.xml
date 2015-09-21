@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 01. 月份左箭头-->
+    <item name="month_left_btn" type="id" />
+    <!-- 02. 月份右箭头-->
+    <item name="month_right_btn" type="id" />
+    <!-- 03. 月份textview -->
+    <item name="month_title_tv" type="id" />
+    <!-- 04. 左箭头，月份，右箭头-->
+    <item name="top_month_region_ll" type="id" />
 
     <item name="mcv_pager" type="id" />
 

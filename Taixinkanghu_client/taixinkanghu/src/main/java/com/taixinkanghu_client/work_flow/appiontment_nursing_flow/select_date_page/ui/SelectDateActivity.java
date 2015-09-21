@@ -23,11 +23,14 @@ import android.widget.TextView;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_date_page.msg_handler.SelectDateMsgHandler;
+
+import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import calendar.MaterialCalendarView;
+import calendar.calendar.MaterialCalendarView;
 
 public class SelectDateActivity extends Activity
 {
@@ -84,6 +87,16 @@ public class SelectDateActivity extends Activity
 		m_calendarView.setHeaderTextAppearance(R.style.TextAppearance_AppCompat_Large);
 		m_calendarView.setDateTextAppearance(R.style.TextAppearance_AppCompat_Medium);
 		m_calendarView.setWeekDayTextAppearance(R.style.TextAppearance_AppCompat_Medium);
+
+		Calendar minCalendar = Calendar.getInstance();
+		m_calendarView.setMinimumDate(minCalendar);
+
+		Calendar maxCalendar = Calendar.getInstance();
+		int monthIndex = maxCalendar.get(Calendar.MONTH);
+		maxCalendar.set(Calendar.MONTH, monthIndex + DataConfig.MAX_MONTH_APPOINTMENT_NURSING);
+		int maxDay = maxCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		maxCalendar.set(Calendar.DAY_OF_MONTH, maxDay);
+		m_calendarView.setMaximumDate(maxCalendar);
 
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.confirm_btn_text);

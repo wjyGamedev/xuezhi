@@ -9,7 +9,7 @@ android {
 		abortOnError false
 	}
 	defaultConfig {
-		minSdkVersion 8
+		minSdkVersion 14
 		targetSdkVersion 14
 		versionCode 1
 		versionName "1.0"
@@ -20,6 +20,7 @@ android {
 
 dependencies {
 	compile 'com.android.support:support-v4:22.2.0'
+	compile files('libs/butterknife-7.0.1.jar')
 }
 
 task sourcesJar(type: Jar) {

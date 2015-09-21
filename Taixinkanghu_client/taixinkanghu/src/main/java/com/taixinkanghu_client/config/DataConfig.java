@@ -41,5 +41,7 @@ public class DataConfig
 
 	//nurse basic list,nurse order list
 	public final static long DELAY_TIME_MILLISENCENDS = 5000;
+
+	public final static int MAX_MONTH_APPOINTMENT_NURSING = 3;
 }
 

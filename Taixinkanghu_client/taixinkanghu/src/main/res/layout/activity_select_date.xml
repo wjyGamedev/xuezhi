@@ -37,7 +37,7 @@
 				>
 
 
-				<calendar.MaterialCalendarView
+				<calendar.calendar.MaterialCalendarView
 					android:id="@+id/calendar_view"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"

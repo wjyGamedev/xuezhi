@@ -1,4 +1,4 @@
-package calendar;
+package calendar.day;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -19,7 +19,7 @@ public final class DayViewFacade {
     private final LinkedList<Span> spans = new LinkedList<>();
     private boolean daysDisabled = false;
 
-    DayViewFacade() {
+    public  DayViewFacade() {
         isDecorated = false;
     }
 
@@ -76,7 +76,7 @@ public final class DayViewFacade {
         this.isDecorated = true;
     }
 
-    void reset() {
+    public void reset() {
         backgroundDrawable = null;
         selectionDrawable = null;
         spans.clear();
@@ -88,7 +88,7 @@ public final class DayViewFacade {
      * Apply things set this to other
      * @param other facade to apply our data to
      */
-    void applyTo(DayViewFacade other) {
+    public void applyTo(DayViewFacade other) {
         if(selectionDrawable != null) {
             other.setSelectionDrawable(selectionDrawable);
         }
@@ -100,7 +100,7 @@ public final class DayViewFacade {
         other.daysDisabled = daysDisabled;
     }
 
-    boolean isDecorated() {
+    public boolean isDecorated() {
         return isDecorated;
     }
 

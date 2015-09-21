@@ -1,16 +1,18 @@
 package calendar.format;
 
-import calendar.CalendarUtils;
-
 import java.util.Calendar;
 import java.util.Locale;
+
+import calendar.CalendarUtils;
+import calendar.day.WeekDayFormatter;
 
 /**
  * Use a {@linkplain Calendar} to get week day labels.
  *
  * @see Calendar#getDisplayName(int, int, Locale)
  */
-public class CalendarWeekDayFormatter implements WeekDayFormatter {
+public class CalendarWeekDayFormatter implements WeekDayFormatter
+{
 
     private final Calendar calendar;
 

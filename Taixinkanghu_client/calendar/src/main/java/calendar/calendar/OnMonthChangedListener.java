@@ -1,4 +1,6 @@
-package calendar;
+package calendar.calendar;
+
+import calendar.CalendarDay;
 
 /**
  * The callback used to indicate the user changes the displayed month
