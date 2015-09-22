@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -19,8 +19,8 @@ import android.content.SharedPreferences;
 
 import com.module.exception.RuntimeExceptions.logical.OwnerPreferencesException;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.data_module.register_account.data.DAccount;
-import com.taixinkanghu_client.net.config.RegisterConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.net.config.RegisterConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,9 +29,9 @@ import java.util.HashMap;
 
 public class OwnerPreferences extends BaseStorage
 {
-	private Context m_context = null;
-	private SharedPreferences m_setting = null;
-	private SharedPreferences.Editor m_editor = null;
+	private Context                  m_context = null;
+	private SharedPreferences        m_setting = null;
+	private SharedPreferences.Editor m_editor  = null;
 
 	public OwnerPreferences()
 	{
@@ -49,10 +49,10 @@ public class OwnerPreferences extends BaseStorage
 
 	public boolean serialization(JSONObject jsonObject) throws JSONException
 	{
-		String id = jsonObject.getString(RegisterConfig.ID);
-		String code = jsonObject.getString(RegisterConfig.CODE);
+		String id     = jsonObject.getString(RegisterConfig.ID);
+		String code   = jsonObject.getString(RegisterConfig.CODE);
 		String mobile = jsonObject.getString(RegisterConfig.MOBILE);
-		String nick = jsonObject.getString(RegisterConfig.NICK);
+		String nick   = jsonObject.getString(RegisterConfig.NICK);
 
 		m_editor.putString(RegisterConfig.ID, id);
 		m_editor.putString(RegisterConfig.CODE, code);
@@ -64,10 +64,10 @@ public class OwnerPreferences extends BaseStorage
 
 	public boolean tryLogin()
 	{
-		String id = m_setting.getString(RegisterConfig.ID, "");
-		String code = m_setting.getString(RegisterConfig.CODE, "");
+		String id     = m_setting.getString(RegisterConfig.ID, "");
+		String code   = m_setting.getString(RegisterConfig.CODE, "");
 		String mobile = m_setting.getString(RegisterConfig.MOBILE, "");
-		String nick = m_setting.getString(RegisterConfig.NICK, "");
+		String nick   = m_setting.getString(RegisterConfig.NICK, "");
 
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put(RegisterConfig.ID, id);
@@ -90,6 +90,7 @@ public class OwnerPreferences extends BaseStorage
 		return true;
 
 	}
+
 	public boolean logout() throws JSONException
 	{
 		//01. 有效性检测

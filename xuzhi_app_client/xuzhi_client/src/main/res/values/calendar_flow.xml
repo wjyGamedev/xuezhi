@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--calendar_page-->
+	<string name="medication_details_title_text">用药明细：</string>
+	<string name="medication_details_temp_date_text">2015年7月8日</string>
+	<string name="click_view_hint_text">点击查看</string>
+
+	<!--medication_details_page-->
+
+
+
+
+
+</resources>

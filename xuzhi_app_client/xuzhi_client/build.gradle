@@ -22,11 +22,11 @@ android {
 
 dependencies {
 	compile fileTree(include: ['*.jar'], dir: 'libs')
-	compile 'com.android.support:appcompat-v7:22.0.0'
 	compile files('libs/alipaySDK-20150724.jar')
 	compile files('libs/butterknife-7.0.1.jar')
 	compile project(':calendar')
 	compile project(':eventbus')
 	compile project(':sMSSDK')
 	compile project(':volley')
+	compile 'com.android.support:appcompat-v7:22.2.0'
 }

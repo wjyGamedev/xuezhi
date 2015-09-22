@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="wrap_content"
+			  android:orientation="horizontal">
+
+	<Button
+		android:id="@+id/btn_bottom"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:layout_weight="1"
+		android:background="@color/main_color"
+		android:gravity="center"
+		android:text="@string/main_page_radio_button_home"
+		android:textColor="@color/white"
+		android:textSize="20sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:layout_weight="1"
+		android:orientation="horizontal"
+		android:visibility="gone">
+
+		<include layout="@layout/item_dividing_line_vertical_white"/>
+
+		<Button
+			android:id="@+id/btn_bottom2"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@color/main_color"
+			android:gravity="center"
+			android:text="@string/main_page_radio_button_home"
+			android:textColor="@color/white"
+			android:textSize="20sp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:layout_weight="1"
+		android:orientation="horizontal"
+		android:visibility="gone">
+
+		<include layout="@layout/item_dividing_line_vertical_white"/>
+
+		<Button
+			android:id="@+id/btn_bottom3"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@color/main_color"
+			android:gravity="center"
+			android:text="@string/main_page_radio_button_home"
+			android:textColor="@color/white"
+			android:textSize="20sp"/>
+
+	</LinearLayout>
+
+</LinearLayout>
