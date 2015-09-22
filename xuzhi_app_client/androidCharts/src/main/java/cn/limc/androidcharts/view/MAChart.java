@@ -1,20 +1,23 @@
 package cn.limc.androidcharts.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import cn.limc.androidcharts.entity.LineEntity;
 
 public class MAChart extends GridChart {
 	/** �?��显示数据 */
 	private List<LineEntity> lineData;
+
+	/** �?��宽度 */
+	private float lineWidth = 1f;
 
 	/** �?��点数 */
 	private int maxPointNum;
@@ -67,6 +70,7 @@ public class MAChart extends GridChart {
 				Paint mPaint = new Paint();
 				mPaint.setColor(line.getLineColor());
 				mPaint.setAntiAlias(true);
+				mPaint.setStrokeWidth(lineWidth);
 				List<Float> lineData = line.getLineData();
 				//输�?�?��线
 				startX = super.getAxisMarginLeft() + lineLength / 2f;
@@ -95,6 +99,10 @@ public class MAChart extends GridChart {
 	}
 
 	// //////////属�?GetterSetter//////////////
+
+	public void setLineWidth(float lineWidth) {
+		this.lineWidth = lineWidth;
+	}
 
 	public List<LineEntity> getLineData() {
 		return lineData;
