@@ -260,7 +260,6 @@ public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowU
 			//			RegisterDialog.GetInstance().show();
 			//继续进行，支付成功。
 			//03. 支付成功,
-			paySuccessAction();
 		}
 		// 判断resultStatus 为非“9000”则代表可能支付失败
 		else
@@ -272,8 +271,6 @@ public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowU
 												nurseOrderPayInNormalActivity
 											   );
 				TipsDialog.GetInstance().show();
-				//继续进行，等待异步结果。
-				return;
 			}
 			//系统繁忙，则仅仅提示一下，等待后续处理结果
 			else if (TextUtils.equals(resultStatus, String.valueOf(Config.PayStatus.PAY_STATUS_PAY_RESULT_SYSTEM_BUSY.getId())))
@@ -282,27 +279,26 @@ public class NurseOrderPayInNormalMsgHandler extends BaseAppiontmentNursingFlowU
 												nurseOrderPayInNormalActivity
 											   );
 				TipsDialog.GetInstance().show();
-				return;
-				//继续进行，等待异步结果。
 			}
 			// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
 			else
 			{
 				//支付失败，则允许继续进行支付。
-				TipsDialog.GetInstance().setMsg(nurseOrderPayInNormalActivity.getString(R.string.pay_status_failed) ,
+				TipsDialog.GetInstance().setMsg(nurseOrderPayInNormalActivity.getString(R.string.pay_status_failed),
 												nurseOrderPayInNormalActivity
 											   );
 				TipsDialog.GetInstance().show();
-				return;
 			}
 		}
 
+		//清楚数据
+		payEndAction();
 		return;
 
 	}
 
 	//11. 支付成功的操作
-	public void paySuccessAction()
+	public void payEndAction()
 	{
 		NurseOrderPayInNormalActivity nurseOrderPayInNormalActivity = (NurseOrderPayInNormalActivity)m_context;
 

@@ -157,6 +157,14 @@ public class NurseOrderPayInPayMoreMsgHandler extends BaseNurseOrderFlowUIMsgHan
 				TipsDialog.GetInstance().show();
 				//继续进行，等待异步结果。
 			}
+			//系统繁忙，则仅仅提示一下，等待后续处理结果
+			else if (TextUtils.equals(resultStatus, String.valueOf(Config.PayStatus.PAY_STATUS_PAY_RESULT_SYSTEM_BUSY.getId())))
+			{
+				TipsDialog.GetInstance().setMsg(Config.PayStatus.PAY_STATUS_PAY_RESULT_SYSTEM_BUSY.getName(),
+												activity
+											   );
+				TipsDialog.GetInstance().show();
+			}
 			// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
 			else
 			{
@@ -165,19 +173,18 @@ public class NurseOrderPayInPayMoreMsgHandler extends BaseNurseOrderFlowUIMsgHan
 												activity
 											   );
 				TipsDialog.GetInstance().show();
-				return;
 			}
 		}
 
-		//03. 支付成功,
-		paySuccessAction();
+		//03. 支付完成，清楚数据
+		payEndAction();
 
 		return;
 
 	}
 
 	//11. 支付成功的操作
-	public void paySuccessAction()
+	public void payEndAction()
 	{
 		NurseOrderPayInPayMoreActivity activity = (NurseOrderPayInPayMoreActivity)m_context;
 

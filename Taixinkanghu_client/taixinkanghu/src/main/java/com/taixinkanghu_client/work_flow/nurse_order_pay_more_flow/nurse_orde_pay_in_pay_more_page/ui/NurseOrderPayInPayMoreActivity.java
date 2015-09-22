@@ -173,7 +173,7 @@ public class NurseOrderPayInPayMoreActivity extends BaseActivity
 		@Override
 		public void onClick(DialogInterface dialog, int which)
 		{
-			m_nurseOrderPayInPayMoreMsgHandler.paySuccessAction();
+			m_nurseOrderPayInPayMoreMsgHandler.payEndAction();
 		}
 	}
 
