@@ -81,6 +81,9 @@ public class NurseOrderConfig
 	public final static String COMMENT_DATE = "comment_date";
 	public final static String COMMENT_ID = "comment_id";
 
+	//09. pay more
+	public final static String PAY_MORE_ORDER_ID = "aid";
+
 	//logical
 	public final static int NURSE_IN_SERVICE = -2;
 

@@ -190,6 +190,16 @@ public class NurseOrderActivity extends BaseActivity
 		}
 	}
 
+	public class HandleClickEventOnDialog_CancelOrderInService implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			m_nurseOrderMsgHandler.requestNurseOrderCancelInService();
+			return;
+		}
+	}
+
 	/**
 	 * inner: func
 	 */
@@ -289,4 +299,13 @@ public class NurseOrderActivity extends BaseActivity
 		TipsDialog.GetInstance().show();
 		return;
 	}
+
+	public void popDialog_CancelOrderInService()
+	{
+		HandleClickEventOnDialog_CancelOrderInService cancelOrderListener = new HandleClickEventOnDialog_CancelOrderInService();
+		TipsDialog.GetInstance().setMsg(getString(R.string.nurse_order_cancel_tips), this, cancelOrderListener);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
 }

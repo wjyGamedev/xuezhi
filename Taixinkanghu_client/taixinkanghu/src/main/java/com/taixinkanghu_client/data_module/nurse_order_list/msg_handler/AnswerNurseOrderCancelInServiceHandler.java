@@ -48,8 +48,12 @@ public class AnswerNurseOrderCancelInServiceHandler extends IResponseListener
 			return;
 		}
 
-		//02. 取消订单成功，则需要update nurse list
-		NurseOrderListHandler.GetInstance().answerNurseOrderCancelInServiceAction();
+		//02. 发送取消订单成功event
+//		NurseOrderListHandler.GetInstance().answerNurseOrderCancelInServiceAction();
+
+		//03. update nurse list
+		NurseOrderListHandler.GetInstance().requestNurseOrderListAction();
+
 		return;
 	}
 }

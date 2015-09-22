@@ -20,7 +20,7 @@ import com.module.event.BaseNetEvent;
 
 public class AnswerNurseOrderPayMoreEvent extends BaseNetEvent
 {
-	private int    m_orderID        = DataConfig.DEFAULT_VALUE;
+	private int    m_payMoreOrderID = DataConfig.DEFAULT_VALUE;
 	private String m_orderSerialNum = null;
 	private int    m_price          = DataConfig.DEFAULT_VALUE;
 
@@ -29,14 +29,14 @@ public class AnswerNurseOrderPayMoreEvent extends BaseNetEvent
 		super(EventID.FINISHED_NURSE_ORDER_PAY_MORE);
 	}
 
-	public int getOrderID()
+	public int getPayMoreOrderID()
 	{
-		return m_orderID;
+		return m_payMoreOrderID;
 	}
 
-	public void setOrderID(int orderID)
+	public void setPayMoreOrderID(int payMoreOrderID)
 	{
-		m_orderID = orderID;
+		m_payMoreOrderID = payMoreOrderID;
 	}
 
 	public String getOrderSerialNum()

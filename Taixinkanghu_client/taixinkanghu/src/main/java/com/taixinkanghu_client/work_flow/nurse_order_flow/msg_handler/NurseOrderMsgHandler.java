@@ -18,7 +18,9 @@ import android.content.Intent;
 
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerNurseOrderListEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrderListHandler;
+import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInServiceEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInWaitPayEvent;
+import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui.CommentNurseOrderActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.BaseNurseOrderFlowUIMsgHandler;
@@ -124,7 +126,9 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	//0506. 在服务状态下，取消订单
 	public void cancelOrderInServiceAction()
 	{
-
+		NurseOrderActivity activity = (NurseOrderActivity)m_context;
+		activity.popDialog_CancelOrderInService();
+		return;
 	}
 
 	//0507. 补差价
@@ -141,5 +145,17 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 		RequestNurseOrderCancelInWaitPayEvent event = m_dNurseOrderFlow.constructRequestNurseOrderCancelInWaitPayEvent();
 		NurseOrderListHandler.GetInstance().requestNurseOrderCancelInWaitPayAction(event);
 		return;
+	}
+
+	//07. 发送 nurse order cancel in service
+	public void requestNurseOrderCancelInService()
+	{
+		RequestNurseOrderCancelInServiceEvent event = new RequestNurseOrderCancelInServiceEvent();
+		event.setUserID(DAccount.GetInstance().getId());
+		int nurseOrderID = m_dNurseOrderFlow.getSelectedNurseOrderID();
+		event.setOrderID(String.valueOf(nurseOrderID));
+		NurseOrderListHandler.GetInstance().requestNurseOrderCancelInService(event);
+		return;
+
 	}
 }

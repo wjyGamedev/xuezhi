@@ -33,6 +33,8 @@ public class DNurseOrderFlow
 	private int m_payMorePrice = DataConfig.DEFAULT_VALUE;
 	private Object m_syncPayMorePrice = new Object();
 
+	private int    m_payMoreOrderID = DataConfig.DEFAULT_VALUE;
+	private Object m_syncPayMoreOrderID     = new Object();
 
 
 	private DNurseOrderFlow()
@@ -143,6 +145,22 @@ public class DNurseOrderFlow
 		synchronized (m_syncPayMorePrice)
 		{
 			m_payMorePrice = payMorePrice;
+		}
+	}
+
+	public int getPayMoreOrderID()
+	{
+		synchronized (m_syncPayMoreOrderID)
+		{
+			return m_payMoreOrderID;
+		}
+	}
+
+	public void setPayMoreOrderID(int payMoreOrderID)
+	{
+		synchronized (m_syncPayMoreOrderID)
+		{
+			m_payMoreOrderID = payMoreOrderID;
 		}
 	}
 }

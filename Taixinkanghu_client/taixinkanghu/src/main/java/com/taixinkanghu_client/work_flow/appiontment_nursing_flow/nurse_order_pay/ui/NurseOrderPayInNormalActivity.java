@@ -216,7 +216,7 @@ public class NurseOrderPayInNormalActivity extends BaseActivity
 
 	public void inServiceAction()
 	{
-		TipsDialog.GetInstance().setMsg(getString(R.string.confirm_content), this, m_nurseInServiceDialog);
+		TipsDialog.GetInstance().setMsg(getString(R.string.error_tips_you_selected_nurse_in_service), this, m_nurseInServiceDialog);
 		TipsDialog.GetInstance().show();
 		return;
 	}

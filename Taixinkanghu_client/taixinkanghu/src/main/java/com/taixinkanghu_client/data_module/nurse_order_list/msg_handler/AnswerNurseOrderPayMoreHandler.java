@@ -29,7 +29,7 @@ import event.EventBus;
 public class AnswerNurseOrderPayMoreHandler extends IResponseListener
 {
 	private int    m_Status         = ProtocalConfig.HTTP_OK;
-	private String m_orderID        = null;
+	private String m_payMoreOrderID = null;
 	private String m_orderSerialNum = null;
 	private int    m_price          = DataConfig.DEFAULT_VALUE;
 
@@ -53,7 +53,7 @@ public class AnswerNurseOrderPayMoreHandler extends IResponseListener
 			}
 
 			JSONObject payMoreObjecst = response.getJSONObject(NurseOrderConfig.ORDER_PAY_MORE_OBJECT);
-			m_orderID = payMoreObjecst.getString(NurseOrderConfig.ORDER_ID);
+			m_payMoreOrderID = payMoreObjecst.getString(NurseOrderConfig.PAY_MORE_ORDER_ID);
 			m_orderSerialNum = payMoreObjecst.getString(NurseOrderConfig.ORDER_SERIAL_NUM);
 			m_price = payMoreObjecst.getInt(NurseOrderConfig.ORDER_PAY_MORE_PRICE);
 
@@ -66,7 +66,7 @@ public class AnswerNurseOrderPayMoreHandler extends IResponseListener
 		}
 
 		AnswerNurseOrderPayMoreEvent event = new AnswerNurseOrderPayMoreEvent();
-		event.setOrderID(Integer.valueOf(m_orderID));
+		event.setPayMoreOrderID(Integer.valueOf(m_payMoreOrderID));
 		event.setOrderSerialNum(m_orderSerialNum);
 		event.setPrice(m_price);
 

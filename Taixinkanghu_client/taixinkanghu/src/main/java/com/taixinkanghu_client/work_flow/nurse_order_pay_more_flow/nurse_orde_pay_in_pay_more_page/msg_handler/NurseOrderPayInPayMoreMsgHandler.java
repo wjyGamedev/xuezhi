@@ -103,7 +103,7 @@ public class NurseOrderPayInPayMoreMsgHandler extends BaseNurseOrderFlowUIMsgHan
 		NurseOrderPayInPayMoreActivity activity = (NurseOrderPayInPayMoreActivity)m_context;
 
 		//01. 获取order info
-		int orderID = m_dNurseOrderFlow.getSelectedNurseOrderID();
+		int orderID = m_dNurseOrderFlow.getPayMoreOrderID();
 		int totalPrice = m_dNurseOrderFlow.getPayMorePrice();
 		//测试
 		String orderIDInfo = Util.GetNurseOrderInfoInNormal(String.valueOf(orderID));

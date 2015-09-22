@@ -52,7 +52,7 @@ public class NurseOrderPayMoreMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	public void onEventMainThread(AnswerNurseOrderPayMoreEvent event)
 	{
 		//01. 同步数据
-		m_dNurseOrderFlow.setSelectedNurseOrderID(event.getOrderID());
+		m_dNurseOrderFlow.setPayMoreOrderID(event.getPayMoreOrderID());
 		m_dNurseOrderFlow.setPayMorePrice(event.getPrice());
 
 		//02. 关闭当前页面

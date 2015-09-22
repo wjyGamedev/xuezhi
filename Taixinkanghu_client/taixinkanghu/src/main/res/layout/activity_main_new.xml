@@ -67,7 +67,8 @@
 			android:id="@+id/company_rbtn"
 			style="@style/home_radio_button_style"
 			android:drawableTop="@drawable/tab_rg_company"
-			android:text="泰心"/>
+			android:text="泰心"
+			android:visibility="visible"/>
 
 	</RadioGroup>
 </LinearLayout>
