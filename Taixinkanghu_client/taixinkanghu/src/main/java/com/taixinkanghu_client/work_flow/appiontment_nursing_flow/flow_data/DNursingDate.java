@@ -20,6 +20,7 @@ import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.DateConfig;
 import com.taixinkanghu_client.config.EnumConfig;
+import com.taixinkanghu_client.data_module.nurse_list.util.NurseUtil;
 import com.taixinkanghu_client.net.config.NurseBasicListConfig;
 
 import java.text.SimpleDateFormat;
@@ -51,6 +52,14 @@ public class DNursingDate
 	{
 		m_beginDate = beginDate;
 		m_endDate = endDate;
+		postHandler(selectedDateHashMap);
+	}
+
+	public DNursingDate(Date beginDate, Date endDate)
+	{
+		m_beginDate = beginDate;
+		m_endDate = endDate;
+		HashMap<CalendarDay, Integer> selectedDateHashMap = NurseUtil.GetCalendarDayHashMap(beginDate, endDate);
 		postHandler(selectedDateHashMap);
 	}
 

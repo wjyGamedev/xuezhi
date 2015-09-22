@@ -21,12 +21,14 @@ import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrd
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInServiceEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInWaitPayEvent;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
+import com.taixinkanghu_client.net.config.NurseBasicListConfig;
 import com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui.CommentNurseOrderActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.BaseNurseOrderFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_pay_in_wait_pay_flow.ui.NurseOrderPayInWaitPayActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_pay_more_flow.nurse_order_pay_more_page.ui.NurseOrderPayMoreActivity;
+import com.taixinkanghu_client.work_flow.repeat_order_flow.appointment_nursing_page.ui.RepeatOrderApoitNursingActivity;
 
 public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 {
@@ -114,6 +116,21 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	//0504. 续订
 	public void repeatOrderAction()
 	{
+		NurseOrderActivity activity = (NurseOrderActivity)m_context;
+
+		//01. 关闭当前页面
+		activity.finish();
+
+		//02. 跳转到续订的预约陪护页面
+		Intent intent = new Intent(activity, RepeatOrderApoitNursingActivity.class);
+		int    nurseID = m_dNurseOrderFlow.getNurseID();
+		intent.putExtra(NurseBasicListConfig.ID, nurseID);
+		activity.startActivity(intent);
+
+		//03. 清楚数据
+		m_dNurseOrderFlow.clearupAll();
+
+		return;
 
 	}
 

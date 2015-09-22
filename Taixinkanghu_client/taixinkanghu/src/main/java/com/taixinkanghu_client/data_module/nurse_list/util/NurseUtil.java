@@ -17,6 +17,12 @@ package com.taixinkanghu_client.data_module.nurse_list.util;
 import com.module.data.DGlobal;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+
+import calendar.CalendarDay;
+
 public class NurseUtil
 {
 	/**
@@ -318,5 +324,64 @@ public class NurseUtil
 	{
 		return  (strServiceContent + NURSE_SERVICE_CONTENT);
 	}
+
+	/**
+	 * 通过开始日期和结束日期，来返回连续的日期
+	 */
+	public static HashMap<CalendarDay, Integer> GetCalendarDayHashMap(Date beginDate, Date endDate)
+	{
+		HashMap<CalendarDay, Integer> selectedDateHashMap = new HashMap<>();
+
+		if (beginDate == null)
+			return selectedDateHashMap;
+
+		if (endDate == null)
+			return selectedDateHashMap;
+
+		CalendarDay tmpBeginDate = CalendarDay.from(beginDate);
+		CalendarDay tmpEndDate = CalendarDay.from(endDate);
+
+		int beginDay = 0;
+		int endDay = 0;
+		for (int beginYear = tmpBeginDate.getYear(); beginYear <= tmpEndDate.getYear(); beginYear++)
+		{
+			for (int beginMonth = tmpBeginDate.getMonth(); beginMonth <= tmpEndDate.getMonth(); beginMonth++)
+			{
+				if (beginMonth == tmpBeginDate.getMonth())
+				{
+					beginDay = tmpBeginDate.getDay();
+				}
+				else
+				{
+					beginDay = 1;
+				}
+				if (beginMonth == tmpEndDate.getMonth())
+				{
+					endDay = tmpEndDate.getDay();
+				}
+				else
+				{
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Calendar.MONTH, beginMonth);
+					endDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+				}
+
+				for (; beginDay <= endDay; beginDay++)
+				{
+					Calendar calendar = Calendar.getInstance();
+
+					calendar.set(beginYear, beginMonth, beginDay);
+					CalendarDay calendarDay = CalendarDay.from(calendar);
+					//0:=EnumConfig.NurseServiceDayStatus.ALL.getId()
+					selectedDateHashMap.put(calendarDay, 0);
+				}
+			}
+		}
+
+		return selectedDateHashMap;
+
+	}
+
+
 
 }
