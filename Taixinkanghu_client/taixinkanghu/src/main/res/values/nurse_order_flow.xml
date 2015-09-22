@@ -33,6 +33,18 @@
 	<string name="unsubscribe_text">退订</string>
 	<string name="fill_post_text">补差价</string>
 
+	<!-- 02. 补差价-->
+	<string name="change_item_text">变更项</string>
+	<string name="patient_status_change_text">患者状态变更</string>
+	<string name="change_content_text">变更内容</string>
+	<string name="change_amount_text">变更金额</string>
+	<string name="change_money_text">差价金额：</string>
+	<string name="write_change_amount_text">请输入差价金额</string>
 
+	<string name="pay_more_title">补差价</string>
+	<string name="pay_more_tips_price">请输入补差价金额？</string>
+	<string name="pay_more_tips_reason">请选择变更内容？</string>
+	<string name="pay_more_reason_option">患者状态变更</string>
+	<string name="content_confirm_btn">确认支付</string>
 
 </resources>

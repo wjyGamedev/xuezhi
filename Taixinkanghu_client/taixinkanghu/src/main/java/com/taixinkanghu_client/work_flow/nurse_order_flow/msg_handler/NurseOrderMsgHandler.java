@@ -24,6 +24,7 @@ import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.BaseNurseOrderFlowUIMsgHandler;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_pay_in_wait_pay_flow.ui.NurseOrderPayInWaitPayActivity;
+import com.taixinkanghu_client.work_flow.nurse_order_pay_more_flow.nurse_order_pay_more_page.ui.NurseOrderPayMoreActivity;
 
 public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 {
@@ -129,7 +130,9 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	//0507. 补差价
 	public void payMoreAction()
 	{
-
+		NurseOrderActivity activity = (NurseOrderActivity)m_context;
+		activity.startActivity(new Intent(activity, NurseOrderPayMoreActivity.class));
+		return;
 	}
 
 	//06. 发送 nurse order cancel in wait_pay

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<!--<include-->
+		<!--android:id="@+id/title"-->
+		<!--layout="@layout/include_header"/>-->
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="40dp"
+		android:gravity="center_vertical"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+		android:text="@string/change_item_text"
+		android:textColor="@color/text_color_gray"
+		android:textSize="14.0sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:background="@color/white">
+
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginLeft="15dp"
+			android:checked="true"
+			android:text="@string/patient_status_change_text"
+			android:textSize="16.0sp"
+			android:id="@+id/reason_option_rbtn"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="40dp"
+		android:gravity="center_vertical"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+		android:text="@string/change_content_text"
+		android:textColor="@color/text_color_gray"
+		android:textSize="14.0sp"/>
+
+	<RadioGroup
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		android:id="@+id/reason_value_region_rgrp">
+
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginLeft="15dp"
+			android:text="@string/content_care_myself"
+			android:textSize="16.0sp"
+			android:id="@+id/reason_value_care_rbtn"/>
+
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginLeft="15dp"
+			android:text="@string/content_half_care_myself"
+			android:textSize="16.0sp"
+			android:id="@+id/reason_value_half_care_rbtn"/>
+
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginLeft="15dp"
+			android:text="@string/content_not_care_myself"
+			android:textSize="16.0sp"
+			android:id="@+id/reason_value_cannt_care_rbtn"/>
+
+	</RadioGroup>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="40dp"
+		android:gravity="center_vertical"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+		android:text="@string/change_amount_text"
+		android:textColor="@color/text_color_gray"
+		android:textSize="14.0sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="40dp"
+			android:gravity="center_vertical"
+			android:layout_marginLeft="15dp"
+			android:text="@string/change_money_text"
+			android:textSize="14.0sp"/>
+
+		<EditText
+			android:layout_width="wrap_content"
+			android:layout_height="40dp"
+			android:gravity="center_vertical"
+			android:layout_marginRight="15dp"
+			android:layout_weight="1"
+			android:hint="@string/write_change_amount_text"
+			android:textSize="14.0sp"
+			android:id="@+id/price_tv"
+			android:inputType="number|numberDecimal"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+	</LinearLayout>
+
+	<!--<include-->
+		<!--android:id="@+id/bottom"-->
+		<!--layout="@layout/include_bottom_btn"/>-->
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+</LinearLayout>

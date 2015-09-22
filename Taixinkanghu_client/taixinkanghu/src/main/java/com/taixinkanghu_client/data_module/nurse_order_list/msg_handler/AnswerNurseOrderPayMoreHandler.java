@@ -65,7 +65,6 @@ public class AnswerNurseOrderPayMoreHandler extends IResponseListener
 			return;
 		}
 
-		//02. 取消订单成功，则需要update nurse list
 		AnswerNurseOrderPayMoreEvent event = new AnswerNurseOrderPayMoreEvent();
 		event.setOrderID(Integer.valueOf(m_orderID));
 		event.setOrderSerialNum(m_orderSerialNum);

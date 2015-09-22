@@ -29,6 +29,12 @@ public class DNurseOrderFlow
 	private int    m_selectedNurseOrderID = DataConfig.DEFAULT_VALUE;
 	private Object m_syncNurseOrderID     = new Object();
 
+	//02. 补差价的信息
+	private int m_payMorePrice = DataConfig.DEFAULT_VALUE;
+	private Object m_syncPayMorePrice = new Object();
+
+
+
 	private DNurseOrderFlow()
 	{}
 
@@ -50,9 +56,9 @@ public class DNurseOrderFlow
 	 */
 	public RequestNurseOrderCancelInWaitPayEvent constructRequestNurseOrderCancelInWaitPayEvent()
 	{
-		RequestNurseOrderCancelInWaitPayEvent event = new RequestNurseOrderCancelInWaitPayEvent();
-		String                   userID  = DAccount.GetInstance().getId();
-		int                      orderID = getSelectedNurseOrderID();
+		RequestNurseOrderCancelInWaitPayEvent event   = new RequestNurseOrderCancelInWaitPayEvent();
+		String                                userID  = DAccount.GetInstance().getId();
+		int                                   orderID = getSelectedNurseOrderID();
 		event.setUserID(userID);
 		event.setNurseOrderID(String.valueOf(orderID));
 
@@ -124,4 +130,19 @@ public class DNurseOrderFlow
 
 	}
 
+	public int getPayMorePrice()
+	{
+		synchronized (m_syncPayMorePrice)
+		{
+			return m_payMorePrice;
+		}
+	}
+
+	public void setPayMorePrice(int payMorePrice)
+	{
+		synchronized (m_syncPayMorePrice)
+		{
+			m_payMorePrice = payMorePrice;
+		}
+	}
 }

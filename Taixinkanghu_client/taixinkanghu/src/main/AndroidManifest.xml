@@ -134,6 +134,18 @@
 			android:label="NurseOrderPayInWaitPayActivity">
 		</activity>
 
+		<!-- 05. pay more flow-->
+		<!-- 补差价页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.nurse_order_pay_more_flow.nurse_orde_pay_in_pay_more_page.ui.NurseOrderPayInPayMoreActivity"
+			android:label="NurseOrderPayInPayMoreActivity">
+		</activity>
+		<!-- 补差价的支付页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.nurse_order_pay_more_flow.nurse_order_pay_more_page.ui.NurseOrderPayMoreActivity"
+			android:label="NurseOrderPayMoreActivity">
+		</activity>
+
 
 		<!-- 10. personal wealth flow-->
 		<!-- 我的财富页面-->
