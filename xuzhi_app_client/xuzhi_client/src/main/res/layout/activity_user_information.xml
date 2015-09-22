@@ -4,7 +4,11 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
-	<include layout="@layout/include_header"/>
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -19,16 +23,20 @@
 			android:orientation="vertical">
 
 			<TextView
+				android:id="@+id/user_information_text_legion"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="20dp"
 				android:layout_marginRight="20dp"
-				android:textSize="16sp"
-				android:text="用户须知"/>
+				android:textSize="20sp"/>
 
 		</LinearLayout>
 	</ScrollView>
 
-	<include layout="@layout/include_bottom_btn"/>
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 </LinearLayout>
