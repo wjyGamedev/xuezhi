@@ -5,7 +5,11 @@
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
-	<include layout="@layout/include_header"/>
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -28,7 +32,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="1">
 
-					<include layout="@layout/item_medication_details_label"/>
+					<include layout="@layout/item_medication_reminder"/>
 
 				</LinearLayout>
 
@@ -53,7 +57,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="1">
 
-					<include layout="@layout/item_medication_details_label"/>
+					<include layout="@layout/item_medication_reminder"/>
 
 				</LinearLayout>
 
@@ -78,7 +82,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="1">
 
-					<include layout="@layout/item_medication_details_label"/>
+					<include layout="@layout/item_medication_reminder"/>
 
 				</LinearLayout>
 
@@ -96,6 +100,10 @@
 
 	</ScrollView>
 
-	<include layout="@layout/include_bottom_btn"/>
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 </LinearLayout>

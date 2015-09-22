@@ -27,7 +27,7 @@
 				android:layout_gravity="center"
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
-				android:text="药品名称："
+				android:text="@string/medication_reminder_drug_name_title_text"
 				android:textSize="20sp"/>
 
 			<TextView
@@ -40,7 +40,7 @@
 				android:layout_marginTop="10dp"
 				android:layout_weight="1"
 				android:gravity="right"
-				android:hint="点击选择"
+				android:hint="@string/medication_reminder_click_select_hint_text"
 				android:textSize="20sp"/>
 
 			<ImageView
@@ -73,7 +73,7 @@
 				android:layout_gravity="center"
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
-				android:text="药品剂量："
+				android:text="@string/medication_reminder_drug_dosage_title_text"
 				android:textSize="20sp"/>
 
 			<TextView
@@ -86,7 +86,7 @@
 				android:layout_marginTop="10dp"
 				android:layout_weight="1"
 				android:gravity="right"
-				android:hint="点击选择"
+				android:hint="@string/medication_reminder_click_select_hint_text"
 				android:textSize="20sp"/>
 
 			<ImageView
@@ -119,7 +119,7 @@
 				android:layout_gravity="center"
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
-				android:text="用药次数："
+				android:text="@string/medication_reminder_drug_times_title_text"
 				android:textSize="20sp"/>
 
 			<TextView
@@ -132,7 +132,7 @@
 				android:layout_marginTop="10dp"
 				android:layout_weight="1"
 				android:gravity="right"
-				android:hint="点击选择"
+				android:hint="@string/medication_reminder_click_select_hint_text"
 				android:textSize="20sp"/>
 
 			<ImageView
@@ -178,7 +178,7 @@
 				android:layout_marginTop="10dp"
 				android:layout_weight="1"
 				android:gravity="right"
-				android:hint="点击选择"
+				android:hint="@string/medication_reminder_click_select_hint_text"
 				android:textSize="20sp"/>
 
 			<ImageView

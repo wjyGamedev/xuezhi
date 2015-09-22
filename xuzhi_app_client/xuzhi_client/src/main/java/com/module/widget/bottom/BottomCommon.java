@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,27 +31,20 @@ import butterknife.OnClick;
 public class BottomCommon extends Fragment
 {
 
-	@Bind(R.id.common_bottom_region_ll)
-	LinearLayout m_commonBottomRegionLL = null;
+	@Bind (R.id.common_bottom_region_ll) LinearLayout m_commonBottomRegionLL = null;
 
 	//01. 第一个功能按钮
-	@Bind(R.id.common_bottom_btn)
-	Button m_commonBottomBtn = null;
+	@Bind (R.id.common_bottom_btn) Button m_commonBottomBtn = null;
 
 	//02. 第二个功能按钮
-	@Bind(R.id.common_bottem_btn_region_ll_2)
-	LinearLayout m_commonBottomRegionLL2 = null;
+	@Bind (R.id.common_bottem_btn_region_ll_2) LinearLayout m_commonBottomRegionLL2 = null;
 
-	@Bind(R.id.common_bottom_btn_2)
-	Button m_commonBottomBtn2 = null;
+	@Bind (R.id.common_bottom_btn_2) Button m_commonBottomBtn2 = null;
 
 	//03. 第三个功能按钮
-	@Bind(R.id.common_bottem_btn_region_ll_3)
-	LinearLayout m_commonBottomRegionLL3 = null;
+	@Bind (R.id.common_bottem_btn_region_ll_3) LinearLayout m_commonBottomRegionLL3 = null;
 
-	@Bind(R.id.common_bottom_btn_3)
-	Button m_commonBottomBtn3 = null;
-
+	@Bind (R.id.common_bottom_btn_3) Button m_commonBottomBtn3 = null;
 
 
 	private View m_view = null;

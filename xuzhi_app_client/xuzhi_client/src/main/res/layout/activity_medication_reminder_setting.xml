@@ -5,7 +5,11 @@
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
-	<include layout="@layout/include_header"/>
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -40,7 +44,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
-						android:text="提醒状态："
+						android:text="@string/medication_reminder_alert_state_title_text"
 						android:textSize="20sp"/>
 
 					<Button
@@ -49,7 +53,8 @@
 						android:layout_marginBottom="5dp"
 						android:layout_marginTop="5dp"
 						android:background="@drawable/corners_bg"
-						android:text="开启"
+						android:text="@string/medication_reminder_setting_open_btn_text"
+						android:layout_gravity="center"
 						android:textColor="@color/white"
 						android:textSize="20sp"/>
 
@@ -82,7 +87,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
-						android:text="提醒时间："
+						android:text="@string/medication_reminder_alert_time_title_text"
 						android:textSize="20sp"/>
 
 					<TextView
@@ -92,7 +97,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginRight="10dp"
 						android:layout_marginTop="10dp"
-						android:hint="点击选择"
+						android:hint="@string/click_select_hint_text"
 						android:textSize="20sp"/>
 
 					<ImageView
@@ -120,17 +125,13 @@
 
 			</LinearLayout>
 
-			<include layout="@layout/include_bottom_btn"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="20dp">
-
-			</LinearLayout>
-
 		</LinearLayout>
 	</ScrollView>
 
-	<include layout="@layout/include_bottom_btn"/>
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 
 </LinearLayout>
