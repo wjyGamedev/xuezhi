@@ -106,7 +106,7 @@ public class NurseOrderPayInPayMoreMsgHandler extends BaseNurseOrderFlowUIMsgHan
 		int orderID = m_dNurseOrderFlow.getPayMoreOrderID();
 		int totalPrice = m_dNurseOrderFlow.getPayMorePrice();
 		//测试
-		String orderIDInfo = Util.GetNurseOrderInfoInNormal(String.valueOf(orderID));
+		String orderIDInfo = Util.GetNurseOrderInfoInPayMore(String.valueOf(orderID));
 		String orderInfo = Util.GetNurseOrder(orderIDInfo, "0.01");
 		//02. 对订单做RSA 签名
 		String sign = signByRSA(orderInfo);
