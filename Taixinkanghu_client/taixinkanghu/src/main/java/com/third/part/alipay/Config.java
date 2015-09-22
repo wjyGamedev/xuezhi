@@ -34,12 +34,14 @@ public class Config
 
 	private static final String INFO_PAY_STATUS_SUCCESS = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.pay_status_success);
 	private static final String INFO_PAY_STATUS_PAY_RESULT_WAIT_CONFIRM = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.pay_status_pay_result_wait_confirm);
+	private static final String INFO_PAY_STATUS_PAY_RESULT_SYSTEM_BUSY = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.pay_status_pay_result_system_busy);
 
 	//返回status
 	public enum PayStatus
 	{
 		PAY_STATUS_SUCCESS(INFO_PAY_STATUS_SUCCESS, 9000),
-		PAY_STATUS_PAY_RESULT_WAIT_CONFIRM(INFO_PAY_STATUS_PAY_RESULT_WAIT_CONFIRM, 8000);
+		PAY_STATUS_PAY_RESULT_WAIT_CONFIRM(INFO_PAY_STATUS_PAY_RESULT_WAIT_CONFIRM, 8000),
+		PAY_STATUS_PAY_RESULT_SYSTEM_BUSY(INFO_PAY_STATUS_PAY_RESULT_SYSTEM_BUSY, 4000);
 
 		private String m_name = null;
 		private int    m_id   = 0;

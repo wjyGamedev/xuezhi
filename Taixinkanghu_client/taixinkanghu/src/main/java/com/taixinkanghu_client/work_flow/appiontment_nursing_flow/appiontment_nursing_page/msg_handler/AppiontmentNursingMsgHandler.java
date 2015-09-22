@@ -19,6 +19,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.module.exception.RuntimeExceptions.logical.LogicalRTException;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.config.EnumConfig;
@@ -243,14 +244,20 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 	//04. 请求发预约陪护信息
 	public void requestAppiontmentNursingAction()
 	{
-		RequestNurseBasicListEvent event = m_dAppiontmentNursingFlow.constructRequestNurseBasicListEvent();
-		if (event == null)
+		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+		try
 		{
-			TipsDialog.GetInstance().setMsg("event == null", m_context);
-			TipsDialog.GetInstance().show();
+			RequestNurseBasicListEvent event = m_dAppiontmentNursingFlow.constructRequestNurseBasicListEvent();
+			NurseListHandler.GetInstance().requestNurseBasicListAction(event);
 			return;
 		}
-		NurseListHandler.GetInstance().requestNurseBasicListAction(event);
+		catch (LogicalRTException e)
+		{
+			TipsDialog.GetInstance().setMsg(activity.getString(R.string.ap_err_info_fill_required_options), activity);
+			TipsDialog.GetInstance().show();
+		}
+		return;
+
 	}
 
 	//05. 跳转到护理员列表玉面
@@ -395,7 +402,11 @@ public class AppiontmentNursingMsgHandler extends BaseAppiontmentNursingFlowUIMs
 	//14. 跳转到选择日期页面
 	public void go2SelectDatePage()
 	{
+		//01. 清空UI
 		ApoitNursingActivity activity = (ApoitNursingActivity)m_context;
+		activity.getServiceDateTV().setText("");
+
+		//02. 跳转到选择日期页面
 		activity.startActivity(new Intent(activity, SelectDateActivity.class));
 		return;
 	}

@@ -14,6 +14,7 @@
 
 package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data;
 
+import com.module.exception.RuntimeExceptions.logical.LogicalRTException;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.config.EnumConfig;
@@ -196,7 +197,7 @@ public class DAppiontmentNursingFlow
 	 * function:constructor
 	 */
 	//01. RequestNurseBasicListEvent
-	public RequestNurseBasicListEvent constructRequestNurseBasicListEvent()
+	public RequestNurseBasicListEvent constructRequestNurseBasicListEvent() throws LogicalRTException
 	{
 		RequestNurseBasicListEvent event = new RequestNurseBasicListEvent();
 		event.setName(getPatientName());
@@ -224,9 +225,7 @@ public class DAppiontmentNursingFlow
 		DNursingDate nursingDate = getNursingDate();
 		if (nursingDate == null)
 		{
-			TipsDialog.GetInstance().setMsg("nursingDate == null");
-			TipsDialog.GetInstance().show();
-			return null;
+			throw new LogicalRTException("nursingDate == null");
 		}
 
 		event.setSchedualAll(nursingDate.getSchedualAllDescription());
