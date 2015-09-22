@@ -109,6 +109,11 @@ public class DFaceImages
 			return DataConfig.DEFAULT_VALUE;
 		}
 
+		if (index < 0)
+		{
+			return DataConfig.DEFAULT_VALUE;
+		}
+
 		return m_ImageArrayList.get(index);
 
 	}
