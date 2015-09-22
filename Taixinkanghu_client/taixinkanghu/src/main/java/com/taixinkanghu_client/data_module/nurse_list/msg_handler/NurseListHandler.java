@@ -16,12 +16,12 @@ package com.taixinkanghu_client.data_module.nurse_list.msg_handler;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
-import com.module.net.NetConfig;
+import com.taixinkanghu_client.net.config.NetConfig;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasics;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseList;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerCommentNurseOrderEvent;
-import com.taixinkanghu_client.net.BaseMsgHandler;
+import com.module.net.BaseMsgHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;

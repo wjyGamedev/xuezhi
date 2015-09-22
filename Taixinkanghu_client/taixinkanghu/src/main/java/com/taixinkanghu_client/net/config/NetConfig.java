@@ -12,7 +12,7 @@
  * 2015/7/9		WangJY		1.0.0		create
  */
 
-package com.module.net;
+package com.taixinkanghu_client.net.config;
 
 public class NetConfig
 {

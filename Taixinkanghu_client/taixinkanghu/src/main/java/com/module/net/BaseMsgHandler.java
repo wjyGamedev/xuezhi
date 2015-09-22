@@ -12,10 +12,10 @@
  * 2015/9/7		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.net;
+package com.module.net;
 
 import com.android.volley.RequestQueue;
-import com.taixinkanghu_client.net.handler.BaseErrorListener;
+import com.module.net.handler.BaseErrorListener;
 
 import event.EventBus;
 

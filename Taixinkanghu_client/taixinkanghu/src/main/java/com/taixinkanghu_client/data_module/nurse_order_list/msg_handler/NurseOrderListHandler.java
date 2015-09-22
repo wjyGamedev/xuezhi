@@ -19,9 +19,9 @@ import android.app.Activity;
 import com.alipay.sdk.app.PayTask;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
-import com.module.net.NetConfig;
+import com.taixinkanghu_client.net.config.NetConfig;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
-import com.taixinkanghu_client.net.BaseMsgHandler;
+import com.module.net.BaseMsgHandler;
 
 import java.util.HashMap;
 

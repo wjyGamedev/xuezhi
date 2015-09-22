@@ -12,7 +12,7 @@
  * 2015/7/9		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.net;
+package com.module.net;
 
 import android.content.Context;
 

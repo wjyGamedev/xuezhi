@@ -16,8 +16,8 @@ package com.taixinkanghu_client.data_module.department_list.msg_handler;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.module.net.NetConfig;
-import com.taixinkanghu_client.net.BaseMsgHandler;
+import com.taixinkanghu_client.net.config.NetConfig;
+import com.module.net.BaseMsgHandler;
 
 public class DepartmentMsgHandler extends BaseMsgHandler
 {

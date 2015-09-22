@@ -18,7 +18,7 @@ import android.app.Application;
 
 import com.module.data.DGlobal;
 import com.module.storage.StorageWrapper;
-import com.taixinkanghu_client.net.BaseHttp;
+import com.module.net.BaseHttp;
 
 public class AppFrame extends Application
 {

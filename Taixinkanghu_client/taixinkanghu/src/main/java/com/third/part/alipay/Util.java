@@ -14,7 +14,7 @@
 
 package com.third.part.alipay;
 
-import com.module.net.NetConfig;
+import com.taixinkanghu_client.net.config.NetConfig;
 
 public class Util
 {

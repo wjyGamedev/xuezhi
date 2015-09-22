@@ -18,7 +18,7 @@ import com.module.data.DGlobal;
 import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.net.IResponseListener;
+import com.module.net.IResponseListener;
 import com.taixinkanghu_client.net.config.NurseOrderConfig;
 import com.taixinkanghu_client.net.config.ProtocalConfig;
 

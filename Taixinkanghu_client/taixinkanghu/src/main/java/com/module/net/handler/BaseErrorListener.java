@@ -12,11 +12,11 @@
  * 2015/7/19		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.net.handler;
+package com.module.net.handler;
 
 import com.android.volley.VolleyError;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.net.IErrorListener;
+import com.module.net.IErrorListener;
 
 public class BaseErrorListener extends IErrorListener
 {
