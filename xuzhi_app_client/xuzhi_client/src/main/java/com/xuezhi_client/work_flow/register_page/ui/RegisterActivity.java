@@ -33,9 +33,9 @@ import com.module.widget.header.HeaderCommon;
 import com.third.part.sms.DSmsAutho;
 import com.third.part.sms.SmsAutho;
 import com.third.part.sms.SmsConfig;
-import com.xuzhi_client.config.DataConfig;
-import com.xuzhi_client.data_module.register_account.msg_handler.RequestRegisterEvent;
-import com.xuzhi_client.work_flow.register_flow.msg_handler.RegisterActivityMsg;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.data_module.register_account.msg_handler.RequestRegisterEvent;
+import com.xuezhi_client.work_flow.register_page.msg_handler.RegisterActivityMsg;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.HashMap;
@@ -194,7 +194,7 @@ public class RegisterActivity extends BaseActivity
 		public void onTick(long millisUntilFinished)
 		{
 			m_verificationBtn.setEnabled(false);
-			m_verificationBtn.setText( millisUntilFinished/1000 + INFO_SECOND);
+			m_verificationBtn.setText(millisUntilFinished / 1000 + INFO_SECOND);
 		}
 
 		@Override

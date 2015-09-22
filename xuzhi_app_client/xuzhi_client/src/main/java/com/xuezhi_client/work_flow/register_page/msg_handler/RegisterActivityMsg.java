@@ -18,11 +18,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
-import com.taixinkanghu_client.data_module.register_account.msg_handler.AnswerRegisterEvent;
-import com.taixinkanghu_client.data_module.register_account.msg_handler.RegisterAccountMsgHandler;
-import com.taixinkanghu_client.data_module.register_account.msg_handler.RequestRegisterEvent;
-import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
-import com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity;
+import com.xuezhi_client.data_module.register_account.msg_handler.AnswerRegisterEvent;
+import com.xuezhi_client.data_module.register_account.msg_handler.RegisterAccountMsgHandler;
+import com.xuezhi_client.data_module.register_account.msg_handler.RequestRegisterEvent;
+import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
+import com.xuezhi_client.work_flow.register_page.ui.RegisterActivity;
 
 public class RegisterActivityMsg extends BaseUIMsgHandler
 {
