@@ -75,6 +75,7 @@
 
 	<!-- 05. 评价-->
 	<string name="service_commnet">服务评价</string>
+	<string name="comment_default_name">匿名</string>
 
 	<!-- 06. 确认订单页面-->
 	<string name="order_content_text">订单内容</string>

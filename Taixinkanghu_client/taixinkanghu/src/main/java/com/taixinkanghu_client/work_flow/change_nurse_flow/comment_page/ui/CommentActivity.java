@@ -3,6 +3,7 @@ package com.taixinkanghu_client.work_flow.change_nurse_flow.comment_page.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.module.widget.bottom.BottomCommon;
@@ -27,11 +28,15 @@ public class CommentActivity extends Activity
 
 	@Bind (R.id.normal_rbtn) RadioButton m_normalRBtn = null;
 
+	@Bind (R.id.comment_item_lv) ListView m_listView = null;
+
 	private BottomCommon m_bottomCommon = null;    //底部按钮：返回主页面
 
 	//logical
-	private CommentMsgHandler m_commentMsgHandler = new CommentMsgHandler(this);
-	private ClickBottomBtn    m_clickBottomBtn    = new ClickBottomBtn();
+	private CommentMsgHandler  m_commentMsgHandler  = new CommentMsgHandler(this);
+	private ClickBottomBtn     m_clickBottomBtn     = new ClickBottomBtn();
+	private CommentListAdapter m_commentListAdapter = null;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +46,13 @@ public class CommentActivity extends Activity
 		ButterKnife.bind(this);
 
 		init();
+	}
+
+	@Override
+	protected void onStart()
+	{
+		updateContent();
+		super.onStart();
 	}
 
 	/**
@@ -67,6 +79,9 @@ public class CommentActivity extends Activity
 
 		m_vertGoodRBtn.setChecked(true);
 
+		m_commentListAdapter = new CommentListAdapter(this);
+		m_listView.setAdapter(m_commentListAdapter);
+
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.content_main_page);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
@@ -74,4 +89,16 @@ public class CommentActivity extends Activity
 		return;
 	}
 
+	private void updateContent()
+	{
+		if (m_commentListAdapter != null)
+		{
+			m_commentListAdapter.notifyDataSetChanged();
+		}
+	}
+
+	public CommentMsgHandler getCommentMsgHandler()
+	{
+		return m_commentMsgHandler;
+	}
 }

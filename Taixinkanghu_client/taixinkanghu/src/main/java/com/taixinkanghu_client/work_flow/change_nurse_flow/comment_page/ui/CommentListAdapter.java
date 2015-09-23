@@ -12,7 +12,7 @@
  * 2015/9/23		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.appiontment_nursing_flow.comment_page.ui;
+package com.taixinkanghu_client.work_flow.change_nurse_flow.comment_page.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -29,7 +29,7 @@ import com.taixinkanghu_client.data_module.nurse_list.data.DComment;
 import com.taixinkanghu_client.data_module.nurse_list.data.DCommentList;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseList;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseSenior;
-import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.comment_page.msg_handler.CommentMsgHandler;
+import com.taixinkanghu_client.work_flow.change_nurse_flow.comment_page.msg_handler.CommentMsgHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

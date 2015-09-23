@@ -37,5 +37,8 @@ public class CommentMsgHandler extends BaseChangeNurseFlowUIMsgHandler
 		return;
 	}
 
-
+	public int getSelectedNurseID()
+	{
+		return m_dChangeNurseFlow.getNewNurseID();
+	}
 }
