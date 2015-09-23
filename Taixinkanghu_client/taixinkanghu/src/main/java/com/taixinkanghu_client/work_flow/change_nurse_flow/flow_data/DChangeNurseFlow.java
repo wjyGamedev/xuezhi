@@ -1,21 +1,20 @@
 /**
  * Copyright (c) 213Team
  *
- * @className : com.taixinkanghu_client.work_flow.appiontment_nursing_flow.data.${type_name}
+ * @className : com.taixinkanghu_client.work_flow.change_nurse_flow.flow_data.${type_name}
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/9/8		WangJY		1.0.0		create
+ * 2015/9/23		WangJY		1.0.0		create
  */
 
-package com.taixinkanghu_client.work_flow.repeat_order_flow.flow_data;
+package com.taixinkanghu_client.work_flow.change_nurse_flow.flow_data;
 
 import com.module.exception.RuntimeExceptions.logical.LogicalRTException;
-import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.config.DataConfig;
 import com.taixinkanghu_client.config.EnumConfig;
 import com.taixinkanghu_client.data_module.department_list.data.DDepartment;
@@ -29,19 +28,16 @@ import com.taixinkanghu_client.data_module.nurse_list.data.DNurseSenior;
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.RequestNurseBasicListEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.data.DNurseOrder;
 import com.taixinkanghu_client.data_module.nurse_order_list.data.DNurserOrderList;
-import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderConfirmInNormalEvent;
-import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.flow_data.DNursingDate;
 
-public class DRepeatOrderFlow
+public class DChangeNurseFlow
 {
-	private static DRepeatOrderFlow s_appiontmentNursing = new DRepeatOrderFlow();
+	private static DChangeNurseFlow s_dChangeNurseFlow = new DChangeNurseFlow();
 
-	//01. 选择的护理员数据
-	private int    m_selectedNurseID = DataConfig.DEFAULT_VALUE;
-	private Object m_syncNurseID     = new Object();
+	//01. 老护理员的数据
+	private int    m_oldNurseID     = DataConfig.DEFAULT_VALUE;
+	private Object m_syncOldNurseID = new Object();
 
-	//02. repear order 预约陪护数据
 	//姓名
 	private String m_patientName     = null;
 	private Object m_syncPatientName = new Object();
@@ -75,45 +71,50 @@ public class DRepeatOrderFlow
 	private Object                  m_syncPatientState = new Object();
 
 	//护理时间
-	private DNursingDate m_nursingDate     = null;
-	private Object       m_syncNursingDate = new Object();
+	private DNursingDate m_oldNursingDate     = null;
+	private Object       m_syncOldNursingDate = new Object();
 
-	//03. 护理员详细信息数据
 
-	//04. 确认订单数据
+	//02. 选择护理员的数据(新护理员的数据)
+	private int    m_newNurseID     = DataConfig.DEFAULT_VALUE;
+	private Object m_syncNewNurseID = new Object();
+
+	//03. 护理员信息
+
+	//04. 护理员订单页面数据
+	private DNursingDate   m_newSelectDate     = null;
+	private Object m_syncNewSelectDate = new Object();
+
 	//TODO:理论上要保存发送给服务器的数据，先不做，以后补充上。
-	private int    m_orderID     = DataConfig.DEFAULT_VALUE;
-	private Object m_syncOrderID = new Object();
+	private int    m_newOrderID     = DataConfig.DEFAULT_VALUE;
+	private Object m_syncNewOrderID = new Object();
 
-	private String m_orderSerialNum     = null;
-	private Object m_syncOrderSerialNum = new Object();
+	private String m_newOrderSerialNum     = null;
+	private Object m_syncNewOrderSerialNum = new Object();
 
 	//TODO:用两个价格，一个是客户端计算后，用来显示，并上送到服务器，不可信；一个是用来支付，来自于服务器下发，可信。
 	//下面保存的是服务器下发的价格。显示的价格，每次都动态计算
+	private int m_clientTotalPrice = DataConfig.DEFAULT_VALUE;
+	private Object m_syncClientTotalPrice = new Object();
+
 	private int    m_totalPrice     = DataConfig.DEFAULT_VALUE;
 	private Object m_syncTotalPrice = new Object();
 
 
-
-
-	private DRepeatOrderFlow()
+	private DChangeNurseFlow()
 	{}
 
-	public static DRepeatOrderFlow GetInstance()
+	public static DChangeNurseFlow GetInstance()
 	{
-		return s_appiontmentNursing;
+		return s_dChangeNurseFlow;
 	}
 
-	public void clearupSelectNurse()
+	public void clearupOldNurse()
 	{
-		synchronized (m_syncNurseID)
+		synchronized (m_syncOldNurseID)
 		{
-			m_selectedNurseID = DataConfig.DEFAULT_VALUE;
+			m_oldNurseID = DataConfig.DEFAULT_VALUE;
 		}
-	}
-
-	public void clearupAppitonmentNursing()
-	{
 		synchronized (m_syncPatientName)
 		{
 			m_patientName = null;
@@ -154,51 +155,66 @@ public class DRepeatOrderFlow
 			m_patientState = null;
 		}
 
-		synchronized (m_syncNursingDate)
+		synchronized (m_syncOldNursingDate)
 		{
-			m_nursingDate = null;
+			m_oldNursingDate = null;
+		}
+	}
+
+	public void clearupSelectNurse()
+	{
+		synchronized (m_syncNewNurseID)
+		{
+			m_newNurseID = DataConfig.DEFAULT_VALUE;
 		}
 	}
 
 	public void clearupNurseInfo()
-	{
-		return;
-	}
+	{}
 
-	public void clearupOrderConfirm()
+	public void clearupNurseConfirm()
 	{
-		synchronized (m_syncOrderID)
+		synchronized (m_syncNewSelectDate)
 		{
-			m_orderID = DataConfig.DEFAULT_VALUE;
+			m_newSelectDate     = null;
 		}
 
-		synchronized (m_syncOrderSerialNum)
+		synchronized (m_syncNewOrderID)
 		{
-			m_orderSerialNum = null;
+			m_newOrderID     = DataConfig.DEFAULT_VALUE;
+		}
+
+		synchronized (m_syncNewOrderSerialNum)
+		{
+			m_newOrderSerialNum     = null;
+		}
+
+		synchronized (m_syncClientTotalPrice)
+		{
+			m_clientTotalPrice = DataConfig.DEFAULT_VALUE;
 		}
 
 		synchronized (m_syncTotalPrice)
 		{
-			m_totalPrice = DataConfig.DEFAULT_VALUE;
+			m_totalPrice     = DataConfig.DEFAULT_VALUE;
 		}
+
 	}
 
 	public void clearupAll()
 	{
-		//01. 选择护理员数据
+		//01. 清除老护理员的数据
+		clearupOldNurse();
+
+		//02. 清除选择护理员的数据
 		clearupSelectNurse();
 
-		//02. 预约陪护数据
-		clearupAppitonmentNursing();
-
-		//03. 护理员详细信息数据
+		//03. 清除护理员信息数据
 		clearupNurseInfo();
 
-		//04. 确认订单数据
-		clearupOrderConfirm();
-
+		//04. 清除护理员订单数据
+		clearupNurseConfirm();
 	}
-
 
 	/**
 	 * function:constructor
@@ -229,10 +245,10 @@ public class DRepeatOrderFlow
 		if (getPatientState() != null)
 			event.setPatientStateID(getPatientState().getId());
 
-		DNursingDate nursingDate = getNursingDate();
+		DNursingDate nursingDate = getOldNursingDate();
 		if (nursingDate == null)
 		{
-			throw new LogicalRTException("nursingDate == null");
+			return null;
 		}
 
 		event.setSchedualAll(nursingDate.getSchedualAllDescription());
@@ -242,83 +258,25 @@ public class DRepeatOrderFlow
 		return event;
 	}
 
-	//02. RequestNurseOrderConfirmInNormalEvent
-	public RequestNurseOrderConfirmInNormalEvent constructRequestNurseOrderConfirmInNormalEvent()
-	{
-		RequestNurseOrderConfirmInNormalEvent event = new RequestNurseOrderConfirmInNormalEvent();
-		event.setHospitalID(getHospitalID());
-		event.setUserID(DAccount.GetInstance().getId());
-		event.setNurseID(getSelectedNurseID());
-		event.setNurseDepartmentID(getDepartmenetID());
-		event.setPhoneNum(getPhone());
-		event.setPatientName(getPatientName());
-
-		if (getGenderStatus() != null)
-			event.setGenderID(getGenderStatus().getId());
-
-		if (getAgeRage() != null)
-		{
-			event.setPatientAge(getAgeRage().getName());
-		}
-
-		if (getWeightRage() != null)
-		{
-			event.setPatientWeight(getWeightRage().getName());
-		}
-
-		if (getPatientState() != null)
-			event.setPatientStatusID(getPatientState().getId());
-
-		//TODO:以后更改
-		event.setPatientRemark("");
-
-		event.setTotalCharge(getTotalChargeDisplay());
-
-		if (getNursingDate() == null)
-		{
-			TipsDialog.GetInstance().setMsg("nursingDate == null");
-			TipsDialog.GetInstance().show();
-			//TODO:以后更改为抛出异常
-			return null;
-		}
-
-		String allDescription = getNursingDate().getSchedualAllDescription();
-		event.setAllDescription(allDescription);
-
-		String dayDescription = getNursingDate().getSchedualDayDescription();
-		event.setDayDescription(dayDescription);
-
-		String nightDescription = getNursingDate().getSchedualNightDescription();
-		event.setNightDescription(nightDescription);
-
-		return event;
-
-	}
 
 	/**
 	 * function:get/set
 	 */
-	//01. repeat order 选择护理员数据
-	public int getSelectedNurseID()
+	//01. 老护理员的数据
+	public int getOldNurseID()
 	{
-		synchronized (m_syncNurseID)
-		{
-			return m_selectedNurseID;
-		}
+		return m_oldNurseID;
 	}
 
-	public void setSelectedNurseID(int selectedNurseID)
+	public void setOldNurseID(int oldNurseID)
 	{
-		synchronized (m_syncNurseID)
-		{
-			m_selectedNurseID = selectedNurseID;
-		}
+		m_oldNurseID = oldNurseID;
 	}
 
-	public DNurseOrder getNurserOrder()
+	public DNurseOrder getOldNurserOrder()
 	{
 		//TODO:多线程这里有问题。目前不会遇到多线程问题。
-		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(getSelectedNurseID());
+		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(getOldNurseID());
 		if (nurseOrder == null)
 		{
 			return null;
@@ -328,14 +286,13 @@ public class DRepeatOrderFlow
 
 	}
 
-	//02. repeat order 预约陪护数据
 	public String getPatientName()
 	{
 		synchronized (m_syncPatientName)
 		{
 			if (m_patientName == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -357,9 +314,9 @@ public class DRepeatOrderFlow
 	{
 		synchronized (m_syncPhone)
 		{
-			if(m_phone == null)
+			if (m_phone == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -384,7 +341,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_genderStatus == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -409,7 +366,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_ageRage == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -433,7 +390,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_weightRage == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -458,7 +415,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_hospitalID == DataConfig.DEFAULT_VALUE)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return DataConfig.DEFAULT_VALUE;
 
@@ -482,7 +439,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_departmenetID == DataConfig.DEFAULT_VALUE)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return DataConfig.DEFAULT_VALUE;
 
@@ -506,7 +463,7 @@ public class DRepeatOrderFlow
 		{
 			if (m_patientState == null)
 			{
-				DNurseOrder nurseOrder = getNurserOrder();
+				DNurseOrder nurseOrder = getOldNurserOrder();
 				if (nurseOrder == null)
 					return null;
 
@@ -525,26 +482,38 @@ public class DRepeatOrderFlow
 		}
 	}
 
-	public DNursingDate getNursingDate()
+	public DNursingDate getOldNursingDate()
 	{
-		synchronized (m_syncNursingDate)
+		synchronized (m_syncOldNursingDate)
 		{
-			return m_nursingDate;
+			return m_oldNursingDate;
 		}
 	}
 
-	public void setNursingDate(DNursingDate nursingDate)
+	public void setOldNursingDate(DNursingDate nursingDate)
 	{
-		synchronized (m_syncNursingDate)
+		synchronized (m_syncOldNursingDate)
 		{
-			m_nursingDate = nursingDate;
+			m_oldNursingDate = nursingDate;
 		}
 	}
+
+	//02. 选择护理员的数据
+	public int getNewNurseID()
+	{
+		return m_newNurseID;
+	}
+
+	public void setNewNurseID(int newNurseID)
+	{
+		m_newNurseID = newNurseID;
+	}
+
 
 	//04. 确认订单数据
-	public int getNurseHeaderImgResID()
+	public int getNewNurseHeaderImgResID()
 	{
-		int headerImgResID = DFaceImages.getInstance().getImgResIDbyID(getSelectedNurseID());
+		int headerImgResID = DFaceImages.getInstance().getImgResIDbyID(getNewNurseID());
 		if (headerImgResID == DataConfig.DEFAULT_VALUE)
 		{
 			headerImgResID = DFaceImages.DEFAULT_IMAGE_RES_ID;
@@ -552,41 +521,99 @@ public class DRepeatOrderFlow
 		return headerImgResID;
 	}
 
-	public String getNurseName()
+	public int getOldNurseHeaderImgResID()
 	{
-		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getSelectedNurseID());
+		int headerImgResID = DFaceImages.getInstance().getImgResIDbyID(getOldNurseID());
+		if (headerImgResID == DataConfig.DEFAULT_VALUE)
+		{
+			headerImgResID = DFaceImages.DEFAULT_IMAGE_RES_ID;
+		}
+		return headerImgResID;
+	}
+
+	public String getNewNurseName()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getNewNurseID());
 		if (dNurseBasics == null)
 			return null;
 
 		return dNurseBasics.getName();
 	}
 
-	public String getNursingLevel()
+	public String getOldNurseName()
 	{
-		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getSelectedNurseID());
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getOldNurseID());
+		if (dNurseBasics == null)
+			return null;
+
+		return dNurseBasics.getName();
+	}
+
+	public String getNewNursingLevel()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getNewNurseID());
 		if (dNurseBasics == null)
 			return null;
 
 		return dNurseBasics.getNursingLevel();
 	}
 
-	public String getNurseJobNum()
+	public String getOldNursingLevel()
 	{
-		DNurseSenior dNurseSenior = DNurseList.GetInstance().getNurseSeniorByID(getSelectedNurseID());
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getOldNurseID());
+		if (dNurseBasics == null)
+			return null;
+
+		return dNurseBasics.getNursingLevel();
+	}
+
+	public String getNewNurseJobNum()
+	{
+		DNurseSenior dNurseSenior = DNurseList.GetInstance().getNurseSeniorByID(getNewNurseID());
 		if (dNurseSenior == null)
 			return null;
 
 		return dNurseSenior.getJobNum();
 	}
 
-	public String getServiceDate()
+	public String getOldNurseJobNum()
 	{
-		if (getNursingDate() == null)
+		DNurseSenior dNurseSenior = DNurseList.GetInstance().getNurseSeniorByID(getOldNurseID());
+		if (dNurseSenior == null)
+			return null;
+
+		return dNurseSenior.getJobNum();
+	}
+
+	public DNursingDate getNewSelectDate()
+	{
+		return m_newSelectDate;
+	}
+
+	public void setNewSelectDate(DNursingDate newSelectDate)
+	{
+		m_newSelectDate = newSelectDate;
+	}
+
+
+	public String getNewServiceDateDisplay()
+	{
+		if (getNewSelectDate() == null)
 		{
 			return null;
 		}
 
-		return getNursingDate().getDateDescription();
+		return getNewSelectDate().getDateDescription();
+	}
+
+	public String getOldServiceDateDisplay()
+	{
+		if (getOldNursingDate() == null)
+		{
+			return null;
+		}
+
+		return getOldNursingDate().getDateDescription();
 	}
 
 	public String getServiceAddress()
@@ -599,7 +626,7 @@ public class DRepeatOrderFlow
 		}
 		String hospitalName = hospital.getName();
 
-		DDepartment department   = DDepartmentList.GetInstance().getDepartmentByID(getDepartmenetID());
+		DDepartment department = DDepartmentList.GetInstance().getDepartmentByID(getDepartmenetID());
 		if (department == null)
 		{
 			return null;
@@ -609,39 +636,69 @@ public class DRepeatOrderFlow
 
 	}
 
-	public int getAllNum()
+	public int getNewAllNum()
 	{
-		if (getNursingDate() == null)
+		if (getNewSelectDate() == null)
 		{
 			return 0;
 		}
 
-		return getNursingDate().getAllNum();
+		return getNewSelectDate().getAllNum();
 	}
 
-	public int getDayNum()
+	public int getOldAllNum()
 	{
-		if (getNursingDate() == null)
+		if (getOldNursingDate() == null)
 		{
 			return 0;
 		}
 
-		return getNursingDate().getDayNum();
+		return getOldNursingDate().getAllNum();
 	}
 
-	public int getNightNum()
+	public int getNewDayNum()
 	{
-		if (getNursingDate() == null)
+		if (getNewSelectDate() == null)
 		{
 			return 0;
 		}
 
-		return getNursingDate().getNightNum();
+		return getNewSelectDate().getDayNum();
 	}
 
-	public int getChargePerAll()
+	public int getOldDayNum()
 	{
-		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getSelectedNurseID());
+		if (getOldNursingDate() == null)
+		{
+			return 0;
+		}
+
+		return getOldNursingDate().getDayNum();
+	}
+
+	public int getNewNightNum()
+	{
+		if (getNewSelectDate() == null)
+		{
+			return 0;
+		}
+
+		return getNewSelectDate().getNightNum();
+	}
+
+	public int getOldNightNum()
+	{
+		if (getOldNursingDate() == null)
+		{
+			return 0;
+		}
+
+		return getOldNursingDate().getNightNum();
+	}
+
+	public int getNewChargePerAll()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getNewNurseID());
 		if (dNurseBasics == null)
 			return 0;
 
@@ -652,9 +709,22 @@ public class DRepeatOrderFlow
 
 	}
 
-	public int getChargePerDay()
+	public int getOldChargePerAll()
 	{
-		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getSelectedNurseID());
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getOldNurseID());
+		if (dNurseBasics == null)
+			return 0;
+
+		if (getPatientState() == null)
+			return 0;
+
+		return dNurseBasics.getServiceCharge(DataConfig.SELECT_DAY_TYEP_ALL, getPatientState());
+
+	}
+
+	public int getNewChargePerDay()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getNewNurseID());
 		if (dNurseBasics == null)
 			return 0;
 
@@ -664,9 +734,21 @@ public class DRepeatOrderFlow
 		return dNurseBasics.getServiceCharge(DataConfig.SELECT_DAY_TYEP_DAY, getPatientState());
 	}
 
-	public int getChargePerNight()
+	public int getOldChargePerDay()
 	{
-		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getSelectedNurseID());
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getOldNurseID());
+		if (dNurseBasics == null)
+			return 0;
+
+		if (getPatientState() == null)
+			return 0;
+
+		return dNurseBasics.getServiceCharge(DataConfig.SELECT_DAY_TYEP_DAY, getPatientState());
+	}
+
+	public int getNewChargePerNight()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getNewNurseID());
 		if (dNurseBasics == null)
 			return 0;
 
@@ -676,17 +758,29 @@ public class DRepeatOrderFlow
 		return dNurseBasics.getServiceCharge(DataConfig.SELECT_DAY_TYEP_NIGHT, getPatientState());
 	}
 
-	public int getTotalChargeDisplay()
+	public int getOldChargePerNight()
+	{
+		DNurseBasics dNurseBasics = DNurseList.GetInstance().getNurseBasicByID(getOldNurseID());
+		if (dNurseBasics == null)
+			return 0;
+
+		if (getPatientState() == null)
+			return 0;
+
+		return dNurseBasics.getServiceCharge(DataConfig.SELECT_DAY_TYEP_NIGHT, getPatientState());
+	}
+
+	public int getNewTotalChargeDisplay()
 	{
 		//天数：全天24小时，白天12小时，黑天12小时
-		int allNum   = getAllNum();
-		int dayNum   = getDayNum();
-		int nightNum = getNightNum();
+		int allNum   = getNewAllNum();
+		int dayNum   = getNewDayNum();
+		int nightNum = getNewNightNum();
 
 		//单价：全天24小时，白天12小时，黑天12小时
-		int chargePerAll   = getChargePerAll();
-		int chargePerDay   = getChargePerDay();
-		int chargePerNight = getChargePerNight();
+		int chargePerAll   = getNewChargePerAll();
+		int chargePerDay   = getNewChargePerDay();
+		int chargePerNight = getNewChargePerNight();
 
 		//总价格
 		int totalCharge = allNum * chargePerAll + dayNum * chargePerDay + nightNum * chargePerNight;
@@ -695,37 +789,44 @@ public class DRepeatOrderFlow
 
 	}
 
-
-	public int getOrderID()
+	public int getNewNeedPayTotalChargeDisplay()
 	{
-		synchronized (m_syncOrderID)
-		{
-			return m_orderID;
-		}
+		//天数：全天24小时，白天12小时，黑天12小时
+		int allNum   = getNewAllNum();
+		int dayNum   = getNewDayNum();
+		int nightNum = getNewNightNum();
+
+		//单价：全天24小时，白天12小时，黑天12小时
+		int chargePerAll   = getOldChargePerAll();
+		int chargePerDay   = getOldChargePerDay();
+		int chargePerNight = getOldChargePerNight();
+
+		//总价格
+		int oldDeltalTotalCharge = allNum * chargePerAll + dayNum * chargePerDay + nightNum * chargePerNight;
+		int newTotalCharge = getNewTotalChargeDisplay();
+
+		return (newTotalCharge - oldDeltalTotalCharge);
+
 	}
 
-	public void setOrderID(int orderID)
-	{
-		synchronized(m_syncOrderID)
-		{
-			m_orderID = orderID;
-		}
-	}
 
-	public String getOrderSerialNum()
+	public int getOldTotalChargeDisplay()
 	{
-		synchronized(m_syncOrderSerialNum)
-		{
-			return m_orderSerialNum;
-		}
-	}
+		//天数：全天24小时，白天12小时，黑天12小时
+		int allNum   = getOldAllNum();
+		int dayNum   = getOldDayNum();
+		int nightNum = getOldNightNum();
 
-	public void setOrderSerialNum(String orderSerialNum)
-	{
-		synchronized(m_syncOrderSerialNum)
-		{
-			m_orderSerialNum = orderSerialNum;
-		}
+		//单价：全天24小时，白天12小时，黑天12小时
+		int chargePerAll   = getOldChargePerAll();
+		int chargePerDay   = getOldChargePerDay();
+		int chargePerNight = getOldChargePerNight();
+
+		//总价格
+		int totalCharge = allNum * chargePerAll + dayNum * chargePerDay + nightNum * chargePerNight;
+
+		return totalCharge;
+
 	}
 
 	public int getTotalPrice()
@@ -744,4 +845,51 @@ public class DRepeatOrderFlow
 		}
 	}
 
+	public String getNewOrderSerialNum()
+	{
+		synchronized (m_syncNewOrderSerialNum)
+		{
+			return m_newOrderSerialNum;
+		}
+	}
+
+	public void setNewOrderSerialNum(String newOrderSerialNum)
+	{
+		synchronized (m_syncNewOrderSerialNum)
+		{
+			m_newOrderSerialNum = newOrderSerialNum;
+		}
+	}
+
+	public int getNewOrderID()
+	{
+		synchronized (m_syncTotalPrice)
+		{
+			return m_newOrderID;
+		}
+	}
+
+	public void setNewOrderID(int newOrderID)
+	{
+		synchronized (m_syncTotalPrice)
+		{
+			m_newOrderID = newOrderID;
+		}
+	}
+
+	public int getClientTotalPrice()
+	{
+		synchronized (m_syncClientTotalPrice)
+		{
+			return m_clientTotalPrice;
+		}
+	}
+
+	public void setClientTotalPrice(int clientTotalPrice)
+	{
+		synchronized (m_syncClientTotalPrice)
+		{
+			m_clientTotalPrice = clientTotalPrice;
+		}
+	}
 }

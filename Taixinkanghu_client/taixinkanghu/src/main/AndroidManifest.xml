@@ -202,8 +202,37 @@
 			android:label="NurseOrderPayInRepeatOrderActivity">
 		</activity>
 
-
-
+		<!-- 07. 更换护理员的页面-->
+		<!-- 选择护理员页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.change_nurse_flow.nurse_list_page.ui.SelectNurseActivity"
+			android:screenOrientation="portrait"
+			android:label="SelectNurseActivity">
+		</activity>
+		<!-- 护理员详细信息页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.change_nurse_flow.nurse_info_page.ui.NurseInfoActivity"
+			android:screenOrientation="portrait"
+			android:label="NurseInfoActivity">
+		</activity>
+		<!-- 评论页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.change_nurse_flow.comment_page.ui.CommentActivity"
+			android:screenOrientation="portrait"
+			android:label="CommentActivity">
+		</activity>
+		<!-- 订单确认页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.change_nurse_flow.nurse_order_confirm_page.ui.OrderConfirmActivity"
+			android:screenOrientation="portrait"
+			android:label="OrderConfirmActivity">
+		</activity>
+		<!-- 支付页面-->
+		<activity
+			android:name="com.taixinkanghu_client.work_flow.change_nurse_flow.nurse_order_pay_page.ui.NurseOrderPayInChangeNurseActivity"
+			android:screenOrientation="portrait"
+			android:label="NurseOrderPayInChangeNurseActivity">
+		</activity>
 
 		<!-- 10. personal wealth flow-->
 		<!-- 我的财富页面-->

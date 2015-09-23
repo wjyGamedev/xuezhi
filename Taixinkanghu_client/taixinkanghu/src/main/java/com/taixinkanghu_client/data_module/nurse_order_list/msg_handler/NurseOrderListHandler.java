@@ -95,14 +95,14 @@ public class NurseOrderListHandler extends BaseMsgHandler
 
 	//02. nurse order confirm in change nurse
 	//0201. 订单确认，在更换护理员的情况下
-	public void requestNurseOrderConfirmInChangeNurseAction(RequestNurseOrderConfirmInChangeNurse event)
+	public void requestNurseOrderConfirmInChangeNurseAction(RequestNurseOrderConfirmInChangeNurseEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
 	//0202. 发送nurse order confirm in change nurse消息
-	public void onEventAsync(RequestNurseOrderConfirmInChangeNurse event)
+	public void onEventAsync(RequestNurseOrderConfirmInChangeNurseEvent event)
 	{
 		HashMap<String, String> nurseOrderConfirmMap = event.getHashMap();
 

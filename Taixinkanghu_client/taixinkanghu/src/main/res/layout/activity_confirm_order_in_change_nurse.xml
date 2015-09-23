@@ -26,9 +26,15 @@
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
 
-				<include
-					android:id="@+id/order_confirm_page_header"
-					layout="@layout/include_header"/>
+				<!--<include-->
+					<!--android:id="@+id/order_confirm_page_header"-->
+					<!--layout="@layout/include_header"/>-->
+				<fragment
+					android:id="@+id/common_header_fragment"
+					android:name="com.module.widget.header.HeaderCommon"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					/>
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -784,15 +790,20 @@
 
 		</LinearLayout>
 
-		<Button
-			android:id="@+id/confirm_appointment_btn"
+		<!--<Button-->
+			<!--android:id="@+id/confirm_appointment_btn"-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="48dp"-->
+			<!--android:background="@drawable/bg_btn_main_color"-->
+			<!--android:text="@string/determine_appointment_text"-->
+			<!--android:textColor="#ffffffff"-->
+			<!--android:textSize="18.0sp"/>-->
+		<fragment
+			android:id="@+id/common_bottom_fragment"
+			android:name="com.module.widget.bottom.BottomCommon"
 			android:layout_width="match_parent"
-			android:layout_height="48dp"
-			android:background="@drawable/bg_btn_main_color"
-			android:text="@string/determine_appointment_text"
-			android:textColor="#ffffffff"
-			android:textSize="18.0sp"/>
-
+			android:layout_height="wrap_content"
+			/>
 	</LinearLayout>
 
 </FrameLayout>

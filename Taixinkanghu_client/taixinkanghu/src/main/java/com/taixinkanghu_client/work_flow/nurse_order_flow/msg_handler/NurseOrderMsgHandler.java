@@ -22,6 +22,7 @@ import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestN
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInWaitPayEvent;
 import com.taixinkanghu_client.data_module.register_account.data.DAccount;
 import com.taixinkanghu_client.net.config.NurseBasicListConfig;
+import com.taixinkanghu_client.work_flow.change_nurse_flow.nurse_list_page.ui.SelectNurseActivity;
 import com.taixinkanghu_client.work_flow.comment_nurse_order_flow.ui.CommentNurseOrderActivity;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_flow.BaseNurseOrderFlowUIMsgHandler;
@@ -137,7 +138,21 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	//0505. 更换护理员
 	public void changeNurseAction()
 	{
+		NurseOrderActivity activity = (NurseOrderActivity)m_context;
 
+		//01. 关闭当前页面
+		activity.finish();
+
+		//02. 跳转到选择护理员的页面
+		Intent intent = new Intent(activity, SelectNurseActivity.class);
+		int    nurseID = m_dNurseOrderFlow.getNurseID();
+		intent.putExtra(NurseBasicListConfig.ID, nurseID);
+		activity.startActivity(intent);
+
+		//03. 清楚数据
+		m_dNurseOrderFlow.clearupAll();
+
+		return;
 	}
 
 	//0506. 在服务状态下，取消订单

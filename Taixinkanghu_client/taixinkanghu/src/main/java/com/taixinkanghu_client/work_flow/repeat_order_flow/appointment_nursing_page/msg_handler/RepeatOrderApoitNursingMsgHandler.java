@@ -60,9 +60,9 @@ public class RepeatOrderApoitNursingMsgHandler extends BaseRepeatFlowUIMsgHandle
 	//01. 跳转到主页面
 	public void go2MainPage()
 	{
-		//01. 关闭当前页面
 		RepeatOrderApoitNursingActivity activity = (RepeatOrderApoitNursingActivity)m_context;
-		activity.finish();
+		//01. 关闭当前页面
+		//因为主页面是独占的，所以不需要显示关闭当前页面
 
 		//02. 清理流程数据
 		m_dRepeatOrderFlow.clearupAll();

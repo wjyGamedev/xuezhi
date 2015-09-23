@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="wrap_content"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:background="@color/white"
+		android:orientation="vertical">
+
+		<include layout="@layout/item_dividing_line_horizontal"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="15dp"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:orientation="horizontal">
+
+				<TextView
+					android:id="@+id/comment_name_tv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="15********6"
+					android:textSize="14sp"/>
+
+				<TextView
+					android:id="@+id/comment_date_tv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="评价时间：2015-06-24 00:42"
+					android:textSize="14sp"/>
+
+
+			</LinearLayout>
+
+
+			<include layout="@layout/item_dividing_line_horizontal_fine"/>
+
+
+			<TextView
+				android:id="@+id/comment_content_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:layout_marginTop="10dp"
+				android:text="相关评论：非常满意非常满意非常满意非常满意非常满意非常满意非常满意。"
+				android:textSize="14sp"/>
+
+
+			<include layout="@layout/item_dividing_line_horizontal_fine"/>
+
+
+			<TextView
+				android:id="@+id/orderDate"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="下订单时间：2015-16-14 10:40"
+				android:textSize="14sp"/>
+
+		</LinearLayout>
+
+		<include layout="@layout/item_dividing_line_horizontal"/>
+
+	</LinearLayout>
+
+</LinearLayout>

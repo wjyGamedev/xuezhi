@@ -20,13 +20,13 @@ import com.module.event.BaseNetEvent;
 
 import java.util.HashMap;
 
-public class RequestNurseOrderConfirmInChangeNurse extends BaseNetEvent
+public class RequestNurseOrderConfirmInChangeNurseEvent extends BaseNetEvent
 {
 	private String m_nurseID = null;
 	private String m_orderID = null;
 	private String m_beginDate = null;
 
-	public RequestNurseOrderConfirmInChangeNurse()
+	public RequestNurseOrderConfirmInChangeNurseEvent()
 	{
 		super(EventID.QUEST_NURSE_ORDER_CONFIRM_FOR_CHANGE_NURSE);
 	}
