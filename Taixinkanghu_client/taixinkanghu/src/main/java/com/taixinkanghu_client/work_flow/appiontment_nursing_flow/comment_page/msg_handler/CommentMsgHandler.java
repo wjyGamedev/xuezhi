@@ -37,5 +37,10 @@ public class CommentMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandler
 		return;
 	}
 
+	public int getSelectedNurseID()
+	{
+		return m_dAppiontmentNursingFlow.getSelectedNurseID();
+	}
+
 
 }

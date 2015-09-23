@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/select_date_widget"
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
+
+	<LinearLayout
+		android:id="@+id/header_background_ll"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:background="@color/mask"
+		android:orientation="vertical"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#ffffffff"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:text="开始时间"
+			android:textColor="@color/text_color_black"
+			android:textSize="14.0sp" />
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="@color/divider_color" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:text="结束时间"
+			android:textColor="@color/text_color_black"
+			android:textSize="14.0sp" />
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0.5dp"
+		android:background="@color/divider_color" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#ffffffff"
+		android:orientation="horizontal">
+
+		<com.module.widget.wheelview.WheelView
+			android:id="@+id/start_date_wheelview"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"
+			android:layout_weight="1.0" />
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="@color/divider_color" />
+
+		<com.module.widget.wheelview.WheelView
+			android:id="@+id/end_date_wheelview"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"
+			android:layout_weight="1.0"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0.5dp"
+		android:background="@color/divider_color"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/confirm_btn"
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_weight="1.0"
+			android:background="@drawable/bg_btn_white"
+			android:gravity="center"
+			android:text="确定"
+			android:textColor="@color/main_color"
+			android:textSize="14.0sp"/>
+
+		<View
+			android:layout_width="0.5dp"
+			android:layout_height="match_parent"
+			android:background="@color/divider_color"/>
+
+		<Button
+			android:id="@+id/cancel_btn"
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_weight="1.0"
+			android:background="@drawable/bg_btn_white"
+			android:gravity="center"
+			android:text="取消"
+			android:textColor="@color/main_color"
+			android:textSize="14.0sp"/>
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/divider_color"/>
+
+	<LinearLayout
+		android:id="@+id/bottom_background_ll"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:background="@color/mask"
+		android:orientation="vertical"/>
+
+</LinearLayout>

@@ -18,6 +18,7 @@ import android.content.Intent;
 
 import com.module.widget.dialog.TipsDialog;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseList;
+import com.taixinkanghu_client.data_module.nurse_list.msg_handler.AnswerNurseBasicListEvent;
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.NurseListHandler;
 import com.taixinkanghu_client.data_module.nurse_list.msg_handler.RequestNurseBasicListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.BaseAppiontmentNursingFlowUIMsgHandler;
@@ -86,6 +87,14 @@ public class SelectNurseMsgHandler extends BaseAppiontmentNursingFlowUIMsgHandle
 
 		//02. 清楚流程信息
 		m_dAppiontmentNursingFlow.clearupAll();
+		return;
+	}
+
+	//04. 同步nurse basic list 到UI
+	public void onEventMainThread(AnswerNurseBasicListEvent event)
+	{
+		SelectNurseActivity activity = (SelectNurseActivity)m_context;
+		activity.updateContent();
 		return;
 	}
 }

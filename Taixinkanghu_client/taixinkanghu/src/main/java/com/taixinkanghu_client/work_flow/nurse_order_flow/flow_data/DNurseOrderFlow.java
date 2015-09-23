@@ -51,6 +51,17 @@ public class DNurseOrderFlow
 		{
 			m_selectedNurseOrderID = DataConfig.DEFAULT_VALUE;
 		}
+
+		synchronized (m_syncPayMorePrice)
+		{
+			m_payMorePrice = DataConfig.DEFAULT_VALUE;
+		}
+
+		synchronized (m_syncPayMoreOrderID)
+		{
+			m_payMoreOrderID = DataConfig.DEFAULT_VALUE;
+		}
+
 	}
 
 	/**

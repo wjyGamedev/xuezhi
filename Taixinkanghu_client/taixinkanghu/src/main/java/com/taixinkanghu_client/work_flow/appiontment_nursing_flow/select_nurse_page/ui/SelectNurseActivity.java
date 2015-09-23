@@ -30,7 +30,6 @@ import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasics;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasicsList;
 import com.taixinkanghu_client.data_module.nurse_list.data.DNurseContainer;
-import com.taixinkanghu_client.data_module.nurse_list.msg_handler.AnswerNurseBasicListEvent;
 import com.taixinkanghu_client.work_flow.appiontment_nursing_flow.select_nurse_page.msg_handler.SelectNurseMsgHandler;
 
 import java.util.ArrayList;
@@ -121,7 +120,7 @@ public class SelectNurseActivity extends BaseActivity
 				m_selectNurseMsgHandler.requestNurseBasicList();
 
 				//03. 开启等待对话框
-				initWaitAction();
+				//initWaitAction();
 				return;
 			}
 
@@ -158,7 +157,7 @@ public class SelectNurseActivity extends BaseActivity
 		m_waitTimerTask.schedule(DELAY_TIME_MILLISENCENDS);
 	}
 
-	private void updateContent()
+	public void updateContent()
 	{
 		//01. 关闭wait dialog
 		m_waitProgressDialog.dismiss();
@@ -183,17 +182,5 @@ public class SelectNurseActivity extends BaseActivity
 		return;
 
 	}
-
-
-
-
-	/**
-	 * EventBus  handler
-	 */
-	public void onEventMainThread(AnswerNurseBasicListEvent event)
-	{
-		updateContent();
-	}
-
 
 }
