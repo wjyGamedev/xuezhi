@@ -22,8 +22,8 @@
 		android:id="@+id/rg_dingdan"
 		android:layout_width="match_parent"
 		android:layout_height="55dp"
-		android:layout_marginTop="10dp"
 		android:layout_alignParentBottom="true"
+		android:layout_marginTop="10dp"
 		android:background="#fff"
 		android:orientation="horizontal">
 
@@ -33,13 +33,13 @@
 			android:background="#40000000"/>
 
 		<RadioButton
+			android:id="@+id/very_good_rbtn"
 			style="@style/home_radio_button_style"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="非常满意"
-			android:id="@+id/very_good_rbtn"/>
+			android:text="非常满意"/>
 
 		<View
 			android:layout_width="0.5dp"
@@ -47,13 +47,13 @@
 			android:background="#40000000"/>
 
 		<RadioButton
+			android:id="@+id/good_rbtn"
 			style="@style/home_radio_button_style"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="满意"
-			android:id="@+id/good_rbtn"/>
+			android:text="满意"/>
 
 		<View
 			android:layout_width="0.5dp"
@@ -61,13 +61,13 @@
 			android:background="#40000000"/>
 
 		<RadioButton
+			android:id="@+id/normal_rbtn"
 			style="@style/home_radio_button_style"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:background="@drawable/bg_top_tab"
-			android:text="一般"
-			android:id="@+id/normal_rbtn"/>
+			android:text="一般"/>
 
 		<View
 			android:layout_width="0.5dp"
@@ -75,26 +75,26 @@
 			android:background="#40000000"/>
 
 	</RadioGroup>
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1">
 
-		<ListView
-		android:layout_weight="1"
+	<!--<ScrollView-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="match_parent"-->
+	<!--android:layout_weight="1">-->
+
+	<ListView
 		android:id="@+id/comment_item_lv"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:layout_weight="1"
 		android:background="@color/white"
+		android:choiceMode="singleChoice"
 		android:divider="@color/divider_color"
 		android:dividerHeight="0.5dp"
 		android:listSelector="@drawable/bg_btn_translucent"
-		android:scrollbars="none"
-		android:choiceMode="singleChoice">
+		android:scrollbars="none">
+	</ListView>
 
-		</ListView>
-
-	</ScrollView>
+	<!--</ScrollView>-->
 
 	<!--<include layout="@layout/include_main_button"/>-->
 	<fragment

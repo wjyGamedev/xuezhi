@@ -33,7 +33,7 @@
 
 	<style name="home_radio_button_style">
 		<item name="android:textSize">12.0sp</item>
-		<item name="android:textColor">@color/date_select_green</item>
+		<item name="android:textColor">@color/main_color</item>
 		<item name="android:gravity">center</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:background">@null</item>
