@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--user_information_page-->
+	<string name="user_information_page_title_text">用户须知</string>
+	<string name="user_information_content_text">用户须知内容</string>
+	<string name="go_back_home_btn_text">首页</string>
+
+</resources>

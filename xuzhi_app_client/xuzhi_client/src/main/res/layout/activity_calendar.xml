@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:visibility="visible">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<fragment
+			android:id="@+id/common_header_fragment"
+			android:name="com.module.widget.header.HeaderCommon"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical">
+
+				<calendar.calendar.MaterialCalendarView
+					android:id="@+id/calendar_view"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"/>
+
+				<include
+					layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="50dp"
+					android:layout_marginRight="15dp"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal"
+					android:visibility="gone">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="1"
+						android:textSize="20sp"
+						android:text="图例说明："/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:layout_marginRight="5dp"
+						android:src="@mipmap/ic_launcher"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="1"
+						android:textSize="20sp"
+						android:text="选中"/>
+
+				</LinearLayout>
+
+				<include
+					layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:layout_marginBottom="10dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dp"
+						android:gravity="center"
+						android:textSize="20sp"
+						android:text="@string/medication_details_title_text"/>
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:gravity="center"
+						android:textSize="20sp"
+						android:text="@string/medication_details_temp_date_text"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:layout_marginRight="5dp"
+						android:textSize="20sp"
+						android:text="@string/click_view_hint_text"/>
+
+					<ImageView
+						android:layout_width="16dp"
+						android:layout_height="16dp"
+						android:layout_gravity="center_vertical"
+						android:background="@drawable/img_right"/>
+
+				</LinearLayout>
+
+				<include
+					layout="@layout/item_dividing_line_horizontal"/>
+
+			</LinearLayout>
+		</ScrollView>
+
+		<fragment
+			android:id="@+id/common_bottom_fragment"
+			android:name="com.module.widget.bottom.BottomCommon"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+	</LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:background="@color/white"
+			android:orientation="vertical">
+
+			<include layout="@layout/item_dividing_line_horizontal"/>
+
+			<!--<ListView-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content">-->
+			<!-- -->
+			<!-- -->
+			<!--</ListView>-->
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+			<include layout="@layout/item_laboratory_history_info"/>
+
+		</LinearLayout>
+
+
+	</ScrollView>
+
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>

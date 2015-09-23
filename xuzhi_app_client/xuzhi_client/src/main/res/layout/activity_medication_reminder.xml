@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:background="@color/white">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+
+					<include layout="@layout/item_medication_reminder"/>
+
+				</LinearLayout>
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="30dp"
+					android:layout_gravity="center"
+					android:layout_marginRight="5dp"
+					android:background="@drawable/img_right"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:background="@color/white">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+
+					<include layout="@layout/item_medication_reminder"/>
+
+				</LinearLayout>
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="30dp"
+					android:layout_gravity="center"
+					android:layout_marginRight="5dp"
+					android:background="@drawable/img_right"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:background="@color/white">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+
+					<include layout="@layout/item_medication_reminder"/>
+
+				</LinearLayout>
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="30dp"
+					android:layout_gravity="center"
+					android:layout_marginRight="5dp"
+					android:background="@drawable/img_right"/>
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+	</ScrollView>
+
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>

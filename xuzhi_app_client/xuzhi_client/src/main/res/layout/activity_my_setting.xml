@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/main_bg_color"
+			  android:orientation="vertical">
+
+	<fragment
+		android:id="@+id/common_header_fragment"
+		android:name="com.module.widget.header.HeaderCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:background="@color/white"
+				android:orientation="vertical">
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:text="150******56"
+						android:textSize="18sp"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_marginRight="30dp"
+						android:text="退出登录"
+						android:textSize="18sp"/>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:background="@color/white"
+				android:orientation="vertical">
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:text="风险评估："
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:layout_gravity="center"
+						android:background="@drawable/img_right"/>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:background="@color/white"
+				android:orientation="vertical">
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:text="用户须知："
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:layout_gravity="center"
+						android:background="@drawable/img_right"/>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+	<fragment
+		android:id="@+id/common_bottom_fragment"
+		android:name="com.module.widget.bottom.BottomCommon"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>

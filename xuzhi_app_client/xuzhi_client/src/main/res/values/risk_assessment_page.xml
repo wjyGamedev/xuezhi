@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--risk_assessment_page-->
+	<string name="risk_assessment_page_title_text">风险评估</string>
+	<string name="name_title_text">姓名：</string>
+	<string name="gender_title_text">性别：</string>
+	<string name="age_title_text">年龄：</string>
+	<string name="weight_title_text">体重（公斤）：</string>
+	<string name="disease_A_title_text">疾病A：</string>
+	<string name="disease_B_title_text">疾病B：</string>
+	<string name="disease_C_title_text">疾病C：</string>
+	<string name="disease_D_title_text">疾病D：</string>
+	<string name="click_fill_hint_text">点击填写</string>
+	<string name="click_select_hint_text">点击选择</string>
+	<string name="risk_assessment_bottom_btn_text">保存</string>
+
+</resources>

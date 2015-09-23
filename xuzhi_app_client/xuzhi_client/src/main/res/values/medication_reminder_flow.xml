@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--medication_reminder_page-->
+	<string name="medication_reminder_page_title_text">用药提醒</string>
+	<string name="medication_reminder_add_btn_text">增加</string>
+	<string name="medication_reminder_del_btn_text">删除</string>
+	<string name="medication_reminder_drug_name_title_text">用药名称：</string>
+	<string name="medication_reminder_drug_dosage_title_text">用药剂量：</string>
+	<string name="medication_reminder_drug_time_title_text">用药时间：</string>
+	<string name="medication_reminder_alert_state_title_text">提醒状态：</string>
+	<string name="medication_reminder_alert_state_open_text">开启</string>
+	<string name="medication_reminder_alert_state_close_text">关闭</string>
+	<string name="medication_reminder_temp_data_text">临时数据</string>
+
+	<!--medication_reminder_setting_page-->
+	<string name="medication_reminder_setting_page_title_text">用药提醒设置</string>
+	<string name="medication_reminder_setting_open_btn_text">开启</string>
+	<string name="medication_reminder_save_btn_text">保存</string>
+	<string name="medication_reminder_setting_add_btn_text">添加药品</string>
+	<string name="medication_reminder_setting_del_btn_text">删除药品</string>
+	<string name="medication_reminder_setting_alert_state_title_text">提醒状态：</string>
+	<string name="medication_reminder_alert_time_title_text">提醒时间：</string>
+	<string name="medication_reminder_click_select_hint_text">点击选择</string>
+	<string name="medication_reminder_setting_drug_name_title_text">药品名称：</string>
+	<string name="medication_reminder_setting_drug_dosage_title_text">药品剂量：</string>
+	<string name="medication_reminder_drug_times_title_text">药品次数：</string>
+	<string name="medication_reminder_note_title_text">注意事项：</string>
+
+</resources>
