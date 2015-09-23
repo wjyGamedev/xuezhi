@@ -17,10 +17,10 @@ package com.xuezhi_client.data_module.nurse_order_list.data;
 import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.config.EnumConfig;
-import com.taixinkanghu_client.net.config.NurseOrderConfig;
-import com.taixinkanghu_client.net.config.ProtocalConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
+import com.xuezhi_client.config.EnumConfig;
+import com.xuezhi_client.net.config.config.NurseOrderConfig;
+import com.xuezhi_client.net.config.config.ProtocalConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;

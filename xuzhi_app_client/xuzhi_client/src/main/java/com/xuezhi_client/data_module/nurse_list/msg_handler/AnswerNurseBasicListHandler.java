@@ -17,7 +17,7 @@ package com.xuezhi_client.data_module.nurse_list.msg_handler;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.net.IResponseListener;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.data_module.nurse_list.data.DNurseContainer;
+import com.xuezhi_client.data_module.nurse_list.data.DNurseContainer;
 
 import org.json.JSONException;
 import org.json.JSONObject;

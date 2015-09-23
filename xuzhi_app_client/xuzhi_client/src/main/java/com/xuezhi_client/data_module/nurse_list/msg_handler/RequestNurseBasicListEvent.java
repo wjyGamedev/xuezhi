@@ -19,8 +19,8 @@ import android.text.TextUtils;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
-import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.net.config.NurseBasicListConfig;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.net.config.config.NurseBasicListConfig;
 
 import java.util.HashMap;
 

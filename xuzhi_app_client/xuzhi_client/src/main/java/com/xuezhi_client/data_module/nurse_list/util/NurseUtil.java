@@ -15,7 +15,7 @@
 package com.xuezhi_client.data_module.nurse_list.util;
 
 import com.module.data.DGlobal;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class NurseUtil
 {

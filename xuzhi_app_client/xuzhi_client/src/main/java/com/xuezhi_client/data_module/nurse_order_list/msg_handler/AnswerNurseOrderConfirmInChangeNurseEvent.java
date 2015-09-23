@@ -16,7 +16,7 @@ package com.xuezhi_client.data_module.nurse_order_list.msg_handler;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
-import com.taixinkanghu_client.config.DataConfig;
+import com.xuezhi_client.config.DataConfig;
 
 public class AnswerNurseOrderConfirmInChangeNurseEvent extends BaseNetEvent
 {

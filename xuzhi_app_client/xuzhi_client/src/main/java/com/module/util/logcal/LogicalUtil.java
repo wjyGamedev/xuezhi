@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -15,17 +15,19 @@
 package com.module.util.logcal;
 
 
-import com.taixinkanghu_client.net.config.ProtocalConfig;
+import com.xuezhi_client.net.config.config.ProtocalConfig;
 
 import java.util.Date;
 
 public class LogicalUtil
 {
 	private final static int LENGTH_PHONE_NUM = 11;
+
 	/**
 	 * 验证手机格式
 	 */
-	public static boolean isMobileNumValid(String mobiles) {
+	public static boolean isMobileNumValid(String mobiles)
+	{
 		String tmpPhoneNum = mobiles.trim();
 		/*
 		移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
@@ -52,10 +54,10 @@ public class LogicalUtil
 			return 0;
 
 		long beginTime = begin.getTime();
-		long endTime = end.getTime();
-		long days = Math.abs((long)(endTime - beginTime) / (24 * 60 * 60 * 1000));
-//		return (int)days;
-		return (int)(days+1);
+		long endTime   = end.getTime();
+		long days      = Math.abs((long)(endTime - beginTime) / (24 * 60 * 60 * 1000));
+		//		return (int)days;
+		return (int)(days + 1);
 	}
 
 	public static boolean IsHttpSuccess(int httpStatus)

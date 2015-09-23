@@ -14,7 +14,7 @@
 
 package com.xuezhi_client.data_module.department_list.data;
 
-import com.taixinkanghu_client.net.config.DepartmentListConfig;
+import com.xuezhi_client.net.config.config.DepartmentListConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;

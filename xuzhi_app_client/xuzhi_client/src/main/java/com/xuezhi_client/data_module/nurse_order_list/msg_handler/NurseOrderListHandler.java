@@ -20,8 +20,8 @@ import com.alipay.sdk.app.PayTask;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
 import com.module.net.BaseMsgHandler;
-import com.taixinkanghu_client.data_module.register_account.data.DAccount;
-import com.taixinkanghu_client.net.config.NetConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.net.config.config.NetConfig;
 
 import java.util.HashMap;
 

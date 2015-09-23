@@ -19,7 +19,7 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
 import com.module.net.BaseMsgHandler;
-import com.taixinkanghu_client.net.config.NetConfig;
+import com.xuezhi_client.net.config.config.NetConfig;
 import com.third.part.sms.SmsAutho;
 import com.third.part.sms.SmsConfig;
 

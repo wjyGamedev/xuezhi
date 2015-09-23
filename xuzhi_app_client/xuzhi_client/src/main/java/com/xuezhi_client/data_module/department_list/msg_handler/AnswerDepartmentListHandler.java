@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -18,7 +18,7 @@ package com.xuezhi_client.data_module.department_list.msg_handler;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.net.IResponseListener;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.data_module.department_list.data.DDepartmentList;
+import com.xuezhi_client.data_module.department_list.data.DDepartmentList;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -15,13 +15,13 @@
 package com.xuezhi_client.data_module.nurse_order_list.data;
 
 
-import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.config.DateConfig;
-import com.taixinkanghu_client.config.EnumConfig;
-import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasics;
-import com.taixinkanghu_client.data_module.nurse_list.data.DNurseSenior;
-import com.taixinkanghu_client.data_module.nurse_list.data.DScheduleList;
-import com.taixinkanghu_client.net.config.NurseOrderConfig;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.config.EnumConfig;
+import com.xuezhi_client.data_module.nurse_list.data.DNurseBasics;
+import com.xuezhi_client.data_module.nurse_list.data.DNurseSenior;
+import com.xuezhi_client.data_module.nurse_list.data.DScheduleList;
+import com.xuezhi_client.net.config.config.NurseOrderConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;

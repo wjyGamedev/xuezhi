@@ -18,10 +18,10 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequestForm;
 import com.module.net.BaseMsgHandler;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.data_module.nurse_list.data.DNurseBasics;
-import com.taixinkanghu_client.data_module.nurse_list.data.DNurseList;
-import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerCommentNurseOrderEvent;
-import com.taixinkanghu_client.net.config.NetConfig;
+import com.xuezhi_client.data_module.nurse_list.data.DNurseBasics;
+import com.xuezhi_client.data_module.nurse_list.data.DNurseList;
+import com.xuezhi_client.data_module.nurse_order_list.msg_handler.AnswerCommentNurseOrderEvent;
+import com.xuezhi_client.net.config.config.NetConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;

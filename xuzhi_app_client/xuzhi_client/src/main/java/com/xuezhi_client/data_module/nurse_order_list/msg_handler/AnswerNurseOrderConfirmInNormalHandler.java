@@ -18,9 +18,9 @@ import com.module.data.DGlobal;
 import com.module.net.IResponseListener;
 import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.net.config.NurseOrderConfig;
-import com.taixinkanghu_client.net.config.ProtocalConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
+import com.xuezhi_client.net.config.config.NurseOrderConfig;
+import com.xuezhi_client.net.config.config.ProtocalConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;

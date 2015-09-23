@@ -19,7 +19,7 @@ import android.text.TextUtils;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
-import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
+import com.xuezhi_client.net.config.config.NurseSeniorListConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -17,7 +17,7 @@ package com.xuezhi_client.data_module.hospital_list.msg_handler;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.module.net.BaseMsgHandler;
-import com.taixinkanghu_client.net.config.NetConfig;
+import com.xuezhi_client.net.config.config.NetConfig;
 
 public class HospitalMsgHandler extends BaseMsgHandler
 {

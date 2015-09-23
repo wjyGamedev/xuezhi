@@ -15,7 +15,7 @@
 package com.xuezhi_client.data_module.hospital_list.data;
 
 
-import com.taixinkanghu_client.net.config.HospitalListConfig;
+import com.xuezhi_client.net.config.config.HospitalListConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;

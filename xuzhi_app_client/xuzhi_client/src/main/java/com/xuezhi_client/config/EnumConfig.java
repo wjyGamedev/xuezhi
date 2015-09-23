@@ -17,7 +17,7 @@ package com.xuezhi_client.config;
 import android.text.TextUtils;
 
 import com.module.data.DGlobal;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class EnumConfig
 {

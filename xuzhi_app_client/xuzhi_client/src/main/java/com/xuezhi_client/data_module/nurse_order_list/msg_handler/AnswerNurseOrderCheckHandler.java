@@ -17,9 +17,9 @@ package com.xuezhi_client.data_module.nurse_order_list.msg_handler;
 import com.module.net.IResponseListener;
 import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.net.config.NurseOrderConfig;
-import com.taixinkanghu_client.net.config.ProtocalConfig;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.net.config.config.NurseOrderConfig;
+import com.xuezhi_client.net.config.config.ProtocalConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;

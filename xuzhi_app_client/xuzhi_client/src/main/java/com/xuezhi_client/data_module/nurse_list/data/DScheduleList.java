@@ -16,9 +16,9 @@ package com.xuezhi_client.data_module.nurse_list.data;
 
 import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.config.DateConfig;
-import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
+import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.net.config.config.NurseSeniorListConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;

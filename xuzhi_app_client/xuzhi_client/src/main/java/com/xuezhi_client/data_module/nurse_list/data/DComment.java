@@ -14,10 +14,10 @@
 
 package com.xuezhi_client.data_module.nurse_list.data;
 
-import com.taixinkanghu_client.config.DataConfig;
-import com.taixinkanghu_client.config.DateConfig;
-import com.taixinkanghu_client.config.EnumConfig;
-import com.taixinkanghu_client.net.config.NurseSeniorListConfig;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.config.EnumConfig;
+import com.xuezhi_client.net.config.config.NurseSeniorListConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
