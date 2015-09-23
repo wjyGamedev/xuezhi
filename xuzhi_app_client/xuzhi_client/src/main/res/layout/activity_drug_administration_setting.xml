@@ -45,7 +45,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:text="提醒状态："
-						android:textSize="16sp"/>
+						android:textSize="20sp"/>
 
 					<Button
 						android:layout_width="80dp"
@@ -55,7 +55,7 @@
 						android:background="@drawable/corners_bg"
 						android:text="开启"
 						android:textColor="@color/white"
-						android:textSize="16sp"/>
+						android:textSize="20sp"/>
 
 				</LinearLayout>
 
@@ -78,6 +78,12 @@
 				android:layout_height="20dp">
 
 			</LinearLayout>
+
+			<fragment
+				android:id="@+id/add_del_drug_btn_fragment"
+				android:name="com.module.widget.bottom.BottomCommon"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
 
 		</LinearLayout>
 	</ScrollView>

@@ -21,7 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.module.exception.RuntimeExceptions.WidgetRTException;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class TabItem
 {

@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${对应于include_header.xml}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -19,10 +19,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,8 +31,9 @@ import butterknife.OnClick;
 
 public class HeaderCommon extends Fragment
 {
-	@Bind (R.id.title_tv)  TextView    m_headerTV = null;    //title
-	@Bind (R.id.back_ibtn) ImageButton m_backIBtn = null;    //back btn
+	@Bind (R.id.title_tv)  TextView    m_headerTV  = null;    //title
+	@Bind (R.id.back_ibtn) ImageButton m_backIBtn  = null;    //back btn
+	@Bind (R.id.right_btn) Button      m_rightBtn = null;    //right btn
 
 	private View m_view = null;
 
@@ -74,4 +76,10 @@ public class HeaderCommon extends Fragment
 	{
 		return m_backIBtn;
 	}
+
+	public Button getRightButton()
+	{
+		return m_rightBtn;
+	}
+
 }

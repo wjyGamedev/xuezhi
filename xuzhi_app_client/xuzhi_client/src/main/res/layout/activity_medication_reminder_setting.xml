@@ -125,6 +125,12 @@
 
 			</LinearLayout>
 
+			<fragment
+				android:id="@+id/add_del_medication_btn_fragment"
+				android:name="com.module.widget.bottom.BottomCommon"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+
 		</LinearLayout>
 	</ScrollView>
 

@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class CircleImageView extends ImageView {
 

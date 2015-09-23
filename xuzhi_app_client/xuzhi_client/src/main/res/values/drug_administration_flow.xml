@@ -2,30 +2,34 @@
 <resources>
 
 	<!--drug_administration_page-->
-
-
-
-
-
-
-
-
-
-
+	<string name="drug_administration_page_title_text">药品管理</string>
+	<string name="drug_administration_add_btn_text">添加</string>
+	<string name="drug_administration_del_btn_text">删除</string>
+	<string name="drug_administration_drug_name_title_text">药品名称：</string>
+	<string name="drug_administration_temp_data_text">临时数据</string>
+	<string name="drug_administration_alert_state_title_text">提醒状态：</string>
+	<string name="drug_administration_alert_state_open_text">开启</string>
+	<string name="drug_administration_alert_state_close_text">关闭</string>
+	<string name="drug_administration_drug_stock_title_text">当前药品存量：</string>
+	<string name="drug_administration_drug_alert_title_text">药品警报存量</string>
+	<string name="drug_administration_add_time_text">添加时间：</string>
+	<string name="drug_administration_exhausted_time_text">预计药品用尽时间：</string>
 
 	<!--drug_administration_setting_page-->
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<string name="drug_administration_setting_page_title_text">药品管理设置</string>
+	<string name="drug_administration_setting_add_btn_text">添加药品</string>
+	<string name="drug_administration_setting_del_btn_text">删除药品</string>
+	<string name="drug_administration_setting_save_btn_text">保存</string>
+	<string name="drug_administration_setting_drug_name_title_text">药品名称：</string>
+	<string name="drug_administration_setting_temp_data_text">临时数据</string>
+	<string name="drug_administration_setting_alert_state_title_text">提醒状态：</string>
+	<string name="drug_administration_setting_alert_state_open_text">开启</string>
+	<string name="drug_administration_setting_alert_state_close_text">关闭</string>
+	<string name="drug_administration_setting_drug_stock_title_text">当前药品存量：</string>
+	<string name="drug_administration_setting_drug_alert_title_text">药品警报存量：</string>
+	<string name="drug_administration_setting_add_time_text">添加药品时间：</string>
+	<string name="drug_administration_setting_exhausted_time_text">预计药品用尽时间：</string>
+	<string name="drug_administration_setting_click_fill_hint_text">点击填写</string>
+	<string name="drug_administration_setting_click_select_hint_text">点击选择</string>
 
 </resources>

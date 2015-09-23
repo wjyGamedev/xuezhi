@@ -41,7 +41,7 @@
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
-						android:text="用药日期："
+						android:text="@string/medication_details_date_title_text"
 						android:textSize="20sp"/>
 
 					<TextView
@@ -49,7 +49,7 @@
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
-						android:text="2015年7月17日"
+						android:text="@string/medication_details_temp_data_text"
 						android:textSize="20sp"/>
 
 				</LinearLayout>

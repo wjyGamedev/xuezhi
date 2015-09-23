@@ -13,15 +13,18 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		super(activity);
 	}
 
-	public void addMedication_reminder()
+	public void saveDrugAdministrationSettingInfo()
 	{
-
 		return;
 	}
 
-	public void delMedication_reminder()
+	public void addDrug()
 	{
+		return;
+	}
 
+	public void delDrug()
+	{
 		return;
 	}
 }

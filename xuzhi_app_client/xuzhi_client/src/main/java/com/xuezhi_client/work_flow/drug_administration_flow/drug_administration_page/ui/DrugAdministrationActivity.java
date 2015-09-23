@@ -29,7 +29,7 @@ public class DrugAdministrationActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_medication_reminder);
+		setContentView(R.layout.activity_drug_administration);
 		ButterKnife.bind(this);
 
 		init();
@@ -41,14 +41,14 @@ public class DrugAdministrationActivity extends Activity
 	private void init()
 	{
 		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
-		m_headerCommon.setTitle(R.string.medication_reminder_page_title_text);
+		m_headerCommon.setTitle(R.string.drug_administration_page_title_text);
 
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
 		m_bottomCommon.setBtnNum(2);
-		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_add_btn_text);
+		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_add_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickAddBottomBtn);
-		m_bottomCommon.getCommonBottomBtn2().setText(R.string.medication_reminder_del_btn_text);
+		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
 		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
 	}
 

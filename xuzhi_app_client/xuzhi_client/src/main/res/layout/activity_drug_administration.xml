@@ -26,34 +26,7 @@
 				android:layout_height="wrap_content"
 				android:background="@color/white">
 
-				<include layout="@layout/item_drug_administration"/>
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@color/white">
-
-				<include layout="@layout/item_drug_administration"/>
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@color/white">
-
-				<include layout="@layout/item_drug_administration"/>
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@color/white">
-
-				<include layout="@layout/item_drug_administration"/>
+				<include layout="@layout/item_medication_details_label"/>
 
 			</LinearLayout>
 

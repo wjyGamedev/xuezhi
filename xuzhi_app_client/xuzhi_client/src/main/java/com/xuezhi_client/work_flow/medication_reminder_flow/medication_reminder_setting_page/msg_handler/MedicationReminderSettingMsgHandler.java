@@ -18,4 +18,14 @@ public class MedicationReminderSettingMsgHandler extends BaseUIMsgHandler
 
 		return;
 	}
+	public void addMedication()
+	{
+
+		return;
+	}
+	public void delMedication()
+	{
+
+		return;
+	}
 }

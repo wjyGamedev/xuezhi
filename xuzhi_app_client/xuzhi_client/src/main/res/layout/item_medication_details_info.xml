@@ -20,13 +20,13 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="用药名称："
+				android:text="@string/medication_details_drug_name_title_text"
 				android:textSize="16sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="奥咪拉唑"
+				android:text="@string/medication_details_temp_data_text"
 				android:textSize="16sp"/>
 
 		</LinearLayout>
@@ -40,13 +40,13 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="用药剂量："
+				android:text="@string/medication_details_drug_dosage_title_text"
 				android:textSize="16sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="10mg"
+				android:text="@string/medication_details_temp_data_text"
 				android:textSize="16sp"/>
 
 		</LinearLayout>

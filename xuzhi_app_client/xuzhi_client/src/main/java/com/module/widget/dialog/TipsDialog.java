@@ -19,7 +19,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import com.module.data.DGlobal;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class TipsDialog
 {

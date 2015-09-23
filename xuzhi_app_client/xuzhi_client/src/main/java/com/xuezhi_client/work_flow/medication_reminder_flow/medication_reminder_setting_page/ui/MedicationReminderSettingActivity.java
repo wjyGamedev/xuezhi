@@ -20,10 +20,13 @@ public class MedicationReminderSettingActivity extends Activity
 	//widget
 	private HeaderCommon m_headerCommon = null;
 	private BottomCommon m_bottomCommon = null;
+	private BottomCommon m_addDelBtn    = null;
 
 	//logical
 	private MedicationReminderSettingMsgHandler m_medicationReminderSettingMsgHandler = new MedicationReminderSettingMsgHandler(this);
 	private ClickBottomBtn                      m_clickBottomBtn                      = new ClickBottomBtn();
+	private ClickAddBtn                         m_clickAddBtn                         = new ClickAddBtn();
+	private ClickDelBtn                         m_clickDelBtn                         = new ClickDelBtn();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -46,6 +49,13 @@ public class MedicationReminderSettingActivity extends Activity
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
+
+		m_addDelBtn = (BottomCommon)getFragmentManager().findFragmentById(R.id.add_del_medication_btn_fragment);
+		m_addDelBtn.setBtnNum(2);
+		m_addDelBtn.getCommonBottomBtn().setText(R.string.medication_reminder_setting_add_btn_text);
+		m_addDelBtn.getCommonBottomBtn().setOnClickListener(m_clickAddBtn);
+		m_addDelBtn.getCommonBottomBtn2().setText(R.string.medication_reminder_setting_del_btn_text);
+		m_addDelBtn.getCommonBottomBtn2().setOnClickListener(m_clickDelBtn);
 	}
 
 	/**
@@ -57,6 +67,24 @@ public class MedicationReminderSettingActivity extends Activity
 		public void onClick(View v)
 		{
 			m_medicationReminderSettingMsgHandler.saveMedicationReminderInfo();
+		}
+	}
+
+	class ClickAddBtn implements View.OnClickListener
+	{
+		@Override
+		public void onClick(View v)
+		{
+			m_medicationReminderSettingMsgHandler.addMedication();
+		}
+	}
+
+	class ClickDelBtn implements View.OnClickListener
+	{
+		@Override
+		public void onClick(View v)
+		{
+			m_medicationReminderSettingMsgHandler.delMedication();
 		}
 	}
 

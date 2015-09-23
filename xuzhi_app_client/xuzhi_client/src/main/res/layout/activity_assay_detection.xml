@@ -42,7 +42,7 @@
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
-						android:text="化验时间："
+						android:text="@string/assay_detection_test_time_title_text"
 						android:textSize="20sp"/>
 
 					<TextView
@@ -52,7 +52,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:gravity="right"
-						android:text="2015-07-17"
+						android:text="@string/assay_detection_temp_data_btn_text"
 						android:textSize="20sp"/>
 
 					<TextView
@@ -61,7 +61,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginLeft="10dp"
 						android:layout_marginTop="10dp"
-						android:text="23:20"
+						android:text="@string/assay_detection_temp_data_btn_text"
 						android:textSize="20sp"/>
 
 				</LinearLayout>
@@ -89,10 +89,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="甘油三酯（TG）"/>
+						android:text="@string/assay_detection_tg_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -110,10 +110,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="总胆固醇（TCHO）"/>
+						android:text="@string/assay_detection_tcho_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -131,10 +131,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="低密度脂蛋白胆固醇（LOL-C）"/>
+						android:text="@string/assay_detection_lol_c_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -145,6 +145,7 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
 					android:layout_marginLeft="20dp"
 					android:layout_marginRight="20dp"
 					android:orientation="horizontal">
@@ -152,10 +153,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="高密度脂蛋白胆固醇（HDL-C）"/>
+						android:text="@string/assay_detection_hdl_c_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -184,10 +185,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="谷丙转氨酶（ATL）"/>
+						android:text="@string/assay_detection_atl_title_text"
+						android:textSize="20sp"/>
 
 					<TextView
 						android:layout_width="match_parent"
@@ -210,10 +211,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="谷草转氨酶（AST）"/>
+						android:text="@string/assay_detection_ast_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -231,10 +232,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="肌酸激酶（CK）"/>
+						android:text="@string/assay_detection_ck_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -252,10 +253,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="空腹血糖（GLU）"/>
+						android:text="@string/assay_detection_glu_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -273,10 +274,10 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="糖化血红蛋白（HbA1c）"/>
+						android:text="@string/assay_detection_hba1c_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -289,15 +290,16 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="20dp"
 					android:layout_marginRight="20dp"
+					android:layout_marginBottom="10dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textSize="20sp"
 						android:layout_marginTop="15dp"
 						android:gravity="center"
-						android:text="肌酐（SCr）"/>
+						android:text="@string/assay_detection_scr_title_text"
+						android:textSize="20sp"/>
 
 					<EditText
 						android:layout_width="match_parent"
@@ -306,7 +308,6 @@
 				</LinearLayout>
 
 				<include layout="@layout/item_dividing_line_horizontal"/>
-
 
 			</LinearLayout>
 
