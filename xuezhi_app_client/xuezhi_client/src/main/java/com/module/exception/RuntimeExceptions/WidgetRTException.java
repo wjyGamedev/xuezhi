@@ -15,23 +15,23 @@
 package com.module.exception.RuntimeExceptions;
 
 
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class WidgetRTException extends BaseRunTimeException
 {
 	public WidgetRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_WIDGET, cause);
+		super(ExceptionCode.REX_WIDGET, cause);
 	}
 
 	public WidgetRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_WIDGET, message);
+		super(ExceptionCode.REX_WIDGET, message);
 	}
 
 	public WidgetRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_WIDGET, message, cause);
+		super(ExceptionCode.REX_WIDGET, message, cause);
 	}
 }
 

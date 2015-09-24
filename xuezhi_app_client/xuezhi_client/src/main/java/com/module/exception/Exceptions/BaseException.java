@@ -15,12 +15,12 @@
 package com.module.exception.Exceptions;
 
 
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class BaseException
 		extends Exception
 {
-	private Integer m_iErrorCode = TxkhExceptionCode.EX_BEGIN;
+	private Integer m_iErrorCode = ExceptionCode.EX_BEGIN;
 
 	public BaseException(Integer errorCode, Throwable cause)
 	{
@@ -29,7 +29,7 @@ public class BaseException
 
 	public BaseException(String message, Throwable cause)
 	{
-		this(TxkhExceptionCode.EX_BEGIN, message, cause);
+		this(ExceptionCode.EX_BEGIN, message, cause);
 	}
 
 	public BaseException(Integer errorCode, String message, Throwable cause)

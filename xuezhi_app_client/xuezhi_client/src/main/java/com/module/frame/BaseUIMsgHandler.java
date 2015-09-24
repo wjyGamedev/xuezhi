@@ -30,6 +30,7 @@ public class BaseUIMsgHandler
 		init();
 	}
 
+	//用来子类调用m_eventBus.register(this);
 	protected void init()
 	{
 	}

@@ -15,22 +15,22 @@
 package com.module.exception.RuntimeExceptions.logical;
 
 import com.module.exception.RuntimeExceptions.BaseRunTimeException;
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class LogicalRTException extends BaseRunTimeException
 {
 	public LogicalRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_LOGICAL, cause);
+		super(ExceptionCode.REX_LOGICAL, cause);
 	}
 
 	public LogicalRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_LOGICAL, message);
+		super(ExceptionCode.REX_LOGICAL, message);
 	}
 
 	public LogicalRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_LOGICAL, message, cause);
+		super(ExceptionCode.REX_LOGICAL, message, cause);
 	}
 }

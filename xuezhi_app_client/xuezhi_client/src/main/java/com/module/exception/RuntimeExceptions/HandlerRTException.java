@@ -15,22 +15,22 @@
 package com.module.exception.RuntimeExceptions;
 
 
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class HandlerRTException extends BaseRunTimeException
 {
 	public HandlerRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_HANDLE, cause);
+		super(ExceptionCode.REX_HANDLE, cause);
 	}
 
 	public HandlerRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_HANDLE, message);
+		super(ExceptionCode.REX_HANDLE, message);
 	}
 
 	public HandlerRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_HANDLE, message, cause);
+		super(ExceptionCode.REX_HANDLE, message, cause);
 	}
 }

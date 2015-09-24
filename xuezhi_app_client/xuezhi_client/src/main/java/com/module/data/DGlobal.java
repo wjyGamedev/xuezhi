@@ -34,11 +34,6 @@ public class DGlobal
 	private Integer m_appRegionHeight        = -1;
 	private Object  m_syncAppRegionHeightObj = new Object();
 
-	//主页面的tag
-	//TODO:以后删除
-	private String m_currTabTag = null;
-	private String m_lastTabTag = null;
-
 	private DGlobal()
 	{}
 
@@ -105,26 +100,6 @@ public class DGlobal
 		{
 			m_appRegionHeight = appRegionHeight;
 		}
-	}
-
-	public String getCurrTabTag()
-	{
-		return m_currTabTag;
-	}
-
-	public void setCurrTabTag(String currTabTag)
-	{
-		m_currTabTag = currTabTag;
-	}
-
-	public String getLastTabTag()
-	{
-		return m_lastTabTag;
-	}
-
-	public void setLastTabTag(String lastTabTag)
-	{
-		m_lastTabTag = lastTabTag;
 	}
 
 	public String getMCC()
