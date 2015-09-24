@@ -337,12 +337,43 @@ public class OrderConfirmMsgHandler extends BaseChangeNurseFlowUIMsgHandler
 			return calendarArrayList;
 		}
 
+		Calendar oldBeginDate = Calendar.getInstance();
+		oldBeginDate.setTime(nursingDate.getBeginDate());
+		int oldBeginYear = oldBeginDate.get(Calendar.YEAR);
+		int oldBeginMonth = oldBeginDate.get(Calendar.MONTH);
+		int oldBeginDay = oldBeginDate.get(Calendar.DAY_OF_MONTH);
+
+		Calendar oldEndDate = Calendar.getInstance();
+		oldEndDate.setTime(nursingDate.getEndDate());
+		int oldEndYear = oldEndDate.get(Calendar.YEAR);
+		int oldEndMonth = oldEndDate.get(Calendar.MONTH);
+		int oldEndDay = oldEndDate.get(Calendar.DAY_OF_MONTH);
+
+
 		Calendar todayCalendar = Calendar.getInstance();
 		int todayYear = todayCalendar.get(Calendar.YEAR);
 		int todayMonth = todayCalendar.get(Calendar.MONTH);
 		int todayDay = todayCalendar.get(Calendar.DAY_OF_MONTH);
 		int maxDay = todayCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 		int maxMonth = todayCalendar.getActualMaximum(Calendar.MONTH);
+
+		//今天要大于等于开始日期
+		if (todayYear < oldBeginYear	||
+				(todayYear == oldBeginYear && todayMonth < oldBeginMonth)	||
+				(todayYear == oldBeginYear && todayMonth == oldBeginMonth && todayDay < oldBeginDay)
+		)
+		{
+			return calendarArrayList;
+		}
+
+		//今天要小于等于结束日期
+		if (todayYear > oldEndYear	||
+				(todayYear == oldEndYear && todayMonth > oldEndMonth)	||
+				(todayYear == oldEndYear && todayMonth == oldEndMonth && todayDay > oldEndDay)
+				)
+		{
+			return calendarArrayList;
+		}
 
 		//TODO:当前的规则：在换护工的日期选择中，仅允许从明天开始选择。
 		int beginNursingDay = todayDay + 1;

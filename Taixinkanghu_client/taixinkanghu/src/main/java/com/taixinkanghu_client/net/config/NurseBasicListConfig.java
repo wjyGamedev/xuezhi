@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -18,6 +18,7 @@ public class NurseBasicListConfig
 {
 	//common
 	public final static String ID          = "cid";
+	public final static String ORDER_ID    = "oid";
 	public final static String NAME        = CommonConifg.NAME;
 	public final static String AGE         = "age";
 	public final static String HOSPITAL_ID = "hospital_id";
@@ -55,8 +56,8 @@ public class NurseBasicListConfig
 	public final static String SERVICE_CHARGE_PER_NIGHT_CANNT_CARE = "service_charge_per_night_care";      //12黑，不可自理
 
 	//logical
-	public final static String SCHEDULE_SPLIT = ",";
-	public final static String OLD_ID         = "old_id";
-	public final static String NEW_ID         = "new_id";
-	public final static String SELECTED_NURSE_ID         = "selected_nurse_id";
+	public final static String SCHEDULE_SPLIT    = ",";
+	public final static String OLD_ID            = "old_id";
+	public final static String NEW_ID            = "new_id";
+	public final static String SELECTED_NURSE_ID = "selected_nurse_id";
 }

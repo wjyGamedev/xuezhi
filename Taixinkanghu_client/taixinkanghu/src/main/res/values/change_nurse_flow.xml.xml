@@ -59,4 +59,6 @@
 	<string name="tips_delta_price_back">1小时之内，客服会将多余的钱款返回到您的支付宝中，请注意查收。</string>
 
 	<string name="tips_select_nursing_date">请选择更换护理员的时间。</string>
+
+	<string name="tips_selected_nurse_not_in_service">护理员没在服务状态，不提供更换服务。</string>
 </resources>

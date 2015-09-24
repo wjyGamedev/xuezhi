@@ -74,20 +74,21 @@ public class RepeatOrderApoitNursingMsgHandler extends BaseRepeatFlowUIMsgHandle
 	}
 
 	//02. init flow data
-	public void loadDataforRepeatOrder(int selectedNurseID)
+	public void loadDataforRepeatOrder(int selectedOrderID)
 	{
 		RepeatOrderApoitNursingActivity activity = (RepeatOrderApoitNursingActivity)m_context;
 
 		//01. check
-		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(selectedNurseID);
+		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByOrderID(selectedOrderID);
 		if (nurseOrder == null)
 		{
-			activity.popErrorDialog("Input selectedNurseID is invalid![selectedNurseID:=" + selectedNurseID + "]");
+			activity.popErrorDialog("Input selectedOrderID is invalid![selectedOrderID:=" + selectedOrderID + "]");
 			return;
 		}
 
 		//02. nurseOrderID
-		m_dRepeatOrderFlow.setSelectedNurseID(selectedNurseID);
+		m_dRepeatOrderFlow.setSelectedOrderID(selectedOrderID);
+		m_dRepeatOrderFlow.setSelectedNurseID(nurseOrder.getNurseID());
 
 		//03. DNursingDate， 设置为null
 //		Date beginDate = nurseOrder.getBeginDate();

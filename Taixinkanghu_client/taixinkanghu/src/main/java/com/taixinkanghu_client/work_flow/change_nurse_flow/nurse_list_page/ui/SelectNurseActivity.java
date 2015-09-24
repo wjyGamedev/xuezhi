@@ -190,13 +190,13 @@ public class SelectNurseActivity extends BaseActivity
 
 		//03. intent data
 		Intent intent = getIntent();
-		int oldNurseID = intent.getIntExtra(NurseBasicListConfig.ID, DataConfig.DEFAULT_VALUE);
-		if (oldNurseID == DataConfig.DEFAULT_VALUE)
+		int selectedOrderID = intent.getIntExtra(NurseBasicListConfig.ORDER_ID, DataConfig.DEFAULT_VALUE);
+		if (selectedOrderID == DataConfig.DEFAULT_VALUE)
 		{
-			popErrorDialog("oldNurseID == DataConfig.DEFAULT_VALUE");
+			popErrorDialog("selectedOrderID == DataConfig.DEFAULT_VALUE");
 			return;
 		}
-		m_selectNurseMsgHandler.loadDataforChangeNurse(oldNurseID);
+		m_selectNurseMsgHandler.loadDataforChangeNurse(selectedOrderID);
 
 		return;
 	}

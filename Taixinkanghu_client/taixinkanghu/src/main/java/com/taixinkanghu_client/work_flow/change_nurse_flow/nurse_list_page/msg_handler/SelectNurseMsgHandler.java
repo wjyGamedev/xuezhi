@@ -46,20 +46,21 @@ public class SelectNurseMsgHandler extends BaseChangeNurseFlowUIMsgHandler
 	}
 
 	//01. init flow data
-	public void loadDataforChangeNurse(int oldNurseID)
+	public void loadDataforChangeNurse(int selectedOrderID)
 	{
 		SelectNurseActivity activity = (SelectNurseActivity)m_context;
 
 		//01. check
-		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(oldNurseID);
+		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByOrderID(selectedOrderID);
 		if (nurseOrder == null)
 		{
-			activity.popErrorDialog("Input selectedNurseID is invalid![selectedNurseID:=" + oldNurseID + "]");
+			activity.popErrorDialog("Input selectedOrderID is invalid![selectedOrderID:=" + selectedOrderID + "]");
 			return;
 		}
 
 		//02. set data
-		m_dChangeNurseFlow.setOldNurseID(oldNurseID);
+		m_dChangeNurseFlow.setSelectedOrderID(selectedOrderID);
+		m_dChangeNurseFlow.setOldNurseID(nurseOrder.getNurseID());
 
 		//03. DNursingDate
 		Date beginDate = nurseOrder.getBeginDate();
