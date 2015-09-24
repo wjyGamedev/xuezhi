@@ -14,7 +14,7 @@
             <option value="$PROJECT_DIR$/eventbus" />
             <option value="$PROJECT_DIR$/sMSSDK" />
             <option value="$PROJECT_DIR$/volley" />
-            <option value="$PROJECT_DIR$/xuzhi_client" />
+            <option value="$PROJECT_DIR$/xuezhi_client" />
           </set>
         </option>
       </GradleProjectSettings>

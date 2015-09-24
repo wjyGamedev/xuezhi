@@ -7,8 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/eventbus/eventbus.iml" filepath="$PROJECT_DIR$/eventbus/eventbus.iml" />
       <module fileurl="file://$PROJECT_DIR$/sMSSDK/sMSSDK.iml" filepath="$PROJECT_DIR$/sMSSDK/sMSSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuezhi_client/xuezhi_client.iml" filepath="$PROJECT_DIR$/xuezhi_client/xuezhi_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/xuzhi_app_client.iml" filepath="$PROJECT_DIR$/xuzhi_app_client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xuzhi_client/xuzhi_client.iml" filepath="$PROJECT_DIR$/xuzhi_client/xuzhi_client.iml" />
     </modules>
   </component>
 </project>

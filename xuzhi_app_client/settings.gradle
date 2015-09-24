@@ -1,2 +1,2 @@
-include ':xuzhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar'
+include ':xuezhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar'
 include ':androidCharts'
