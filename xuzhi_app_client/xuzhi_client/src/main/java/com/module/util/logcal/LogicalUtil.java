@@ -14,8 +14,7 @@
 
 package com.module.util.logcal;
 
-
-import com.taixinkanghu_client.net.config.ProtocalConfig;
+import com.xuezhi_client.net.config.ProtocalConfig;
 
 import java.util.Date;
 
