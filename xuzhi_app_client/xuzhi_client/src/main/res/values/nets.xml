@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="net_error_json_serilization">json序列化错误</string>
+
+	<!-- nurse 相关-->
+	<!-- TODO:以后拆出去-->
+	<string name="nurse_intro">自我介绍：</string>
+	<string name="nurse_service_content">服务内容：</string>
+	<string name="nurse_departments">擅长科室:</string>
+	<string name="nurse_certificate">持有证书:</string>
+
+
+	<string name="junior_high_school_level_and_below">初中及以下水平</string>
+	<string name="senior_middle_schoole">高中</string>
+
+	<string name="language_level_general">一般</string>
+	<string name="language_level_good">良好</string>
+	<string name="language_level_skilled">熟练</string>
+
+	<string name="language_type_cn">汉语</string>
+	<string name="language_type_en">英语</string>
+
+	<string name="nurse_status_free">空闲</string>
+	<string name="nurse_status_services">服务中</string>
+
+	<string name="no_nursing_exp">无护理经验</string>
+	<string name="year_nursing_exp">年护理经验</string>
+
+	<string name="nurse_junior">三星护理员</string>
+	<string name="intermediates_junior">四星护理员</string>
+	<string name="senior_junior">五星护理员</string>
+	<string name="super_junior">六星护理员</string>
+
+</resources>

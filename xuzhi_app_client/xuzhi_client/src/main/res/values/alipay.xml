@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="pay_status_success">支付成功</string>
+	<string name="pay_status_pay_result_wait_confirm">支付结果确认中</string>
+	<string name="pay_status_failed">支付失败</string>
+	<string name="pay_status_pay_result_system_busy">系统繁忙</string>
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 01. 性别-->
+	<string name="gender_male">男</string>
+	<string name="gender_female">女</string>
+
+	<!-- 02. 年龄-->
+	<string name="btn_age_section_0_15_text">0岁至15岁</string>
+	<string name="btn_age_section_16_35_text">16岁至35岁</string>
+	<string name="btn_age_section_36_55_text">36岁至55岁</string>
+	<string name="btn_age_section_56_75_text">55岁至75岁</string>
+	<string name="btn_age_section_above_75_text">75岁以上</string>
+
+	<!-- 03. 体重:千克/公斤-->
+	<string name="btn_weight_section_0_35_text">0kg至35kg</string>
+	<string name="btn_weight_section_35_50_text">35kg至50kg</string>
+	<string name="btn_weight_section_50_80_text">50kg至80kg</string>
+	<string name="btn_weight_section_80_120_text">80kg至120kg</string>
+	<string name="btn_weight_section_above_120_text">120kg以上</string>
+
+	<!-- 04. 病人状态：可自理，半自理，不可自理-->
+	<string name="content_care_myself">可自理</string>
+	<string name="content_half_care_myself">半自理</string>
+	<string name="content_not_care_myself">不能自理</string>
+
+	<!-- 05. 护工订单状态-->
+	<string name="nurse_order_status_wait_payment">待支付</string>
+	<string name="nurse_order_status_wait_service">待服务</string>
+	<string name="nurse_order_status_in_service">服务中</string>
+	<string name="nurse_order_status_finished">已完成</string>
+	<string name="nurse_order_status_canceled">已取消</string>
+	<string name="nurse_order_status_wait_evaluation">待评价</string>
+	<string name="nurse_order_status_wait_cash_payment">现金待支付</string>
+
+	<!-- 06. 护工服务状态-->
+	<string name="nurse_service_status_free">空闲</string>
+	<string name="nurse_service_status_in_service">服务中</string>
+	<string name="nurse_service_status_cannt_service">暂时不能服务</string>
+
+	<!-- 07. 选择护理时间的类型-->
+	<string name="nurse_service_day_status_all">全天24小时</string>
+	<string name="nurse_service_day_status_day">白天12小时</string>
+	<string name="nurse_service_day_status_night">黑天12小时</string>
+
+	<!-- 08. 护理模块的业务类型-->
+	<string name="nuring_module_status_apiot_nursing">预约陪护</string>
+	<string name="nuring_module_repeat_order">续订</string>
+	<string name="nuring_module_change_nurse">更换</string>
+	<string name="nuring_module_pay_more">补差价</string>
+
+	<!-- 09. 评论等级-->
+	<string name="comment_level_very_statisfied">非常满意</string>
+	<string name="comment_level_statisfied">满意</string>
+	<string name="comment_level_general">一般</string>
+
+</resources>

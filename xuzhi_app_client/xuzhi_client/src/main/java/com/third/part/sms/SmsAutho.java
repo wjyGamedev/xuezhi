@@ -17,7 +17,7 @@ package com.third.part.sms;
 import android.content.Context;
 
 import com.module.widget.dialog.TipsDialog;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.Date;
 

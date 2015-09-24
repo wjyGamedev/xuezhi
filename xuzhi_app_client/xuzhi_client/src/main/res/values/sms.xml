@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="err_info_no_init_sms">SmsAutho未初始化</string>
+</resources>
