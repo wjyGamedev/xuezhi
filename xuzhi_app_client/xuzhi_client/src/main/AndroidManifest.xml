@@ -32,10 +32,6 @@
 		</activity>
 
 		<!-- 注册页面-->
-		<activity
-			android:name="com.taixinkanghu_client.work_flow.register_flow.ui.RegisterActivity"
-			android:label="RegisterActivity">
-		</activity>
 
 	</application>
 

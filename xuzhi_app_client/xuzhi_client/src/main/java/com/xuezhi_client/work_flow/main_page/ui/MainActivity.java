@@ -3,8 +3,6 @@ package com.xuezhi_client.work_flow.main_page.ui;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.xuzhi_client.xuzhi_app_client.R;
-
 import butterknife.ButterKnife;
 
 /**

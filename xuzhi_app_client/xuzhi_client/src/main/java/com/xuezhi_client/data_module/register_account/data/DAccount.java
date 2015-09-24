@@ -20,9 +20,8 @@ import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.storage.OwnerPreferences;
 import com.module.storage.StorageWrapper;
-import com.taixinkanghu.hiworld.taixinkanghu_client.R;
-import com.taixinkanghu_client.net.config.ProtocalConfig;
-import com.taixinkanghu_client.net.config.RegisterConfig;
+import com.xuezhi_client.net.config.config.ProtocalConfig;
+import com.xuezhi_client.net.config.config.RegisterConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
