@@ -14,7 +14,7 @@
 
 package com.module.exception;
 
-public class TxkhExceptionCode
+public class ExceptionCode
 {
 	/**
 	 * runtime exception code

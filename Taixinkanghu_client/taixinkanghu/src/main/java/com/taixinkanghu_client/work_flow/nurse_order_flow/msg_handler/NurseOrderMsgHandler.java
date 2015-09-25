@@ -16,6 +16,8 @@ package com.taixinkanghu_client.work_flow.nurse_order_flow.msg_handler;
 
 import android.content.Intent;
 
+import com.taixinkanghu.hiworld.taixinkanghu_client.R;
+import com.taixinkanghu_client.data_module.nurse_order_list.data.DNurseOrder;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.AnswerNurseOrderListEvent;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.NurseOrderListHandler;
 import com.taixinkanghu_client.data_module.nurse_order_list.msg_handler.RequestNurseOrderCancelInServiceEvent;
@@ -30,6 +32,8 @@ import com.taixinkanghu_client.work_flow.nurse_order_flow.ui.NurseOrderActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_pay_in_wait_pay_flow.ui.NurseOrderPayInWaitPayActivity;
 import com.taixinkanghu_client.work_flow.nurse_order_pay_more_flow.nurse_order_pay_more_page.ui.NurseOrderPayMoreActivity;
 import com.taixinkanghu_client.work_flow.repeat_order_flow.appointment_nursing_page.ui.RepeatOrderApoitNursingActivity;
+
+import java.util.Calendar;
 
 public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 {
@@ -58,6 +62,8 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	//02. 跳转到主页面
 	public void go2MainAction()
 	{
+		m_dNurseOrderFlow.clearupAll();
+
 		NurseOrderActivity activity = (NurseOrderActivity)m_context;
 		activity.startActivity(new Intent(activity, MainActivity.class));
 		return;
@@ -124,8 +130,8 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 
 		//02. 跳转到续订的预约陪护页面
 		Intent intent = new Intent(activity, RepeatOrderApoitNursingActivity.class);
-		int    nurseID = m_dNurseOrderFlow.getNurseID();
-		intent.putExtra(NurseBasicListConfig.ID, nurseID);
+		int    selectedNurseOrderID = m_dNurseOrderFlow.getSelectedNurseOrderID();
+		intent.putExtra(NurseBasicListConfig.ORDER_ID, selectedNurseOrderID);
 		activity.startActivity(intent);
 
 		//03. 清楚数据
@@ -140,13 +146,60 @@ public class NurseOrderMsgHandler extends BaseNurseOrderFlowUIMsgHandler
 	{
 		NurseOrderActivity activity = (NurseOrderActivity)m_context;
 
+		//01. 检查有效性
+		//今天必须在要更换护理员的服务时间之内
+		DNurseOrder nurseOrder = m_dNurseOrderFlow.getDNurseOrder();
+		if (nurseOrder == null)
+		{
+			activity.popErrorDialog("nurseOrder == null");
+			return;
+		}
+
+		Calendar selectedBeginCalendar = Calendar.getInstance();
+		selectedBeginCalendar.setTime(nurseOrder.getBeginDate());
+		int beginYear = selectedBeginCalendar.get(Calendar.YEAR);
+		int beginMonth = selectedBeginCalendar.get(Calendar.MONTH);
+		int beginDay = selectedBeginCalendar.get(Calendar.DAY_OF_MONTH);
+
+		Calendar selectedEndCalendar = Calendar.getInstance();
+		selectedEndCalendar.setTime(nurseOrder.getEndDate());
+		int endYear = selectedEndCalendar.get(Calendar.YEAR);
+		int endMonth = selectedEndCalendar.get(Calendar.MONTH);
+		int endDay = selectedEndCalendar.get(Calendar.DAY_OF_MONTH);
+
+		Calendar todayCalendar = Calendar.getInstance();
+		int todayYear = todayCalendar.get(Calendar.YEAR);
+		int todayMonth = todayCalendar.get(Calendar.MONTH);
+		int todayDay = todayCalendar.get(Calendar.DAY_OF_MONTH);
+
+		//今天要大于等于开始日期
+		if (todayYear < beginYear	||
+				(todayYear == beginYear && todayMonth < beginMonth)	||
+				(todayYear == beginYear && todayMonth == beginMonth && todayDay < beginDay)
+				)
+		{
+			activity.popErrorDialog(activity.getString(R.string.tips_selected_nurse_not_in_service));
+			return;
+		}
+
+		//今天要小于等于结束日期
+		if (todayYear > endYear	||
+				(todayYear == endYear && todayMonth > endMonth)	||
+				(todayYear == endYear && todayMonth == endMonth && todayDay > endDay)
+				)
+		{
+			activity.popErrorDialog(activity.getString(R.string.tips_selected_nurse_not_in_service));
+			return;
+		}
+
+
 		//01. 关闭当前页面
 		activity.finish();
 
 		//02. 跳转到选择护理员的页面
 		Intent intent = new Intent(activity, SelectNurseActivity.class);
-		int    nurseID = m_dNurseOrderFlow.getNurseID();
-		intent.putExtra(NurseBasicListConfig.ID, nurseID);
+		int orderID = m_dNurseOrderFlow.getSelectedNurseOrderID();
+		intent.putExtra(NurseBasicListConfig.ORDER_ID, orderID);
 		activity.startActivity(intent);
 
 		//03. 清楚数据

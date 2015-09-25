@@ -14,11 +14,11 @@
 
 package com.module.exception.RuntimeExceptions;
 
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class BaseRunTimeException extends RuntimeException
 {
-	private Integer m_iErrorCode = TxkhExceptionCode.REX_BEGIN;
+	private Integer m_iErrorCode = ExceptionCode.REX_BEGIN;
 
 	public BaseRunTimeException(Integer errorCode, String message, Throwable cause)
 	{

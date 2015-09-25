@@ -15,22 +15,22 @@
 package com.module.exception.RuntimeExceptions.ui;
 
 import com.module.exception.RuntimeExceptions.BaseRunTimeException;
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class UIRTException extends BaseRunTimeException
 {
 	public UIRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_UI, cause);
+		super(ExceptionCode.REX_UI, cause);
 	}
 
 	public UIRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_UI, message);
+		super(ExceptionCode.REX_UI, message);
 	}
 
 	public UIRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_UI, message, cause);
+		super(ExceptionCode.REX_UI, message, cause);
 	}
 }

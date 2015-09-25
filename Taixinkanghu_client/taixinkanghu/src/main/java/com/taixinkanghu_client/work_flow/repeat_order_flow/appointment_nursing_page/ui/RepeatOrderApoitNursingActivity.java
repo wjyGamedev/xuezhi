@@ -290,14 +290,14 @@ public class RepeatOrderApoitNursingActivity extends BaseActivity
 
 		//02. init
 		Intent intent = getIntent();
-		int selectedNurseID = intent.getIntExtra(NurseBasicListConfig.ID, DataConfig.DEFAULT_VALUE);
-		if (selectedNurseID == DataConfig.DEFAULT_VALUE)
+		int selectedOrderID = intent.getIntExtra(NurseBasicListConfig.ORDER_ID, DataConfig.DEFAULT_VALUE);
+		if (selectedOrderID == DataConfig.DEFAULT_VALUE)
 		{
 			popErrorDialog("selectedNurseID == DataConfig.DEFAULT_VALUE");
 			return;
 		}
 
-		m_repeatOrderApoitNursingMsgHandler.loadDataforRepeatOrder(selectedNurseID);
+		m_repeatOrderApoitNursingMsgHandler.loadDataforRepeatOrder(selectedOrderID);
 
 	}
 

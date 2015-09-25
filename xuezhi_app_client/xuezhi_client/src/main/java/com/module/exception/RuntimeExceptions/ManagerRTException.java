@@ -14,23 +14,23 @@
 
 package com.module.exception.RuntimeExceptions;
 
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class ManagerRTException extends BaseRunTimeException
 {
 	public ManagerRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_MANAGER_UNIMPLEMENT, cause);
+		super(ExceptionCode.REX_MANAGER_UNIMPLEMENT, cause);
 	}
 
 	public ManagerRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_MANAGER_UNIMPLEMENT, message);
+		super(ExceptionCode.REX_MANAGER_UNIMPLEMENT, message);
 	}
 
 	public ManagerRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_MANAGER_UNIMPLEMENT, message, cause);
+		super(ExceptionCode.REX_MANAGER_UNIMPLEMENT, message, cause);
 	}
 
 }

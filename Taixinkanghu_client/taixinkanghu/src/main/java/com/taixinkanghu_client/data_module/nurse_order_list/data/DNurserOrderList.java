@@ -155,24 +155,5 @@ public class DNurserOrderList
 		return null;
 	}
 
-	public synchronized DNurseOrder getNurseOrderByNurseID(int id)
-	{
-		if (m_nurseOrders == null)
-			return null;
-
-		for (DNurseOrder nurseOrder : m_nurseOrders)
-		{
-			if (nurseOrder == null)
-				continue;
-
-			if (nurseOrder.getNurseID() == id)
-			{
-				return nurseOrder;
-			}
-		}
-
-		return null;
-	}
-
 }
 

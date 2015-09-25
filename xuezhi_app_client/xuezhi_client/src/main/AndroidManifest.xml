@@ -1,5 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		  package="com.xuzhi_client.xuzhi_app_client">
+<manifest package="com.xuzhi_client.xuzhi_app_client"
+		  xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- 用户权限 -->
 	<uses-permission android:name="android.permission.CALL_PHONE"/>
@@ -15,10 +15,13 @@
 	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-	<application android:allowBackup="true"
-				 android:label="@string/app_name"
-				 android:icon="@mipmap/ic_launcher"
-				 android:theme="@style/AppTheme">
+	<!-- 程序入口 -->
+	<application
+		android:name="com.module.frame.AppFrame"
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/AppTheme">
 
 		<!-- 主页面相关-->
 		<activity
@@ -27,7 +30,8 @@
 			android:launchMode="singleTask"
 			android:theme="@style/Theme.InCallScreen">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
 

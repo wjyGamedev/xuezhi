@@ -59,6 +59,7 @@ public class NurseOrderActivity extends BaseActivity
 	//logical
 	private NurseOrderMsgHandler m_nurseOrderMsgHandler = new NurseOrderMsgHandler(this);
 	private ClickBottomCommon    m_clickBottomCommon    = new ClickBottomCommon();
+	private PopDialog_ErrorTips  m_popDialog_errorTips  = new PopDialog_ErrorTips();
 
 	private ProgressDialog   m_waitProgressDialog = null;
 	private TimerTaskWrapper m_waitTimerTask      = new TimerTaskWrapper();
@@ -115,22 +116,6 @@ public class NurseOrderActivity extends BaseActivity
 		m_nurseOrderMsgHandler.go2NurseInfoAction((int)id);
 	}
 
-//	@OnCheckedChanged (R.id.order_option_rg)
-//	public void clickTabRegion(RadioGroup group, int checkedId)
-//	{
-//		if (checkedId == m_allRBtn.getId())
-//		{
-//			updateAllContent();
-//		}
-//		else if (checkedId == m_waitPayRBtn.getId())
-//		{
-//			updateWaitPayContent();
-//		}
-//		else if (checkedId == m_waitServiceRBtn.getId())
-//		{
-//			updateWaitServiceyContent();
-//		}
-//	}
 
 	@OnClick (R.id.all_rbtn)
 	public void clickAllTab()
@@ -196,6 +181,16 @@ public class NurseOrderActivity extends BaseActivity
 		public void onClick(DialogInterface dialog, int which)
 		{
 			m_nurseOrderMsgHandler.requestNurseOrderCancelInService();
+			return;
+		}
+	}
+
+	class PopDialog_ErrorTips  implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			m_nurseOrderMsgHandler.go2MainAction();
 			return;
 		}
 	}
@@ -308,4 +303,10 @@ public class NurseOrderActivity extends BaseActivity
 		return;
 	}
 
+	public void popErrorDialog(String error)
+	{
+		TipsDialog.GetInstance().setMsg(error, this, m_popDialog_errorTips);
+		TipsDialog.GetInstance().show();
+		return;
+	}
 }

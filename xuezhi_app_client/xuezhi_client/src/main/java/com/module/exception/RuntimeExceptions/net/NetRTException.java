@@ -16,22 +16,22 @@ package com.module.exception.RuntimeExceptions.net;
 
 
 import com.module.exception.RuntimeExceptions.BaseRunTimeException;
-import com.module.exception.TxkhExceptionCode;
+import com.module.exception.ExceptionCode;
 
 public class NetRTException extends BaseRunTimeException
 {
 	public NetRTException(Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_NET, cause);
+		super(ExceptionCode.REX_NET, cause);
 	}
 
 	public NetRTException(String message)
 	{
-		super(TxkhExceptionCode.REX_NET, message);
+		super(ExceptionCode.REX_NET, message);
 	}
 
 	public NetRTException(String message, Throwable cause)
 	{
-		super(TxkhExceptionCode.REX_NET, message, cause);
+		super(ExceptionCode.REX_NET, message, cause);
 	}
 }

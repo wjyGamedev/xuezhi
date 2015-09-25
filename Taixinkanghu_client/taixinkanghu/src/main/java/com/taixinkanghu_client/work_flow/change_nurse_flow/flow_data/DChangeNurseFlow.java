@@ -35,6 +35,9 @@ public class DChangeNurseFlow
 	private static DChangeNurseFlow s_dChangeNurseFlow = new DChangeNurseFlow();
 
 	//01. 老护理员的数据
+	private int m_selectedOrderID = DataConfig.DEFAULT_VALUE;
+	private Object m_syncSelectedOrderID = new Object();
+
 	private int    m_oldNurseID     = DataConfig.DEFAULT_VALUE;
 	private Object m_syncOldNurseID = new Object();
 
@@ -111,6 +114,11 @@ public class DChangeNurseFlow
 
 	public void clearupOldNurse()
 	{
+		synchronized(m_syncSelectedOrderID)
+		{
+			m_selectedOrderID = DataConfig.DEFAULT_VALUE;
+		}
+
 		synchronized (m_syncOldNurseID)
 		{
 			m_oldNurseID = DataConfig.DEFAULT_VALUE;
@@ -263,6 +271,17 @@ public class DChangeNurseFlow
 	 * function:get/set
 	 */
 	//01. 老护理员的数据
+
+	public int getSelectedOrderID()
+	{
+		return m_selectedOrderID;
+	}
+
+	public void setSelectedOrderID(int selectedOrderID)
+	{
+		m_selectedOrderID = selectedOrderID;
+	}
+
 	public int getOldNurseID()
 	{
 		return m_oldNurseID;
@@ -276,7 +295,7 @@ public class DChangeNurseFlow
 	public DNurseOrder getOldNurserOrder()
 	{
 		//TODO:多线程这里有问题。目前不会遇到多线程问题。
-		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(getOldNurseID());
+		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByOrderID(getSelectedOrderID());
 		if (nurseOrder == null)
 		{
 			return null;

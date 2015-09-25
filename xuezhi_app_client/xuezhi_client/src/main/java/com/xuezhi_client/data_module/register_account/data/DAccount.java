@@ -22,6 +22,7 @@ import com.module.storage.OwnerPreferences;
 import com.module.storage.StorageWrapper;
 import com.xuezhi_client.net.config.ProtocalConfig;
 import com.xuezhi_client.net.config.RegisterConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

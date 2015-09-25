@@ -190,7 +190,7 @@ public class SelectDateFragment extends Fragment
 		ArrayList<Calendar> calendarArrayList = m_orderConfirmMsgHandler.getSelectedDateRegion();
 		if (calendarArrayList.isEmpty())
 		{
-			activity.popErrorDialog("calendarArrayList.isEmpty()");
+			activity.popErrorDialog(activity.getString(R.string.tips_selected_nurse_not_in_service));
 			return;
 		}
 

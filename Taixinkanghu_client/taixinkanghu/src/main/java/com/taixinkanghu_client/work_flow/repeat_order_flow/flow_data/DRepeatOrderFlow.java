@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -38,6 +38,9 @@ public class DRepeatOrderFlow
 	private static DRepeatOrderFlow s_appiontmentNursing = new DRepeatOrderFlow();
 
 	//01. 选择的护理员数据
+	private int    m_selectedOrderID     = DataConfig.DEFAULT_VALUE;
+	private Object m_syncSelectedOrderID = new Object();
+
 	private int    m_selectedNurseID = DataConfig.DEFAULT_VALUE;
 	private Object m_syncNurseID     = new Object();
 
@@ -94,8 +97,6 @@ public class DRepeatOrderFlow
 	private Object m_syncTotalPrice = new Object();
 
 
-
-
 	private DRepeatOrderFlow()
 	{}
 
@@ -106,6 +107,11 @@ public class DRepeatOrderFlow
 
 	public void clearupSelectNurse()
 	{
+		synchronized (m_syncSelectedOrderID)
+		{
+			m_selectedOrderID = DataConfig.DEFAULT_VALUE;
+		}
+
 		synchronized (m_syncNurseID)
 		{
 			m_selectedNurseID = DataConfig.DEFAULT_VALUE;
@@ -299,6 +305,16 @@ public class DRepeatOrderFlow
 	 * function:get/set
 	 */
 	//01. repeat order 选择护理员数据
+	public int getSelectedOrderID()
+	{
+		return m_selectedOrderID;
+	}
+
+	public void setSelectedOrderID(int selectedOrderID)
+	{
+		m_selectedOrderID = selectedOrderID;
+	}
+
 	public int getSelectedNurseID()
 	{
 		synchronized (m_syncNurseID)
@@ -318,7 +334,7 @@ public class DRepeatOrderFlow
 	public DNurseOrder getNurserOrder()
 	{
 		//TODO:多线程这里有问题。目前不会遇到多线程问题。
-		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByNurseID(getSelectedNurseID());
+		DNurseOrder nurseOrder = DNurserOrderList.GetInstance().getNurseOrderByOrderID(getSelectedNurseID());
 		if (nurseOrder == null)
 		{
 			return null;
@@ -357,7 +373,7 @@ public class DRepeatOrderFlow
 	{
 		synchronized (m_syncPhone)
 		{
-			if(m_phone == null)
+			if (m_phone == null)
 			{
 				DNurseOrder nurseOrder = getNurserOrder();
 				if (nurseOrder == null)
@@ -599,7 +615,7 @@ public class DRepeatOrderFlow
 		}
 		String hospitalName = hospital.getName();
 
-		DDepartment department   = DDepartmentList.GetInstance().getDepartmentByID(getDepartmenetID());
+		DDepartment department = DDepartmentList.GetInstance().getDepartmentByID(getDepartmenetID());
 		if (department == null)
 		{
 			return null;
@@ -706,7 +722,7 @@ public class DRepeatOrderFlow
 
 	public void setOrderID(int orderID)
 	{
-		synchronized(m_syncOrderID)
+		synchronized (m_syncOrderID)
 		{
 			m_orderID = orderID;
 		}
@@ -714,7 +730,7 @@ public class DRepeatOrderFlow
 
 	public String getOrderSerialNum()
 	{
-		synchronized(m_syncOrderSerialNum)
+		synchronized (m_syncOrderSerialNum)
 		{
 			return m_orderSerialNum;
 		}
@@ -722,7 +738,7 @@ public class DRepeatOrderFlow
 
 	public void setOrderSerialNum(String orderSerialNum)
 	{
-		synchronized(m_syncOrderSerialNum)
+		synchronized (m_syncOrderSerialNum)
 		{
 			m_orderSerialNum = orderSerialNum;
 		}
