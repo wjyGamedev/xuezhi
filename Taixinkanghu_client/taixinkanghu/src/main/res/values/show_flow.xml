@@ -6,9 +6,10 @@
 	<string name="company_show_bottom">首页</string>
 
 	<!-- 产品优惠信息-->
-	<string name="shopping_show_red_text">红色标题信息</string>
-	<string name="shopping_black_text">黑色标题信息</string>
-	<string name="shopping_show_content_text">内容信息</string>
-	<string name="shopping_show_info">优惠信息</string>
+	<string name="shopping_show_title">优惠信息</string>
+	<string name="shopping_show_red_text">首次在线下单并完成支付即享95折优惠！</string>
+	<string name="shopping_black_text">APP线上支付优惠享不停！</string>
+	<string name="shopping_show_content_text">新用户下载泰心康护APP立享5元现金红包，首次在线下单并完成支付即享95折优惠！\n还等什么，马上体验吧！\n\n活动时间：11月8日-12月8日\n详情咨询：400-9696-218</string>
+	<string name="shopping_show_info">新用户下载泰心康护APP立享5元现金红包，首次在线下单并完成支付即享95折优惠！\n还等什么，马上体验吧！\n活动时间：11月8日-12月8日\n详情咨询：400-9696-218</string>
 
 </resources>
