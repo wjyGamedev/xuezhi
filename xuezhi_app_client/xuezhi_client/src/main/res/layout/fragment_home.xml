@@ -11,6 +11,8 @@
 		android:id="@+id/imgs_display_region_ll"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:background="@color/white"
 		android:layout_gravity="top|center_vertical"
 		android:orientation="vertical">
 

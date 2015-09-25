@@ -29,7 +29,7 @@ public class DMainPageImages
 
 	private void initTestData()
 	{
-		m_ImageArrayList.add(R.drawable.img_promotions);
+		m_ImageArrayList.add(R.drawable.logo);
 	}
 
 	public static DMainPageImages getInstance()
@@ -39,7 +39,7 @@ public class DMainPageImages
 
 	public boolean serialization(JSONObject response)
 	{
-		m_ImageArrayList.add(R.drawable.img_promotions);
+		m_ImageArrayList.add(R.drawable.logo);
 		return true;
 	}
 
