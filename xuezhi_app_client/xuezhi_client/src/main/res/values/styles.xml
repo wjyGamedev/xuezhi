@@ -1,9 +1,11 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<!-- Customize your theme here. -->
-	</style>
+	<!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+		<!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+	<!--</style>-->
+
+	<style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar"/>
 
 	<style name="Theme.InCallScreen"
 		   parent="@android:style/Theme.Holo.Light.NoActionBar">

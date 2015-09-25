@@ -2,14 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
-
-	<fragment
-		android:id="@+id/common_header_fragment"
-		android:name="com.module.widget.header.HeaderCommon"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -26,7 +21,8 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"
 				android:background="@color/white"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:id="@+id/loginout_region_ll">
 
 				<include layout="@layout/item_dividing_line_horizontal"/>
 
@@ -35,7 +31,8 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="15dp"
 					android:layout_marginRight="15dp"
-					android:orientation="horizontal">
+					android:orientation="horizontal"
+					android:id="@+id/loginout_inner_region_ll">
 
 					<TextView
 						android:layout_width="match_parent"
@@ -45,7 +42,8 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:text="150******56"
-						android:textSize="18sp"/>
+						android:textSize="18sp"
+						android:id="@+id/loginout_tips_tv"/>
 
 					<TextView
 						android:layout_width="wrap_content"
@@ -55,7 +53,8 @@
 						android:layout_marginTop="10dp"
 						android:layout_marginRight="30dp"
 						android:text="退出登录"
-						android:textSize="18sp"/>
+						android:textSize="18sp"
+						android:id="@+id/loginout_tv"/>
 
 				</LinearLayout>
 
@@ -68,7 +67,8 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"
 				android:background="@color/white"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:id="@+id/risk_assessment_region_ll">
 
 				<include layout="@layout/item_dividing_line_horizontal"/>
 
@@ -105,7 +105,8 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"
 				android:background="@color/white"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:id="@+id/user_procotal_region_ll">
 
 				<include layout="@layout/item_dividing_line_horizontal"/>
 
@@ -139,11 +140,5 @@
 
 		</LinearLayout>
 	</ScrollView>
-
-	<fragment
-		android:id="@+id/common_bottom_fragment"
-		android:name="com.module.widget.bottom.BottomCommon"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
 
 </LinearLayout>
