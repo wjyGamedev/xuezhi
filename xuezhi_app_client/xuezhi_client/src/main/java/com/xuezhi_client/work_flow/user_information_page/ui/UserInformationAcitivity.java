@@ -31,7 +31,7 @@ public class UserInformationAcitivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_user_information);
+		setContentView(R.layout.activity_user_protocal);
 		ButterKnife.bind(this);
 
 		init();

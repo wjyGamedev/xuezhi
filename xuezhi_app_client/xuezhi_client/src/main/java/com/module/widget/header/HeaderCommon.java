@@ -43,7 +43,13 @@ public class HeaderCommon extends Fragment
 	{
 		m_view = inflater.inflate(R.layout.include_header, container, false);
 		ButterKnife.bind(this, m_view);
+		init();
 		return m_view;
+	}
+
+	private void init()
+	{
+		m_rightBtn.setVisibility(View.GONE);
 	}
 
 	@OnClick (R.id.back_ibtn)

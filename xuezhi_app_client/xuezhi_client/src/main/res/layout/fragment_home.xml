@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:id="@+id/home_fragment_ll"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<!--展示图片：公司/优惠信息-->
+	<LinearLayout
+		android:id="@+id/imgs_display_region_ll"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="top|center_vertical"
+		android:orientation="vertical">
+
+		<ViewFlipper
+			android:id="@+id/imgs_display_vf"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+	</LinearLayout>
+
+	<!--主要功能按钮-->
+	<LinearLayout
+		android:id="@+id/func_region_ll"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_gravity="bottom|center_vertical"
+		android:orientation="vertical">
+
+		<ScrollView
+			android:id="@+id/func_region_sv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:orientation="vertical">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:background="@color/white"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="15dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/today_remind_title_text"
+						android:textSize="20sp"/>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="15dp"
+						android:layout_marginRight="15dp">
+
+						<include layout="@layout/item_dividing_line_horizontal_fine"/>
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dp"
+						android:orientation="horizontal">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="30dp"
+							android:layout_weight="2"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal"
+								android:layout_marginBottom="5dp"
+								android:text="@string/medication_time_title_text"
+								android:textSize="20sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal"
+								android:layout_marginBottom="5dp"
+								android:text="@string/medication_name_title_text"
+								android:textSize="20sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal"
+								android:text="@string/medication_dose_title_text"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="30dp"
+							android:layout_weight="3"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="left"
+								android:layout_marginBottom="5dp"
+								android:text="8:00"
+								android:textSize="20sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="left"
+								android:layout_marginBottom="5dp"
+								android:text="弹性酶"
+								android:textSize="20sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="left"
+								android:text="20mg"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+					<Button
+						android:layout_width="80dp"
+						android:layout_height="30dp"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:background="@drawable/corners_bg"
+						android:gravity="center"
+						android:text="@string/have_been_taken_btn_text"
+						android:textColor="@color/white"
+						android:textSize="20sp"/>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="15dp"
+							android:layout_marginRight="15dp"
+							android:orientation="vertical">
+
+							<include layout="@layout/item_dividing_line_horizontal_fine"/>
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginBottom="10dp"
+							android:layout_marginLeft="15dp"
+							android:layout_marginRight="15dp"
+							android:layout_marginTop="10dp">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="1"
+								android:text="@string/no_need_to_buy_hint_text"
+								android:textSize="20sp"/>
+
+							<ImageView
+								android:layout_width="20dp"
+								android:layout_height="20dp"
+								android:background="@drawable/img_right"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+					<include layout="@layout/item_dividing_line_horizontal"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:background="@color/white"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal"/>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="15dp"
+							android:layout_weight="1"
+							android:orientation="vertical"
+							android:id="@+id/assay_detection_region_ll">
+
+							<ImageButton
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:background="@color/white"
+								android:layout_weight="1"
+								android:src="@drawable/assay_detection_btn_img"/>
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="5dp"
+								android:layout_weight="1"
+								android:gravity="center"
+								android:text="@string/assay_detection_btn_text"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginTop="15dp"
+							android:orientation="vertical"
+							android:id="@+id/medication_reminder_region_ll">
+
+							<ImageButton
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:background="@color/white"
+								android:layout_weight="1"
+								android:src="@drawable/medication_reminder_btn_img"/>
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="5dp"
+								android:layout_weight="1"
+								android:gravity="center"
+								android:text="@string/medication_reminder_btn_text"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginTop="15dp"
+							android:layout_marginBottom="15dp"
+							android:orientation="vertical"
+							android:id="@+id/drug_admin_region_ll">
+
+							<ImageButton
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:background="@color/white"
+								android:layout_weight="1"
+								android:src="@drawable/drug_administration_btn_img"/>
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="5dp"
+								android:layout_weight="1"
+								android:gravity="center"
+								android:text="@string/drug_administration_btn_text"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginTop="15dp"
+							android:layout_marginBottom="15dp"
+							android:orientation="vertical"
+							android:id="@+id/calendar_region_ll">
+
+							<ImageButton
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:background="@color/white"
+								android:layout_weight="1"
+								android:src="@drawable/calendar_btn_img"/>
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="15dp"
+								android:layout_marginRight="15dp"
+								android:layout_marginTop="5dp"
+								android:layout_weight="1"
+								android:gravity="center"
+								android:text="@string/calendar_btn_text"
+								android:textSize="20sp"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+					<include layout="@layout/item_dividing_line_horizontal"/>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+
+		</ScrollView>
+	</LinearLayout>
+</LinearLayout>

@@ -36,6 +36,14 @@
 		</activity>
 
 		<!-- 注册页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.register_page.ui.RegisterActivity"
+			android:screenOrientation="portrait"
+			android:label="RegisterActivity">
+		</activity>
+
+
+
 
 	</application>
 

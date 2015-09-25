@@ -14,7 +14,7 @@
 		android:name="com.module.widget.header.HeaderCommon"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		/>
+		tools:layout="@layout/include_header"/>
 
 	<ScrollView
 		android:id="@+id/func_region_sv"
