@@ -1,4 +1,4 @@
-package com.xuezhi_client.work_flow.user_information_page.ui;
+package com.xuezhi_client.work_flow.user_protocal_page.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
-import com.xuezhi_client.work_flow.user_information_page.msg_handler.UserInformationMsgHandler;
+import com.xuezhi_client.work_flow.user_protocal_page.msg_handler.UserProtocalMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/23.
  */
-public class UserInformationAcitivity extends Activity
+public class UserProtocalActivity extends Activity
 {
 	//widget
 	private                                   HeaderCommon m_headerCommon            = null;
@@ -24,8 +24,8 @@ public class UserInformationAcitivity extends Activity
 	@Bind (R.id.user_information_text_legion) TextView     m_userInformationLegionTV = null;
 
 	//logical
-	private UserInformationMsgHandler m_userInformationMsgHandler = new UserInformationMsgHandler(this);
-	private ClickBottomBtn            m_clickBottomBtn            = new ClickBottomBtn();
+	private UserProtocalMsgHandler m_userProtocalMsgHandler = new UserProtocalMsgHandler(this);
+	private ClickBottomBtn         m_clickBottomBtn         = new ClickBottomBtn();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -60,7 +60,7 @@ public class UserInformationAcitivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			m_userInformationMsgHandler.go2MainPage();
+			m_userProtocalMsgHandler.go2MainPage();
 		}
 	}
 

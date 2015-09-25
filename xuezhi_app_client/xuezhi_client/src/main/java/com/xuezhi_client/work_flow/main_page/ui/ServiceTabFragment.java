@@ -19,28 +19,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
+import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
+import com.xuzhi_client.xuzhi_app_client.R;
+
+import butterknife.ButterKnife;
 
 public class ServiceTabFragment extends Fragment
 {
     //widget
-    private LinearLayout call;
-    private LinearLayout question_feedback;
 
-    //logical
     //logical
     private MainMsgHandler m_mainMsgHandler = null;
-
-    private String m_phoneNumberDisplay;
-    private String m_phoneNumberCall;
-
+    private View           m_view           = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return null;
+		m_view = inflater.inflate(R.layout.fragment_service, container, false);
+		ButterKnife.bind(this, m_view);
+
+		init();
+		return m_view;
     }
 
     /**
@@ -48,6 +49,13 @@ public class ServiceTabFragment extends Fragment
      */
     private void init()
     {
-
+		MainActivity mainActivity = (MainActivity)getActivity();
+		if (mainActivity == null)
+		{
+			TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
+			TipsDialog.GetInstance().show();
+			return;
+		}
+		m_mainMsgHandler = mainActivity.getMainMsgHandler();
     }
 }

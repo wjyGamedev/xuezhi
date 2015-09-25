@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -36,23 +36,21 @@ public class PersonalTabFragment extends Fragment
 {
 	//widget
 	//login/out region
-	@Bind(R.id.loginout_region_ll) LinearLayout m_loginoutRegionLL = null;
-	@Bind(R.id.loginout_tips_tv) TextView m_loginoutTipsTV = null;
-	@Bind(R.id.loginout_tv) TextView m_loginoutTV = null;
+	@Bind (R.id.loginout_region_ll) LinearLayout m_loginoutRegionLL = null;
+	@Bind (R.id.loginout_tips_tv)   TextView     m_loginoutTipsTV   = null;
+	@Bind (R.id.loginout_tv)        TextView     m_loginoutTV       = null;
 
 	//风险评估/调查问卷
-	@Bind(R.id.risk_assessment_region_ll) LinearLayout m_riskAssessmentRegionLL = null;
+	@Bind (R.id.risk_assessment_region_ll) LinearLayout m_riskAssessmentRegionLL = null;
 
 	//用户须知/用户协议
-	@Bind(R.id.user_procotal_region_ll) LinearLayout m_userProcotalRegionLL = null;
+	@Bind (R.id.user_procotal_region_ll) LinearLayout m_userProcotalRegionLL = null;
 
 	//logical
 	private MainMsgHandler m_mainMsgHandler = null;
-	private HandleClickEventOnLogoutDialog m_handleClickEventOnLogoutDialog = new HandleClickEventOnLogoutDialog();
-
-
 	private View           m_view           = null;
 
+	private HandleClickEventOnLogoutDialog m_handleClickEventOnLogoutDialog = new HandleClickEventOnLogoutDialog();
 
 
 	@Override
@@ -72,7 +70,7 @@ public class PersonalTabFragment extends Fragment
 		super.onStart();
 	}
 
-	@OnClick(R.id.loginout_region_ll)
+	@OnClick (R.id.loginout_region_ll)
 	public void clickLoginoutRegion()
 	{
 		boolean loginFlag = DAccount.GetInstance().isRegisterSuccess();
