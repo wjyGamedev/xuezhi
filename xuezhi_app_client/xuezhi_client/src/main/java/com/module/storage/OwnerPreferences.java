@@ -18,9 +18,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.module.exception.RuntimeExceptions.logical.OwnerPreferencesException;
+import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.net.config.RegisterConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class OwnerPreferences extends BaseStorage
 {
@@ -44,44 +49,44 @@ public class OwnerPreferences extends BaseStorage
 
 	public boolean serialization(JSONObject jsonObject) throws JSONException
 	{
-//		String id     = jsonObject.getString(RegisterConfig.ID);
-//		String code   = jsonObject.getString(RegisterConfig.CODE);
-//		String mobile = jsonObject.getString(RegisterConfig.MOBILE);
-//		String nick   = jsonObject.getString(RegisterConfig.NICK);
-//
-//		m_editor.putString(RegisterConfig.ID, id);
-//		m_editor.putString(RegisterConfig.CODE, code);
-//		m_editor.putString(RegisterConfig.MOBILE, mobile);
-//		m_editor.putString(RegisterConfig.NICK, nick);
-//		m_editor.commit();
+		String id     = jsonObject.getString(RegisterConfig.ID);
+		String code   = jsonObject.getString(RegisterConfig.CODE);
+		String mobile = jsonObject.getString(RegisterConfig.MOBILE);
+		String nick   = jsonObject.getString(RegisterConfig.NICK);
+
+		m_editor.putString(RegisterConfig.ID, id);
+		m_editor.putString(RegisterConfig.CODE, code);
+		m_editor.putString(RegisterConfig.MOBILE, mobile);
+		m_editor.putString(RegisterConfig.NICK, nick);
+		m_editor.commit();
 		return true;
 	}
 
 	public boolean tryLogin()
 	{
-//		String id     = m_setting.getString(RegisterConfig.ID, "");
-//		String code   = m_setting.getString(RegisterConfig.CODE, "");
-//		String mobile = m_setting.getString(RegisterConfig.MOBILE, "");
-//		String nick   = m_setting.getString(RegisterConfig.NICK, "");
-//
-//		HashMap<String, String> data = new HashMap<String, String>();
-//		data.put(RegisterConfig.ID, id);
-//		data.put(RegisterConfig.CODE, code);
-//		data.put(RegisterConfig.MOBILE, mobile);
-//		data.put(RegisterConfig.NICK, nick);
-//
-//		JSONObject jsonObject = new JSONObject(data);
-//
-//		try
-//		{
-//			DAccount.GetInstance().serialFromStorage(jsonObject);
-//		}
-//		catch (JSONException e)
-//		{
-//			TipsDialog.GetInstance().setMsg(e.toString());
-//			TipsDialog.GetInstance().show();
-//			return false;
-//		}
+		String id     = m_setting.getString(RegisterConfig.ID, "");
+		String code   = m_setting.getString(RegisterConfig.CODE, "");
+		String mobile = m_setting.getString(RegisterConfig.MOBILE, "");
+		String nick   = m_setting.getString(RegisterConfig.NICK, "");
+
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put(RegisterConfig.ID, id);
+		data.put(RegisterConfig.CODE, code);
+		data.put(RegisterConfig.MOBILE, mobile);
+		data.put(RegisterConfig.NICK, nick);
+
+		JSONObject jsonObject = new JSONObject(data);
+
+		try
+		{
+			DAccount.GetInstance().serialFromStorage(jsonObject);
+		}
+		catch (JSONException e)
+		{
+			TipsDialog.GetInstance().setMsg(e.toString());
+			TipsDialog.GetInstance().show();
+			return false;
+		}
 		return true;
 
 	}
@@ -95,21 +100,21 @@ public class OwnerPreferences extends BaseStorage
 		}
 
 		//02. prefer set null
-//		m_editor.putString(RegisterConfig.ID, "");
-//		m_editor.putString(RegisterConfig.CODE, "");
-//		m_editor.putString(RegisterConfig.MOBILE, "");
-//		m_editor.putString(RegisterConfig.NICK, "");
-//		m_editor.commit();
+		m_editor.putString(RegisterConfig.ID, "");
+		m_editor.putString(RegisterConfig.CODE, "");
+		m_editor.putString(RegisterConfig.MOBILE, "");
+		m_editor.putString(RegisterConfig.NICK, "");
+		m_editor.commit();
 
 		//03. 更新DAccount
-//		HashMap<String, String> data = new HashMap<String, String>();
-//		data.put(RegisterConfig.ID, "");
-//		data.put(RegisterConfig.CODE, "");
-//		data.put(RegisterConfig.MOBILE, "");
-//		data.put(RegisterConfig.NICK, "");
-//
-//		JSONObject jsonObject = new JSONObject(data);
-//		DAccount.GetInstance().serialFromStorage(jsonObject);
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put(RegisterConfig.ID, "");
+		data.put(RegisterConfig.CODE, "");
+		data.put(RegisterConfig.MOBILE, "");
+		data.put(RegisterConfig.NICK, "");
+
+		JSONObject jsonObject = new JSONObject(data);
+		DAccount.GetInstance().serialFromStorage(jsonObject);
 
 		return true;
 

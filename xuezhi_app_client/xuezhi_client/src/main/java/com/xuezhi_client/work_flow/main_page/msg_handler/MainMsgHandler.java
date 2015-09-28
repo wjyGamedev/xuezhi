@@ -18,6 +18,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
+import com.module.storage.OwnerPreferences;
+import com.module.storage.StorageWrapper;
+import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
@@ -29,6 +32,8 @@ import com.xuezhi_client.work_flow.main_page.ui.ServiceTabFragment;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_page.ui.MedicationReminderActivity;
 import com.xuezhi_client.work_flow.register_page.ui.RegisterActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
+
+import org.json.JSONException;
 
 public class MainMsgHandler extends BaseUIMsgHandler
 {
@@ -180,7 +185,18 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	//09. 登出action
 	public void logoutAction()
 	{
-
+		//01. 注销登录数据
+		OwnerPreferences setting = StorageWrapper.GetInstance().getOwnerPreferences();
+		try
+		{
+			setting.logout();
+		}
+		catch (JSONException e)
+		{
+			TipsDialog.GetInstance().setMsg(e.toString(), m_context);
+			TipsDialog.GetInstance().show();
+			return;
+		}
 		return;
 	}
 
