@@ -17,8 +17,8 @@
 		android:id="@+id/rg_worker_level"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"
-		android:orientation="horizontal"
-		android:layout_marginTop="10dp">
+		android:layout_marginTop="10dp"
+		android:orientation="horizontal">
 
 		<RadioButton
 			android:id="@+id/three_star_btn"
@@ -69,11 +69,66 @@
 		android:layout_weight="1"
 		android:orientation="vertical">
 
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="5dp"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:id="@+id/worker_level_ic_iv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_star_3"/>
+
+			<TextView
+				android:id="@+id/worker_level_text_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginLeft="5dp"
+				android:text="@string/three_star_worker_text"
+				android:textSize="18sp"/>
+
+
+		</LinearLayout>
+
 		<TextView
 			android:id="@+id/worker_level_explain_tv"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/three_star_worker_explain"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:id="@+id/nurse_service_content_ic_iv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_nurse_service_content"/>
+
+			<TextView
+				android:id="@+id/nursing_service_content_text_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginLeft="5dp"
+				android:text="@string/nursing_service_content_text"
+				android:textSize="18sp"/>
+
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/worker_level_nursing_service_content_explain_tv"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/three_star_worker_service_content_explain"/>
 
 	</LinearLayout>
 

@@ -74,7 +74,7 @@ public class ShoppingShowActivity extends Activity
 	private void init()
 	{
 		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
-		m_headerCommon.setTitle(R.string.shopping_show_info);
+		m_headerCommon.setTitle(R.string.shopping_show_title);
 
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.company_show_bottom);

@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -17,6 +16,7 @@ import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.work_flow.company_flow.nurse_level_introduction_page.msg_handler.NurseLevelMsgHandler;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivityConfig;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -29,21 +29,20 @@ public class NurseLevelActivity extends Activity implements GestureDetector.OnGe
 	private BottomCommon m_bottomCommon = null;
 
 	//logical
-	private NurseLevelMsgHandler m_nurseLevelMsgHandler  = new NurseLevelMsgHandler(this);
-	private ClickBottomBtn       m_clickBottomBtn = new ClickBottomBtn();
+	private NurseLevelMsgHandler m_nurseLevelMsgHandler = new NurseLevelMsgHandler(this);
+	private ClickBottomBtn       m_clickBottomBtn       = new ClickBottomBtn();
 
 	private GestureDetector m_GestureDetector;
 
-
-	private ImageButton btn_back;
-	private TextView    page_title;
-	private Button      btn_goto_main;
-	private TextView    m_workerLevelExplainTv;
-	private RadioGroup  m_workerLevelRg;
-	private RadioButton m_threeStarBtn;
-	private RadioButton m_fourStarBtn;
-	private RadioButton m_fiveStarBtn;
-	private RadioButton m_sixStarBtn;
+	@Bind (R.id.worker_level_ic_iv)                              ImageView   m_workerLevelIconIv            = null;
+	@Bind (R.id.worker_level_text_tv)                            TextView    m_workerLevelTextTv            = null;
+	@Bind (R.id.worker_level_explain_tv)                         TextView    m_workerLevelExplainTv         = null;
+	@Bind (R.id.worker_level_nursing_service_content_explain_tv) TextView    m_nurseServiceContentExplainTv = null;
+	@Bind (R.id.rg_worker_level)                                 RadioGroup  m_workerLevelRg                = null;
+	@Bind (R.id.three_star_btn)                                  RadioButton m_threeStarBtn                 = null;
+	@Bind (R.id.four_star_btn)                                   RadioButton m_fourStarBtn                  = null;
+	@Bind (R.id.five_star_btn)                                   RadioButton m_fiveStarBtn                  = null;
+	@Bind (R.id.six_star_btn)                                    RadioButton m_sixStarBtn                   = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -53,15 +52,6 @@ public class NurseLevelActivity extends Activity implements GestureDetector.OnGe
 		ButterKnife.bind(this);
 
 		init();
-
-		btn_back = (ImageButton)findViewById(R.id.btn_back);
-		btn_goto_main = (Button)findViewById(R.id.btn_goto_main);
-		m_workerLevelExplainTv = (TextView)findViewById(R.id.worker_level_explain_tv);
-		m_workerLevelRg = (RadioGroup)findViewById(R.id.rg_worker_level);
-		m_threeStarBtn = (RadioButton)findViewById(R.id.three_star_btn);
-		m_fourStarBtn = (RadioButton)findViewById(R.id.four_star_btn);
-		m_fiveStarBtn = (RadioButton)findViewById(R.id.five_star_btn);
-		m_sixStarBtn = (RadioButton)findViewById(R.id.six_star_btn);
 
 		m_GestureDetector = new GestureDetector(this, this);
 
@@ -75,22 +65,38 @@ public class NurseLevelActivity extends Activity implements GestureDetector.OnGe
 													   {
 														   if (checkedId == m_threeStarBtn.getId())
 														   {
+															   m_workerLevelIconIv.setImageResource(R.drawable.ic_star_3);
+															   m_workerLevelTextTv.setText(getString(R.string.three_star_worker_text));
 															   m_workerLevelExplainTv.setText(getString(R.string
 																												.three_star_worker_explain));
+															   m_nurseServiceContentExplainTv.setText(getString(R.string
+																														.three_star_worker_service_content_explain));
 														   }
 														   else if (checkedId == m_fourStarBtn.getId())
 														   {
+															   m_workerLevelIconIv.setImageResource(R.drawable.ic_star_4);
+															   m_workerLevelTextTv.setText(getString(R.string.four_star_worker_text));
 															   m_workerLevelExplainTv.setText(getString(R.string
 																												.four_star_worker_explain));
+															   m_nurseServiceContentExplainTv.setText(getString(R.string
+																														.four_star_worker_service_content_explain));
 														   }
 														   else if (checkedId == m_fiveStarBtn.getId())
 														   {
+															   m_workerLevelIconIv.setImageResource(R.drawable.ic_star_5);
+															   m_workerLevelTextTv.setText(getString(R.string.five_star_worker_text));
 															   m_workerLevelExplainTv.setText(getString(R.string
 																												.five_star_worker_explain));
+															   m_nurseServiceContentExplainTv.setText(getString(R.string
+																														.five_star_worker_service_content_explain));
 														   }
 														   else if (checkedId == m_sixStarBtn.getId())
 														   {
+															   m_workerLevelIconIv.setImageResource(R.drawable.ic_star_6);
+															   m_workerLevelTextTv.setText(getString(R.string.six_star_worker_text));
 															   m_workerLevelExplainTv.setText(getString(R.string.six_star_worker_explain));
+															   m_nurseServiceContentExplainTv.setText(getString(R.string
+																														.six_star_worker_service_content_explain));
 														   }
 													   }
 												   }
