@@ -98,6 +98,5 @@
     <orderEntry type="module" module-name="volley" exported="" />
     <orderEntry type="module" module-name="eventbus" exported="" />
     <orderEntry type="module" module-name="calendar" exported="" />
-    <orderEntry type="module" module-name="androidCharts" exported="" />
   </component>
 </module>

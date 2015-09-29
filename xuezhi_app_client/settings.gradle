@@ -1,1 +1,1 @@
-include ':xuezhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar', ':MPChartLib'
+include ':xuezhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar'

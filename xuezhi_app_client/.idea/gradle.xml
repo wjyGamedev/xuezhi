@@ -9,7 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/androidCharts" />
             <option value="$PROJECT_DIR$/calendar" />
             <option value="$PROJECT_DIR$/eventbus" />
             <option value="$PROJECT_DIR$/sMSSDK" />
