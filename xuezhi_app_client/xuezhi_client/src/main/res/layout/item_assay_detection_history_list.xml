@@ -13,44 +13,64 @@
 		android:layout_marginTop="10dp"
 		android:orientation="horizontal">
 
-		<TextView
-			android:layout_width="wrap_content"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="记录时间："
-			android:textSize="16sp"/>
+			android:layout_weight="1"
+			android:orientation="vertical">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="2015年7月18日 10:00:00"
-			android:textSize="16sp"
-			android:id="@+id/assay_detection_record_date_tv"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 
-		<!--<TextView-->
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="记录时间："
+					android:textSize="16sp"/>
+
+				<TextView
+					android:id="@+id/assay_detection_record_date_tv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="2015年7月18日 10:00:00"
+					android:textSize="16sp"/>
+
+			</LinearLayout>
+
+			<!--<TextView-->
 			<!--android:layout_width="wrap_content"-->
 			<!--android:layout_height="wrap_content"-->
 			<!--android:layout_marginLeft="10dp"-->
 			<!--android:text="0：34"-->
 			<!--android:textSize="16sp"/>-->
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="10dp"
-			android:text="状态："
-			android:textSize="16sp"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="正常"
-			android:textSize="16sp"
-			android:id="@+id/status_tv"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="状态："
+					android:textSize="16sp"/>
+
+				<TextView
+					android:id="@+id/status_tv"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="正常"
+					android:textSize="16sp"/>
+			</LinearLayout>
+		</LinearLayout>
 
 		<ImageView
 			android:layout_width="20dp"
 			android:layout_height="20dp"
+			android:layout_marginTop="10dp"
 			android:background="@drawable/img_right"/>
 
 	</LinearLayout>
