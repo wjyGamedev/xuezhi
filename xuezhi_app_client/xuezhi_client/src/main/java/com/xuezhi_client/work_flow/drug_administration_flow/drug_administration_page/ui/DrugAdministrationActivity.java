@@ -112,7 +112,7 @@ public class DrugAdministrationActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			m_drugAdministrationMsgHandler.addMedication_reminder();
+			m_drugAdministrationMsgHandler.go2DrugStockAddPage();
 		}
 	}
 
