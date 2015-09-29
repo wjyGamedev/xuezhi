@@ -33,6 +33,8 @@ public class DMedicalStock
 	private int m_ID  = DataConfig.DEFAULT_VALUE;        //库存ID
 	private int m_MID = DataConfig.DEFAULT_VALUE;    //药品ID
 
+	private boolean m_medicalReminderState = false;    //药品警报状态，true开启，false关闭
+
 	private double m_remianNum = 0.0f;    //剩余存量
 	private double m_waringNum = 0.0f;    //库存警告
 
@@ -85,18 +87,18 @@ public class DMedicalStock
 			return;
 		}
 
-		int remainDays = (int)Math.floor(deltaValue/m_amountPerTime);
-		int todayYear = today.get(Calendar.YEAR);
+		int remainDays = (int)Math.floor(deltaValue / m_amountPerTime);
+		int todayYear  = today.get(Calendar.YEAR);
 		int todayMonth = today.get(Calendar.MONTH);
-		int todayDay = today.get(Calendar.DAY_OF_MONTH);
-		int maxMonths = today.getActualMaximum(Calendar.MONTH);
-		int maxDays = 0;
+		int todayDay   = today.get(Calendar.DAY_OF_MONTH);
+		int maxMonths  = today.getActualMaximum(Calendar.MONTH);
+		int maxDays    = 0;
 
 		Calendar tmpCalendar = Calendar.getInstance();
-		int beginYear = todayYear;
-		int beginMonth = todayMonth;
-		int beginDay = todayDay;
-		for (int index = 0; index < remainDays; ++index )
+		int      beginYear   = todayYear;
+		int      beginMonth  = todayMonth;
+		int      beginDay    = todayDay;
+		for (int index = 0; index < remainDays; ++index)
 		{
 			//今天
 			if (index == 0)
@@ -149,6 +151,16 @@ public class DMedicalStock
 	public void setMID(int MID)
 	{
 		m_MID = MID;
+	}
+
+	public boolean isMedicalReminderState()
+	{
+		return m_medicalReminderState;
+	}
+
+	public void setMedicalReminderState(boolean medicalReminderState)
+	{
+		m_medicalReminderState = medicalReminderState;
 	}
 
 	public double getRemianNum()

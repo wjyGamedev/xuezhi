@@ -26,14 +26,14 @@ public class AssayDetectionHistoryInfoActivity extends Activity
 
 	@Bind (R.id.history_region_fl) FrameLayout m_historyRegionFL = null;
 	@Bind (R.id.history_tabs_rg)   RadioGroup  m_tabsRG          = null;
-	@Bind (R.id.chart_rbtn)        RadioButton m_chartRBtn = null;
-	@Bind (R.id.list_rbtn)         RadioButton m_listRBtn = null;
+	@Bind (R.id.chart_rbtn)        RadioButton m_chartRBtn       = null;
+	@Bind (R.id.list_rbtn)         RadioButton m_listRBtn        = null;
 
 	//logical
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = new AssayDetectionHistoryInfoMsgHandler(this);
 	private ClickChartDisplayBottomBtn          m_clickChartDisplayBottomBtn          = new ClickChartDisplayBottomBtn();
 	private ClickListDisplayBottomBtn           m_clickListDisplayBottomBtn           = new ClickListDisplayBottomBtn();
-	private PopDialog_ErrorTips           m_popDialog_errorTips           = new PopDialog_ErrorTips();
+	private PopDialog_ErrorTips                 m_popDialog_errorTips                 = new PopDialog_ErrorTips();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)

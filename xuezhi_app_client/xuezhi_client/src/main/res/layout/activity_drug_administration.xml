@@ -21,14 +21,25 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
 
-			<LinearLayout
+			<ListView
+				android:id="@+id/drug_info_display_lv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="@color/white">
+				android:background="#ffffffff"
+				android:choiceMode="singleChoice"
+				android:divider="@color/divider_color"
+				android:dividerHeight="0.100000024dp"
+				android:listSelector="@drawable/bg_btn_translucent"
+				android:scrollbars="none"/>
 
-				<include layout="@layout/item_medication_details_label"/>
+			<!--<LinearLayout-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content"-->
+				<!--android:background="@color/white">-->
 
-			</LinearLayout>
+				<!--<include layout="@layout/item_medication_details_label"/>-->
+
+			<!--</LinearLayout>-->
 
 		</LinearLayout>
 

@@ -11,7 +11,7 @@
 	<string name="drug_administration_alert_state_open_text">开启</string>
 	<string name="drug_administration_alert_state_close_text">关闭</string>
 	<string name="drug_administration_drug_stock_title_text">当前药品存量：</string>
-	<string name="drug_administration_drug_alert_title_text">药品警报存量</string>
+	<string name="drug_administration_drug_alert_title_text">药品警报存量：</string>
 	<string name="drug_administration_add_time_text">添加时间：</string>
 	<string name="drug_administration_exhausted_time_text">预计药品用尽时间：</string>
 
