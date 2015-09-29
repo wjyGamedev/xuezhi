@@ -80,20 +80,21 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	}
 
 	//02. 用药库存
-	public void requestMedicalStockListAction()
+	public void requestMedicalStockListAction(RequestMedicalStockListEvent event)
 	{
-		RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
 		m_eventBus.post(event);
 		return;
 	}
 
 	public void onEventAsync(RequestMedicalStockListEvent event)
 	{
-		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
-														NetConfig.S_NORMAL_MEDICAL_REMAIN_ADDRESS,
-														null,
-														m_answerMedicalStockListHandler,
-														m_baseErrorListener
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_MEDICAL_REMAIN_ADDRESS,
+																sendData,
+																m_answerMedicalStockListHandler,
+																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);

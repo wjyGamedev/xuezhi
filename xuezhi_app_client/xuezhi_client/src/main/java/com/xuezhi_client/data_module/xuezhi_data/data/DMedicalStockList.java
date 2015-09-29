@@ -17,7 +17,7 @@ package com.xuezhi_client.data_module.xuezhi_data.data;
 import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
-import com.xuezhi_client.net.config.MedicalListConfig;
+import com.xuezhi_client.net.config.MedicalStockListConfig;
 import com.xuezhi_client.net.config.ProtocalConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -57,10 +57,10 @@ public class DMedicalStockList
 		}
 
 		//03. 序列化json
-		JSONArray jsonArray = response.getJSONArray(MedicalListConfig.LIST);
+		JSONArray jsonArray = response.getJSONArray(MedicalStockListConfig.LIST);
 		if (jsonArray == null)
 		{
-			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + MedicalListConfig.LIST);
+			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + MedicalStockListConfig.LIST);
 		}
 
 		JSONObject jsonObject = null;

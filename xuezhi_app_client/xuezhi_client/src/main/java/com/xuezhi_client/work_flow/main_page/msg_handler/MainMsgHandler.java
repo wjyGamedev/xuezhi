@@ -14,8 +14,8 @@
 
 package com.xuezhi_client.work_flow.main_page.msg_handler;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.storage.OwnerPreferences;
@@ -76,7 +76,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 		HomeTabFragment homeTabFragment = new HomeTabFragment();
 
-		FragmentTransaction transaction = mainActivity.getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.func_region_fl, homeTabFragment);
 		transaction.commit();
 
@@ -88,7 +88,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		MainActivity mainActivity = (MainActivity)m_context;
 		PersonalTabFragment personalTabFragment = new PersonalTabFragment();
 
-		FragmentTransaction transaction = mainActivity.getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.func_region_fl, personalTabFragment);
 		transaction.commit();
 
@@ -101,7 +101,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		MainActivity mainActivity = (MainActivity)m_context;
 		ServiceTabFragment serviceTabFragment = new ServiceTabFragment();
 
-		FragmentTransaction transaction = mainActivity.getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.func_region_fl, serviceTabFragment);
 		transaction.commit();
 

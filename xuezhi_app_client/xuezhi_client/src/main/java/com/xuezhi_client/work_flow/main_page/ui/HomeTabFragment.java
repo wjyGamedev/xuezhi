@@ -14,9 +14,10 @@
 
 package com.xuezhi_client.work_flow.main_page.ui;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -165,14 +166,26 @@ public class HomeTabFragment extends Fragment
 	 */
 	public void init()
 	{
-		MainActivity mainActivity = (MainActivity)getActivity();
-		if (mainActivity == null)
+		Activity activity = getActivity();
+		if (activity instanceof MainActivity)
 		{
-			TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
-			TipsDialog.GetInstance().show();
-			return;
+			MainActivity mainActivity = (MainActivity)getActivity();
+			if (mainActivity == null)
+			{
+				TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
+				TipsDialog.GetInstance().show();
+				return;
+			}
+			m_mainMsgHandler = mainActivity.getMainMsgHandler();
 		}
-		m_mainMsgHandler = mainActivity.getMainMsgHandler();
+//		MainActivity mainActivity = (MainActivity)getActivity();
+//		if (mainActivity == null)
+//		{
+//			TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
+//			TipsDialog.GetInstance().show();
+//			return;
+//		}
+//		m_mainMsgHandler = mainActivity.getMainMsgHandler();
 
 		m_gestureDetector = new GestureDetector(m_imgsDisplayVF.getContext(), new MyGestureDetector());
 	}

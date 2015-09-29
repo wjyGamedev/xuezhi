@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
-import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 
 import com.module.data.DGlobal;
+import com.module.frame.BaseActivity;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2015/9/22.
  */
-public class MainActivity extends Activity
+public class MainActivity extends BaseActivity
 {
 	//widget
 	private                     HeaderCommon m_headerCommon = null;

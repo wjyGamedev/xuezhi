@@ -16,11 +16,32 @@ package com.xuezhi_client.data_module.xuezhi_data.msg_handler;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
+import com.xuezhi_client.net.config.MedicalStockListConfig;
+
+import java.util.HashMap;
 
 public class RequestMedicalStockListEvent extends BaseNetEvent
 {
+	private String m_UID = null;
+
 	public RequestMedicalStockListEvent()
 	{
 		super(EventID.QUEST_MEDICAL_STOCK_LIST);
 	}
+
+	public HashMap<String, String> getHashMap()
+	{
+		HashMap<String, String> sendData = new HashMap<String, String>();
+
+		sendData.put(MedicalStockListConfig.UID, m_UID);
+
+		return sendData;
+	}
+
+	public void setUID(String UID)
+	{
+		m_UID = UID;
+	}
+
+
 }
