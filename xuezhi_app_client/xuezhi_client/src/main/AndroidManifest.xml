@@ -23,7 +23,7 @@
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
 
-		<!-- 主页面相关-->
+		<!-- 01.主页面相关-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.main_page.ui.MainActivity"
 			android:label="@string/app_name"
@@ -35,14 +35,31 @@
 			</intent-filter>
 		</activity>
 
-		<!-- 注册页面-->
+		<!-- 02.注册页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.register_page.ui.RegisterActivity"
 			android:screenOrientation="portrait"
 			android:label="RegisterActivity">
 		</activity>
 
-
+		<!-- 03.化验检测流程-->
+		<!-- 化验检测页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity"
+			android:screenOrientation="portrait"
+			android:label="AssayDetectionActivity">
+		</activity>
+		<!-- 化验检测历史页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity"
+			android:screenOrientation="portrait"
+			android:label="AssayDetectionHistoryInfoActivity">
+		</activity>
+		<activity
+			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment"
+			android:screenOrientation="portrait"
+			android:label="ADHChartFragment">
+		</activity>
 
 
 	</application>

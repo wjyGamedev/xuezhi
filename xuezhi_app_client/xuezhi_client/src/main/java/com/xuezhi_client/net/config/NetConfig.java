@@ -41,7 +41,7 @@ public class NetConfig
 	//用药记录
 	public final static String S_NORMAL_MEDICAL_HISTORY_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
 
-	//用药提醒
+	//药提醒用
 	public final static String S_NORMAL_MEDICAL_PROMPT_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getPrompt/";
 
 	//添加用药检查信息

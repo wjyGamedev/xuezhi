@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.msg_handler.AssayDetectionHistoryInfoMsgHandler;
@@ -19,21 +19,23 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/22.
  */
-public class AssayDetectionHistoryInfoActivity extends Activity
+public class AssayDetectionHistoryInfoActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
 
 	@Bind (R.id.history_region_fl) FrameLayout m_historyRegionFL = null;
 	@Bind (R.id.history_tabs_rg)   RadioGroup  m_tabsRG          = null;
-	@Bind (R.id.chart_rbtn)        RadioButton m_chartRBtn = null;
-	@Bind (R.id.list_rbtn)         RadioButton m_listRBtn = null;
+	@Bind (R.id.chart_rbtn)        RadioButton m_chartRBtn       = null;
+	@Bind (R.id.list_rbtn)         RadioButton m_listRBtn        = null;
 
 	//logical
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = new AssayDetectionHistoryInfoMsgHandler(this);
 	private ClickChartDisplayBottomBtn          m_clickChartDisplayBottomBtn          = new ClickChartDisplayBottomBtn();
 	private ClickListDisplayBottomBtn           m_clickListDisplayBottomBtn           = new ClickListDisplayBottomBtn();
-	private PopDialog_ErrorTips           m_popDialog_errorTips           = new PopDialog_ErrorTips();
+	private PopDialog_ErrorTips                 m_popDialog_errorTips                 = new PopDialog_ErrorTips();
+
+	private int m_HistoryRegionFLHeight = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +45,7 @@ public class AssayDetectionHistoryInfoActivity extends Activity
 		ButterKnife.bind(this);
 
 		init();
+		initHightValues();
 	}
 
 	@Override
@@ -100,6 +103,15 @@ public class AssayDetectionHistoryInfoActivity extends Activity
 		return;
 	}
 
+	private void initHightValues()
+	{
+		int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+		int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+
+		m_historyRegionFL.measure(w, h);
+		m_HistoryRegionFLHeight = m_historyRegionFL.getMeasuredHeight();
+	}
+
 	private void updateContent()
 	{
 		int selectedID = m_tabsRG.getCheckedRadioButtonId();
@@ -123,6 +135,11 @@ public class AssayDetectionHistoryInfoActivity extends Activity
 	public AssayDetectionHistoryInfoMsgHandler getAssayDetectionHistoryInfoMsgHandler()
 	{
 		return m_assayDetectionHistoryInfoMsgHandler;
+	}
+
+	public int getHistoryRegionFLHeight()
+	{
+		return m_HistoryRegionFLHeight;
 	}
 
 	/**

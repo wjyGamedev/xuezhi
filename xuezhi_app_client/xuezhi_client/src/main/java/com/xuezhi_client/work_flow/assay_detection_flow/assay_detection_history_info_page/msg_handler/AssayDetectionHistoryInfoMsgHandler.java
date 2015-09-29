@@ -1,14 +1,15 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.msg_handler;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionListEvent;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHListFragment;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -32,6 +33,23 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	//01. 图标显示
 	public void go2ChartFragment()
 	{
+		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
+
+		ADHChartFragment adhChartFragment = new ADHChartFragment();
+		adhChartFragment.setHeight(activity.getHistoryRegionFLHeight());
+
+		//TODO:这里不能把ADHChartFragment挂接在R.id.history_region_fl子节点下，不然会显示不出来。
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+//		transaction.replace(R.id.history_region_fl, adhChartFragment);
+		transaction.replace(android.R.id.content, adhChartFragment);
+		transaction.commit();
+
+		//		activity.startActivity(new Intent(activity, ADHChartFragment.class));
+//		if (activity.getSupportFragmentManager().findFragmentById(android.R.id.content) == null) {
+//			activity.getSupportFragmentManager().beginTransaction()
+//									   .add(android.R.id.content,
+//											new ADHChartFragment()).commit();
+//		}
 		return;
 	}
 
@@ -42,7 +60,7 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 
 		ADHListFragment adhListFragment = new ADHListFragment();
 
-		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.history_region_fl, adhListFragment);
 		transaction.commit();
 
@@ -54,8 +72,8 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	public void onEventMainThread(AnswerAssayDetectionListEvent event)
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
-		FragmentManager fgManager           = activity.getFragmentManager();
-		Fragment        fragment            = fgManager.findFragmentByTag(ADHListFragment.class.getName());
+		FragmentManager fgManager           = activity.getSupportFragmentManager();
+		Fragment fragment            = fgManager.findFragmentByTag(ADHListFragment.class.getName());
 		if (fragment == null)
 		{
 			return;
