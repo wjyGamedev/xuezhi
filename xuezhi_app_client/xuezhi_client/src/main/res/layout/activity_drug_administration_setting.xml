@@ -73,18 +73,6 @@
 			<!--<include layout="@layout/item_medication_reminder_setting"/>-->
 
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="20dp">
-
-			</LinearLayout>
-
-			<fragment
-				android:id="@+id/add_del_drug_btn_fragment"
-				android:name="com.module.widget.bottom.BottomCommon"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
-
 		</LinearLayout>
 	</ScrollView>
 

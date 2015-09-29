@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  xmlns:tools="http://schemas.android.com/tools"
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
@@ -24,51 +24,51 @@
 			android:orientation="vertical">
 
 			<!--<LinearLayout-->
-				<!--android:layout_width="match_parent"-->
-				<!--android:layout_height="wrap_content"-->
-				<!--android:layout_marginTop="10dp"-->
-				<!--android:background="@color/white"-->
-				<!--android:orientation="vertical">-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginTop="10dp"-->
+			<!--android:background="@color/white"-->
+			<!--android:orientation="vertical">-->
 
-				<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
+			<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
 
-				<!--<LinearLayout-->
-					<!--android:layout_width="match_parent"-->
-					<!--android:layout_height="wrap_content"-->
-					<!--android:layout_marginLeft="15dp"-->
-					<!--android:layout_marginRight="15dp"-->
-					<!--android:orientation="horizontal">-->
+			<!--<LinearLayout-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginLeft="15dp"-->
+			<!--android:layout_marginRight="15dp"-->
+			<!--android:orientation="horizontal">-->
 
-					<!--<TextView-->
-						<!--android:layout_width="wrap_content"-->
-						<!--android:layout_height="wrap_content"-->
-						<!--android:layout_marginBottom="10dp"-->
-						<!--android:layout_marginTop="10dp"-->
-						<!--android:text="@string/assay_detection_test_time_title_text"-->
-						<!--android:textSize="20sp"/>-->
+			<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginBottom="10dp"-->
+			<!--android:layout_marginTop="10dp"-->
+			<!--android:text="@string/assay_detection_test_time_title_text"-->
+			<!--android:textSize="20sp"/>-->
 
-					<!--<TextView-->
-						<!--android:layout_width="match_parent"-->
-						<!--android:layout_height="wrap_content"-->
-						<!--android:layout_marginBottom="10dp"-->
-						<!--android:layout_marginTop="10dp"-->
-						<!--android:layout_weight="1"-->
-						<!--android:gravity="right"-->
-						<!--android:text="@string/assay_detection_temp_data_btn_text"-->
-						<!--android:textSize="20sp"/>-->
+			<!--<TextView-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginBottom="10dp"-->
+			<!--android:layout_marginTop="10dp"-->
+			<!--android:layout_weight="1"-->
+			<!--android:gravity="right"-->
+			<!--android:text="@string/assay_detection_temp_data_btn_text"-->
+			<!--android:textSize="20sp"/>-->
 
-					<!--<TextView-->
-						<!--android:layout_width="wrap_content"-->
-						<!--android:layout_height="wrap_content"-->
-						<!--android:layout_marginBottom="10dp"-->
-						<!--android:layout_marginLeft="10dp"-->
-						<!--android:layout_marginTop="10dp"-->
-						<!--android:text="@string/assay_detection_temp_data_btn_text"-->
-						<!--android:textSize="20sp"/>-->
+			<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginBottom="10dp"-->
+			<!--android:layout_marginLeft="10dp"-->
+			<!--android:layout_marginTop="10dp"-->
+			<!--android:text="@string/assay_detection_temp_data_btn_text"-->
+			<!--android:textSize="20sp"/>-->
 
-				<!--</LinearLayout>-->
+			<!--</LinearLayout>-->
 
-				<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
+			<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
 
 			<!--</LinearLayout>-->
 
@@ -91,15 +91,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_tg_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/tg_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/tg_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -113,15 +113,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_tcho_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/tcho_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/tcho_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -135,15 +135,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_lol_c_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/lolc_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/lolc_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -158,15 +158,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_hdl_c_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/hdlc_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/hdlc_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -191,20 +191,16 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_atl_title_text"
 						android:textSize="20sp"/>
 
-					<TextView
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/atl_et"
 						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:layout_weight="1"/>
-
-					<EditText
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/atl_et"/>
+						android:singleLine="true"
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -218,15 +214,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_ast_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/ast_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/ast_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -240,15 +236,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_ck_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/ck_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/ck_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -262,15 +258,15 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_glu_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/glu_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/glu_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
@@ -284,37 +280,38 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_hba1c_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/hba1c_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/hba1c_et"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
 					android:layout_marginLeft="20dp"
 					android:layout_marginRight="20dp"
-					android:layout_marginBottom="10dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:layout_marginTop="15dp"
 						android:gravity="center"
 						android:text="@string/assay_detection_scr_title_text"
 						android:textSize="20sp"/>
 
-					<EditText
+					<com.module.widget.lineedittext.LineEditText
+						android:id="@+id/scr_et"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"/>
+						android:layout_height="40dp"
+						android:background="@null"/>
 
 				</LinearLayout>
 

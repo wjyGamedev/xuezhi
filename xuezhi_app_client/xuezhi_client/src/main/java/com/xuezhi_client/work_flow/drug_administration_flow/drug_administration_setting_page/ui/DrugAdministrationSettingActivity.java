@@ -50,12 +50,6 @@ public class DrugAdministrationSettingActivity extends Activity
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_setting_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
 
-		m_addDelBtn = (BottomCommon)getFragmentManager().findFragmentById(R.id.add_del_drug_btn_fragment);
-		m_addDelBtn.setBtnNum(2);
-		m_addDelBtn.getCommonBottomBtn().setText(R.string.drug_administration_setting_add_btn_text);
-		m_addDelBtn.getCommonBottomBtn().setOnClickListener(m_clickAddBtn);
-		m_addDelBtn.getCommonBottomBtn2().setText(R.string.drug_administration_setting_del_btn_text);
-		m_addDelBtn.getCommonBottomBtn2().setOnClickListener(m_clickDelBtn);
 	}
 
 	/**
