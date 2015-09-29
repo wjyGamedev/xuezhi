@@ -20,13 +20,9 @@ public class NetConfig
 	private final static String IP_ADDREDD_OFFICAL = "54.223.209.101:8888";    //泰心康护正式服务器
 	private final static String IP_ADDREDD_TEST    = "54.223.217.123:8888";        //协同开发服务器
 
+	private final static String IP_ADDRESS_XUEZHI_TEST = "54.223.203.15";	//血脂的协同开发服务器。
+
 	//测试地址
-	public final static String s_hospitalListAddress    = "http://" + IP_ADDREDD_INNER + "/downloads/hospital_list/";
-	public final static String s_nurseBasicsListAddress = "http://" + IP_ADDREDD_INNER + "/downloads/nurse_basics_list/";
-
-	public final static String s_ShoppingBasicsListAddress = "http://" + IP_ADDREDD_INNER + "/downloads/goods_basics_list/";
-
-
 	//医院URL
 	public final static String S_NORMAL_HOSPITALLIST_ADDRESS   = "http://" + IP_ADDREDD_TEST + "/hospital/gethospitallist/";
 	//科室URL
@@ -35,36 +31,23 @@ public class NetConfig
 	//注册
 	public final static String s_registerAddress = "http://" + IP_ADDREDD_TEST + "/user/loginAction/";
 
-	//预约陪护地址
-	public final static String s_appointmentNursingAddress = "http://" + IP_ADDREDD_TEST + "/carer/getCarerList/";
+	//01. 血脂相关
+	//获取支持药品的下拉列表
+	public final static String S_NORMAL_MEDICAL_LIST_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/user/loginAction/";
 
-	//nurse senior list address
-	public final static String s_nurseSeniorListAddress = "http://" + IP_ADDREDD_TEST + "/carer/getCarerSeniorList/";
+	//用药库存
+	public final static String S_NORMAL_MEDICAL_REMAIN_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getPrompt/";
 
-	//nurse order confirm
-	public final static String s_nurseOrderConfirmAddress = "http://" + IP_ADDREDD_TEST + "/order/preAddOrder/";
+	//用药记录
+	public final static String S_NORMAL_MEDICAL_HISTORY_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
 
-	//nurse order check
-	public final static String s_nurseOrderCheckAddress = "http://" + IP_ADDREDD_TEST + "/order/checkOrder/";
+	//用药提醒
+	public final static String S_NORMAL_MEDICAL_PROMPT_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getPrompt/";
 
-	//服务器异步通知页面路径
-	public static final String s_nurserOrderAlipayServerNoticePageURL = "http://" + IP_ADDREDD_TEST + "/order/payCallBack/";
+	//添加用药检查信息
+	public final static String S_NORMAL_ADD_ASSAY_DETECTION_INFO_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
 
-	//nurse order list address
-	public final static String s_nurseOrderListAddress = "http://" + IP_ADDREDD_TEST + "/order/getOder/";
+	//用药检查信息列表
+	public final static String S_NORMAL_ASSAY_DETECTION_LIST_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
 
-	//取消订单，在未付款的情况下。
-	public final static String s_nurseOrderCancel = "http://" + IP_ADDREDD_TEST + "/order/cancelOrder/";
-
-	//取消订单，在服务西黄太下
-	public final static String s_nurseOrderCancelService = "http://" + IP_ADDREDD_TEST + "/order/orderEarlyCancel/";
-
-	//更换护工的地址
-	public final static String s_changeNurseAddress = "http://" + IP_ADDREDD_TEST + "/order/changeCarer/";
-
-	//补差价
-	public final static String s_nurseOrderPayMoreAddress = "http://" + IP_ADDREDD_TEST + "/order/orderAddOnPay/";
-
-	//给护工订单添加评论
-	public final static String s_commentNurseOrder= "http://" + IP_ADDREDD_TEST + "/order/comment/";
 }

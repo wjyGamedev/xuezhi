@@ -1,2 +1,1 @@
-include ':xuezhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar'
-include ':androidCharts'
+include ':xuezhi_client', ':sMSSDK', ':volley', ':eventbus', ':calendar', ':MPChartLib'

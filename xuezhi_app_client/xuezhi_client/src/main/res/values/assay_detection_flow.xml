@@ -34,5 +34,6 @@
 	<string name="assay_detection_history_info_chart_display_btn_text">图表显示</string>
 	<string name="assay_detection_history_info_list_display_btn_text">列表显示</string>
 
+	<string name="assay_detection_status_normal">正常</string>
 
 </resources>

@@ -4,4 +4,7 @@
 	<string name="info_register_success">成功</string>
 	<string name="info_confirm">确定</string>
 	<string name="info_cancel">取消</string>
+
+	<string name="wait_tips">等待中...</string>
+	<string name="error_tips_init_first">请先初始化</string>
 </resources>

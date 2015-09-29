@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
@@ -9,7 +10,8 @@
 		android:id="@+id/common_header_fragment"
 		android:name="com.module.widget.header.HeaderCommon"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:layout="@layout/include_header"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -25,34 +27,59 @@
 
 			<include layout="@layout/item_dividing_line_horizontal"/>
 
-			<!--<ListView-->
-			<!--android:layout_width="match_parent"-->
-			<!--android:layout_height="wrap_content">-->
-			<!-- -->
-			<!-- -->
-			<!--</ListView>-->
+			<ScrollView
+				android:id="@+id/history_region_sv"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:visibility="visible"
+				android:layout_weight="1">
 
-			<include layout="@layout/item_laboratory_history_info"/>
+				<FrameLayout
+					android:id="@+id/history_region_fl"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0">
 
-			<include layout="@layout/item_laboratory_history_info"/>
 
-			<include layout="@layout/item_laboratory_history_info"/>
+				</FrameLayout>
 
-			<include layout="@layout/item_laboratory_history_info"/>
-
-			<include layout="@layout/item_laboratory_history_info"/>
-
-			<include layout="@layout/item_laboratory_history_info"/>
+			</ScrollView>
 
 		</LinearLayout>
 
 
 	</ScrollView>
 
-	<fragment
-		android:id="@+id/common_bottom_fragment"
-		android:name="com.module.widget.bottom.BottomCommon"
+	<!--<fragment-->
+		<!--android:id="@+id/common_bottom_fragment"-->
+		<!--android:name="com.module.widget.bottom.BottomCommon"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--tools:layout="@layout/include_bottom"/>-->
+
+	<include layout="@layout/item_dividing_line_horizontal"/>
+
+	<RadioGroup
+		android:id="@+id/history_tabs_rg"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="50dp"
+		android:background="#ffffffff"
+		android:orientation="horizontal"
+		android:paddingTop="2.5dp"
+		android:visibility="visible">
+
+		<RadioButton
+			android:id="@+id/chart_rbtn"
+			style="@style/home_radio_button_style"
+			android:checked="true"
+			android:text="图表显示"/>
+
+		<RadioButton
+			android:id="@+id/list_rbtn"
+			style="@style/home_radio_button_style"
+			android:text="列表显示"/>
+
+	</RadioGroup>
+
 
 </LinearLayout>
