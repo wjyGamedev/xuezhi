@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
+		initAction();
 	}
 
 	@Override
@@ -123,6 +124,11 @@ public class MainActivity extends BaseActivity
 
 		m_homeRBtn.setSelected(true);
 
+	}
+	private void initAction()
+	{
+		m_mainMsgHandler.initAction();
+		return;
 	}
 
 	private void updateContent()

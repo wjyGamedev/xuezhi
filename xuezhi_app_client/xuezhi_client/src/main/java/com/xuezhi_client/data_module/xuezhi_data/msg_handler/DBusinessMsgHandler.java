@@ -26,14 +26,19 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 {
 	private static DBusinessMsgHandler s_DBusinessMsgHandler = new DBusinessMsgHandler();
 
-	private AnswerMedicalListHandler        m_answerMedicalListHandler        = new AnswerMedicalListHandler();
-	private AnswerMedicalStockListHandler   m_answerMedicalStockListHandler   = new AnswerMedicalStockListHandler();
+	private AnswerMedicalUnitListHandler  m_answerMedicalUnitListHandler  = new AnswerMedicalUnitListHandler();
+	private AnswerMedicalListHandler      m_answerMedicalListHandler      = new AnswerMedicalListHandler();
+	private AnswerMedicalStockListHandler m_answerMedicalStockListHandler = new AnswerMedicalStockListHandler();
+	private AnswerAddMedicalStockHandler  m_answerAddMedicalStockHandler  = new AnswerAddMedicalStockHandler();
+
 	private AnswerMedicalHistoryListHandler m_answerMedicalHistoryListHandler = new AnswerMedicalHistoryListHandler();
 	private AnswerMedicalPromptListHandler  m_answerMedicalPromptListHandler  = new AnswerMedicalPromptListHandler();
+	private AnswerAddMedicalPromptHandler   m_answerAddMedicalPromptHandler   = new AnswerAddMedicalPromptHandler();
 
 	private AnswerAddAssayDetectionInfoHandler m_answerAddAssayDetectionInfoHandler = new AnswerAddAssayDetectionInfoHandler();
 	private AnswerAssayDetectionListHandler    m_answerAssayDetectionListHandler    = new AnswerAssayDetectionListHandler();
 
+	private AnswerTakeMedicalHandler m_answerTakeMedicalHandler = new AnswerTakeMedicalHandler();
 
 	@Override
 	protected void init()
@@ -50,6 +55,33 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	public static DBusinessMsgHandler GetInstance()
 	{
 		return s_DBusinessMsgHandler;
+	}
+
+	//01. 药品单位
+	public void requestMedicalUnitListAction()
+	{
+		RequestMedicalUnitListEvent event = new RequestMedicalUnitListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestMedicalUnitListEvent event)
+	{
+		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
+														NetConfig.S_NORMAL_MEDICAL_UNIT_LIST_ADDRESS,
+														null,
+														m_answerMedicalUnitListHandler,
+														m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerMedicalUnitListAction()
+	{
+		AnswerMedicalUnitListHandler answerMedicalListEvent = new AnswerMedicalUnitListHandler();
+		m_eventBus.post(answerMedicalListEvent);
+		return;
 	}
 
 	//01. 药品列表
@@ -80,6 +112,7 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	}
 
 	//02. 用药库存
+	//用户库存列表
 	public void requestMedicalStockListAction(RequestMedicalStockListEvent event)
 	{
 		m_eventBus.post(event);
@@ -107,21 +140,50 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 		return;
 	}
 
-	//03. 用药记录
-	public void requestMedicalHistoryListAction()
+	//添加药品库存
+	public void requestAddMedicalStockAction(RequestAddMedicalStockEvent event)
 	{
-		RequestMedicalHistoryListEvent event = new RequestMedicalHistoryListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestAddMedicalStockEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_ADD_MEDICAL_STOCK_ADDRESS,
+																sendData,
+																m_answerAddMedicalStockHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerAddMedicalStockAction(AnswerAddMedicalStockEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+
+	//03. 用药记录
+	public void requestMedicalHistoryListAction(RequestMedicalHistoryListEvent event)
+	{
 		m_eventBus.post(event);
 		return;
 	}
 
 	public void onEventAsync(RequestMedicalHistoryListEvent event)
 	{
-		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
-														NetConfig.S_NORMAL_MEDICAL_HISTORY_ADDRESS,
-														null,
-														m_answerMedicalHistoryListHandler,
-														m_baseErrorListener
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_MEDICAL_HISTORY_ADDRESS,
+																sendData,
+																m_answerMedicalHistoryListHandler,
+																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
@@ -135,6 +197,7 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	}
 
 	//04. 用药提醒
+	//用药提醒
 	public void requestMedicalPromptListAction()
 	{
 		RequestMedicalPromptListEvent event = new RequestMedicalPromptListEvent();
@@ -144,11 +207,11 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 
 	public void onEventAsync(RequestMedicalPromptListEvent event)
 	{
-		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
-														NetConfig.S_NORMAL_MEDICAL_PROMPT_ADDRESS,
-														null,
-														m_answerMedicalPromptListHandler,
-														m_baseErrorListener
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_MEDICAL_PROMPT_LIST_ADDRESS,
+																null,
+																m_answerMedicalPromptListHandler,
+																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
@@ -157,6 +220,33 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	public void answerMedicalPromptListAction()
 	{
 		AnswerMedicalPromptListEvent event = new AnswerMedicalPromptListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	//添加用药提醒
+	public void requestAddMedicalPromptAction(RequestAddMedicalPromptEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestAddMedicalPromptEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_MEDICAL_ADD_PROMPT_ADDRESS,
+																sendData,
+																m_answerAddMedicalPromptHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerAddMedicalPromptAction(AnswerAddMedicalPromptEvent event)
+	{
 		m_eventBus.post(event);
 		return;
 	}
@@ -208,6 +298,34 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	}
 
 	public void answerAssayDetectionListAction(AnswerAssayDetectionListEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+
+	//吃药
+	public void requestTakeMedicalAction(RequestTakeMedicalEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestTakeMedicalEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_TAKE_MEDICAL_ADDRESS,
+																sendData,
+																m_answerTakeMedicalHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerTakeMedicalAction(AnswerTakeMedicalEvent event)
 	{
 		m_eventBus.post(event);
 		return;

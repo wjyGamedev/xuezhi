@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -18,10 +18,11 @@ import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.net.config.MedicalListConfig;
+import com.xuezhi_client.net.config.MedicalHistoryListConfig;
 import com.xuezhi_client.net.config.ProtocalConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class DMedicalHistoryList
 {
@@ -59,26 +62,62 @@ public class DMedicalHistoryList
 		}
 
 		//03. 当前月份
-		String tmpCurrDate = response.getString(MedicalListConfig.NAME);
-		Date   currDate    = m_yearMonthDaySDF.parse(tmpCurrDate);
-		Calendar currCalendar = Calendar.getInstance();
-		currCalendar.setTime(currDate);
-
-		//04. 添加/更新
-		DMedicalHistoryListPerMonth medicalHistoryListPerMonth = null;
-		//更新
-		if (m_medicalHistoryHashMap.containsKey(currCalendar))
+		JSONArray jsonArray   = response.getJSONArray(MedicalHistoryListConfig.LIST);
+		for (int index = 0; index < jsonArray.length(); index++)
 		{
-			medicalHistoryListPerMonth = m_medicalHistoryHashMap.get(currCalendar);
-		}
-		//add new
-		else
-		{
-			medicalHistoryListPerMonth = new DMedicalHistoryListPerMonth();
-			m_medicalHistoryHashMap.put(currCalendar, medicalHistoryListPerMonth);
+			JSONObject jsonObject = (JSONObject)jsonArray.get(index);
+			String     dateDisplay  = jsonObject.getString(MedicalHistoryListConfig.DATE);
+			Date       currDate     = m_yearMonthDaySDF.parse(dateDisplay);
+			Calendar   currCalendar = Calendar.getInstance();
+			currCalendar.setTime(currDate);
+			int currYear = currCalendar.get(Calendar.YEAR);
+			int currMonth = currCalendar.get(Calendar.MONTH);
+			int currDay = currCalendar.get(Calendar.DAY_OF_MONTH);
+
+			//04. 添加/更新
+			DMedicalHistoryListPerMonth medicalHistoryListPerMonth = null;
+			//更新
+			Iterator<Map.Entry<Calendar, DMedicalHistoryListPerMonth>> iterator = m_medicalHistoryHashMap.entrySet().iterator();
+			int year = 0;
+			int month = 0;
+			int day = 0;
+			boolean findFlag = false;
+			while (iterator.hasNext())
+			{
+				Map.Entry<Calendar, DMedicalHistoryListPerMonth> entry = iterator.next();
+				Calendar tmpCalendar = entry.getKey();
+				year = tmpCalendar.get(Calendar.YEAR);
+				month = tmpCalendar.get(Calendar.MONTH);
+				day = tmpCalendar.get(Calendar.DAY_OF_MONTH);
+
+				if (year == currYear && month == currMonth && day == currDay)
+				{
+					findFlag = true;
+					medicalHistoryListPerMonth = entry.getValue();
+				}
+			}
+			//add new
+			if (!findFlag)
+			{
+				medicalHistoryListPerMonth = new DMedicalHistoryListPerMonth();
+				m_medicalHistoryHashMap.put(currCalendar, medicalHistoryListPerMonth);
+			}
+
+			//		if (m_medicalHistoryHashMap.containsKey(currCalendar))
+			//		{
+			//			medicalHistoryListPerMonth = m_medicalHistoryHashMap.get(currCalendar);
+			//		}
+			//		//add new
+			//		else
+			//		{
+			//			medicalHistoryListPerMonth = new DMedicalHistoryListPerMonth();
+			//			m_medicalHistoryHashMap.put(currCalendar, medicalHistoryListPerMonth);
+			//		}
+
+			medicalHistoryListPerMonth.serialization(jsonObject, currCalendar);
 		}
 
-		medicalHistoryListPerMonth.serialization(response);
+
 		return true;
 
 	}

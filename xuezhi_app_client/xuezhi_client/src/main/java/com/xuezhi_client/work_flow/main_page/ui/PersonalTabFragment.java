@@ -93,6 +93,20 @@ public class PersonalTabFragment extends Fragment
 		return;
 	}
 
+	@OnClick(R.id.risk_assessment_region_ll)
+	public void clickRiskAssessmentRegion()
+	{
+		m_mainMsgHandler.go2RiskAssessmentPage();
+		return;
+	}
+
+	@OnClick(R.id.user_procotal_region_ll)
+	public void clickUserProtocalPage()
+	{
+		m_mainMsgHandler.go2UserProtocalPage();
+		return;
+	}
+
 
 	/**
 	 * override:func

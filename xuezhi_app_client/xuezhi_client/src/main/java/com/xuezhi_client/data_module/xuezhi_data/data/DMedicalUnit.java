@@ -5,30 +5,30 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/9/28		WangJY		1.0.0		create
+ * 2015/9/30		WangJY		1.0.0		create
  */
 
 package com.xuezhi_client.data_module.xuezhi_data.data;
 
 import com.xuezhi_client.config.DataConfig;
-import com.xuezhi_client.net.config.MedicalListConfig;
+import com.xuezhi_client.net.config.MedicalUnitListConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DMedical
+public class DMedicalUnit
 {
 	private int    m_ID   = DataConfig.DEFAULT_VALUE;
-	private String m_name = null;
+	private String m_unitName = null;
 
 	public boolean serialization(JSONObject response) throws JSONException
 	{
-		m_ID = response.getInt(MedicalListConfig.MID);
-		m_name = response.getString(MedicalListConfig.NAME);
+		m_ID = response.getInt(MedicalUnitListConfig.ID);
+		m_unitName = response.getString(MedicalUnitListConfig.UINT);
 		return true;
 	}
 
@@ -37,18 +37,8 @@ public class DMedical
 		return m_ID;
 	}
 
-	public void setID(int ID)
+	public String getUnitName()
 	{
-		m_ID = ID;
-	}
-
-	public String getName()
-	{
-		return m_name;
-	}
-
-	public void setName(String name)
-	{
-		m_name = name;
+		return m_unitName;
 	}
 }

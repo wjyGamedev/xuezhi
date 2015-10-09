@@ -17,7 +17,7 @@ package com.xuezhi_client.data_module.xuezhi_data.data;
 import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.net.config.MedicalListConfig;
+import com.xuezhi_client.net.config.MedicalHistoryListConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import org.json.JSONArray;
@@ -28,7 +28,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class DMedicalHistoryListPerMonth
 {
@@ -44,22 +43,20 @@ public class DMedicalHistoryListPerMonth
 	{
 	}
 
-	public synchronized boolean serialization(JSONObject response) throws JSONException, ParseException
+	public synchronized boolean serialization(JSONObject response, Calendar month) throws JSONException, ParseException
 	{
 		//01. 清空原来容器
 		clearup();
 
 		//02. 当前月份
-		String tmpCurrDate = response.getString(MedicalListConfig.NAME);
-		Date   currDate    = m_yearMonthDaySDF.parse(tmpCurrDate);
 		m_currCalendar = Calendar.getInstance();
-		m_currCalendar.setTime(currDate);
+		m_currCalendar.setTime(month.getTime());
 
 		//03. 序列化json
-		JSONArray jsonArray = response.getJSONArray(MedicalListConfig.LIST);
+		JSONArray jsonArray = response.getJSONArray(MedicalHistoryListConfig.TAKE_LIST);
 		if (jsonArray == null)
 		{
-			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + MedicalListConfig.LIST);
+			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + MedicalHistoryListConfig.TAKE_LIST);
 		}
 
 		JSONObject      jsonObject             = null;

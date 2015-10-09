@@ -41,7 +41,7 @@ public class DMedicalPrompt
 
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
-		m_ID = response.getInt(MedicalListConfig.ID);
+		m_ID = response.getInt(MedicalListConfig.NAME);
 		m_RPID = response.getInt(MedicalListConfig.NAME);
 
 		String tmpTakeDate = response.getString(MedicalListConfig.NAME);

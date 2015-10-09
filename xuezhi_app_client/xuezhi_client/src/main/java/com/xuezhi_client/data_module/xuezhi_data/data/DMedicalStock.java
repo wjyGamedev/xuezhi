@@ -14,12 +14,16 @@
 
 package com.xuezhi_client.data_module.xuezhi_data.data;
 
-import com.module.widget.dialog.TipsDialog;
+import com.module.data.DGlobal;
+import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.config.EnumConfig;
-import com.xuezhi_client.net.config.MedicalListConfig;
+import com.xuezhi_client.net.config.MedicalPromptListConfig;
+import com.xuezhi_client.net.config.MedicalStockListConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,12 +34,16 @@ import java.util.Date;
 
 public class DMedicalStock
 {
-	private int m_ID  = DataConfig.DEFAULT_VALUE;        //库存ID
-	private int m_MID = DataConfig.DEFAULT_VALUE;    //药品ID
+	private int    m_MID       = DataConfig.DEFAULT_VALUE;    //药品ID
+	private int    m_UID       = DataConfig.DEFAULT_VALUE;    //用户DI
+	private double m_remianNum = 0.0f;    //剩余存量
+	private int    m_unitID    = DataConfig.DEFAULT_VALUE;    //药品单位的ID
+	private int    m_ID        = DataConfig.DEFAULT_VALUE;        //库存ID
+	private int	m_tpID       = DataConfig.DEFAULT_VALUE;        //用药提醒ID
 
 	private boolean m_medicalReminderState = false;    //药品警报状态，true开启，false关闭
 
-	private double m_remianNum = 0.0f;    //剩余存量
+
 	private double m_waringNum = 0.0f;    //库存警告
 
 	private EnumConfig.MedicalUnit m_medicalUnit = EnumConfig.MedicalUnit.MILLIGRAM;    //药品单位
@@ -45,23 +53,38 @@ public class DMedicalStock
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
+	private final String NET_ERROR_JSON_SERILIZATION = DGlobal.GetInstance().getAppContext().getString(R.string
+																											   .net_error_json_serilization);
 	//TODO:每次用量
-	private double m_amountPerTime = 0.0f;    //每次用量
+	private       double m_amountPerTime             = 0.0f;    //每次用量
 
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
-		m_ID = response.getInt(MedicalListConfig.ID);
-		m_MID = response.getInt(MedicalListConfig.NAME);
-		m_remianNum = response.getDouble(MedicalListConfig.NAME);
-		m_waringNum = response.getDouble(MedicalListConfig.NAME);
+		m_MID = response.getInt(MedicalStockListConfig.MID);
+		m_UID = response.getInt(MedicalStockListConfig.UID);
+		m_remianNum = response.getDouble(MedicalStockListConfig.REMAIN);
+		m_unitID = response.getInt(MedicalStockListConfig.UINTID);
+		m_waringNum = response.getDouble(MedicalStockListConfig.WARNING);
 
-		int tmpMedicalUnit = response.getInt(MedicalListConfig.NAME);
-		m_medicalUnit = EnumConfig.MedicalUnit.valueOf(tmpMedicalUnit);
-
-		String tmpAddDate = response.getString(MedicalListConfig.NAME);
+		String tmpAddDate = response.getString(MedicalStockListConfig.ADDTIME);
 		Date   date       = m_yearMonthDaySDF.parse(tmpAddDate);
 		m_addCalendar = Calendar.getInstance();
 		m_addCalendar.setTime(date);
+
+		m_ID = response.getInt(MedicalStockListConfig.RPID);
+
+		JSONArray jsonArray = response.getJSONArray(MedicalPromptListConfig.LIST);
+		if (jsonArray == null)
+		{
+			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + MedicalPromptListConfig.LIST);
+		}
+
+		if (jsonArray.length() != 0)
+		{
+			JSONObject    jsonObject   = (JSONObject)jsonArray.get(0);
+			m_tpID = jsonObject.getInt(MedicalPromptListConfig.ID);
+			m_amountPerTime = jsonObject.getDouble(MedicalPromptListConfig.DOSE);
+		}
 
 		postHandler();
 
@@ -72,7 +95,7 @@ public class DMedicalStock
 	{
 		double   deltaValue = m_remianNum - m_waringNum;
 		Calendar today      = Calendar.getInstance();
-
+		m_warningCalendar = Calendar.getInstance();
 		if (deltaValue <= 0)
 		{
 			m_warningCalendar.setTime(today.getTime());
@@ -81,9 +104,9 @@ public class DMedicalStock
 		//如果每次用药剂量为0，则BUG，日期计算为今天
 		if ((int)m_amountPerTime == 0)
 		{
-			m_warningCalendar.setTime(today.getTime());
-			TipsDialog.GetInstance().setMsg("m_amountPerTime == 0");
-			TipsDialog.GetInstance().show();
+//			m_warningCalendar.setTime(today.getTime());
+//			TipsDialog.GetInstance().setMsg("m_amountPerTime == 0");
+//			TipsDialog.GetInstance().show();
 			return;
 		}
 

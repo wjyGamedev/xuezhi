@@ -55,12 +55,21 @@
 			android:screenOrientation="portrait"
 			android:label="AssayDetectionHistoryInfoActivity">
 		</activity>
+
+
+		<!-- 07. 风险评估-->
 		<activity
-			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment"
+			android:name="com.xuezhi_client.work_flow.risk_assessment_page.ui.RiskAssessmentActivity"
 			android:screenOrientation="portrait"
-			android:label="ADHChartFragment">
+			android:label="RiskAssessmentActivity">
 		</activity>
 
+		<!-- 08. 用户需知-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.user_protocal_page.ui.UserProtocalActivity"
+			android:screenOrientation="portrait"
+			android:label="UserProtocalActivity">
+		</activity>
 
 	</application>
 
