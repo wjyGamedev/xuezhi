@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- 01. 性别-->
+	<!-- 01. 药品剂量单位-->
 	<string name="medical_unit_sheet">片</string>
 	<string name="medical_unit_milligram">毫克</string>
+
+	<!-- 02. 血脂类型-->
+	<string name="lipid_type_tg">甘油三酯</string>
+	<string name="lipid_type_tcho">总胆固醇</string>
+	<string name="lipid_type_lolc">低密度蛋白胆固醇</string>
+	<string name="lipid_type_hdlc">高密度蛋白胆固醇</string>
+
+	<!-- 03. 生化类型-->
+	<string name="biochemical_type_atl">谷丙转氨酸</string>
+	<string name="biochemical_type_ast">谷草转氨酶</string>
+	<string name="biochemical_type_ck">肌酸激酶</string>
+	<string name="biochemical_type_glu">空腹血糖</string>
+	<string name="biochemical_type_hba1c">糖化血红蛋白</string>
+	<string name="biochemical_type_scr">肌酐</string>
 
 </resources>

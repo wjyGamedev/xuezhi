@@ -28,7 +28,7 @@ import com.xuzhi_client.xuzhi_app_client.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ADHListFragment extends Fragment
+public class SingleListFragment extends Fragment
 {
 	//widget
 	@Bind (R.id.assay_detection_list_lv) ListView m_assayDetectionListLV = null;

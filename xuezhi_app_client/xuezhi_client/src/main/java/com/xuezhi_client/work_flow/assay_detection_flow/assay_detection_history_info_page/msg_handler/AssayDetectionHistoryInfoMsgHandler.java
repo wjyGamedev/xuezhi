@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.module.frame.BaseUIMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHListFragment;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.SingleListFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -58,10 +58,10 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 
-		ADHListFragment adhListFragment = new ADHListFragment();
+		SingleListFragment singleListFragment = new SingleListFragment();
 
 		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.history_region_fl, adhListFragment);
+		transaction.replace(R.id.history_region_fl, singleListFragment);
 		transaction.commit();
 
 		return;
@@ -73,21 +73,21 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 		FragmentManager fgManager           = activity.getSupportFragmentManager();
-		Fragment fragment            = fgManager.findFragmentByTag(ADHListFragment.class.getName());
+		Fragment fragment            = fgManager.findFragmentByTag(SingleListFragment.class.getName());
 		if (fragment == null)
 		{
 			return;
 		}
 
-		ADHListFragment adhListFragment = (ADHListFragment) fragment;
-		if (adhListFragment == null)
+		SingleListFragment singleListFragment = (SingleListFragment) fragment;
+		if (singleListFragment == null)
 		{
-			activity.popErrorDialog("adhListFragment == null");
+			activity.popErrorDialog("singleListFragment == null");
 			return;
 		}
 
 		//同步更新
-		adhListFragment.updateContent();
+		singleListFragment.updateContent();
 		return;
 	}
 
