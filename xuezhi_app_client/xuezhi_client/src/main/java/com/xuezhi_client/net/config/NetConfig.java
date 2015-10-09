@@ -29,7 +29,7 @@ public class NetConfig
 	public final static String S_NORMAL_DEPARTMENTLIST_ADDRESS = "http://" + IP_ADDREDD_TEST + "/department/getDepartmentList/";
 
 	//注册
-	public final static String s_registerAddress = "http://" + IP_ADDREDD_TEST + "/user/loginAction/";
+	public final static String s_registerAddress = "http://" + IP_ADDRESS_XUEZHI_TEST + "/user/loginAction/";
 
 	//01. 血脂相关
 	//获取支持药品的下拉列表
