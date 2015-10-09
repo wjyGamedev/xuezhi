@@ -11,9 +11,9 @@
 		android:id="@+id/imgs_display_region_ll"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_gravity="top|center_vertical"
 		android:layout_marginTop="10dp"
 		android:background="@color/white"
-		android:layout_gravity="top|center_vertical"
 		android:orientation="vertical">
 
 		<ViewFlipper
@@ -53,6 +53,7 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						android:layout_gravity="left"
 						android:layout_marginBottom="5dp"
 						android:layout_marginLeft="15dp"
 						android:layout_marginTop="10dp"
@@ -180,11 +181,13 @@
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
 								android:text="@string/no_need_to_buy_hint_text"
+								android:layout_gravity="left"
 								android:textSize="20sp"/>
 
 							<ImageView
 								android:layout_width="20dp"
 								android:layout_height="20dp"
+								android:layout_gravity="center"
 								android:background="@drawable/img_right"/>
 
 						</LinearLayout>
@@ -210,20 +213,20 @@
 						android:orientation="horizontal">
 
 						<LinearLayout
+							android:id="@+id/assay_detection_region_ll"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:layout_marginTop="15dp"
 							android:layout_weight="1"
-							android:orientation="vertical"
-							android:id="@+id/assay_detection_region_ll">
+							android:orientation="vertical">
 
-							<ImageButton
+							<ImageView
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="15dp"
 								android:layout_marginRight="15dp"
-								android:background="@color/white"
 								android:layout_weight="1"
+								android:background="@color/white"
 								android:src="@drawable/assay_detection_btn_img"/>
 
 							<TextView
@@ -240,20 +243,20 @@
 						</LinearLayout>
 
 						<LinearLayout
+							android:id="@+id/medication_reminder_region_ll"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:layout_weight="1"
 							android:layout_marginTop="15dp"
-							android:orientation="vertical"
-							android:id="@+id/medication_reminder_region_ll">
+							android:layout_weight="1"
+							android:orientation="vertical">
 
-							<ImageButton
+							<ImageView
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="15dp"
 								android:layout_marginRight="15dp"
-								android:background="@color/white"
 								android:layout_weight="1"
+								android:background="@color/white"
 								android:src="@drawable/medication_reminder_btn_img"/>
 
 							<TextView
@@ -278,21 +281,21 @@
 						android:orientation="horizontal">
 
 						<LinearLayout
+							android:id="@+id/drug_admin_region_ll"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:layout_weight="1"
-							android:layout_marginTop="15dp"
 							android:layout_marginBottom="15dp"
-							android:orientation="vertical"
-							android:id="@+id/drug_admin_region_ll">
+							android:layout_marginTop="15dp"
+							android:layout_weight="1"
+							android:orientation="vertical">
 
-							<ImageButton
+							<ImageView
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="15dp"
 								android:layout_marginRight="15dp"
-								android:background="@color/white"
 								android:layout_weight="1"
+								android:background="@color/white"
 								android:src="@drawable/drug_administration_btn_img"/>
 
 							<TextView
@@ -309,21 +312,21 @@
 						</LinearLayout>
 
 						<LinearLayout
+							android:id="@+id/calendar_region_ll"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:layout_weight="1"
-							android:layout_marginTop="15dp"
 							android:layout_marginBottom="15dp"
-							android:orientation="vertical"
-							android:id="@+id/calendar_region_ll">
+							android:layout_marginTop="15dp"
+							android:layout_weight="1"
+							android:orientation="vertical">
 
-							<ImageButton
+							<ImageView
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="15dp"
 								android:layout_marginRight="15dp"
-								android:background="@color/white"
 								android:layout_weight="1"
+								android:background="@color/white"
 								android:src="@drawable/calendar_btn_img"/>
 
 							<TextView

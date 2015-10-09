@@ -3,19 +3,22 @@
 
 	<!--assay_detection_page-->
 	<string name="assay_detection_page_title_text">化验检查</string>
+	<string name="assay_detection_blood_lipid_title_text">血脂相关</string>
+	<string name="assay_detection_biochemical_title_text">生化相关</string>
 	<string name="assay_detection_history_btn_text">历史</string>
 	<string name="assay_detection_test_time_title_text">化验时间：</string>
 	<string name="assay_detection_temp_data_btn_text">临时数据</string>
-	<string name="assay_detection_tg_title_text">甘油三酯（TG）</string>
-	<string name="assay_detection_tcho_title_text">总胆固醇（TCHO）</string>
-	<string name="assay_detection_lol_c_title_text">低密度脂蛋白胆固醇（LOL-C）</string>
-	<string name="assay_detection_hdl_c_title_text">高密度脂蛋白胆固醇（HDL-C）</string>
-	<string name="assay_detection_atl_title_text">谷丙转氨酶（ATL）</string>
-	<string name="assay_detection_ast_title_text">谷草转氨酶（AST）</string>
-	<string name="assay_detection_ck_title_text">肌酸激酶（CK）</string>
-	<string name="assay_detection_glu_title_text">空腹血糖（GLU）</string>
-	<string name="assay_detection_hba1c_title_text">糖化血红蛋白（HbA1c）</string>
-	<string name="assay_detection_scr_title_text">肌酐（SCr）</string>
+	<string name="assay_detection_tg_title_text">甘油三酯（TG）:</string>
+	<string name="assay_detection_tg_unit_title_text">mmol/L</string>
+	<string name="assay_detection_tcho_title_text">总胆固醇（TCHO）:</string>
+	<string name="assay_detection_lol_c_title_text">低密度脂蛋白胆固醇（LOL-C）:</string>
+	<string name="assay_detection_hdl_c_title_text">高密度脂蛋白胆固醇（HDL-C）:</string>
+	<string name="assay_detection_atl_title_text">谷丙转氨酶（ATL）:</string>
+	<string name="assay_detection_ast_title_text">谷草转氨酶（AST）:</string>
+	<string name="assay_detection_ck_title_text">肌酸激酶（CK）:</string>
+	<string name="assay_detection_glu_title_text">空腹血糖（GLU）:</string>
+	<string name="assay_detection_hba1c_title_text">糖化血红蛋白（HbA1c）:</string>
+	<string name="assay_detection_scr_title_text">肌酐（SCr）:</string>
 
 	<!--assay_detection_history_info_page-->
 	<string name="assay_detection_history_info_page_title_text">化验检查历史信息</string>
