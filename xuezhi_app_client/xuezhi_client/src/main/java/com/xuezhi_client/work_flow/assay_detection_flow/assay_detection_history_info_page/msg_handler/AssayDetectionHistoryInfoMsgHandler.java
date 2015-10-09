@@ -58,10 +58,10 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 
-		ADHListFragment adhListFragment = new ADHListFragment();
+		ADHListFragment ADHListFragment = new ADHListFragment();
 
 		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.history_region_fl, adhListFragment);
+		transaction.replace(R.id.history_region_fl, ADHListFragment);
 		transaction.commit();
 
 		return;
@@ -79,15 +79,15 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		ADHListFragment adhListFragment = (ADHListFragment) fragment;
-		if (adhListFragment == null)
+		ADHListFragment ADHListFragment = (ADHListFragment) fragment;
+		if (ADHListFragment == null)
 		{
-			activity.popErrorDialog("adhListFragment == null");
+			activity.popErrorDialog("ADHListFragment == null");
 			return;
 		}
 
 		//同步更新
-		adhListFragment.updateContent();
+		ADHListFragment.updateContent();
 		return;
 	}
 

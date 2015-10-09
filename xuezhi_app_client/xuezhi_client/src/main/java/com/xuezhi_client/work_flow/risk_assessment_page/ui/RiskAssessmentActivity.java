@@ -1,9 +1,9 @@
 package com.xuezhi_client.work_flow.risk_assessment_page.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.risk_assessment_page.msg_handler.RiskAssessmentMsgHandler;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/23.
  */
-public class RiskAssessmentActivity extends Activity
+public class RiskAssessmentActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
