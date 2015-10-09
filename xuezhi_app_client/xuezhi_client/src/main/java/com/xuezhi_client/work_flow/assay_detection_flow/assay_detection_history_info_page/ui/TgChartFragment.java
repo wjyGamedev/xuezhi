@@ -74,7 +74,7 @@ public class TgChartFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		m_view = inflater.inflate(R.layout.fragment_linechart, container, false);
+		m_view = inflater.inflate(R.layout.fragment_linechart_single, container, false);
 		//TODO:由于嵌套fragment，所以不能用bind
 //		ButterKnife.bind(this, m_view);
 		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
