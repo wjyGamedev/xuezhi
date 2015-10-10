@@ -56,6 +56,26 @@
 			android:label="AssayDetectionHistoryInfoActivity">
 		</activity>
 
+		<!-- 05.药品管理流程-->
+		<!-- 药品管理页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity"
+			android:screenOrientation="portrait"
+			android:label="DrugAdministrationActivity">
+		</activity>
+		<!-- 药品管理设定页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity"
+			android:screenOrientation="portrait"
+			android:label="DrugAdministrationSettingActivity">
+		</activity>
+		<!-- 药品管理添加药品页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity"
+			android:screenOrientation="portrait"
+			android:label="DrugStockAddActivity">
+		</activity>
+
 
 		<!-- 07. 风险评估-->
 		<activity
