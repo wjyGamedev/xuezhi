@@ -36,6 +36,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
+import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.msg_handler.AssayDetectionHistoryInfoMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -43,20 +44,22 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 
-public class TgChartFragment extends Fragment
+public class SingleChartFragment extends Fragment
 {
 	//widget
-//	@Bind (R.id.chart1)   LineChart m_lineChart = null;
-//	@Bind (R.id.seekBar1) SeekBar   m_seekBarX  = null;
-//	@Bind (R.id.seekBar2) SeekBar   m_seekBarY  = null;
-//	@Bind (R.id.tvXMax)   TextView  m_xTV       = null;
-//	@Bind (R.id.tvYMax)   TextView  m_yTV       = null;
+	//	@Bind (R.id.chart1)   LineChart m_lineChart = null;
+	//	@Bind (R.id.seekBar1) SeekBar   m_seekBarX  = null;
+	//	@Bind (R.id.seekBar2) SeekBar   m_seekBarY  = null;
+	//	@Bind (R.id.tvXMax)   TextView  m_xTV       = null;
+	//	@Bind (R.id.tvYMax)   TextView  m_yTV       = null;
 	private LineChart m_lineChart = null;
 	private SeekBar   m_seekBarX  = null;
 	private SeekBar   m_seekBarY  = null;
 	private TextView  m_xTV       = null;
 	private TextView  m_yTV       = null;
 
+	//logical
+	private EnumConfig.AssayDetectionType m_assayDetectionType = null;
 
 	@Bind (R.id.assay_detection_list_lv) ListView m_assayDetectionListLV = null;
 
@@ -67,16 +70,16 @@ public class TgChartFragment extends Fragment
 
 	private View m_view = null;
 
-	public TgChartFragment()
-	{
-	}
+	//TODO:待测试，从不活动状态，到活动状态，数据会否保存。
+	public SingleChartFragment()
+	{}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_linechart_single, container, false);
 		//TODO:由于嵌套fragment，所以不能用bind
-//		ButterKnife.bind(this, m_view);
+		//		ButterKnife.bind(this, m_view);
 		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
 		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBar1);
 		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBar2);
@@ -145,15 +148,6 @@ public class TgChartFragment extends Fragment
 	 */
 	private void init()
 	{
-//		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)getActivity();
-//		if (activity == null)
-//		{
-//			TipsDialog.GetInstance().setMsg("activity == null", getActivity());
-//			TipsDialog.GetInstance().show();
-//			return;
-//		}
-//		m_assayDetectionHistoryInfoMsgHandler = activity.getAssayDetectionHistoryInfoMsgHandler();
-
 		m_seekBarX.setProgress(45);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
@@ -265,10 +259,18 @@ public class TgChartFragment extends Fragment
 	}
 
 	/**
+	 * date:get
+	 */
+	public EnumConfig.AssayDetectionType getAssayDetectionType()
+	{
+		return m_assayDetectionType;
+	}
+
+	/**
 	 * logical func
 	 */
-	public static Fragment newInstance() {
-		return new TgChartFragment();
+	public static Fragment newInstance(EnumConfig.AssayDetectionType assayDetectionType) {
+		return new SingleChartFragment(assayDetectionType);
 	}
 
 }

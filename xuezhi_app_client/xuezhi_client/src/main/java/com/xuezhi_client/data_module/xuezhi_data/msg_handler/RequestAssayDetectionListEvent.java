@@ -16,12 +16,30 @@ package com.xuezhi_client.data_module.xuezhi_data.msg_handler;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
+import com.xuezhi_client.net.config.AssayDetectionInfoConfig;
+
+import java.util.HashMap;
 
 public class RequestAssayDetectionListEvent extends BaseNetEvent
 {
+	private String m_UID = null;
+
 	public RequestAssayDetectionListEvent()
 	{
 		super(EventID.QUEST_ASSAY_DETECTION_LIST);
 	}
 
+	public HashMap<String, String> getHashMap()
+	{
+		HashMap<String, String> sendData = new HashMap<String, String>();
+
+		sendData.put(AssayDetectionInfoConfig.UID, m_UID);
+
+		return sendData;
+	}
+
+	public void setUID(String UID)
+	{
+		m_UID = UID;
+	}
 }

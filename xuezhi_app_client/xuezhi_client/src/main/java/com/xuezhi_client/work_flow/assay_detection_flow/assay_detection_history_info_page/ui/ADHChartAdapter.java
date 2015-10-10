@@ -25,12 +25,8 @@ public class ADHChartAdapter extends FragmentStatePagerAdapter
 	@Override
 	public Fragment getItem(int position)
 	{
-//		TgChartFragment tgChartFragment = new TgChartFragment();
-//		FragmentTransaction transaction = m_adhChartFragment.getChildFragmentManager().beginTransaction();
-//		transaction.replace(R.id.chart_vp, tgChartFragment);
-//		transaction.commit();
-		return TgChartFragment.newInstance();
-//		return ComplexityFragment.newInstance();
+		//这里的position映射到我们的9+3个列表。
+		return SingleChartFragment.newInstance();
 	}
 
 	@Override
