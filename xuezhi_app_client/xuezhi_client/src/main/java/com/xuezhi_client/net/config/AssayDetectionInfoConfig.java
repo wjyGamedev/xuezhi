@@ -29,6 +29,7 @@ public class AssayDetectionInfoConfig
 	public final static String CK = "ck";
 	public final static String GLU = "glu";
 	public final static String HBA1C = "hba1c";
+	public final static String SCR = "scr";
 
 	public final static String RECORD_DATE = "record_date";
 

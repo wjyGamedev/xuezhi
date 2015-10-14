@@ -25,16 +25,17 @@ public class AssayDetectionActivity extends Activity
 	private HeaderCommon m_headerCommon = null;
 
 	//血脂
-	@Bind (R.id.tg_et)    EditText m_tgET    = null;
-	@Bind (R.id.tcho_et)  EditText m_tchoET  = null;
-	@Bind (R.id.lolc_et)  EditText m_lolcET  = null;
-	@Bind (R.id.hdlc_et)  EditText m_hdlcET  = null;
+	@Bind (R.id.tg_et)    EditText m_tgET    = null;	//甘油三酯
+	@Bind (R.id.tcho_et)  EditText m_tchoET  = null;	//总胆固醇
+	@Bind (R.id.lolc_et)  EditText m_lolcET  = null;	//低密度脂蛋白胆固醇
+	@Bind (R.id.hdlc_et)  EditText m_hdlcET  = null;	//高密度脂蛋白胆固醇
 	//生化
-	@Bind (R.id.atl_et)   EditText m_atlET   = null;
-	@Bind (R.id.ast_et)   EditText m_astET   = null;
-	@Bind (R.id.ck_et)    EditText m_ckET    = null;
-	@Bind (R.id.glu_et)   EditText m_gluET   = null;
-	@Bind (R.id.hba1c_et) EditText m_hba1cET = null;
+	@Bind (R.id.atl_et)   EditText m_atlET   = null;	//谷丙转氨酶
+	@Bind (R.id.ast_et)   EditText m_astET   = null;	//谷草转氨酶
+	@Bind (R.id.ck_et)    EditText m_ckET    = null;	//肌酸激酶
+	@Bind (R.id.glu_et)   EditText m_gluET   = null;	//空腹血糖
+	@Bind (R.id.hba1c_et) EditText m_hba1cET = null;	//糖化血红蛋白
+	@Bind (R.id.scr_et) EditText m_scrET = null;		//肌酐
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -172,6 +173,11 @@ public class AssayDetectionActivity extends Activity
 	public EditText getHba1cET()
 	{
 		return m_hba1cET;
+	}
+
+	public EditText getScrET()
+	{
+		return m_scrET;
 	}
 
 	/**

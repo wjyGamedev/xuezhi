@@ -41,6 +41,7 @@ public class DAssayDetection
 	private double m_ckValue    = DataConfig.DEFAULT_VALUE;
 	private double m_gluValue   = DataConfig.DEFAULT_VALUE;
 	private double m_hba1cValue = DataConfig.DEFAULT_VALUE;
+	private double m_scrValue = DataConfig.DEFAULT_VALUE;
 
 	private SimpleDateFormat m_allSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
 
@@ -63,7 +64,7 @@ public class DAssayDetection
 		m_ckValue = response.getDouble(AssayDetectionInfoConfig.CK);
 		m_gluValue = response.getDouble(AssayDetectionInfoConfig.GLU);
 		m_hba1cValue = response.getDouble(AssayDetectionInfoConfig.HBA1C);
-
+		m_scrValue = response.getDouble(AssayDetectionInfoConfig.SCR);
 		return true;
 	}
 
@@ -120,5 +121,10 @@ public class DAssayDetection
 	public double getHba1cValue()
 	{
 		return m_hba1cValue;
+	}
+
+	public double getScrValue()
+	{
+		return m_scrValue;
 	}
 }

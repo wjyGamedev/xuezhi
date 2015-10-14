@@ -56,7 +56,7 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		String tmpCkValue = activity.getCkET().getText().toString();
 		String tmpGlucValue = activity.getGluET().getText().toString();
 		String tmpHba1cValue = activity.getHba1cET().getText().toString();
-
+		String tmpScrValue = activity.getScrET().getText().toString();
 		try
 		{
 			double tgValue = Double.valueOf(tmpTgValue);
@@ -78,6 +78,8 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 			event.setGluValue(glucValue);
 			double hba1cValue = Double.valueOf(tmpHba1cValue);
 			event.setHba1cValue(hba1cValue);
+			double srcValue = Double.valueOf(tmpScrValue);
+			event.setScrValue(srcValue);
 
 		}
 		catch (NumberFormatException e)

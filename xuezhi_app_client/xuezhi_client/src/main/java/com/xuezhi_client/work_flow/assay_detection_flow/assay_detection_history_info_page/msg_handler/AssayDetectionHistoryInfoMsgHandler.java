@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.module.frame.BaseUIMsgHandler;
+import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetectionList;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHListFragment;
@@ -97,5 +99,11 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 		activity.startActivity(new Intent(activity, MainActivity.class));
 		return;
+	}
+
+	//05. 获取化验检查列表
+	public DAssayDetectionList getAssayDetectionList()
+	{
+		return DBusinessData.GetInstance().getAssayDetectionList();
 	}
 }

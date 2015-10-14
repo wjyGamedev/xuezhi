@@ -4,13 +4,16 @@
 	<string name="medical_unit_sheet">片</string>
 	<string name="medical_unit_milligram">毫克</string>
 
+	<string name="lipid_biochemical_all">血脂生化信息</string>
 	<!-- 02. 血脂类型-->
+	<string name="lipid_all">血脂信息</string>
 	<string name="lipid_type_tg">甘油三酯</string>
 	<string name="lipid_type_tcho">总胆固醇</string>
 	<string name="lipid_type_lolc">低密度蛋白胆固醇</string>
 	<string name="lipid_type_hdlc">高密度蛋白胆固醇</string>
 
 	<!-- 03. 生化类型-->
+	<string name="biochemical_all">生化信息</string>
 	<string name="biochemical_type_atl">谷丙转氨酸</string>
 	<string name="biochemical_type_ast">谷草转氨酶</string>
 	<string name="biochemical_type_ck">肌酸激酶</string>

@@ -528,7 +528,7 @@
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
-							android:id="@+id/tg_scr"
+							android:id="@+id/scr_et"
 							android:layout_width="match_parent"
 							android:layout_height="35dp"
 							android:layout_marginLeft="40dp"
