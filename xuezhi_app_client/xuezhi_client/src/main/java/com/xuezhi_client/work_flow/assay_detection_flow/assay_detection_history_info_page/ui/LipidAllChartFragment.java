@@ -79,8 +79,8 @@ public class LipidAllChartFragment extends Fragment
 		//TODO:由于嵌套fragment，所以不能用bind
 		//		ButterKnife.bind(this, m_view);
 		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
-		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBar1);
-		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBar2);
+		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBarX);
+		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
 		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
 		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
 

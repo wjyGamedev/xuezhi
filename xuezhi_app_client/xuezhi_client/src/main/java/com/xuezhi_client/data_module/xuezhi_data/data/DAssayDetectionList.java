@@ -18,7 +18,6 @@ import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
 import com.xuezhi_client.net.config.AssayDetectionInfoConfig;
-import com.xuezhi_client.net.config.MedicalListConfig;
 import com.xuezhi_client.net.config.ProtocalConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -59,7 +58,7 @@ public class DAssayDetectionList
 		}
 
 		//03. 序列化json
-		JSONArray jsonArray = response.getJSONArray(MedicalListConfig.LIST);
+		JSONArray jsonArray = response.getJSONArray(AssayDetectionInfoConfig.LIST);
 		if (jsonArray == null)
 		{
 			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + AssayDetectionInfoConfig.LIST);

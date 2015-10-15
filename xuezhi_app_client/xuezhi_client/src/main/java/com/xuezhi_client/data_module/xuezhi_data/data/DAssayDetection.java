@@ -52,6 +52,10 @@ public class DAssayDetection
 
 		String tmpAddDate = response.getString(AssayDetectionInfoConfig.RECORD_DATE);
 		Date   date       = m_allSDF.parse(tmpAddDate);
+		if (m_recordCalendar == null)
+		{
+			m_recordCalendar = Calendar.getInstance();
+		}
 		m_recordCalendar.setTime(date);
 
 		m_tgValue = response.getDouble(AssayDetectionInfoConfig.TG);
@@ -64,7 +68,9 @@ public class DAssayDetection
 		m_ckValue = response.getDouble(AssayDetectionInfoConfig.CK);
 		m_gluValue = response.getDouble(AssayDetectionInfoConfig.GLU);
 		m_hba1cValue = response.getDouble(AssayDetectionInfoConfig.HBA1C);
-		m_scrValue = response.getDouble(AssayDetectionInfoConfig.SCR);
+		//TODO:等待服务器添加
+//		m_scrValue = response.getDouble(AssayDetectionInfoConfig.SCR);
+		m_scrValue = 10f;
 		return true;
 	}
 

@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -65,7 +66,7 @@ public class SingleChartFragment extends Fragment
 
 	private HandleOnChartValueSelected m_handleOnChartValueSelected = new HandleOnChartValueSelected();
 
-	private SimpleDateFormat m_allSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
+	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 	private EnumConfig.AssayDetectionType m_assayDetectionType = null;
 	ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
@@ -92,8 +93,8 @@ public class SingleChartFragment extends Fragment
 		//TODO:由于嵌套fragment，所以不能用bind
 		//		ButterKnife.bind(this, m_view);
 		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
-		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBar1);
-		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBar2);
+		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBarX);
+		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
 		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
 		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
 
@@ -174,11 +175,7 @@ public class SingleChartFragment extends Fragment
 		{
 			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
-		int xMax = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
-		if (xMax < m_assayDetectionArrayList.size())
-		{
-			xMax = m_assayDetectionArrayList.size();
-		}
+		int xMax = m_assayDetectionArrayList.size();
 		m_seekBarX.setProgress(xSize);
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
@@ -191,6 +188,8 @@ public class SingleChartFragment extends Fragment
 
 		// no description text
 		m_lineChart.setDescription("");
+		String nullTips = getActivity().getString(R.string.assay_detection_history_info_list_display_null_content);
+		m_lineChart.setNoDataTextDescription(nullTips);
 
 		// enable value highlighting
 		m_lineChart.setHighlightEnabled(true);
@@ -211,19 +210,45 @@ public class SingleChartFragment extends Fragment
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it
 		ChartMarkerView mv = new ChartMarkerView(getActivity(), R.layout.item_tips_view_linechart);
-
-		// set the marker to the chart
 		m_lineChart.setMarkerView(mv);
 
 		// enable/disable highlight indicators (the lines that indicate the
 		// highlighted Entry)
 		m_lineChart.setHighlightEnabled(false);
 
+
+		//设置 upper
+		String upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
+		LimitLine ll1 = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
+		ll1.setLineWidth(4f);
+		ll1.enableDashedLine(10f, 10f, 0f);
+		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+		ll1.setTextSize(10f);
+
+		//设置 lower
+		String lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
+		LimitLine ll2 = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
+		ll2.setLineWidth(4f);
+		ll2.enableDashedLine(10f, 10f, 0f);
+		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+		ll2.setTextSize(10f);
+
+		//设置Y轴
+		YAxis leftAxis = m_lineChart.getAxisLeft();
+		leftAxis.removeAllLimitLines();
+		leftAxis.addLimitLine(ll1);
+		leftAxis.addLimitLine(ll2);
+		leftAxis.setAxisMaxValue((float)AssayDetectionConfig.getMaxValue(m_assayDetectionType));
+		leftAxis.setAxisMinValue((float)AssayDetectionConfig.getMinValue(m_assayDetectionType));
+		leftAxis.setStartAtZero(false);
+		leftAxis.enableGridDashedLine(10f, 10f, 0f);
+		leftAxis.setInverted(true);
+		// limit lines are drawn behind data (and not on top)
+		leftAxis.setDrawLimitLinesBehindData(true);
+
+		//设置X轴
 		XAxis xl = m_lineChart.getXAxis();
 		xl.setAvoidFirstLastClipping(true);
-
-		YAxis leftAxis = m_lineChart.getAxisLeft();
-		leftAxis.setInverted(true);
 
 		YAxis rightAxis = m_lineChart.getAxisRight();
 		rightAxis.setEnabled(false);
@@ -320,17 +345,12 @@ public class SingleChartFragment extends Fragment
 		if (count > m_assayDetectionArrayList.size())
 			return;
 
-		if (count < AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
-		{
-			count = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
-		}
-
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int indexX = 0; indexX < count; indexX++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
- 			String displayDate = m_allSDF.format(recordCalendar.getTime());
+ 			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 			xVals.add(displayDate);
 		}
 

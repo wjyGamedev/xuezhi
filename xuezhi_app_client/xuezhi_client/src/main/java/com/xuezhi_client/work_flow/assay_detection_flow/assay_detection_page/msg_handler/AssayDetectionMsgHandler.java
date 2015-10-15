@@ -96,9 +96,15 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 	//03. 对于添加化验检查消息成功的处理
 	public void onEventMainThread(AnswerAddAssayDetectionInfoEvent event)
 	{
-		//请求化验检查列表，来更新本地数据容器
+		//01. 请求化验检查列表，来更新本地数据容器
 		RequestAssayDetectionListEvent requestAssayDetectionListEvent = new RequestAssayDetectionListEvent();
+		requestAssayDetectionListEvent.setUID(DAccount.GetInstance().getId());
 		DBusinessMsgHandler.GetInstance().requestAssayDetectionListAction(requestAssayDetectionListEvent);
+
+		//02. tips 成功
+		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
+		activity.popSaveSuccessDialog();
+
 		return;
 	}
 

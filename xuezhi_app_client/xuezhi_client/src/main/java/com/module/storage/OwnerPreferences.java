@@ -69,6 +69,12 @@ public class OwnerPreferences extends BaseStorage
 		String mobile = m_setting.getString(RegisterConfig.MOBILE, "");
 		String nick   = m_setting.getString(RegisterConfig.NICK, "");
 
+		//TODO:test
+//		id = "1";
+//		code = "72ddada5cc";
+//		mobile = "15010522656";
+//		nick = "";
+
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put(RegisterConfig.ID, id);
 		data.put(RegisterConfig.CODE, code);

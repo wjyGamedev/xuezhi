@@ -287,9 +287,11 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 
 	public void onEventAsync(RequestAssayDetectionListEvent event)
 	{
-		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.GET,
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
 																NetConfig.S_NORMAL_ASSAY_DETECTION_LIST_ADDRESS,
-																null,
+																sendData,
 																m_answerAssayDetectionListHandler,
 																m_baseErrorListener
 		);

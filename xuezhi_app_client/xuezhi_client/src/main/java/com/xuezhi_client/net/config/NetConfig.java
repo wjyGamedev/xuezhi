@@ -58,9 +58,9 @@ public class NetConfig
 
 
 	//添加用药检查信息
-	public final static String S_NORMAL_ADD_ASSAY_DETECTION_INFO_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
+	public final static String S_NORMAL_ADD_ASSAY_DETECTION_INFO_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/addDetection/";
 
 	//用药检查信息列表
-	public final static String S_NORMAL_ASSAY_DETECTION_LIST_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getTakeHistory/";
+	public final static String S_NORMAL_ASSAY_DETECTION_LIST_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getDetection/";
 
 }
