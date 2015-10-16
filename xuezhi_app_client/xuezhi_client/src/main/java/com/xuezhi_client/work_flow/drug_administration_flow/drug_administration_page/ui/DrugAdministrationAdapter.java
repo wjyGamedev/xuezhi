@@ -1,9 +1,12 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.IBaseAdapter;
@@ -27,13 +30,15 @@ import butterknife.ButterKnife;
  */
 public class DrugAdministrationAdapter extends IBaseAdapter
 {
-	private DMedicalStockList        m_medicalStockList = null;
-	private LayoutInflater           m_layoutInflater   = null;
-	private ArrayList<DMedicalStock> m_medicalStock     = new ArrayList<DMedicalStock>();
+	private DMedicalStockList          m_medicalStockList = null;
+	private LayoutInflater             m_layoutInflater   = null;
+	private ArrayList<DMedicalStock>   m_medicalStock     = new ArrayList<DMedicalStock>();
+	private DrugAdministrationActivity m_activity         = null;
 
 	@Override
 	public int getCount()
 	{
+		m_medicalStockList = DBusinessData.GetInstance().getMedicalStockList();
 		ArrayList<DMedicalStock> medicalStocks = m_medicalStockList.getMedicalStocks();
 		if (medicalStocks == null || medicalStocks.isEmpty())
 			return 0;
@@ -41,9 +46,9 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 		return medicalStocks.size();
 	}
 
-
 	public DrugAdministrationAdapter(Context context)
 	{
+//		this.m_activity = context;
 		super(context);
 		init();
 	}
@@ -78,7 +83,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
+	public View getView(final int position, View convertView, ViewGroup parent)
 	{
 		ViewHolder viewHolder = null;
 
@@ -93,10 +98,59 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
+		Button       del_btn      = (Button)convertView.findViewById(R.id.drug_item_list_del_btn);
+		LinearLayout drug_item_ll = (LinearLayout)convertView.findViewById(R.id.drug_item_chlick_region_ll);
+
+		drug_item_ll.setOnClickListener(new View.OnClickListener()
+										{
+											@Override
+											public void onClick(View v)
+											{
+												DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
+												acitvity.getDrugAdministrationMsgHandler().go2DrugAdministrationSettingPage((int)getItemId(position));
+											}
+										}
+									   );
+
+		del_btn.setOnClickListener(new View.OnClickListener()
+								   {
+									   @Override
+									   public void onClick(View v)
+									   {
+										   DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
+										   HandleClickEventOnDialogDetermineDeleteBtn determineDeleteListener = new HandleClickEventOnDialogDetermineDeleteBtn();
+										   HandleClickEventOnDialogCancelBtn cancelListener = new HandleClickEventOnDialogCancelBtn();
+										   TipsDialog.GetInstance().setMsg("是否删除这个药品？",acitvity, determineDeleteListener,cancelListener);
+										   TipsDialog.GetInstance().show();
+									   }
+								   }
+								  );
+
 		m_medicalStock = m_medicalStockList.getMedicalStocks();
 		viewHolder.initContent(m_medicalStock, position);
 		return convertView;
 	}
+
+	public class HandleClickEventOnDialogDetermineDeleteBtn implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
+			acitvity.getDrugAdministrationMsgHandler().delDrugAndGo2DrugAdministrationPage();
+			return;
+		}
+	}
+
+	public class HandleClickEventOnDialogCancelBtn implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			return;
+		}
+	}
+
 
 }
 
@@ -104,12 +158,12 @@ final class ViewHolder
 {
 
 	//widget
-	@Bind (R.id.drug_name_tv)           TextView m_drugNameTV          = null;    //药瓶名称
-	@Bind (R.id.drug_reminder_state_tv) TextView m_drugReminderStateTV = null;    //药品提醒状态
-	@Bind (R.id.drug_keep_num_tv)       TextView m_drugKeepNumTV       = null;    //药瓶持有数量
-	@Bind (R.id.drug_alert_num_tv)      TextView m_drugAlertNumTV      = null;    //药瓶警报数量
-	@Bind (R.id.drug_add_date_tv)       TextView m_drugAddDateTV       = null;    //药瓶添加日期
-	@Bind (R.id.drug_run_out_date_tv)   TextView m_drugRunOutDateTV    = null;    //药品预计警报日期
+	@Bind (R.id.drug_name_tv)                    TextView m_drugNameTV          = null;    //药瓶名称
+	@Bind (R.id.drug_reminder_state_tv)          TextView m_drugReminderStateTV = null;    //药品提醒状态
+	@Bind (R.id.drug_keep_num_tv)                TextView m_drugKeepNumTV       = null;    //药瓶持有数量
+	@Bind (R.id.drug_alert_num_tv)               TextView m_drugAlertNumTV      = null;    //药瓶警报数量
+	@Bind (R.id.drug_administration_add_date_tv) TextView m_drugAddDateTV       = null;    //药瓶添加日期
+	@Bind (R.id.drug_run_out_date_tv)            TextView m_drugRunOutDateTV    = null;    //药品预计警报日期
 
 	//logical
 	private View m_view = null;
@@ -159,7 +213,7 @@ final class ViewHolder
 		String   adddateDescription = null;
 		if (addDate != null)
 		{
-			adddateDescription = m_simpleDateFormat.format(addDate);
+			adddateDescription = m_simpleDateFormat.format(addDate.getTime());
 			m_drugAddDateTV.setText(adddateDescription);
 		}
 
@@ -167,9 +221,8 @@ final class ViewHolder
 		String   warningDateDescription = null;
 		if (warningDate != null)
 		{
-			warningDateDescription = m_simpleDateFormat.format(warningDate);
+			warningDateDescription = m_simpleDateFormat.format(warningDate.getTime());
 			m_drugRunOutDateTV.setText(warningDateDescription);
 		}
-
 	}
 }

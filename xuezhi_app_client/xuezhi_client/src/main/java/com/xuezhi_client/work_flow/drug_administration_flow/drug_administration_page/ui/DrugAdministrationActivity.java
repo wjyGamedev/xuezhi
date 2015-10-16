@@ -3,7 +3,6 @@ package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.module.widget.bottom.BottomCommon;
@@ -14,7 +13,6 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -82,7 +80,6 @@ public class DrugAdministrationActivity extends Activity
 
 	}
 
-
 	/**
 	 * inner func
 	 */
@@ -98,6 +95,9 @@ public class DrugAdministrationActivity extends Activity
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickAddBottomBtn);
 		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
 		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
+
+		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
+		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
 
 		//02. logical
 		m_asyncWaitDialog.init(this);
@@ -125,16 +125,6 @@ public class DrugAdministrationActivity extends Activity
 		}
 	}
 
-	/**
-	 * widget event
-	 */
-	@OnItemClick (R.id.drug_info_display_lv)
-	public void clickDrugItem(AdapterView<?> parent, View view, int position, long id)
-	{
-		m_drugAdministrationMsgHandler.go2DrugAdministrationSettingPage((int)id);
-		return;
-	}
-
 	class HandleWaitDialogFinishedEvent implements AsyncWaitDialog.HandleWaitDialogFinishedEvent
 	{
 		public void OnWaitDialogFinished()
@@ -149,4 +139,8 @@ public class DrugAdministrationActivity extends Activity
 		m_asyncWaitDialog.dismiss();
 	}
 
+	public DrugAdministrationMsgHandler getDrugAdministrationMsgHandler()
+	{
+		return m_drugAdministrationMsgHandler;
+	}
 }

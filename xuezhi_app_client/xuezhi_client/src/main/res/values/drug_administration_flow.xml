@@ -16,7 +16,8 @@
 	<string name="drug_administration_exhausted_time_text">预计药品用尽时间：</string>
 
 	<!--drug_stock_add_page-->
-	<string name="drug_stock_add_page_title_text">药品管理设置</string>
+	<string name="drug_stock_add_page_title_text">添加药品管理</string>
+	<string name="drug_stock_add_content_tips_text">请选择药品</string>
 	<string name="drug_stock_add_add_btn_text">添加药品</string>
 	<string name="drug_stock_add_del_btn_text">删除药品</string>
 	<string name="drug_stock_add_save_btn_text">保存</string>

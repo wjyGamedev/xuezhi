@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:background="@color/main_bg_color"
@@ -9,7 +10,9 @@
 		android:id="@+id/common_header_fragment"
 		android:name="com.module.widget.header.HeaderCommon"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:layout="@layout/include_header"/>
+
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -47,12 +50,15 @@
 						android:text="提醒状态："
 						android:textSize="20sp"/>
 
-					<Button
+					<CheckBox
+						android:id="@+id/drug_setting_reminder_state_cb"
+						style="@style/drug_stock_add_radio_button_style"
 						android:layout_width="80dp"
-						android:layout_height="25dp"
-						android:layout_marginBottom="5dp"
-						android:layout_marginTop="5dp"
-						android:background="@drawable/corners_bg"
+						android:layout_height="30dp"
+						android:layout_gravity="center"
+						android:background="@drawable/bg_radio_button_drug_stock_add"
+						android:checked="true"
+						android:gravity="center"
 						android:text="开启"
 						android:textColor="@color/white"
 						android:textSize="20sp"/>
@@ -64,13 +70,241 @@
 			</LinearLayout>
 
 
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:background="@color/white"
+				android:orientation="vertical">
 
-			<!--<ListView-->
-			<!--android:layout_width="match_parent"-->
-			<!--android:layout_height="wrap_content"></ListView>-->
+				<include layout="@layout/item_dividing_line_horizontal"/>
 
-			<include layout="@layout/item_drug_administration_setting"/>
-			<!--<include layout="@layout/item_medication_reminder_setting"/>-->
+				<LinearLayout
+					android:id="@+id/drug_add_drug_name_region_ll"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/drug_stock_add_drug_name_title_text"
+						android:textSize="20sp"/>
+
+					<TextView
+						android:id="@+id/drug_stock_setting_drug_name_tv"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginLeft="5dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:gravity="right"
+						android:textSize="20sp"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/drug_stock_add_drug_stock_title_text"
+						android:textSize="20sp"/>
+
+					<EditText
+						android:id="@+id/drug_setting_drug_stock_num_et"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginLeft="5dp"
+						android:layout_marginRight="5dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:background="@null"
+						android:gravity="right"
+						android:inputType="number"
+						android:singleLine="true"
+						android:textSize="20sp"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:gravity="center"
+						android:text="mg"
+						android:textSize="20sp"/>
+
+					<!--<ImageView-->
+					<!--android:layout_width="20dp"-->
+					<!--android:layout_height="20dp"-->
+					<!--android:layout_gravity="center"-->
+					<!--android:background="@mipmap/img_down"/>-->
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/drug_stock_add_drug_alert_title_text"
+						android:textSize="20sp"/>
+
+					<EditText
+						android:id="@+id/drug_setting_drug_alert_num_et"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginLeft="5dp"
+						android:layout_marginRight="5dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:background="@null"
+						android:gravity="right"
+						android:inputType="number"
+						android:singleLine="true"
+						android:textSize="20sp"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:gravity="center"
+						android:text="mg"
+						android:textSize="20sp"/>
+
+					<!--<ImageView-->
+					<!--android:layout_width="20dp"-->
+					<!--android:layout_height="20dp"-->
+					<!--android:layout_gravity="center"-->
+					<!--android:background="@mipmap/img_down"/>-->
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/drug_add_date_region_ll"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/drug_stock_add_add_time_text"
+						android:textSize="20sp"/>
+
+					<TextView
+						android:id="@+id/drug_setting_add_date_tv"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:gravity="right"
+						android:textSize="20sp"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:text="@string/drug_stock_add_exhausted_time_text"
+						android:textSize="20sp"/>
+
+					<TextView
+						android:id="@+id/drug_setting_run_out_date_tv"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_marginBottom="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_weight="1"
+						android:gravity="right"
+						android:textSize="20sp"/>
+
+				</LinearLayout>
+
+				<include layout="@layout/item_dividing_line_horizontal"/>
+			</LinearLayout>
 
 
 		</LinearLayout>
@@ -80,6 +314,7 @@
 		android:id="@+id/common_bottom_fragment"
 		android:name="com.module.widget.bottom.BottomCommon"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:layout="@layout/include_bottom"/>
 
 </LinearLayout>
