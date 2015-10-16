@@ -43,7 +43,7 @@ public class TipsDialog
 		return s_tipsDialog;
 	}
 
-	public void setMsg(String msg, Context context)
+	public AlertDialog.Builder setMsg(String msg, Context context)
 	{
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -52,13 +52,14 @@ public class TipsDialog
 			m_builder.setPositiveButton(INFO_I_KNOW, null);
 			m_builder.setMessage(m_msg);
 		}
+		return m_builder;
 	}
 
-	public void setMsg(String msg)
+	public AlertDialog.Builder setMsg(String msg)
 	{
 		Context context = DGlobal.GetInstance().getContext();
 		if (context == null)
-			return;
+			return null;
 
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -67,9 +68,11 @@ public class TipsDialog
 			m_builder.setPositiveButton(INFO_I_KNOW, null);
 			m_builder.setMessage(m_msg);
 		}
+
+		return m_builder;
 	}
 
-	public void setMsg(String msg, Context context, DialogInterface.OnClickListener listener)
+	public AlertDialog.Builder setMsg(String msg, Context context, DialogInterface.OnClickListener listener)
 	{
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -78,13 +81,15 @@ public class TipsDialog
 			m_builder.setPositiveButton(INFO_I_KNOW, listener);
 			m_builder.setMessage(m_msg);
 		}
+
+		return m_builder;
 	}
 
-	public void setMsg(String msg, DialogInterface.OnClickListener listener)
+	public AlertDialog.Builder setMsg(String msg, DialogInterface.OnClickListener listener)
 	{
 		Context context = DGlobal.GetInstance().getContext();
 		if (context == null)
-			return;
+			return null;
 
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -93,9 +98,11 @@ public class TipsDialog
 			m_builder.setPositiveButton(INFO_I_KNOW, listener);
 			m_builder.setMessage(m_msg);
 		}
+
+		return m_builder;
 	}
 
-	public void setMsg(String msg, Context context, DialogInterface.OnClickListener confirmListener, DialogInterface.OnClickListener cancelListener)
+	public AlertDialog.Builder setMsg(String msg, Context context, DialogInterface.OnClickListener confirmListener, DialogInterface.OnClickListener cancelListener)
 	{
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -105,13 +112,15 @@ public class TipsDialog
 			m_builder.setNegativeButton(INFO_CANCEL, cancelListener);
 			m_builder.setMessage(m_msg);
 		}
+
+		return m_builder;
 	}
 
-	public void setMsg(String msg, DialogInterface.OnClickListener confirmListener, DialogInterface.OnClickListener cancelListener)
+	public AlertDialog.Builder setMsg(String msg, DialogInterface.OnClickListener confirmListener, DialogInterface.OnClickListener cancelListener)
 	{
 		Context context = DGlobal.GetInstance().getContext();
 		if (context == null)
-			return;
+			return null;
 
 		m_builder = new AlertDialog.Builder(context);
 		m_msg = msg;
@@ -121,6 +130,25 @@ public class TipsDialog
 			m_builder.setNegativeButton(INFO_CANCEL, cancelListener);
 			m_builder.setMessage(m_msg);
 		}
+
+		return m_builder;
+	}
+
+	public AlertDialog.Builder setMsg(String msg, Context context, String positiveTips, DialogInterface.OnClickListener confirmListener, String negativeTips, DialogInterface.OnClickListener cancelListener)
+	{
+		if (context == null)
+			return null;
+
+		m_builder = new AlertDialog.Builder(context);
+		m_msg = msg;
+		if (m_builder != null)
+		{
+			m_builder.setPositiveButton(positiveTips, confirmListener);
+			m_builder.setNegativeButton(negativeTips, cancelListener);
+			m_builder.setMessage(m_msg);
+		}
+
+		return m_builder;
 	}
 
 	public void show()

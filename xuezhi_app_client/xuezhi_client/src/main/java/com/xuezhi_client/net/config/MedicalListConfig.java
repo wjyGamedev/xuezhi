@@ -21,7 +21,6 @@ public class MedicalListConfig
 	public final static String MID   = "mid";
 	public final static String NAME = "name";
 
-
 	public final static String UID   = "uid";
 	public final static String RPID   = "rpid";
 	public final static String TIME   = "time";

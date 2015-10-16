@@ -41,6 +41,7 @@ public class DAssayDetection
 	private double m_ckValue    = DataConfig.DEFAULT_VALUE;
 	private double m_gluValue   = DataConfig.DEFAULT_VALUE;
 	private double m_hba1cValue = DataConfig.DEFAULT_VALUE;
+	private double m_scrValue = DataConfig.DEFAULT_VALUE;
 
 	private SimpleDateFormat m_allSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
 
@@ -51,6 +52,10 @@ public class DAssayDetection
 
 		String tmpAddDate = response.getString(AssayDetectionInfoConfig.RECORD_DATE);
 		Date   date       = m_allSDF.parse(tmpAddDate);
+		if (m_recordCalendar == null)
+		{
+			m_recordCalendar = Calendar.getInstance();
+		}
 		m_recordCalendar.setTime(date);
 
 		m_tgValue = response.getDouble(AssayDetectionInfoConfig.TG);
@@ -63,7 +68,9 @@ public class DAssayDetection
 		m_ckValue = response.getDouble(AssayDetectionInfoConfig.CK);
 		m_gluValue = response.getDouble(AssayDetectionInfoConfig.GLU);
 		m_hba1cValue = response.getDouble(AssayDetectionInfoConfig.HBA1C);
-
+		//TODO:等待服务器添加
+//		m_scrValue = response.getDouble(AssayDetectionInfoConfig.SCR);
+		m_scrValue = 10f;
 		return true;
 	}
 
@@ -120,5 +127,10 @@ public class DAssayDetection
 	public double getHba1cValue()
 	{
 		return m_hba1cValue;
+	}
+
+	public double getScrValue()
+	{
+		return m_scrValue;
 	}
 }

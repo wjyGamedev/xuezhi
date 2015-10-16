@@ -5,14 +5,16 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
- * 2015/9/29		WangJY		1.0.0		create
+ * 2015/10/13		WangJY		1.0.0		create
  */
 
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui;
 
-public class AstChartFragment
+import android.support.v4.app.Fragment;
+
+public class NullContentFragment extends Fragment
 { }

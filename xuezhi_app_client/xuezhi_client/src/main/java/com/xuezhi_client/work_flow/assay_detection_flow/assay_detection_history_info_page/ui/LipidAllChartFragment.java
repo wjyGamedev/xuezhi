@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -24,7 +24,6 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -32,6 +31,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
@@ -44,14 +44,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class SingleChartFragment extends Fragment
+public class LipidAllChartFragment extends Fragment
 {
 	//widget
-	//	@Bind (R.id.chart1)   LineChart m_lineChart = null;
-	//	@Bind (R.id.seekBar1) SeekBar   m_seekBarX  = null;
-	//	@Bind (R.id.seekBar2) SeekBar   m_seekBarY  = null;
-	//	@Bind (R.id.tvXMax)   TextView  m_xTV       = null;
-	//	@Bind (R.id.tvYMax)   TextView  m_yTV       = null;
 	private LineChart m_lineChart = null;
 	private SeekBar   m_seekBarX  = null;
 	private SeekBar   m_seekBarY  = null;
@@ -61,30 +56,21 @@ public class SingleChartFragment extends Fragment
 	private View m_view = null;
 
 	//logical
+	private int[] m_colors = new int[]{ColorTemplate.VORDIPLOM_COLORS[0], ColorTemplate.VORDIPLOM_COLORS[1], ColorTemplate
+			.VORDIPLOM_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[3]};
+
+
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = null;
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
+	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
-	private HandleOnChartValueSelected m_handleOnChartValueSelected = new HandleOnChartValueSelected();
+	private SimpleDateFormat m_allSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
 
-	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
-
-	private EnumConfig.AssayDetectionType m_assayDetectionType = null;
 	ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
 
 	//TODO:待测试，从不活动状态，到活动状态，数据会否保存。
-	public SingleChartFragment()
+	public LipidAllChartFragment()
 	{}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		Bundle args   = getArguments();
-		int    typeID = args.getInt(AssayDetectionConfig.ASSAY_DETECTION_TYPE);
-		m_assayDetectionType = EnumConfig.AssayDetectionType.valueOf(typeID);
-
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -175,7 +161,11 @@ public class SingleChartFragment extends Fragment
 		{
 			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
-		int xMax = m_assayDetectionArrayList.size();
+		int xMax = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
+		if (xMax < m_assayDetectionArrayList.size())
+		{
+			xMax = m_assayDetectionArrayList.size();
+		}
 		m_seekBarX.setProgress(xSize);
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
@@ -188,8 +178,6 @@ public class SingleChartFragment extends Fragment
 
 		// no description text
 		m_lineChart.setDescription("");
-		String nullTips = getActivity().getString(R.string.assay_detection_history_info_list_display_null_content);
-		m_lineChart.setNoDataTextDescription(nullTips);
 
 		// enable value highlighting
 		m_lineChart.setHighlightEnabled(true);
@@ -210,45 +198,19 @@ public class SingleChartFragment extends Fragment
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it
 		ChartMarkerView mv = new ChartMarkerView(getActivity(), R.layout.item_tips_view_linechart);
+
+		// set the marker to the chart
 		m_lineChart.setMarkerView(mv);
 
 		// enable/disable highlight indicators (the lines that indicate the
 		// highlighted Entry)
 		m_lineChart.setHighlightEnabled(false);
 
-
-		//设置 upper
-		String upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
-		LimitLine ll1 = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
-		ll1.setLineWidth(4f);
-		ll1.enableDashedLine(10f, 10f, 0f);
-		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-		ll1.setTextSize(10f);
-
-		//设置 lower
-		String lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
-		LimitLine ll2 = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
-		ll2.setLineWidth(4f);
-		ll2.enableDashedLine(10f, 10f, 0f);
-		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-		ll2.setTextSize(10f);
-
-		//设置Y轴
-		YAxis leftAxis = m_lineChart.getAxisLeft();
-		leftAxis.removeAllLimitLines();
-		leftAxis.addLimitLine(ll1);
-		leftAxis.addLimitLine(ll2);
-		leftAxis.setAxisMaxValue((float)AssayDetectionConfig.getMaxValue(m_assayDetectionType));
-		leftAxis.setAxisMinValue((float)AssayDetectionConfig.getMinValue(m_assayDetectionType));
-		leftAxis.setStartAtZero(false);
-		leftAxis.enableGridDashedLine(10f, 10f, 0f);
-		leftAxis.setInverted(true);
-		// limit lines are drawn behind data (and not on top)
-		leftAxis.setDrawLimitLinesBehindData(true);
-
-		//设置X轴
 		XAxis xl = m_lineChart.getXAxis();
 		xl.setAvoidFirstLastClipping(true);
+
+		YAxis leftAxis = m_lineChart.getAxisLeft();
+		leftAxis.setInverted(true);
 
 		YAxis rightAxis = m_lineChart.getAxisRight();
 		rightAxis.setEnabled(false);
@@ -281,15 +243,31 @@ public class SingleChartFragment extends Fragment
 		return;
 	}
 
-	private double getYValue(DAssayDetection assayDetection)
+	private String getYName(int type)
+	{
+		EnumConfig.AssayDetectionType assayDetectionType = EnumConfig.AssayDetectionType.valueOf(type);
+
+		switch (assayDetectionType)
+		{
+		case TG:
+		case TCHO:
+		case LOLC:
+		case HDLC:
+			return assayDetectionType.getName();
+		default:
+			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
+		}
+
+	}
+
+	private double getYValue(DAssayDetection assayDetection, int type)
 	{
 		if (assayDetection == null)
 			return 0f;
 
-		if (m_assayDetectionType == null)
-			return 0f;
+		EnumConfig.AssayDetectionType assayDetectionType = EnumConfig.AssayDetectionType.valueOf(type);
 
-		switch (m_assayDetectionType)
+		switch (assayDetectionType)
 		{
 		case TG:
 			return assayDetection.getTgValue();
@@ -299,106 +277,72 @@ public class SingleChartFragment extends Fragment
 			return assayDetection.getLolcValue();
 		case HDLC:
 			return assayDetection.getHdlcValue();
-		case ATL:
-			return assayDetection.getAtlValue();
-		case AST:
-			return assayDetection.getAstValue();
-		case CK:
-			return assayDetection.getCkValue();
-		case GLU:
-			return assayDetection.getGluValue();
-		case HBA1C:
-			return assayDetection.getHba1cValue();
-		case SCR:
-			return assayDetection.getScrValue();
 		default:
 			return assayDetection.getTgValue();
 		}
 	}
 
-	private String getYName()
-	{
-		if (m_assayDetectionType == null)
-			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
-
-		switch (m_assayDetectionType)
-		{
-		case TG:
-		case TCHO:
-		case LOLC:
-		case HDLC:
-		case ATL:
-		case AST:
-		case CK:
-		case GLU:
-		case HBA1C:
-		case SCR:
-			return m_assayDetectionType.getName();
-		default:
-			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
-		}
-
-	}
-
 	private void setData(int count)
 	{
+		//01. 有效性
 		if (count > m_assayDetectionArrayList.size())
 			return;
 
+		if (count < AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
+		{
+			count = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
+		}
+
+		//02. x轴
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int indexX = 0; indexX < count; indexX++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
- 			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
+			String displayDate = m_allSDF.format(recordCalendar.getTime());
 			xVals.add(displayDate);
 		}
 
-		ArrayList<Entry> yVals = new ArrayList<Entry>();
-		for (int indexY = 0; indexY < count; indexY++)
+		//03. y轴
+		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+		for (int indexType = 0; indexType < 4; indexType++)
 		{
-			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexY);
-			double yValue = getYValue(assayDetection);
-			yVals.add(new Entry((float)yValue, indexY));
+			ArrayList<Entry> values = new ArrayList<Entry>();
+
+			for (int indexEle = 0; indexEle < count; indexEle++)
+			{
+				DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexEle);
+				double tgValue = getYValue(assayDetection, indexType);
+				values.add(new Entry((float)tgValue, indexEle));
+			}
+
+			String dateSetName = getYName(indexType);
+			LineDataSet lineDataSet  = new LineDataSet(values, dateSetName);
+			lineDataSet.setLineWidth(1.5f);
+			lineDataSet.setCircleSize(4f);
+
+			int color = m_colors[indexType % m_colors.length];
+			lineDataSet.setColor(color);
+			lineDataSet.setCircleColor(color);
+			dataSets.add(lineDataSet);
 		}
 
-		// create a dataset and give it a type
-		String yName = getYName();
-		LineDataSet set1 = new LineDataSet(yVals, yName);
-		set1.setLineWidth(1.5f);
-		set1.setCircleSize(4f);
-
-		// create a data object with the datasets
-		LineData data = new LineData(xVals, set1);
-
-		// set data
+		LineData data = new LineData(xVals, dataSets);
 		m_lineChart.setData(data);
 	}
 
 	/**
 	 * date:get
 	 */
-	public EnumConfig.AssayDetectionType getAssayDetectionType()
-	{
-		return m_assayDetectionType;
-	}
 
 	/**
 	 * logical func
 	 */
-	public static Fragment newInstance(EnumConfig.AssayDetectionType assayDetectionType)
+	public static Fragment newInstance()
 	{
-		if (assayDetectionType == null)
-		{
-			return null;
-		}
-
 		SingleChartFragment singleChartFragment = new SingleChartFragment();
-		Bundle              args                = new Bundle();
-		args.putInt(AssayDetectionConfig.ASSAY_DETECTION_TYPE, assayDetectionType.getId());
-		singleChartFragment.setArguments(args);
-
 		return singleChartFragment;
 	}
 
 }
+

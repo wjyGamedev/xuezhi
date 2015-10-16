@@ -34,6 +34,7 @@ public class RequestAddAssayDetectionInfoEvent extends BaseNetEvent
 	private double m_ckValue = DataConfig.DEFAULT_VALUE;
 	private double m_gluValue = DataConfig.DEFAULT_VALUE;
 	private double m_hba1cValue = DataConfig.DEFAULT_VALUE;
+	private double m_scrValue = DataConfig.DEFAULT_VALUE;
 
 	public RequestAddAssayDetectionInfoEvent()
 	{
@@ -56,6 +57,7 @@ public class RequestAddAssayDetectionInfoEvent extends BaseNetEvent
 		sendData.put(AssayDetectionInfoConfig.CK, String.valueOf(m_ckValue));
 		sendData.put(AssayDetectionInfoConfig.GLU, String.valueOf(m_gluValue));
 		sendData.put(AssayDetectionInfoConfig.HBA1C, String.valueOf(m_hba1cValue));
+		sendData.put(AssayDetectionInfoConfig.SCR, String.valueOf(m_scrValue));
 
 		return sendData;
 	}
@@ -108,5 +110,10 @@ public class RequestAddAssayDetectionInfoEvent extends BaseNetEvent
 	public void setHba1cValue(double hba1cValue)
 	{
 		m_hba1cValue = hba1cValue;
+	}
+
+	public void setScrValue(double scrValue)
+	{
+		m_scrValue = scrValue;
 	}
 }
