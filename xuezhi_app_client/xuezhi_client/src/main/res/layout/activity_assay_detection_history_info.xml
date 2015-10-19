@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  xmlns:tools="http://schemas.android.com/tools"
 			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
@@ -14,50 +14,50 @@
 		tools:layout="@layout/include_header"/>
 
 	<!--<ScrollView-->
-		<!--android:layout_width="match_parent"-->
-		<!--android:layout_height="match_parent"-->
-		<!--android:layout_weight="1">-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="match_parent"-->
+	<!--android:layout_weight="1">-->
 
-		<!--<LinearLayout-->
-			<!--android:layout_width="match_parent"-->
-			<!--android:layout_height="wrap_content"-->
-			<!--android:layout_marginTop="10dp"-->
-			<!--android:background="@color/white"-->
-			<!--android:orientation="vertical">-->
+	<!--<LinearLayout-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="wrap_content"-->
+	<!--android:layout_marginTop="10dp"-->
+	<!--android:background="@color/white"-->
+	<!--android:orientation="vertical">-->
 
-			<include layout="@layout/item_dividing_line_horizontal"/>
+	<include layout="@layout/item_dividing_line_horizontal"/>
 
-			<ScrollView
-				android:id="@+id/history_region_sv"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:visibility="visible"
-				android:layout_weight="1">
+	<ScrollView
+		android:id="@+id/history_region_sv"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:visibility="visible">
 
-				<FrameLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_marginTop="10dp"
-					android:background="@color/white"
-					android:orientation="vertical"
-					android:id="@+id/history_region_fl"
-					android:visibility="visible">
+		<FrameLayout
+			android:id="@+id/history_region_fl"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="10dp"
+			android:background="@color/white"
+			android:orientation="vertical"
+			android:visibility="visible">
 
-				</FrameLayout>
+		</FrameLayout>
 
-			</ScrollView>
+	</ScrollView>
 
-		<!--</LinearLayout>-->
+	<!--</LinearLayout>-->
 
 
 	<!--</ScrollView>-->
 
 	<!--<fragment-->
-		<!--android:id="@+id/common_bottom_fragment"-->
-		<!--android:name="com.module.widget.bottom.BottomCommon"-->
-		<!--android:layout_width="match_parent"-->
-		<!--android:layout_height="wrap_content"-->
-		<!--tools:layout="@layout/include_bottom"/>-->
+	<!--android:id="@+id/common_bottom_fragment"-->
+	<!--android:name="com.module.widget.bottom.BottomCommon"-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="wrap_content"-->
+	<!--tools:layout="@layout/include_bottom"/>-->
 
 	<include layout="@layout/item_dividing_line_horizontal"/>
 
@@ -74,12 +74,14 @@
 			android:id="@+id/chart_rbtn"
 			style="@style/home_radio_button_style"
 			android:checked="true"
-			android:text="图表显示"/>
+			android:text="图表显示"
+			android:textSize="20sp"/>
 
 		<RadioButton
 			android:id="@+id/list_rbtn"
 			style="@style/home_radio_button_style"
-			android:text="列表显示"/>
+			android:text="列表显示"
+			android:textSize="20sp"/>
 
 	</RadioGroup>
 

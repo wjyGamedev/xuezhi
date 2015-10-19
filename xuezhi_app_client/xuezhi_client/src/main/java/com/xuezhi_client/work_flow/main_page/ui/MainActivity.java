@@ -120,7 +120,6 @@ public class MainActivity extends BaseActivity
 			TipsDialog.GetInstance().show();
 			return;
 		}
-		m_headerCommon.getHeaderTV().setTextSize(24.0f);
 
 		m_homeRBtn.setSelected(true);
 

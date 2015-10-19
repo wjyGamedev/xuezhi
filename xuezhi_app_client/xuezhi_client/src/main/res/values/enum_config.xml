@@ -21,4 +21,16 @@
 	<string name="biochemical_type_hba1c">糖化血红蛋白</string>
 	<string name="biochemical_type_scr">肌酐</string>
 
+	<!--04.单位-->
+	<string name="unit_TG">mmol/L</string>
+	<string name="unit_TCHO">mmol/L</string>
+	<string name="unit_LOLC">mmol/L</string>
+	<string name="unit_HDLC">mmol/L</string>
+	<string name="unit_ATL">U/L</string>
+	<string name="unit_AST">U/L</string>
+	<string name="unit_CK">U/L</string>
+	<string name="unit_GLU">mmol/L</string>
+	<string name="unit_HBA1C">%</string>
+	<string name="unit_SCR">umol/L</string>
+
 </resources>

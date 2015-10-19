@@ -128,7 +128,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_TG"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -171,7 +171,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_TCHO"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -215,7 +215,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_LOLC"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -260,7 +260,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_HDLC"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -339,7 +339,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_ATL"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -383,7 +383,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_AST"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -427,7 +427,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_CK"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -471,7 +471,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_GLU"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -515,7 +515,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_HBA1C"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
@@ -560,7 +560,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
 							android:gravity="center"
-							android:text="@string/assay_detection_tg_unit_title_text"
+							android:text="@string/unit_SCR"
 							android:textSize="20sp"/>
 
 					</LinearLayout>
