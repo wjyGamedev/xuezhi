@@ -52,9 +52,9 @@ public class AssayDetectionConfig
 
 	//高密度脂蛋白胆固醇(mmol/L)
 	public final static double    CHART_HDLC_MIN = 0;
-	public final static double    CHART_HDLC_LOWER_LIMIT_VALUE = 1.42;
-	public final static double    CHART_HDLC_UPPER_LIMIT_VALUE = 1.16;
-	public final static double    CHART_HDLC_MAX = 6;
+	public final static double    CHART_HDLC_LOWER_LIMIT_VALUE = 1.16;
+	public final static double    CHART_HDLC_UPPER_LIMIT_VALUE = 1.42;
+	public final static double    CHART_HDLC_MAX = 10;
 
 	//生化
 	//谷丙转氨酶(U/L)
@@ -85,7 +85,7 @@ public class AssayDetectionConfig
 	public final static double    CHART_HBA1C_MIN = 0;
 	public final static double    CHART_HBA1C_LOWER_LIMIT_VALUE = 4;
 	public final static double    CHART_HBA1C_UPPER_LIMIT_VALUE = 5.5;
-	public final static double    CHART_HBA1C_MAX = 20;
+	public final static double    CHART_HBA1C_MAX = 100;
 
 	//肌酐(umol/L)
 	public final static double    CHART_SCR_MIN = 0;

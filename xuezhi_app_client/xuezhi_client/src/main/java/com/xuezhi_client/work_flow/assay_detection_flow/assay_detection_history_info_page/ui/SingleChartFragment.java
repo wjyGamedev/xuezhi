@@ -127,12 +127,7 @@ public class SingleChartFragment extends Fragment
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 		{
-			m_xTV.setText("" + (m_seekBarX.getProgress() + 1));
-			m_yTV.setText("" + (m_seekBarY.getProgress()));
-
 			setData(m_seekBarX.getProgress());
-
-			// redraw
 			m_lineChart.invalidate();
 		}
 
