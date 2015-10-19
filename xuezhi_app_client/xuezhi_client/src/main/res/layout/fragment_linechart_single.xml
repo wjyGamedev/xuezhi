@@ -46,23 +46,23 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/tvXMax"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
-			android:gravity="center"
-			android:text="X轴缩放"
-			android:textAppearance="?android:attr/textAppearanceMedium"/>
-
 		<SeekBar
 			android:id="@+id/seekBarX"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginRight="15dp"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="5dp"
 			android:layout_weight="1"
 			android:max="200"/>
+
+		<TextView
+			android:id="@+id/tvXMax"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="15dp"
+			android:gravity="center"
+			android:text="X轴缩放"
+			android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 	</LinearLayout>
 
@@ -71,22 +71,23 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/tvYMax"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
-			android:gravity="center"
-			android:text="Y轴缩放"
-			android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-
 		<SeekBar
 			android:id="@+id/seekBarY"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginRight="15dp"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="5dp"
+			android:layout_weight="1"
 			android:max="500"/>
+
+		<TextView
+			android:id="@+id/tvYMax"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="15dp"
+			android:gravity="center"
+			android:text="Y轴缩放"
+			android:textAppearance="?android:attr/textAppearanceMedium"/>
+
 	</LinearLayout>
 </LinearLayout>
