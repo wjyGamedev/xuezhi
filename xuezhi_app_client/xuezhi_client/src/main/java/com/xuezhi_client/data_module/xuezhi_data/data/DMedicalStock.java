@@ -66,6 +66,16 @@ public class DMedicalStock
 		m_unitID = response.getInt(MedicalStockListConfig.UINTID);
 		m_waringNum = response.getDouble(MedicalStockListConfig.WARNING);
 
+		int tmpmedicalReminderState = response.getInt(MedicalStockListConfig.VALID);
+		if (tmpmedicalReminderState == 1)
+		{
+			m_medicalReminderState = true;
+		}
+		else
+		{
+			m_medicalReminderState = false;
+		}
+
 		String tmpAddDate = response.getString(MedicalStockListConfig.ADDTIME);
 		Date   date       = m_yearMonthDaySDF.parse(tmpAddDate);
 		m_addCalendar = Calendar.getInstance();

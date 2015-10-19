@@ -31,5 +31,5 @@ public class MedicalStockListConfig
 
 
 	//添加药品到库存
-	public final static String STATUS    = "valid";
+	public final static String VALID	= "valid";
 }

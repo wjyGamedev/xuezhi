@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+	<color name="colorPrimary">#3F51B5</color>
+	<color name="colorPrimaryDark">#303F9F</color>
+	<color name="colorAccent">#FF4081</color>
+	<color name="mask">#55000000</color>
 
 
+	<color name="main_color">#ff028df2</color>
+	<color name="main_color_focus">#ff22557f</color>
+	<color name="main_color_disable">#ffcccccc</color>
+	<color name="text_color_gray">#ff969696</color>
+	<color name="white">#ffffffff</color>
+	<color name="black">#ff000000</color>
+	<color name="grey">#55000000</color>
+	<color name="main_bg_color">#fff7f7f7</color>
 
-    <color name="main_color">#ff028df2</color>
-    <color name="main_color_focus">#ff22557f</color>
-    <color name="main_color_disable">#ffcccccc</color>
-    <color name="text_color_gray">#ff969696</color>
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
-    <color name="grey">#55000000</color>
-    <color name="main_bg_color">#fff7f7f7</color>
-
-    <color name="divider_color">#ff028df2</color>
+	<color name="divider_color">#ff028df2</color>
 </resources>

@@ -30,6 +30,8 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	private AnswerMedicalListHandler      m_answerMedicalListHandler      = new AnswerMedicalListHandler();
 	private AnswerMedicalStockListHandler m_answerMedicalStockListHandler = new AnswerMedicalStockListHandler();
 	private AnswerAddMedicalStockHandler  m_answerAddMedicalStockHandler  = new AnswerAddMedicalStockHandler();
+	private AnswerDelMedicalStockHandler  m_answerDelMedicalStockHandler  = new AnswerDelMedicalStockHandler();
+
 
 	private AnswerMedicalHistoryListHandler m_answerMedicalHistoryListHandler = new AnswerMedicalHistoryListHandler();
 	private AnswerMedicalPromptListHandler  m_answerMedicalPromptListHandler  = new AnswerMedicalPromptListHandler();
@@ -167,6 +169,32 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 		return;
 	}
 
+	//删除库存：uid，库存ID
+	public void requestDelMedicalStockAction(RequestDelMedicalStockEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestDelMedicalStockEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_DEL_MEDICAL_STOCK_ADDRESS,
+																sendData,
+																m_answerDelMedicalStockHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerDelMedicalStockAction(AnswerDelMedicalStockEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
 
 	//03. 用药记录
 	public void requestMedicalHistoryListAction(RequestMedicalHistoryListEvent event)

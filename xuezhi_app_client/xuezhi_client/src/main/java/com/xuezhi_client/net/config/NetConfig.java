@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -41,8 +41,9 @@ public class NetConfig
 	//用药库存
 	public final static String S_NORMAL_MEDICAL_REMAIN_ADDRESS    = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getPrompt/";
 	//添加药品（库存）
-	public final static String S_NORMAL_ADD_MEDICAL_STOCK_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST +
-			"/medical/addRemainMedicalPrompt/";
+	public final static String S_NORMAL_ADD_MEDICAL_STOCK_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/addRemainMedicalPrompt/";
+	//删除药品（库存）
+	public final static String S_NORMAL_DEL_MEDICAL_STOCK_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/removeRemainMedicalPrompt/";
 
 
 	//用药记录

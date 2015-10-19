@@ -3,7 +3,6 @@ package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.module.widget.bottom.BottomCommon;
@@ -14,7 +13,6 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -26,8 +24,10 @@ public class DrugAdministrationActivity extends Activity
 	private                           BottomCommon m_bottomCommon      = null;
 	@Bind (R.id.drug_info_display_lv) ListView     m_drugInfoDisplayLV = null;//显示药品信息列表
 
+	int selectDelDrugStockID = -1;//选择删除的药品库存id
+
 	//logical
-	private DrugAdministrationAdapter     m_drugAdministrationAdapter            = null;
+	private DrugAdministrationAdapter     m_drugAdministrationAdapter     = null;
 	private DrugAdministrationMsgHandler  m_drugAdministrationMsgHandler  = new DrugAdministrationMsgHandler(this);
 	private ClickAddBottomBtn             m_clickAddBottomBtn             = new ClickAddBottomBtn();
 	private ClickDelBottomBtn             m_clickDelBottomBtn             = new ClickDelBottomBtn();
@@ -82,7 +82,6 @@ public class DrugAdministrationActivity extends Activity
 
 	}
 
-
 	/**
 	 * inner func
 	 */
@@ -93,11 +92,14 @@ public class DrugAdministrationActivity extends Activity
 
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
-		m_bottomCommon.setBtnNum(2);
+		//		m_bottomCommon.setBtnNum(2);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_add_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickAddBottomBtn);
-		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
-		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
+		//		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
+		//		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
+
+		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
+		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
 
 		//02. logical
 		m_asyncWaitDialog.init(this);
@@ -125,16 +127,6 @@ public class DrugAdministrationActivity extends Activity
 		}
 	}
 
-	/**
-	 * widget event
-	 */
-	@OnItemClick (R.id.drug_info_display_lv)
-	public void clickDrugItem(AdapterView<?> parent, View view, int position, long id)
-	{
-		m_drugAdministrationMsgHandler.go2DrugAdministrationSettingPage((int)id);
-		return;
-	}
-
 	class HandleWaitDialogFinishedEvent implements AsyncWaitDialog.HandleWaitDialogFinishedEvent
 	{
 		public void OnWaitDialogFinished()
@@ -149,4 +141,18 @@ public class DrugAdministrationActivity extends Activity
 		m_asyncWaitDialog.dismiss();
 	}
 
+	public DrugAdministrationMsgHandler getDrugAdministrationMsgHandler()
+	{
+		return m_drugAdministrationMsgHandler;
+	}
+
+	public int getSelectDelDrugStockID()
+	{
+		return selectDelDrugStockID;
+	}
+
+	public void setSelectDelDrugStockID(int selectDelDrugStockID)
+	{
+		this.selectDelDrugStockID = selectDelDrugStockID;
+	}
 }

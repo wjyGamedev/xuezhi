@@ -23,8 +23,7 @@ import com.module.storage.StorageWrapper;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionListEvent;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicalStockListEvent;import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionListEvent;import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
@@ -84,10 +83,14 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 		//03. 请求检查
 		requestAssayDetectionListAction();
+
 //		//03.
-//		RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
-//		event.setUID(DAccount.GetInstance().getId());
-//		DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event);
+		if (DAccount.GetInstance().isRegisterSuccess())
+		{
+			RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
+			event.setUID(DAccount.GetInstance().getId());
+			DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event);
+		}
 //
 //		//03.
 //		RequestAddMedicalStockEvent requestAddMedicalStockAction = new RequestAddMedicalStockEvent();
