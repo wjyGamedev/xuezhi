@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.IBaseAdapter;
@@ -24,6 +22,7 @@ import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2015/9/29.
@@ -48,7 +47,6 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 
 	public DrugAdministrationAdapter(Context context)
 	{
-//		this.m_activity = context;
 		super(context);
 		init();
 	}
@@ -90,7 +88,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 		if (convertView == null)
 		{
 			convertView = m_layoutInflater.inflate(R.layout.item_drug_stock, null);
-			viewHolder = new ViewHolder(convertView);
+			viewHolder = new ViewHolder(convertView,(int)getItemId(position));
 			convertView.setTag(viewHolder);
 		}
 		else
@@ -98,59 +96,11 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
-		Button       del_btn      = (Button)convertView.findViewById(R.id.drug_item_list_del_btn);
-		LinearLayout drug_item_ll = (LinearLayout)convertView.findViewById(R.id.drug_item_chlick_region_ll);
-
-		drug_item_ll.setOnClickListener(new View.OnClickListener()
-										{
-											@Override
-											public void onClick(View v)
-											{
-												DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
-												acitvity.getDrugAdministrationMsgHandler().go2DrugAdministrationSettingPage((int)getItemId(position));
-											}
-										}
-									   );
-
-		del_btn.setOnClickListener(new View.OnClickListener()
-								   {
-									   @Override
-									   public void onClick(View v)
-									   {
-										   DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
-										   HandleClickEventOnDialogDetermineDeleteBtn determineDeleteListener = new HandleClickEventOnDialogDetermineDeleteBtn();
-										   HandleClickEventOnDialogCancelBtn cancelListener = new HandleClickEventOnDialogCancelBtn();
-										   TipsDialog.GetInstance().setMsg("是否删除这个药品？",acitvity, determineDeleteListener,cancelListener);
-										   TipsDialog.GetInstance().show();
-									   }
-								   }
-								  );
 
 		m_medicalStock = m_medicalStockList.getMedicalStocks();
 		viewHolder.initContent(m_medicalStock, position);
 		return convertView;
 	}
-
-	public class HandleClickEventOnDialogDetermineDeleteBtn implements DialogInterface.OnClickListener
-	{
-		@Override
-		public void onClick(DialogInterface dialog, int which)
-		{
-			DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_context;
-			acitvity.getDrugAdministrationMsgHandler().delDrugAndGo2DrugAdministrationPage();
-			return;
-		}
-	}
-
-	public class HandleClickEventOnDialogCancelBtn implements DialogInterface.OnClickListener
-	{
-		@Override
-		public void onClick(DialogInterface dialog, int which)
-		{
-			return;
-		}
-	}
-
 
 }
 
@@ -165,18 +115,67 @@ final class ViewHolder
 	@Bind (R.id.drug_administration_add_date_tv) TextView m_drugAddDateTV       = null;    //药瓶添加日期
 	@Bind (R.id.drug_run_out_date_tv)            TextView m_drugRunOutDateTV    = null;    //药品预计警报日期
 
+
+//	@Bind (R.id.drug_item_list_del_btn)     Button       m_delBtn     = null;    //药品预计警报日期
+//	@Bind (R.id.drug_item_chlick_region_ll) LinearLayout m_drugItemLL = null;    //药品预计警报日期
+
+
 	//logical
 	private View m_view = null;
+	private int m_itemID;
 
 	private SimpleDateFormat m_simpleDateFormat = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 	private final static String MEDICALREMINDERSTATEOPEN  = "开启";
 	private final static String MEDICALREMINDERSTATECLOSE = "关闭";
 
-	public ViewHolder(View view)
+	public ViewHolder(View view,int itemID)
 	{
 		m_view = view;
+		m_itemID = itemID;
 		ButterKnife.bind(this, m_view);
+	}
+
+	@OnClick(R.id.drug_item_chlick_region_ll)
+	public void clickDrugStockItemLL(View v)
+	{
+		DrugAdministrationActivity acitvity = (DrugAdministrationActivity)m_view.getContext();
+		acitvity.getDrugAdministrationMsgHandler().go2DrugAdministrationSettingPage(m_itemID);
+	}
+
+	@OnClick(R.id.drug_item_list_del_btn)
+	public void clickDrugStockItemDelBtn(View v)
+	{
+		DrugAdministrationActivity acitvity             = (DrugAdministrationActivity)m_view.getContext();
+		int                        selectDelDrugStockID = m_itemID;
+		acitvity.setSelectDelDrugStockID(selectDelDrugStockID);
+		HandleClickEventOnDialogDetermineDeleteBtn determineDeleteListener = new HandleClickEventOnDialogDetermineDeleteBtn();
+		HandleClickEventOnDialogCancelBtn cancelListener = new HandleClickEventOnDialogCancelBtn();
+		TipsDialog.GetInstance().setMsg("是否删除这个药品？", acitvity, determineDeleteListener, cancelListener);
+		TipsDialog.GetInstance().show();
+	}
+
+
+
+	public class HandleClickEventOnDialogDetermineDeleteBtn implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			DrugAdministrationActivity acitvity                = (DrugAdministrationActivity)m_view.getContext();
+			int                        setSelectDelDrugStockID = acitvity.getSelectDelDrugStockID();
+			acitvity.getDrugAdministrationMsgHandler().delDrugAndGo2DrugAdministrationPage(setSelectDelDrugStockID);
+			return;
+		}
+	}
+
+	public class HandleClickEventOnDialogCancelBtn implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			return;
+		}
 	}
 
 	public void initContent(ArrayList<DMedicalStock> m_medicalStock, int position)
@@ -203,8 +202,14 @@ final class ViewHolder
 
 		m_drugNameTV.setText(tmpmedical.getName());
 
-		if (tmpMedicalStock.isMedicalReminderState()) {m_drugReminderStateTV.setText(MEDICALREMINDERSTATEOPEN);}
-		else {m_drugReminderStateTV.setText(MEDICALREMINDERSTATECLOSE);}
+		if (tmpMedicalStock.isMedicalReminderState())
+		{
+			m_drugReminderStateTV.setText(MEDICALREMINDERSTATEOPEN);
+		}
+		else
+		{
+			m_drugReminderStateTV.setText(MEDICALREMINDERSTATECLOSE);
+		}
 
 		m_drugKeepNumTV.setText(Double.toString(tmpMedicalStock.getRemianNum()));
 		m_drugAlertNumTV.setText(Double.toString(tmpMedicalStock.getWaringNum()));

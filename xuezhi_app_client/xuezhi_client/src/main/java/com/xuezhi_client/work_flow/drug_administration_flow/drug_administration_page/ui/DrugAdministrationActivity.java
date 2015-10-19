@@ -24,8 +24,10 @@ public class DrugAdministrationActivity extends Activity
 	private                           BottomCommon m_bottomCommon      = null;
 	@Bind (R.id.drug_info_display_lv) ListView     m_drugInfoDisplayLV = null;//显示药品信息列表
 
+	int selectDelDrugStockID = -1;//选择删除的药品库存id
+
 	//logical
-	private DrugAdministrationAdapter     m_drugAdministrationAdapter            = null;
+	private DrugAdministrationAdapter     m_drugAdministrationAdapter     = null;
 	private DrugAdministrationMsgHandler  m_drugAdministrationMsgHandler  = new DrugAdministrationMsgHandler(this);
 	private ClickAddBottomBtn             m_clickAddBottomBtn             = new ClickAddBottomBtn();
 	private ClickDelBottomBtn             m_clickDelBottomBtn             = new ClickDelBottomBtn();
@@ -90,11 +92,11 @@ public class DrugAdministrationActivity extends Activity
 
 		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
-		m_bottomCommon.setBtnNum(2);
+		//		m_bottomCommon.setBtnNum(2);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_add_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickAddBottomBtn);
-		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
-		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
+		//		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
+		//		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
 
 		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
 		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
@@ -142,5 +144,15 @@ public class DrugAdministrationActivity extends Activity
 	public DrugAdministrationMsgHandler getDrugAdministrationMsgHandler()
 	{
 		return m_drugAdministrationMsgHandler;
+	}
+
+	public int getSelectDelDrugStockID()
+	{
+		return selectDelDrugStockID;
+	}
+
+	public void setSelectDelDrugStockID(int selectDelDrugStockID)
+	{
+		this.selectDelDrugStockID = selectDelDrugStockID;
 	}
 }

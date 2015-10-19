@@ -4,6 +4,7 @@ import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.config.EnumConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -27,7 +28,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 	{
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
 		int                  drugID            = drugAdministrationSettingActivity.getDrugID();
-		String               userID            = "2";
+		String               userID            = DAccount.GetInstance().getId();
 		String               drugStockNum      = String.valueOf(drugAdministrationSettingActivity.getDrugStockNum());
 		String               drugAlertNum      = String.valueOf(drugAdministrationSettingActivity.getDrugAlertNum());
 		boolean              drugReminderState = drugAdministrationSettingActivity.isDrugReminderState();
@@ -124,10 +125,19 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		SimpleDateFormat sdf             = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
-		String           addCalender     = sdf.format(drugStockInfo.getAddCalendar().getTime());
-		String           warningCalender = sdf.format(drugStockInfo.getWarningCalendar().getTime());
-		String           drugName        = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
+		SimpleDateFormat sdf             			= new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+		String           addCalender     			= sdf.format(drugStockInfo.getAddCalendar().getTime());
+		String           warningCalender 			= sdf.format(drugStockInfo.getWarningCalendar().getTime());
+		String           drugName        			= DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
+		String			isMedicalReminderStateText 	= null;
+		if(drugStockInfo.isMedicalReminderState())
+		{
+			isMedicalReminderStateText = "开启";
+		}
+		else
+		{
+			isMedicalReminderStateText = "关闭";
+		}
 
 		drugAdministrationSettingActivity.getDrugNameTV().setText(drugName);
 		drugAdministrationSettingActivity.getDrugStockNumET().setText(String.valueOf(drugStockInfo.getRemianNum()));
@@ -135,6 +145,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		drugAdministrationSettingActivity.getDrugAddDateNumTV().setText(addCalender);
 		drugAdministrationSettingActivity.getDrugRunOutDateNumTV().setText(warningCalender);
 		drugAdministrationSettingActivity.getDrugReminderStateCB().setChecked(drugStockInfo.isMedicalReminderState());
+		drugAdministrationSettingActivity.getDrugReminderStateCB().setText(isMedicalReminderStateText);
 
 		return;
 	}

@@ -41,6 +41,10 @@ public class EventID
 	//添加药品到库存中
 	public final static int QUEST_MEDICAL_STOCK_ADD    = ANSWER_MEDICAL_STOCK_LIST + 1;
 	public final static int ANSWER_MEDICAL_STOCK_ADD = QUEST_MEDICAL_STOCK_ADD + 1;
+	//删除药品到库存中
+	public final static int QUEST_MEDICAL_STOCK_DEL    = ANSWER_MEDICAL_STOCK_ADD + 1;
+	public final static int ANSWER_MEDICAL_STOCK_DEL = QUEST_MEDICAL_STOCK_DEL + 1;
+
 
 	//用药记录列表
 	public final static int QUEST_MEDICAL_HISTORY_LIST    = ANSWER_MEDICAL_LIST + 1;

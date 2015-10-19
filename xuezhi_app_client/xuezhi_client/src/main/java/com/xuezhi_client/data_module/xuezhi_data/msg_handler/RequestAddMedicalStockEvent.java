@@ -44,7 +44,7 @@ public class RequestAddMedicalStockEvent extends BaseNetEvent
 		sendData.put(MedicalStockListConfig.REMAIN, String.valueOf(m_remainNum));
 		sendData.put(MedicalStockListConfig.UINTID, m_unitID);
 		sendData.put(MedicalStockListConfig.WARNING, String.valueOf(m_waringNum));
-		sendData.put(MedicalStockListConfig.STATUS, String.valueOf(m_status));
+		sendData.put(MedicalStockListConfig.VALID, String.valueOf(m_status));
 
 		return sendData;
 	}

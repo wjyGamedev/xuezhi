@@ -51,6 +51,7 @@ public class DrugAdministrationSettingActivity extends Activity
 	//logical
 	private DrugAdministrationSettingMsgHandler m_drugAdministrationSettingMsgHandler = new DrugAdministrationSettingMsgHandler(this);
 	private ClickSaveBtn                        m_clickSaveBtn                        = new ClickSaveBtn();
+	private ClickDrugReminderStateCB            m_clickDrugReminderStateCB            = new ClickDrugReminderStateCB();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -67,6 +68,8 @@ public class DrugAdministrationSettingActivity extends Activity
 	private void init()
 	{
 		m_selectMedicalStockID = getIntent().getStringExtra("selectMedicalStockID");
+
+		m_drugReminderStateCB.setOnCheckedChangeListener(m_clickDrugReminderStateCB);
 
 		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.drug_administration_setting_page_title_text);

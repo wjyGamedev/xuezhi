@@ -83,11 +83,14 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 		//03. 请求检查
 		requestAssayDetectionListAction();
-//		//03.
 
-		RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
-		event.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event);
+//		//03.
+		if (DAccount.GetInstance().isRegisterSuccess())
+		{
+			RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
+			event.setUID(DAccount.GetInstance().getId());
+			DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event);
+		}
 //
 //		//03.
 //		RequestAddMedicalStockEvent requestAddMedicalStockAction = new RequestAddMedicalStockEvent();

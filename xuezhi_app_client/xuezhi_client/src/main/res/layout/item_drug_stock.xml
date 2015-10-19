@@ -48,33 +48,35 @@
 							android:id="@+id/drug_name_tv"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:layout_weight="1"
+							android:singleLine="true"
 							android:text="@string/drug_administration_temp_data_text"
 							android:textSize="16sp"/>
 
 					</LinearLayout>
 
-					<LinearLayout
-						android:layout_width="match_parent"
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="15dp"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:orientation="horizontal">
+						android:text="@string/drug_administration_alert_state_title_text"
+						android:textSize="16sp"/>
 
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:text="@string/drug_administration_alert_state_title_text"
-							android:textSize="16sp"/>
-
-						<TextView
-							android:id="@+id/drug_reminder_state_tv"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:layout_weight="1"
-							android:text="@string/drug_administration_alert_state_open_text"
-							android:textSize="16sp"/>
-
-					</LinearLayout>
+					<TextView
+						android:id="@+id/drug_reminder_state_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/drug_administration_alert_state_open_text"
+						android:textSize="16sp"/>
 
 				</LinearLayout>
 

@@ -87,7 +87,6 @@ public class DrugStockAddActivity extends Activity
 
 	}
 
-
 	@OnClick (R.id.drug_add_drug_name_region_ll)
 	public void clickNameRegion()
 	{
