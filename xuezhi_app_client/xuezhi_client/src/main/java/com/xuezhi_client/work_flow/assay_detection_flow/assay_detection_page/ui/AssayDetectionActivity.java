@@ -20,6 +20,7 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
 
 /**
  * Created by Administrator on 2015/9/22.
@@ -68,124 +69,107 @@ public class AssayDetectionActivity extends Activity
 	}
 
 	/**
-	 * inner func
+	 * widget event
 	 */
-	private void init()
+	@OnFocusChange (R.id.tg_et)
+	public void leaveTgETEvent(View v, boolean hasFocus)
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
-		m_headerCommon.setTitle(R.string.assay_detection_page_title_text);
-		m_headerCommon.getRightButton().setVisibility(View.VISIBLE);
-		m_headerCommon.getRightButton().setText(R.string.assay_detection_history_btn_text);
-		m_headerCommon.getRightButton().setOnClickListener(m_clickHistoryBtn);
+		if (hasFocus)
+			return;
 
-		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
-
-		m_bottomCommon.getCommonBottomBtn().setText(R.string.assay_detection_save_content);
-		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
-
-		m_asyncWaitDialog.init(this);
-		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
-
-	}
-
-	private void popNullDialog(EnumConfig.AssayDetectionType assayDetectionType)
-	{
-		String error = getString(R.string.assay_detection_error_tips_pleast_input);
-		if (assayDetectionType != null)
-		{
-			error = error + assayDetectionType.getName();
-		}
-		TipsDialog.GetInstance().setMsg(error, this);
-		TipsDialog.GetInstance().show();
+		checkTg();
 		return;
 	}
 
-	private boolean checkInputValid(double inputValue, EnumConfig.AssayDetectionType assayDetectionType)
+	@OnFocusChange (R.id.tcho_et)
+	public void leaveTchoETEvent(View v, boolean hasFocus)
 	{
-		if (assayDetectionType == null)
-		{
-			return false;
-		}
+		if (hasFocus)
+			return;
 
-		double minValue = AssayDetectionConfig.getMinValue(assayDetectionType);
-		double maxValue = AssayDetectionConfig.getMaxValue(assayDetectionType);
-		if (inputValue < minValue || inputValue > maxValue)
-		{
-			String error01 = getString(R.string.assay_detection_error_tips_invalid_input_01);
-			String error02 = getString(R.string.assay_detection_error_tips_invalid_input_02);
-			String error03 = getString(R.string.assay_detection_error_tips_repeat_input);
-			String min = String.valueOf(minValue);
-			String max = String.valueOf(maxValue);
-			error01 = error01 + assayDetectionType.getName() + error02 + "[" + min + "~" + max + "]" + error03;
-			TipsDialog.GetInstance().setMsg(error01, this);
-			TipsDialog.GetInstance().show();
-
-			return false;
-		}
-
-		return true;
+		checkTcho();
+		return;
 	}
 
-	private boolean check()
+	@OnFocusChange (R.id.lolc_et)
+	public void leaveLolcETEvent(View v, boolean hasFocus)
 	{
-		//TODO:添加约束条件
-		String error = "";
-		String repeatInput = getString(R.string.assay_detection_error_tips_repeat_input);
-		try
-		{
-			//血脂
-			//甘油三脂
-			String tmpTgValue = getTgET().getText().toString();
-			if (TextUtils.isEmpty(tmpTgValue))
-			{
-				popNullDialog(EnumConfig.AssayDetectionType.TG);
-				return false;
-			}
-			double tgValue = Double.valueOf(tmpTgValue);
-			if (!checkInputValid(tgValue, EnumConfig.AssayDetectionType.TG))
-				return false;
+		if (hasFocus)
+			return;
 
-			String tmpTchoValue = getTchoET().getText().toString();
-			if (TextUtils.isEmpty(tmpTgValue))
-			{
-				popNullDialog(EnumConfig.AssayDetectionType.TCHO);
-				return false;
-			}
-			double tchoValue = Double.valueOf(tmpTchoValue);
+		checkLolc();
+		return;
+	}
 
-			String tmpLolcValue = getLolcET().getText().toString();
-			double lolcValue = Double.valueOf(tmpLolcValue);
+	@OnFocusChange (R.id.hdlc_et)
+	public void leaveHdlcETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
 
-			String tmpHdlcValue = getHdlcET().getText().toString();
-			double hdlcValue = Double.valueOf(tmpHdlcValue);
+		checkHdlc();
+		return;
+	}
 
+	//生化
+	@OnFocusChange (R.id.atl_et)
+	public void leaveAtlETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
 
-			String tmpAtlValue = getAtlET().getText().toString();
-			double atlValue = Double.valueOf(tmpAtlValue);
+		checkAtl();
+		return;
+	}
 
-			String tmpAstValue = getAstET().getText().toString();
-			double astValue = Double.valueOf(tmpAstValue);
+	@OnFocusChange (R.id.ast_et)
+	public void leaveAstETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
 
-			String tmpCkValue = getCkET().getText().toString();
-			double ckValue = Double.valueOf(tmpCkValue);
+		checkAst();
+		return;
+	}
 
-			String tmpGlucValue = getGluET().getText().toString();
-			double glucValue = Double.valueOf(tmpGlucValue);
+	@OnFocusChange (R.id.ck_et)
+	public void leaveCkETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
 
-			String tmpHba1cValue = getHba1cET().getText().toString();
-			double hba1cValue = Double.valueOf(tmpHba1cValue);
+		checkCk();
+		return;
+	}
 
-			String tmpScrValue = getScrET().getText().toString();
-			double srcValue = Double.valueOf(tmpScrValue);
+	@OnFocusChange (R.id.glu_et)
+	public void leaveGluETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
 
-		}
-		catch (NumberFormatException e)
-		{
-			popErrorDialog(e.toString());
-			return false;
-		}
+		checkGlu();
+		return;
+	}
 
-		return true;
+	@OnFocusChange (R.id.hba1c_et)
+	public void leaveHba11cETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		checkHba1c();
+		return;
+	}
+
+	@OnFocusChange (R.id.scr_et)
+	public void leaveScrETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		checkScr();
+		return;
 	}
 
 	/**
@@ -249,6 +233,266 @@ public class AssayDetectionActivity extends Activity
 			m_asyncWaitDialog.dismiss();
 		}
 	}
+
+	/**
+	 * inner func
+	 */
+	private void init()
+	{
+		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon.setTitle(R.string.assay_detection_page_title_text);
+		m_headerCommon.getRightButton().setVisibility(View.VISIBLE);
+		m_headerCommon.getRightButton().setText(R.string.assay_detection_history_btn_text);
+		m_headerCommon.getRightButton().setOnClickListener(m_clickHistoryBtn);
+
+		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
+
+		m_bottomCommon.getCommonBottomBtn().setText(R.string.assay_detection_save_content);
+		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
+
+		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
+
+	}
+
+	private void popNullDialog(EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		String error = getString(R.string.assay_detection_error_tips_pleast_input);
+		if (assayDetectionType != null)
+		{
+			error = error + assayDetectionType.getName();
+		}
+		TipsDialog.GetInstance().setMsg(error, this);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
+	private boolean checkInputValid(double inputValue, EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		if (assayDetectionType == null)
+		{
+			return false;
+		}
+
+		double minValue = AssayDetectionConfig.getMinValue(assayDetectionType);
+		double maxValue = AssayDetectionConfig.getMaxValue(assayDetectionType);
+		if (inputValue < minValue || inputValue > maxValue)
+		{
+			String error01 = getString(R.string.assay_detection_error_tips_invalid_input_01);
+			String error02 = getString(R.string.assay_detection_error_tips_invalid_input_02);
+			String error03 = getString(R.string.assay_detection_error_tips_repeat_input);
+			String min = String.valueOf(minValue);
+			String max = String.valueOf(maxValue);
+			error01 = error01 + assayDetectionType.getName() + error02 + "[" + min + "~" + max + "]" + error03;
+			TipsDialog.GetInstance().setMsg(error01, this);
+			TipsDialog.GetInstance().show();
+
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean checkTg()
+	{
+		String tmpTgValue = getTgET().getText().toString();
+		if (TextUtils.isEmpty(tmpTgValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.TG);
+			return false;
+		}
+		double tgValue = Double.valueOf(tmpTgValue);
+		if (!checkInputValid(tgValue, EnumConfig.AssayDetectionType.TG))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkTcho()
+	{
+		String tmpTchoValue = getTchoET().getText().toString();
+		if (TextUtils.isEmpty(tmpTchoValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.TCHO);
+			return false;
+		}
+		double tchoValue = Double.valueOf(tmpTchoValue);
+		if (!checkInputValid(tchoValue, EnumConfig.AssayDetectionType.TCHO))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkLolc()
+	{
+		String tmpLolcValue = getLolcET().getText().toString();
+		if (TextUtils.isEmpty(tmpLolcValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.LOLC);
+			return false;
+		}
+		double lolcValue = Double.valueOf(tmpLolcValue);
+		if (!checkInputValid(lolcValue, EnumConfig.AssayDetectionType.LOLC))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkHdlc()
+	{
+		String tmpHdlcValue = getHdlcET().getText().toString();
+		if (TextUtils.isEmpty(tmpHdlcValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.HDLC);
+			return false;
+		}
+		double hdlcValue = Double.valueOf(tmpHdlcValue);
+		if (!checkInputValid(hdlcValue, EnumConfig.AssayDetectionType.HDLC))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkAtl()
+	{
+		String tmpAtlValue = getAtlET().getText().toString();
+		if (TextUtils.isEmpty(tmpAtlValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.ATL);
+			return false;
+		}
+		double atlValue = Double.valueOf(tmpAtlValue);
+		if (!checkInputValid(atlValue, EnumConfig.AssayDetectionType.ATL))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkAst()
+	{
+		String tmpAstValue = getAstET().getText().toString();
+		if (TextUtils.isEmpty(tmpAstValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.AST);
+			return false;
+		}
+		double astValue = Double.valueOf(tmpAstValue);
+		if (!checkInputValid(astValue, EnumConfig.AssayDetectionType.AST))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkCk()
+	{
+		String tmpCkValue = getCkET().getText().toString();
+		if (TextUtils.isEmpty(tmpCkValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.CK);
+			return false;
+		}
+		double ckValue = Double.valueOf(tmpCkValue);
+		if (!checkInputValid(ckValue, EnumConfig.AssayDetectionType.CK))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkGlu()
+	{
+		String tmpGluValue = getGluET().getText().toString();
+		if (TextUtils.isEmpty(tmpGluValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.GLU);
+			return false;
+		}
+		double gluValue = Double.valueOf(tmpGluValue);
+		if (!checkInputValid(gluValue, EnumConfig.AssayDetectionType.GLU))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkHba1c()
+	{
+		String tmpHba1cValue = getHba1cET().getText().toString();
+		if (TextUtils.isEmpty(tmpHba1cValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.HBA1C);
+			return false;
+		}
+		double hba1cValue = Double.valueOf(tmpHba1cValue);
+		if (!checkInputValid(hba1cValue, EnumConfig.AssayDetectionType.HBA1C))
+			return false;
+
+		return true;
+	}
+
+	private boolean checkScr()
+	{
+		String tmpScrValue = getScrET().getText().toString();
+		if (TextUtils.isEmpty(tmpScrValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.SCR);
+			return false;
+		}
+		double srcValue = Double.valueOf(tmpScrValue);
+		if (!checkInputValid(srcValue, EnumConfig.AssayDetectionType.SCR))
+			return false;
+
+		return true;
+	}
+
+	private boolean check()
+	{
+		//TODO:添加约束条件
+		String error = "";
+		String repeatInput = getString(R.string.assay_detection_error_tips_repeat_input);
+		try
+		{
+			//血脂
+			if (!checkTg())
+				return false;
+
+			if (!checkTcho())
+				return false;
+
+			if (!checkLolc())
+				return false;
+
+			if (!checkHdlc())
+				return false;
+
+			//生化
+			if (!checkAtl())
+				return false;
+
+			if (!checkAst())
+				return false;
+
+			if (!checkCk())
+				return false;
+
+			if (!checkGlu())
+				return false;
+
+			if (!checkHba1c())
+				return false;
+
+			if (!checkScr())
+				return false;
+
+		}
+		catch (NumberFormatException e)
+		{
+			popErrorDialog(e.toString());
+			return false;
+		}
+
+		return true;
+	}
+
+
 
 	/**
 	 * widget:get

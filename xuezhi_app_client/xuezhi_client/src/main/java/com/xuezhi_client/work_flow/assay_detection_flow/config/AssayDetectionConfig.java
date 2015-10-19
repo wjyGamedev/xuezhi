@@ -31,6 +31,20 @@ public class AssayDetectionConfig
 	public final static double    CHART_UPPER_DEFAULT = 80;
 	public final static double    CHART_MAX_DEFAULT = 100;
 
+	//unit
+	public final static String UINT_DEFAULT = "default";
+	public final static String UINT_TG = "mmol/L";
+	public final static String UINT_TCHO = "mmol/L";
+	public final static String UINT_LOLC = "mmol/L";
+	public final static String UINT_HDLC = "mmol/L";
+
+	public final static String UINT_ATL = "U/L";
+	public final static String UINT_AST = "U/L";
+	public final static String UINT_CK = "U/L";
+	public final static String UINT_GLU = "mmol/L";
+	public final static String UINT_HBA1C = "%";
+	public final static String UINT_SCR = "mmol/L";
+
 	//血脂(mmol/L)
 	//甘油三酯
 	public final static double    CHART_TG_MIN = 0;
@@ -52,9 +66,9 @@ public class AssayDetectionConfig
 
 	//高密度脂蛋白胆固醇(mmol/L)
 	public final static double    CHART_HDLC_MIN = 0;
-	public final static double    CHART_HDLC_LOWER_LIMIT_VALUE = 1.42;
-	public final static double    CHART_HDLC_UPPER_LIMIT_VALUE = 1.16;
-	public final static double    CHART_HDLC_MAX = 6;
+	public final static double    CHART_HDLC_LOWER_LIMIT_VALUE = 1.16;
+	public final static double    CHART_HDLC_UPPER_LIMIT_VALUE = 1.42;
+	public final static double    CHART_HDLC_MAX = 10;
 
 	//生化
 	//谷丙转氨酶(U/L)
@@ -85,13 +99,68 @@ public class AssayDetectionConfig
 	public final static double    CHART_HBA1C_MIN = 0;
 	public final static double    CHART_HBA1C_LOWER_LIMIT_VALUE = 4;
 	public final static double    CHART_HBA1C_UPPER_LIMIT_VALUE = 5.5;
-	public final static double    CHART_HBA1C_MAX = 20;
+	public final static double    CHART_HBA1C_MAX = 100;
 
 	//肌酐(umol/L)
 	public final static double    CHART_SCR_MIN = 0;
 	public final static double    CHART_SCR_LOWER_LIMIT_VALUE = 53;
 	public final static double    CHART_SCR_UPPER_LIMIT_VALUE = 106;
 	public final static double    CHART_SCR_MAX = 300;
+
+	public static String getName(EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		if (assayDetectionType == null)
+			return CHART_X_AXIS_DEFAULT_NAME;
+
+		switch (assayDetectionType)
+		{
+		case TG:
+		case TCHO:
+		case LOLC:
+		case HDLC:
+		case ATL:
+		case AST:
+		case CK:
+		case GLU:
+		case HBA1C:
+		case SCR:
+			return assayDetectionType.getName();
+		default:
+			return CHART_X_AXIS_DEFAULT_NAME;
+		}
+	}
+
+	public static String getUnit(EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		if (assayDetectionType == null)
+			return UINT_DEFAULT;
+
+		switch (assayDetectionType)
+		{
+		case TG:
+			return UINT_TG;
+		case TCHO:
+			return UINT_TCHO;
+		case LOLC:
+			return UINT_LOLC;
+		case HDLC:
+			return UINT_HDLC;
+		case ATL:
+			return UINT_ATL;
+		case AST:
+			return UINT_AST;
+		case CK:
+			return UINT_CK;
+		case GLU:
+			return UINT_GLU;
+		case HBA1C:
+			return UINT_HBA1C;
+		case SCR:
+			return UINT_SCR;
+		default:
+			return UINT_DEFAULT;
+		}
+	}
 
 	public static double getMaxValue(EnumConfig.AssayDetectionType assayDetectionType)
 	{

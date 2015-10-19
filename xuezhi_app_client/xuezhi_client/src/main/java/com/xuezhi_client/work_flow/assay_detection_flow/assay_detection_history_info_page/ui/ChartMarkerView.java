@@ -50,8 +50,17 @@ public class ChartMarkerView extends MarkerView
 		}
 		else
 		{
-
-			tvContent.setText("" + Utils.formatNumber(e.getVal(), 0, true));
+			Object tmpDate = e.getData();
+			if (tmpDate instanceof String)
+			{
+				String displayDate = (String)tmpDate;
+				displayDate = "("+displayDate+")";
+				tvContent.setText(String.valueOf(e.getVal()) + displayDate);
+			}
+			else
+			{
+				tvContent.setText(String.valueOf(e.getVal()));
+			}
 		}
 	}
 

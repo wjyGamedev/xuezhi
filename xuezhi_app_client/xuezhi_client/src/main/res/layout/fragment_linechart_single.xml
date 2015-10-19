@@ -11,40 +11,41 @@
 		android:layout_above="@+id/seekBarY"
 		android:layout_weight="1"/>
 
+	<!--<LinearLayout-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:orientation="horizontal">-->
+
+		<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginLeft="15dp"-->
+			<!--android:layout_marginRight="5dp"-->
+			<!--android:layout_weight="1"-->
+			<!--android:gravity="left"-->
+			<!--android:text="X单位：年/月/日"-->
+			<!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+			<!--android:textSize="8sp"/>-->
+
+
+		<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_marginLeft="15dp"-->
+			<!--android:layout_marginRight="5dp"-->
+			<!--android:layout_weight="1"-->
+			<!--android:gravity="left"-->
+			<!--android:text="Y轴单位：mmol/L"-->
+			<!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+			<!--android:textSize="8sp"/>-->
+
+	<!--</LinearLayout>-->
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:gravity="left"
-			android:text="X单位：年/月/日"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:textSize="8sp"/>
-
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:gravity="left"
-			android:text="Y轴单位：mmol/L"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:textSize="8sp"/>
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		android:id="@+id/x_axis_region_ll">
 
 		<SeekBar
 			android:id="@+id/seekBarX"
@@ -69,7 +70,8 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		android:id="@+id/y_axis_region_ll">
 
 		<SeekBar
 			android:id="@+id/seekBarY"

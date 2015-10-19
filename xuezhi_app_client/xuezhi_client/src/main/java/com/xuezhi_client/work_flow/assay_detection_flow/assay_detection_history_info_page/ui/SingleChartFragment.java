@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -57,6 +58,8 @@ public class SingleChartFragment extends Fragment
 	private SeekBar   m_seekBarY  = null;
 	private TextView  m_xTV       = null;
 	private TextView  m_yTV       = null;
+	private LinearLayout m_xAxisLL = null;
+	private LinearLayout m_yAxisLL = null;
 
 	private View m_view = null;
 
@@ -97,6 +100,9 @@ public class SingleChartFragment extends Fragment
 		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
 		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
 		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
+		m_xAxisLL = (LinearLayout)m_view.findViewById(R.id.x_axis_region_ll);
+		m_yAxisLL = (LinearLayout)m_view.findViewById(R.id.y_axis_region_ll);
+		m_yAxisLL.setVisibility(View.GONE);
 
 		AssayDetectionHistoryInfoActivity assayDetectionHistoryInfoActivity = (AssayDetectionHistoryInfoActivity)getActivity();
 		if (assayDetectionHistoryInfoActivity == null)
@@ -127,12 +133,7 @@ public class SingleChartFragment extends Fragment
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 		{
-			m_xTV.setText("" + (m_seekBarX.getProgress() + 1));
-			m_yTV.setText("" + (m_seekBarY.getProgress()));
-
 			setData(m_seekBarX.getProgress());
-
-			// redraw
 			m_lineChart.invalidate();
 		}
 
@@ -242,7 +243,7 @@ public class SingleChartFragment extends Fragment
 		leftAxis.setAxisMinValue((float)AssayDetectionConfig.getMinValue(m_assayDetectionType));
 		leftAxis.setStartAtZero(false);
 		leftAxis.enableGridDashedLine(10f, 10f, 0f);
-		leftAxis.setInverted(true);
+		leftAxis.setInverted(false);
 		// limit lines are drawn behind data (and not on top)
 		leftAxis.setDrawLimitLinesBehindData(true);
 
@@ -359,11 +360,18 @@ public class SingleChartFragment extends Fragment
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexY);
 			double yValue = getYValue(assayDetection);
-			yVals.add(new Entry((float)yValue, indexY));
+
+			Calendar recordCalendar = assayDetection.getRecordCalendar();
+			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
+
+			yVals.add(new Entry((float)yValue, indexY, displayDate));
 		}
 
 		// create a dataset and give it a type
-		String yName = getYName();
+		String yName = AssayDetectionConfig.getName(m_assayDetectionType);
+		String yUnit = AssayDetectionConfig.getUnit(m_assayDetectionType);
+		String unitTips = getActivity().getString(R.string.assay_detection_history_unit_tips);
+		yName = yName + "("+unitTips+yUnit+")";
 		LineDataSet set1 = new LineDataSet(yVals, yName);
 		set1.setLineWidth(1.5f);
 		set1.setCircleSize(4f);
@@ -373,6 +381,14 @@ public class SingleChartFragment extends Fragment
 
 		// set data
 		m_lineChart.setData(data);
+
+		//02. label tip
+		String molecule = String.valueOf(count);
+		String denominator = String.valueOf(m_assayDetectionArrayList.size());
+		String display = molecule+ "/"+denominator;
+		m_xTV.setText(display);
+
+		return;
 	}
 
 	/**
