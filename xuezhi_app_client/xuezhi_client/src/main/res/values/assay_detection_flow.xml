@@ -50,6 +50,9 @@
 	<string name="assay_detection_history_upper_limit">上限</string>
 	<string name="assay_detection_history_lower_limit">下限</string>
 
+	<string name="assay_detection_history_unit_tips">单位：</string>
+
 	<string name="assay_detection_status_normal">正常</string>
+
 
 </resources>
