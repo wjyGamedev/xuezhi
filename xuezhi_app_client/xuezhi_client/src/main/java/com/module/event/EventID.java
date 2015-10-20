@@ -47,7 +47,7 @@ public class EventID
 
 
 	//用药记录列表
-	public final static int QUEST_MEDICAL_HISTORY_LIST    = ANSWER_MEDICAL_LIST + 1;
+	public final static int QUEST_MEDICAL_HISTORY_LIST    = ANSWER_MEDICAL_STOCK_DEL + 1;
 	public final static int ANSWER_MEDICAL_HISTORY_LIST = QUEST_MEDICAL_HISTORY_LIST + 1;
 
 	//用药提醒列表(按月)
