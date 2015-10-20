@@ -44,10 +44,16 @@ public class EventID
 	//删除药品到库存中
 	public final static int QUEST_MEDICAL_STOCK_DEL    = ANSWER_MEDICAL_STOCK_ADD + 1;
 	public final static int ANSWER_MEDICAL_STOCK_DEL = QUEST_MEDICAL_STOCK_DEL + 1;
+	//药品到库存添加剂量
+	public final static int QUEST_MEDICAL_STOCK_ADD_DOSE    = ANSWER_MEDICAL_STOCK_DEL + 1;
+	public final static int ANSWER_MEDICAL_STOCK_ADD_DOSE = QUEST_MEDICAL_STOCK_ADD_DOSE + 1;
+	//药品到库存设置剂量
+	public final static int QUEST_MEDICAL_STOCK_SET_DOSE    = ANSWER_MEDICAL_STOCK_ADD_DOSE + 1;
+	public final static int ANSWER_MEDICAL_STOCK_SET_DOSE = QUEST_MEDICAL_STOCK_SET_DOSE + 1;
 
 
 	//用药记录列表
-	public final static int QUEST_MEDICAL_HISTORY_LIST    = ANSWER_MEDICAL_STOCK_DEL + 1;
+	public final static int QUEST_MEDICAL_HISTORY_LIST    = ANSWER_MEDICAL_STOCK_SET_DOSE + 1;
 	public final static int ANSWER_MEDICAL_HISTORY_LIST = QUEST_MEDICAL_HISTORY_LIST + 1;
 
 	//用药提醒列表(按月)
