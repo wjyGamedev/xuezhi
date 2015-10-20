@@ -13,12 +13,12 @@
 		android:orientation="vertical">
 
 		<LinearLayout
+			android:id="@+id/drug_item_chlick_region_ll"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal">
 
 			<LinearLayout
-				android:id="@+id/drug_item_chlick_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"

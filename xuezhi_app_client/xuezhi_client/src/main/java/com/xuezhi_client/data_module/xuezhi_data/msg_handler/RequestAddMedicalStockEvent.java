@@ -50,19 +50,9 @@ public class RequestAddMedicalStockEvent extends BaseNetEvent
 	}
 
 
-	public String getUID()
-	{
-		return m_UID;
-	}
-
 	public void setUID(String UID)
 	{
 		m_UID = UID;
-	}
-
-	public String getMID()
-	{
-		return m_MID;
 	}
 
 	public void setMID(String MID)
@@ -70,19 +60,9 @@ public class RequestAddMedicalStockEvent extends BaseNetEvent
 		m_MID = MID;
 	}
 
-	public double getRemainNum()
-	{
-		return m_remainNum;
-	}
-
 	public void setRemainNum(double remainNum)
 	{
 		m_remainNum = remainNum;
-	}
-
-	public String getUnitID()
-	{
-		return m_unitID;
 	}
 
 	public void setUnitID(String unitID)
@@ -90,19 +70,9 @@ public class RequestAddMedicalStockEvent extends BaseNetEvent
 		m_unitID = unitID;
 	}
 
-	public double getWaringNum()
-	{
-		return m_waringNum;
-	}
-
 	public void setWaringNum(double waringNum)
 	{
 		m_waringNum = waringNum;
-	}
-
-	public boolean isStatus()
-	{
-		return m_status;
 	}
 
 	public void setStatus(boolean status)

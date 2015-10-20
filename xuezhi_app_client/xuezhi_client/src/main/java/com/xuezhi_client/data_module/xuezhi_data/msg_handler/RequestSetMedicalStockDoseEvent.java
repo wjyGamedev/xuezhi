@@ -2,6 +2,7 @@ package com.xuezhi_client.data_module.xuezhi_data.msg_handler;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
+import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.net.config.MedicalStockListConfig;
 
 import java.util.HashMap;
@@ -11,9 +12,11 @@ import java.util.HashMap;
  */
 public class RequestSetMedicalStockDoseEvent extends BaseNetEvent
 {
-	private String m_RPID = null;
-	private String m_UID = null;
-	private String m_Dose = null;
+	private String  m_UID       = null;    //用户ID
+	private String  m_MID       = null;    //药品ID
+	private double  m_remainNum = DataConfig.DEFAULT_VALUE;    //剩余药品数量
+	private double  m_waringNum = DataConfig.DEFAULT_VALUE;    //警报药品数量
+	private boolean m_status    = true;    //开启状态
 
 	public RequestSetMedicalStockDoseEvent()
 	{
@@ -24,16 +27,13 @@ public class RequestSetMedicalStockDoseEvent extends BaseNetEvent
 	{
 		HashMap<String, String> sendData = new HashMap<String, String>();
 
-		sendData.put(MedicalStockListConfig.RPID, m_RPID);
 		sendData.put(MedicalStockListConfig.UID, m_UID);
-		sendData.put(MedicalStockListConfig.DOSE, m_Dose);
+		sendData.put(MedicalStockListConfig.MID, m_MID);
+		sendData.put(MedicalStockListConfig.REMAIN, String.valueOf(m_remainNum));
+		sendData.put(MedicalStockListConfig.WARNING, String.valueOf(m_waringNum));
+		sendData.put(MedicalStockListConfig.VALID, String.valueOf(m_status));
 
 		return sendData;
-	}
-
-	public void setRPID(String RPID)
-	{
-		m_RPID = RPID;
 	}
 
 	public void setUID(String UID)
@@ -41,8 +41,23 @@ public class RequestSetMedicalStockDoseEvent extends BaseNetEvent
 		m_UID = UID;
 	}
 
-	public void setDose(String dose)
+	public void setMID(String MID)
 	{
-		m_Dose = dose;
+		m_MID = MID;
+	}
+
+	public void setRemainNum(double remainNum)
+	{
+		m_remainNum = remainNum;
+	}
+
+	public void setWaringNum(double waringNum)
+	{
+		m_waringNum = waringNum;
+	}
+
+	public void setStatus(boolean status)
+	{
+		m_status = status;
 	}
 }

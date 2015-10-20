@@ -1,10 +1,10 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.header.HeaderCommon;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/23.
  */
-public class DrugAdministrationActivity extends Activity
+public class DrugAdministrationActivity extends BaseActivity
 {
 	//widget
 	private                           HeaderCommon m_headerCommon      = null;

@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/23.
  */
-public class DrugAdministrationSettingActivity extends Activity
+public class DrugAdministrationSettingActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
@@ -104,9 +105,9 @@ public class DrugAdministrationSettingActivity extends Activity
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
 		{
 			if (isChecked)
-				m_drugReminderStateCB.setText("开启");
+				m_drugReminderStateCB.setText(getResources().getString(R.string.drug_administration_setting_alert_state_open_text));
 			else
-				m_drugReminderStateCB.setText("关闭");
+				m_drugReminderStateCB.setText(getResources().getString(R.string.drug_administration_setting_alert_state_close_text));
 
 			setDrugSettingReminderState(isChecked);
 		}
