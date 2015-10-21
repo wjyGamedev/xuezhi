@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -24,17 +24,18 @@ public class DataConfig
 	public final static String PRAISE_RATE       = "praise_rate";
 	public final static String EVALUATION_TIMES  = "evaluation_times";
 
-	public final static int MAX_SELECT_DAY_TYEP = 3;
-	public final static int SELECT_DAY_TYEP_ALL = 0;
-	public final static int SELECT_DAY_TYEP_DAY = 1;
+	public final static int MAX_SELECT_DAY_TYEP   = 3;
+	public final static int SELECT_DAY_TYEP_ALL   = 0;
+	public final static int SELECT_DAY_TYEP_DAY   = 1;
 	public final static int SELECT_DAY_TYEP_NIGHT = 2;
 
-	public static final int DEFAULT_VALUE = 0;
+	public static final int    DEFAULT_VALUE  = 0;
+	public static final int    DEFAULT_ID     = -1;
 	public final static String SCHEDULE_SPLIT = ",";
 
 	//注册
-	public final static int REGISTER_WAITTING_TIME = 60*1000;
-	public final static int REGISTER_DELTA_TIME = 1000;
+	public final static int REGISTER_WAITTING_TIME = 60 * 1000;
+	public final static int REGISTER_DELTA_TIME    = 1000;
 
 	//预约陪护
 	public final static int DELAY_TIME_POP_SOFT_INPUT_IN_MILLISECENDS = 300;

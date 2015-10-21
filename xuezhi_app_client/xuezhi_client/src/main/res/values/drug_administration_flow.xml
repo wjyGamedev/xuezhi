@@ -2,7 +2,7 @@
 <resources>
 
 	<!--drug_administration_page-->
-	<string name="drug_administration_page_title_text">药品管理</string>
+	<string name="drug_administration_page_title_text">我的药箱</string>
 	<string name="drug_administration_add_btn_text">添加</string>
 	<string name="drug_administration_del_btn_text">删除</string>
 	<string name="drug_administration_drug_name_title_text">药品名称：</string>
@@ -14,9 +14,10 @@
 	<string name="drug_administration_drug_alert_title_text">药品警报存量：</string>
 	<string name="drug_administration_add_time_text">添加时间：</string>
 	<string name="drug_administration_exhausted_time_text">预计药品用尽时间：</string>
+	<string name="drug_administration_isdel_hint_text">是否删除这个药品?</string>
 
 	<!--drug_stock_add_page-->
-	<string name="drug_stock_add_page_title_text">添加药品管理</string>
+	<string name="drug_stock_add_page_title_text">添加药品</string>
 	<string name="drug_stock_add_content_tips_text">请选择药品</string>
 	<string name="drug_stock_add_add_btn_text">添加药品</string>
 	<string name="drug_stock_add_del_btn_text">删除药品</string>
@@ -44,7 +45,7 @@
 	</style>
 
 	<!--drug_administration_setting_page-->
-	<string name="drug_administration_setting_page_title_text">药品管理设置</string>
+	<string name="drug_administration_setting_page_title_text">药品相关设置</string>
 	<string name="drug_administration_setting_add_btn_text">添加药品</string>
 	<string name="drug_administration_setting_del_btn_text">删除药品</string>
 	<string name="drug_administration_setting_save_btn_text">保存</string>

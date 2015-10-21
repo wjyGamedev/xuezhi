@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStockList;
+import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
@@ -117,12 +119,12 @@ final class ViewHolder
 
 	//logical
 	private View m_view           = null;
-	private int  m_medicalStockID = 0;    //药品库存ID
+	private int  m_medicalStockID = DataConfig.DEFAULT_ID;    //药品库存ID
 
 	private SimpleDateFormat m_simpleDateFormat = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
-	private final static String MEDICALREMINDERSTATEOPEN  = "开启";
-	private final static String MEDICALREMINDERSTATECLOSE = "关闭";
+	private final static String MEDICALREMINDERSTATEOPEN  = DrugAdministrationConfig.MEDICALREMINDERSTATEOPEN;
+	private final static String MEDICALREMINDERSTATECLOSE = DrugAdministrationConfig.MEDICALREMINDERSTATECLOSE;
 
 	public ViewHolder(View view)
 	{
@@ -145,7 +147,11 @@ final class ViewHolder
 		acitvity.setSelectDelDrugStockID(selectDelDrugStockID);
 		HandleClickEventOnDialogDetermineDeleteBtn determineDeleteListener = new HandleClickEventOnDialogDetermineDeleteBtn();
 		HandleClickEventOnDialogCancelBtn          cancelListener          = new HandleClickEventOnDialogCancelBtn();
-		TipsDialog.GetInstance().setMsg("是否删除这个药品？", acitvity, determineDeleteListener, cancelListener);
+		TipsDialog.GetInstance().setMsg(acitvity.getString(R.string.drug_administration_isdel_hint_text),
+										acitvity,
+										determineDeleteListener,
+										cancelListener
+									   );
 		TipsDialog.GetInstance().show();
 	}
 
@@ -193,7 +199,7 @@ final class ViewHolder
 		int           medicalID       = tmpMedicalStock.getMID();
 		DMedical      tmpmedical      = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
 
-		m_medicalStockID =tmpMedicalStock.getID();
+		m_medicalStockID = tmpMedicalStock.getID();
 
 		m_drugNameTV.setText(tmpmedical.getName());
 

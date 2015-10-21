@@ -10,6 +10,7 @@ import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicalStockL
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestDelMedicalStockEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicalStockListEvent;
+import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
@@ -106,7 +107,7 @@ public class DrugAdministrationMsgHandler extends BaseUIMsgHandler
 		}
 
 		Intent intent = new Intent(drugAdministrationActivity, DrugAdministrationSettingActivity.class);
-		intent.putExtra("selectMedicalStockID", Integer.toString(selectMedicalStockID));
+		intent.putExtra(DrugAdministrationConfig.SELECT_MEDICAL_STOCK_ID, Integer.toString(selectMedicalStockID));
 		drugAdministrationActivity.startActivity(intent);
 
 		return;
