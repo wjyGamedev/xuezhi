@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -15,13 +15,16 @@
 package com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
+import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
@@ -39,11 +42,12 @@ public class MedicineReminderAddActivity extends BaseActivity
 	//widget
 	private HeaderCommon m_headerCommon = null;
 
-	@Bind (R.id.reminder_state_cb) CheckBox m_reminderStateCB = null;
-	@Bind (R.id.reminder_time_tv)  TextView m_medicineTimeTV  = null;
-	@Bind (R.id.medicine_name_tv)  TextView m_medicineNameTV  = null;
-	@Bind (R.id.rose_tv)           TextView m_roseTV          = null;
-	@Bind (R.id.medicine_unit_tv)  TextView m_medicineUnit    = null;
+	@Bind (R.id.reminder_state_cb)       CheckBox     m_reminderStateCB      = null;
+	@Bind (R.id.reminder_time_region_ll) LinearLayout m_medicineTimeRegionLL = null;
+	@Bind (R.id.reminder_time_tv)        TextView     m_medicineTimeTV       = null;
+	@Bind (R.id.medicine_name_tv)        TextView     m_medicineNameTV       = null;
+	@Bind (R.id.rose_tv)                 TextView     m_roseTV               = null;
+	@Bind (R.id.medicine_unit_tv)        TextView     m_medicineUnit         = null;
 
 	@Bind (R.id.precautions_tv) TextView m_precautionsTV = null;
 
@@ -52,6 +56,9 @@ public class MedicineReminderAddActivity extends BaseActivity
 	//Literals
 	private String OPEN  = null;
 	private String CLOSE = null;
+	private String ERROR_INPUT_REMINDER_TIME = null;
+	private String ERROR_INPUT_MEDICINE_NAME = null;
+	private String ERROR_INPUT_ROSE = null;
 
 	//logical
 	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = new MedicineReminderAddMsgHandler(this);
@@ -88,13 +95,13 @@ public class MedicineReminderAddActivity extends BaseActivity
 		setStateFlag(isChecked);
 	}
 
-	@OnClick (R.id.reminder_time_tv)
+	@OnClick (R.id.reminder_time_region_ll)
 	public void selectMedicineTime(View v)
 	{
 		m_medicineReminderAddMsgHandler.go2SelectMedicineTimeFragment();
 	}
 
-	@OnClick (R.id.medicine_name_tv)
+	@OnClick (R.id.medicine_name_region_ll)
 	public void selectMedicine(View v)
 	{
 		m_medicineReminderAddMsgHandler.go2SelectMedicineFragment();
@@ -114,7 +121,9 @@ public class MedicineReminderAddActivity extends BaseActivity
 
 		OPEN = getString(R.string.medicine_reminder_add_open_content);
 		CLOSE = getString(R.string.medicine_reminder_add_close_content);
-
+		ERROR_INPUT_REMINDER_TIME = getString(R.string.medicine_reminder_add_error_input_reminder_time);
+		ERROR_INPUT_MEDICINE_NAME = getString(R.string.medicine_reminder_add_error_input_medicine_name_time);
+		ERROR_INPUT_ROSE = getString(R.string.medicine_reminder_add_error_input_rose_time);
 	}
 
 	/**
@@ -125,9 +134,42 @@ public class MedicineReminderAddActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
+			if (!check())
+				return;
+
 			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction();
 		}
 	}
+
+	/**
+	 * inner:func
+	 */
+	private boolean check()
+	{
+		if (TextUtils.isEmpty(m_medicineTimeTV.getText()))
+		{
+			TipsDialog.GetInstance().setMsg(ERROR_INPUT_REMINDER_TIME,this);
+			TipsDialog.GetInstance().show();
+			return false;
+		}
+
+		if (TextUtils.isEmpty(m_medicineNameTV.getText()))
+		{
+			TipsDialog.GetInstance().setMsg(ERROR_INPUT_MEDICINE_NAME,this);
+			TipsDialog.GetInstance().show();
+			return false;
+		}
+
+		if (TextUtils.isEmpty(m_roseTV.getText()))
+		{
+			TipsDialog.GetInstance().setMsg(ERROR_INPUT_ROSE,this);
+			TipsDialog.GetInstance().show();
+			return false;
+		}
+
+		return true;
+	}
+
 
 	/**
 	 * date:get/set

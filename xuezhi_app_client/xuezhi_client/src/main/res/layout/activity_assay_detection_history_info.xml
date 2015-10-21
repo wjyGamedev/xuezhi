@@ -15,37 +15,15 @@
 
 	<include layout="@layout/item_dividing_line_horizontal"/>
 
-	<ScrollView
-		android:id="@+id/history_region_sv"
+	<FrameLayout
+		android:id="@+id/history_region_fl"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_weight="1"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical"
 		android:visibility="visible">
 
-		<FrameLayout
-			android:id="@+id/history_region_fl"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_marginTop="10dp"
-			android:orientation="vertical"
-			android:visibility="visible">
-
-		</FrameLayout>
-
-	</ScrollView>
-
-	<!--</LinearLayout>-->
-
-
-	<!--</ScrollView>-->
-
-	<!--<fragment-->
-	<!--android:id="@+id/common_bottom_fragment"-->
-	<!--android:name="com.module.widget.bottom.BottomCommon"-->
-	<!--android:layout_width="match_parent"-->
-	<!--android:layout_height="wrap_content"-->
-	<!--tools:layout="@layout/include_bottom"/>-->
-
+	</FrameLayout>
 
 	<RadioGroup
 		android:id="@+id/history_tabs_rg"
@@ -59,9 +37,9 @@
 			android:id="@+id/chart_rbtn"
 			style="@style/home_radio_button_style"
 			android:layout_height="match_parent"
+			android:background="@drawable/bg_bottom_tab"
 			android:checked="true"
 			android:text="图表显示"
-			android:background="@drawable/bg_bottom_tab"
 			android:textSize="20sp"/>
 
 		<RadioButton

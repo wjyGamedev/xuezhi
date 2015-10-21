@@ -16,7 +16,7 @@
 		android:orientation="vertical"/>
 
 	<LinearLayout
-		android:id="@+id/tips_region_ll"
+		android:id="@+id/func_region_ll"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
@@ -40,7 +40,8 @@
 			android:gravity="center"
 			android:text="@string/confirm_btn_text"
 			android:textColor="@color/white"
-			android:textSize="20sp"/>
+			android:textSize="20sp"
+			android:id="@+id/confirm_btn"/>
 
 	</LinearLayout>
 

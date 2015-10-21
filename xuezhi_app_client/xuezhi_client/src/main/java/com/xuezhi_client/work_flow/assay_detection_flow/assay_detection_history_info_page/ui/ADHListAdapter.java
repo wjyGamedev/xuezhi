@@ -45,8 +45,7 @@ public class ADHListAdapter extends IBaseAdapter
 	@Override
 	public int getCount()
 	{
-		if (m_assayDetectionList == null)
-			return 0;
+		m_assayDetectionList = DBusinessData.GetInstance().getAssayDetectionList();
 
 		ArrayList<DAssayDetection> assayDetections = m_assayDetectionList.getAssayDetections();
 		if (assayDetections == null || assayDetections.isEmpty())

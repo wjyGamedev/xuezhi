@@ -14,9 +14,9 @@
 
 package com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -81,13 +81,13 @@ public class SelectMedicineFragment extends SelectListFragment
 	@Override
 	public void impClickHeaderRegion()
 	{
-
+		cancelAction();
 	}
 
 	@Override
 	public void impClickBottomRegion()
 	{
-
+		cancelAction();
 	}
 
 
@@ -227,8 +227,11 @@ public class SelectMedicineFragment extends SelectListFragment
 
 	private void cancelAction()
 	{
-		FragmentManager     fgManager           = getActivity().getFragmentManager();
-		Fragment            fragment            = fgManager.findFragmentByTag(SelectMedicineFragment.class.getName());
+		FragmentManager fgManager           = getActivity().getSupportFragmentManager();
+		Fragment fragment            = fgManager.findFragmentByTag(SelectMedicineFragment.class.getName());
+		if (fragment == null)
+			return;
+
 		FragmentTransaction fragmentTransaction = fgManager.beginTransaction();
 		fragmentTransaction.remove(fragment);
 		fragmentTransaction.commit();

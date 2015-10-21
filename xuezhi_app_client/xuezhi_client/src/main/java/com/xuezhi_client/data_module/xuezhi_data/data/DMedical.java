@@ -25,7 +25,7 @@ public class DMedical
 	private int    m_ID   = DataConfig.DEFAULT_VALUE;
 	private String m_name = null;
 	private int m_MUID = DataConfig.DEFAULT_VALUE;//药品单位ID
-	private String m_precautions = null;
+	private String m_precautions = "";
 
 	public boolean serialization(JSONObject response) throws JSONException
 	{

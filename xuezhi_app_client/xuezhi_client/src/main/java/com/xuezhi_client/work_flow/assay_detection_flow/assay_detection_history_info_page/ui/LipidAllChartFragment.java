@@ -339,6 +339,12 @@ public class LipidAllChartFragment extends Fragment
 
 		LineData data = new LineData(xVals, dataSets);
 		m_lineChart.setData(data);
+
+		//02. label tip
+		String molecule = String.valueOf(count);
+		String denominator = String.valueOf(m_assayDetectionArrayList.size());
+		String display = molecule+ "/"+denominator;
+		m_xTV.setText(display);
 	}
 
 	/**

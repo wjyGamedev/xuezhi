@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalUnit;
@@ -80,6 +81,8 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 	public void requestAddMedicalPromptAction()
 	{
 		RequestAddMedicalPromptEvent event = new RequestAddMedicalPromptEvent();
+		event.setUID(DAccount.GetInstance().getId());
+
 		DBusinessMsgHandler.GetInstance().requestAddMedicalPromptAction(event);
 		return;
 	}
