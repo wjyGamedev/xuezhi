@@ -37,19 +37,31 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 
-		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(ADHChartFragment.class.getName());
-		ADHChartFragment adhChartFragment = null;
-		if (fragment != null)
+		FragmentTransaction transaction = null;
+		//01。 如果有list，则删除
+		Fragment lineFragment = activity.getSupportFragmentManager().findFragmentByTag(ADHListFragment.class.getName());
+		if (lineFragment != null)
 		{
-			adhChartFragment = (ADHChartFragment)fragment;
+			transaction = activity.getSupportFragmentManager().beginTransaction();
+			transaction.remove(lineFragment);
+			transaction.commit();
+		}
+
+		//02. 打开chart
+		Fragment chartFragment = activity.getSupportFragmentManager().findFragmentByTag(ADHChartFragment.class.getName());
+		ADHChartFragment adhChartFragment = null;
+		if (chartFragment != null)
+		{
+			adhChartFragment = (ADHChartFragment)chartFragment;
 		}
 		if (adhChartFragment == null)
 		{
 			adhChartFragment = new ADHChartFragment();
 			adhChartFragment.setHeight(activity.getHistoryRegionFLHeight());
 		}
+
 		//TODO:这里不能把ADHChartFragment挂接在R.id.history_region_fl子节点下，不然会显示不出来。
-		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+		transaction = activity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(android.R.id.content, adhChartFragment, ADHChartFragment.class.getName());
 		transaction.commitAllowingStateLoss();
 		return;
@@ -60,10 +72,31 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 
-		ADHListFragment ADHListFragment = new ADHListFragment();
+		FragmentTransaction transaction = null;
 
-		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.history_region_fl, ADHListFragment);
+		//01. 如果有chart先删除
+		Fragment chartFragment = activity.getSupportFragmentManager().findFragmentByTag(ADHChartFragment.class.getName());
+		if (chartFragment != null)
+		{
+			transaction = activity.getSupportFragmentManager().beginTransaction();
+			transaction.remove(chartFragment);
+			transaction.commit();
+		}
+
+		//02. 打开line
+		Fragment listFragment = activity.getSupportFragmentManager().findFragmentByTag(ADHListFragment.class.getName());
+		ADHListFragment adhListFragment = null;
+		if (listFragment != null)
+		{
+			adhListFragment = (ADHListFragment)listFragment;
+		}
+		if (adhListFragment == null)
+		{
+			adhListFragment = new ADHListFragment();
+		}
+
+		transaction = activity.getSupportFragmentManager().beginTransaction();
+		transaction.replace(R.id.history_region_fl, adhListFragment, ADHListFragment.class.getName());
 		transaction.commit();
 
 		return;

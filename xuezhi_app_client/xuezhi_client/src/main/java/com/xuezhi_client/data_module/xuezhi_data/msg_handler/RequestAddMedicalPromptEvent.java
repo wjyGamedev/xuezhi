@@ -55,19 +55,9 @@ public class RequestAddMedicalPromptEvent extends BaseNetEvent
 		return sendData;
 	}
 
-	public String getUID()
-	{
-		return m_UID;
-	}
-
 	public void setUID(String UID)
 	{
 		m_UID = UID;
-	}
-
-	public String getRPID()
-	{
-		return m_RPID;
 	}
 
 	public void setRPID(String RPID)
@@ -75,19 +65,9 @@ public class RequestAddMedicalPromptEvent extends BaseNetEvent
 		m_RPID = RPID;
 	}
 
-	public Calendar getTime()
-	{
-		return m_time;
-	}
-
 	public void setTime(Calendar time)
 	{
 		m_time = time;
-	}
-
-	public double getDose()
-	{
-		return m_dose;
 	}
 
 	public void setDose(double dose)
@@ -95,23 +75,9 @@ public class RequestAddMedicalPromptEvent extends BaseNetEvent
 		this.m_dose = dose;
 	}
 
-	public String getRemark()
-	{
-		return m_remark;
-	}
-
 	public void setRemark(String remark)
 	{
 		this.m_remark = remark;
 	}
 
-	public SimpleDateFormat getHmsSDF()
-	{
-		return m_hmsSDF;
-	}
-
-	public void setHmsSDF(SimpleDateFormat hmsSDF)
-	{
-		m_hmsSDF = hmsSDF;
-	}
 }
