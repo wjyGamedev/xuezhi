@@ -8,6 +8,7 @@ import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAddMedicalStockEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerSetMedicalStockDoseEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -39,40 +40,47 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 	public void saveDrugStockSettingInfo()
 	{
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
-		int                  drugID            = drugAdministrationSettingActivity.getDrugID();
-		String               userID            = DAccount.GetInstance().getId();
-		String               drugStockNum      = String.valueOf(drugAdministrationSettingActivity.getDrugStockNum());
-		String               drugAlertNum      = String.valueOf(drugAdministrationSettingActivity.getDrugAlertNum());
-		boolean              drugReminderState = drugAdministrationSettingActivity.isDrugReminderState();
-		Calendar             m_addCalendar     = Calendar.getInstance();
-		Calendar             m_warningCalendar = Calendar.getInstance();
-//		EnumConfig.MedicalUnit m_medicalUnit = get;
+		int                               drugID                            = drugAdministrationSettingActivity.getDrugID();
+		String                            userID                            = DAccount.GetInstance().getId();
+		String                            drugStockNum                      = drugAdministrationSettingActivity.getDrugStockNum();
+		String                            drugAlertNum                      = drugAdministrationSettingActivity.getDrugAlertNum();
+		boolean                           drugReminderState                 = drugAdministrationSettingActivity.isDrugReminderState();
+		Calendar                          m_addCalendar                     = Calendar.getInstance();
+		Calendar                          m_warningCalendar                 = Calendar.getInstance();
 
 		//数据验证
-		if (drugID == 0)
+		if (drugID == -1)
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_1_text), m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_1_text),
+											m_context
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (userID.isEmpty())
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_2_text), m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_2_text),
+											m_context
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		if (drugStockNum == null)
+		if (drugStockNum.equals("") || drugStockNum.equals("0") || drugStockNum == null)
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_3_text), m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_3_text),
+											m_context
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		if (drugAlertNum == null)
+		if (drugAlertNum.equals("") || drugAlertNum.equals("0") || drugAlertNum == null)
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_4_text), m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_4_text),
+											m_context
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -125,12 +133,15 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
 
 		//提示保存成功
-		Toast.makeText(drugAdministrationSettingActivity,drugAdministrationSettingActivity.getResources().getString(R.string.drug_administration_setting_click_setting_complete_text), Toast.LENGTH_SHORT).show();
+		Toast.makeText(drugAdministrationSettingActivity,
+					   drugAdministrationSettingActivity.getResources().getString(R.string
+																						  .drug_administration_setting_click_setting_complete_text),
+					   Toast.LENGTH_SHORT
+					  ).show();
 
 		//关闭添加页面
 		drugAdministrationSettingActivity.finish();
 	}
-
 
 
 	public void DrugSettingPagefillingContent()
@@ -158,12 +169,16 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		SimpleDateFormat sdf             			= new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
-		String           addCalender     			= sdf.format(drugStockInfo.getAddCalendar().getTime());
-		String           warningCalender 			= sdf.format(drugStockInfo.getWarningCalendar().getTime());
-		String           drugName        			= DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
-		String			isMedicalReminderStateText 	= null;
-		if(drugStockInfo.isMedicalReminderState())
+		SimpleDateFormat sdf             = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+		String           addCalender     = sdf.format(drugStockInfo.getAddCalendar().getTime());
+		String           warningCalender = sdf.format(drugStockInfo.getWarningCalendar().getTime());
+		String drugName = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
+		String       isMedicalReminderStateText = null;
+		int          drugID                     = drugStockInfo.getMID();
+		DMedicalUnit drugUnit                   = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(drugID);
+		String       drugUnitName               = drugUnit.getUnitName();
+
+		if (drugStockInfo.isMedicalReminderState())
 		{
 			isMedicalReminderStateText = m_context.getResources().getString(R.string.drug_administration_setting_alert_state_open_text);
 		}
@@ -179,6 +194,11 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		drugAdministrationSettingActivity.getDrugRunOutDateNumTV().setText(warningCalender);
 		drugAdministrationSettingActivity.getDrugReminderStateCB().setChecked(drugStockInfo.isMedicalReminderState());
 		drugAdministrationSettingActivity.getDrugReminderStateCB().setText(isMedicalReminderStateText);
+		drugAdministrationSettingActivity.getDrugStockUnitTV().setText(drugUnitName);
+		drugAdministrationSettingActivity.getDrugAlertUnitTV().setText(drugUnitName);
+
+		drugAdministrationSettingActivity.setDrugID(drugStockInfo.getMID());
+		drugAdministrationSettingActivity.setDrugReminderState(drugStockInfo.isMedicalReminderState());
 
 		return;
 	}

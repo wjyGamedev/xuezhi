@@ -46,6 +46,8 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	@Bind (R.id.drug_setting_drug_alert_num_et)  EditText m_drugAlertNumET      = null;
 	@Bind (R.id.drug_setting_add_date_tv)        TextView m_drugAddDateNumTV    = null;
 	@Bind (R.id.drug_setting_run_out_date_tv)    TextView m_drugRunOutDateNumTV = null;
+	@Bind (R.id.drug_setting_drug_stock_unit_tv)    TextView m_drugStockUnitTV = null;
+	@Bind (R.id.drug_setting_drug_alert_unit_tv)    TextView m_drugAlertUnitTV = null;
 
 	private boolean drugSettingReminderState = false;
 
@@ -193,9 +195,9 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		m_drugID = drugID;
 	}
 
-	public double getDrugStockNum()
+	public String getDrugStockNum()
 	{
-		return m_drugStockNum;
+		return m_drugStockNumET.getText().toString();
 	}
 
 	public void setDrugStockNum(double drugStockNum)
@@ -203,9 +205,9 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		m_drugStockNum = drugStockNum;
 	}
 
-	public double getDrugAlertNum()
+	public String getDrugAlertNum()
 	{
-		return m_drugAlertNum;
+		return m_drugAlertNumET.getText().toString();
 	}
 
 	public void setDrugAlertNum(double drugAlertNum)
@@ -261,5 +263,25 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	public void setDrugReminderStateCB(CheckBox drugReminderStateCB)
 	{
 		m_drugReminderStateCB = drugReminderStateCB;
+	}
+
+	public TextView getDrugStockUnitTV()
+	{
+		return m_drugStockUnitTV;
+	}
+
+	public void setDrugStockUnitTV(TextView drugStockUnitTV)
+	{
+		m_drugStockUnitTV = drugStockUnitTV;
+	}
+
+	public TextView getDrugAlertUnitTV()
+	{
+		return m_drugAlertUnitTV;
+	}
+
+	public void setDrugAlertUnitTV(TextView drugAlertUnitTV)
+	{
+		m_drugAlertUnitTV = drugAlertUnitTV;
 	}
 }

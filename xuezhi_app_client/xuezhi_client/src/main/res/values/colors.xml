@@ -13,6 +13,7 @@
 	<color name="white">#ffffffff</color>
 	<color name="black">#ff000000</color>
 	<color name="grey">#55000000</color>
+	<color name="umeng_fb_gray">#ffd8d8d8</color>
 	<color name="main_bg_color">#fff7f7f7</color>
 
 	<color name="divider_color">#ff028df2</color>

@@ -14,9 +14,9 @@
 
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -285,7 +285,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 
 	private void cancelAction()
 	{
-		FragmentManager     fgManager           = getActivity().getFragmentManager();
+		FragmentManager     fgManager           = getActivity().getSupportFragmentManager();
 		Fragment            fragment            = fgManager.findFragmentByTag(SelectDrugFragment.class.getName());
 		FragmentTransaction fragmentTransaction = fgManager.beginTransaction();
 		fragmentTransaction.remove(fragment);

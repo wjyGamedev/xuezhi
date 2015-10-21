@@ -27,7 +27,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginTop="10dp"
-			android:background="@color/white"
 			android:orientation="vertical"
 			android:visibility="visible">
 
@@ -47,13 +46,11 @@
 	<!--android:layout_height="wrap_content"-->
 	<!--tools:layout="@layout/include_bottom"/>-->
 
-	<include layout="@layout/item_dividing_line_horizontal"/>
 
 	<RadioGroup
 		android:id="@+id/history_tabs_rg"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"
-		android:background="#ffffffff"
 		android:orientation="horizontal"
 		android:paddingTop="2.5dp"
 		android:visibility="visible">
@@ -61,13 +58,17 @@
 		<RadioButton
 			android:id="@+id/chart_rbtn"
 			style="@style/home_radio_button_style"
+			android:layout_height="match_parent"
 			android:checked="true"
 			android:text="图表显示"
+			android:background="@drawable/bg_bottom_tab"
 			android:textSize="20sp"/>
 
 		<RadioButton
 			android:id="@+id/list_rbtn"
 			style="@style/home_radio_button_style"
+			android:layout_height="match_parent"
+			android:background="@drawable/bg_bottom_tab"
 			android:text="列表显示"
 			android:textSize="20sp"/>
 

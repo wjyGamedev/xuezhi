@@ -1,6 +1,6 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler;
 
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
@@ -50,17 +50,8 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		Calendar             m_warningCalendar = Calendar.getInstance();
 		DMedical             m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
 
-		if (m_medical == null)
-		{
-			TipsDialog.GetInstance().setMsg("m_medicalUnit == null,drugID = " + drugID + "", m_context);
-			TipsDialog.GetInstance().show();
-			return;
-		}
-
-		int UnitID = m_medical.getMUID();
-
 		//数据验证
-		if (drugID == 0)
+		if (drugID == -1)
 		{
 			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_1_text), m_context);
 			TipsDialog.GetInstance().show();
@@ -74,14 +65,14 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		if (drugStockNum == null)
+		if (drugStockNum.equals("") || drugStockNum.equals("0") || drugStockNum == null)
 		{
 			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_3_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		if (drugAlertNum == null)
+		if (drugAlertNum.equals("") || drugAlertNum.equals("0") || drugAlertNum == null)
 		{
 			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_4_text), m_context);
 			TipsDialog.GetInstance().show();
@@ -101,6 +92,15 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 			TipsDialog.GetInstance().show();
 			return;
 		}
+
+		if (m_medical == null)
+		{
+			TipsDialog.GetInstance().setMsg("m_medicalUnit == null,drugID = " + drugID + "", m_context);
+			TipsDialog.GetInstance().show();
+			return;
+		}
+
+		int UnitID = m_medical.getMUID();
 
 		//		if (drugStockNum <= drugAlertNum)
 		//		{
@@ -137,7 +137,10 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		drugStockAddActivity.updateContent();
 
 		//提示保存成功
-		Toast.makeText(drugStockAddActivity, drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text), Toast.LENGTH_SHORT).show();
+		Toast.makeText(drugStockAddActivity,
+					   drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text),
+					   Toast.LENGTH_SHORT
+					  ).show();
 
 		//关闭添加页面
 		drugStockAddActivity.finish();
@@ -151,7 +154,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 
 		SelectDrugFragment selectDepartmentFragment = new SelectDrugFragment();
 
-		FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.drug_stock_add_page, selectDepartmentFragment, selectDepartmentFragment.getClass().getName());
 		transaction.commit();
 
@@ -194,9 +197,9 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		}
 
 		//设置单位文本
-		DMedicalUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
-		String       UnitName    = medicalUnit.getUnitName();
-		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
+		DMedicalUnit         medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
+		String               UnitName    = medicalUnit.getUnitName();
+		DrugStockAddActivity activity    = (DrugStockAddActivity)m_context;
 		activity.getDrugAlertUnitTV().setText(UnitName);
 		activity.getDrugStockUnitTV().setText(UnitName);
 	}

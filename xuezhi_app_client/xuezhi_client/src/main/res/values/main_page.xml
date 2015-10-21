@@ -23,7 +23,7 @@
 	<string name="no_need_to_buy_hint_text">当前药品充足，无需购买</string>
 	<string name="assay_detection_btn_text">化验检测</string>
 	<string name="medication_reminder_btn_text">用药提醒</string>
-	<string name="drug_administration_btn_text">药品管理</string>
+	<string name="drug_administration_btn_text">我的药箱</string>
 	<string name="calendar_btn_text">日历</string>
 	<string name="confirm_btn_text">确定</string>
 

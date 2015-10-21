@@ -31,13 +31,13 @@ public class DrugStockAddActivity extends BaseActivity
 	private HeaderCommon m_headerCommon = null;
 	private BottomCommon m_bottomCommon = null;
 
-	private                                   int          m_drugID              = 0;
+	private                                   int          m_drugID              = -1;
 	private                                   double       m_drugStockNum        = 0.0f;
 	private                                   double       m_drugAlertNum        = 0.0f;
 	private                                   boolean      m_drugReminderState   = true;
 	private                                   Calendar     m_addCalendar         = null;
 	private                                   Calendar     m_alertCalendar       = null;
-	private                                   int          m_medicalUnitID       = 0;
+	private                                   int          m_medicalUnitID       = -1;
 	@Bind (R.id.drug_reminder_state_cb)       CheckBox     m_drugReminderStateCB = null;
 	@Bind (R.id.drug_add_drug_name_region_ll) LinearLayout m_drugNameRegionLL    = null;
 	@Bind (R.id.drug_stock_add_drug_name)     TextView     m_drugNameTV          = null;
