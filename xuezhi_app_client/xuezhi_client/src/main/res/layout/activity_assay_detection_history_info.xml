@@ -15,13 +15,6 @@
 
 	<include layout="@layout/item_dividing_line_horizontal"/>
 
-	<!--<ScrollView-->
-	<!--android:id="@+id/history_region_sv"-->
-	<!--android:layout_width="match_parent"-->
-	<!--android:layout_height="match_parent"-->
-	<!--android:layout_weight="1"-->
-	<!--android:visibility="visible">-->
-
 	<FrameLayout
 		android:id="@+id/history_region_fl"
 		android:layout_width="match_parent"
@@ -33,20 +26,6 @@
 		android:visibility="visible">
 
 	</FrameLayout>
-
-	<!--</ScrollView>-->
-
-	<!--</LinearLayout>-->
-
-
-	<!--</ScrollView>-->
-
-	<!--<fragment-->
-	<!--android:id="@+id/common_bottom_fragment"-->
-	<!--android:name="com.module.widget.bottom.BottomCommon"-->
-	<!--android:layout_width="match_parent"-->
-	<!--android:layout_height="wrap_content"-->
-	<!--tools:layout="@layout/include_bottom"/>-->
 
 	<include layout="@layout/item_dividing_line_horizontal"/>
 
