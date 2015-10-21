@@ -3,6 +3,7 @@
 
 	<!--assay_detection_page-->
 	<string name="assay_detection_page_title_text">化验检查</string>
+	<string name="assay_detection_page_recording_time_text">记录时间</string>
 	<string name="assay_detection_blood_lipid_title_text">血脂相关</string>
 	<string name="assay_detection_biochemical_title_text">生化相关</string>
 	<string name="assay_detection_history_btn_text">历史</string>
