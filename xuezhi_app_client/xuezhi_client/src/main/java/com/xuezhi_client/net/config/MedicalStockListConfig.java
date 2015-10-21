@@ -29,7 +29,9 @@ public class MedicalStockListConfig
 
 	public final static String LIST = "remain_prompt_list";
 
-
 	//添加药品到库存
 	public final static String VALID	= "valid";
+
+	//药品库存剂量
+	public final static String DOSE	= "dose";
 }

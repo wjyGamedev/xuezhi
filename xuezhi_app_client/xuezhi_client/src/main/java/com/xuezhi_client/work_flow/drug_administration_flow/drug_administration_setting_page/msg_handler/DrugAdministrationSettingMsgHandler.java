@@ -1,15 +1,20 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler;
 
+import android.widget.Toast;
+
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAddMedicalStockEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerSetMedicalStockDoseEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAddMedicalStockEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicalStockListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestSetMedicalStockDoseEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +24,13 @@ import java.util.Calendar;
  */
 public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+	}
+
 	public DrugAdministrationSettingMsgHandler(DrugAdministrationSettingActivity activity)
 	{
 		super(activity);
@@ -39,28 +51,28 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		//数据验证
 		if (drugID == 0)
 		{
-			TipsDialog.GetInstance().setMsg("请选择药品", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_1_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (userID.isEmpty())
 		{
-			TipsDialog.GetInstance().setMsg("您还没有注册", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_2_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (drugStockNum == null)
 		{
-			TipsDialog.GetInstance().setMsg("请填写药品存量", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_3_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (drugAlertNum == null)
 		{
-			TipsDialog.GetInstance().setMsg("请填写药品警报存量", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_4_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -86,19 +98,40 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		//			return;
 		//		}
 
-		RequestAddMedicalStockEvent requestAddMedicalStockAction = new RequestAddMedicalStockEvent();
+		RequestSetMedicalStockDoseEvent requestAddMedicalStockAction = new RequestSetMedicalStockDoseEvent();
 
 		requestAddMedicalStockAction.setUID(userID);
 		requestAddMedicalStockAction.setMID(Integer.toString(drugID));
 		requestAddMedicalStockAction.setRemainNum(Double.valueOf(drugStockNum));
 		requestAddMedicalStockAction.setWaringNum(Double.valueOf(drugAlertNum));
-		requestAddMedicalStockAction.setUnitID(String.valueOf(EnumConfig.MedicalUnit.MILLIGRAM.getId()));
 		requestAddMedicalStockAction.setStatus(drugReminderState);
-		DBusinessMsgHandler.GetInstance().requestAddMedicalStockAction(requestAddMedicalStockAction);
+		DBusinessMsgHandler.GetInstance().requestSetMedicalStockDoseAction(requestAddMedicalStockAction);
 
 		return;
 
 	}
+
+	//保存成功，获取药品库存列表
+	public void onEventMainThread(AnswerAddMedicalStockEvent event)
+	{
+		RequestMedicalStockListEvent event_new = new RequestMedicalStockListEvent();
+		event_new.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event_new);
+	}
+
+	//获取药品库存列表成功，关闭页面，弹出提示
+	public void onEventMainThread(AnswerSetMedicalStockDoseEvent event)
+	{
+		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
+
+		//提示保存成功
+		Toast.makeText(drugAdministrationSettingActivity,drugAdministrationSettingActivity.getResources().getString(R.string.drug_administration_setting_click_setting_complete_text), Toast.LENGTH_SHORT).show();
+
+		//关闭添加页面
+		drugAdministrationSettingActivity.finish();
+	}
+
+
 
 	public void DrugSettingPagefillingContent()
 	{
@@ -132,11 +165,11 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		String			isMedicalReminderStateText 	= null;
 		if(drugStockInfo.isMedicalReminderState())
 		{
-			isMedicalReminderStateText = "开启";
+			isMedicalReminderStateText = m_context.getResources().getString(R.string.drug_administration_setting_alert_state_open_text);
 		}
 		else
 		{
-			isMedicalReminderStateText = "关闭";
+			isMedicalReminderStateText = m_context.getResources().getString(R.string.drug_administration_setting_alert_state_close_text);
 		}
 
 		drugAdministrationSettingActivity.getDrugNameTV().setText(drugName);

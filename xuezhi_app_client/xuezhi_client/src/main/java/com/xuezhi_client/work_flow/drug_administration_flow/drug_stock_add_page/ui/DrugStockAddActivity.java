@@ -1,9 +1,7 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -39,7 +37,7 @@ public class DrugStockAddActivity extends BaseActivity
 	private                                   boolean      m_drugReminderState   = true;
 	private                                   Calendar     m_addCalendar         = null;
 	private                                   Calendar     m_alertCalendar       = null;
-	//	private                                   int     m_medicalUnitID       = null;
+	private                                   int          m_medicalUnitID       = 0;
 	@Bind (R.id.drug_reminder_state_cb)       CheckBox     m_drugReminderStateCB = null;
 	@Bind (R.id.drug_add_drug_name_region_ll) LinearLayout m_drugNameRegionLL    = null;
 	@Bind (R.id.drug_stock_add_drug_name)     TextView     m_drugNameTV          = null;
@@ -47,6 +45,8 @@ public class DrugStockAddActivity extends BaseActivity
 	@Bind (R.id.drug_add_drug_alert_num_et)   EditText     m_drugAlertNumET      = null;
 	@Bind (R.id.drug_add_date_tv)             TextView     m_drugAddDateTV       = null;
 	@Bind (R.id.drug_add_run_out_tv)          TextView     m_drugRunOutTV        = null;
+	@Bind (R.id.drug_add_drug_stock_unit_tv)   TextView     m_drugStockUnitTV     = null;
+	@Bind (R.id.drug_add_drug_alert_unit_tv)  TextView     m_drugAlertUnitTV     = null;
 
 	private ClickSaveBottomBtn       m_clickSaveBottomBtn       = new ClickSaveBottomBtn();
 	private ClickDrugReminderStateCB m_clickDrugReminderStateCB = new ClickDrugReminderStateCB();
@@ -112,9 +112,9 @@ public class DrugStockAddActivity extends BaseActivity
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
 		{
 			if (isChecked)
-				m_drugReminderStateCB.setText("开启");
+				m_drugReminderStateCB.setText(getString(R.string.drug_stock_add_alert_state_open_text));
 			else
-				m_drugReminderStateCB.setText("关闭");
+				m_drugReminderStateCB.setText(getString(R.string.drug_stock_add_alert_state_close_text));
 
 			setDrugReminderState(isChecked);
 		}
@@ -129,58 +129,8 @@ public class DrugStockAddActivity extends BaseActivity
 
 	public void updateContent()
 	{
-
 	}
 
-	//网上复制下来的代码，作用：点击EditText文本框之外任何地方隐藏键盘
-	@Override
-	public boolean dispatchTouchEvent(MotionEvent ev)
-	{
-		if (ev.getAction() == MotionEvent.ACTION_DOWN)
-		{
-			View v = getCurrentFocus();
-			if (isShouldHideInput(v, ev))
-			{
-
-				InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
-				if (imm != null)
-				{
-					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-				}
-			}
-			return super.dispatchTouchEvent(ev);
-		}
-		// 必不可少，否则所有的组件都不会有TouchEvent了
-		if (getWindow().superDispatchTouchEvent(ev))
-		{
-			return true;
-		}
-		return onTouchEvent(ev);
-	}
-
-	public boolean isShouldHideInput(View v, MotionEvent event)
-	{
-		if (v != null && (v instanceof EditText))
-		{
-			int[] leftTop = {0, 0};
-			//获取输入框当前的location位置
-			v.getLocationInWindow(leftTop);
-			int left = leftTop[0];
-			int top = leftTop[1];
-			int bottom = top + v.getHeight();
-			int right = left + v.getWidth();
-			if (event.getX() > left && event.getX() < right && event.getY() > top && event.getY() < bottom)
-			{
-				// 点击的是输入框区域，保留点击EditText的事件
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 
 	public DrugStockAddMsgHandler getDrugStockAddMsgHandler()
 	{
@@ -255,5 +205,25 @@ public class DrugStockAddActivity extends BaseActivity
 	public CheckBox getDrugReminderStateCB()
 	{
 		return m_drugReminderStateCB;
+	}
+
+	public int getMedicalUnitID()
+	{
+		return m_medicalUnitID;
+	}
+
+	public void setMedicalUnitID(int medicalUnitID)
+	{
+		m_medicalUnitID = medicalUnitID;
+	}
+
+	public TextView getDrugStockUnitTV()
+	{
+		return m_drugStockUnitTV;
+	}
+
+	public TextView getDrugAlertUnitTV()
+	{
+		return m_drugAlertUnitTV;
 	}
 }

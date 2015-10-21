@@ -70,9 +70,14 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 
 		init();
 		initListener();
-		loadDrugList();
-
 		return m_view;
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		loadDrugList();
 	}
 
 	//防止点击穿透
@@ -158,6 +163,8 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 			int      id   = drug.getID();
 
 			m_drugStockAddMsgHandler.setMedicalID(id);
+			int medicalUnitID = drug.getMUID();
+			m_drugStockAddMsgHandler.setMedicalUnit(medicalUnitID);
 
 			//03. 关闭当前药品选择
 			cancelAction();

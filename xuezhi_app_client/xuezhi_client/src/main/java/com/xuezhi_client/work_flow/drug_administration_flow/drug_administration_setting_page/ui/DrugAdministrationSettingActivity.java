@@ -105,9 +105,9 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
 		{
 			if (isChecked)
-				m_drugReminderStateCB.setText("开启");
+				m_drugReminderStateCB.setText(getResources().getString(R.string.drug_administration_setting_alert_state_open_text));
 			else
-				m_drugReminderStateCB.setText("关闭");
+				m_drugReminderStateCB.setText(getResources().getString(R.string.drug_administration_setting_alert_state_close_text));
 
 			setDrugSettingReminderState(isChecked);
 		}

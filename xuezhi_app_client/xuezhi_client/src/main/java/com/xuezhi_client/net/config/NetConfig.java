@@ -44,6 +44,10 @@ public class NetConfig
 	public final static String S_NORMAL_ADD_MEDICAL_STOCK_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/addRemainMedicalPrompt/";
 	//删除药品（库存）
 	public final static String S_NORMAL_DEL_MEDICAL_STOCK_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/removeRemainMedicalPrompt/";
+	//添加药品剂量（库存）
+	public final static String S_NORMAL_ADD_MEDICAL_STOCK_DOSE_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/addMedicalDose/";
+	//设置药品剂量（库存）
+	public final static String S_NORMAL_SET_MEDICAL_STOCK_DOSE_ADDRESS = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/setMedicalDose/";
 
 
 	//用药记录

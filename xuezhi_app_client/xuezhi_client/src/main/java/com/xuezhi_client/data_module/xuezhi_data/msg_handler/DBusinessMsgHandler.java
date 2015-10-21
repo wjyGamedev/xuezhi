@@ -31,6 +31,8 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	private AnswerMedicalStockListHandler m_answerMedicalStockListHandler = new AnswerMedicalStockListHandler();
 	private AnswerAddMedicalStockHandler  m_answerAddMedicalStockHandler  = new AnswerAddMedicalStockHandler();
 	private AnswerDelMedicalStockHandler  m_answerDelMedicalStockHandler  = new AnswerDelMedicalStockHandler();
+	private AnswerAddMedicalStockDoseHandler  m_answerAddMedicalStockDoseHandler  = new AnswerAddMedicalStockDoseHandler();
+	private AnswerSetMedicalStockDoseHandler  m_answerSetMedicalStockDoseHandler  = new AnswerSetMedicalStockDoseHandler();
 
 
 	private AnswerMedicalHistoryListHandler m_answerMedicalHistoryListHandler = new AnswerMedicalHistoryListHandler();
@@ -191,6 +193,60 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	}
 
 	public void answerDelMedicalStockAction(AnswerDelMedicalStockEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	//添加药品库存剂量：库存ID uid dose
+	public void requestAddMedicalStockDoseAction(RequestAddMedicalStockDoseEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestAddMedicalStockDoseEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_ADD_MEDICAL_STOCK_DOSE_ADDRESS,
+																sendData,
+																m_answerAddMedicalStockDoseHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerAddMedicalStockDoseAction(AnswerAddMedicalStockDoseEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	//添加药品库存剂量：库存ID uid dose
+	public void requestSetMedicalStockDoseAction(RequestSetMedicalStockDoseEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestSetMedicalStockDoseEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_SET_MEDICAL_STOCK_DOSE_ADDRESS,
+																sendData,
+																m_answerSetMedicalStockDoseHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerSetMedicalStockDoseAction(AnswerSetMedicalStockDoseEvent event)
 	{
 		m_eventBus.post(event);
 		return;

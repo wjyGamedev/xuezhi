@@ -5,10 +5,10 @@ import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAddMedicalStockEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicalStockListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -48,33 +48,42 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		boolean              drugReminderState = activity.getDrugReminderStateCB().isChecked();
 		Calendar             m_addCalendar     = Calendar.getInstance();
 		Calendar             m_warningCalendar = Calendar.getInstance();
-		//		EnumConfig.MedicalUnit m_medicalUnit;
+		DMedical             m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
+
+		if (m_medical == null)
+		{
+			TipsDialog.GetInstance().setMsg("m_medicalUnit == null,drugID = " + drugID + "", m_context);
+			TipsDialog.GetInstance().show();
+			return;
+		}
+
+		int UnitID = m_medical.getMUID();
 
 		//数据验证
 		if (drugID == 0)
 		{
-			TipsDialog.GetInstance().setMsg("请选择药品", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_1_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (userID.isEmpty())
 		{
-			TipsDialog.GetInstance().setMsg("您还没有注册", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_2_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (drugStockNum == null)
 		{
-			TipsDialog.GetInstance().setMsg("请填写药品存量", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_3_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
 		if (drugAlertNum == null)
 		{
-			TipsDialog.GetInstance().setMsg("请填写药品警报存量", m_context);
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_4_text), m_context);
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -106,7 +115,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		requestAddMedicalStockAction.setMID(Integer.toString(drugID));
 		requestAddMedicalStockAction.setRemainNum(Double.valueOf(drugStockNum));
 		requestAddMedicalStockAction.setWaringNum(Double.valueOf(drugAlertNum));
-		requestAddMedicalStockAction.setUnitID(String.valueOf(EnumConfig.MedicalUnit.MILLIGRAM.getId()));
+		requestAddMedicalStockAction.setUnitID(String.valueOf(UnitID));
 		requestAddMedicalStockAction.setStatus(drugReminderState);
 		DBusinessMsgHandler.GetInstance().requestAddMedicalStockAction(requestAddMedicalStockAction);
 
@@ -116,13 +125,9 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 	//保存成功，获取药品库存列表
 	public void onEventMainThread(AnswerAddMedicalStockEvent event)
 	{
-		if (DAccount.GetInstance().isRegisterSuccess())
-		{
-			RequestMedicalStockListEvent event_new = new RequestMedicalStockListEvent();
-			event_new.setUID(DAccount.GetInstance().getId());
-			DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event_new);
-		}
-		return;
+		RequestMedicalStockListEvent event_new = new RequestMedicalStockListEvent();
+		event_new.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event_new);
 	}
 
 	//获取药品库存列表成功，关闭页面，弹出提示
@@ -132,12 +137,14 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		drugStockAddActivity.updateContent();
 
 		//提示保存成功
-		Toast.makeText(drugStockAddActivity,"保存成功",Toast.LENGTH_SHORT).show();
+		Toast.makeText(drugStockAddActivity, drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text), Toast.LENGTH_SHORT).show();
 
 		//关闭添加页面
 		drugStockAddActivity.finish();
 	}
 
+
+	//打开选择药品弹框
 	public void go2SelectDrugFragment()
 	{
 		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
@@ -158,6 +165,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
+
 	public void setMedicalID(int medicalID)
 	{
 		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
@@ -174,5 +182,22 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 
 		activity.setDrugID(medicalID);
 		//		m_dAppiontmentNursingFlow.setDepartmenetID(medicalID);
+	}
+
+
+	public void setMedicalUnit(int m_medicalUnitID)
+	{
+
+		if (m_medicalUnitID == 0)
+		{
+			return;
+		}
+
+		//设置单位文本
+		DMedicalUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalByID(m_medicalUnitID);
+		String       UnitName    = medicalUnit.getUnitName();
+		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
+		activity.getDrugAlertUnitTV().setText(UnitName);
+		activity.getDrugStockUnitTV().setText(UnitName);
 	}
 }
