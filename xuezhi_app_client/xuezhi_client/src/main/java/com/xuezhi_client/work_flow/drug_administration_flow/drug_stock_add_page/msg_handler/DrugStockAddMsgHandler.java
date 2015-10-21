@@ -194,7 +194,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		}
 
 		//设置单位文本
-		DMedicalUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalByID(m_medicalUnitID);
+		DMedicalUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
 		String       UnitName    = medicalUnit.getUnitName();
 		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
 		activity.getDrugAlertUnitTV().setText(UnitName);

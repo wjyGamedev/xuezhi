@@ -2,34 +2,46 @@
 <LinearLayout
 	android:id="@+id/select_medicine_remainder_time_ll"
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/white"
-	android:orientation="vertical"
-	xmlns:tools="http://schemas.android.com/tools">
+	android:orientation="vertical">
 
 	<LinearLayout
 		android:id="@+id/header_bg_ll"
 		android:layout_width="match_parent"
 		android:layout_height="93dp"
-		android:background="#70000000"
+		android:background="@color/mask"
 		android:clickable="true"
 		android:orientation="vertical"/>
 
 	<LinearLayout
+		android:id="@+id/tips_region_ll"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_gravity="center"
 		android:background="#ffffffff"
-		android:gravity="center_vertical"
-		android:orientation="horizontal"
-		android:padding="15dp"
-		android:id="@+id/tips_region_ll">
+		android:gravity="center"
+		android:orientation="vertical"
+		android:padding="15dp">
 
 		<TimePicker
+			android:id="@+id/timePicker"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/timePicker"
 			android:layout_gravity="center_horizontal"/>
+
+		<Button
+			android:layout_width="80dp"
+			android:layout_height="30dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="10dp"
+			android:background="@drawable/corners_bg"
+			android:gravity="center"
+			android:text="@string/confirm_btn_text"
+			android:textColor="@color/white"
+			android:textSize="20sp"/>
+
 	</LinearLayout>
 
 	<LinearLayout
@@ -42,12 +54,5 @@
 		android:orientation="vertical">
 
 	</LinearLayout>
-
-	<fragment
-		android:id="@+id/common_bottom_fragment"
-		android:name="com.module.widget.bottom.BottomCommon"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/include_bottom"/>
 
 </LinearLayout>
