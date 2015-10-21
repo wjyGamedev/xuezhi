@@ -34,6 +34,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 	private ClickChartDisplayBottomBtn          m_clickChartDisplayBottomBtn          = new ClickChartDisplayBottomBtn();
 	private ClickListDisplayBottomBtn           m_clickListDisplayBottomBtn           = new ClickListDisplayBottomBtn();
 	private PopDialog_ErrorTips                 m_popDialog_errorTips                 = new PopDialog_ErrorTips();
+	private chickBottomRadioGroup               m_chickBottomRadioGroupListener       = new chickBottomRadioGroup();
 
 	private int m_HistoryRegionFLHeight = 0;
 
@@ -85,6 +86,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 			return;
 		}
 	}
+
 	/**
 	 * inner func
 	 */
@@ -99,6 +101,8 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 
 		m_listRBtn.setText(R.string.assay_detection_history_info_list_display_btn_text);
 		m_listRBtn.setOnClickListener(m_clickListDisplayBottomBtn);
+
+		m_tabsRG.setOnCheckedChangeListener(m_chickBottomRadioGroupListener);
 
 		return;
 	}
@@ -127,6 +131,10 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 		{
 			m_assayDetectionHistoryInfoMsgHandler.go2ChartFragment();
 		}
+
+		//02. bottom rbtns
+		updateRBtns();
+
 	}
 
 	/**
@@ -150,5 +158,42 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 		TipsDialog.GetInstance().setMsg(error, this, m_popDialog_errorTips);
 		TipsDialog.GetInstance().show();
 		return;
+	}
+
+	private class chickBottomRadioGroup implements RadioGroup.OnCheckedChangeListener
+	{
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId)
+		{
+			updateRBtns();
+		}
+	}
+
+	private void updateRBtns()
+	{
+		int checkedId = m_tabsRG.getCheckedRadioButtonId();
+		if (checkedId == R.id.chart_rbtn)
+		{
+			checkChartRbtn();
+		}
+		else if (checkedId == R.id.list_rbtn)
+		{
+			checkListRbtn();
+		}
+		else
+		{
+			checkChartRbtn();
+		}
+	}
+	private void checkChartRbtn()
+	{
+		m_chartRBtn.setTextColor(getResources().getColor(R.color.white));
+		m_listRBtn.setTextColor(getResources().getColor(R.color.main_color));
+	}
+
+	private void checkListRbtn()
+	{
+		m_listRBtn.setTextColor(getResources().getColor(R.color.white));
+		m_chartRBtn.setTextColor(getResources().getColor(R.color.main_color));
 	}
 }
