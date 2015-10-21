@@ -22,10 +22,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
-import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -40,10 +40,10 @@ public class SelectMedicineTimeFragment extends Fragment
 {
 	//widget
 	@Bind (R.id.header_bg_ll) LinearLayout m_headerBGLL = null;
+	@Bind (R.id.func_region_ll) LinearLayout m_funcRegionLL = null;
 	@Bind (R.id.timePicker)   TimePicker   m_timePicker = null;
+	@Bind (R.id.confirm_btn)  Button       m_confirmBtn = null;
 	@Bind (R.id.bottom_bg_ll) LinearLayout m_bottomBGLL = null;
-
-	private   BottomCommon   m_bottomCommon   = null;
 
 	protected LayoutInflater m_layoutInflater = null;
 	protected View           m_view           = null;
@@ -52,6 +52,7 @@ public class SelectMedicineTimeFragment extends Fragment
 	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = null;
 	private HandleTimeChanged             m_handleTimeChanged             = new HandleTimeChanged();
 
+	//date
 	private Calendar m_calendar = null;
 
 	@Override
@@ -74,12 +75,25 @@ public class SelectMedicineTimeFragment extends Fragment
 		cancelAction();
 	}
 
+	@OnClick(R.id.confirm_btn)
+	public void clickConfirm()
+	{
+		m_medicineReminderAddMsgHandler.setRemainderTime(m_calendar);
+		cancelAction();
+	}
+
 	@OnClick (R.id.bottom_bg_ll)
 	public void clickBottomBGLL()
 	{
 		cancelAction();
 	}
 
+	//防止点击穿透
+	@OnClick(R.id.func_region_ll)
+	public void preventPenetration(View v)
+	{
+		return;
+	}
 	/**
 	 * override func
 	 */
@@ -90,22 +104,16 @@ public class SelectMedicineTimeFragment extends Fragment
 		@Override
 		public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
 		{
-			m_calendar = Calendar.getInstance();
 			m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 			m_calendar.set(Calendar.MINUTE, minute);
 		}
 	}
-
 
 	/**
 	 * inner func
 	 */
 	private void init()
 	{
-		m_bottomCommon = (BottomCommon)getActivity().getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
-		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_save_btn_text);
-//		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBtn);
-
 		//01. m_medicineReminderAddMsgHandler
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)getActivity();
 		if (activity == null)
@@ -123,16 +131,20 @@ public class SelectMedicineTimeFragment extends Fragment
 			return;
 		}
 
-		m_timePicker.setOnTimeChangedListener(m_handleTimeChanged);
+		m_calendar = Calendar.getInstance();
 
+		m_timePicker.setOnTimeChangedListener(m_handleTimeChanged);
+		m_timePicker.setIs24HourView(true);
+		m_timePicker.setCurrentHour(m_calendar.get(Calendar.HOUR_OF_DAY));
+		m_timePicker.setCurrentMinute(m_calendar.get(Calendar.MINUTE));
 
 		return;
 	}
 
 	private void cancelAction()
 	{
-		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-		Fragment fragment            = fragmentManager.findFragmentByTag(SelectMedicineTimeFragment.class.getName());
+		FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+		Fragment            fragment            = fragmentManager.findFragmentByTag(SelectMedicineTimeFragment.class.getName());
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.remove(fragment);
 		fragmentTransaction.commit();

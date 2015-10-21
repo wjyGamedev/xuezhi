@@ -22,11 +22,12 @@
 	<string name="medication_reminder_setting_alert_state_title_text">提醒状态：</string>
 	<string name="medication_reminder_alert_time_title_text">提醒时间：</string>
 	<string name="medication_reminder_click_select_hint_text">点击选择</string>
+	<string name="medication_reminder_click_input_hint_text">点击填写</string>
 	<string name="medication_reminder_setting_drug_name_title_text">药品名称：</string>
 	<string name="medication_reminder_setting_drug_dosage_title_text">药品剂量：</string>
 	<string name="medication_reminder_drug_times_title_text">药品次数：</string>
 	<string name="medication_reminder_note_title_text">注意事项：</string>
-
+	<string name="medication_reminder_note_default_text">默认事项</string>
 	<!-- medicine_reminder_add_page-->
 	<string name="medicine_reminder_add_content">添加用药提醒</string>
 	<string name="medicine_reminder_add_open_content">开启</string>
@@ -34,5 +35,9 @@
 
 	<string name="medicine_reminder_add_select_medicine_tips">请选择药品</string>
 	<string name="medicine_reminder_add_medicine_uint_default">用药单位</string>
+
+	<string name="medicine_reminder_add_error_input_reminder_time">请输入提醒时间。</string>
+	<string name="medicine_reminder_add_error_input_medicine_name_time">请输入药品名称。</string>
+	<string name="medicine_reminder_add_error_input_rose_time">请输入用药剂量。</string>
 
 </resources>
