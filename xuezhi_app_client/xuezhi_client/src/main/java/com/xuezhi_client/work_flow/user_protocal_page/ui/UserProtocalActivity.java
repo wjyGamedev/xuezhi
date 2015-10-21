@@ -42,10 +42,10 @@ public class UserProtocalActivity extends BaseActivity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.user_information_page_title_text);
 
-		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
+		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.go_back_home_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
 

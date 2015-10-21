@@ -41,7 +41,8 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
+				android:textSize="20sp"
+				android:id="@+id/medicine_name_tv"/>
 
 			<ImageView
 				android:layout_width="20dp"
@@ -87,13 +88,19 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
+				android:textSize="20sp"
+				android:id="@+id/rose_tv"
+				android:inputType="number|numberDecimal"/>
 
-			<ImageView
-				android:layout_width="20dp"
-				android:layout_height="20dp"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:background="@drawable/img_down"/>
+				android:layout_marginBottom="10dp"
+				android:layout_marginTop="10dp"
+				android:text="@string/medicine_reminder_add_medicine_uint_default"
+				android:textSize="20sp"
+				android:id="@+id/medicine_unit_tv"/>
 
 		</LinearLayout>
 
@@ -104,43 +111,6 @@
 			android:layout_marginLeft="15dp"
 			android:layout_marginRight="15dp">
 			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="10dp"
-				android:layout_marginTop="10dp"
-				android:text="@string/medication_reminder_drug_times_title_text"
-				android:textSize="20sp"/>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="10dp"
-				android:layout_marginLeft="30dp"
-				android:layout_marginRight="10dp"
-				android:layout_marginTop="10dp"
-				android:layout_weight="1"
-				android:gravity="right"
-				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
-
-			<ImageView
-				android:layout_width="20dp"
-				android:layout_height="20dp"
-				android:layout_gravity="center"
-				android:background="@drawable/img_down"/>
-
 		</LinearLayout>
 
 		<LinearLayout
@@ -179,13 +149,8 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
-
-			<ImageView
-				android:layout_width="20dp"
-				android:layout_height="20dp"
-				android:layout_gravity="center"
-				android:background="@drawable/img_down"/>
+				android:textSize="20sp"
+				android:id="@+id/precautions_tv"/>
 
 		</LinearLayout>
 

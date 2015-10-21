@@ -27,4 +27,12 @@
 	<string name="medication_reminder_drug_times_title_text">药品次数：</string>
 	<string name="medication_reminder_note_title_text">注意事项：</string>
 
+	<!-- medicine_reminder_add_page-->
+	<string name="medicine_reminder_add_content">添加用药提醒</string>
+	<string name="medicine_reminder_add_open_content">开启</string>
+	<string name="medicine_reminder_add_close_content">关闭</string>
+
+	<string name="medicine_reminder_add_select_medicine_tips">请选择药品</string>
+	<string name="medicine_reminder_add_medicine_uint_default">用药单位</string>
+
 </resources>

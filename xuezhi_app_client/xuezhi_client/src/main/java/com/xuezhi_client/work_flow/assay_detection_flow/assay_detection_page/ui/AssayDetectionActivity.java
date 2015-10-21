@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.module.data.DGlobal;
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
@@ -25,7 +25,7 @@ import butterknife.OnFocusChange;
 /**
  * Created by Administrator on 2015/9/22.
  */
-public class AssayDetectionActivity extends Activity
+public class AssayDetectionActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
@@ -239,13 +239,13 @@ public class AssayDetectionActivity extends Activity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.assay_detection_page_title_text);
 		m_headerCommon.getRightButton().setVisibility(View.VISIBLE);
 		m_headerCommon.getRightButton().setText(R.string.assay_detection_history_btn_text);
 		m_headerCommon.getRightButton().setOnClickListener(m_clickHistoryBtn);
 
-		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
+		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.assay_detection_save_content);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);

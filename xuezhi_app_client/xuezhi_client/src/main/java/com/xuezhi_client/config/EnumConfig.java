@@ -68,23 +68,23 @@ public class EnumConfig
 	public enum AssayDetectionType
 	{
 		//0:所有类型
-		LIPID_BIOCHEMICAL_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_biochemical_all), 0),
+//		LIPID_BIOCHEMICAL_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_biochemical_all), 0),
 
 		//血脂类型
-		LIPID_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_all), 1),
-		TG(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_tg), 2),
-		TCHO(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_tcho), 3),
-		LOLC(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_lolc), 4),
-		HDLC(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_hdlc), 5),
+		LIPID_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_all), 0),
+		TG(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_tg), 1),
+		TCHO(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_tcho), 2),
+		LOLC(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_lolc), 3),
+		HDLC(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.lipid_type_hdlc), 4),
 
 		//生化类型
-		BIOCHEMICAL_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_all), 6),
-		ATL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_atl), 7),
-		AST(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_ast), 8),
-		CK(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_ck), 9),
-		GLU(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_glu), 10),
-		HBA1C(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_hba1c), 11),
-		SCR(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_scr), 12);
+//		BIOCHEMICAL_ALL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_all), 6),
+		ATL(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_atl), 5),
+		AST(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_ast), 6),
+		CK(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_ck), 7),
+		GLU(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_glu), 8),
+		HBA1C(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_hba1c), 9),
+		SCR(DGlobal.GetInstance().getAppContext().getResources().getString(R.string.biochemical_type_scr), 10);
 
 		private String m_name = null;
 		private int    m_id   = 1;
@@ -115,38 +115,32 @@ public class EnumConfig
 		{
 			switch (id)
 			{
-			//01. 血脂生化
 			case 0:
-				return LIPID_BIOCHEMICAL_ALL;
-			//生化
-			case 1:
 				return LIPID_ALL;
-			case 2:
+			case 1:
 				return TG;
-			case 3:
+			case 2:
 				return TCHO;
-			case 4:
+			case 3:
 				return LOLC;
-			case 5:
+			case 4:
 				return HDLC;
 			//血脂
-			case 6:
-				return BIOCHEMICAL_ALL;
-			case 7:
+			case 5:
 				return ATL;
-			case 8:
+			case 6:
 				return AST;
-			case 9:
+			case 7:
 				return CK;
-			case 10:
+			case 8:
 				return GLU;
-			case 11:
+			case 9:
 				return HBA1C;
-			case 12:
+			case 10:
 				return SCR;
 
 			default:
-				return LIPID_BIOCHEMICAL_ALL;
+				return LIPID_ALL;
 			}
 		}
 	}

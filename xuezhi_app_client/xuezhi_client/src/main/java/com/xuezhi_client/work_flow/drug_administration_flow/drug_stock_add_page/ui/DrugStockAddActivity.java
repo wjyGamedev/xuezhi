@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
@@ -27,7 +27,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2015/9/30.
  */
-public class DrugStockAddActivity extends Activity
+public class DrugStockAddActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
@@ -69,10 +69,10 @@ public class DrugStockAddActivity extends Activity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.drug_stock_add_page_title_text);
 
-		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
+		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_stock_add_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBottomBtn);

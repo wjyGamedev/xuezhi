@@ -1,9 +1,9 @@
 package com.xuezhi_client.work_flow.calendar_flow.medication_details_page.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.calendar_flow.medication_details_page.msg_handler.MedicationDetailsMsgHandler;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/22.
  */
-public class MedicationDetailsActivity extends Activity
+public class MedicationDetailsActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
@@ -39,10 +39,10 @@ public class MedicationDetailsActivity extends Activity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.medication_details_page_title_text);
 
-		m_bottomCommon = (BottomCommon)getFragmentManager().findFragmentById(R.id.common_bottom_fragment);
+		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_details_bottom_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);

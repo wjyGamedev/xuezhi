@@ -56,6 +56,26 @@
 			android:label="AssayDetectionHistoryInfoActivity">
 		</activity>
 
+		<!-- 04. 药品提醒流程-->
+		<!-- 药品提醒页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_page.ui.MedicationReminderActivity"
+			android:screenOrientation="portrait"
+			android:label="MedicationReminderActivity">
+		</activity>
+		<!-- 药品提醒设置页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_setting_page.ui.MedicationReminderSettingActivity"
+			android:screenOrientation="portrait"
+			android:label="MedicationReminderSettingActivity">
+		</activity>
+		<!-- 药品提醒添加页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity"
+			android:screenOrientation="portrait"
+			android:label="MedicineReminderAddActivity">
+		</activity>
+
 		<!-- 05.药品管理流程-->
 		<!-- 药品管理页面-->
 		<activity

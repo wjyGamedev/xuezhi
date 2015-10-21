@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		if (m_headerCommon.getBackIBtn() == null)
 		{
 			TipsDialog.GetInstance().setMsg("m_headerCommon.getBackIBtn() == null", this);

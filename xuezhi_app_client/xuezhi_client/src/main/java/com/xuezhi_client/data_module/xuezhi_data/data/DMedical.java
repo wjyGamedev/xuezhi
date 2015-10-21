@@ -25,11 +25,14 @@ public class DMedical
 	private int    m_ID   = DataConfig.DEFAULT_VALUE;
 	private String m_name = null;
 	private int m_MUID = DataConfig.DEFAULT_VALUE;//药品单位ID
+	private String m_precautions = null;
+
 	public boolean serialization(JSONObject response) throws JSONException
 	{
 		m_ID = response.getInt(MedicalListConfig.MID);
 		m_name = response.getString(MedicalListConfig.NAME);
 		m_MUID = response.getInt(MedicalListConfig.UNIT);
+//		m_precautions = response.getInt(MedicalListConfig.PRECAUTIONS);
 		return true;
 	}
 
@@ -46,5 +49,10 @@ public class DMedical
 	public int getMUID()
 	{
 		return m_MUID;
+	}
+
+	public String getPrecautions()
+	{
+		return m_precautions;
 	}
 }

@@ -181,7 +181,7 @@ public class SingleChartFragment extends Fragment
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
-		m_seekBarY.setProgress(100);
+//		m_seekBarY.setProgress(100);
 		m_seekBarY.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
 		m_lineChart.setOnChartValueSelectedListener(m_handleOnChartValueSelected);
@@ -239,8 +239,10 @@ public class SingleChartFragment extends Fragment
 		leftAxis.removeAllLimitLines();
 		leftAxis.addLimitLine(ll1);
 		leftAxis.addLimitLine(ll2);
-		leftAxis.setAxisMaxValue((float)AssayDetectionConfig.getMaxValue(m_assayDetectionType));
-		leftAxis.setAxisMinValue((float)AssayDetectionConfig.getMinValue(m_assayDetectionType));
+		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
+		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
+		leftAxis.setAxisMaxValue(maxValue);
+		leftAxis.setAxisMinValue(minValue);
 		leftAxis.setStartAtZero(false);
 		leftAxis.enableGridDashedLine(10f, 10f, 0f);
 		leftAxis.setInverted(false);
@@ -317,30 +319,6 @@ public class SingleChartFragment extends Fragment
 		}
 	}
 
-	private String getYName()
-	{
-		if (m_assayDetectionType == null)
-			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
-
-		switch (m_assayDetectionType)
-		{
-		case TG:
-		case TCHO:
-		case LOLC:
-		case HDLC:
-		case ATL:
-		case AST:
-		case CK:
-		case GLU:
-		case HBA1C:
-		case SCR:
-			return m_assayDetectionType.getName();
-		default:
-			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
-		}
-
-	}
-
 	private void setData(int count)
 	{
 		if (count > m_assayDetectionArrayList.size())
@@ -378,8 +356,6 @@ public class SingleChartFragment extends Fragment
 
 		// create a data object with the datasets
 		LineData data = new LineData(xVals, set1);
-
-		// set data
 		m_lineChart.setData(data);
 
 		//02. label tip

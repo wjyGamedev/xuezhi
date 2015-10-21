@@ -105,7 +105,7 @@ public class RegisterActivity extends BaseActivity
 
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.rf_title);
 
 		m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);

@@ -13,11 +13,11 @@ public class MedicationReminderSettingMsgHandler extends BaseUIMsgHandler
 		super(activity);
 	}
 
-	public void saveMedicationReminderInfo()
+	public void requestSettingMedicalPromptAction()
 	{
-
 		return;
 	}
+
 	public void addMedication()
 	{
 

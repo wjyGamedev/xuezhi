@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:background="@color/main_bg_color"
@@ -9,101 +10,33 @@
 		android:id="@+id/common_header_fragment"
 		android:name="com.module.widget.header.HeaderCommon"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:layout="@layout/include_header"/>
 
-	<ScrollView
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1">
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:orientation="vertical">
 
-		<LinearLayout
+		<ListView
+			android:id="@+id/medication_reminder_display_lv"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:background="#ffffffff"
+			android:choiceMode="singleChoice"
+			android:divider="@color/divider_color"
+			android:dividerHeight="0.100000024dp"
+			android:listSelector="@drawable/bg_btn_translucent"
+			android:scrollbars="none"/>
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
-				android:background="@color/white">
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_weight="1">
-
-					<include layout="@layout/item_medication_reminder"/>
-
-				</LinearLayout>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="30dp"
-					android:layout_gravity="center"
-					android:layout_marginRight="5dp"
-					android:background="@drawable/img_right"/>
-
-			</LinearLayout>
-
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
-				android:background="@color/white">
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_weight="1">
-
-					<include layout="@layout/item_medication_reminder"/>
-
-				</LinearLayout>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="30dp"
-					android:layout_gravity="center"
-					android:layout_marginRight="5dp"
-					android:background="@drawable/img_right"/>
-
-			</LinearLayout>
-
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
-				android:background="@color/white">
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_weight="1">
-
-					<include layout="@layout/item_medication_reminder"/>
-
-				</LinearLayout>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="30dp"
-					android:layout_gravity="center"
-					android:layout_marginRight="5dp"
-					android:background="@drawable/img_right"/>
-
-			</LinearLayout>
-
-
-		</LinearLayout>
-
-	</ScrollView>
+	</LinearLayout>
 
 	<fragment
 		android:id="@+id/common_bottom_fragment"
 		android:name="com.module.widget.bottom.BottomCommon"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:layout="@layout/include_bottom"/>
 
 </LinearLayout>

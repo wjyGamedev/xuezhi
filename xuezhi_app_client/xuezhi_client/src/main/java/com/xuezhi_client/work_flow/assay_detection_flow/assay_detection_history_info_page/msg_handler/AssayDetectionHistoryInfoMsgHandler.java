@@ -37,21 +37,21 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 
-		ADHChartFragment adhChartFragment = new ADHChartFragment();
-		adhChartFragment.setHeight(activity.getHistoryRegionFLHeight());
-
+		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(ADHChartFragment.class.getName());
+		ADHChartFragment adhChartFragment = null;
+		if (fragment != null)
+		{
+			adhChartFragment = (ADHChartFragment)fragment;
+		}
+		if (adhChartFragment == null)
+		{
+			adhChartFragment = new ADHChartFragment();
+			adhChartFragment.setHeight(activity.getHistoryRegionFLHeight());
+		}
 		//TODO:这里不能把ADHChartFragment挂接在R.id.history_region_fl子节点下，不然会显示不出来。
 		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-//		transaction.replace(R.id.history_region_fl, adhChartFragment);
-		transaction.replace(android.R.id.content, adhChartFragment);
-		transaction.commit();
-
-		//		activity.startActivity(new Intent(activity, ADHChartFragment.class));
-//		if (activity.getSupportFragmentManager().findFragmentById(android.R.id.content) == null) {
-//			activity.getSupportFragmentManager().beginTransaction()
-//									   .add(android.R.id.content,
-//											new ADHChartFragment()).commit();
-//		}
+		transaction.replace(android.R.id.content, adhChartFragment, ADHChartFragment.class.getName());
+		transaction.commitAllowingStateLoss();
 		return;
 	}
 

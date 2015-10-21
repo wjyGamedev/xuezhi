@@ -12,7 +12,7 @@
  * 2015/7/15		WangJY		1.0.0		create
  */
 
-package com.module.widget.fragmenttabhostex;
+package com.module.widget.fragment.fragmenttabhostex;
 
 import android.content.Context;
 import android.support.v4.app.FragmentTabHost;

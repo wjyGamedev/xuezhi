@@ -73,11 +73,11 @@
 
 				</ListView>
 
-				<include layout="@layout/item_medication_details"/>
+				<include layout="@layout/item_medicine_reminder"/>
 
-				<include layout="@layout/item_medication_details"/>
+				<include layout="@layout/item_medicine_reminder"/>
 
-				<include layout="@layout/item_medication_details"/>
+				<include layout="@layout/item_medicine_reminder"/>
 
 			</LinearLayout>
 

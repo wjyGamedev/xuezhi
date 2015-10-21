@@ -4,7 +4,7 @@
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:orientation="vertical"
-			  tools:context="com.taixinkanghu.app.ui.activity.SelectCity">
+			  >
 
 	<LinearLayout
 		android:id="@+id/header_bg_ll"
@@ -13,6 +13,7 @@
 		android:background="#70000000"
 		android:clickable="true"
 		android:orientation="vertical"/>
+
 
 	<LinearLayout
 		android:layout_width="match_parent"

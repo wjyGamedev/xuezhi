@@ -23,7 +23,7 @@ public class AssayDetectionConfig
 	public final static String ASSAY_DETECTION_TYPE        = "assay_detection_type";
 	public final static int    CHART_X_AXIS_DEFAULT_LENGTH = 5;
 	public final static String    CHART_X_AXIS_DEFAULT_NAME = "DataSet";
-
+	public final static int CHART_PAGE_NUM           = 9;
 
 	//default
 	public final static double    CHART_MIN_DEFAULT = 0;

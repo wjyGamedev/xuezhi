@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  xmlns:tools="http://schemas.android.com/tools"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-			  android:background="@color/main_bg_color"
-			  android:orientation="vertical">
+<FrameLayout
+	android:id="@+id/medicine_reminder_add_page"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/main_bg_color"
+	>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/main_bg_color"
+		android:orientation="vertical">
 
 	<fragment
 		android:id="@+id/common_header_fragment"
@@ -16,6 +23,7 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_weight="1"
 		android:orientation="vertical">
 
 		<LinearLayout
@@ -44,14 +52,16 @@
 					android:text="@string/medication_reminder_alert_state_title_text"
 					android:textSize="20sp"/>
 
-				<Button
+				<CheckBox
+					android:id="@+id/reminder_state_cb"
+					style="@style/drug_stock_add_radio_button_style"
 					android:layout_width="80dp"
-					android:layout_height="25dp"
-					android:layout_marginBottom="5dp"
-					android:layout_marginTop="5dp"
-					android:background="@drawable/corners_bg"
-					android:text="@string/medication_reminder_setting_open_btn_text"
+					android:layout_height="30dp"
 					android:layout_gravity="center"
+					android:background="@drawable/bg_radio_button_drug_stock_add"
+					android:checked="true"
+					android:gravity="center"
+					android:text="开启"
 					android:textColor="@color/white"
 					android:textSize="20sp"/>
 
@@ -88,6 +98,7 @@
 					android:textSize="20sp"/>
 
 				<TextView
+					android:id="@+id/reminder_time_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center"
@@ -126,4 +137,5 @@
 		android:layout_height="wrap_content"
 		tools:layout="@layout/include_bottom"/>
 
-</LinearLayout>
+	</LinearLayout>
+</FrameLayout>

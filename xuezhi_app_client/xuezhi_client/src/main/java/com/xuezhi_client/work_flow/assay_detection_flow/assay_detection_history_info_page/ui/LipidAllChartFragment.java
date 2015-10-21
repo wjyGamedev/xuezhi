@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -47,24 +48,26 @@ import java.util.Calendar;
 public class LipidAllChartFragment extends Fragment
 {
 	//widget
-	private LineChart m_lineChart = null;
-	private SeekBar   m_seekBarX  = null;
-	private SeekBar   m_seekBarY  = null;
-	private TextView  m_xTV       = null;
-	private TextView  m_yTV       = null;
+	private LineChart    m_lineChart = null;
+	private SeekBar      m_seekBarX  = null;
+	private SeekBar      m_seekBarY  = null;
+	private TextView     m_xTV       = null;
+	private TextView     m_yTV       = null;
+	private LinearLayout m_xAxisLL   = null;
+	private LinearLayout m_yAxisLL   = null;
 
 	private View m_view = null;
 
 	//logical
 	private int[] m_colors = new int[]{ColorTemplate.VORDIPLOM_COLORS[0], ColorTemplate.VORDIPLOM_COLORS[1], ColorTemplate
-			.VORDIPLOM_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[3]};
+			.VORDIPLOM_COLORS[2], ColorTemplate.VORDIPLOM_COLORS[3]};
 
 
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = null;
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
 	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
-	private SimpleDateFormat m_allSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
+	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 	ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
 
@@ -83,6 +86,9 @@ public class LipidAllChartFragment extends Fragment
 		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
 		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
 		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
+		m_xAxisLL = (LinearLayout)m_view.findViewById(R.id.x_axis_region_ll);
+		m_yAxisLL = (LinearLayout)m_view.findViewById(R.id.y_axis_region_ll);
+		m_yAxisLL.setVisibility(View.GONE);
 
 		AssayDetectionHistoryInfoActivity assayDetectionHistoryInfoActivity = (AssayDetectionHistoryInfoActivity)getActivity();
 		if (assayDetectionHistoryInfoActivity == null)
@@ -113,12 +119,7 @@ public class LipidAllChartFragment extends Fragment
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 		{
-			m_xTV.setText("" + (m_seekBarX.getProgress() + 1));
-			m_yTV.setText("" + (m_seekBarY.getProgress()));
-
 			setData(m_seekBarX.getProgress());
-
-			// redraw
 			m_lineChart.invalidate();
 		}
 
@@ -161,11 +162,7 @@ public class LipidAllChartFragment extends Fragment
 		{
 			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
-		int xMax = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
-		if (xMax < m_assayDetectionArrayList.size())
-		{
-			xMax = m_assayDetectionArrayList.size();
-		}
+		int xMax = m_assayDetectionArrayList.size();
 		m_seekBarX.setProgress(xSize);
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
@@ -178,6 +175,8 @@ public class LipidAllChartFragment extends Fragment
 
 		// no description text
 		m_lineChart.setDescription("");
+		String nullTips = getActivity().getString(R.string.assay_detection_history_info_list_display_null_content);
+		m_lineChart.setNoDataTextDescription(nullTips);
 
 		// enable value highlighting
 		m_lineChart.setHighlightEnabled(true);
@@ -198,8 +197,6 @@ public class LipidAllChartFragment extends Fragment
 		// create a custom MarkerView (extend MarkerView) and specify the layout
 		// to use for it
 		ChartMarkerView mv = new ChartMarkerView(getActivity(), R.layout.item_tips_view_linechart);
-
-		// set the marker to the chart
 		m_lineChart.setMarkerView(mv);
 
 		// enable/disable highlight indicators (the lines that indicate the
@@ -243,21 +240,35 @@ public class LipidAllChartFragment extends Fragment
 		return;
 	}
 
-	private String getYName(int type)
+	private String getLineName(int index)
 	{
-		EnumConfig.AssayDetectionType assayDetectionType = EnumConfig.AssayDetectionType.valueOf(type);
+		//01. 通过index，来获取类型。这里是血脂all，所以index：0->1（TG:id）
+		EnumConfig.AssayDetectionType assayDetectionType = getAssayDetectionTypeByIndex(index);
 
-		switch (assayDetectionType)
+		//02.
+		String yName = AssayDetectionConfig.getName(assayDetectionType);
+		String yUnit = AssayDetectionConfig.getUnit(assayDetectionType);
+		String unitTips = getActivity().getString(R.string.assay_detection_history_unit_tips);
+		yName = yName + "("+unitTips+yUnit+")";
+
+		return yName;
+	}
+
+	private EnumConfig.AssayDetectionType getAssayDetectionTypeByIndex(int index)
+	{
+		switch (index)
 		{
-		case TG:
-		case TCHO:
-		case LOLC:
-		case HDLC:
-			return assayDetectionType.getName();
+		case 0:
+			return EnumConfig.AssayDetectionType.TG;
+		case 1:
+			return EnumConfig.AssayDetectionType.TCHO;
+		case 2:
+			return EnumConfig.AssayDetectionType.LOLC;
+		case 3:
+			return EnumConfig.AssayDetectionType.HDLC;
 		default:
-			return AssayDetectionConfig.CHART_X_AXIS_DEFAULT_NAME;
+			return EnumConfig.AssayDetectionType.TG;
 		}
-
 	}
 
 	private double getYValue(DAssayDetection assayDetection, int type)
@@ -265,7 +276,7 @@ public class LipidAllChartFragment extends Fragment
 		if (assayDetection == null)
 			return 0f;
 
-		EnumConfig.AssayDetectionType assayDetectionType = EnumConfig.AssayDetectionType.valueOf(type);
+		EnumConfig.AssayDetectionType assayDetectionType = getAssayDetectionTypeByIndex(type);
 
 		switch (assayDetectionType)
 		{
@@ -288,18 +299,13 @@ public class LipidAllChartFragment extends Fragment
 		if (count > m_assayDetectionArrayList.size())
 			return;
 
-		if (count < AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
-		{
-			count = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
-		}
-
 		//02. x轴
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int indexX = 0; indexX < count; indexX++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
-			String displayDate = m_allSDF.format(recordCalendar.getTime());
+			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 			xVals.add(displayDate);
 		}
 
@@ -313,10 +319,14 @@ public class LipidAllChartFragment extends Fragment
 			{
 				DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexEle);
 				double tgValue = getYValue(assayDetection, indexType);
-				values.add(new Entry((float)tgValue, indexEle));
+
+				Calendar recordCalendar = assayDetection.getRecordCalendar();
+				String displayDate = m_ymdSDF.format(recordCalendar.getTime());
+
+				values.add(new Entry((float)tgValue, indexEle, displayDate));
 			}
 
-			String dateSetName = getYName(indexType);
+			String dateSetName = getLineName(indexType);
 			LineDataSet lineDataSet  = new LineDataSet(values, dateSetName);
 			lineDataSet.setLineWidth(1.5f);
 			lineDataSet.setCircleSize(4f);
@@ -332,16 +342,12 @@ public class LipidAllChartFragment extends Fragment
 	}
 
 	/**
-	 * date:get
-	 */
-
-	/**
 	 * logical func
 	 */
 	public static Fragment newInstance()
 	{
-		SingleChartFragment singleChartFragment = new SingleChartFragment();
-		return singleChartFragment;
+		LipidAllChartFragment lipidAllChartFragment = new LipidAllChartFragment();
+		return lipidAllChartFragment;
 	}
 
 }

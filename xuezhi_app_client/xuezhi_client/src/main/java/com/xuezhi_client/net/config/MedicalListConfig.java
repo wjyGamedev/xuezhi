@@ -30,6 +30,8 @@ public class MedicalListConfig
 	public final static String UNIT   = "unit";
 	public final static String DATE   = "date";
 
+	public final static String PRECAUTIONS   = "precautions";
+
 
 
 

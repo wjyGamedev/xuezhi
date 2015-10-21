@@ -87,7 +87,7 @@ public class DMedicalUnitList
 		return m_medicalUnits;
 	}
 
-	public synchronized DMedicalUnit getMedicalByID(int id)
+	public synchronized DMedicalUnit getMedicalUnitByID(int id)
 	{
 		for (DMedicalUnit medicalUnit : m_medicalUnits)
 		{

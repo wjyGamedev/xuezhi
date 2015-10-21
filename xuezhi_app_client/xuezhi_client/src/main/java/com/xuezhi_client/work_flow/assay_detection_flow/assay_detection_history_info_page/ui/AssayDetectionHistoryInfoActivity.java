@@ -90,7 +90,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 	 */
 	private void init()
 	{
-		m_headerCommon = (HeaderCommon)getFragmentManager().findFragmentById(R.id.common_header_fragment);
+		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
 		m_headerCommon.setTitle(R.string.assay_detection_history_info_page_title_text);
 
 		m_chartRBtn.setText(R.string.assay_detection_history_info_chart_display_btn_text);
