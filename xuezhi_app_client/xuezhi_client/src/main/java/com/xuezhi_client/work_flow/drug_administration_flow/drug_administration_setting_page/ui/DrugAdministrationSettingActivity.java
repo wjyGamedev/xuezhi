@@ -13,7 +13,7 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler
 		.DrugAdministrationSettingMsgHandler;
@@ -76,7 +76,7 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	{
 		m_selectMedicalStockID = getIntent().getStringExtra(DrugAdministrationConfig.SELECT_MEDICAL_STOCK_ID);
 		int selectMedicalStockID = Integer.valueOf(m_selectMedicalStockID);
-		DMedicalStock selectMedicalStock = DBusinessData.GetInstance().getMedicalStockList().getMedicalByID(selectMedicalStockID);
+		DMedicineBox selectMedicalStock = DBusinessData.GetInstance().getMedicineBoxList().getMedicalByID(selectMedicalStockID);
 		if (selectMedicalStock == null)
 		{
 			TipsDialog.GetInstance().setMsg("selectMedicalStock == null!selectMedicalStock is null![m_selectMedicalStockID:=" + m_selectMedicalStockID + "]", this);
