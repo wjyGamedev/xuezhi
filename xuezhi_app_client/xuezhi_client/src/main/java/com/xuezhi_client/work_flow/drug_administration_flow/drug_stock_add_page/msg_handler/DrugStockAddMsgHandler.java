@@ -7,13 +7,13 @@ import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalUnit;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAddMedicalStockEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicalStockListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAddMedicalStockEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicalStockListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxAddEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.SelectDrugFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -48,7 +48,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		boolean              drugReminderState = activity.getDrugReminderStateCB().isChecked();
 		Calendar             m_addCalendar     = Calendar.getInstance();
 		Calendar             m_warningCalendar = Calendar.getInstance();
-		DMedical             m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
+		DMedicine m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
 
 		//数据验证
 		if (drugID == -1)
@@ -109,29 +109,28 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		//			return;
 		//		}
 
-		RequestAddMedicalStockEvent requestAddMedicalStockAction = new RequestAddMedicalStockEvent();
+		RequestMedicineBoxAddEvent requestAddMedicalStockAction = new RequestMedicineBoxAddEvent();
 
 		requestAddMedicalStockAction.setUID(userID);
 		requestAddMedicalStockAction.setMID(Integer.toString(drugID));
 		requestAddMedicalStockAction.setRemainNum(Double.valueOf(drugStockNum));
 		requestAddMedicalStockAction.setWaringNum(Double.valueOf(drugAlertNum));
-		requestAddMedicalStockAction.setUnitID(String.valueOf(UnitID));
-		requestAddMedicalStockAction.setStatus(drugReminderState);
-		DBusinessMsgHandler.GetInstance().requestAddMedicalStockAction(requestAddMedicalStockAction);
+		requestAddMedicalStockAction.setValid(drugReminderState);
+		DBusinessMsgHandler.GetInstance().requestMedicineBoxAddAction(requestAddMedicalStockAction);
 
 		return;
 	}
 
 	//保存成功，获取药品库存列表
-	public void onEventMainThread(AnswerAddMedicalStockEvent event)
+	public void onEventMainThread(AnswerMedicineBoxAddEvent event)
 	{
-		RequestMedicalStockListEvent event_new = new RequestMedicalStockListEvent();
+		RequestMedicineBoxGetListEvent event_new = new RequestMedicineBoxGetListEvent();
 		event_new.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event_new);
+		DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event_new);
 	}
 
 	//获取药品库存列表成功，关闭页面，弹出提示
-	public void onEventMainThread(AnswerMedicalStockListEvent event)
+	public void onEventMainThread(AnswerMedicineBoxGetListEvent event)
 	{
 		DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
 		drugStockAddActivity.updateContent();
@@ -164,7 +163,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 	//请求发送科室列表
 	public void requestDrugListAction()
 	{
-		DBusinessMsgHandler.GetInstance().requestMedicalListAction();
+		DBusinessMsgHandler.GetInstance().requestMedicineGetListAction();
 		return;
 	}
 
@@ -174,8 +173,8 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
 
 		//01. set department ui
-		ArrayList<DMedical> medicalList = DBusinessData.GetInstance().getMedicalList().getMedicals();
-		for (DMedical medical : medicalList)
+		ArrayList<DMedicine> medicalList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		for (DMedicine medical : medicalList)
 		{
 			if (medical.getID() == medicalID)
 			{
@@ -197,7 +196,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		}
 
 		//设置单位文本
-		DMedicalUnit         medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
+		DMedicineUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
 		String               UnitName    = medicalUnit.getUnitName();
 		DrugStockAddActivity activity    = (DrugStockAddActivity)m_context;
 		activity.getDrugAlertUnitTV().setText(UnitName);

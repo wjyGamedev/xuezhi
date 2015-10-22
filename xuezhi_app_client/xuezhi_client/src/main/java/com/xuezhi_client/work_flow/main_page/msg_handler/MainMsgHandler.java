@@ -23,7 +23,7 @@ import com.module.storage.StorageWrapper;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicalStockListEvent;import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionListEvent;import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
@@ -76,54 +76,21 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	public void initAction()
 	{
 		//01. 药品单位
-		DBusinessMsgHandler.GetInstance().requestMedicalUnitListAction();
+		DBusinessMsgHandler.GetInstance().requestMedicineUnitGetListAction();
 
 		//02. 发送药品列表
-		DBusinessMsgHandler.GetInstance().requestMedicalListAction();
+		DBusinessMsgHandler.GetInstance().requestMedicineGetListAction();
 
 		//03. 请求检查
 		requestAssayDetectionListAction();
 
-//		//03.
+		//03.
 		if (DAccount.GetInstance().isRegisterSuccess())
 		{
-			RequestMedicalStockListEvent event = new RequestMedicalStockListEvent();
+			RequestMedicineBoxGetListEvent event = new RequestMedicineBoxGetListEvent();
 			event.setUID(DAccount.GetInstance().getId());
-			DBusinessMsgHandler.GetInstance().requestMedicalStockListAction(event);
+			DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event);
 		}
-//
-//		//03.
-//		RequestAddMedicalStockEvent requestAddMedicalStockAction = new RequestAddMedicalStockEvent();
-//
-//		requestAddMedicalStockAction.setUID(DAccount.GetInstance().getId());
-//		requestAddMedicalStockAction.setMID(String.valueOf(2));
-//		requestAddMedicalStockAction.setRemainNum(2000);
-//		requestAddMedicalStockAction.setUnitID(String.valueOf(1));
-//		requestAddMedicalStockAction.setRemainNum(100);
-//		requestAddMedicalStockAction.setStatus(true);
-//		DBusinessMsgHandler.GetInstance().requestAddMedicalStockAction(requestAddMedicalStockAction);
-//
-//		RequestAddMedicalPromptEvent requestAddMedicalPromptEvent = new RequestAddMedicalPromptEvent();
-//		requestAddMedicalPromptEvent.setUID(DAccount.GetInstance().getId());
-//		requestAddMedicalPromptEvent.setRPID(String.valueOf(1));
-//		Calendar today = Calendar.getInstance();
-//		requestAddMedicalPromptEvent.setTime(today);
-//		requestAddMedicalPromptEvent.setDose(10);
-//		DBusinessMsgHandler.GetInstance().requestAddMedicalPromptAction(requestAddMedicalPromptEvent);
-//
-//
-//		RequestTakeMedicalEvent requestTakeMedicalEvent = new RequestTakeMedicalEvent();
-//		requestTakeMedicalEvent.setUID(DAccount.GetInstance().getId());
-//		requestTakeMedicalEvent.setRPID(String.valueOf(1));
-//		requestTakeMedicalEvent.setDose(10);
-//		requestTakeMedicalEvent.setUnitID(String.valueOf(1));
-//		DBusinessMsgHandler.GetInstance().requestTakeMedicalAction(requestTakeMedicalEvent);
-//
-//
-//		RequestMedicalHistoryListEvent requestMedicalHistoryListEvent = new RequestMedicalHistoryListEvent();
-//		requestMedicalHistoryListEvent.setUID(DAccount.GetInstance().getId());
-//		requestMedicalHistoryListEvent.setCurrMonth(today);
-//		DBusinessMsgHandler.GetInstance().requestMedicalHistoryListAction(requestMedicalHistoryListEvent);
 
 		return;
 	}
@@ -131,9 +98,9 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	//化验检查列表
 	private void requestAssayDetectionListAction()
 	{
-		RequestAssayDetectionListEvent event = new RequestAssayDetectionListEvent();
+		RequestAssayDetectionGetListEvent event = new RequestAssayDetectionGetListEvent();
 		event.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestAssayDetectionListAction(event);
+		DBusinessMsgHandler.GetInstance().requestAssayDetectionGetListAction(event);
 		return;
 	}
 

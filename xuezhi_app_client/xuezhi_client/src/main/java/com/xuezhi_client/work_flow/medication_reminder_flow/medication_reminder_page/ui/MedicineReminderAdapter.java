@@ -25,8 +25,8 @@ import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalPrompt;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalPromptList;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePromptList;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.ArrayList;
@@ -36,9 +36,9 @@ import butterknife.ButterKnife;
 
 public class MedicineReminderAdapter extends IBaseAdapter
 {
-	private DMedicalPromptList m_medicalPromptList = null;
-	private ArrayList<DMedicalPrompt> m_medicalPromptArrayList = null;
-	private LayoutInflater     m_layoutInflater    = null;
+	private DMedicinePromptList        m_medicalPromptList      = null;
+	private ArrayList<DMedicinePrompt> m_medicalPromptArrayList = null;
+	private LayoutInflater             m_layoutInflater         = null;
 
 	public MedicineReminderAdapter(Context context)
 	{
@@ -78,14 +78,15 @@ public class MedicineReminderAdapter extends IBaseAdapter
 
 		if (position >= m_medicalPromptArrayList.size())
 		{
-			TipsDialog.GetInstance().setMsg("position >= m_medicalPromptArrayList.size()[position:=" + position + "][m_medicalPromptArrayList.size():=" +
+			TipsDialog.GetInstance().setMsg("position >= m_medicalPromptArrayList.size()[position:=" + position +
+													"][m_medicalPromptArrayList.size():=" +
 													m_medicalPromptArrayList.size() + "]"
 										   );
 			TipsDialog.GetInstance().show();
 			return 0;
 		}
 
-		DMedicalPrompt medicalPrompt = m_medicalPromptArrayList.get(position);
+		DMedicinePrompt medicalPrompt = m_medicalPromptArrayList.get(position);
 		return medicalPrompt.getID();
 	}
 
@@ -106,7 +107,7 @@ public class MedicineReminderAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
-		DMedicalPrompt medicalPrompt = m_medicalPromptList.getMedicalPromptByID(medicalID);
+		DMedicinePrompt medicalPrompt = m_medicalPromptList.getMedicalPromptByID(medicalID);
 		viewHolder.initContent(medicalPrompt);
 		return convertView;
 	}
@@ -134,7 +135,7 @@ final class ViewHolder
 		ButterKnife.bind(this, m_view);
 	}
 
-	public void initContent(DMedicalPrompt medicalPrompt)
+	public void initContent(DMedicinePrompt medicalPrompt)
 	{
 		if (medicalPrompt == null)
 		{

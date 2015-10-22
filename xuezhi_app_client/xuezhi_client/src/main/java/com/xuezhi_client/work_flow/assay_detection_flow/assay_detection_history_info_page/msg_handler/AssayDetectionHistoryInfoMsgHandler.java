@@ -8,10 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import com.module.frame.BaseUIMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetectionList;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionGetListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHListFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui.AssayDetectionHistoryItemInfoActivity;
+import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -104,7 +106,7 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	}
 
 	//03. 化验列表的返回
-	public void onEventMainThread(AnswerAssayDetectionListEvent event)
+	public void onEventMainThread(AnswerAssayDetectionGetListEvent event)
 	{
 		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
 		FragmentManager fgManager           = activity.getSupportFragmentManager();
@@ -138,5 +140,16 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 	public DAssayDetectionList getAssayDetectionList()
 	{
 		return DBusinessData.GetInstance().getAssayDetectionList();
+	}
+
+	public void go2AssayDetectionItemInfoPage(int id)
+	{
+		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
+
+		Intent intent = new Intent(activity, AssayDetectionHistoryItemInfoActivity.class);
+		intent.putExtra(AssayDetectionConfig.SELECTED_ITEM_ID, id);
+		activity.startActivity(intent);
+
+		return;
 	}
 }

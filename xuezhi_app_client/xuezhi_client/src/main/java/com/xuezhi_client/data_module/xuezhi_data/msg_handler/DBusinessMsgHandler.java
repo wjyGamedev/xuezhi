@@ -26,23 +26,31 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 {
 	private static DBusinessMsgHandler s_DBusinessMsgHandler = new DBusinessMsgHandler();
 
-	private AnswerMedicalUnitListHandler  m_answerMedicalUnitListHandler  = new AnswerMedicalUnitListHandler();
-	private AnswerMedicalListHandler      m_answerMedicalListHandler      = new AnswerMedicalListHandler();
-	private AnswerMedicalStockListHandler m_answerMedicalStockListHandler = new AnswerMedicalStockListHandler();
-	private AnswerAddMedicalStockHandler  m_answerAddMedicalStockHandler  = new AnswerAddMedicalStockHandler();
-	private AnswerDelMedicalStockHandler  m_answerDelMedicalStockHandler  = new AnswerDelMedicalStockHandler();
-	private AnswerAddMedicalStockDoseHandler  m_answerAddMedicalStockDoseHandler  = new AnswerAddMedicalStockDoseHandler();
-	private AnswerSetMedicalStockDoseHandler  m_answerSetMedicalStockDoseHandler  = new AnswerSetMedicalStockDoseHandler();
+	private AnswerMedicineListHandler        m_answerMedicineListHandler        = new AnswerMedicineListHandler();
+	private AnswerMedicineUnitGetListHandler m_answerMedicineUnitGetListHandler = new AnswerMedicineUnitGetListHandler();
 
+	//我的药箱相关
+	private AnswerMedicineBoxGetListHandler m_answerMedicineBoxGetListHandler = new AnswerMedicineBoxGetListHandler();
+	private AnswerMedicineBoxAddHandler     m_answerMedicineBoxAddHandler     = new AnswerMedicineBoxAddHandler();
+	private AnswerMedicineBoxDeleteHandler  m_answerMedicineBoxDeleteHandler  = new AnswerMedicineBoxDeleteHandler();
+	private AnswerMedicineBoxSetHandler     m_answerMedicineBoxSetHandler     = new AnswerMedicineBoxSetHandler();
 
-	private AnswerMedicalHistoryListHandler m_answerMedicalHistoryListHandler = new AnswerMedicalHistoryListHandler();
-	private AnswerMedicalPromptListHandler  m_answerMedicalPromptListHandler  = new AnswerMedicalPromptListHandler();
-	private AnswerAddMedicalPromptHandler   m_answerAddMedicalPromptHandler   = new AnswerAddMedicalPromptHandler();
+	//用药提醒相关
+	private AnswerMedicinePromptGetListHandler m_answerMedicinePromptGetListHandler = new AnswerMedicinePromptGetListHandler();
+	private AnswerMedicinePromptAddHandler     m_answerMedicinePromptAddHandler     = new AnswerMedicinePromptAddHandler();
+	private AnswerMedicinePromptDeleteHandler  m_answerMedicinePromptDeleteHandler  = new AnswerMedicinePromptDeleteHandler();
+	private AnswerMedicinePromptSetHandler     m_answerMedicinePromptSetHandler     = new AnswerMedicinePromptSetHandler();
 
-	private AnswerAddAssayDetectionInfoHandler m_answerAddAssayDetectionInfoHandler = new AnswerAddAssayDetectionInfoHandler();
-	private AnswerAssayDetectionListHandler    m_answerAssayDetectionListHandler    = new AnswerAssayDetectionListHandler();
+	//化验检查相关
+	private AnswerAssayDetectionGetListHandler m_answerAssayDetectionGetListHandler = new AnswerAssayDetectionGetListHandler();
+	private AnswerAssayDetectionAddHandler     m_answerAssayDetectionAddHandler     = new AnswerAssayDetectionAddHandler();
+	private AnswerAssayDetectionSetHandler     m_answerAssayDetectionSetHandler     = new AnswerAssayDetectionSetHandler();
 
-	private AnswerTakeMedicalHandler m_answerTakeMedicalHandler = new AnswerTakeMedicalHandler();
+	//用药相关
+	private AnswerTakeMedicineGetHistoryListHandler m_answerTakeMedicineGetHistoryListHandler = new
+			AnswerTakeMedicineGetHistoryListHandler();
+
+	private AnswerTakeMedicineAddHandler m_answerTakeMedicineAddHandler = new AnswerTakeMedicineAddHandler();
 
 	@Override
 	protected void init()
@@ -61,357 +69,404 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 		return s_DBusinessMsgHandler;
 	}
 
-	//01. 药品单位
-	public void requestMedicalUnitListAction()
+	//01. 不需要用户ID和密码
+	//0101. 获取支持药品的下拉列表
+	public void requestMedicineGetListAction()
 	{
-		RequestMedicalUnitListEvent event = new RequestMedicalUnitListEvent();
-		m_eventBus.post(event);
+		RequestMedicineGetListEvent requestMedicineGetListEvent = new RequestMedicineGetListEvent();
+		m_eventBus.post(requestMedicineGetListEvent);
 		return;
 	}
 
-	public void onEventAsync(RequestMedicalUnitListEvent event)
+	public void onEventAsync(RequestMedicineGetListEvent event)
 	{
 		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
-														NetConfig.S_NORMAL_MEDICAL_UNIT_LIST_ADDRESS,
+														NetConfig.S_NORMAL_MEDICINE_GET_LIST,
 														null,
-														m_answerMedicalUnitListHandler,
+														m_answerMedicineListHandler,
 														m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerMedicalUnitListAction()
+	public void answerMedicineGetListAction()
 	{
-		AnswerMedicalUnitListHandler answerMedicalListEvent = new AnswerMedicalUnitListHandler();
-		m_eventBus.post(answerMedicalListEvent);
+		AnswerMedicineGetListEvent answerMedicineGetListEvent = new AnswerMedicineGetListEvent();
+		m_eventBus.post(answerMedicineGetListEvent);
 		return;
 	}
 
-	//01. 药品列表
-	public void requestMedicalListAction()
+	//0102. 药品单位列表
+	public void requestMedicineUnitGetListAction()
 	{
-		RequestMedicalListEvent requestMedicalListEvent = new RequestMedicalListEvent();
-		m_eventBus.post(requestMedicalListEvent);
+		RequestMedicineUnitGetListEvent event = new RequestMedicineUnitGetListEvent();
+		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestMedicalListEvent event)
+	public void onEventAsync(RequestMedicineUnitGetListEvent event)
 	{
 		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
-														NetConfig.S_NORMAL_MEDICAL_LIST_ADDRESS,
-														null,
-														m_answerMedicalListHandler,
+														NetConfig.S_NORMAL_MEDICAL_UNIT_GET_LIST,
+														null, m_answerMedicineUnitGetListHandler,
 														m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerMedicalListAction()
+	public void answerMedicineUnitGetListAction()
 	{
-		AnswerMedicalListEvent answerMedicalListEvent = new AnswerMedicalListEvent();
+		AnswerMedicineUnitGetListHandler answerMedicalListEvent = new AnswerMedicineUnitGetListHandler();
 		m_eventBus.post(answerMedicalListEvent);
 		return;
 	}
 
-	//02. 用药库存
-	//用户库存列表
-	public void requestMedicalStockListAction(RequestMedicalStockListEvent event)
+	//02. 需要用户名和密码的
+	//0201. 我的药箱相关
+	//020101.获取我的药箱列表
+	public void requestMedicineBoxGetListAction(RequestMedicineBoxGetListEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestMedicalStockListEvent event)
+	public void onEventAsync(RequestMedicineBoxGetListEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_MEDICAL_REMAIN_ADDRESS,
-																sendData,
-																m_answerMedicalStockListHandler,
+																NetConfig.S_NORMAL_MEDICINE_BOX_GET_LIST,
+																sendData, m_answerMedicineBoxGetListHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerMedicalStockListAction()
+	public void answerMedicineBoxGetListAction()
 	{
-		AnswerMedicalStockListEvent event = new AnswerMedicalStockListEvent();
+		AnswerMedicineBoxGetListEvent event = new AnswerMedicineBoxGetListEvent();
 		m_eventBus.post(event);
 		return;
 	}
 
-	//添加药品库存
-	public void requestAddMedicalStockAction(RequestAddMedicalStockEvent event)
+	//020102.添加药品到药箱中，如果添加ID相同，就累加remain的数量
+	public void requestMedicineBoxAddAction(RequestMedicineBoxAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestAddMedicalStockEvent event)
+	public void onEventAsync(RequestMedicineBoxAddEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_ADD_MEDICAL_STOCK_ADDRESS,
-																sendData,
-																m_answerAddMedicalStockHandler,
+																NetConfig.S_NORMAL_MEDICINE_BOX_ADD,
+																sendData, m_answerMedicineBoxAddHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerAddMedicalStockAction(AnswerAddMedicalStockEvent event)
+	public void answerMedicineBoxAddAction(AnswerMedicineBoxAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//删除库存：uid，库存ID
-	public void requestDelMedicalStockAction(RequestDelMedicalStockEvent event)
+	//020103.从药箱中删除药品
+	public void requestMedicineBoxDeleteAction(RequestMedicineBoxDeleteEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestDelMedicalStockEvent event)
+	public void onEventAsync(RequestMedicineBoxDeleteEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_DEL_MEDICAL_STOCK_ADDRESS,
-																sendData,
-																m_answerDelMedicalStockHandler,
+																NetConfig.S_NORMAL_MEDICINE_BOX_DELETE,
+																sendData, m_answerMedicineBoxDeleteHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerDelMedicalStockAction(AnswerDelMedicalStockEvent event)
+	public void answerMedicineBoxDeleteAction(AnswerMedicineBoxDeleteEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//添加药品库存剂量：库存ID uid dose
-	public void requestAddMedicalStockDoseAction(RequestAddMedicalStockDoseEvent event)
+	//020104.设置药箱中的药品
+	public void requestMedicineBoxSetAction(RequestMedicineBoxSetEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestAddMedicalStockDoseEvent event)
+	public void onEventAsync(RequestMedicineBoxSetEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_ADD_MEDICAL_STOCK_DOSE_ADDRESS,
-																sendData,
-																m_answerAddMedicalStockDoseHandler,
+																NetConfig.S_NORMAL_MEDICINE_BOX_SET,
+																sendData, m_answerMedicineBoxSetHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerAddMedicalStockDoseAction(AnswerAddMedicalStockDoseEvent event)
+	public void answerMedicineBoxSetAction(AnswerMedicineBoxSetEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//添加药品库存剂量：库存ID uid dose
-	public void requestSetMedicalStockDoseAction(RequestSetMedicalStockDoseEvent event)
+
+
+	//0202. 用药提醒相关
+	//020201.获取用药提醒列表
+	public void requestMedicinePromptGetListAction()
 	{
+		RequestMedicinePromptGetListEvent event = new RequestMedicinePromptGetListEvent();
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestSetMedicalStockDoseEvent event)
+	public void onEventAsync(RequestMedicinePromptGetListEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_SET_MEDICAL_STOCK_DOSE_ADDRESS,
-																sendData,
-																m_answerSetMedicalStockDoseHandler,
+																NetConfig.S_NORMAL_MEDICINE_PROMPT_GET_LIST,
+																sendData, m_answerMedicinePromptGetListHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerSetMedicalStockDoseAction(AnswerSetMedicalStockDoseEvent event)
+	public void answerMedicinePromptGetListAction()
+	{
+		AnswerMedicinePromptGetListEvent event = new AnswerMedicinePromptGetListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	//020202.添加用药提醒
+	public void requestMedicinePromptAddAction(RequestMedicinePromptAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//03. 用药记录
-	public void requestMedicalHistoryListAction(RequestMedicalHistoryListEvent event)
-	{
-		m_eventBus.post(event);
-		return;
-	}
-
-	public void onEventAsync(RequestMedicalHistoryListEvent event)
+	public void onEventAsync(RequestMedicinePromptAddEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_MEDICAL_HISTORY_ADDRESS,
-																sendData,
-																m_answerMedicalHistoryListHandler,
+																NetConfig.S_NORMAL_MEDICINE_PROMPT_ADD,
+																sendData, m_answerMedicinePromptAddHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerMedicalHistoryListAction()
-	{
-		AnswerMedicalHistoryListEvent event = new AnswerMedicalHistoryListEvent();
-		m_eventBus.post(event);
-		return;
-	}
-
-	//04. 用药提醒
-	//用药提醒
-	public void requestMedicalPromptListAction()
-	{
-		RequestMedicalPromptListEvent event = new RequestMedicalPromptListEvent();
-		m_eventBus.post(event);
-		return;
-	}
-
-	public void onEventAsync(RequestMedicalPromptListEvent event)
-	{
-		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_MEDICAL_PROMPT_LIST_ADDRESS,
-																null,
-																m_answerMedicalPromptListHandler,
-																m_baseErrorListener
-		);
-
-		m_requestQueue.add(myReq);
-	}
-
-	public void answerMedicalPromptListAction()
-	{
-		AnswerMedicalPromptListEvent event = new AnswerMedicalPromptListEvent();
-		m_eventBus.post(event);
-		return;
-	}
-
-	//添加用药提醒
-	public void requestAddMedicalPromptAction(RequestAddMedicalPromptEvent event)
+	public void answerMedicinePromptAddAction(AnswerMedicinePromptAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestAddMedicalPromptEvent event)
+	//020203.删除用药提醒
+	public void requestMedicinePromptDeleteAction(RequestMedicinePromptDeleteEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestMedicinePromptDeleteEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_MEDICAL_ADD_PROMPT_ADDRESS,
-																sendData,
-																m_answerAddMedicalPromptHandler,
+																NetConfig.S_NORMAL_MEDICINE_PROMPT_DELETE,
+																sendData, m_answerMedicinePromptDeleteHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerAddMedicalPromptAction(AnswerAddMedicalPromptEvent event)
+	public void answerMedicinePromptDeleteAction(AnswerMedicinePromptDeleteEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//05. 添加化验检查信息
-	public void requestAddAssayDetectionInfoAction(RequestAddAssayDetectionInfoEvent event)
+	//020204.设置用药提醒
+	public void requestMedicinePromptSetAction(RequestMedicinePromptSetEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestAddAssayDetectionInfoEvent event)
+	public void onEventAsync(RequestMedicinePromptSetEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_ADD_ASSAY_DETECTION_INFO_ADDRESS,
-																sendData,
-																m_answerAddAssayDetectionInfoHandler,
+																NetConfig.S_NORMAL_MEDICINE_PROMPT_SET,
+																sendData, m_answerMedicinePromptSetHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerAddAssayDetectionInfoAction(AnswerAddAssayDetectionInfoEvent event)
+	public void answerMedicinePromptSetAction(AnswerMedicinePromptSetEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	//06. 化验检查信息列表
-	public void requestAssayDetectionListAction(RequestAssayDetectionListEvent event)
+	//0203. 化验检查相关(血脂/生化)
+	//020301. 化验检查信息列表
+	public void requestAssayDetectionGetListAction(RequestAssayDetectionGetListEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestAssayDetectionListEvent event)
+	public void onEventAsync(RequestAssayDetectionGetListEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_ASSAY_DETECTION_LIST_ADDRESS,
-																sendData,
-																m_answerAssayDetectionListHandler,
+																NetConfig.S_NORMAL_ASSAY_DETECTION_GET_LIST,
+																sendData, m_answerAssayDetectionGetListHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerAssayDetectionListAction(AnswerAssayDetectionListEvent event)
+	public void answerAssayDetectionGetListAction(AnswerAssayDetectionGetListEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-
-	//吃药
-	public void requestTakeMedicalAction(RequestTakeMedicalEvent event)
+	//020302. 添加用药检查列表
+	public void requestAssayDetectionAddAction(RequestAssayDetectionAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;
 	}
 
-	public void onEventAsync(RequestTakeMedicalEvent event)
+	public void onEventAsync(RequestAssayDetectionAddEvent event)
 	{
 		HashMap<String, String> sendData = event.getHashMap();
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.S_NORMAL_TAKE_MEDICAL_ADDRESS,
-																sendData,
-																m_answerTakeMedicalHandler,
+																NetConfig.S_NORMAL_ASSAY_DETECTION_ADD,
+																sendData, m_answerAssayDetectionAddHandler,
 																m_baseErrorListener
 		);
 
 		m_requestQueue.add(myReq);
 	}
 
-	public void answerTakeMedicalAction(AnswerTakeMedicalEvent event)
+	public void answerAssayDetectionAddAction(AnswerAssayDetectionAddEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	//020303. 设置用药检查列表
+	public void requestAssayDetectionSetAction(RequestAssayDetectionSetEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestAssayDetectionSetEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_ASSAY_DETECTION_SET,
+																sendData, m_answerAssayDetectionSetHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerAssayDetectionSetAction(AnswerAssayDetectionSetEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	//0204. 用药相关
+	//020401. 用药记录列表
+	public void requestTakeMedicineGetHistoryListAction(RequestTakeMedicineGetHistoryListEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestTakeMedicineGetHistoryListEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_TAKE_MEDICINE_GET_HISTORY_LIST,
+																sendData, m_answerTakeMedicineGetHistoryListHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerTakeMedicineGetHistoryListAction()
+	{
+		AnswerTakeMedicineGetHistoryListEvent event = new AnswerTakeMedicineGetHistoryListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	//020402.吃药
+	public void requestTakeMedicineAddAction(RequestTakeMedicineAddEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestTakeMedicineAddEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_TAKE_MEDICINE_ADD,
+																sendData, m_answerTakeMedicineAddHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerTakeMedicineAddAction(AnswerTakeMedicineAddEvent event)
 	{
 		m_eventBus.post(event);
 		return;

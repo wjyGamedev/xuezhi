@@ -22,11 +22,11 @@ import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalUnit;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicalListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAddMedicalPromptEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptAddEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineFragment;
@@ -80,21 +80,21 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 
 	public void requestAddMedicalPromptAction()
 	{
-		RequestAddMedicalPromptEvent event = new RequestAddMedicalPromptEvent();
+		RequestMedicinePromptAddEvent event = new RequestMedicinePromptAddEvent();
 		event.setUID(DAccount.GetInstance().getId());
 
-		DBusinessMsgHandler.GetInstance().requestAddMedicalPromptAction(event);
+		DBusinessMsgHandler.GetInstance().requestMedicinePromptAddAction(event);
 		return;
 	}
 
 	//发送药品列表
 	public void requestMedicalListAction()
 	{
-		DBusinessMsgHandler.GetInstance().requestMedicalListAction();
+		DBusinessMsgHandler.GetInstance().requestMedicineGetListAction();
 		return;
 	}
 
-	public void onEventMainThread(AnswerMedicalListEvent event)
+	public void onEventMainThread(AnswerMedicineGetListEvent event)
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 
@@ -126,7 +126,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 
-		DMedical medical = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
+		DMedicine medical = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
 		if (medical == null)
 		{
 			TipsDialog.GetInstance().setMsg("Input medicalID is invalid![medicalID:=" + medicalID + "]", activity);
@@ -140,7 +140,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 
 		//02. 用药单位
 		int unitID = medical.getMUID();
-		DMedicalUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(unitID);
+		DMedicineUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(unitID);
 		if (medicalUnit == null)
 		{
 			TipsDialog.GetInstance().setMsg("medicalUnit == null!unitID is invalid![unitID:="+unitID+"]", activity);

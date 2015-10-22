@@ -11,9 +11,9 @@ import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStockList;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBoxList;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
@@ -29,16 +29,16 @@ import butterknife.OnClick;
  */
 public class DrugAdministrationAdapter extends IBaseAdapter
 {
-	private DMedicalStockList          m_medicalStockList = null;
+	private DMedicineBoxList           m_medicalStockList = null;
 	private LayoutInflater             m_layoutInflater   = null;
-	private ArrayList<DMedicalStock>   m_medicalStock     = new ArrayList<DMedicalStock>();
+	private ArrayList<DMedicineBox>    m_medicalStock     = new ArrayList<DMedicineBox>();
 	private DrugAdministrationActivity m_activity         = null;
 
 	@Override
 	public int getCount()
 	{
-		m_medicalStockList = DBusinessData.GetInstance().getMedicalStockList();
-		ArrayList<DMedicalStock> medicalStocks = m_medicalStockList.getMedicalStocks();
+		m_medicalStockList = DBusinessData.GetInstance().getMedicineBoxList();
+		ArrayList<DMedicineBox> medicalStocks = m_medicalStockList.getMedicalStocks();
 		if (medicalStocks == null || medicalStocks.isEmpty())
 			return 0;
 
@@ -53,7 +53,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 
 	private void init()
 	{
-		m_medicalStockList = DBusinessData.GetInstance().getMedicalStockList();
+		m_medicalStockList = DBusinessData.GetInstance().getMedicineBoxList();
 		m_layoutInflater = LayoutInflater.from(m_context);
 	}
 
@@ -76,7 +76,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 			return 0;
 		}
 
-		DMedicalStock tmpMedicalStock = m_medicalStock.get(position);
+		DMedicineBox tmpMedicalStock = m_medicalStock.get(position);
 		return tmpMedicalStock.getID();
 	}
 
@@ -171,7 +171,7 @@ final class ViewHolder
 		}
 	}
 
-	public void initContent(ArrayList<DMedicalStock> m_medicalStock, int position)
+	public void initContent(ArrayList<DMedicineBox> m_medicalStock, int position)
 	{
 		if (m_medicalStock == null || m_medicalStock.isEmpty())
 		{
@@ -189,9 +189,9 @@ final class ViewHolder
 			return;
 		}
 
-		DMedicalStock tmpMedicalStock = m_medicalStock.get(position);
+		DMedicineBox tmpMedicalStock = m_medicalStock.get(position);
 		int           medicalID       = tmpMedicalStock.getMID();
-		DMedical      tmpmedical      = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
+		DMedicine tmpmedical      = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
 
 		m_medicalStockID =tmpMedicalStock.getID();
 

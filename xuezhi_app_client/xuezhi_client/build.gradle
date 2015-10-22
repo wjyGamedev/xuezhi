@@ -30,4 +30,5 @@ dependencies {
 	compile project(':volley')
 	compile 'com.android.support:appcompat-v7:22.2.0'
 	compile files('libs/mpandroidchartlibrary-2-1-4.jar')
+	compile 'com.umeng.analytics:analytics:latest.integration'
 }

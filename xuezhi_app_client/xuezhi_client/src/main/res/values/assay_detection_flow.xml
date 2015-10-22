@@ -55,5 +55,7 @@
 
 	<string name="assay_detection_status_normal">正常</string>
 
+	<string name="assay_detection_history_item_title_text">化验检查记录页面</string>
+	<string name="assay_detection_history_confirm">确认</string>
 
 </resources>

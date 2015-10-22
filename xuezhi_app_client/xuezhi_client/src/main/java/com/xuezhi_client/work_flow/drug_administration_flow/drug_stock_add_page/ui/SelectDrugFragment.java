@@ -32,7 +32,7 @@ import android.widget.TextView;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler.DrugStockAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -143,7 +143,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 			}
 
 			//drugid
-			ArrayList<DMedical> drugList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+			ArrayList<DMedicine> drugList = DBusinessData.GetInstance().getMedicalList().getMedicals();
 			if (drugList == null)
 			{
 				TipsDialog.GetInstance().setMsg("drugList == null", getActivity());
@@ -159,7 +159,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 				return;
 			}
 
-			DMedical drug = drugList.get(indexDrug);
+			DMedicine drug = drugList.get(indexDrug);
 			int      id   = drug.getID();
 
 			m_drugStockAddMsgHandler.setMedicalID(id);
@@ -220,7 +220,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 
 	public void loadDrugList()
 	{
-		ArrayList<DMedical> drugs = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		ArrayList<DMedicine> drugs = DBusinessData.GetInstance().getMedicalList().getMedicals();
 
 		//01. 没有药品列表，则重新发送
 		if (drugs.isEmpty())
@@ -236,7 +236,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 		int      iMaxColumn    = SELECT_DRUG_FRAGMENT_MAX_COLUMN;
 		int      iMaxRow       = (size + iMaxColumn - 1) / iMaxColumn;
 		int      indexHospital = 0;
-		DMedical medical       = null;
+		DMedicine medical       = null;
 		String   tag           = null;
 		for (int indexRow = 0; indexRow < iMaxRow; ++indexRow)
 		{

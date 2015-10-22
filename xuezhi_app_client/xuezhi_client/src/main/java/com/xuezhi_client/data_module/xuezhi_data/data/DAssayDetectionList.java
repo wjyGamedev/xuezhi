@@ -17,7 +17,7 @@ package com.xuezhi_client.data_module.xuezhi_data.data;
 import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
-import com.xuezhi_client.net.config.AssayDetectionInfoConfig;
+import com.xuezhi_client.net.config.AssayDetectionConfig;
 import com.xuezhi_client.net.config.ProtocalConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -58,10 +58,10 @@ public class DAssayDetectionList
 		}
 
 		//03. 序列化json
-		JSONArray jsonArray = response.getJSONArray(AssayDetectionInfoConfig.LIST);
+		JSONArray jsonArray = response.getJSONArray(AssayDetectionConfig.LIST);
 		if (jsonArray == null)
 		{
-			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + AssayDetectionInfoConfig.LIST);
+			throw new JsonSerializationException(NET_ERROR_JSON_SERILIZATION + ":" + AssayDetectionConfig.LIST);
 		}
 
 		JSONObject jsonObject = null;
@@ -81,5 +81,15 @@ public class DAssayDetectionList
 	public ArrayList<DAssayDetection> getAssayDetections()
 	{
 		return m_assayDetections;
+	}
+
+	public DAssayDetection getAssayDetectionByID(int id)
+	{
+		for (DAssayDetection assayDetection : m_assayDetections)
+		{
+			if (assayDetection.getID() == id)
+				return assayDetection;
+		}
+		return null;
 	}
 }

@@ -18,6 +18,7 @@ import com.xuezhi_client.config.EnumConfig;
 
 public class AssayDetectionConfig
 {
+	public final static String SELECTED_ITEM_ID = "selected_item_id";
 	public final static double CHART_LINE_WIDTH            = 1.5F;
 	public final static double CHART_CIRCLE_SIZE           = 4.0F;
 	public final static String ASSAY_DETECTION_TYPE        = "assay_detection_type";

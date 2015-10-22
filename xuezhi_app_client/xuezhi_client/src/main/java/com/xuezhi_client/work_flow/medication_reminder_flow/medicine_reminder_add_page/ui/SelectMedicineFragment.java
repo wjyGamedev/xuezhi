@@ -27,7 +27,7 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.fragment.select_list_fragment.SelectListFragment;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedical;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -128,7 +128,7 @@ public class SelectMedicineFragment extends SelectListFragment
 				return;
 			}
 
-			ArrayList<DMedical> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+			ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
 			if (medicalArrayList == null)
 			{
 				TipsDialog.GetInstance().setMsg("medicalArrayList == null", getActivity());
@@ -142,7 +142,7 @@ public class SelectMedicineFragment extends SelectListFragment
 				return;
 			}
 
-			DMedical medical = medicalArrayList.get(indexMedical);
+			DMedicine medical = medicalArrayList.get(indexMedical);
 			int id = medical.getID();
 
 			m_medicineReminderAddMsgHandler.setMedicalID(id);
@@ -158,7 +158,7 @@ public class SelectMedicineFragment extends SelectListFragment
 	 */
 	private void initBtns()
 	{
-		ArrayList<DMedical> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
 
 		//01. 没有药品列表，则重新发送
 		if (medicalArrayList.isEmpty())
@@ -174,7 +174,7 @@ public class SelectMedicineFragment extends SelectListFragment
 		int      iMaxColumn    = getMaxColunms();
 		int      iMaxRow       = (size + iMaxColumn - 1) / iMaxColumn;
 		int      indexMedicine = 0;
-		DMedical medical       = null;
+		DMedicine medical       = null;
 		String   tag           = null;
 		for (int indexRow = 0; indexRow < iMaxRow; ++indexRow)
 		{

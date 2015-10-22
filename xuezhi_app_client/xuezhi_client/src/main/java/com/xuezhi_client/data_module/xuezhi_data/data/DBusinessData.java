@@ -23,24 +23,24 @@ public class DBusinessData
 {
 	private static DBusinessData s_dBusinessData = new DBusinessData();
 
-	private DMedicalUnitList m_medicalUnitList     = new DMedicalUnitList();
-	private Object           m_syncMedicalUnitList = new Object();
+	private DMedicineUnitList m_medicalUnitList     = new DMedicineUnitList();
+	private Object            m_syncMedicalUnitList = new Object();
 
 	//01. 药品列表
-	private DMedicalList m_medicalList     = new DMedicalList();
-	private Object       m_syncMedicalList = new Object();
+	private DMedicineList m_medicalList     = new DMedicineList();
+	private Object        m_syncMedicalList = new Object();
 
 	//02. 药品库存
-	private DMedicalStockList m_medicalStockList     = new DMedicalStockList();
-	private Object            m_syncMedicalStockList = new Object();
+	private DMedicineBoxList m_medicineBoxList     = new DMedicineBoxList();
+	private Object           m_syncMedicineBoxList = new Object();
 
-	//03. 用药记录
-	private DMedicalHistoryList m_medicalHistoryList     = new DMedicalHistoryList();
-	private Object              m_syncMedicalHistoryList = new Object();
+	//03. 用药提醒
+	private DMedicinePromptList m_medicalPromptList     = new DMedicinePromptList();
+	private Object              m_syncMedicalPromptList = new Object();
 
-	//04. 用药提醒
-	private DMedicalPromptList m_medicalPromptList     = new DMedicalPromptList();
-	private Object             m_syncMedicalPromptList = new Object();
+	//04. 用药记录
+	private DTakeMedicineList m_medicalHistoryList     = new DTakeMedicineList();
+	private Object            m_syncMedicalHistoryList = new Object();
 
 	//05. 化验检查列表
 	private DAssayDetectionList m_assayDetectionList     = new DAssayDetectionList();
@@ -57,7 +57,7 @@ public class DBusinessData
 	//01. 药品单位
 
 
-	public DMedicalUnitList getMedicalUnitList()
+	public DMedicineUnitList getMedicalUnitList()
 	{
 		synchronized (m_syncMedicalUnitList)
 		{
@@ -65,7 +65,7 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicalUnitList(DMedicalUnitList medicalUnitList)
+	public void setMedicalUnitList(DMedicineUnitList medicalUnitList)
 	{
 		synchronized (m_syncMedicalUnitList)
 		{
@@ -74,7 +74,7 @@ public class DBusinessData
 	}
 
 	//01. 药品列表
-	public DMedicalList getMedicalList()
+	public DMedicineList getMedicalList()
 	{
 		synchronized (m_syncMedicalList)
 		{
@@ -82,7 +82,7 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicalList(DMedicalList medicalList)
+	public void setMedicalList(DMedicineList medicalList)
 	{
 		synchronized (m_syncMedicalList)
 		{
@@ -99,32 +99,32 @@ public class DBusinessData
 	}
 
 	//02. 库存列表
-	public DMedicalStockList getMedicalStockList()
+	public DMedicineBoxList getMedicineBoxList()
 	{
-		synchronized (m_syncMedicalStockList)
+		synchronized (m_syncMedicineBoxList)
 		{
-			return m_medicalStockList;
+			return m_medicineBoxList;
 		}
 	}
 
-	public void setMedicalStockList(DMedicalStockList medicalStockList)
+	public void setMedicineBoxList(DMedicineBoxList medicineBoxList)
 	{
-		synchronized (m_syncMedicalStockList)
+		synchronized (m_syncMedicineBoxList)
 		{
-			m_medicalStockList = medicalStockList;
+			m_medicineBoxList = medicineBoxList;
 		}
 	}
 
 	public boolean serialMedicalStockList(JSONObject response) throws JSONException, ParseException
 	{
-		synchronized (m_syncMedicalStockList)
+		synchronized (m_syncMedicineBoxList)
 		{
-			return m_medicalStockList.serialization(response);
+			return m_medicineBoxList.serialization(response);
 		}
 	}
 
 	//03. 用药记录
-	public DMedicalHistoryList getMedicalHistoryList()
+	public DTakeMedicineList getMedicalHistoryList()
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
@@ -132,7 +132,7 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicalHistoryList(DMedicalHistoryList medicalHistoryList)
+	public void setMedicalHistoryList(DTakeMedicineList medicalHistoryList)
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
@@ -149,7 +149,7 @@ public class DBusinessData
 	}
 
 	//04. 用药提醒
-	public DMedicalPromptList getMedicalPromptList()
+	public DMedicinePromptList getMedicalPromptList()
 	{
 		synchronized (m_syncMedicalPromptList)
 		{
@@ -157,7 +157,7 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicalPromptList(DMedicalPromptList medicalPromptList)
+	public void setMedicalPromptList(DMedicinePromptList medicalPromptList)
 	{
 		synchronized (m_syncMedicalPromptList)
 		{

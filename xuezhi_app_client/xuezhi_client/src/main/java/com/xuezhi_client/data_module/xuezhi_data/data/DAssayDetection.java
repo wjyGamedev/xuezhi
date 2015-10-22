@@ -16,7 +16,7 @@ package com.xuezhi_client.data_module.xuezhi_data.data;
 
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.net.config.AssayDetectionInfoConfig;
+import com.xuezhi_client.net.config.AssayDetectionConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,9 +48,9 @@ public class DAssayDetection
 
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
-		m_ID = response.getInt(AssayDetectionInfoConfig.TG);
+		m_ID = response.getInt(AssayDetectionConfig.TG);
 
-		String tmpAddDate = response.getString(AssayDetectionInfoConfig.RECORD_DATE);
+		String tmpAddDate = response.getString(AssayDetectionConfig.RECORD_DATE);
 		Date   date       = m_allSDF.parse(tmpAddDate);
 		if (m_recordCalendar == null)
 		{
@@ -58,19 +58,17 @@ public class DAssayDetection
 		}
 		m_recordCalendar.setTime(date);
 
-		m_tgValue = response.getDouble(AssayDetectionInfoConfig.TG);
-		m_tchoValue = response.getDouble(AssayDetectionInfoConfig.TCHO);
-		m_lolcValue = response.getDouble(AssayDetectionInfoConfig.LOLC);
-		m_hdlcValue = response.getDouble(AssayDetectionInfoConfig.HDLC);
+		m_tgValue = response.getDouble(AssayDetectionConfig.TG);
+		m_tchoValue = response.getDouble(AssayDetectionConfig.TCHO);
+		m_lolcValue = response.getDouble(AssayDetectionConfig.LOLC);
+		m_hdlcValue = response.getDouble(AssayDetectionConfig.HDLC);
 
-		m_atlValue = response.getDouble(AssayDetectionInfoConfig.ALT);
-		m_astValue = response.getDouble(AssayDetectionInfoConfig.AST);
-		m_ckValue = response.getDouble(AssayDetectionInfoConfig.CK);
-		m_gluValue = response.getDouble(AssayDetectionInfoConfig.GLU);
-		m_hba1cValue = response.getDouble(AssayDetectionInfoConfig.HBA1C);
-		//TODO:等待服务器添加
-//		m_scrValue = response.getDouble(AssayDetectionInfoConfig.SCR);
-		m_scrValue = 10f;
+		m_atlValue = response.getDouble(AssayDetectionConfig.ALT);
+		m_astValue = response.getDouble(AssayDetectionConfig.AST);
+		m_ckValue = response.getDouble(AssayDetectionConfig.CK);
+		m_gluValue = response.getDouble(AssayDetectionConfig.GLU);
+		m_hba1cValue = response.getDouble(AssayDetectionConfig.HBA1C);
+		m_scrValue = response.getDouble(AssayDetectionConfig.SCR);
 		return true;
 	}
 

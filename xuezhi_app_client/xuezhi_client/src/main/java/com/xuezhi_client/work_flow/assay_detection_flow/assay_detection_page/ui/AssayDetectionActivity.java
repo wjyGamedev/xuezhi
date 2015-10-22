@@ -59,7 +59,8 @@ public class AssayDetectionActivity extends BaseActivity
 	private final String INFO_MAIN_PAGE    = DGlobal.GetInstance().getAppContext().getString(R.string.assay_detection_main_page_content);
 	private final String INFO_HISTORY_PAGE = DGlobal.GetInstance().getAppContext().getString(R.string.assay_detection_history_btn_text);
 
-	protected void onCreate(Bundle savedInstanceState)
+	@Override
+	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_assay_detection);

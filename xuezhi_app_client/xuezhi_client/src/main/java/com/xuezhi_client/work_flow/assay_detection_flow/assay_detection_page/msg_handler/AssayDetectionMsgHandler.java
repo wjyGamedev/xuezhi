@@ -4,11 +4,11 @@ import android.content.Intent;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAddAssayDetectionInfoEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionAddEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAddAssayDetectionInfoEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionAddEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
@@ -43,7 +43,7 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 	{
 		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
 
-		RequestAddAssayDetectionInfoEvent event = new RequestAddAssayDetectionInfoEvent();
+		RequestAssayDetectionAddEvent event = new RequestAssayDetectionAddEvent();
 		event.setUID(DAccount.GetInstance().getId());
 
 		String tmpTgValue   = activity.getTgET().getText().toString();
@@ -88,18 +88,18 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		DBusinessMsgHandler.GetInstance().requestAddAssayDetectionInfoAction(event);
+		DBusinessMsgHandler.GetInstance().requestAssayDetectionAddAction(event);
 
 		return;
 	}
 
 	//03. 对于添加化验检查消息成功的处理
-	public void onEventMainThread(AnswerAddAssayDetectionInfoEvent event)
+	public void onEventMainThread(AnswerAssayDetectionAddEvent event)
 	{
 		//01. 请求化验检查列表，来更新本地数据容器
-		RequestAssayDetectionListEvent requestAssayDetectionListEvent = new RequestAssayDetectionListEvent();
-		requestAssayDetectionListEvent.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestAssayDetectionListAction(requestAssayDetectionListEvent);
+		RequestAssayDetectionGetListEvent requestAssayDetectionGetListEvent = new RequestAssayDetectionGetListEvent();
+		requestAssayDetectionGetListEvent.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestAssayDetectionGetListAction(requestAssayDetectionGetListEvent);
 
 		//02. tips 成功
 		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
@@ -109,7 +109,7 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 	}
 
 	//04. 化验列表的返回
-	public void onEventMainThread(AnswerAssayDetectionListEvent event)
+	public void onEventMainThread(AnswerAssayDetectionGetListEvent event)
 	{
 		//关闭等待dialog
 		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;

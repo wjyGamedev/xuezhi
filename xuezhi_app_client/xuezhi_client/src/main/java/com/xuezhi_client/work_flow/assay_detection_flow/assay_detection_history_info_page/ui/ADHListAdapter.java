@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.module.data.DGlobal;
 import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetectionList;
@@ -35,6 +36,7 @@ import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ADHListAdapter extends IBaseAdapter
 {
@@ -81,10 +83,11 @@ public class ADHListAdapter extends IBaseAdapter
 	{
 		ViewHolder viewHolder = null;
 
+		m_assayDetections = m_assayDetectionList.getAssayDetections();
 		if (convertView == null)
 		{
 			convertView = m_layoutInflater.inflate(R.layout.item_assay_detection_history_list, null);
-			viewHolder = new ViewHolder(convertView);
+			viewHolder = new ViewHolder(convertView, (int)getItemId(position));
 			convertView.setTag(viewHolder);
 		}
 		else
@@ -92,8 +95,17 @@ public class ADHListAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
-		m_assayDetections = m_assayDetectionList.getAssayDetections();
-		viewHolder.initContent(m_assayDetections, position);
+		//01. position invalid
+		if (position >= m_assayDetections.size())
+		{
+			TipsDialog.GetInstance().setMsg("position >= m_assayDetections.size()[position:=" + position + "][m_assayDetections.size():=" +
+													m_assayDetections.size() + "]"
+										   );
+			TipsDialog.GetInstance().show();
+			return convertView;
+		}
+
+		viewHolder.initContent(m_assayDetections.get(position));
 		return convertView;
 	}
 
@@ -114,7 +126,7 @@ public class ADHListAdapter extends IBaseAdapter
 final class ViewHolder
 {
 	//widget
-	@Bind (R.id.assay_detection_record_date_tv) TextView m_recoreDate = null;            //记录时间
+	@Bind (R.id.assay_detection_record_date_tv) TextView m_recordDate = null;            //记录时间
 	@Bind (R.id.status_tv)                      TextView m_status     = null;            //状态
 
 	//logical
@@ -124,36 +136,36 @@ final class ViewHolder
 	private final String INFO_ASSAY_DETECTION_STATUS_NORMAL = DGlobal.GetInstance().getAppContext().getString(R.string
 																													  .assay_detection_status_normal);
 
-	public ViewHolder(View view)
+	private int m_ID = DataConfig.DEFAULT_VALUE;
+
+	@OnClick(R.id.click_region_ll)
+	public void clickRegionLL(View v)
+	{
+		AssayDetectionHistoryInfoActivity acitvity = (AssayDetectionHistoryInfoActivity)m_view.getContext();
+		acitvity.getAssayDetectionHistoryInfoMsgHandler().go2AssayDetectionItemInfoPage(m_ID);
+	}
+
+
+	public ViewHolder(View view, int id)
 	{
 		m_view = view;
+		m_ID = id;
 		ButterKnife.bind(this, m_view);
 	}
 
 
-	public void initContent(ArrayList<DAssayDetection> assayDetections, int position)
+	public void initContent(DAssayDetection assayDetection)
 	{
-		if (assayDetections == null || assayDetections.isEmpty())
+		if (assayDetection == null)
 		{
-			TipsDialog.GetInstance().setMsg("assayDetections == null");
+			TipsDialog.GetInstance().setMsg("assayDetection == null");
 			TipsDialog.GetInstance().show();
 			return;
 		}
-
-		if (position >= assayDetections.size())
-		{
-			TipsDialog.GetInstance().setMsg("position >= assayDetections.size()[position:=" + position + "][assayDetections.size():=" +
-													assayDetections.size() + "]"
-										   );
-			TipsDialog.GetInstance().show();
-			return;
-		}
-
-		DAssayDetection assayDetection = assayDetections.get(position);
 
 		Calendar recordCalendar    = assayDetection.getRecordCalendar();
 		String   strRecoreCalendar = m_allSDF.format(recordCalendar.getTime());
-		m_recoreDate.setText(strRecoreCalendar);
+		m_recordDate.setText(strRecoreCalendar);
 
 		m_status.setText(INFO_ASSAY_DETECTION_STATUS_NORMAL);
 

@@ -55,6 +55,12 @@
 			android:screenOrientation="portrait"
 			android:label="AssayDetectionHistoryInfoActivity">
 		</activity>
+		<!-- 化验检查记录页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui.AssayDetectionHistoryItemInfoActivity"
+			android:screenOrientation="portrait"
+			android:label="AssayDetectionHistoryItemInfoActivity">
+		</activity>
 
 		<!-- 04. 药品提醒流程-->
 		<!-- 药品提醒页面-->

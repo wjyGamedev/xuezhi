@@ -84,7 +84,7 @@ public class RegisterAccountMsgHandler extends BaseMsgHandler
 		registerData.put(SmsConfig.CODE_KEY, authCode);
 
 		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
-																NetConfig.s_registerAddress,
+																NetConfig.S_REGISTER_ADDRESS,
 																registerData,
 																m_answerRegisterHandler,
 																m_baseErrorListener
