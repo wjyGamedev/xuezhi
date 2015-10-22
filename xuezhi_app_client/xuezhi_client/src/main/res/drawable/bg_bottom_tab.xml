@@ -8,7 +8,7 @@
 					<padding android:left="1dp" android:bottom="1dp" android:right="1dp"/>
 				</shape>
 			</item>
-			<item android:drawable="@color/main_bg_color" />
+			<item android:drawable="@color/main_color" />
 		</layer-list>
 	</item>
 	<item android:state_checked="false">
@@ -19,7 +19,7 @@
 					<padding android:top="1dp" />
 				</shape>
 			</item>
-			<item android:drawable="@color/umeng_fb_gray" />
+			<item android:drawable="@color/main_bg_color" />
 		</layer-list>
 	</item>
 </selector>

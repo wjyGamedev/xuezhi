@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -10,7 +9,12 @@ import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
+import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
+import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicalStock;
+import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler
 		.DrugAdministrationSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -32,13 +36,13 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 	private String m_selectMedicalStockID = null;
 
-	private int      m_drugID            = -1;
+	private int      m_drugID            = DataConfig.DEFAULT_ID;
 	private double   m_drugStockNum      = 0.0f;
 	private double   m_drugAlertNum      = 0.0f;
 	private boolean  m_drugReminderState = false;
 	private Calendar m_addCalendar       = null;
 	private Calendar m_alertCalendar     = null;
-	private int      m_medicalUnitID     = -1;
+	private int      m_medicalUnitID     = DataConfig.DEFAULT_ID;
 
 	@Bind (R.id.drug_setting_reminder_state_cb)  CheckBox m_drugReminderStateCB = null;
 	@Bind (R.id.drug_stock_setting_drug_name_tv) TextView m_drugNameTV          = null;
@@ -46,8 +50,8 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	@Bind (R.id.drug_setting_drug_alert_num_et)  EditText m_drugAlertNumET      = null;
 	@Bind (R.id.drug_setting_add_date_tv)        TextView m_drugAddDateNumTV    = null;
 	@Bind (R.id.drug_setting_run_out_date_tv)    TextView m_drugRunOutDateNumTV = null;
-	@Bind (R.id.drug_setting_drug_stock_unit_tv)    TextView m_drugStockUnitTV = null;
-	@Bind (R.id.drug_setting_drug_alert_unit_tv)    TextView m_drugAlertUnitTV = null;
+	@Bind (R.id.drug_setting_drug_stock_unit_tv) TextView m_drugStockUnitTV     = null;
+	@Bind (R.id.drug_setting_drug_alert_unit_tv) TextView m_drugAlertUnitTV     = null;
 
 	private boolean drugSettingReminderState = false;
 
@@ -70,7 +74,16 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	 */
 	private void init()
 	{
-		m_selectMedicalStockID = getIntent().getStringExtra("selectMedicalStockID");
+		m_selectMedicalStockID = getIntent().getStringExtra(DrugAdministrationConfig.SELECT_MEDICAL_STOCK_ID);
+		int selectMedicalStockID = Integer.valueOf(m_selectMedicalStockID);
+		DMedicalStock selectMedicalStock = DBusinessData.GetInstance().getMedicalStockList().getMedicalByID(selectMedicalStockID);
+		if (selectMedicalStock == null)
+		{
+			TipsDialog.GetInstance().setMsg("selectMedicalStock == null!selectMedicalStock is null![m_selectMedicalStockID:=" + m_selectMedicalStockID + "]", this);
+			TipsDialog.GetInstance().show();
+			return;
+		}
+
 
 		m_drugReminderStateCB.setOnCheckedChangeListener(m_clickDrugReminderStateCB);
 

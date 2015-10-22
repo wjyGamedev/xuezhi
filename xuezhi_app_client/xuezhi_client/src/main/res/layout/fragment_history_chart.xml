@@ -13,8 +13,8 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="30dp"
-		android:layout_marginTop="5dp"
 		android:layout_marginBottom="5dp"
+		android:layout_marginTop="5dp"
 		android:gravity="center"
 		android:orientation="horizontal">
 
@@ -24,28 +24,28 @@
 			android:orientation="horizontal">
 
 			<ImageButton
+				android:id="@+id/left_arrow_ib"
 				android:layout_width="30dp"
 				android:layout_height="30dp"
 				android:layout_gravity="center_vertical"
-				android:background="@drawable/arrow_left"
-				android:id="@+id/left_arrow_ib"/>
+				android:background="@drawable/arrow_left"/>
 
 			<TextView
+				android:id="@+id/title_content_tv"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
 				android:text="@string/assay_detection_lol_c_title_text"
-				android:textSize="20sp"
-				android:id="@+id/title_content_tv"/>
+				android:textSize="20sp"/>
 
 			<ImageButton
+				android:id="@+id/right_arrow_ib"
 				android:layout_width="30dp"
 				android:layout_height="30dp"
 				android:layout_gravity="center_vertical"
-				android:background="@drawable/arrow_right"
-				android:id="@+id/right_arrow_ib"/>
+				android:background="@drawable/arrow_right"/>
 
 		</LinearLayout>
 
@@ -67,74 +67,84 @@
 		android:orientation="horizontal">
 
 		<RadioButton
+			android:id="@+id/point_1_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_1_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_2_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_2_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_3_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_3_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_4_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_4_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_5_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_5_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_6_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_6_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_7_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_7_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_8_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_8_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_9_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_9_rb"/>
+			android:enabled="false"/>
 
 		<RadioButton
+			android:id="@+id/point_10_rb"
 			style="@style/tick_radio_button_style"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:background="@drawable/bg_radio_button_select_point"
-			android:id="@+id/point_10_rb"/>
+			android:enabled="false"/>
 
 	</RadioGroup>
 
