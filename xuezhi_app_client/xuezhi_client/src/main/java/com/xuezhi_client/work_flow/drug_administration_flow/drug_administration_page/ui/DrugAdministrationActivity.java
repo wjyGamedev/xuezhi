@@ -32,7 +32,7 @@ public class DrugAdministrationActivity extends BaseActivity
 	private DrugAdministrationMsgHandler  m_drugAdministrationMsgHandler  = new DrugAdministrationMsgHandler(this);
 	private ClickAddBottomBtn             m_clickAddBottomBtn             = new ClickAddBottomBtn();
 	private ClickDelBottomBtn             m_clickDelBottomBtn             = new ClickDelBottomBtn();
-	private AsyncWaitDialog               m_asyncWaitDialog               = new AsyncWaitDialog();
+	private AsyncWaitDialog               m_asyncWaitDialog               = null;
 	private HandleWaitDialogFinishedEvent m_handleWaitDialogFinishedEvent = new HandleWaitDialogFinishedEvent();
 
 	@Override
@@ -53,35 +53,37 @@ public class DrugAdministrationActivity extends BaseActivity
 	@Override
 	protected void onStart()
 	{
-		updateContent();
+		updateMedicineBoxGetList();
 		super.onStart();
+	}
+
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();
+		m_asyncWaitDialog.dismiss();
+	}
+
+	public void updateMedicineBoxGetList()
+	{
+
+		m_drugAdministrationMsgHandler.requestMedicineBoxGetListAction();
+		m_asyncWaitDialog = new AsyncWaitDialog();
+		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
+		m_asyncWaitDialog.show();
+
+		return;
 	}
 
 	public void updateContent()
 	{
-		//01. 关闭wait dialog
-		//		m_waitProgressDialog.dismiss();
-
-		//02. 更新数据
-		//		DNurseBasicsList nurseBasicsList = DNurseContainer.GetInstance().getNurseBasicsList();
-		//		if (nurseBasicsList == null)
-		//		{
-		//			TipsDialog.GetInstance().setMsg("nurseBasicsList == null", SelectNurseActivity.this);
-		//			TipsDialog.GetInstance().show();
-		//			return;
-		//		}
-		//
-		//		ArrayList<DNurseBasics> nurseBasicses = nurseBasicsList.getNurseBasicses();
-		//		if (nurseBasicses == null || nurseBasicses.isEmpty())
-		//		{
-		//			return;
-		//		}
-
+		m_asyncWaitDialog.dismiss();
 		m_drugAdministrationAdapter.notifyDataSetChanged();
-
 		return;
-
 	}
+
 
 	/**
 	 * inner func
@@ -93,18 +95,15 @@ public class DrugAdministrationActivity extends BaseActivity
 
 		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
-		//		m_bottomCommon.setBtnNum(2);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_add_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickAddBottomBtn);
-		//		m_bottomCommon.getCommonBottomBtn2().setText(R.string.drug_administration_del_btn_text);
-		//		m_bottomCommon.getCommonBottomBtn2().setOnClickListener(m_clickDelBottomBtn);
 
 		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
 		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
 
 		//02. logical
-		m_asyncWaitDialog.init(this);
-		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
+//		m_asyncWaitDialog.init(this);
+//		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
 	}
 
 	/**

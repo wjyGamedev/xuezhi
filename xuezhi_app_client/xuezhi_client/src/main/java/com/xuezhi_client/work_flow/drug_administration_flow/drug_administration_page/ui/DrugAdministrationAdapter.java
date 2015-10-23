@@ -165,7 +165,7 @@ final class ViewHolder
 		{
 			DrugAdministrationActivity acitvity                = (DrugAdministrationActivity)m_view.getContext();
 			int                        setSelectDelDrugStockID = acitvity.getSelectDelDrugStockID();
-			acitvity.getDrugAdministrationMsgHandler().delDrugAndGo2DrugAdministrationPage(setSelectDelDrugStockID);
+			acitvity.getDrugAdministrationMsgHandler().delDrugStock(setSelectDelDrugStockID);
 			return;
 		}
 	}

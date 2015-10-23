@@ -1,6 +1,7 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.msg_handler;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
@@ -14,6 +15,7 @@ import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -50,35 +52,44 @@ public class DrugAdministrationMsgHandler extends BaseUIMsgHandler
 	}
 
 	//删除药品库存
-	public void delDrugAndGo2DrugAdministrationPage(int drugStockID)
+	public void delDrugStock(int drugStockID)
 	{
-		if(DAccount.GetInstance().isRegisterSuccess())
-		{
-			RequestMedicineBoxDeleteEvent requestDelMedicalStockAction = new RequestMedicineBoxDeleteEvent();
-			requestDelMedicalStockAction.setUID(DAccount.GetInstance().getId());
-			requestDelMedicalStockAction.setMBID(String.valueOf(drugStockID));
-			DBusinessMsgHandler.GetInstance().requestMedicineBoxDeleteAction(requestDelMedicalStockAction);
-		}
+		RequestMedicineBoxDeleteEvent requestDelMedicalStockAction = new RequestMedicineBoxDeleteEvent();
+		requestDelMedicalStockAction.setUID(DAccount.GetInstance().getId());
+		requestDelMedicalStockAction.setMBID(String.valueOf(drugStockID));
+		DBusinessMsgHandler.GetInstance().requestMedicineBoxDeleteAction(requestDelMedicalStockAction);
 		return;
 	}
 
 	//删除成功，获取药品库存列表
 	public void onEventMainThread(AnswerMedicineBoxDeleteEvent event)
 	{
-		if (DAccount.GetInstance().isRegisterSuccess())
-		{
-			RequestMedicineBoxGetListEvent event_new = new RequestMedicineBoxGetListEvent();
-			event_new.setUID(DAccount.GetInstance().getId());
-			DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event_new);
-		}
+		DrugAdministrationActivity drugAdministrationActivity = (DrugAdministrationActivity)m_context;
+
+		//提示保存成功
+		Toast.makeText(drugAdministrationActivity,
+					   drugAdministrationActivity.getResources().getString(R.string.drug_administration_del_complete_text),
+					   Toast.LENGTH_SHORT
+					  ).show();
+
+		drugAdministrationActivity.updateMedicineBoxGetList();
+
 		return;
 	}
 
-	//删除成功，获取药品库存列表
+	//获取药品库存列表
+	public void requestMedicineBoxGetListAction()
+	{
+		RequestMedicineBoxGetListEvent event_new = new RequestMedicineBoxGetListEvent();
+		event_new.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event_new);
+	}
+
+	//获取药品库存列表
 	public void onEventMainThread(AnswerMedicineBoxGetListEvent event)
 	{
-		DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
-		drugStockAddActivity.updateContent();
+		DrugAdministrationActivity drugAdministrationActivity = (DrugAdministrationActivity)m_context;
+		drugAdministrationActivity.updateContent();
 		return;
 	}
 

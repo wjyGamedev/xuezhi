@@ -10,7 +10,6 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
@@ -124,16 +123,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 	//保存成功，获取药品库存列表
 	public void onEventMainThread(AnswerMedicineBoxAddEvent event)
 	{
-		RequestMedicineBoxGetListEvent event_new = new RequestMedicineBoxGetListEvent();
-		event_new.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event_new);
-	}
-
-	//获取药品库存列表成功，关闭页面，弹出提示
-	public void onEventMainThread(AnswerMedicineBoxGetListEvent event)
-	{
 		DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
-		drugStockAddActivity.updateContent();
 
 		//提示保存成功
 		Toast.makeText(drugStockAddActivity,
@@ -143,8 +133,8 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 
 		//关闭添加页面
 		drugStockAddActivity.finish();
-	}
 
+	}
 
 	//打开选择药品弹框
 	public void go2SelectDrugFragment()

@@ -297,4 +297,6 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	{
 		m_drugAlertUnitTV = drugAlertUnitTV;
 	}
+
+
 }

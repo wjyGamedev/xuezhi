@@ -15,6 +15,7 @@
 	<string name="drug_administration_add_time_text">添加时间：</string>
 	<string name="drug_administration_exhausted_time_text">预计药品用尽时间：</string>
 	<string name="drug_administration_isdel_hint_text">是否删除这个药品?</string>
+	<string name="drug_administration_del_complete_text">删除成功</string>
 
 	<!--drug_stock_add_page-->
 	<string name="drug_stock_add_page_title_text">添加药品</string>

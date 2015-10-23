@@ -145,6 +145,8 @@ public class AsyncWaitDialog
 		return true;
 	}
 
-
-
+	public boolean isInitFlag()
+	{
+		return m_initFlag;
+	}
 }

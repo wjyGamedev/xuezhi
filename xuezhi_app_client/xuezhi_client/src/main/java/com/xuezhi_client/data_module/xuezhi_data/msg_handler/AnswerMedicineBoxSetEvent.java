@@ -10,6 +10,6 @@ public class AnswerMedicineBoxSetEvent extends BaseNetEvent
 {
 	public AnswerMedicineBoxSetEvent()
 	{
-		super(EventID.ANSWER_MEDICAL_STOCK_ADD_DOSE);
+		super(EventID.ANSWER_MEDICAL_STOCK_SET_DOSE);
 	}
 }

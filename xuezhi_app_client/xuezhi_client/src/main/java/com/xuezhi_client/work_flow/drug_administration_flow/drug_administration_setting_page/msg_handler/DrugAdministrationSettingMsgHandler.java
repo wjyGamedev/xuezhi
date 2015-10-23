@@ -9,10 +9,8 @@ import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxSetEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxSetEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -41,6 +39,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 	{
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
 		int                               drugID                            = drugAdministrationSettingActivity.getDrugID();
+		String                            selectMedicalStockID              = drugAdministrationSettingActivity.getSelectMedicalStockID();
 		String                            userID                            = DAccount.GetInstance().getId();
 		String                            drugStockNum                      = drugAdministrationSettingActivity.getDrugStockNum();
 		String                            drugAlertNum                      = drugAdministrationSettingActivity.getDrugAlertNum();
@@ -109,25 +108,16 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		RequestMedicineBoxSetEvent requestAddMedicalStockAction = new RequestMedicineBoxSetEvent();
 
 		requestAddMedicalStockAction.setUID(userID);
-		requestAddMedicalStockAction.setMBID(Integer.toString(drugID));
+		requestAddMedicalStockAction.setMBID(selectMedicalStockID);
 		requestAddMedicalStockAction.setRemainNum(Double.valueOf(drugStockNum));
 		requestAddMedicalStockAction.setWaringNum(Double.valueOf(drugAlertNum));
 		requestAddMedicalStockAction.setValid(drugReminderState);
 		DBusinessMsgHandler.GetInstance().requestMedicineBoxSetAction(requestAddMedicalStockAction);
 
 		return;
-
 	}
 
-	//保存成功，获取药品库存列表
-	public void onEventMainThread(AnswerMedicineBoxAddEvent event)
-	{
-		RequestMedicineBoxGetListEvent event_new = new RequestMedicineBoxGetListEvent();
-		event_new.setUID(DAccount.GetInstance().getId());
-		DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event_new);
-	}
-
-	//获取药品库存列表成功，关闭页面，弹出提示
+	//设置成功
 	public void onEventMainThread(AnswerMedicineBoxSetEvent event)
 	{
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
@@ -157,10 +147,11 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		}
 
 		String selectMedicalStockID = drugAdministrationSettingActivity.getSelectMedicalStockID();
+		drugAdministrationSettingActivity.setSelectMedicalStockID(selectMedicalStockID);
 
 		//获取药品库存信息
 		DMedicineBox drugStockInfo = DBusinessData.GetInstance().getMedicineBoxList().getMedicalByID(Integer.valueOf
-																											   (selectMedicalStockID));
+																											 (selectMedicalStockID));
 
 		if (drugStockInfo == null)
 		{
@@ -169,14 +160,14 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		SimpleDateFormat sdf             = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
-		String           addCalender     = sdf.format(drugStockInfo.getAddCalendar().getTime());
-		String           warningCalender = sdf.format(drugStockInfo.getWarningCalendar().getTime());
-		String drugName = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
-		String       isMedicalReminderStateText = null;
-		int          drugID                     = drugStockInfo.getMID();
-		DMedicineUnit drugUnit                   = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(drugID);
-		String       drugUnitName               = drugUnit.getUnitName();
+		SimpleDateFormat sdf                        = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+		String           addCalender                = sdf.format(drugStockInfo.getAddCalendar().getTime());
+		String           warningCalender            = sdf.format(drugStockInfo.getWarningCalendar().getTime());
+		String           drugName                   = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugStockInfo.getMID()).getName();
+		String           isMedicalReminderStateText = null;
+		int              drugID                     = drugStockInfo.getMID();
+		DMedicineUnit    drugUnit                   = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(drugID);
+		String           drugUnitName               = drugUnit.getUnitName();
 
 		if (drugStockInfo.isMedicalReminderState())
 		{

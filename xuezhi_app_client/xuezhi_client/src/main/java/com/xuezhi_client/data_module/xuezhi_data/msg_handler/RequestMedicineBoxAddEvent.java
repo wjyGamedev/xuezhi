@@ -42,7 +42,8 @@ public class RequestMedicineBoxAddEvent extends BaseNetEvent
 		sendData.put(MedicineBoxConfig.MID, m_MID);
 		sendData.put(MedicineBoxConfig.WARNING, String.valueOf(m_waringNum));
 		sendData.put(MedicineBoxConfig.REMAIN, String.valueOf(m_remainNum));
-		sendData.put(MedicineBoxConfig.VALID, String.valueOf(m_valid));
+		int tmpValid = m_valid == true ? 1 : 0;
+		sendData.put(MedicineBoxConfig.VALID, String.valueOf(tmpValid));
 
 		return sendData;
 	}
