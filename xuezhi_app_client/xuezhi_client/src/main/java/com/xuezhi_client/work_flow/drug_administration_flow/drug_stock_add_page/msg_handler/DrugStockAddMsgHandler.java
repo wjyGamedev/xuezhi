@@ -12,7 +12,6 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxAddEvent;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.SelectDrugFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -47,7 +46,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		boolean              drugReminderState = activity.getDrugReminderStateCB().isChecked();
 		Calendar             m_addCalendar     = Calendar.getInstance();
 		Calendar             m_warningCalendar = Calendar.getInstance();
-		DMedicine m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
+		DMedicine            m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
 
 		//数据验证
 		if (drugID == -1)
@@ -99,14 +98,14 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		int UnitID = m_medical.getMUID();
-
-		//		if (drugStockNum <= drugAlertNum)
-		//		{
-		//			TipsDialog.GetInstance().setMsg("添加数量小于报警数量");
-		//			TipsDialog.GetInstance().show();
-		//			return;
-		//		}
+		double drugStockNumValue = Double.valueOf(drugStockNum);
+		double drugAlertNumValue = Double.valueOf(drugAlertNum);
+		if (drugStockNumValue <= drugAlertNumValue)
+		{
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_stock_add_click_hint_5_text));
+			TipsDialog.GetInstance().show();
+			return;
+		}
 
 		RequestMedicineBoxAddEvent requestAddMedicalStockAction = new RequestMedicineBoxAddEvent();
 
@@ -186,7 +185,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		}
 
 		//设置单位文本
-		DMedicineUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
+		DMedicineUnit        medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_medicalUnitID);
 		String               UnitName    = medicalUnit.getUnitName();
 		DrugStockAddActivity activity    = (DrugStockAddActivity)m_context;
 		activity.getDrugAlertUnitTV().setText(UnitName);

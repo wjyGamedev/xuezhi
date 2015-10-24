@@ -31,7 +31,7 @@
 	<string name="drug_stock_add_drug_stock_title_text">当前药品存量：</string>
 	<string name="drug_stock_add_drug_alert_title_text">药品警报存量：</string>
 	<string name="drug_stock_add_add_time_text">添加药品时间：</string>
-	<string name="drug_stock_add_exhausted_time_text">预计药品用尽时间：</string>
+	<string name="drug_stock_add_exhausted_time_text">预计警报时间：</string>
 	<string name="drug_stock_add_click_fill_hint_text">点击填写</string>
 	<string name="drug_stock_add_click_select_hint_text">点击选择</string>
 	<string name="drug_stock_add_save_complete_text">保存成功</string>
@@ -40,6 +40,7 @@
 	<string name="drug_stock_add_click_hint_2_text">您还没有登录</string>
 	<string name="drug_stock_add_click_hint_3_text">请填写药品存量</string>
 	<string name="drug_stock_add_click_hint_4_text">请填写药品警报存量</string>
+	<string name="drug_stock_add_click_hint_5_text">添加数量不能小于或等于警报数量</string>
 
 	<style name="drug_stock_add_radio_button_style">
 		<item name="android:button">@null</item>
@@ -58,7 +59,7 @@
 	<string name="drug_administration_setting_drug_stock_title_text">当前药品存量：</string>
 	<string name="drug_administration_setting_drug_alert_title_text">药品警报存量：</string>
 	<string name="drug_administration_setting_add_time_text">添加药品时间：</string>
-	<string name="drug_administration_setting_exhausted_time_text">预计药品用尽时间：</string>
+	<string name="drug_administration_setting_exhausted_time_text">预计警报时间：</string>
 	<string name="drug_administration_setting_click_fill_hint_text">点击填写</string>
 	<string name="drug_administration_setting_click_select_hint_text">点击选择</string>
 	<string name="drug_administration_setting_click_setting_complete_text">设置成功</string>
@@ -67,5 +68,6 @@
 	<string name="drug_administration_setting_click_hint_2_text">您还没有登录</string>
 	<string name="drug_administration_setting_click_hint_3_text">请填写药品存量</string>
 	<string name="drug_administration_setting_click_hint_4_text">请填写药品警报存量</string>
+	<string name="drug_administration_setting_click_hint_5_text">添加数量不能小于或等于警报数量</string>
 
 </resources>

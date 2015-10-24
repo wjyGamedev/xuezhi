@@ -166,6 +166,13 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 			int medicalUnitID = drug.getMUID();
 			m_drugStockAddMsgHandler.setMedicalUnit(medicalUnitID);
 
+			DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)getActivity();
+			if (drugStockAddActivity.inspection_data())
+			{
+				String warningDate = drugStockAddActivity.calculateRunOutData();
+				drugStockAddActivity.getDrugRunOutTV().setText(warningDate);
+			}
+
 			//03. 关闭当前药品选择
 			cancelAction();
 			return;

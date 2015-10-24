@@ -50,7 +50,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		//数据验证
 		if (drugID == -1)
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_1_text),
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_administration_setting_click_hint_1_text),
 											m_context
 										   );
 			TipsDialog.GetInstance().show();
@@ -59,8 +59,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 
 		if (userID.isEmpty())
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_2_text),
-											m_context
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_administration_setting_click_hint_2_text), m_context
 										   );
 			TipsDialog.GetInstance().show();
 			return;
@@ -68,8 +67,7 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 
 		if (drugStockNum.equals("") || drugStockNum.equals("0") || drugStockNum == null)
 		{
-			TipsDialog.GetInstance().setMsg(m_context.getResources().getString(R.string.drug_administration_setting_click_hint_3_text),
-											m_context
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_administration_setting_click_hint_3_text), m_context
 										   );
 			TipsDialog.GetInstance().show();
 			return;
@@ -98,12 +96,14 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		//		if (drugStockNum <= drugAlertNum)
-		//		{
-		//			TipsDialog.GetInstance().setMsg("添加数量小于报警数量");
-		//			TipsDialog.GetInstance().show();
-		//			return;
-		//		}
+		double drugStockNumValue = Double.valueOf(drugStockNum);
+		double drugAlertNumValue = Double.valueOf(drugAlertNum);
+		if (drugStockNumValue <= drugAlertNumValue)
+		{
+			TipsDialog.GetInstance().setMsg(m_context.getString(R.string.drug_administration_setting_click_hint_5_text));
+			TipsDialog.GetInstance().show();
+			return;
+		}
 
 		RequestMedicineBoxSetEvent requestAddMedicalStockAction = new RequestMedicineBoxSetEvent();
 

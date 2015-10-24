@@ -7,22 +7,27 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler
 		.DrugAdministrationSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -127,6 +132,132 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 			setDrugSettingReminderState(isChecked);
 		}
 	}
+
+
+
+	@OnFocusChange (R.id.drug_setting_drug_stock_num_et)
+	public void leaveStockETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+		if (inspection_data())
+		{
+			String warningDate = calculateRunOutData();
+			m_drugRunOutDateNumTV.setText(warningDate);
+		}
+
+		return;
+	}
+
+	@OnFocusChange (R.id.drug_setting_drug_alert_num_et)
+	public void leaveAlertETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+		if (inspection_data())
+		{
+			String warningDate = calculateRunOutData();
+			m_drugRunOutDateNumTV.setText(warningDate);
+		}
+
+		return;
+	}
+
+	public boolean inspection_data()
+	{
+		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
+		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());
+
+		if (drugStockNum == null || drugStockNum.equals(""))
+			return false;
+		if (drugwaringNum == null || drugwaringNum.equals(""))
+			return false;
+		if (m_drugID == DataConfig.DEFAULT_ID)
+			return false;
+		return true;
+	}
+
+	public String calculateRunOutData()
+	{
+
+		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
+		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());
+
+		double remianNum = Double.valueOf(drugStockNum);
+		double waringNum = Double.valueOf(drugwaringNum);
+
+		double    amountPerTime = 0f; //每次用量
+		DMedicine medical       = DBusinessData.GetInstance().getMedicalList().getMedicalByID(m_drugID);
+		if (medical == null)
+		{
+			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_drugID + "]");
+		}
+
+		amountPerTime = medical.getRose();
+		if (amountPerTime == 0)
+		{
+			throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_drugID + "]");
+		}
+
+		double   deltaValue      = remianNum - waringNum;
+		Calendar today           = Calendar.getInstance();
+		Calendar warningCalendar = Calendar.getInstance();
+		if (deltaValue <= 0)
+		{
+			warningCalendar.setTime(today.getTime());
+		}
+
+		int remainDays = (int)Math.floor(deltaValue / amountPerTime);
+		int todayYear  = today.get(Calendar.YEAR);
+		int todayMonth = today.get(Calendar.MONTH);
+		int todayDay   = today.get(Calendar.DAY_OF_MONTH);
+		int maxMonths  = today.getActualMaximum(Calendar.MONTH);
+		int maxDays    = 0;
+
+		Calendar tmpCalendar = Calendar.getInstance();
+		int      beginYear   = todayYear;
+		int      beginMonth  = todayMonth;
+		int      beginDay    = todayDay;
+		for (int index = 0; index < remainDays; ++index)
+		{
+			//今天
+			if (index == 0)
+			{
+				tmpCalendar.set(todayYear, todayMonth, todayDay);
+				continue;
+			}
+
+			maxDays = tmpCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+			if (beginDay >= maxDays)
+			{
+				beginDay = 1;
+				if (beginMonth >= maxMonths)
+				{
+					beginMonth = 1;
+					beginYear++;
+				}
+				else
+				{
+					beginMonth++;
+				}
+			}
+			else
+			{
+				beginDay++;
+			}
+
+			tmpCalendar.set(beginYear, beginMonth, beginDay);
+		}
+		warningCalendar.setTime(tmpCalendar.getTime());
+		SimpleDateFormat sdf         = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+		String           warningDate = sdf.format(warningCalendar.getTime());
+		return warningDate;
+	}
+
+
+
+
+
 
 	public TextView getDrugNameTV()
 	{
