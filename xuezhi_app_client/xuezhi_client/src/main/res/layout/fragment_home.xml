@@ -167,6 +167,7 @@
 						android:layout_marginTop="10dp"
 						android:background="@drawable/bg_main_page_radio_btn_take_medicine_state"
 						android:gravity="center"
+						android:button="@null"
 						android:text="@string/have_been_taken_btn_text"
 						android:textColor="@color/white"
 						android:textSize="20sp"
