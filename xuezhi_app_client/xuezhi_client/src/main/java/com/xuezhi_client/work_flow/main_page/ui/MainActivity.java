@@ -13,6 +13,7 @@ import com.module.data.DGlobal;
 import com.module.frame.BaseActivity;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
+import com.umeng.update.UmengUpdateAgent;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity
 
 		init();
 		initAction();
+		initUmengUpdate();
 	}
 
 	@Override
@@ -129,6 +131,13 @@ public class MainActivity extends BaseActivity
 		m_mainMsgHandler.initAction();
 		return;
 	}
+
+	private void initUmengUpdate()
+	{
+		UmengUpdateAgent.update(this);
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+	}
+
 
 	private void updateContent()
 	{

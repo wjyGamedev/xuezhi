@@ -25,6 +25,7 @@ public class RequestTakeMedicineAddEvent extends BaseNetEvent
 {
 	private String m_UID    = null;    //用户ID
 	private String m_MID   = null;    //库存ID
+	private String m_PID   = null;    //用药提醒ID
 	private double m_dose   = DataConfig.DEFAULT_VALUE;    //药品剂量
 
 	public RequestTakeMedicineAddEvent()
@@ -38,6 +39,7 @@ public class RequestTakeMedicineAddEvent extends BaseNetEvent
 
 		sendData.put(TakeMedicineConfig.UID, m_UID);
 		sendData.put(TakeMedicineConfig.MID, m_MID);
+		sendData.put(TakeMedicineConfig.PID, m_PID);
 		sendData.put(TakeMedicineConfig.DOSE, String.valueOf(m_dose));
 
 		return sendData;
@@ -51,6 +53,11 @@ public class RequestTakeMedicineAddEvent extends BaseNetEvent
 	public void setMID(String MID)
 	{
 		m_MID = MID;
+	}
+
+	public void setPID(String PID)
+	{
+		m_PID = PID;
 	}
 
 	public void setDose(double dose)

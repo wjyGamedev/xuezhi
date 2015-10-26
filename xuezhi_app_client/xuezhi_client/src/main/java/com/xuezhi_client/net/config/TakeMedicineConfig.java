@@ -22,6 +22,7 @@ public class TakeMedicineConfig
 	public final static String ID = "id";
 	public final static String UID = "uid";
 	public final static String MID = "mid";
+	public final static String PID = "pid";
 	public final static String TAKETIME = "taketime";
 	public final static String DOSE = "dose";
 

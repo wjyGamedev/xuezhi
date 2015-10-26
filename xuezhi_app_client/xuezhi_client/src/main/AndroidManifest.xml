@@ -1,11 +1,11 @@
-<manifest package="com.xuzhi_client.xuzhi_app_client"
-		  xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+	package="com.xuzhi_client.xuzhi_app_client"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- 用户权限 -->
 	<uses-permission android:name="android.permission.CALL_PHONE"/>
 
-
-	<!-- smsSDK权限-->
+	<!-- smsSDK,友盟update权限-->
 	<uses-permission android:name="android.permission.READ_CONTACTS"/>
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -23,6 +23,24 @@
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
 
+		<!-- 友盟自动更新-->
+		<service
+			android:name="com.umeng.update.net.DownloadingService"
+			android:process=":DownloadingService">
+		</service>
+		<activity
+			android:name="com.umeng.update.UpdateDialogActivity"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+		</activity>
+
+		<!-- 友盟APPKEY,渠道tag-->
+		<meta-data
+			android:name="UMENG_APPKEY"
+			android:value="561f2312e0f55ac60600090f"/>
+		<meta-data
+			android:name="UMENG_CHANNEL"
+			android:value="anzhuoshichang"/>
+
 		<!-- 01.主页面相关-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.main_page.ui.MainActivity"
@@ -38,83 +56,83 @@
 		<!-- 02.注册页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.register_page.ui.RegisterActivity"
-			android:screenOrientation="portrait"
-			android:label="RegisterActivity">
+			android:label="RegisterActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 		<!-- 03.化验检测流程-->
 		<!-- 化验检测页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity"
-			android:screenOrientation="portrait"
-			android:label="AssayDetectionActivity">
+			android:label="AssayDetectionActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 化验检测历史页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity"
-			android:screenOrientation="portrait"
-			android:label="AssayDetectionHistoryInfoActivity">
+			android:label="AssayDetectionHistoryInfoActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 化验检查记录页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui.AssayDetectionHistoryItemInfoActivity"
-			android:screenOrientation="portrait"
-			android:label="AssayDetectionHistoryItemInfoActivity">
+			android:label="AssayDetectionHistoryItemInfoActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 		<!-- 04. 药品提醒流程-->
 		<!-- 药品提醒页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_page.ui.MedicationReminderActivity"
-			android:screenOrientation="portrait"
-			android:label="MedicationReminderActivity">
+			android:label="MedicationReminderActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 药品提醒设置页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_setting_page.ui.MedicationReminderSettingActivity"
-			android:screenOrientation="portrait"
-			android:label="MedicationReminderSettingActivity">
+			android:label="MedicationReminderSettingActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 药品提醒添加页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity"
-			android:screenOrientation="portrait"
-			android:label="MedicineReminderAddActivity">
+			android:label="MedicineReminderAddActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 		<!-- 05.药品管理流程-->
 		<!-- 药品管理页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity"
-			android:screenOrientation="portrait"
-			android:label="DrugAdministrationActivity">
+			android:label="DrugAdministrationActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 药品管理设定页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity"
-			android:screenOrientation="portrait"
-			android:label="DrugAdministrationSettingActivity">
+			android:label="DrugAdministrationSettingActivity"
+			android:screenOrientation="portrait">
 		</activity>
 		<!-- 药品管理添加药品页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity"
-			android:screenOrientation="portrait"
-			android:label="DrugStockAddActivity">
+			android:label="DrugStockAddActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 
 		<!-- 07. 风险评估-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.risk_assessment_page.ui.RiskAssessmentActivity"
-			android:screenOrientation="portrait"
-			android:label="RiskAssessmentActivity">
+			android:label="RiskAssessmentActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 		<!-- 08. 用户需知-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.user_protocal_page.ui.UserProtocalActivity"
-			android:screenOrientation="portrait"
-			android:label="UserProtocalActivity">
+			android:label="UserProtocalActivity"
+			android:screenOrientation="portrait">
 		</activity>
 
 	</application>

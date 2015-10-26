@@ -31,6 +31,7 @@ public class DTakeMedicine
 	private int      m_ID           = DataConfig.DEFAULT_VALUE;
 	private int      m_UID           = DataConfig.DEFAULT_VALUE;
 	private int      m_MID          = DataConfig.DEFAULT_VALUE;    //药品ID
+	private int m_PID = DataConfig.DEFAULT_VALUE;    //药品提醒ID
 	private Calendar m_takeCalendar = Calendar.getInstance();    //服药时间
 	private double   m_dose         = DataConfig.DEFAULT_VALUE;    //服用剂量
 
@@ -41,7 +42,7 @@ public class DTakeMedicine
 		m_ID = response.getInt(TakeMedicineConfig.ID);
 		m_UID = response.getInt(TakeMedicineConfig.UID);
 		m_MID = response.getInt(TakeMedicineConfig.MID);
-
+		m_PID = response.getInt(TakeMedicineConfig.PID);
 		String tmpTakeDate = response.getString(TakeMedicineConfig.TAKETIME);
 		Date   takeDate       = m_allSDF.parse(tmpTakeDate);
 		m_takeCalendar.setTime(takeDate);
@@ -56,9 +57,19 @@ public class DTakeMedicine
 		return m_ID;
 	}
 
+	public int getUID()
+	{
+		return m_UID;
+	}
+
 	public int getMID()
 	{
 		return m_MID;
+	}
+
+	public int getPID()
+	{
+		return m_PID;
 	}
 
 	public Calendar getTakeCalendar()
