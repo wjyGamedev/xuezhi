@@ -74,7 +74,6 @@ public class DTakeMedicinePerMonth
 
 	private void clearup()
 	{
-		m_currCalendar = null;
 		m_medicalHistoryPerMonths.clear();
 	}
 
