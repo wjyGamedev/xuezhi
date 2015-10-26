@@ -26,9 +26,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.module.widget.dialog.TipsDialog;
@@ -48,8 +50,15 @@ public class HomeTabFragment extends Fragment
 	//widget
 	@Bind (R.id.imgs_display_region_ll) LinearLayout m_imgsDisplayRegionLL = null;
 	@Bind (R.id.imgs_display_vf)        ViewFlipper  m_imgsDisplayVF       = null;
-	@Bind (R.id.func_region_ll)         LinearLayout m_funcRegionLL        = null;
-	@Bind (R.id.func_region_sv)         ScrollView   m_funcRegionSV        = null;
+
+	@Bind (R.id.medicine_reminder_time_tv) TextView m_medicineReminderTimeTV = null;
+	@Bind (R.id.medicine_name_tv)          TextView m_medicineNameTV         = null;
+	@Bind (R.id.rose_tv)                   TextView m_roseTV                 = null;
+	@Bind (R.id.medicine_unit_tv)          TextView m_medicineUnitTV         = null;
+	@Bind (R.id.take_medicine_cbox)        CheckBox m_takeMedicineCBox         = null;
+
+	@Bind (R.id.func_region_ll) LinearLayout m_funcRegionLL = null;
+	@Bind (R.id.func_region_sv) ScrollView   m_funcRegionSV = null;
 
 	//logical
 	private MainMsgHandler  m_mainMsgHandler  = null;
@@ -86,28 +95,28 @@ public class HomeTabFragment extends Fragment
 		return true;
 	}
 
-	@OnClick(R.id.assay_detection_region_ll)
+	@OnClick (R.id.assay_detection_region_ll)
 	public void clickAssayDetectionRegion()
 	{
 		m_mainMsgHandler.go2AssayDetectionAction();
 		return;
 	}
 
-	@OnClick(R.id.medication_reminder_region_ll)
+	@OnClick (R.id.medication_reminder_region_ll)
 	public void clickMedicationReminderRegion()
 	{
 		m_mainMsgHandler.go2MedicationReminderAction();
 		return;
 	}
 
-	@OnClick(R.id.drug_admin_region_ll)
+	@OnClick (R.id.drug_admin_region_ll)
 	public void clickDrugAdminRegion()
 	{
 		m_mainMsgHandler.go2DrugAdminAction();
 		return;
 	}
 
-	@OnClick(R.id.calendar_region_ll)
+	@OnClick (R.id.calendar_region_ll)
 	public void clickCalendarRegion()
 	{
 		m_mainMsgHandler.go2CalendarAction();
