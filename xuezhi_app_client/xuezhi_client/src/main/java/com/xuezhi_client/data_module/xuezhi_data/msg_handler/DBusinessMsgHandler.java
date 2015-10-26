@@ -234,9 +234,8 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 
 	//0202. 用药提醒相关
 	//020201.获取用药提醒列表
-	public void requestMedicinePromptGetListAction()
+	public void requestMedicinePromptGetListAction(RequestMedicinePromptGetListEvent event)
 	{
-		RequestMedicinePromptGetListEvent event = new RequestMedicinePromptGetListEvent();
 		m_eventBus.post(event);
 		return;
 	}

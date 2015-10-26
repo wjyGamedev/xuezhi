@@ -30,7 +30,7 @@ public class DAssayDetection
 {
 
 	private int m_ID = DataConfig.DEFAULT_VALUE;
-	private Calendar m_recordCalendar = null;
+	private Calendar m_recordCalendar = Calendar.getInstance();
 	private double   m_tgValue        = DataConfig.DEFAULT_VALUE;
 	private double   m_tchoValue      = DataConfig.DEFAULT_VALUE;
 	private double   m_lolcValue      = DataConfig.DEFAULT_VALUE;
@@ -52,10 +52,7 @@ public class DAssayDetection
 
 		String tmpAddDate = response.getString(AssayDetectionConfig.RECORD_DATE);
 		Date   date       = m_allSDF.parse(tmpAddDate);
-		if (m_recordCalendar == null)
-		{
-			m_recordCalendar = Calendar.getInstance();
-		}
+		m_recordCalendar = Calendar.getInstance();
 		m_recordCalendar.setTime(date);
 
 		m_tgValue = response.getDouble(AssayDetectionConfig.TG);

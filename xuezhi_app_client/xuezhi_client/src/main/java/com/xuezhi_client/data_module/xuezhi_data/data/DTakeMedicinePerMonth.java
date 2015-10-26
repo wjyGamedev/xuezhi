@@ -31,7 +31,7 @@ import java.util.Calendar;
 
 public class DTakeMedicinePerMonth
 {
-	private Calendar                 m_currCalendar            = null;
+	private Calendar                 m_currCalendar            = Calendar.getInstance();
 	private ArrayList<DTakeMedicine> m_medicalHistoryPerMonths = new ArrayList<>();
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
@@ -49,7 +49,6 @@ public class DTakeMedicinePerMonth
 		clearup();
 
 		//02. 当前月份
-		m_currCalendar = Calendar.getInstance();
 		m_currCalendar.setTime(month.getTime());
 
 		//03. 序列化json

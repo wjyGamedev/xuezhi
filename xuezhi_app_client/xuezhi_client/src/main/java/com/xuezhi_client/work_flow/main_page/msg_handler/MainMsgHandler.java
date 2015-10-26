@@ -22,8 +22,13 @@ import com.module.storage.OwnerPreferences;
 import com.module.storage.StorageWrapper;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
-import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestTakeMedicineGetHistoryListEvent;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
@@ -38,8 +43,18 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 import org.json.JSONException;
 
+import java.util.Calendar;
+
 public class MainMsgHandler extends BaseUIMsgHandler
 {
+	@Override
+	protected void init()
+	{
+		super.init();
+		m_eventBus.register(this);
+		return;
+	}
+
 	public MainMsgHandler(MainActivity activity)
 	{
 		super(activity);
@@ -81,26 +96,67 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		//02. 发送药品列表
 		DBusinessMsgHandler.GetInstance().requestMedicineGetListAction();
 
-		//03. 请求检查
-		requestAssayDetectionListAction();
-
-		//03.
-		if (DAccount.GetInstance().isRegisterSuccess())
-		{
-			RequestMedicineBoxGetListEvent event = new RequestMedicineBoxGetListEvent();
-			event.setUID(DAccount.GetInstance().getId());
-			DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event);
-		}
+		//03. 以下消息，需要登陆后，才会发送。
 
 		return;
 	}
 
-	//化验检查列表
+	public void onEventMainThread(AnswerMedicineGetListEvent event)
+	{
+		initActionForLogin();
+	}
+
+	private void initActionForLogin()
+	{
+		//TODO:由于下面消息对于(药品列表)有依赖关系。
+		if (!DAccount.GetInstance().isRegisterSuccess())
+			return;
+
+		//0301. 请求发送化验检查列表
+		requestAssayDetectionListAction();
+
+		//0302. 请求发送用药提醒列表
+		requestMedicinePromptGetListAction();
+
+		//0303. 请求发送药箱列表
+		requestMedicineBoxGetListAction();
+
+		//0304. 请求发送当月的日历
+		requestTakeMedicineGetHistoryListAction();
+
+		return;
+	}
 	private void requestAssayDetectionListAction()
 	{
 		RequestAssayDetectionGetListEvent event = new RequestAssayDetectionGetListEvent();
 		event.setUID(DAccount.GetInstance().getId());
 		DBusinessMsgHandler.GetInstance().requestAssayDetectionGetListAction(event);
+		return;
+	}
+
+	private void requestMedicinePromptGetListAction()
+	{
+		RequestMedicinePromptGetListEvent event = new RequestMedicinePromptGetListEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestMedicinePromptGetListAction(event);
+		return;
+	}
+
+	private void requestMedicineBoxGetListAction()
+	{
+		RequestMedicineBoxGetListEvent event = new RequestMedicineBoxGetListEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		DBusinessMsgHandler.GetInstance().requestMedicineBoxGetListAction(event);
+		return;
+	}
+
+	private void requestTakeMedicineGetHistoryListAction()
+	{
+		RequestTakeMedicineGetHistoryListEvent event = new RequestTakeMedicineGetHistoryListEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		Calendar calendar = Calendar.getInstance();
+		event.setCurrMonth(calendar);
+		DBusinessMsgHandler.GetInstance().requestTakeMedicineGetHistoryListAction(event);
 		return;
 	}
 
