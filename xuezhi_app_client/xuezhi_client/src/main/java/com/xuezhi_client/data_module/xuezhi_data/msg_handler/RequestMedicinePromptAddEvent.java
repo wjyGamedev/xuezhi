@@ -31,7 +31,7 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 	private Calendar m_time = Calendar.getInstance();
 	private boolean m_valid = true;
 	private double   m_dose   = DataConfig.DEFAULT_VALUE;    //药品剂量
-	private String m_precaution = null;
+	private String m_precaution = "";
 
 	private SimpleDateFormat m_hmsSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE_SECOND);
 

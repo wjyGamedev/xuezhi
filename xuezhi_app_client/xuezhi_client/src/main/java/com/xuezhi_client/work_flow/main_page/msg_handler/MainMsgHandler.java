@@ -199,10 +199,6 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		//update 今日提醒：吃药，药品
 		updateDWaitForRemainder();
 
-		//关闭等待框
-		AsyncWaitDialog asyncWaitDialog = activity.getAsyncWaitDialog();
-		asyncWaitDialog.dismiss();
-
 		updateMainContent();
 	}
 
@@ -240,6 +236,11 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	public void updateHomeFragmentContent()
 	{
 		MainActivity activity = (MainActivity)m_context;
+
+		//关闭等待框
+		AsyncWaitDialog asyncWaitDialog = activity.getAsyncWaitDialog();
+		asyncWaitDialog.dismiss();
+
 		Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
 		if (fragment == null)
 			return;

@@ -27,6 +27,8 @@ import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptAddEvent;
 import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -137,7 +139,14 @@ public class MedicineReminderAddActivity extends BaseActivity
 			if (!check())
 				return;
 
-			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction();
+			RequestMedicinePromptAddEvent event = new RequestMedicinePromptAddEvent();
+			event.setUID(DAccount.GetInstance().getId());
+			event.setMID(String.valueOf(m_medicineID));
+			event.setTime(m_remainderTime);
+			event.setValid(m_stateFlag);
+			event.setDose(m_rose);
+			event.setPrecaution(getPrecautionsTV().getText().toString());
+			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction(event);
 		}
 	}
 
