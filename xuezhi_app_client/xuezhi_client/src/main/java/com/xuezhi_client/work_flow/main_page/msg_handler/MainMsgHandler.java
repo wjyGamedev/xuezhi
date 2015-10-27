@@ -130,7 +130,12 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		//TODO:由于下面消息对于(药品列表)有依赖关系。
 		if (!DAccount.GetInstance().isRegisterSuccess())
+		{
+			//update 今日提醒：吃药，药品
+			updateDWaitForRemainder();
+			updateMainContent();
 			return;
+		}
 
 		//0301. 请求发送化验检查列表
 		requestAssayDetectionListAction();
@@ -193,9 +198,6 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	public void onEventMainThread(AnswerTakeMedicineGetHistoryListEvent event)
 	{
-
-		MainActivity activity = (MainActivity)m_context;
-
 		//update 今日提醒：吃药，药品
 		updateDWaitForRemainder();
 

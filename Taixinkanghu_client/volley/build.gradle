@@ -31,6 +31,13 @@ android {
 	}
 	productFlavors {
 	}
+	buildTypes {
+		release {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'),
+					'proguard-rules.pro', 'proguard-rules-new.pro'
+		}
+	}
 }
 apply from: 'rules.gradle'
 dependencies {
