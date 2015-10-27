@@ -30,8 +30,8 @@ import java.util.ArrayList;
 
 public class DMedicineBoxList
 {
-	private int                     m_Status        = ProtocalConfig.HTTP_OK;
-	private ArrayList<DMedicineBox> m_medicalStocks = new ArrayList<>();
+	private int                     m_Status       = ProtocalConfig.HTTP_OK;
+	private ArrayList<DMedicineBox> m_medicineBoxs = new ArrayList<>();
 
 	private final String NET_ERROR_JSON_SERILIZATION = DGlobal.GetInstance().getAppContext().getString(R.string
 																											   .net_error_json_serilization);
@@ -43,9 +43,9 @@ public class DMedicineBoxList
 	public synchronized boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
 		//01. 清空原来容器
-		if (m_medicalStocks != null && m_medicalStocks.size() != 0)
+		if (m_medicineBoxs != null && m_medicineBoxs.size() != 0)
 		{
-			m_medicalStocks.clear();
+			m_medicineBoxs.clear();
 		}
 
 		//02. http is ok
@@ -72,7 +72,7 @@ public class DMedicineBoxList
 			medicalStock = new DMedicineBox();
 			medicalStock.serialization(jsonObject);
 
-			m_medicalStocks.add(medicalStock);
+			m_medicineBoxs.add(medicalStock);
 		}
 		return  true;
 
@@ -83,14 +83,14 @@ public class DMedicineBoxList
 		return m_Status;
 	}
 
-	public synchronized ArrayList<DMedicineBox> getMedicalStocks()
+	public synchronized ArrayList<DMedicineBox> getMedicineBoxs()
 	{
-		return m_medicalStocks;
+		return m_medicineBoxs;
 	}
 
-	public synchronized DMedicineBox getMedicalByID(int id)
+	public synchronized DMedicineBox getMedicineBoxByID(int id)
 	{
-		for (DMedicineBox medicalStock : m_medicalStocks)
+		for (DMedicineBox medicalStock : m_medicineBoxs)
 		{
 			if (medicalStock.getID() == id)
 			{

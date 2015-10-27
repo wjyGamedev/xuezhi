@@ -46,7 +46,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		boolean              drugReminderState = activity.getDrugReminderStateCB().isChecked();
 		Calendar             m_addCalendar     = Calendar.getInstance();
 		Calendar             m_warningCalendar = Calendar.getInstance();
-		DMedicine            m_medical         = DBusinessData.GetInstance().getMedicalList().getMedicalByID(drugID);
+		DMedicine            m_medical         = DBusinessData.GetInstance().getMedicineList().getMedicineByID(drugID);
 
 		//数据验证
 		if (drugID == -1)
@@ -162,7 +162,7 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		DrugStockAddActivity activity = (DrugStockAddActivity)m_context;
 
 		//01. set department ui
-		ArrayList<DMedicine> medicalList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		ArrayList<DMedicine> medicalList = DBusinessData.GetInstance().getMedicineList().getMedicals();
 		for (DMedicine medical : medicalList)
 		{
 			if (medical.getID() == medicalID)

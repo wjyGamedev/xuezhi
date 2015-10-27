@@ -32,7 +32,7 @@ public class AnswerMedicinePromptGetListHandler extends IResponseListener
 	{
 		try
 		{
-			DMedicinePromptList medicalPromptList = DBusinessData.GetInstance().getMedicalPromptList();
+			DMedicinePromptList medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 			medicalPromptList.serialization(response);
 		}
 		catch (JSONException e)

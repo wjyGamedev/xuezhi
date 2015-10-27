@@ -143,7 +143,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 			}
 
 			//drugid
-			ArrayList<DMedicine> drugList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+			ArrayList<DMedicine> drugList = DBusinessData.GetInstance().getMedicineList().getMedicals();
 			if (drugList == null)
 			{
 				TipsDialog.GetInstance().setMsg("drugList == null", getActivity());
@@ -227,7 +227,7 @@ public class SelectDrugFragment extends Fragment implements View.OnTouchListener
 
 	public void loadDrugList()
 	{
-		ArrayList<DMedicine> drugs = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		ArrayList<DMedicine> drugs = DBusinessData.GetInstance().getMedicineList().getMedicals();
 
 		//01. 没有药品列表，则重新发送
 		if (drugs.isEmpty())

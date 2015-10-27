@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 
 import com.module.data.DGlobal;
 import com.module.frame.BaseActivity;
+import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.umeng.update.UmengUpdateAgent;
@@ -27,17 +28,22 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity
 {
 	//widget
-	private                     HeaderCommon m_headerCommon = null;
+	private HeaderCommon m_headerCommon = null;
 
-	@Bind (R.id.func_region_sv) ScrollView   m_funcRegionSV = null;
-	@Bind (R.id.func_region_fl) FrameLayout  m_funcRegionFL = null;
-	@Bind (R.id.tabs_rg)        RadioGroup   m_tabsRG       = null;
-	@Bind (R.id.home_rbtn)      RadioButton  m_homeRBtn     = null;
-	@Bind (R.id.personal_rbtn)  RadioButton  m_personalRBtn = null;
-	@Bind (R.id.service_rbtn)   RadioButton  m_serviceRBtn  = null;
+	@Bind (R.id.func_region_sv) ScrollView  m_funcRegionSV = null;
+	@Bind (R.id.func_region_fl) FrameLayout m_funcRegionFL = null;
+	@Bind (R.id.tabs_rg)        RadioGroup  m_tabsRG       = null;
+	@Bind (R.id.home_rbtn)      RadioButton m_homeRBtn     = null;
+	@Bind (R.id.personal_rbtn)  RadioButton m_personalRBtn = null;
+	@Bind (R.id.service_rbtn)   RadioButton m_serviceRBtn  = null;
 
 	//logical
-	private MainMsgHandler           m_mainMsgHandler           = new MainMsgHandler(this);
+	private MainMsgHandler m_mainMsgHandler = new MainMsgHandler(this);
+
+	private AsyncWaitDialog m_asyncWaitDialog = new AsyncWaitDialog();
+
+	private HandleAsyncWaitDialogFinishedEvent m_handleAsyncWaitDialogFinishedEvent = new HandleAsyncWaitDialogFinishedEvent();
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -101,6 +107,19 @@ public class MainActivity extends BaseActivity
 		m_mainMsgHandler.go2ServiceFragment();
 	}
 
+	/**
+	 * override event
+	 */
+	public class HandleAsyncWaitDialogFinishedEvent implements AsyncWaitDialog.HandleWaitDialogFinishedEvent
+	{
+
+		@Override
+		public void OnWaitDialogFinished()
+		{
+			m_asyncWaitDialog.dismiss();
+			return;
+		}
+	}
 
 	/**
 	 * inner func
@@ -125,6 +144,9 @@ public class MainActivity extends BaseActivity
 
 		m_homeRBtn.setSelected(true);
 
+		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleAsyncWaitDialogFinishedEvent);
+		m_asyncWaitDialog.show();
 	}
 	private void initAction()
 	{
@@ -141,7 +163,8 @@ public class MainActivity extends BaseActivity
 
 	private void updateContent()
 	{
-		m_mainMsgHandler.updateMainContent();
+		//这里不调用update，依赖于服务器返回event。
+//		m_mainMsgHandler.updateMainContent();
 		return;
 	}
 
@@ -151,6 +174,11 @@ public class MainActivity extends BaseActivity
 	public MainMsgHandler getMainMsgHandler()
 	{
 		return m_mainMsgHandler;
+	}
+
+	public AsyncWaitDialog getAsyncWaitDialog()
+	{
+		return m_asyncWaitDialog;
 	}
 
 	/**

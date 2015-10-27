@@ -48,14 +48,14 @@ public class MedicineReminderAdapter extends IBaseAdapter
 
 	private void init()
 	{
-		m_medicalPromptList = DBusinessData.GetInstance().getMedicalPromptList();
+		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 		m_layoutInflater = LayoutInflater.from(m_context);
 	}
 
 	@Override
 	public int getCount()
 	{
-		m_medicalPromptList = DBusinessData.GetInstance().getMedicalPromptList();
+		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 		m_medicalPromptArrayList = m_medicalPromptList.getMedicalPrompts();
 
 		if (m_medicalPromptArrayList == null || m_medicalPromptArrayList.isEmpty())

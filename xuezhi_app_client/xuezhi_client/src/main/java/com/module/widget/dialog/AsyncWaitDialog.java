@@ -31,7 +31,7 @@ public class AsyncWaitDialog
 	private final String INFO_ERROR_TIPS_INIT_FIRST = DGlobal.GetInstance().getAppContext().getResources().getString(R.string.error_tips_init_first);
 
 
-	private final static long DELAY_TIME_MILLISENCENDS = 5000;
+	private final static long DELAY_TIME_MILLISENCENDS = 10000;
 
 	private EventBus m_eventBus = EventBus.getDefault();
 	private boolean        m_initFlag           = false;

@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -42,20 +43,33 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 
 public class HomeTabFragment extends Fragment
 {
 	//widget
-	@Bind (R.id.imgs_display_region_ll) LinearLayout m_imgsDisplayRegionLL = null;
-	@Bind (R.id.imgs_display_vf)        ViewFlipper  m_imgsDisplayVF       = null;
+	@Bind (R.id.today_reminder_title_tv) TextView     m_todayReminderTitleTV = null;
+	@Bind (R.id.imgs_display_region_ll)  LinearLayout m_imgsDisplayRegionLL  = null;
+	@Bind (R.id.imgs_display_vf)         ViewFlipper  m_imgsDisplayVF        = null;
+
+	@Bind (R.id.reminder_header_ll)        LinearLayout m_reminderHeadersLL      = null;
+	@Bind (R.id.reminder_bottom_tips_ll)   LinearLayout m_reminderBottomTipsLL   = null;
+	@Bind (R.id.reminder_tips_tv)          TextView     m_reminderTipsTV         = null;
+	@Bind (R.id.right_func_region_ll)      LinearLayout m_rightFuncRegionLl      = null;
+	@Bind (R.id.take_medicine_reminder_iv) ImageView    m_takeMedicineReminderIV = null;
+
+	@Bind (R.id.medicine_reminder_region_ll) LinearLayout m_medicineReminderRegionLL = null;
+	@Bind (R.id.medicine_reminder_iv)        ImageView    m_medicineReminderIV    = null;
+
 
 	@Bind (R.id.medicine_reminder_time_tv) TextView m_medicineReminderTimeTV = null;
 	@Bind (R.id.medicine_name_tv)          TextView m_medicineNameTV         = null;
 	@Bind (R.id.rose_tv)                   TextView m_roseTV                 = null;
 	@Bind (R.id.medicine_unit_tv)          TextView m_medicineUnitTV         = null;
-	@Bind (R.id.take_medicine_cbox)        CheckBox m_takeMedicineCBox         = null;
+	@Bind (R.id.take_medicine_cbox)        CheckBox m_takeMedicineCBox       = null;
+	@Bind (R.id.medicine_reminder_tv)      TextView m_medicineReminderTV     = null;
 
 	@Bind (R.id.func_region_ll) LinearLayout m_funcRegionLL = null;
 	@Bind (R.id.func_region_sv) ScrollView   m_funcRegionSV = null;
@@ -123,6 +137,52 @@ public class HomeTabFragment extends Fragment
 		return;
 	}
 
+	@OnCheckedChanged (R.id.take_medicine_cbox)
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+	{
+		if (isChecked)
+		{
+			m_takeMedicineCBox.setText(R.string.take_medicine_finished);
+		}
+		else
+		{
+			m_takeMedicineCBox.setText(R.string.take_medicine_wait);
+		}
+	}
+
+	@OnClick (R.id.reminder_bottom_tips_ll)
+	public void clickReminderBottonRegion()
+	{
+		//今日无提醒
+		if (m_rightFuncRegionLl.getVisibility() != View.VISIBLE)
+		{
+			return;
+		}
+		//今日有提醒，已完成
+		m_mainMsgHandler.go2MedicationReminderAction();
+		return;
+	}
+
+	@OnClick (R.id.right_func_region_ll)
+	public void clickTakeMedicineRightFuncRegion()
+	{
+		//今日有提醒，已完成
+		m_mainMsgHandler.go2MedicationReminderAction();
+		return;
+	}
+
+	@OnClick (R.id.medicine_reminder_region_ll)
+	public void clickMedicineReminderRegion()
+	{
+		//01. 多余一个，则打开fragment
+		if (m_medicineReminderIV.getVisibility() == View.VISIBLE)
+		{
+			//TODO:添加fragment。
+		}
+		return;
+	}
+
+
 
 	/**
 	 * override func
@@ -187,15 +247,6 @@ public class HomeTabFragment extends Fragment
 			}
 			m_mainMsgHandler = mainActivity.getMainMsgHandler();
 		}
-//		MainActivity mainActivity = (MainActivity)getActivity();
-//		if (mainActivity == null)
-//		{
-//			TipsDialog.GetInstance().setMsg("mainActivity == null", getActivity());
-//			TipsDialog.GetInstance().show();
-//			return;
-//		}
-//		m_mainMsgHandler = mainActivity.getMainMsgHandler();
-
 		m_gestureDetector = new GestureDetector(m_imgsDisplayVF.getContext(), new MyGestureDetector());
 	}
 
@@ -252,11 +303,99 @@ public class HomeTabFragment extends Fragment
 		params.height = iWidth * iImgHeight / iImgWidth;
 		m_imgsDisplayRegionLL.requestLayout();
 
+		m_mainMsgHandler.updateHomeFragmentContent();
 	}
 
+	/**
+	 * widget:get
+	 */
+	public TextView getTodayReminderTitleTV()
+	{
+		return m_todayReminderTitleTV;
+	}
 
+	public LinearLayout getImgsDisplayRegionLL()
+	{
+		return m_imgsDisplayRegionLL;
+	}
 
+	public LinearLayout getReminderHeadersLL()
+	{
+		return m_reminderHeadersLL;
+	}
 
+	public LinearLayout getReminderBottomTipsLL()
+	{
+		return m_reminderBottomTipsLL;
+	}
 
+	public TextView getReminderTipsTV()
+	{
+		return m_reminderTipsTV;
+	}
 
+	public LinearLayout getRightFuncRegionLl()
+	{
+		return m_rightFuncRegionLl;
+	}
+
+	public ImageView getTakeMedicineReminderIV()
+	{
+		return m_takeMedicineReminderIV;
+	}
+
+	public TextView getMedicineReminderTimeTV()
+	{
+		return m_medicineReminderTimeTV;
+	}
+
+	public TextView getMedicineNameTV()
+	{
+		return m_medicineNameTV;
+	}
+
+	public TextView getRoseTV()
+	{
+		return m_roseTV;
+	}
+
+	public TextView getMedicineUnitTV()
+	{
+		return m_medicineUnitTV;
+	}
+
+	public CheckBox getTakeMedicineCBox()
+	{
+		return m_takeMedicineCBox;
+	}
+
+	public TextView getMedicineReminderTV()
+	{
+		return m_medicineReminderTV;
+	}
+
+	public LinearLayout getFuncRegionLL()
+	{
+		return m_funcRegionLL;
+	}
+
+	public MainMsgHandler getMainMsgHandler()
+	{
+		return m_mainMsgHandler;
+	}
+
+	public ViewFlipper getImgsDisplayVF()
+	{
+		return m_imgsDisplayVF;
+	}
+
+	public LinearLayout getMedicineReminderRegionLL()
+	{
+		return m_medicineReminderRegionLL;
+	}
+
+	public ImageView getMedicineReminderIV()
+	{
+		return m_medicineReminderIV;
+	}
 }

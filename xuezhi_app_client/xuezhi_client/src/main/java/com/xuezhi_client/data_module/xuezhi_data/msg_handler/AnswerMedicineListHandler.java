@@ -31,7 +31,7 @@ public class AnswerMedicineListHandler extends IResponseListener
 	{
 		try
 		{
-			DMedicineList medicalList = DBusinessData.GetInstance().getMedicalList();
+			DMedicineList medicalList = DBusinessData.GetInstance().getMedicineList();
 			medicalList.serialization(response);
 		}
 		catch (JsonSerializationException e)

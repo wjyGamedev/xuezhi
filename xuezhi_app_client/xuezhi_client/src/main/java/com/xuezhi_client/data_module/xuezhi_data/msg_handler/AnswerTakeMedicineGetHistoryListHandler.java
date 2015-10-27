@@ -31,7 +31,7 @@ public class AnswerTakeMedicineGetHistoryListHandler extends IResponseListener
 	{
 		try
 		{
-			DTakeMedicineList medicalHistoryList = DBusinessData.GetInstance().getMedicalHistoryList();
+			DTakeMedicineList medicalHistoryList = DBusinessData.GetInstance().getTakeMedicineHistoryList();
 			medicalHistoryList.serialization(response);
 		}
 		catch (JSONException e)

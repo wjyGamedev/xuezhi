@@ -35,12 +35,12 @@ public class DBusinessData
 	private Object           m_syncMedicineBoxList = new Object();
 
 	//03. 用药提醒
-	private DMedicinePromptList m_medicalPromptList     = new DMedicinePromptList();
+	private DMedicinePromptList m_medicinePromptList    = new DMedicinePromptList();
 	private Object              m_syncMedicalPromptList = new Object();
 
 	//04. 用药记录
-	private DTakeMedicineList m_medicalHistoryList     = new DTakeMedicineList();
-	private Object            m_syncMedicalHistoryList = new Object();
+	private DTakeMedicineList m_takeMedicineHistoryList = new DTakeMedicineList();
+	private Object            m_syncMedicalHistoryList  = new Object();
 
 	//05. 化验检查列表
 	private DAssayDetectionList m_assayDetectionList     = new DAssayDetectionList();
@@ -74,7 +74,7 @@ public class DBusinessData
 	}
 
 	//01. 药品列表
-	public DMedicineList getMedicalList()
+	public DMedicineList getMedicineList()
 	{
 		synchronized (m_syncMedicalList)
 		{
@@ -124,19 +124,19 @@ public class DBusinessData
 	}
 
 	//03. 用药记录
-	public DTakeMedicineList getMedicalHistoryList()
+	public DTakeMedicineList getTakeMedicineHistoryList()
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
-			return m_medicalHistoryList;
+			return m_takeMedicineHistoryList;
 		}
 	}
 
-	public void setMedicalHistoryList(DTakeMedicineList medicalHistoryList)
+	public void setTakeMedicineHistoryList(DTakeMedicineList takeMedicineHistoryList)
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
-			m_medicalHistoryList = medicalHistoryList;
+			m_takeMedicineHistoryList = takeMedicineHistoryList;
 		}
 	}
 
@@ -144,24 +144,24 @@ public class DBusinessData
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
-			return m_medicalHistoryList.serialization(response);
+			return m_takeMedicineHistoryList.serialization(response);
 		}
 	}
 
 	//04. 用药提醒
-	public DMedicinePromptList getMedicalPromptList()
+	public DMedicinePromptList getMedicinePromptList()
 	{
 		synchronized (m_syncMedicalPromptList)
 		{
-			return m_medicalPromptList;
+			return m_medicinePromptList;
 		}
 	}
 
-	public void setMedicalPromptList(DMedicinePromptList medicalPromptList)
+	public void setMedicinePromptList(DMedicinePromptList medicinePromptList)
 	{
 		synchronized (m_syncMedicalPromptList)
 		{
-			m_medicalPromptList = medicalPromptList;
+			m_medicinePromptList = medicinePromptList;
 		}
 	}
 
@@ -169,7 +169,7 @@ public class DBusinessData
 	{
 		synchronized (m_syncMedicalHistoryList)
 		{
-			return m_medicalPromptList.serialization(response);
+			return m_medicinePromptList.serialization(response);
 		}
 	}
 

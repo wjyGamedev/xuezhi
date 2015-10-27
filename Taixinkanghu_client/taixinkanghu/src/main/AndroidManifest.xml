@@ -23,12 +23,23 @@
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
 
-		<!-- 网络消息处理-->
-		<!--<service-->
-			<!--android:name="com.taixinkanghu_client.net.NetService"-->
-			<!--android:enabled="true"-->
-			<!--android:exported="true">-->
-		<!--</service>-->
+		<!-- 友盟自动更新-->
+		<service
+			android:name="com.umeng.update.net.DownloadingService"
+			android:process=":DownloadingService">
+		</service>
+		<activity
+			android:name="com.umeng.update.UpdateDialogActivity"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+		</activity>
+
+		<!-- 友盟APPKEY,渠道tag-->
+		<meta-data
+			android:name="UMENG_APPKEY"
+			android:value="561f227067e58e17ea001a2e"/>
+		<meta-data
+			android:name="UMENG_CHANNEL"
+			android:value="anzhuoshichang"/>
 
 		<!-- 欢迎界面 -->
 		<activity

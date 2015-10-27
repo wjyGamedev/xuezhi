@@ -126,7 +126,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 
-		DMedicine medical = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
+		DMedicine medical = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicalID);
 		if (medical == null)
 		{
 			TipsDialog.GetInstance().setMsg("Input medicalID is invalid![medicalID:=" + medicalID + "]", activity);

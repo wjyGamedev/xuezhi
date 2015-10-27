@@ -31,8 +31,8 @@ import java.util.Calendar;
 
 public class DTakeMedicinePerMonth
 {
-	private Calendar                 m_currCalendar            = Calendar.getInstance();
-	private ArrayList<DTakeMedicine> m_medicalHistoryPerMonths = new ArrayList<>();
+	private Calendar                 m_currCalendar  = Calendar.getInstance();
+	private ArrayList<DTakeMedicine> m_takeMedicines = new ArrayList<>();
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -66,7 +66,7 @@ public class DTakeMedicinePerMonth
 			medicalHistoryPerMonth = new DTakeMedicine();
 			medicalHistoryPerMonth.serialization(jsonObject);
 
-			m_medicalHistoryPerMonths.add(medicalHistoryPerMonth);
+			m_takeMedicines.add(medicalHistoryPerMonth);
 		}
 		return true;
 
@@ -74,7 +74,7 @@ public class DTakeMedicinePerMonth
 
 	private void clearup()
 	{
-		m_medicalHistoryPerMonths.clear();
+		m_takeMedicines.clear();
 	}
 
 	public Calendar getCurrCalendar()
@@ -82,8 +82,8 @@ public class DTakeMedicinePerMonth
 		return m_currCalendar;
 	}
 
-	public ArrayList<DTakeMedicine> getMedicalHistoryPerMonths()
+	public ArrayList<DTakeMedicine> getTakeMedicines()
 	{
-		return m_medicalHistoryPerMonths;
+		return m_takeMedicines;
 	}
 }

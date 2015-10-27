@@ -19,6 +19,7 @@ import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.net.config.MedicineBoxConfig;
+import com.xuezhi_client.util.LogicalUtil;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import org.json.JSONException;
@@ -37,10 +38,10 @@ public class DMedicineBox
 	private double m_waringNum = 0.0f;    //库存警告
 	private double m_remianNum = 0.0f;    //剩余存量
 
-	private Calendar m_addCalendar     = null;    //添加时间
-	private boolean m_medicalReminderState = false;    //药品警报状态，true开启，false关闭
-	private Calendar m_warningCalendar = null;    //预警时间
-
+	private Calendar m_addCalendar          = null;    //添加时间
+	private boolean  m_medicalReminderState = false;    //药品警报状态，true开启，false关闭
+	private Calendar m_warningTime          = Calendar.getInstance();//预警时间
+	private Calendar m_exhaustTime = Calendar.getInstance();//用尽时间
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -77,69 +78,30 @@ public class DMedicineBox
 
 	private void postHandler()
 	{
-		double amountPerTime = 0f; //每次用量
-		DMedicine medical = DBusinessData.GetInstance().getMedicalList().getMedicalByID(m_MID);
+		double    amountPerTime = 0f; //每次用量
+		DMedicine medical       = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_MID);
 		if (medical == null)
 		{
-			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:="+m_MID+"]");
+			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_MID + "]");
 		}
 
 		amountPerTime = medical.getRose();
 		if (amountPerTime == 0)
 		{
-			throw new JsonSerializationException("amountPerTime == 0![m_MID:="+m_MID+"]");
+			throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_MID + "]");
 		}
 
+		//01. m_warningTime
 		double   deltaValue = m_remianNum - m_waringNum;
-		Calendar today      = Calendar.getInstance();
-		m_warningCalendar = Calendar.getInstance();
-		if (deltaValue <= 0)
-		{
-			m_warningCalendar.setTime(today.getTime());
-		}
+		Calendar resultTime = Calendar.getInstance();
+		resultTime = LogicalUtil.getExhaustTime(amountPerTime, deltaValue);
+		m_warningTime = resultTime;
 
-		int remainDays = (int)Math.floor(deltaValue / amountPerTime);
-		int todayYear  = today.get(Calendar.YEAR);
-		int todayMonth = today.get(Calendar.MONTH);
-		int todayDay   = today.get(Calendar.DAY_OF_MONTH);
-		int maxMonths  = today.getActualMaximum(Calendar.MONTH);
-		int maxDays    = 0;
-
-		Calendar tmpCalendar = Calendar.getInstance();
-		int      beginYear   = todayYear;
-		int      beginMonth  = todayMonth;
-		int      beginDay    = todayDay;
-		for (int index = 0; index < remainDays; ++index)
-		{
-			//今天
-			if (index == 0)
-			{
-				tmpCalendar.set(todayYear, todayMonth, todayDay);
-				continue;
-			}
-
-			maxDays = tmpCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-			if (beginDay >= maxDays)
-			{
-				beginDay = 1;
-				if (beginMonth >= maxMonths)
-				{
-					beginMonth = 1;
-					beginYear++;
-				}
-				else
-				{
-					beginMonth++;
-				}
-			}
-			else
-			{
-				beginDay++;
-			}
-
-			tmpCalendar.set(beginYear, beginMonth, beginDay);
-		}
-		m_warningCalendar.setTime(tmpCalendar.getTime());
+		//02. m_exhaustTime
+		deltaValue = m_remianNum;
+		resultTime = Calendar.getInstance();
+		resultTime = LogicalUtil.getExhaustTime(amountPerTime, deltaValue);
+		m_exhaustTime = resultTime;
 		return;
 	}
 
@@ -179,8 +141,13 @@ public class DMedicineBox
 		return m_medicalReminderState;
 	}
 
-	public Calendar getWarningCalendar()
+	public Calendar getWarningTime()
 	{
-		return m_warningCalendar;
+		return m_warningTime;
+	}
+
+	public Calendar getExhaustTime()
+	{
+		return m_exhaustTime;
 	}
 }

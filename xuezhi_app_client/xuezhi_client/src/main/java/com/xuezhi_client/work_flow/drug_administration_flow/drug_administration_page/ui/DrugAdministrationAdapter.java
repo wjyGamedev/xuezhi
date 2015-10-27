@@ -40,7 +40,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 	public int getCount()
 	{
 		m_medicalStockList = DBusinessData.GetInstance().getMedicineBoxList();
-		ArrayList<DMedicineBox> medicalStocks = m_medicalStockList.getMedicalStocks();
+		ArrayList<DMedicineBox> medicalStocks = m_medicalStockList.getMedicineBoxs();
 		if (medicalStocks == null || medicalStocks.isEmpty())
 			return 0;
 
@@ -99,7 +99,7 @@ public class DrugAdministrationAdapter extends IBaseAdapter
 		}
 
 
-		m_medicalStock = m_medicalStockList.getMedicalStocks();
+		m_medicalStock = m_medicalStockList.getMedicineBoxs();
 		viewHolder.initContent(m_medicalStock, position);
 		return convertView;
 	}
@@ -199,7 +199,7 @@ final class ViewHolder
 
 		DMedicineBox tmpMedicalStock = m_medicalStock.get(position);
 		int           medicalID       = tmpMedicalStock.getMID();
-		DMedicine tmpmedical      = DBusinessData.GetInstance().getMedicalList().getMedicalByID(medicalID);
+		DMedicine tmpmedical      = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicalID);
 
 		m_medicalStockID = tmpMedicalStock.getID();
 
@@ -225,7 +225,7 @@ final class ViewHolder
 			m_drugAddDateTV.setText(adddateDescription);
 		}
 
-		Calendar warningDate            = tmpMedicalStock.getWarningCalendar();
+		Calendar warningDate            = tmpMedicalStock.getWarningTime();
 		String   warningDateDescription = null;
 		if (warningDate != null)
 		{

@@ -128,7 +128,7 @@ public class SelectMedicineFragment extends SelectListFragment
 				return;
 			}
 
-			ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+			ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicineList().getMedicals();
 			if (medicalArrayList == null)
 			{
 				TipsDialog.GetInstance().setMsg("medicalArrayList == null", getActivity());
@@ -158,7 +158,7 @@ public class SelectMedicineFragment extends SelectListFragment
 	 */
 	private void initBtns()
 	{
-		ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicalList().getMedicals();
+		ArrayList<DMedicine> medicalArrayList = DBusinessData.GetInstance().getMedicineList().getMedicals();
 
 		//01. 没有药品列表，则重新发送
 		if (medicalArrayList.isEmpty())

@@ -81,7 +81,7 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	{
 		m_selectMedicalStockID = getIntent().getStringExtra(DrugAdministrationConfig.SELECT_MEDICAL_STOCK_ID);
 		int selectMedicalStockID = Integer.valueOf(m_selectMedicalStockID);
-		DMedicineBox selectMedicalStock = DBusinessData.GetInstance().getMedicineBoxList().getMedicalByID(selectMedicalStockID);
+		DMedicineBox selectMedicalStock = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxByID(selectMedicalStockID);
 		if (selectMedicalStock == null)
 		{
 			TipsDialog.GetInstance().setMsg("selectMedicalStock == null!selectMedicalStock is null![m_selectMedicalStockID:=" + m_selectMedicalStockID + "]", this);
@@ -187,7 +187,7 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		double waringNum = Double.valueOf(drugwaringNum);
 
 		double    amountPerTime = 0f; //每次用量
-		DMedicine medical       = DBusinessData.GetInstance().getMedicalList().getMedicalByID(m_drugID);
+		DMedicine medical       = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
 		if (medical == null)
 		{
 			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_drugID + "]");

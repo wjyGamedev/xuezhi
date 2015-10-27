@@ -51,6 +51,7 @@
 					<include layout="@layout/item_dividing_line_horizontal"/>
 
 					<TextView
+						android:id="@+id/today_reminder_title_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="left"
@@ -70,108 +71,165 @@
 					</LinearLayout>
 
 					<LinearLayout
+						android:id="@+id/today_reminder_func_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="10dp"
 						android:orientation="horizontal">
 
 						<LinearLayout
+							android:id="@+id/left_func_region_ll"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:layout_marginLeft="30dp"
-							android:layout_weight="2"
+							android:layout_weight="1"
 							android:orientation="vertical">
 
-							<TextView
-								android:layout_width="wrap_content"
+							<LinearLayout
+								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
-								android:layout_gravity="center_horizontal"
-								android:layout_marginBottom="5dp"
-								android:text="@string/medication_time_title_text"
-								android:textSize="20sp"/>
+								android:orientation="vertical"
+								android:id="@+id/reminder_header_ll">
 
-							<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_gravity="center_horizontal"
-								android:layout_marginBottom="5dp"
-								android:text="@string/medication_name_title_text"
-								android:textSize="20sp"/>
 
-							<TextView
-								android:layout_width="wrap_content"
+								<LinearLayout
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:orientation="horizontal">
+
+									<TextView
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="center_horizontal"
+										android:layout_marginBottom="5dp"
+										android:text="@string/medication_time_title_text"
+										android:textSize="20sp"/>
+
+									<TextView
+										android:id="@+id/medicine_reminder_time_tv"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="left"
+										android:layout_marginBottom="5dp"
+										android:text="8:00"
+										android:textSize="20sp"/>
+
+
+								</LinearLayout>
+
+								<LinearLayout
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:orientation="horizontal">
+
+									<TextView
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="center_horizontal"
+										android:layout_marginBottom="5dp"
+										android:text="@string/medication_name_title_text"
+										android:textSize="20sp"/>
+
+									<TextView
+										android:id="@+id/medicine_name_tv"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="left"
+										android:layout_marginBottom="5dp"
+										android:text="弹性酶"
+										android:textSize="20sp"/>
+
+
+								</LinearLayout>
+
+								<LinearLayout
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:orientation="horizontal">
+
+									<TextView
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="center_horizontal"
+										android:text="@string/medication_dose_title_text"
+										android:textSize="20sp"/>
+
+									<TextView
+										android:id="@+id/rose_tv"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="left"
+										android:text="20"
+										android:textSize="20sp"/>
+
+									<TextView
+										android:id="@+id/medicine_unit_tv"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:layout_gravity="left"
+										android:text="mg"
+										android:textSize="20sp"/>
+
+
+								</LinearLayout>
+
+								<LinearLayout
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:orientation="horizontal">
+
+									<CheckBox
+										android:id="@+id/take_medicine_cbox"
+										android:layout_width="80dp"
+										android:layout_height="30dp"
+										android:layout_gravity="center_horizontal"
+										android:layout_marginBottom="10dp"
+										android:layout_marginTop="10dp"
+										android:background="@drawable/bg_main_page_radio_btn_take_medicine_state"
+										android:button="@null"
+										android:gravity="center"
+										android:text="@string/take_medicine_wait"
+										android:textColor="@color/white"
+										android:textSize="20sp"/>
+
+								</LinearLayout>
+							</LinearLayout>
+
+							<LinearLayout
+								android:id="@+id/reminder_bottom_tips_ll"
+								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
-								android:layout_gravity="center_horizontal"
-								android:text="@string/medication_dose_title_text"
-								android:textSize="20sp"/>
+								android:orientation="horizontal">
+
+								<TextView
+									android:id="@+id/reminder_tips_tv"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:layout_gravity="center_horizontal"
+									android:text="@string/take_medication_reminder_conent_none"
+									android:textSize="20sp"/>
+
+							</LinearLayout>
+
 
 						</LinearLayout>
 
 						<LinearLayout
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:layout_marginRight="30dp"
-							android:layout_weight="3"
-							android:orientation="vertical">
+							android:id="@+id/right_func_region_ll"
+							android:layout_width="44dp"
+							android:layout_height="match_parent"
+							android:orientation="horizontal">
 
-							<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_gravity="left"
-								android:layout_marginBottom="5dp"
-								android:text="8:00"
-								android:textSize="20sp"
-								android:id="@+id/medicine_reminder_time_tv"/>
+							<ImageView
+								android:layout_width="20dp"
+								android:layout_height="20dp"
+								android:layout_gravity="center"
+								android:background="@drawable/img_right"
+								android:id="@+id/take_medicine_reminder_iv"/>
 
-							<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_gravity="left"
-								android:layout_marginBottom="5dp"
-								android:text="弹性酶"
-								android:textSize="20sp"
-								android:id="@+id/medicine_name_tv"/>
-
-							<LinearLayout
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content">
-
-								<TextView
-									android:layout_width="wrap_content"
-									android:layout_height="wrap_content"
-									android:layout_gravity="left"
-									android:text="20"
-									android:textSize="20sp"
-									android:id="@+id/rose_tv"/>
-
-								<TextView
-									android:layout_width="wrap_content"
-									android:layout_height="wrap_content"
-									android:layout_gravity="left"
-									android:text="mg"
-									android:textSize="20sp"
-									android:id="@+id/medicine_unit_tv"/>
-
-
-							</LinearLayout>
 
 						</LinearLayout>
 
 					</LinearLayout>
-
-					<CheckBox
-						android:layout_width="80dp"
-						android:layout_height="30dp"
-						android:layout_gravity="center_horizontal"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
-						android:background="@drawable/bg_main_page_radio_btn_take_medicine_state"
-						android:gravity="center"
-						android:button="@null"
-						android:text="@string/have_been_taken_btn_text"
-						android:textColor="@color/white"
-						android:textSize="20sp"
-						android:id="@+id/take_medicine_cbox"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -194,21 +252,24 @@
 							android:layout_marginBottom="10dp"
 							android:layout_marginLeft="15dp"
 							android:layout_marginRight="15dp"
-							android:layout_marginTop="10dp">
+							android:layout_marginTop="10dp"
+							android:id="@+id/medicine_reminder_region_ll">
 
 							<TextView
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
-								android:layout_weight="1"
-								android:text="@string/no_need_to_buy_hint_text"
 								android:layout_gravity="left"
-								android:textSize="20sp"/>
+								android:layout_weight="1"
+								android:text="@string/medicine_not_waring_content"
+								android:textSize="20sp"
+								android:id="@+id/medicine_reminder_tv"/>
 
 							<ImageView
 								android:layout_width="20dp"
 								android:layout_height="20dp"
 								android:layout_gravity="center"
-								android:background="@drawable/img_right"/>
+								android:background="@drawable/img_right"
+								android:id="@+id/medicine_reminder_iv"/>
 
 						</LinearLayout>
 

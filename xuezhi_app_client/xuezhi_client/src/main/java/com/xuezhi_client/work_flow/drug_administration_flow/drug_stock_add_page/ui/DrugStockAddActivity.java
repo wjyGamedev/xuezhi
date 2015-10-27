@@ -144,7 +144,7 @@ public class DrugStockAddActivity extends BaseActivity
 		double waringNum = Double.valueOf(drugwaringNum);
 
 		double    amountPerTime = 0f; //每次用量
-		DMedicine medical       = DBusinessData.GetInstance().getMedicalList().getMedicalByID(m_drugID);
+		DMedicine medical       = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
 		if (medical == null)
 		{
 			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_drugID + "]");

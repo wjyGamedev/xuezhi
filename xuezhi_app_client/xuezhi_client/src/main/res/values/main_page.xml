@@ -15,17 +15,32 @@
 
 	<!--main_page-->
 	<string name="main_page_title_text">血脂APP</string>
-	<string name="today_remind_title_text">今日提醒</string>
 	<string name="medication_time_title_text">用药时间：</string>
 	<string name="medication_name_title_text">用药名称：</string>
 	<string name="medication_dose_title_text">用药剂量：</string>
-	<string name="have_been_taken_btn_text">已服用</string>
-	<string name="no_need_to_buy_hint_text">当前药品充足，无需购买</string>
+
 	<string name="assay_detection_btn_text">化验检测</string>
 	<string name="medication_reminder_btn_text">用药提醒</string>
 	<string name="drug_administration_btn_text">我的药箱</string>
 	<string name="calendar_btn_text">日历</string>
 	<string name="confirm_btn_text">确定</string>
+
+	<string name="take_medicine_reminder_content_finished">再接再厉，请保持继续。</string>
+	<string name="take_medication_reminder_conent_none">请点击该区域，添加用药提醒。</string>
+	<string name="today_remind_title_text">今日提醒</string>
+	<string name="today_remind_title_no_tips">今日无提醒</string>
+	<string name="today_remind_title_finished_tips">今日用药已完成</string>
+
+	<string name="take_medicine_finished">已服用</string>
+	<string name="take_medicine_wait">未服用</string>
+
+
+	<string name="medicine_not_waring_content">当前药品充足，无需购买</string>
+	<!-- 血脂康等5种药品，将于2015年7月10日用尽。-->
+	<string name="medicine_waring_content_01">等</string>
+	<string name="medicine_waring_content_02">种药品，将于</string>
+	<string name="medicine_waring_content_03">用尽。</string>
+	<string name="medicine_waring_content_04">将于</string>
 
 	<!--main_page_bottom_radio_button-->
 	<string name="main_page_radio_button_home">首页</string>
