@@ -18,6 +18,7 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.work_flow.main_page.msg_handler.MainMsgHandler;
+import com.umeng.update.UmengUpdateAgent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
+		initUmengUpdate();
 	}
 
 	@Override
@@ -174,6 +176,12 @@ public class MainActivity extends BaseActivity
 		m_popupMenu.inflate(R.menu.main_personal_popup_menu);
 		m_popupMenu.setOnMenuItemClickListener(m_handleMenuItemClickEvent);
 
+	}
+
+	private void initUmengUpdate()
+	{
+		UmengUpdateAgent.update(this);
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
 	}
 
 	private void updateContent()

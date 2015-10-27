@@ -22,7 +22,6 @@ import com.module.util.timer.TimerTaskWrapper;
 import com.taixinkanghu.hiworld.taixinkanghu_client.R;
 import com.taixinkanghu_client.work_flow.main_page.ui.MainActivity;
 import com.taixinkanghu_client.work_flow.welcome.msg_handler.WelcomeMsgHandler;
-import com.umeng.update.UmengUpdateAgent;
 
 public class WelcomeActivity extends BaseActivity
 {
@@ -40,7 +39,6 @@ public class WelcomeActivity extends BaseActivity
 		setContentView(R.layout.activity_welcome);
 
 		initWaitAction();
-		initUmengUpdate();
 	}
 
 	private void initWaitAction()
@@ -53,12 +51,6 @@ public class WelcomeActivity extends BaseActivity
 		m_welcomeMsgHandler.requestHospitalList();
 		m_welcomeMsgHandler.requestDepartmentList();
 
-	}
-
-	private void initUmengUpdate()
-	{
-		UmengUpdateAgent.update(this);
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
 	}
 
 	/**
