@@ -14,7 +14,7 @@
 	</style>
 
 	<!--main_page-->
-	<string name="main_page_title_text">血脂APP</string>
+	<string name="main_page_title_text">血脂时间</string>
 	<string name="medication_time_title_text">用药时间：</string>
 	<string name="medication_name_title_text">用药名称：</string>
 	<string name="medication_dose_title_text">用药剂量：</string>

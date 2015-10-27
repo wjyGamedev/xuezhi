@@ -85,7 +85,7 @@ public class DMedicineBox
 			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_MID + "]");
 		}
 
-		amountPerTime = medical.getRose();
+		amountPerTime = medical.getDose();
 		if (amountPerTime == 0)
 		{
 			throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_MID + "]");

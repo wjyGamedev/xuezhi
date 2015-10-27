@@ -53,7 +53,7 @@ public class DMedicine
 		return m_MUID;
 	}
 
-	public double getRose()
+	public double getDose()
 	{
 		return m_rose;
 	}
