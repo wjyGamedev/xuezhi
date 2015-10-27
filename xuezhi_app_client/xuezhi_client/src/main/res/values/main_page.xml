@@ -25,8 +25,8 @@
 	<string name="calendar_btn_text">日历</string>
 	<string name="confirm_btn_text">确定</string>
 
-	<string name="take_medicine_reminder_content_finished">再接再厉，请保持继续。</string>
-	<string name="take_medication_reminder_conent_none">请点击该区域，添加用药提醒。</string>
+	<string name="take_medicine_reminder_content_finished">再接再厉，请保持继续</string>
+	<string name="take_medication_reminder_conent_none">请点击该区域，添加用药提醒</string>
 	<string name="today_remind_title_text">今日提醒</string>
 	<string name="today_remind_title_no_tips">今日无提醒</string>
 	<string name="today_remind_title_finished_tips">今日用药已完成</string>
