@@ -20,6 +20,7 @@
 			android:id="@+id/imgs_display_vf"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
+
 	</LinearLayout>
 
 	<!--主要功能按钮-->

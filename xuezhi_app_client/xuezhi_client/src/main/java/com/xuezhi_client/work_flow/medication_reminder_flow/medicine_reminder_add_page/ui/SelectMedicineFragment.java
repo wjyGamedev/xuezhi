@@ -18,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -203,7 +204,9 @@ public class SelectMedicineFragment extends SelectListFragment
 				//				int height = metric.heightPixels; // 屏幕高度（像素）
 
 				btn.setWidth(windowWidth / 2);
+				btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 				m_buttons.add(btn);
+
 
 				//设置它的行和列
 				GridLayout.Spec rowSpec = GridLayout.spec(indexRow);

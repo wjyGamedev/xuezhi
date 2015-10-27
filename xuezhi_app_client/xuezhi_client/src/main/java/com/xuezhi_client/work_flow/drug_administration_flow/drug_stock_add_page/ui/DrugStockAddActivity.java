@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
@@ -16,6 +15,7 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.util.LogicalUtil;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler.DrugStockAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -66,7 +66,7 @@ public class DrugStockAddActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
-		//		initWaitAction();
+
 	}
 
 	/**
@@ -99,8 +99,7 @@ public class DrugStockAddActivity extends BaseActivity
 			return;
 		if (inspection_data())
 		{
-			String warningDate = calculateRunOutData();
-			m_drugRunOutTV.setText(warningDate);
+			m_drugRunOutTV.setText(calculateRunOutData());
 		}
 
 		return;
@@ -113,8 +112,7 @@ public class DrugStockAddActivity extends BaseActivity
 			return;
 		if (inspection_data())
 		{
-			String warningDate = calculateRunOutData();
-			m_drugRunOutTV.setText(warningDate);
+			m_drugRunOutTV.setText(calculateRunOutData());
 		}
 
 		return;
@@ -131,11 +129,14 @@ public class DrugStockAddActivity extends BaseActivity
 			return false;
 		if (m_drugID == DataConfig.DEFAULT_ID)
 			return false;
+
 		return true;
 	}
 
 	public String calculateRunOutData()
 	{
+		DMedicine drug          = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
+		double    amountPerTime = drug.getDose();
 
 		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
 		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());
@@ -143,69 +144,10 @@ public class DrugStockAddActivity extends BaseActivity
 		double remianNum = Double.valueOf(drugStockNum);
 		double waringNum = Double.valueOf(drugwaringNum);
 
-		double    amountPerTime = 0f; //每次用量
-		DMedicine medical       = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
-		if (medical == null)
-		{
-			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_drugID + "]");
-		}
+		double reminderValue = remianNum - waringNum;
 
-		amountPerTime = medical.getRose();
-		if (amountPerTime == 0)
-		{
-			throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_drugID + "]");
-		}
+		Calendar warningCalendar = LogicalUtil.getExhaustTime(amountPerTime, reminderValue);
 
-		double   deltaValue      = remianNum - waringNum;
-		Calendar today           = Calendar.getInstance();
-		Calendar warningCalendar = Calendar.getInstance();
-		if (deltaValue <= 0)
-		{
-			warningCalendar.setTime(today.getTime());
-		}
-
-		int remainDays = (int)Math.floor(deltaValue / amountPerTime);
-		int todayYear  = today.get(Calendar.YEAR);
-		int todayMonth = today.get(Calendar.MONTH);
-		int todayDay   = today.get(Calendar.DAY_OF_MONTH);
-		int maxMonths  = today.getActualMaximum(Calendar.MONTH);
-		int maxDays    = 0;
-
-		Calendar tmpCalendar = Calendar.getInstance();
-		int      beginYear   = todayYear;
-		int      beginMonth  = todayMonth;
-		int      beginDay    = todayDay;
-		for (int index = 0; index < remainDays; ++index)
-		{
-			//今天
-			if (index == 0)
-			{
-				tmpCalendar.set(todayYear, todayMonth, todayDay);
-				continue;
-			}
-
-			maxDays = tmpCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-			if (beginDay >= maxDays)
-			{
-				beginDay = 1;
-				if (beginMonth >= maxMonths)
-				{
-					beginMonth = 1;
-					beginYear++;
-				}
-				else
-				{
-					beginMonth++;
-				}
-			}
-			else
-			{
-				beginDay++;
-			}
-
-			tmpCalendar.set(beginYear, beginMonth, beginDay);
-		}
-		warningCalendar.setTime(tmpCalendar.getTime());
 		SimpleDateFormat sdf         = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 		String           warningDate = sdf.format(warningCalendar.getTime());
 		return warningDate;

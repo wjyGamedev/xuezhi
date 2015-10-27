@@ -76,7 +76,7 @@ public class DMedicineReminder
 
 		double waringNum  = medicineBox.getWaringNum();
 		double remianNum = medicineBox.getRemianNum();
-		double amountPerTime = medicine.getRose();
+		double amountPerTime = medicine.getDose();
 		Calendar resultTime = Calendar.getInstance();
 		resultTime = LogicalUtil.getExhaustTime(amountPerTime, (remianNum - waringNum));
 		m_waringTime = resultTime;
