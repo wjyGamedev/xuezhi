@@ -61,7 +61,7 @@ public class HomeTabFragment extends Fragment
 	@Bind (R.id.take_medicine_reminder_iv) ImageView    m_takeMedicineReminderIV = null;
 
 	@Bind (R.id.medicine_reminder_region_ll) LinearLayout m_medicineReminderRegionLL = null;
-	@Bind (R.id.medicine_reminder_iv)        ImageView    m_medicineReminderIV    = null;
+	@Bind (R.id.medicine_reminder_iv)        ImageView    m_medicineReminderIV       = null;
 
 
 	@Bind (R.id.medicine_reminder_time_tv) TextView m_medicineReminderTimeTV = null;
@@ -183,7 +183,6 @@ public class HomeTabFragment extends Fragment
 	}
 
 
-
 	/**
 	 * override func
 	 */
@@ -265,13 +264,17 @@ public class HomeTabFragment extends Fragment
 			imageView = new ImageView(this.getActivity());
 			imageView.setImageResource(imageIDList.get(index));
 			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-//			imageView.setOnClickListener(m_handleImageClickEvent);
+			//			imageView.setOnClickListener(m_handleImageClickEvent);
 			imageView.setTag(index);
 
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
 																				   LinearLayout.LayoutParams.MATCH_PARENT
 			);
-
+			//调节图片展示区的大小
+			Display display = getActivity().getWindowManager().getDefaultDisplay();
+			int iWidth = display.getWidth();
+			layoutParams.width = iWidth;
+			layoutParams.height = (int)(iWidth / 4.79);
 			m_imgsDisplayVF.addView(imageView, layoutParams);
 		}
 
@@ -300,8 +303,9 @@ public class HomeTabFragment extends Fragment
 
 		LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)m_imgsDisplayRegionLL.getLayoutParams();
 		params.width = iWidth;
-		params.height = iWidth * iImgHeight / iImgWidth;
-		m_imgsDisplayRegionLL.requestLayout();
+		params.height = (int)(iWidth / 4.79);
+		m_imgsDisplayRegionLL.setLayoutParams(params);
+		//		m_imgsDisplayRegionLL.requestLayout();
 
 		m_mainMsgHandler.updateHomeFragmentContent();
 	}
