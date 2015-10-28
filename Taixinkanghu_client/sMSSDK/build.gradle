@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 8
     buildToolsVersion '22.0.0'
     defaultConfig {
         minSdkVersion 14
@@ -15,16 +15,10 @@ android {
     }
     productFlavors {
     }
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro', 'proguard-rules-new.pro'
-        }
-    }
 }
 
 dependencies {
+    compile files('libs/SMSSDK-1.3.1.jar')
     compile files('libs/MobTools.jar')
-    compile files('libs/SMSSDK-1.2.2.jar')
+    compile files('libs/MobLogCollector.jar')
 }

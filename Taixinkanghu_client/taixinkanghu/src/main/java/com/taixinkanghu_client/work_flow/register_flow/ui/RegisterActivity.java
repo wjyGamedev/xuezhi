@@ -190,15 +190,21 @@ public class RegisterActivity extends BaseActivity
 		@Override
 		public void onTick(long millisUntilFinished)
 		{
-			m_verificationBtn.setEnabled(false);
-			m_verificationBtn.setText( millisUntilFinished/1000 + INFO_SECOND);
+			if (m_verificationBtn != null)
+			{
+				m_verificationBtn.setEnabled(false);
+				m_verificationBtn.setText( millisUntilFinished/1000 + INFO_SECOND);
+			}
 		}
 
 		@Override
 		public void onFinish()
 		{
-			m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);
-			m_verificationBtn.setEnabled(true);
+			if (m_verificationBtn != null)
+			{
+				m_verificationBtn.setText(INFO_VERIFICATION_CONTEXT);
+				m_verificationBtn.setEnabled(true);
+			}
 		}
 	}
 
@@ -261,4 +267,8 @@ public class RegisterActivity extends BaseActivity
 
 	}
 
+	public Button getVerificationBtn()
+	{
+		return m_verificationBtn;
+	}
 }

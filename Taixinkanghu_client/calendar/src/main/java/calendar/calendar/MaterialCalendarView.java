@@ -27,7 +27,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import calendar.CalendarDay;
 import calendar.CalendarUtils;
 import calendar.config.Config;
@@ -104,7 +103,6 @@ public class MaterialCalendarView extends FrameLayout
 	public MaterialCalendarView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
-		ButterKnife.bind(this);
 
 		setClipChildren(false);
 		setClipToPadding(false);

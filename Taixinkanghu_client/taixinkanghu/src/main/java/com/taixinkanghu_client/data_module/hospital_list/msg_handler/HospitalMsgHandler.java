@@ -21,9 +21,9 @@ import com.module.net.BaseMsgHandler;
 
 public class HospitalMsgHandler extends BaseMsgHandler
 {
-	private static HospitalMsgHandler s_hospitalMsgHandler = new HospitalMsgHandler();
-
 	private AnswerHospitalListHandler m_answerHospitalListHandler = new AnswerHospitalListHandler();
+
+	private static HospitalMsgHandler s_hospitalMsgHandler = new HospitalMsgHandler();
 
 	@Override
 	protected void init()

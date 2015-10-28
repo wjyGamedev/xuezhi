@@ -18,7 +18,7 @@ android {
 	}
 	buildTypes {
 		release {
-			minifyEnabled true
+			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'),
 					'proguard-rules.pro', 'proguard-rules-new.pro'
 		}
@@ -27,7 +27,6 @@ android {
 
 dependencies {
 	compile 'com.android.support:support-v4:22.2.0'
-	compile files('libs/butterknife-7.0.1.jar')
 }
 
 task sourcesJar(type: Jar) {

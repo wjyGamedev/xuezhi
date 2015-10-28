@@ -15,3 +15,21 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# This is a configuration file for ProGuard.
+# http://proguard.sourceforge.net/index.html#manual/usage.html
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-verbose
+
+# Optimization is turned off by default. Dex does not like code run
+# through the ProGuard optimize and preverify steps (and performs some
+# of these optimizations on its own).
+#-dontoptimize
+#-dontpreverify
+
+# If you want to enable optimization, you should include the
+# following:
+-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
+-optimizationpasses 5
+-allowaccessmodification
