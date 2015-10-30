@@ -24,12 +24,17 @@ import android.widget.TextView;
 import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DataConfig;
+import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePromptList;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -116,17 +121,19 @@ public class MedicineReminderAdapter extends IBaseAdapter
 final class ViewHolder
 {
 	//widget
-	@Bind (R.id.item_medicine_region_ll) LinearLayout m_itemMedicineRegionLL = null;
-	@Bind (R.id.reminder_time_tv) TextView m_reminderTimeTV = null;
-	@Bind (R.id.medicine_reminder_state_tv) TextView m_medicineReminderStateTV = null;
-	@Bind (R.id.medicine_name_tv) TextView m_medicineName = null;
-	@Bind (R.id.dose_tv) TextView m_doseTV = null;
+	@Bind (R.id.item_medicine_region_ll)    LinearLayout m_itemMedicineRegionLL    = null;
+	@Bind (R.id.reminder_time_tv)           TextView     m_reminderTimeTV          = null;
+	@Bind (R.id.medicine_reminder_state_tv) TextView     m_medicineReminderStateTV = null;
+	@Bind (R.id.medicine_name_tv)           TextView     m_medicineName            = null;
+	@Bind (R.id.dose_tv)                    TextView     m_doseTV                  = null;
+	@Bind (R.id.medicine_uint_tv)                    TextView     m_medicineUnit                  = null;
 
 	private View m_view = null;
 
 	//logical
 	private int m_medicalPromptID = DataConfig.DEFAULT_VALUE;
 
+	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
 	public ViewHolder(View view, int medicalPromptID)
 	{
@@ -144,10 +151,35 @@ final class ViewHolder
 			return;
 		}
 
+		Calendar takeCalendar = medicalPrompt.getTakeCalendar();
+		String hmDisplay = m_hmSDF.format(takeCalendar.getTime());
+		m_reminderTimeTV.setText(hmDisplay);
 
+		if (medicalPrompt.isValid())
+		{
+			m_medicineReminderStateTV.setText(R.string.medicine_reminder_add_open_content);
+		}
+		else
+		{
+			m_medicineReminderStateTV.setText(R.string.medicine_reminder_add_close_content);
+		}
+
+		int MID = medicalPrompt.getMID();
+		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(MID);
+		if (medicine != null)
+		{
+			m_medicineName.setText(medicine.getName());
+			DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicine.getMUID());
+			if (medicineUnit != null)
+			{
+				m_medicineUnit.setText(medicineUnit.getUnitName());
+			}
+		}
+
+		double dose = medicalPrompt.getDose();
+		m_doseTV.setText(String.valueOf(dose));
 
 	}
-
 
 
 }

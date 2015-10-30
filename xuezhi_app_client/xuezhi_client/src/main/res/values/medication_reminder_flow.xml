@@ -33,6 +33,11 @@
 	<string name="medicine_reminder_add_open_content">开启</string>
 	<string name="medicine_reminder_add_close_content">关闭</string>
 
+	<string name="medicine_reminder_add_success_tips">用药提醒保存成功</string>
+	<string name="medicine_reminder_add_to_medicinebox_tips">用药提醒保存成功,是否将用药添加到我的药箱中？</string>
+	<string name="medicine_reminder_add_medicinebox_content">我的药箱</string>
+	<string name="medicine_reminder_add_cancel_content">暂不添加</string>
+
 	<string name="medicine_reminder_add_select_medicine_tips">请选择药品</string>
 	<string name="medicine_reminder_add_medicine_uint_default">用药单位</string>
 

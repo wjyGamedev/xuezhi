@@ -18,5 +18,6 @@
 	<string name="medication_details_drug_name_title_text">用药名称：</string>
 	<string name="medication_details_temp_data_text">临时数据</string>
 	<string name="medication_details_drug_dosage_title_text">用药剂量：</string>
+	<string name="medication_details_medicine_unit">用药单位</string>
 
 </resources>

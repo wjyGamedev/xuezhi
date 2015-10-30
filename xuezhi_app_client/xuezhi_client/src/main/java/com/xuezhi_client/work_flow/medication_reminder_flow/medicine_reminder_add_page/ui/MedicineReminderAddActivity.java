@@ -14,6 +14,7 @@
 
 package com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -38,6 +39,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 public class MedicineReminderAddActivity extends BaseActivity
 {
@@ -56,22 +58,23 @@ public class MedicineReminderAddActivity extends BaseActivity
 	private BottomCommon m_bottomCommon = null;
 
 	//Literals
-	private String OPEN  = null;
-	private String CLOSE = null;
+	private String OPEN                      = null;
+	private String CLOSE                     = null;
 	private String ERROR_INPUT_REMINDER_TIME = null;
 	private String ERROR_INPUT_MEDICINE_NAME = null;
-	private String ERROR_INPUT_ROSE = null;
+	private String ERROR_INPUT_ROSE          = null;
 
 	//logical
 	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = new MedicineReminderAddMsgHandler(this);
 
-	private ClickSaveBtn m_clickSaveBtn = new ClickSaveBtn();
+	private ClickSaveBtn    m_clickSaveBtn    = new ClickSaveBtn();
+	private AddSuccessEvent m_addSuccessEvent = new AddSuccessEvent();
 
 	//date
-	private boolean  m_stateFlag     = false;    //开启状态。
-	private Calendar m_remainderTime = null;    //提醒时间
-	private int      m_medicineID    = DataConfig.DEFAULT_VALUE;    //药品ID
-	private double   m_rose          = 0f;    //用药剂量
+	private boolean         m_stateFlag       = false;    //开启状态。
+	private Calendar        m_remainderTime   = null;    //提醒时间
+	private int             m_medicineID      = DataConfig.DEFAULT_VALUE;    //药品ID
+	private double          m_dose            = 0f;    //用药剂量
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -83,18 +86,34 @@ public class MedicineReminderAddActivity extends BaseActivity
 		init();
 	}
 
+
+	class AddSuccessEvent implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			if (which == DialogInterface.BUTTON_POSITIVE)
+			{
+				m_medicineReminderAddMsgHandler.go2AddMedicine2BoxPage();
+			}
+			else
+			{
+				finish();
+			}
+		}
+	}
+
 	/**
 	 * widget:func
 	 */
-	@OnCheckedChanged (R.id.reminder_state_cb)
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+	@OnFocusChange (R.id.rose_tv)
+	public void leaveDoseEvent(View v, boolean hasFocus)
 	{
-		if (isChecked)
-			m_reminderStateCB.setText(OPEN);
-		else
-			m_reminderStateCB.setText(CLOSE);
+		if (hasFocus)
+			return;
 
-		setStateFlag(isChecked);
+		initDose();
+		return;
 	}
 
 	@OnClick (R.id.reminder_time_region_ll)
@@ -107,6 +126,19 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public void selectMedicine(View v)
 	{
 		m_medicineReminderAddMsgHandler.go2SelectMedicineFragment();
+	}
+
+	@OnCheckedChanged (R.id.reminder_state_cb)
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+	{
+		m_stateFlag = isChecked;
+
+		if (isChecked)
+			m_reminderStateCB.setText(OPEN);
+		else
+			m_reminderStateCB.setText(CLOSE);
+
+		setStateFlag(isChecked);
 	}
 
 	/**
@@ -128,6 +160,21 @@ public class MedicineReminderAddActivity extends BaseActivity
 		ERROR_INPUT_ROSE = getString(R.string.medicine_reminder_add_error_input_rose_time);
 	}
 
+	private void initDose()
+	{
+		String content = m_roseTV.getText().toString();
+		if (!TextUtils.isEmpty(content))
+		{
+			try
+			{
+				m_dose = Double.valueOf(content);
+			}
+			catch (NumberFormatException e)
+			{
+				m_dose = 0;
+			}
+		}
+	}
 	/**
 	 * overrider func
 	 */
@@ -139,12 +186,17 @@ public class MedicineReminderAddActivity extends BaseActivity
 			if (!check())
 				return;
 
+			if (!m_stateFlag)
+				m_stateFlag = m_reminderStateCB.isChecked();
+
+			initDose();
+
 			RequestMedicinePromptAddEvent event = new RequestMedicinePromptAddEvent();
 			event.setUID(DAccount.GetInstance().getId());
 			event.setMID(String.valueOf(m_medicineID));
 			event.setTime(m_remainderTime);
 			event.setValid(m_stateFlag);
-			event.setDose(m_rose);
+			event.setDose(m_dose);
 			event.setPrecaution(getPrecautionsTV().getText().toString());
 			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction(event);
 		}
@@ -213,14 +265,14 @@ public class MedicineReminderAddActivity extends BaseActivity
 		m_medicineID = medicineID;
 	}
 
-	public double getRose()
+	public double getDose()
 	{
-		return m_rose;
+		return m_dose;
 	}
 
-	public void setRose(double rose)
+	public void setDose(double dose)
 	{
-		m_rose = rose;
+		m_dose = dose;
 	}
 
 	public MedicineReminderAddMsgHandler getMedicineReminderAddMsgHandler()
@@ -254,5 +306,26 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public TextView getPrecautionsTV()
 	{
 		return m_precautionsTV;
+	}
+
+	/**
+	 * logical:func
+	 */
+	public void findInMedicineBoxAction()
+	{
+		String tips = getString(R.string.medicine_reminder_add_success_tips);
+		TipsDialog.GetInstance().setMsg(tips, this, m_addSuccessEvent);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
+	public void nothingInMedicineBoxAction()
+	{
+		String tips = getString(R.string.medicine_reminder_add_to_medicinebox_tips);
+		String add = getString(R.string.medicine_reminder_add_medicinebox_content);
+		String cancel = getString(R.string.medicine_reminder_add_cancel_content);
+		TipsDialog.GetInstance().setMsg(tips, this, add, m_addSuccessEvent, cancel, m_addSuccessEvent);
+		TipsDialog.GetInstance().show();
+		return;
 	}
 }

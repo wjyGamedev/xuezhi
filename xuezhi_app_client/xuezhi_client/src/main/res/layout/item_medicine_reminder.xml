@@ -113,6 +113,12 @@
 					android:textSize="16sp"
 					android:id="@+id/dose_tv"/>
 
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/medication_details_medicine_unit"
+					android:textSize="16sp"
+					android:id="@+id/medicine_uint_tv"/>
 			</LinearLayout>
 		</LinearLayout>
 

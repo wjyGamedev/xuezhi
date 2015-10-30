@@ -370,6 +370,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		else
 		{
 			medicineReminderTV.setText(R.string.medicine_not_waring_content);
+			medicineReminderIV.setVisibility(View.INVISIBLE);
 		}
 	}
 
