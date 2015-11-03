@@ -40,7 +40,7 @@
 	<string name="drug_stock_add_click_hint_2_text">您还没有登录</string>
 	<string name="drug_stock_add_click_hint_3_text">请填写药品存量</string>
 	<string name="drug_stock_add_click_hint_4_text">请填写药品警报存量</string>
-	<string name="drug_stock_add_click_hint_5_text">添加数量不能小于或等于警报数量</string>
+	<string name="drug_stock_add_click_hint_5_text">添加的当前药品存量不能小于或等于警报数量</string>
 
 	<style name="drug_stock_add_radio_button_style">
 		<item name="android:button">@null</item>

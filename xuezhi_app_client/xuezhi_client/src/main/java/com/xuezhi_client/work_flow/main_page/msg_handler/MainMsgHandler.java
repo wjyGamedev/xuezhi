@@ -52,7 +52,7 @@ import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuezhi_client.work_flow.main_page.ui.PersonalTabFragment;
 import com.xuezhi_client.work_flow.main_page.ui.ServiceTabFragment;
-import com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_page.ui.MedicationReminderActivity;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page.ui.MedicineReminderActivity;
 import com.xuezhi_client.work_flow.register_page.ui.RegisterActivity;
 import com.xuezhi_client.work_flow.risk_assessment_page.ui.RiskAssessmentActivity;
 import com.xuezhi_client.work_flow.user_protocal_page.ui.UserProtocalActivity;
@@ -616,7 +616,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	private void go2MedicationReminderPage()
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
-		mainActivity.startActivity(new Intent(mainActivity, MedicationReminderActivity.class));
+		mainActivity.startActivity(new Intent(mainActivity, MedicineReminderActivity.class));
 
 		return;
 	}

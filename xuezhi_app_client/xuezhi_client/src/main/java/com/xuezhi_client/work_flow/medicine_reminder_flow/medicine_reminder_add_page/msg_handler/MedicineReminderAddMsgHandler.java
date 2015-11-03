@@ -12,7 +12,7 @@
  * 2015/10/20		WangJY		1.0.0		create
  */
 
-package com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler;
+package com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -33,9 +33,9 @@ import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineProm
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptGetListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHChartFragment;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
-import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
-import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineFragment;
-import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineTimeFragment;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineFragment;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineTimeFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;

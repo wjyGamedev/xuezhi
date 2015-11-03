@@ -12,7 +12,7 @@
  * 2015/10/20		WangJY		1.0.0		create
  */
 
-package com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.ui;
+package com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui;
 
 
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.work_flow.medication_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.Calendar;

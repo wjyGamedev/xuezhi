@@ -12,7 +12,7 @@
  * 2015/10/20		WangJY		1.0.0		create
  */
 
-package com.xuezhi_client.work_flow.medication_reminder_flow.medication_reminder_page.ui;
+package com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -38,6 +38,7 @@ import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MedicineReminderAdapter extends IBaseAdapter
 {
@@ -78,6 +79,7 @@ public class MedicineReminderAdapter extends IBaseAdapter
 	@Override
 	public long getItemId(int position)
 	{
+		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 		if (m_medicalPromptList == null)
 			return 0;
 
@@ -100,11 +102,11 @@ public class MedicineReminderAdapter extends IBaseAdapter
 	{
 		ViewHolder viewHolder = null;
 
-		int medicalID = (int)getItemId(position);
+		int MPID = (int)getItemId(position);
 		if (convertView == null)
 		{
 			convertView = m_layoutInflater.inflate(R.layout.item_medicine_reminder, null);
-			viewHolder = new ViewHolder(convertView, medicalID);
+			viewHolder = new ViewHolder(convertView);
 			convertView.setTag(viewHolder);
 		}
 		else
@@ -112,8 +114,9 @@ public class MedicineReminderAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
-		DMedicinePrompt medicalPrompt = m_medicalPromptList.getMedicalPromptByID(medicalID);
-		viewHolder.initContent(medicalPrompt);
+		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
+		DMedicinePrompt medicalPrompt = m_medicalPromptList.getMedicalPromptByID(MPID);
+		viewHolder.initContent(medicalPrompt, MPID);
 		return convertView;
 	}
 }
@@ -126,24 +129,51 @@ final class ViewHolder
 	@Bind (R.id.medicine_reminder_state_tv) TextView     m_medicineReminderStateTV = null;
 	@Bind (R.id.medicine_name_tv)           TextView     m_medicineName            = null;
 	@Bind (R.id.dose_tv)                    TextView     m_doseTV                  = null;
-	@Bind (R.id.medicine_uint_tv)                    TextView     m_medicineUnit                  = null;
+	@Bind (R.id.medicine_uint_tv)           TextView     m_medicineUnit            = null;
 
 	private View m_view = null;
 
 	//logical
-	private int m_medicalPromptID = DataConfig.DEFAULT_VALUE;
+	private int m_MPID = DataConfig.DEFAULT_VALUE;
 
 	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
-	public ViewHolder(View view, int medicalPromptID)
+	public ViewHolder(View view)
 	{
 		m_view = view;
-		m_medicalPromptID = medicalPromptID;
 		ButterKnife.bind(this, m_view);
 	}
 
-	public void initContent(DMedicinePrompt medicalPrompt)
+	@OnClick (R.id.item_medicine_region_ll)
+	public void clickMedicineReminderItemRegion(View v)
 	{
+		MedicineReminderActivity activity = (MedicineReminderActivity)v.getContext();
+		if (activity == null)
+		{
+			return;
+		}
+
+		activity.getMedicationReminderMsgHandler().go2MedicineReminderSettingPage(m_MPID);
+
+	}
+
+	@OnClick (R.id.medicine_reminder_delete_btn)
+	public void clickMedicineReminderDeleteBtn(View v)
+	{
+		MedicineReminderActivity activity = (MedicineReminderActivity)v.getContext();
+		if (activity == null)
+		{
+			return;
+		}
+
+		activity.popDeleteDialog(m_MPID);
+
+	}
+
+
+	public void initContent(DMedicinePrompt medicalPrompt, int MPID)
+	{
+		m_MPID = MPID;
 		if (medicalPrompt == null)
 		{
 			TipsDialog.GetInstance().setMsg("input medicalPrompt == null");
@@ -152,7 +182,7 @@ final class ViewHolder
 		}
 
 		Calendar takeCalendar = medicalPrompt.getTakeCalendar();
-		String hmDisplay = m_hmSDF.format(takeCalendar.getTime());
+		String   hmDisplay    = m_hmSDF.format(takeCalendar.getTime());
 		m_reminderTimeTV.setText(hmDisplay);
 
 		if (medicalPrompt.isValid())
@@ -164,7 +194,7 @@ final class ViewHolder
 			m_medicineReminderStateTV.setText(R.string.medicine_reminder_add_close_content);
 		}
 
-		int MID = medicalPrompt.getMID();
+		int       MID      = medicalPrompt.getMID();
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(MID);
 		if (medicine != null)
 		{
