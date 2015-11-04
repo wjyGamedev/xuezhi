@@ -69,5 +69,8 @@
 	<string name="drug_administration_setting_click_hint_3_text">请填写药品存量</string>
 	<string name="drug_administration_setting_click_hint_4_text">请填写药品警报存量</string>
 	<string name="drug_administration_setting_click_hint_5_text">添加数量不能小于或等于警报数量</string>
+	<string name="drug_administration_setting_click_hint_6_text">药品信息没有更改，是否继续修改</string>
+	<string name="drug_administration_setting_click_dialog_positive_text">继续</string>
+	<string name="drug_administration_setting_click_dialog_negative_text">取消</string>
 
 </resources>

@@ -7,7 +7,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
@@ -42,13 +41,13 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 	private String m_selectMedicalStockID = null;
 
-	private int      m_drugID            = DataConfig.DEFAULT_ID;
-	private double   m_drugStockNum      = 0.0f;
-	private double   m_drugAlertNum      = 0.0f;
-	private boolean  m_drugReminderState = false;
-	private Calendar m_addCalendar       = null;
-	private Calendar m_alertCalendar     = null;
-	private int      m_medicalUnitID     = DataConfig.DEFAULT_ID;
+	private int      m_drugID               = DataConfig.DEFAULT_ID;
+	private double   m_oldDrugStockNum      = 0.0f;
+	private double   m_oldDrugAlertNum      = 0.0f;
+	private boolean  m_oldDrugReminderState = false;
+	private Calendar m_addCalendar          = null;
+	private Calendar m_alertCalendar        = null;
+	private int      m_medicalUnitID        = DataConfig.DEFAULT_ID;
 
 	@Bind (R.id.drug_setting_reminder_state_cb)  CheckBox m_drugReminderStateCB = null;
 	@Bind (R.id.drug_stock_setting_drug_name_tv) TextView m_drugNameTV          = null;
@@ -81,11 +80,13 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	private void init()
 	{
 		m_selectMedicalStockID = getIntent().getStringExtra(DrugAdministrationConfig.SELECT_MEDICAL_STOCK_ID);
-		int selectMedicalStockID = Integer.valueOf(m_selectMedicalStockID);
-		DMedicineBox selectMedicalStock = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxByID(selectMedicalStockID);
+		int          selectMedicalStockID = Integer.valueOf(m_selectMedicalStockID);
+		DMedicineBox selectMedicalStock   = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxByID(selectMedicalStockID);
 		if (selectMedicalStock == null)
 		{
-			TipsDialog.GetInstance().setMsg("selectMedicalStock == null!selectMedicalStock is null![m_selectMedicalStockID:=" + m_selectMedicalStockID + "]", this);
+			TipsDialog.GetInstance().setMsg("selectMedicalStock == null!selectMedicalStock is null![m_selectMedicalStockID:=" +
+													m_selectMedicalStockID + "]", this
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -104,7 +105,7 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	@Override
 	protected void onStart()
 	{
-		m_drugAdministrationSettingMsgHandler.DrugSettingPagefillingContent();
+		m_drugAdministrationSettingMsgHandler.DrugSettingPageFillingContent();
 		super.onStart();
 	}
 
@@ -133,7 +134,6 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 			setDrugSettingReminderState(isChecked);
 		}
 	}
-
 
 
 	@OnFocusChange (R.id.drug_setting_drug_stock_num_et)
@@ -178,10 +178,10 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 	public String calculateRunOutData()
 	{
-		DMedicine drug = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
-		double amountPerTime = drug.getDose();
+		DMedicine drug          = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
+		double    amountPerTime = drug.getDose();
 
-		String drugStockNum = String.valueOf(m_drugStockNumET.getText());
+		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
 		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());
 
 		double remianNum = Double.valueOf(drugStockNum);
@@ -191,8 +191,8 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 		Calendar warningCalendar = LogicalUtil.getExhaustTime(amountPerTime, reminderValue);
 
-		SimpleDateFormat sdf = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
-		String warningDate = sdf.format(warningCalendar.getTime());
+		SimpleDateFormat sdf         = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+		String           warningDate = sdf.format(warningCalendar.getTime());
 		return warningDate;
 	}
 
@@ -277,34 +277,49 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		m_drugID = drugID;
 	}
 
-	public String getDrugStockNum()
+	public double getOldDrugStockNum()
+	{
+		return m_oldDrugStockNum;
+	}
+
+	public void setOldDrugStockNum(double oldDrugStockNum)
+	{
+		m_oldDrugStockNum = oldDrugStockNum;
+	}
+
+	public String getNewDrugStockNum()
 	{
 		return m_drugStockNumET.getText().toString();
 	}
 
-	public void setDrugStockNum(double drugStockNum)
+	public double getOldDrugAlertNum()
 	{
-		m_drugStockNum = drugStockNum;
+		return m_oldDrugAlertNum;
 	}
 
-	public String getDrugAlertNum()
+	public void setOldDrugAlertNum(double oldDrugAlertNum)
+	{
+		m_oldDrugAlertNum = oldDrugAlertNum;
+	}
+
+	public String getNewDrugAlertNum()
 	{
 		return m_drugAlertNumET.getText().toString();
 	}
 
-	public void setDrugAlertNum(double drugAlertNum)
+	public boolean isOldDrugReminderState()
 	{
-		m_drugAlertNum = drugAlertNum;
+		return m_oldDrugReminderState;
 	}
 
-	public boolean isDrugReminderState()
+	public void setOldDrugReminderState(boolean oldDrugReminderState)
 	{
-		return m_drugReminderState;
+		m_oldDrugReminderState = oldDrugReminderState;
 	}
 
-	public void setDrugReminderState(boolean drugReminderState)
+	public boolean isNewDrugReminderState()
 	{
-		m_drugReminderState = drugReminderState;
+		return m_drugReminderStateCB.isChecked();
 	}
 
 	public Calendar getAddCalendar()
