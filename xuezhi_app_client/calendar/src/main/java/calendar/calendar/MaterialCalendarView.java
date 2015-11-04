@@ -144,92 +144,9 @@ public class MaterialCalendarView extends FrameLayout
 		@Override
 		public void onDateChanged(CalendarDay date)
 		{
-			boolean bFlag = false;
-
-			//01. 在已经选择范围之内，则更改类型
-			if (m_monthAdapter.isInRegion(date))
+			if (m_dateChangedListener != null)
 			{
-				m_monthAdapter.clickSelectedDate(date);
-			}
-			//02. 在选择范围之外，则重新选择/选择结束时间
-			else
-			{
-				if (m_monthAdapter.isWaitSelectBeginDate())
-				{
-					bFlag = true;
-					m_monthAdapter.setBeginDate(date);
-				}
-				else if (m_monthAdapter.isWaitSelectEndDate())
-				{
-					bFlag = true;
-
-					CalendarDay beginDate = m_monthAdapter.getBeginDate();
-					if (beginDate == null)
-					{
-						return;
-					}
-
-					int beginYear = beginDate.getYear();
-					int beginMonth = beginDate.getMonth();
-					int beginDay = beginDate.getDay();
-					boolean bChangeFlag = false;
-
-					//如果后来选择的日期，小于之前的日期，则置换两个日期。
-					if (date.getYear() < beginYear)
-					{
-						bChangeFlag = true;
-					}
-					else if (date.getYear() > beginYear)
-					{
-						bChangeFlag = false;
-					}
-					else
-					{
-						//在year == 的情况下，查看month
-						if (date.getMonth() < beginMonth)
-						{
-							bChangeFlag = true;
-						}
-						else if (date.getMonth() > beginMonth)
-						{
-							bChangeFlag = false;
-						}
-						else
-						{
-							//在month == 的情况下，查看day
-							if (date.getDay() < beginDay)
-							{
-								bChangeFlag = true;
-							}
-							else if (date.getDay() > beginDay)
-							{
-								bChangeFlag = false;
-							}
-							else
-							{
-								bChangeFlag = false;
-							}
-						}
-					}
-
-					if (bChangeFlag)
-					{
-						m_monthAdapter.setBeginDate(date);
-						m_monthAdapter.setEndDate(beginDate);
-					}
-					else
-					{
-						m_monthAdapter.setEndDate(date);
-					}
-				}
-			}
-
-			if (bFlag)
-			{
-				if (m_dateChangedListener != null)
-				{
-					m_dateChangedListener.onDateChanged(MaterialCalendarView.this, date);
-				}
+				m_dateChangedListener.onDateChanged(MaterialCalendarView.this, date);
 			}
 			return;
 

@@ -27,7 +27,8 @@ import java.util.HashMap;
 public class RequestMedicinePromptSetEvent extends BaseNetEvent
 {
 	private String   m_UID        = null;    //用户ID
-	private String   m_ID         = null;
+	private String   m_MID        = null;
+	private String   m_MPID       = null;
 	private Calendar m_time       = Calendar.getInstance();
 	private boolean  m_valid      = true;
 	private double   m_dose       = DataConfig.DEFAULT_VALUE;    //药品剂量
@@ -45,7 +46,8 @@ public class RequestMedicinePromptSetEvent extends BaseNetEvent
 		HashMap<String, String> sendData = new HashMap<String, String>();
 
 		sendData.put(MedicinePromptConfig.UID, m_UID);
-		sendData.put(MedicinePromptConfig.ID, m_ID);
+		sendData.put(MedicinePromptConfig.MID, m_MID);
+		sendData.put(MedicinePromptConfig.ID, m_MPID);
 
 		String display = m_hmsSDF.format(m_time.getTime());
 		sendData.put(MedicinePromptConfig.TIME, display);
@@ -64,9 +66,14 @@ public class RequestMedicinePromptSetEvent extends BaseNetEvent
 		m_UID = UID;
 	}
 
-	public void setID(String ID)
+	public void setMID(String MID)
 	{
-		m_ID = ID;
+		m_MID = MID;
+	}
+
+	public void setMPID(String MPID)
+	{
+		m_MPID = MPID;
 	}
 
 	public void setTime(Calendar time)

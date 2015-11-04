@@ -21,12 +21,13 @@ import com.xuezhi_client.net.config.TakeMedicineConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DTakeMedicine
+public class DTakeMedicine implements Serializable
 {
 	private int      m_ID           = DataConfig.DEFAULT_VALUE;
 	private int      m_UID           = DataConfig.DEFAULT_VALUE;

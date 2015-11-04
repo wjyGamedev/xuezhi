@@ -25,5 +25,6 @@ public class TakeMedicineConfig
 	public final static String PID = "pid";
 	public final static String TAKETIME = "taketime";
 	public final static String DOSE = "dose";
+	public final static String DTAKEMEDICINE = "dtakemedicine";
 
 }

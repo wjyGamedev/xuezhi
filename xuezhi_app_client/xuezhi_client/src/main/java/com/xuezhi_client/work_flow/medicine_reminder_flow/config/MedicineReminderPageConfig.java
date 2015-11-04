@@ -32,6 +32,12 @@ public class MedicineReminderPageConfig
 	public static final String ERROR_INPUT_ROSE                            = DGlobal.GetInstance().getAppContext().getString(R.string
 																																	 .medicine_reminder_add_error_input_rose_time);
 
+	public static final String ERROR_INPUT_ROSE_ZERO                            = DGlobal.GetInstance().getAppContext().getString(R.string
+																																	 .medicine_reminder_set_error_rose_equal_0);
+
+	public static final String INFO_SET_SUCCESS                            = DGlobal.GetInstance().getAppContext().getString(R.string
+																																		  .medicine_reminder_set_success);
+
 	public static final String ERROR_NO_CHANGE = DGlobal.GetInstance().getAppContext().getString(R.string
 																										 .medicine_reminder_set_error_no_change);
 

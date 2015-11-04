@@ -8,6 +8,8 @@
 	<string name="calendar_medication_details_temp_date_text">2015年7月8日</string>
 	<string name="calendar_click_view_hint_text">点击查看</string>
 
+	<string name="calendar_no_taked_medicine_history">本月无用药明细</string>
+
 	<!--medication_details_page-->
 	<string name="medication_details_page_title_text">用药明细</string>
 	<string name="medication_details_bottom_btn_text">首页</string>

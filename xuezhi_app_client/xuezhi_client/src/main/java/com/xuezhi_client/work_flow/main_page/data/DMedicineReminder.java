@@ -20,9 +20,11 @@ import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.util.LogicalUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DMedicineReminder
@@ -77,12 +79,33 @@ public class DMedicineReminder
 		double waringNum  = medicineBox.getWaringNum();
 		double remianNum = medicineBox.getRemianNum();
 		double amountPerTime = medicine.getDose();
+
+		ArrayList<DMedicinePrompt> medicalPrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
+		for (DMedicinePrompt medicinePrompt : medicalPrompts)
+		{
+			if (medicinePrompt.getMID() == m_MID)
+			{
+				amountPerTime = medicinePrompt.getDose();
+				break;
+			}
+		}
+
 		Calendar resultTime = Calendar.getInstance();
-		resultTime = LogicalUtil.getExhaustTime(amountPerTime, (remianNum - waringNum));
-		m_waringTime = resultTime;
+
 		resultTime = LogicalUtil.getExhaustTime(amountPerTime, remianNum);
 		m_exhaustTime = resultTime;
 		m_exhaustTimeDisplay = m_ymdSDF.format(m_exhaustTime.getTime());
+
+		if (remianNum <= waringNum)
+		{
+			resultTime = m_exhaustTime;
+		}
+		else
+		{
+			resultTime = LogicalUtil.getExhaustTime(amountPerTime, (remianNum - waringNum));
+		}
+		m_waringTime = resultTime;
+
 
 		m_medicineName = medicine.getName();
 

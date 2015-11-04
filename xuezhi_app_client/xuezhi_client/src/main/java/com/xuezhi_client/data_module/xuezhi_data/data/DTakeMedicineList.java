@@ -18,8 +18,8 @@ import com.module.data.DGlobal;
 import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.util.logcal.LogicalUtil;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuezhi_client.net.config.ProtocalConfig;
+import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import org.json.JSONArray;
@@ -118,9 +118,29 @@ public class DTakeMedicineList
 
 	public synchronized DTakeMedicinePerMonth getMedicalHistoryByMonth(Calendar month)
 	{
-		if (m_medicalHistoryHashMap.containsKey(month))
+		Iterator<Map.Entry<Calendar, DTakeMedicinePerMonth>> iter = m_medicalHistoryHashMap.entrySet().iterator();
+		while (iter.hasNext())
 		{
-			return m_medicalHistoryHashMap.get(month);
+			Map.Entry<Calendar, DTakeMedicinePerMonth> entry = iter.next();
+
+			Calendar tmpCalendar = (Calendar)entry.getKey();
+			if (tmpCalendar == null)
+				continue;
+
+			DTakeMedicinePerMonth tmpTakemedicinePerMonth = (DTakeMedicinePerMonth)entry.getValue();
+			if (tmpTakemedicinePerMonth == null)
+				continue;
+
+			if (tmpCalendar.get(Calendar.YEAR) != month.get(Calendar.YEAR))
+				continue;
+
+			if (tmpCalendar.get(Calendar.MONTH) != month.get(Calendar.MONTH))
+				continue;
+
+			if (tmpCalendar.get(Calendar.DAY_OF_MONTH) != month.get(Calendar.DAY_OF_MONTH))
+				continue;
+
+			return tmpTakemedicinePerMonth;
 		}
 		return null;
 	}

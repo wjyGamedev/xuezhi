@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.module.frame.BaseUIMsgHandler;
 import com.module.storage.OwnerPreferences;
 import com.module.storage.StorageWrapper;
+import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
@@ -35,15 +36,18 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicinePromptGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerTakeMedicineAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestTakeMedicineAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
+import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
 import com.xuezhi_client.work_flow.main_page.config.MainConfig;
 import com.xuezhi_client.work_flow.main_page.data.DMedicineReminder;
 import com.xuezhi_client.work_flow.main_page.data.DTakeMedicineReminder;
@@ -63,11 +67,15 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import calendar.CalendarDay;
+
 public class MainMsgHandler extends BaseUIMsgHandler
 {
 
 	//date
 	private DWaitForRemainder m_waitForRemainder = new DWaitForRemainder();
+	private DTakeMedicineReminder m_takeMedicineReminder = null; //当前显示提醒
+
 
 	@Override
 	protected void init()
@@ -141,13 +149,13 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		requestAssayDetectionListAction();
 
 		//0302. 请求发送用药提醒列表
-		requestMedicinePromptGetListAction();
+//		requestMedicinePromptGetListAction();
 
 		//0303. 请求发送药箱列表
 		requestMedicineBoxGetListAction();
 
 		//0304. 请求发送当月的日历
-		requestTakeMedicineGetHistoryListAction();
+//		requestTakeMedicineGetHistoryListAction();
 
 		return;
 	}
@@ -176,7 +184,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
-	private void requestTakeMedicineGetHistoryListAction()
+	public void requestTakeMedicineGetHistoryListAction()
 	{
 		RequestTakeMedicineGetHistoryListEvent event = new RequestTakeMedicineGetHistoryListEvent();
 		event.setUID(DAccount.GetInstance().getId());
@@ -186,14 +194,28 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
+	public void requestTakeMedicineAddAction()
+	{
+		if (m_takeMedicineReminder == null)
+			return;
+
+		RequestTakeMedicineAddEvent event = new RequestTakeMedicineAddEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		event.setPID(String.valueOf(m_takeMedicineReminder.getPID()));
+		event.setMID(String.valueOf(m_takeMedicineReminder.getMID()));
+		event.setDose(m_takeMedicineReminder.getDose());
+		DBusinessMsgHandler.GetInstance().requestTakeMedicineAddAction(event);
+	}
+
 	public void onEventMainThread(AnswerMedicinePromptGetListEvent event)
 	{
-		updateDWaitForRemainder();
+//		updateDWaitForRemainder();
+		requestTakeMedicineGetHistoryListAction();
 	}
 
 	public void onEventMainThread(AnswerMedicineBoxGetListEvent event)
 	{
-		updateDWaitForRemainder();
+		requestMedicinePromptGetListAction();
 	}
 
 	public void onEventMainThread(AnswerTakeMedicineGetHistoryListEvent event)
@@ -203,6 +225,57 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 		updateMainContent();
 	}
+
+	public void onEventMainThread(AnswerTakeMedicineAddEvent event)
+	{
+		MainActivity activity = (MainActivity)m_context;
+		int httpStatus = event.getHttpStatus();
+		String errorMsg = event.getErrorMsg();
+		int MID = event.getMID();
+		Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
+		if (fragment == null)
+		{
+			if (!LogicalUtil.IsHttpSuccess(httpStatus))
+			{
+				TipsDialog.GetInstance().setMsg(errorMsg, activity);
+				TipsDialog.GetInstance().show();
+			}
+			return;
+		}
+
+		HomeTabFragment homeTabFragment = (HomeTabFragment)fragment;
+		if (homeTabFragment == null)
+		{
+			if (!LogicalUtil.IsHttpSuccess(httpStatus))
+			{
+				TipsDialog.GetInstance().setMsg(errorMsg, activity);
+				TipsDialog.GetInstance().show();
+			}
+			return;
+		}
+
+		//01. 成功
+		if (LogicalUtil.IsHttpSuccess(httpStatus))
+		{
+			requestMedicineBoxGetListAction();
+			homeTabFragment.popTakenDialog();
+			return;
+		}
+		//02. 药品不足
+		else if (httpStatus == -2)
+		{
+			homeTabFragment.popNotEnoughMedicineNum(MID);
+			return;
+		}
+		//03. 其他BUG
+		{
+			TipsDialog.GetInstance().setMsg(errorMsg, activity);
+			TipsDialog.GetInstance().show();
+			return;
+		}
+
+	}
+
 
 	private void updateDWaitForRemainder()
 	{
@@ -217,13 +290,16 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 		HomeTabFragment homeTabFragment = null;
 		Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
+		boolean bFlag = false;
 		if (fragment != null)
 		{
+			bFlag = true;
 			homeTabFragment = (HomeTabFragment)fragment;
 		}
 		if (homeTabFragment == null)
 		{
 			homeTabFragment = new HomeTabFragment();
+			bFlag = false;
 		}
 
 
@@ -232,6 +308,10 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		transaction.replace(R.id.func_region_fl, homeTabFragment, HomeTabFragment.class.getName());
 		transaction.commit();
 
+		if (bFlag)
+		{
+			updateHomeFragmentContent();
+		}
 		return;
 	}
 
@@ -344,12 +424,30 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		//有
 		if (medicineReminders.isEmpty() == false)
 		{
+			String medicineTips02 = "";
+			String medicineTips04 = "";
 			DMedicineReminder medicineReminder = medicineReminders.get(0);
+			Calendar exhaustTime =  medicineReminder.getExhaustTime();
+			CalendarDay exhaustDate = CalendarDay.from(exhaustTime);
+			Calendar today = Calendar.getInstance();
+			CalendarDay todayDate = CalendarDay.from(today);
+			if (todayDate.getYear() > exhaustDate.getYear()	||
+					(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() > exhaustDate.getMonth())	||
+					(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() == exhaustDate.getMonth() && todayDate.getDay() > exhaustDate.getDay())
+					)
+			{
+				medicineTips02 = activity.getString(R.string.medicine_waring_content_05);
+				medicineTips04 = activity.getString(R.string.medicine_waring_content_06);
+			}
+			else
+			{
+				medicineTips02 = activity.getString(R.string.medicine_waring_content_02);
+				medicineTips04 = activity.getString(R.string.medicine_waring_content_04);
+			}
+
 			String medicineName = medicineReminder.getMedicineName();
 			String medicineTips01 = activity.getString(R.string.medicine_waring_content_01);
-			String medicineTips02 = activity.getString(R.string.medicine_waring_content_02);
 			String medicineTips03 = activity.getString(R.string.medicine_waring_content_03);
-			String medicineTips04 = activity.getString(R.string.medicine_waring_content_04);
 			String medicineReminderTimeDisplay = medicineReminder.getExhaustTimeDisplay();
 			String result = "";
 
@@ -430,6 +528,8 @@ public class MainMsgHandler extends BaseUIMsgHandler
 				m_reminderTipsTV.setText(R.string.take_medication_reminder_conent_none);
 				return;
 			}
+			m_takeMedicineReminder = nextTakeMedicineReminder;
+
 			reminderHeadersLL.setVisibility(View.VISIBLE);
 			reminderBottomTipsLL.setVisibility(View.GONE);
 			m_rightFuncRegionLl.setVisibility(View.GONE);
@@ -438,7 +538,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 			medicineReminderTimeTV.setText(nextTakeMedicineReminder.getReminderTimeDisplay());
 			medicineNameTV.setText(nextTakeMedicineReminder.getMedicineName());
-			double tmpRose = nextTakeMedicineReminder.getRose();
+			double tmpRose = nextTakeMedicineReminder.getDose();
 			roseTV.setText(String.valueOf(tmpRose));
 			medicineUnitTV.setText(nextTakeMedicineReminder.getMedicineUnitDisplay());
 
@@ -459,6 +559,8 @@ public class MainMsgHandler extends BaseUIMsgHandler
 				m_reminderTipsTV.setText(R.string.take_medication_reminder_conent_none);
 				return;
 			}
+			m_takeMedicineReminder = nextTakeMedicineReminder;
+
 			reminderHeadersLL.setVisibility(View.VISIBLE);
 			reminderBottomTipsLL.setVisibility(View.GONE);
 			m_rightFuncRegionLl.setVisibility(View.GONE);
@@ -467,7 +569,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 			medicineReminderTimeTV.setText(nextTakeMedicineReminder.getReminderTimeDisplay());
 			medicineNameTV.setText(nextTakeMedicineReminder.getMedicineName());
-			double tmpRose = nextTakeMedicineReminder.getRose();
+			double tmpRose = nextTakeMedicineReminder.getDose();
 			roseTV.setText(String.valueOf(tmpRose));
 			medicineUnitTV.setText(nextTakeMedicineReminder.getMedicineUnitDisplay());
 		}
@@ -657,4 +759,9 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
+	public void go2MedicineBoxPage()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, DrugStockAddActivity.class));
+	}
 }

@@ -27,13 +27,18 @@ import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
+import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptAddEvent;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.config.MedicineReminderPageConfig;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.data.DMedicineReminderDisplay;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
@@ -53,7 +58,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 	@Bind (R.id.medicine_name_tv)        TextView     m_medicineNameTV       = null;
 	@Bind (R.id.rose_tv)                 TextView     m_roseTV               = null;
 	@Bind (R.id.medicine_unit_tv)        TextView     m_medicineUnit         = null;
-	@Bind (R.id.precautions_tv) TextView m_precautionsTV = null;
+	@Bind (R.id.precautions_tv)          TextView     m_precautionsTV        = null;
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -62,9 +67,12 @@ public class MedicineReminderAddActivity extends BaseActivity
 
 	private ClickSaveBtn    m_clickSaveBtn    = new ClickSaveBtn();
 	private AddSuccessEvent m_addSuccessEvent = new AddSuccessEvent();
+	private Add2BoxEvent    m_add2BoxEvent    = new Add2BoxEvent();
 
 	//date
 	private DMedicineReminderDisplay m_medicineReminderDisplay = new DMedicineReminderDisplay();
+
+	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -76,8 +84,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 		init();
 	}
 
-
-	class AddSuccessEvent implements DialogInterface.OnClickListener
+	class Add2BoxEvent implements DialogInterface.OnClickListener
 	{
 		@Override
 		public void onClick(DialogInterface dialog, int which)
@@ -93,6 +100,15 @@ public class MedicineReminderAddActivity extends BaseActivity
 		}
 	}
 
+	class AddSuccessEvent implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			finish();
+		}
+	}
+
 	/**
 	 * widget:func
 	 */
@@ -102,7 +118,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 		if (hasFocus)
 			return;
 
-		initDose();
+		setDose();
 		return;
 	}
 
@@ -145,7 +161,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 
 	}
 
-	private void initDose()
+	private void setDose()
 	{
 		String content = m_roseTV.getText().toString();
 		if (!TextUtils.isEmpty(content))
@@ -201,15 +217,15 @@ public class MedicineReminderAddActivity extends BaseActivity
 			if (!isStateFlag())
 				setStateFlag(m_reminderStateCB.isChecked());
 
-			initDose();
+			setDose();
 
 			RequestMedicinePromptAddEvent event = new RequestMedicinePromptAddEvent();
 			event.setUID(DAccount.GetInstance().getId());
 			event.setMID(String.valueOf(getMedicineID()));
-			event.setTime(getRemainderTime());
+			event.setTime(getReminderTime());
 			event.setValid(isStateFlag());
 			event.setDose(getDose());
-			event.setPrecaution(getPrecautionsTV().getText().toString());
+			event.setPrecaution(getPrecaution());
 			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction(event);
 		}
 	}
@@ -225,16 +241,24 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public void setStateFlag(boolean stateFlag)
 	{
 		m_medicineReminderDisplay.setStateFlag(stateFlag);
+
+		if (stateFlag)
+			m_reminderStateCB.setText(MedicineReminderPageConfig.OPEN);
+		else
+			m_reminderStateCB.setText(MedicineReminderPageConfig.CLOSE);
 	}
 
-	public Calendar getRemainderTime()
+	public Calendar getReminderTime()
 	{
-		return m_medicineReminderDisplay.getRemainderTime();
+		return m_medicineReminderDisplay.getReminderTime();
 	}
 
-	public void setRemainderTime(Calendar remainderTime)
+	public void setReminderTime(Calendar remainderTime)
 	{
-		m_medicineReminderDisplay.setRemainderTime(remainderTime);
+		m_medicineReminderDisplay.setReminderTime(remainderTime);
+
+		String reminderTimeDisplay =  m_hmSDF.format(remainderTime.getTime());
+		m_medicineTimeTV.setText(reminderTimeDisplay);
 	}
 
 	public int getMedicineID()
@@ -245,6 +269,20 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public void setMedicineID(int medicineID)
 	{
 		m_medicineReminderDisplay.setMedicineID(medicineID);
+
+		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineID);
+		if (medicine != null)
+		{
+			m_medicineNameTV.setText(medicine.getName());
+			setPrecaution(medicine.getPrecautions());
+		}
+
+		DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineID);
+		if (medicineUnit != null)
+		{
+			m_medicineUnit.setText(medicineUnit.getUnitName());
+		}
+
 	}
 
 	public double getDose()
@@ -255,6 +293,18 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public void setDose(double dose)
 	{
 		m_medicineReminderDisplay.setDose(dose);
+		m_roseTV.setText(String.valueOf(dose));
+	}
+
+	public String getPrecaution()
+	{
+		return m_medicineReminderDisplay.getPrecaution();
+	}
+
+	public void setPrecaution(String precaution)
+	{
+		m_medicineReminderDisplay.setPrecaution(precaution);
+		m_precautionsTV.setText(precaution);
 	}
 
 	public MedicineReminderAddMsgHandler getMedicineReminderAddMsgHandler()
@@ -265,30 +315,6 @@ public class MedicineReminderAddActivity extends BaseActivity
 	/**
 	 * widget:get
 	 */
-	public TextView getMedicineTimeTV()
-	{
-		return m_medicineTimeTV;
-	}
-
-	public TextView getMedicineNameTV()
-	{
-		return m_medicineNameTV;
-	}
-
-	public TextView getRoseTV()
-	{
-		return m_roseTV;
-	}
-
-	public TextView getMedicineUnit()
-	{
-		return m_medicineUnit;
-	}
-
-	public TextView getPrecautionsTV()
-	{
-		return m_precautionsTV;
-	}
 
 	/**
 	 * logical:func
@@ -306,7 +332,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 		String tips = getString(R.string.medicine_reminder_add_to_medicinebox_tips);
 		String add = getString(R.string.medicine_reminder_add_medicinebox_content);
 		String cancel = getString(R.string.medicine_reminder_add_cancel_content);
-		TipsDialog.GetInstance().setMsg(tips, this, add, m_addSuccessEvent, cancel, m_addSuccessEvent);
+		TipsDialog.GetInstance().setMsg(tips, this, add, m_add2BoxEvent, cancel, m_add2BoxEvent);
 		TipsDialog.GetInstance().show();
 		return;
 	}

@@ -34,6 +34,12 @@
 	<string name="take_medicine_finished">已服用</string>
 	<string name="take_medicine_wait">未服用</string>
 
+	<string name="take_medicine_success">服药成功</string>
+
+	<string name="error_not_enough_medicine_num">数量不足，是否前往我的药箱添加。</string>
+	<string name="info_not_add">暂不添加</string>
+	<string name="info_go_2_medicine_box">前往添加</string>
+
 
 	<string name="medicine_not_waring_content">当前药品充足，无需购买</string>
 	<!-- 血脂康等5种药品，将于2015年7月10日用尽。-->
@@ -41,7 +47,8 @@
 	<string name="medicine_waring_content_02">种药品，将于</string>
 	<string name="medicine_waring_content_03">用尽。</string>
 	<string name="medicine_waring_content_04">将于</string>
-
+	<string name="medicine_waring_content_05">种药品，已在</string>
+	<string name="medicine_waring_content_06">已在</string>
 	<!--main_page_bottom_radio_button-->
 	<string name="main_page_radio_button_home">首页</string>
 	<string name="main_page_radio_button_mine">我的</string>
@@ -53,6 +60,7 @@
 	<string name="tips_logout">您还未登录哦~</string>
 	<string name="login">登录</string>RequestRegisterEvent
 	<string name="logout">退出登录</string>
+
 
 
 </resources>

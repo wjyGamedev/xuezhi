@@ -22,10 +22,11 @@ import java.util.Calendar;
 
 public class DMedicineReminderDisplay
 {
-	private boolean  m_stateFlag     = false;    //开启状态。
-	private Calendar m_remainderTime = null;    //提醒时间
-	private int      m_medicineID    = DataConfig.DEFAULT_VALUE;    //药品ID
-	private double   m_dose          = 0f;    //用药剂量
+	private boolean  m_stateFlag    = false;    //开启状态。
+	private Calendar m_reminderTime = null;    //提醒时间
+	private int      m_medicineID   = DataConfig.DEFAULT_VALUE;    //药品ID
+	private double   m_dose         = 0f;    //用药剂量
+	private String   m_precaution   = "";    //
 
 	public DMedicineReminderDisplay()
 	{
@@ -40,9 +41,10 @@ public class DMedicineReminderDisplay
 		}
 
 		m_stateFlag = medicinePrompt.isValid();
-		m_remainderTime = medicinePrompt.getTakeCalendar();
+		m_reminderTime = medicinePrompt.getTakeCalendar();
 		m_medicineID = medicinePrompt.getMID();
 		m_dose = medicinePrompt.getDose();
+		m_precaution = medicinePrompt.getPrecaution();
 		return true;
 	}
 
@@ -57,14 +59,14 @@ public class DMedicineReminderDisplay
 		m_stateFlag = stateFlag;
 	}
 
-	public Calendar getRemainderTime()
+	public Calendar getReminderTime()
 	{
-		return m_remainderTime;
+		return m_reminderTime;
 	}
 
-	public void setRemainderTime(Calendar remainderTime)
+	public void setReminderTime(Calendar reminderTime)
 	{
-		m_remainderTime = remainderTime;
+		m_reminderTime = reminderTime;
 	}
 
 	public int getMedicineID()
@@ -85,5 +87,15 @@ public class DMedicineReminderDisplay
 	public void setDose(double dose)
 	{
 		m_dose = dose;
+	}
+
+	public String getPrecaution()
+	{
+		return m_precaution;
+	}
+
+	public void setPrecaution(String precaution)
+	{
+		m_precaution = precaution;
 	}
 }

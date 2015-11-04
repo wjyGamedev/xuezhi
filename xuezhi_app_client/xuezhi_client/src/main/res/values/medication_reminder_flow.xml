@@ -34,6 +34,8 @@
 	<string name="medicine_reminder_set_error_no_change">数据无更改。</string>
 	<string name="medicine_reminder_set_go_back">返回上一页</string>
 	<string name="medicine_reminder_set_continue">继续更改</string>
+	<string name="medicine_reminder_set_error_rose_equal_0">用药剂量不能为0。</string>
+	<string name="medicine_reminder_set_success">数据更改成功。</string>
 
 
 	<!-- medicine_reminder_add_page-->

@@ -100,5 +100,16 @@ public class DMedicineBoxList
 		return null;
 	}
 
+	public synchronized DMedicineBox getMedicineBoxByMID(int mid)
+	{
+		for (DMedicineBox medicalStock : m_medicineBoxs)
+		{
+			if (medicalStock.getMID() == mid)
+			{
+				return medicalStock;
+			}
+		}
+		return null;
+	}
 
 }

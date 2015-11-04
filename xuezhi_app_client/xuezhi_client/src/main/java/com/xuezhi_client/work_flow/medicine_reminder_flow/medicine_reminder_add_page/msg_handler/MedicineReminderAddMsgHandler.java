@@ -20,12 +20,10 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicinePromptAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -38,14 +36,10 @@ import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineTimeFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 {
-	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
-
-
 	@Override
 	protected void init()
 	{
@@ -108,7 +102,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 		int MID = event.getMID();
 		//01. 在药箱中，找到。
 		String tips = "";
-		DMedicineBox medicineBox = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxByID(MID);
+		DMedicineBox medicineBox = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxByMID(MID);
 		if (medicineBox != null)
 		{
 			activity.findInMedicineBoxAction();
@@ -151,10 +145,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 
-		String displayTime = m_hmSDF.format(reminderTime.getTime());
-
-		activity.getMedicineTimeTV().setText(displayTime);
-		activity.setRemainderTime(reminderTime);
+		activity.setReminderTime(reminderTime);
 	}
 
 	public void setMedicalID(int medicalID)
@@ -169,34 +160,13 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
-		//01. 用药名称，id
-		activity.getMedicineNameTV().setText(medical.getName());
 		activity.setMedicineID(medicalID);
-
-		//02. 用药单位
-		int unitID = medical.getMUID();
-		DMedicineUnit medicalUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(unitID);
-		if (medicalUnit == null)
-		{
-			TipsDialog.GetInstance().setMsg("medicalUnit == null!unitID is invalid![unitID:="+unitID+"]", activity);
-			TipsDialog.GetInstance().show();
-			//TODO:这里出错不返回。
-		}
-		else
-		{
-			activity.getMedicineUnit().setText(medicalUnit.getUnitName());
-		}
-
-		//03. 用药的注意事项，string
-		activity.getPrecautionsTV().setText(medical.getPrecautions());
 		return;
 	}
 
 	public void setRose(double rose)
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
-
-		activity.getRoseTV().setText(String.valueOf(rose));
 		activity.setDose(rose);
 
 		return;

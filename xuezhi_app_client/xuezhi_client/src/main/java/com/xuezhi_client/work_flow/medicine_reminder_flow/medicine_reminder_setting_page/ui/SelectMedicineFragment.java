@@ -29,8 +29,7 @@ import com.module.widget.fragment.select_list_fragment.SelectListFragment;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
-import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
-import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_setting_page.msg_handler.MedicationReminderSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.ArrayList;
@@ -38,25 +37,25 @@ import java.util.ArrayList;
 public class SelectMedicineFragment extends SelectListFragment
 {
 	//logical
-	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = null;
-	private ItemClickEvent                m_itemClickEvent                = new ItemClickEvent();
+	private MedicationReminderSettingMsgHandler m_medicationReminderSettingMsgHandler = null;
+	private ItemClickEvent                      m_itemClickEvent                      = new ItemClickEvent();
 
 	@Override
 	public void init()
 	{
-		//01. m_medicineReminderAddMsgHandler
-		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)getActivity();
+		//01. m_medicationReminderSettingMsgHandler
+		MedicineReminderSettingActivity activity = (MedicineReminderSettingActivity)getActivity();
 		if (activity == null)
 		{
-			TipsDialog.GetInstance().setMsg("MedicineReminderAddActivity == null");
+			TipsDialog.GetInstance().setMsg("MedicationReminderSettingMsgHandler == null");
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		m_medicineReminderAddMsgHandler = activity.getMedicineReminderAddMsgHandler();
-		if (m_medicineReminderAddMsgHandler == null)
+		m_medicationReminderSettingMsgHandler = activity.getMedicationReminderSettingMsgHandler();
+		if (m_medicationReminderSettingMsgHandler == null)
 		{
-			TipsDialog.GetInstance().setMsg("m_medicineReminderAddMsgHandler == null", activity);
+			TipsDialog.GetInstance().setMsg("m_medicationReminderSettingMsgHandler == null", activity);
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -147,7 +146,7 @@ public class SelectMedicineFragment extends SelectListFragment
 			DMedicine medical = medicalArrayList.get(indexMedical);
 			int id = medical.getID();
 
-			m_medicineReminderAddMsgHandler.setMedicalID(id);
+			m_medicationReminderSettingMsgHandler.setMedicalID(id);
 
 			//03. 关闭当前科室选择
 			cancelAction();
@@ -165,7 +164,7 @@ public class SelectMedicineFragment extends SelectListFragment
 		//01. 没有药品列表，则重新发送
 		if (medicalArrayList.isEmpty())
 		{
-			m_medicineReminderAddMsgHandler.requestMedicalListAction();
+			m_medicationReminderSettingMsgHandler.requestMedicalListAction();
 			return;
 		}
 

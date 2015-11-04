@@ -15,6 +15,7 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.work_flow.main_page.config.MainConfig;
 import com.xuezhi_client.work_flow.main_page.data.DMainPageImages;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -78,6 +80,10 @@ public class HomeTabFragment extends Fragment
 	private MainMsgHandler  m_mainMsgHandler  = null;
 	private View            m_view            = null;
 	private GestureDetector m_gestureDetector = null;
+
+	private HandleTakenSuccessEvent m_handleTakenSuccessEvent = new HandleTakenSuccessEvent();
+
+	private HandleNotEnoughMedicineNumEvent m_handleNotEnoughMedicineNumEvent = new HandleNotEnoughMedicineNumEvent();
 
 
 	@Override
@@ -150,6 +156,12 @@ public class HomeTabFragment extends Fragment
 		}
 	}
 
+	@OnClick (R.id.take_medicine_cbox)
+	public void clickTakeMedicineCBox()
+	{
+		m_mainMsgHandler.requestTakeMedicineAddAction();
+	}
+
 	@OnClick (R.id.reminder_bottom_tips_ll)
 	public void clickReminderBottonRegion()
 	{
@@ -181,7 +193,6 @@ public class HomeTabFragment extends Fragment
 		}
 		return;
 	}
-
 
 	/**
 	 * override func
@@ -228,6 +239,32 @@ public class HomeTabFragment extends Fragment
 
 	}
 
+	public class HandleTakenSuccessEvent implements DialogInterface.OnClickListener
+	{
+
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			dialog.dismiss();
+		}
+	}
+
+	public class HandleNotEnoughMedicineNumEvent implements DialogInterface.OnClickListener
+	{
+
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			if (which == DialogInterface.BUTTON_POSITIVE)
+			{
+				m_mainMsgHandler.go2MedicineBoxPage();
+			}
+			else
+			{
+				dialog.dismiss();
+			}
+		}
+	}
 
 	/**
 	 * inner func
@@ -401,5 +438,28 @@ public class HomeTabFragment extends Fragment
 	public ImageView getMedicineReminderIV()
 	{
 		return m_medicineReminderIV;
+	}
+
+	public void popTakenDialog()
+	{
+		String display = getString(R.string.take_medicine_success);
+		TipsDialog.GetInstance().setMsg(display, getActivity(), m_handleTakenSuccessEvent);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
+	public void popNotEnoughMedicineNum(int mid)
+	{
+			m_takeMedicineCBox.setChecked(false);
+			m_takeMedicineCBox.setText(R.string.take_medicine_wait);
+
+		TipsDialog.GetInstance().setMsg(MainConfig.ERROR_NOT_ENOUGH_MEDICINE_NUM,
+										getActivity(),
+										MainConfig.INFO_GO_2_MEDICINE_BOX,
+										m_handleNotEnoughMedicineNumEvent,
+										MainConfig.INFO_NOT_ADD,
+										m_handleNotEnoughMedicineNumEvent
+									   );
+		TipsDialog.GetInstance().show();
 	}
 }

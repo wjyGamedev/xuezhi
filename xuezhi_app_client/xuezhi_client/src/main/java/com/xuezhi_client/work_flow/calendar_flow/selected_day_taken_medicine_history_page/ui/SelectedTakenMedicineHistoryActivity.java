@@ -1,4 +1,4 @@
-package com.xuezhi_client.work_flow.calendar_flow.medication_details_page.ui;
+package com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
-import com.xuezhi_client.work_flow.calendar_flow.medication_details_page.msg_handler.MedicationDetailsMsgHandler;
+import com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.msg_handler.MedicationDetailsMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.ButterKnife;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2015/9/22.
  */
-public class MedicationDetailsActivity extends BaseActivity
+public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;

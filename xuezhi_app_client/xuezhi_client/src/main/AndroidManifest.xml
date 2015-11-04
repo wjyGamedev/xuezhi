@@ -120,6 +120,12 @@
 			android:screenOrientation="portrait">
 		</activity>
 
+		<!--06. 日历-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity"
+			android:label="CalenderActivity"
+			android:screenOrientation="portrait">
+		</activity>
 
 		<!-- 07. 风险评估-->
 		<activity

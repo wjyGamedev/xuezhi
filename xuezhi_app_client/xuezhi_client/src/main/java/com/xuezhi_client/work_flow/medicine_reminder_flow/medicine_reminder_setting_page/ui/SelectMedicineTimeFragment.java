@@ -27,8 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
-import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_setting_page.msg_handler.MedicationReminderSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.Calendar;
@@ -40,18 +39,18 @@ import butterknife.OnClick;
 public class SelectMedicineTimeFragment extends Fragment
 {
 	//widget
-	@Bind (R.id.header_bg_ll) LinearLayout m_headerBGLL = null;
+	@Bind (R.id.header_bg_ll)   LinearLayout m_headerBGLL   = null;
 	@Bind (R.id.func_region_ll) LinearLayout m_funcRegionLL = null;
-	@Bind (R.id.timePicker)   TimePicker   m_timePicker = null;
-	@Bind (R.id.confirm_btn)  Button       m_confirmBtn = null;
-	@Bind (R.id.bottom_bg_ll) LinearLayout m_bottomBGLL = null;
+	@Bind (R.id.timePicker)     TimePicker   m_timePicker   = null;
+	@Bind (R.id.confirm_btn)    Button       m_confirmBtn   = null;
+	@Bind (R.id.bottom_bg_ll)   LinearLayout m_bottomBGLL   = null;
 
 	protected LayoutInflater m_layoutInflater = null;
 	protected View           m_view           = null;
 
 	//logical
-	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = null;
-	private HandleTimeChanged             m_handleTimeChanged             = new HandleTimeChanged();
+	private MedicationReminderSettingMsgHandler m_medicationReminderSettingMsgHandler = null;
+	private HandleTimeChanged                   m_handleTimeChanged                   = new HandleTimeChanged();
 
 	//date
 	private Calendar m_calendar = null;
@@ -76,10 +75,10 @@ public class SelectMedicineTimeFragment extends Fragment
 		cancelAction();
 	}
 
-	@OnClick(R.id.confirm_btn)
+	@OnClick (R.id.confirm_btn)
 	public void clickConfirm()
 	{
-		m_medicineReminderAddMsgHandler.setRemainderTime(m_calendar);
+		m_medicationReminderSettingMsgHandler.setRemainderTime(m_calendar);
 		cancelAction();
 	}
 
@@ -90,11 +89,12 @@ public class SelectMedicineTimeFragment extends Fragment
 	}
 
 	//防止点击穿透
-	@OnClick(R.id.func_region_ll)
+	@OnClick (R.id.func_region_ll)
 	public void preventPenetration(View v)
 	{
 		return;
 	}
+
 	/**
 	 * override func
 	 */
@@ -115,19 +115,19 @@ public class SelectMedicineTimeFragment extends Fragment
 	 */
 	private void init()
 	{
-		//01. m_medicineReminderAddMsgHandler
-		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)getActivity();
+		//01. m_medicationReminderSettingMsgHandler
+		MedicineReminderSettingActivity activity = (MedicineReminderSettingActivity)getActivity();
 		if (activity == null)
 		{
-			TipsDialog.GetInstance().setMsg("MedicineReminderAddActivity == null");
+			TipsDialog.GetInstance().setMsg("MedicineReminderSettingActivity == null");
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		m_medicineReminderAddMsgHandler = activity.getMedicineReminderAddMsgHandler();
-		if (m_medicineReminderAddMsgHandler == null)
+		m_medicationReminderSettingMsgHandler = activity.getMedicationReminderSettingMsgHandler();
+		if (m_medicationReminderSettingMsgHandler == null)
 		{
-			TipsDialog.GetInstance().setMsg("m_medicineReminderAddMsgHandler == null", activity);
+			TipsDialog.GetInstance().setMsg("m_medicationReminderSettingMsgHandler == null", activity);
 			TipsDialog.GetInstance().show();
 			return;
 		}

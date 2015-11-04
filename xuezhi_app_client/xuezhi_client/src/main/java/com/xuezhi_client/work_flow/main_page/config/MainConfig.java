@@ -65,4 +65,9 @@ public class MainConfig
 			}
 		}
 	}
+
+	public final static String ERROR_NOT_ENOUGH_MEDICINE_NUM = DGlobal.GetInstance().getAppContext().getString(R.string.error_not_enough_medicine_num);
+	public final static String INFO_NOT_ADD = DGlobal.GetInstance().getAppContext().getString(R.string.info_not_add);
+	public final static String INFO_GO_2_MEDICINE_BOX = DGlobal.GetInstance().getAppContext().getString(R.string.info_go_2_medicine_box);
+
 }

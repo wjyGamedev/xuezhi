@@ -1,5 +1,6 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
+import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +44,6 @@ public class MainActivity extends BaseActivity
 	private AsyncWaitDialog m_asyncWaitDialog = new AsyncWaitDialog();
 
 	private HandleAsyncWaitDialogFinishedEvent m_handleAsyncWaitDialogFinishedEvent = new HandleAsyncWaitDialogFinishedEvent();
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -148,6 +148,7 @@ public class MainActivity extends BaseActivity
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleAsyncWaitDialogFinishedEvent);
 		m_asyncWaitDialog.show();
 	}
+
 	private void initAction()
 	{
 		m_mainMsgHandler.initAction();
@@ -164,7 +165,7 @@ public class MainActivity extends BaseActivity
 	private void updateContent()
 	{
 		//这里不调用update，依赖于服务器返回event。
-//		m_mainMsgHandler.updateMainContent();
+		//		m_mainMsgHandler.updateMainContent();
 		return;
 	}
 
@@ -201,6 +202,5 @@ public class MainActivity extends BaseActivity
 		int resID = m_tabsRG.getCheckedRadioButtonId();
 		return (resID == R.id.service_rbtn);
 	}
-
 
 }

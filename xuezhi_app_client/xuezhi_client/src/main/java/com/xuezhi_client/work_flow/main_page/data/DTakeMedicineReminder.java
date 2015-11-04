@@ -30,7 +30,7 @@ public class DTakeMedicineReminder
 	private int      m_PID                 = DataConfig.DEFAULT_ID;
 	private int      m_MID                 = DataConfig.DEFAULT_ID;
 	private String   m_medicineName        = "";
-	private double   m_rose                = 0f;
+	private double   m_dose                = 0f;
 	private int      m_MUID                = DataConfig.DEFAULT_ID;
 	private String   m_medicineUnitDisplay = null;
 	private Calendar m_reminderTime        = Calendar.getInstance();
@@ -80,7 +80,7 @@ public class DTakeMedicineReminder
 		}
 
 		m_medicineName = medicine.getName();
-		m_rose = medicinePrompt.getDose();
+		m_dose = medicinePrompt.getDose();
 		m_MUID = medicine.getMUID();
 
 		DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(m_MUID);
@@ -111,9 +111,9 @@ public class DTakeMedicineReminder
 		return m_medicineName;
 	}
 
-	public double getRose()
+	public double getDose()
 	{
-		return m_rose;
+		return m_dose;
 	}
 
 	public int getMUID()
