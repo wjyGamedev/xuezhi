@@ -18,7 +18,7 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +38,9 @@ public class DWaitForRemainder
 	{
 		ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
 		Calendar today = Calendar.getInstance();
-		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryByMonth(today);
+		DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
+				today
+																																			);
 		if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
 		{
 			updateTakeMedicineReminder(medicinePrompts, takeMedicinePerMonth);
@@ -52,7 +54,7 @@ public class DWaitForRemainder
 
 	}
 
-	private void updateTakeMedicineReminder(ArrayList<DMedicinePrompt> medicinePrompts, DTakeMedicinePerMonth takeMedicinePerMonth)
+	private void updateTakeMedicineReminder(ArrayList<DMedicinePrompt> medicinePrompts, DTakeMedicinePerSelectedDay takeMedicinePerMonth)
 	{
 		m_takeMedicineReminders.clear();
 

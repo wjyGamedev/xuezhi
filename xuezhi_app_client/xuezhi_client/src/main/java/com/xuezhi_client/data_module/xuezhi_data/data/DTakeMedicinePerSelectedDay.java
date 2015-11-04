@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class DTakeMedicinePerMonth
+public class DTakeMedicinePerSelectedDay
 {
 	private Calendar                 m_currCalendar  = Calendar.getInstance();
 	private ArrayList<DTakeMedicine> m_takeMedicines = new ArrayList<>();
@@ -39,7 +39,7 @@ public class DTakeMedicinePerMonth
 	private final String NET_ERROR_JSON_SERILIZATION = DGlobal.GetInstance().getAppContext().getString(R.string
 																											   .net_error_json_serilization);
 
-	public DTakeMedicinePerMonth()
+	public DTakeMedicinePerSelectedDay()
 	{
 	}
 

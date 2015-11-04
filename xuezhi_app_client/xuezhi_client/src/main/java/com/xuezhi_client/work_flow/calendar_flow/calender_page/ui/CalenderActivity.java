@@ -14,7 +14,7 @@ import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.CalenderMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -58,9 +58,8 @@ public class CalenderActivity extends BaseActivity
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
-	private DTakeMedicine m_selectedTakeMedicine = null;
+	private Calendar m_selectedDay = Calendar.getInstance();
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -79,33 +78,15 @@ public class CalenderActivity extends BaseActivity
 				@Nullable
 				CalendarDay date)
 		{
-			Calendar selectedDay = Calendar.getInstance();
-			date.copyToMonthOnly(selectedDay);
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryByMonth(
-					selectedDay
-																																		  );
+			date.copyToMonthOnly(m_selectedDay);
+
+			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
+					m_selectedDay
+																																				);
 			if (takeMedicinePerMonth == null)
 				return;
 
-			ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerMonth.getTakeMedicines();
-			int                      targetMonth   = date.getMonth();
-			int                      targetDay     = date.getDay();
-			for (DTakeMedicine takeMedicine : takeMedicines)
-			{
-				Calendar takeCalendar = takeMedicine.getTakeCalendar();
-				CalendarDay tmpCalendarDay = CalendarDay.from(takeCalendar);
-				int tmpMonth = tmpCalendarDay.getMonth();
-				int tmpDay = tmpCalendarDay.getDay();
-
-				if (tmpMonth != targetMonth)
-					continue;
-
-				if (tmpDay == targetDay)
-				{
-					setSelectedTakeMedicine(takeMedicine);
-					return;
-				}
-			}
+			setSelectedTakeMedicineTime(m_selectedDay);
 		}
 	}
 
@@ -115,9 +96,9 @@ public class CalenderActivity extends BaseActivity
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
 			Calendar today = Calendar.getInstance();
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryByMonth(
+			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
 					today
-																																		  );
+																																				);
 			if (takeMedicinePerMonth == null)
 				return false;
 
@@ -148,9 +129,9 @@ public class CalenderActivity extends BaseActivity
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
 			Calendar today = Calendar.getInstance();
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryByMonth(
+			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
 					today
-																																		  );
+																																				);
 			if (takeMedicinePerMonth == null)
 				return true;
 
@@ -179,11 +160,7 @@ public class CalenderActivity extends BaseActivity
 	@OnClick(R.id.selected_day_region_ll)
 	public void clickSelectedDayRegion()
 	{
-		if (m_selectedTakeMedicine == null)
-			return;
-
-		m_calenderMsgHandler.go2SelectedTakenMedicineHistoryPage(m_selectedTakeMedicine);
-
+		m_calenderMsgHandler.go2SelectedTakenMedicineHistoryPage(m_selectedDay);
 	}
 
 	/**
@@ -211,8 +188,9 @@ public class CalenderActivity extends BaseActivity
 
 
 		Calendar today = Calendar.getInstance();
-		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryByMonth(today
-																																	  );
+		DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
+				today
+																																			);
 
 
 		m_selectedTV.setText(R.string.calendar_no_taked_medicine_history);
@@ -233,15 +211,13 @@ public class CalenderActivity extends BaseActivity
 
 	}
 
-	private void setSelectedTakeMedicine(DTakeMedicine selectedTakeMedicine)
+	private void setSelectedTakeMedicineTime(Calendar selectedDay)
 	{
-		if (selectedTakeMedicine == null)
+		if (selectedDay == null)
 		{
 			return;
 		}
-		m_selectedTakeMedicine = selectedTakeMedicine;
-		Calendar takeCalendar = m_selectedTakeMedicine.getTakeCalendar();
-		String display = m_ymdSDF.format(takeCalendar.getTime());
+		String display = m_ymdSDF.format(selectedDay.getTime());
 		m_selectedTV.setText(display);
 	}
 
