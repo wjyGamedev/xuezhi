@@ -1,7 +1,6 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.msg_handler;
 
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
@@ -66,11 +65,11 @@ public class DrugAdministrationMsgHandler extends BaseUIMsgHandler
 	{
 		DrugAdministrationActivity drugAdministrationActivity = (DrugAdministrationActivity)m_context;
 
-		//提示保存成功
-		Toast.makeText(drugAdministrationActivity,
-					   drugAdministrationActivity.getResources().getString(R.string.drug_administration_del_complete_text),
-					   Toast.LENGTH_SHORT
-					  ).show();
+		TipsDialog.GetInstance().setMsg(drugAdministrationActivity.getResources().getString(R.string
+																									.drug_administration_del_complete_text),
+										drugAdministrationActivity
+									   );
+		TipsDialog.GetInstance().show();
 
 		drugAdministrationActivity.updateMedicineBoxGetList();
 
