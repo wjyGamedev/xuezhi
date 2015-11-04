@@ -20,16 +20,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.module.frame.IBaseAdapter;
+import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 {
 	private LayoutInflater m_layoutInflater = null;
-
-
+	private Calendar                            m_selectedDay = Calendar.getInstance();
+	private DTakeMedicinePerSelectedDay m_takeMedicinePerSelectedDay = null;
 	@Override
 	public int getCount()
 	{
-		return 0;
+		m_takeMedicinePerSelectedDay = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(m_selectedDay);
+		if (m_takeMedicinePerSelectedDay == null)
+			return 0;
+
+		ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerSelectedDay.getTakeMedicines();
+		return takeMedicines.size();
+
 	}
 
 	@Override
@@ -41,7 +54,24 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 	@Override
 	public long getItemId(int position)
 	{
-		return 0;
+		m_takeMedicinePerSelectedDay = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(m_selectedDay);
+		if (m_takeMedicinePerSelectedDay == null)
+			return 0;
+
+		ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerSelectedDay.getTakeMedicines();
+
+		if (position >= takeMedicines.size())
+		{
+			TipsDialog.GetInstance().setMsg("position >= takeMedicines.size()[position:=" + position +
+													"][takeMedicines.size():=" +
+													takeMedicines.size() + "]"
+										   );
+			TipsDialog.GetInstance().show();
+			return 0;
+		}
+
+		DTakeMedicine takeMedicine = takeMedicines.get(position);
+		return takeMedicine.getID();
 	}
 
 	@Override
@@ -54,5 +84,14 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 	{
 		super(context);
 	}
+
+	public void init(Calendar selectedDay)
+	{
+		m_selectedDay = selectedDay;
+	}
+
+}
+final class ViewHolder
+{
 
 }

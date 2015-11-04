@@ -19,6 +19,7 @@ public class MedicationDetailsMsgHandler extends BaseUIMsgHandler
 	public void go2MainPage()
 	{
 		SelectedTakenMedicineHistoryActivity activity = (SelectedTakenMedicineHistoryActivity)m_context;
+		activity.finish();
 		activity.startActivity(new Intent(activity, MainActivity.class));
 		return;
 	}
