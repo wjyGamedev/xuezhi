@@ -1,7 +1,6 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler;
 
 import android.content.DialogInterface;
-import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
@@ -155,11 +154,8 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
 
 		//提示保存成功
-		Toast.makeText(drugAdministrationSettingActivity,
-					   drugAdministrationSettingActivity.getResources().getString(R.string
-																						  .drug_administration_setting_click_setting_complete_text),
-					   Toast.LENGTH_SHORT
-					  ).show();
+		TipsDialog.GetInstance().setMsg(drugAdministrationSettingActivity.getResources().getString(R.string.drug_administration_setting_click_setting_complete_text));
+		TipsDialog.GetInstance().show();
 
 		//关闭添加页面
 		drugAdministrationSettingActivity.finish();

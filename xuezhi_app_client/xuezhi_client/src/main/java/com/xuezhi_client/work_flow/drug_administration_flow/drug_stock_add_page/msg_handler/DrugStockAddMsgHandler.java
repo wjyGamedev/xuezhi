@@ -1,7 +1,7 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler;
 
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
@@ -119,20 +119,29 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
-	//保存成功，获取药品库存列表
+	//保存成功
 	public void onEventMainThread(AnswerMedicineBoxAddEvent event)
 	{
 		DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
+		ClickTipsDialogButtonListener clickTipsDialogButtonListener = new ClickTipsDialogButtonListener();
 
 		//提示保存成功
-		Toast.makeText(drugStockAddActivity,
-					   drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text),
-					   Toast.LENGTH_SHORT
-					  ).show();
+		TipsDialog.GetInstance().setMsg(drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text),
+																	 drugStockAddActivity,clickTipsDialogButtonListener
+																	);
+		TipsDialog.GetInstance().show();
+	}
 
-		//关闭添加页面
-		drugStockAddActivity.finish();
+	private class ClickTipsDialogButtonListener implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
 
+			//关闭添加页面
+			drugStockAddActivity.finish();
+		}
 	}
 
 	//打开选择药品弹框
