@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -39,11 +39,11 @@ import butterknife.OnClick;
 public class SelectMedicineTimeFragment extends Fragment
 {
 	//widget
-	@Bind (R.id.header_bg_ll) LinearLayout m_headerBGLL = null;
+	@Bind (R.id.header_bg_ll)   LinearLayout m_headerBGLL   = null;
 	@Bind (R.id.func_region_ll) LinearLayout m_funcRegionLL = null;
-	@Bind (R.id.timePicker)   TimePicker   m_timePicker = null;
-	@Bind (R.id.confirm_btn)  Button       m_confirmBtn = null;
-	@Bind (R.id.bottom_bg_ll) LinearLayout m_bottomBGLL = null;
+	@Bind (R.id.timePicker)     TimePicker   m_timePicker   = null;
+	@Bind (R.id.confirm_btn)    Button       m_confirmBtn   = null;
+	@Bind (R.id.bottom_bg_ll)   LinearLayout m_bottomBGLL   = null;
 
 	protected LayoutInflater m_layoutInflater = null;
 	protected View           m_view           = null;
@@ -75,9 +75,23 @@ public class SelectMedicineTimeFragment extends Fragment
 		cancelAction();
 	}
 
-	@OnClick(R.id.confirm_btn)
+	@OnClick (R.id.confirm_btn)
 	public void clickConfirm()
 	{
+		m_timePicker.clearFocus();
+
+		if (m_timePicker.is24HourView())
+		{
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
+		}
+		else
+		{
+			m_timePicker.setIs24HourView(true);
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
+		}
+
 		m_medicineReminderAddMsgHandler.setRemainderTime(m_calendar);
 		cancelAction();
 	}
@@ -89,11 +103,12 @@ public class SelectMedicineTimeFragment extends Fragment
 	}
 
 	//防止点击穿透
-	@OnClick(R.id.func_region_ll)
+	@OnClick (R.id.func_region_ll)
 	public void preventPenetration(View v)
 	{
 		return;
 	}
+
 	/**
 	 * override func
 	 */
@@ -104,8 +119,17 @@ public class SelectMedicineTimeFragment extends Fragment
 		@Override
 		public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
 		{
-			m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			m_calendar.set(Calendar.MINUTE, minute);
+			if (m_timePicker.is24HourView())
+			{
+				m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				m_calendar.set(Calendar.MINUTE, minute);
+			}
+			else
+			{
+				m_timePicker.setIs24HourView(true);
+				m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				m_calendar.set(Calendar.MINUTE, minute);
+			}
 		}
 	}
 
