@@ -77,6 +77,7 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		}
 
 		m_selectedTakenMedicineHistoryAdapter = new SelectedTakenMedicineHistoryAdapter(this);
+		m_selectedTakenMedicineHistoryAdapter.init(m_selectedDay);
 		m_selectedDayTakenMedicineLV.setAdapter(m_selectedTakenMedicineHistoryAdapter);
 
 	}

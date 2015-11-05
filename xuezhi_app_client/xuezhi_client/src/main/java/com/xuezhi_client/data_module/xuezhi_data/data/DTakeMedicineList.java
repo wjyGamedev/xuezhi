@@ -36,8 +36,8 @@ import java.util.Map;
 
 public class DTakeMedicineList
 {
-	private int                                            m_Status                = ProtocalConfig.HTTP_OK;
-	private HashMap<Calendar, DTakeMedicinePerSelectedDay> m_medicalHistoryHashMap = new HashMap<>();
+	private int                                      m_Status                = ProtocalConfig.HTTP_OK;
+	private HashMap<Calendar, DTakeMedicinePerMonth> m_medicalHistoryHashMap = new HashMap<>();
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -75,31 +75,31 @@ public class DTakeMedicineList
 			int currDay = currCalendar.get(Calendar.DAY_OF_MONTH);
 
 			//04. 添加/更新
-			DTakeMedicinePerSelectedDay medicalHistoryListPerMonth = null;
+			DTakeMedicinePerMonth medicalHistoryListPerMonth = null;
 			//更新
-			Iterator<Map.Entry<Calendar, DTakeMedicinePerSelectedDay>> iterator = m_medicalHistoryHashMap.entrySet().iterator();
+			Iterator<Map.Entry<Calendar, DTakeMedicinePerMonth>> iterator = m_medicalHistoryHashMap.entrySet().iterator();
 			int year = 0;
 			int month = 0;
 			int day = 0;
 			boolean findFlag = false;
 			while (iterator.hasNext())
 			{
-				Map.Entry<Calendar, DTakeMedicinePerSelectedDay> entry = iterator.next();
+				Map.Entry<Calendar, DTakeMedicinePerMonth> entry = iterator.next();
 				Calendar tmpCalendar = entry.getKey();
 				year = tmpCalendar.get(Calendar.YEAR);
 				month = tmpCalendar.get(Calendar.MONTH);
-				day = tmpCalendar.get(Calendar.DAY_OF_MONTH);
 
-				if (year == currYear && month == currMonth && day == currDay)
+				if (year == currYear && month == currMonth)
 				{
 					findFlag = true;
 					medicalHistoryListPerMonth = entry.getValue();
+					break;
 				}
 			}
 			//add new
 			if (!findFlag)
 			{
-				medicalHistoryListPerMonth = new DTakeMedicinePerSelectedDay();
+				medicalHistoryListPerMonth = new DTakeMedicinePerMonth();
 				m_medicalHistoryHashMap.put(currCalendar, medicalHistoryListPerMonth);
 			}
 
@@ -111,23 +111,23 @@ public class DTakeMedicineList
 
 	}
 
-	public HashMap<Calendar, DTakeMedicinePerSelectedDay> getMedicalHistoryHashMap()
+	public HashMap<Calendar, DTakeMedicinePerMonth> getMedicalHistoryHashMap()
 	{
 		return m_medicalHistoryHashMap;
 	}
 
-	public synchronized DTakeMedicinePerSelectedDay getMedicalHistoryBySelectedDay(Calendar month)
+	public synchronized DTakeMedicinePerMonth getMedicalHistoryBySelectedMonth(Calendar month)
 	{
-		Iterator<Map.Entry<Calendar, DTakeMedicinePerSelectedDay>> iter = m_medicalHistoryHashMap.entrySet().iterator();
+		Iterator<Map.Entry<Calendar, DTakeMedicinePerMonth>> iter = m_medicalHistoryHashMap.entrySet().iterator();
 		while (iter.hasNext())
 		{
-			Map.Entry<Calendar, DTakeMedicinePerSelectedDay> entry = iter.next();
+			Map.Entry<Calendar, DTakeMedicinePerMonth> entry = iter.next();
 
 			Calendar tmpCalendar = (Calendar)entry.getKey();
 			if (tmpCalendar == null)
 				continue;
 
-			DTakeMedicinePerSelectedDay tmpTakemedicinePerMonth = (DTakeMedicinePerSelectedDay)entry.getValue();
+			DTakeMedicinePerMonth tmpTakemedicinePerMonth = (DTakeMedicinePerMonth)entry.getValue();
 			if (tmpTakemedicinePerMonth == null)
 				continue;
 
@@ -137,12 +137,10 @@ public class DTakeMedicineList
 			if (tmpCalendar.get(Calendar.MONTH) != month.get(Calendar.MONTH))
 				continue;
 
-			if (tmpCalendar.get(Calendar.DAY_OF_MONTH) != month.get(Calendar.DAY_OF_MONTH))
-				continue;
-
 			return tmpTakemedicinePerMonth;
 		}
 		return null;
 	}
+
 
 }

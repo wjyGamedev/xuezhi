@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -18,7 +18,8 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,13 +38,21 @@ public class DWaitForRemainder
 	public void updateContent()
 	{
 		ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
-		Calendar today = Calendar.getInstance();
-		DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
-				today
-																																			);
-		if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
+		Calendar                   today           = Calendar.getInstance();
+		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																  .getMedicalHistoryBySelectedMonth(today
+																								   );
+
+		if (takeMedicinePerMonth != null)
 		{
-			updateTakeMedicineReminder(medicinePrompts, takeMedicinePerMonth);
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
+			if (takeMedicinePerDay != null)
+			{
+				if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
+				{
+					updateTakeMedicineReminder(medicinePrompts, takeMedicinePerDay);
+				}
+			}
 		}
 
 		ArrayList<DMedicineBox> medicineBoxes = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxs();
@@ -54,7 +63,7 @@ public class DWaitForRemainder
 
 	}
 
-	private void updateTakeMedicineReminder(ArrayList<DMedicinePrompt> medicinePrompts, DTakeMedicinePerSelectedDay takeMedicinePerMonth)
+	private void updateTakeMedicineReminder(ArrayList<DMedicinePrompt> medicinePrompts, DTakeMedicinePerDay takeMedicinePerDay)
 	{
 		m_takeMedicineReminders.clear();
 
@@ -67,9 +76,9 @@ public class DWaitForRemainder
 			if (!DTakeMedicineReminder.checkValid(pid))
 				continue;
 
-			if (takeMedicinePerMonth != null)
+			if (takeMedicinePerDay != null)
 			{
-				ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerMonth.getTakeMedicines();
+				ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerDay.getTakeMedicines();
 				if (takeMedicines != null && takeMedicines.isEmpty() == false)
 				{
 					for (DTakeMedicine takeMedicine : takeMedicines)
@@ -98,13 +107,13 @@ public class DWaitForRemainder
 		m_medicineReminders.clear();
 
 		//TODO:目前没把medicinebox中的rose和用药提醒的rose关联起来。
-		Calendar today = Calendar.getInstance();
-		int todayYear = today.get(Calendar.YEAR);
-		int todayMonth = today.get(Calendar.MONTH);
-		int todayDay = today.get(Calendar.DAY_OF_MONTH);
-		int tmpYear = 0;
-		int tmpMonth = 0;
-		int tmpDay = 0;
+		Calendar today      = Calendar.getInstance();
+		int      todayYear  = today.get(Calendar.YEAR);
+		int      todayMonth = today.get(Calendar.MONTH);
+		int      todayDay   = today.get(Calendar.DAY_OF_MONTH);
+		int      tmpYear    = 0;
+		int      tmpMonth   = 0;
+		int      tmpDay     = 0;
 		for (DMedicineBox medicineBox : medicineBoxes)
 		{
 			int mbid = medicineBox.getID();

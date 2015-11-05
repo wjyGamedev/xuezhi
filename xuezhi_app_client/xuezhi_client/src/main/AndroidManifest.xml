@@ -121,12 +121,18 @@
 		</activity>
 
 		<!--06. 日历-->
+		<!-- 日历页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity"
 			android:label="CalenderActivity"
 			android:screenOrientation="portrait">
 		</activity>
-
+		<!-- 用药明细页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.ui.SelectedTakenMedicineHistoryActivity"
+			android:label="SelectedTakenMedicineHistoryActivity"
+			android:screenOrientation="portrait">
+		</activity>
 		<!-- 07. 风险评估-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.risk_assessment_page.ui.RiskAssessmentActivity"

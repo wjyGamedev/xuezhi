@@ -98,8 +98,6 @@ public class MedicineReminderActivity extends BaseActivity
 				event.setUID(DAccount.GetInstance().getId());
 				event.setMPID(String.valueOf(m_waitDeletedMPID));
 				m_medicationReminderMsgHandler.requestMedicineReminderDeleteAction(event);
-
-				m_asyncWaitDialog.setWaitTimeByMilliSeconds(MedicineReminderPageConfig.WAIT_TIME_FOR_DELETE_MEDICINE_REMINDER_ITEM);
 				m_asyncWaitDialog.show();
 			}
 			dialog.dismiss();
@@ -123,7 +121,7 @@ public class MedicineReminderActivity extends BaseActivity
 		m_medicineReminderAdapter = new MedicineReminderAdapter(this);
 		m_medicationReminderDisplayLV.setAdapter(m_medicineReminderAdapter);
 
-		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.init(this, MedicineReminderPageConfig.WAIT_TIME_FOR_DELETE_MEDICINE_REMINDER_ITEM);
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleAsyncDislogEvent);
 	}
 
