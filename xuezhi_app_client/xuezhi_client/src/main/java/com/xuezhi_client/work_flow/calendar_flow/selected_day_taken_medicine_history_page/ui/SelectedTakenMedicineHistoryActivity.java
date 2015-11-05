@@ -2,6 +2,7 @@ package com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_hi
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
@@ -52,6 +53,23 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	{
 		updateContent();
 		super.onStart();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			backAction();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+
+	}
+
+	private void backAction()
+	{
+		finish();
 	}
 
 	/**

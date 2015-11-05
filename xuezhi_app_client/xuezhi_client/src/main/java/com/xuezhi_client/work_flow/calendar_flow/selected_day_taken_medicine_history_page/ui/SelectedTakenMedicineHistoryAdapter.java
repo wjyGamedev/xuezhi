@@ -86,8 +86,11 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 			convertView = m_layoutInflater.inflate(R.layout.item_selected_taken_medicine_history, null);
 			viewHolder = new ViewHolder(convertView);
 			int index = (int)getItemId(position);
-			ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerTime.get(index);
-			viewHolder.initContent(takeMedicines, takeMedicines.get(0).getTakeCalendar(), position);
+			if (!m_takeMedicinePerTime.isEmpty())
+			{
+				ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerTime.get(index);
+				viewHolder.initContent(takeMedicines, takeMedicines.get(0).getTakeCalendar(), position);
+			}
 			convertView.setTag(viewHolder);
 		}
 		else
@@ -101,6 +104,45 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 	public SelectedTakenMedicineHistoryAdapter(Context context)
 	{
 		super(context);
+	}
+
+	private void setByHourMinute(DTakeMedicine takeMedicine)
+	{
+		Calendar targetCalendar = takeMedicine.getTakeCalendar();
+		if (m_takeMedicinePerTime.isEmpty())
+		{
+			ArrayList<DTakeMedicine> takeMedicines = new ArrayList<>();
+			takeMedicines.add(takeMedicine);
+			m_takeMedicinePerTime.add(takeMedicines);
+			return;
+		}
+
+		for (ArrayList<DTakeMedicine> takeMedicines1 : m_takeMedicinePerTime)
+		{
+			if (takeMedicines1.isEmpty())
+			{
+				ArrayList<DTakeMedicine> tmpTakeMedicines = new ArrayList<>();
+				tmpTakeMedicines.add(takeMedicine);
+				m_takeMedicinePerTime.add(tmpTakeMedicines);
+				return;
+			}
+
+			DTakeMedicine takeMedicine1 = takeMedicines1.get(0);
+			Calendar takeCalendar1 = takeMedicine1.getTakeCalendar();
+			if (takeCalendar1.get(Calendar.HOUR_OF_DAY) != targetCalendar.get(Calendar.HOUR_OF_DAY))
+				continue;
+
+			if (takeCalendar1.get(Calendar.MINUTE) != targetCalendar.get(Calendar.MINUTE))
+				continue;
+
+			takeMedicines1.add(takeMedicine);
+			return;
+		}
+
+		ArrayList<DTakeMedicine> takeMedicines = new ArrayList<>();
+		takeMedicines.add(takeMedicine);
+		m_takeMedicinePerTime.add(takeMedicines);
+		return;
 	}
 
 	public void init(Calendar selectedDay)
@@ -124,34 +166,8 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 		Calendar                 tmpCalendar      = Calendar.getInstance();
 		for (DTakeMedicine takeMedicine : m_takeMedicines)
 		{
-			tmpCalendar = takeMedicine.getTakeCalendar();
-
-			if (targetHour == DataConfig.DEFAULT_VALUE && targetMinute == DataConfig.DEFAULT_VALUE)
-			{
-				targetHour = tmpCalendar.get(Calendar.HOUR_OF_DAY);
-				targetMinute = tmpCalendar.get(Calendar.MINUTE);
-				tmpTakeMedicines.add(takeMedicine);
-				continue;
-			}
-
-			if (targetHour == tmpCalendar.get(Calendar.HOUR_OF_DAY) && targetMinute == tmpCalendar.get(Calendar.MINUTE))
-			{
-				tmpTakeMedicines.add(takeMedicine);
-				continue;
-			}
-
-			m_takeMedicinePerTime.add(new ArrayList<DTakeMedicine>(tmpTakeMedicines));
-			tmpTakeMedicines.clear();
-			targetHour = tmpCalendar.get(Calendar.HOUR_OF_DAY);
-			targetMinute = tmpCalendar.get(Calendar.MINUTE);
-			tmpTakeMedicines.add(takeMedicine);
+			setByHourMinute(takeMedicine);
 		}
-		if (!tmpTakeMedicines.isEmpty())
-		{
-			m_takeMedicinePerTime.add(tmpTakeMedicines);
-			tmpTakeMedicines.clear();
-		}
-
 	}
 
 }
