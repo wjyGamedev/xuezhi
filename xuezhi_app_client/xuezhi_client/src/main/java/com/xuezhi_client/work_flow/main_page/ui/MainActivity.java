@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
-import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
@@ -144,7 +143,7 @@ public class MainActivity extends BaseActivity
 
 		m_homeRBtn.setSelected(true);
 
-		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.initDefault(this);
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleAsyncWaitDialogFinishedEvent);
 		m_asyncWaitDialog.show();
 	}

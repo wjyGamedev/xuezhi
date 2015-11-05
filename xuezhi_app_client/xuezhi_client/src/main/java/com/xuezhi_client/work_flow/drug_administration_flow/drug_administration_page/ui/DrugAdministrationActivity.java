@@ -70,7 +70,7 @@ public class DrugAdministrationActivity extends BaseActivity
 
 		m_drugAdministrationMsgHandler.requestMedicineBoxGetListAction();
 		m_asyncWaitDialog = new AsyncWaitDialog();
-		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.initDefault(this);
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
 		m_asyncWaitDialog.show();
 
@@ -101,9 +101,6 @@ public class DrugAdministrationActivity extends BaseActivity
 		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
 		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
 
-		//02. logical
-//		m_asyncWaitDialog.init(this);
-//		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
 	}
 
 	/**

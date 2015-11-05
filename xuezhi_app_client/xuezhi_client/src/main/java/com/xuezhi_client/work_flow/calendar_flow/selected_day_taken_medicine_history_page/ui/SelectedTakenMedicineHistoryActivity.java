@@ -2,10 +2,12 @@ package com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_hi
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
 import com.module.frame.BaseActivity;
+import com.module.util.logcal.LogicalUtil;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
@@ -54,6 +56,23 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		super.onStart();
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			backAction();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+
+	}
+
+	private void backAction()
+	{
+		finish();
+	}
+
 	/**
 	 * inner func
 	 */
@@ -77,7 +96,9 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		}
 
 		m_selectedTakenMedicineHistoryAdapter = new SelectedTakenMedicineHistoryAdapter(this);
+		m_selectedTakenMedicineHistoryAdapter.init(m_selectedDay);
 		m_selectedDayTakenMedicineLV.setAdapter(m_selectedTakenMedicineHistoryAdapter);
+		LogicalUtil.SetListViewHeightBasedOnChildren(m_selectedDayTakenMedicineLV);
 
 	}
 

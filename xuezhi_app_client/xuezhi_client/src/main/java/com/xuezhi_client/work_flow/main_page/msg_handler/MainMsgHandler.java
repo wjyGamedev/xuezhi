@@ -32,7 +32,8 @@ import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicinePromptGetListEvent;
@@ -369,9 +370,10 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		else
 		{
 			//今日无提醒
-			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(
 					Calendar.getInstance()
-																																				);
+																																				  );
+
 			ArrayList<DTakeMedicine> m_takeMedicines = null;
 			if (takeMedicinePerMonth == null)
 			{
@@ -380,39 +382,47 @@ public class MainMsgHandler extends BaseUIMsgHandler
 			//今日已点击完。
 			else
 			{
-				m_takeMedicines = takeMedicinePerMonth.getTakeMedicines();
-				if (m_takeMedicines.isEmpty())
+				DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(Calendar.getInstance());
+				if (takeMedicinePerDay == null)
 				{
 					updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
 				}
 				else
 				{
-					Calendar today = Calendar.getInstance();
-					int todayYear = today.get(Calendar.YEAR);
-					int todayMonth = today.get(Calendar.MONTH);
-					int todayDay = today.get(Calendar.DAY_OF_MONTH);
-					boolean bFindFlag = false;
-					for (DTakeMedicine takeMedicine : m_takeMedicines)
-					{
-						Calendar takeCalendar = takeMedicine.getTakeCalendar();
-						if (takeCalendar.get(Calendar.YEAR) == todayYear &&
-								takeCalendar.get(Calendar.MONTH) == todayMonth &&
-								takeCalendar.get(Calendar.DAY_OF_MONTH) == todayDay)
-						{
-							bFindFlag = true;
-							break;
-						}
-					}
-
-					if (bFindFlag)
-					{
-						updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.FINISHED, nextTakeMedicineReminder);
-					}
-					else
+					m_takeMedicines = takeMedicinePerDay.getTakeMedicines();
+					if (m_takeMedicines.isEmpty())
 					{
 						updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
 					}
+					else
+					{
+						Calendar today = Calendar.getInstance();
+						int todayYear = today.get(Calendar.YEAR);
+						int todayMonth = today.get(Calendar.MONTH);
+						int todayDay = today.get(Calendar.DAY_OF_MONTH);
+						boolean bFindFlag = false;
+						for (DTakeMedicine takeMedicine : m_takeMedicines)
+						{
+							Calendar takeCalendar = takeMedicine.getTakeCalendar();
+							if (takeCalendar.get(Calendar.YEAR) == todayYear &&
+									takeCalendar.get(Calendar.MONTH) == todayMonth &&
+									takeCalendar.get(Calendar.DAY_OF_MONTH) == todayDay)
+							{
+								bFindFlag = true;
+								break;
+							}
+						}
 
+						if (bFindFlag)
+						{
+							updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.FINISHED, nextTakeMedicineReminder);
+						}
+						else
+						{
+							updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
+						}
+
+					}
 				}
 			}
 

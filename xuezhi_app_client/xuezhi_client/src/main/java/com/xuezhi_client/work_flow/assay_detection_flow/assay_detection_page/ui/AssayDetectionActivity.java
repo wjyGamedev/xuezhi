@@ -251,7 +251,7 @@ public class AssayDetectionActivity extends BaseActivity
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.assay_detection_save_content);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
 
-		m_asyncWaitDialog.init(this);
+		m_asyncWaitDialog.initDefault(this);
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
 
 	}

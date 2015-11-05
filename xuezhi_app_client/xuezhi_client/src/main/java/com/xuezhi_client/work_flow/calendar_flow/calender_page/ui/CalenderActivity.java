@@ -14,13 +14,16 @@ import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerSelectedDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.CalenderMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -78,15 +81,20 @@ public class CalenderActivity extends BaseActivity
 				@Nullable
 				CalendarDay date)
 		{
-			date.copyToMonthOnly(m_selectedDay);
+			date.copyTo(m_selectedDay);
 
-			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
-					m_selectedDay
-																																				);
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																	  .getMedicalHistoryBySelectedMonth(m_selectedDay
+																									   );
 			if (takeMedicinePerMonth == null)
 				return;
 
-			setSelectedTakeMedicineTime(m_selectedDay);
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(m_selectedDay);
+			if (takeMedicinePerDay == null)
+				return;
+
+			if (!takeMedicinePerDay.getTakeMedicines().isEmpty())
+				setSelectedTakeMedicineTime(m_selectedDay);
 		}
 	}
 
@@ -96,30 +104,19 @@ public class CalenderActivity extends BaseActivity
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
 			Calendar today = Calendar.getInstance();
-			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
-					today
-																																				);
+			day.copyTo(today);
+
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																	  .getMedicalHistoryBySelectedMonth(today
+																									   );
 			if (takeMedicinePerMonth == null)
 				return false;
 
-			ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerMonth.getTakeMedicines();
-			int                      targetMonth   = day.getMonth();
-			int                      targetDay     = day.getDay();
-			for (DTakeMedicine takeMedicine : takeMedicines)
-			{
-				Calendar takeCalendar = takeMedicine.getTakeCalendar();
-				CalendarDay tmpCalendarDay = CalendarDay.from(takeCalendar);
-				int tmpMonth = tmpCalendarDay.getMonth();
-				int tmpDay = tmpCalendarDay.getDay();
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
+			if (takeMedicinePerDay == null)
+				return false;
 
-				if (tmpMonth != targetMonth)
-					continue;
-
-				if (tmpDay == targetDay)
-					return true;
-
-			}
-			return false;
+			return (!takeMedicinePerDay.getTakeMedicines().isEmpty());
 		}
 	}
 
@@ -129,35 +126,24 @@ public class CalenderActivity extends BaseActivity
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
 			Calendar today = Calendar.getInstance();
-			DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
-					today
-																																				);
+			day.copyTo(today);
+
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																	  .getMedicalHistoryBySelectedMonth(today
+																									   );
 			if (takeMedicinePerMonth == null)
 				return true;
 
-			ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerMonth.getTakeMedicines();
-			int                      targetMonth   = day.getMonth();
-			int                      targetDay     = day.getDay();
-			for (DTakeMedicine takeMedicine : takeMedicines)
-			{
-				Calendar takeCalendar = takeMedicine.getTakeCalendar();
-				CalendarDay tmpCalendarDay = CalendarDay.from(takeCalendar);
-				int tmpMonth = tmpCalendarDay.getMonth();
-				int tmpDay = tmpCalendarDay.getDay();
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
+			if (takeMedicinePerDay == null)
+				return true;
 
-				if (tmpMonth != targetMonth)
-					continue;
-
-				if (tmpDay == targetDay)
-					return false;
-
-			}
-			return true;
+			return takeMedicinePerDay.getTakeMedicines().isEmpty();
 		}
 	}
 
 
-	@OnClick(R.id.selected_day_region_ll)
+	@OnClick (R.id.selected_day_region_ll)
 	public void clickSelectedDayRegion()
 	{
 		m_calenderMsgHandler.go2SelectedTakenMedicineHistoryPage(m_selectedDay);
@@ -188,26 +174,38 @@ public class CalenderActivity extends BaseActivity
 
 
 		Calendar today = Calendar.getInstance();
-		DTakeMedicinePerSelectedDay takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedDay(
-				today
-																																			);
+		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																  .getMedicalHistoryBySelectedMonth(today
+																								   );
 
 
 		m_selectedTV.setText(R.string.calendar_no_taked_medicine_history);
 		m_selectedIV.setVisibility(View.INVISIBLE);
-		if (takeMedicinePerMonth != null)
-		{
-			ArrayList<DTakeMedicine> takeMedicines = takeMedicinePerMonth.getTakeMedicines();
-			for (DTakeMedicine takeMedicine : takeMedicines)
-			{
-				Calendar takeCalendar = takeMedicine.getTakeCalendar();
-				String display = m_ymdSDF.format(takeCalendar.getTime());
-				m_selectedTV.setText(display);
-				m_selectedIV.setVisibility(View.VISIBLE);
-				break;
-			}
-		}
+		if (takeMedicinePerMonth == null)
+			return;
 
+		HashMap<Calendar, DTakeMedicinePerDay> takeMedicinePerDayHashMap = takeMedicinePerMonth.getTakeMedicinePerDayHashMap();
+		if (takeMedicinePerDayHashMap.isEmpty())
+			return;
+
+		Iterator<Map.Entry<Calendar, DTakeMedicinePerDay>> iterator = takeMedicinePerDayHashMap.entrySet().iterator();
+		if (!iterator.hasNext())
+			return;
+
+		Map.Entry<Calendar, DTakeMedicinePerDay> entry = iterator.next();
+		DTakeMedicinePerDay takeMedicinePerDay = entry.getValue();
+		if (takeMedicinePerDay == null)
+			return;
+
+		if (takeMedicinePerDay.getTakeMedicines().isEmpty())
+			return;
+
+		DTakeMedicine takeMedicine = takeMedicinePerDay.getTakeMedicines().get(0);
+		Calendar takeCalendar = takeMedicine.getTakeCalendar();
+		String display = m_ymdSDF.format(takeCalendar.getTime());
+		m_selectedTV.setText(display);
+		m_selectedIV.setVisibility(View.VISIBLE);
+		m_selectedDay = takeCalendar;
 
 	}
 

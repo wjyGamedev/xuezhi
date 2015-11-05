@@ -20,19 +20,17 @@ import java.util.TimerTask;
 
 public class TimerTaskWrapper extends TimerTask
 {
-	protected       TimerTaskListener m_timerTaskListener = null;
-	protected  		Timer             m_timer             = null;
+	protected TimerTaskListener m_timerTaskListener = null;
+	protected Timer             m_timer             = new Timer();
 
 
 	public void schedule(Date when)
 	{
-		m_timer = new Timer();
 		m_timer.schedule(this, when);
 	}
 
 	public void schedule(long delay)
 	{
-		m_timer = new Timer();
 		m_timer.schedule(this, delay);
 	}
 

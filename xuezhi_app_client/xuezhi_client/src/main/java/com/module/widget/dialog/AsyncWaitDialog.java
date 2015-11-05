@@ -76,13 +76,22 @@ public class AsyncWaitDialog
 		m_waitTimerTask.setTimerTaskListener(m_timerTaskHandler);
 	}
 
-	public void init(Context context)
+	public void initDefault(Context context)
 	{
 		m_waitProgressDialog = new ProgressDialog(context);
 		m_waitProgressDialog.setMessage(m_waitTips);
 		m_initFlag = true;
+		m_waitTimerTask.schedule(m_waitTimeByMilliSeconds);
 	}
 
+	public void init(Context context, long waitTimeByMilliSecond)
+	{
+		m_waitProgressDialog = new ProgressDialog(context);
+		m_waitProgressDialog.setMessage(m_waitTips);
+		m_initFlag = true;
+		m_waitTimeByMilliSeconds = waitTimeByMilliSecond;
+		m_waitTimerTask.schedule(m_waitTimeByMilliSeconds);
+	}
 	public void setWaitTips(String waitTips)
 	{
 		if (!check())
@@ -122,7 +131,6 @@ public class AsyncWaitDialog
 			return;
 
 		m_waitProgressDialog.show();
-		m_waitTimerTask.schedule(m_waitTimeByMilliSeconds);
 	}
 
 	public void dismiss()
