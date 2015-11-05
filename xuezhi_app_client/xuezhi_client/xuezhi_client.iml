@@ -91,12 +91,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="umeng-update-v2.6.0.1" level="project" />
+    <orderEntry type="library" exported="" name="mid-sdk-2.20" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="mpandroidchartlibrary-2-1-4" level="project" />
+    <orderEntry type="library" exported="" name="Xg_sdk_v2.39_20150915_1121" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="alipaySDK-20150724" level="project" />
     <orderEntry type="library" exported="" name="analytics-5.6.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
+    <orderEntry type="library" exported="" name="wup-1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="sMSSDK" exported="" />
     <orderEntry type="module" module-name="volley" exported="" />
     <orderEntry type="module" module-name="eventbus" exported="" />

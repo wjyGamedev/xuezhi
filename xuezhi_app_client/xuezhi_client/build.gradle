@@ -39,12 +39,16 @@ dependencies {
 	compile fileTree(include: ['*.jar'], dir: 'libs')
 	compile files('libs/alipaySDK-20150724.jar')
 	compile files('libs/butterknife-7.0.1.jar')
+	compile files('libs/umeng-update-v2.6.0.1.jar')
+	compile files('libs/mpandroidchartlibrary-2-1-4.jar')
+	compile files('libs/jg_filter_sdk_1.1.jar')
+	compile files('libs/mid-sdk-2.20.jar')
+	compile files('libs/wup-1.0.0-SNAPSHOT.jar')
+	compile files('libs/Xg_sdk_v2.39_20150915_1121.jar')
+	compile 'com.android.support:appcompat-v7:22.2.0'
+	compile 'com.umeng.analytics:analytics:latest.integration'
 	compile project(':calendar')
 	compile project(':eventbus')
 	compile project(':sMSSDK')
 	compile project(':volley')
-	compile 'com.android.support:appcompat-v7:22.2.0'
-	compile files('libs/mpandroidchartlibrary-2-1-4.jar')
-	compile 'com.umeng.analytics:analytics:latest.integration'
-	compile files('libs/umeng-update-v2.6.0.1.jar')
 }

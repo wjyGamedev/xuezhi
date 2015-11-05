@@ -15,10 +15,13 @@
 package com.module.frame;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.module.data.DGlobal;
 import com.module.net.BaseHttp;
 import com.module.storage.StorageWrapper;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
 
 public class AppFrame extends Application
 {
@@ -61,6 +64,9 @@ public class AppFrame extends Application
 		DGlobal.GetInstance().setAppContext(this);
 		BaseHttp.getInstance().init(this);
 		StorageWrapper.GetInstance().init(this);
+		XGPushConfig.enableDebug(this, true);
+		Context context = getApplicationContext();
+		XGPushManager.registerPush(context);
 	}
 	private void onModuleClearup()
 	{
