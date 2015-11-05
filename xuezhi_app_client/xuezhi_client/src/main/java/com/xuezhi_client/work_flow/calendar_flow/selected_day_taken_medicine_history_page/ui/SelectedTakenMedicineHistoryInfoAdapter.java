@@ -108,8 +108,8 @@ public class SelectedTakenMedicineHistoryInfoAdapter extends IBaseAdapter
 
 final class ViewInfoHolder
 {
-	@Bind (R.id.name_tv)TextView m_nameTV = null;
-	@Bind (R.id.dose_tv)TextView m_doseTV = null;
+	@Bind (R.id.name_tv) TextView m_nameTV = null;
+	@Bind (R.id.dose_tv) TextView     m_doseTV = null;
 
 	private View m_view = null;
 

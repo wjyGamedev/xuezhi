@@ -22,8 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.module.frame.IBaseAdapter;
+import com.module.util.logcal.LogicalUtil;
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
@@ -85,19 +85,18 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 		{
 			convertView = m_layoutInflater.inflate(R.layout.item_selected_taken_medicine_history, null);
 			viewHolder = new ViewHolder(convertView);
-			int index = (int)getItemId(position);
-			if (!m_takeMedicinePerTime.isEmpty())
-			{
-				ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerTime.get(index);
-				viewHolder.initContent(takeMedicines, takeMedicines.get(0).getTakeCalendar(), position);
-			}
 			convertView.setTag(viewHolder);
 		}
 		else
 		{
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
-
+		int index = (int)getItemId(position);
+		if (!m_takeMedicinePerTime.isEmpty())
+		{
+			ArrayList<DTakeMedicine> takeMedicines = m_takeMedicinePerTime.get(index);
+			viewHolder.initContent(takeMedicines, takeMedicines.get(0).getTakeCalendar(), position);
+		}
 		return convertView;
 	}
 
@@ -159,11 +158,6 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 			return;
 
 		m_takeMedicines = m_takeMedicinePerDay.getTakeMedicines();
-
-		ArrayList<DTakeMedicine> tmpTakeMedicines = new ArrayList<>();
-		int                      targetHour       = DataConfig.DEFAULT_VALUE;
-		int                      targetMinute     = DataConfig.DEFAULT_VALUE;
-		Calendar                 tmpCalendar      = Calendar.getInstance();
 		for (DTakeMedicine takeMedicine : m_takeMedicines)
 		{
 			setByHourMinute(takeMedicine);
@@ -217,7 +211,8 @@ final class ViewHolder
 		m_takenMedicineTimeTV.setText(timeDisplay);
 
 		m_selectedTakenMedicineHistoryInfoAdapter = new SelectedTakenMedicineHistoryInfoAdapter(activity);
-		m_takenMedicineHistoryLV.setAdapter(m_selectedTakenMedicineHistoryInfoAdapter);
 		m_selectedTakenMedicineHistoryInfoAdapter.init(takeMedicines);
+		m_takenMedicineHistoryLV.setAdapter(m_selectedTakenMedicineHistoryInfoAdapter);
+		LogicalUtil.SetListViewHeightBasedOnChildren(m_takenMedicineHistoryLV);
 	}
 }

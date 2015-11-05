@@ -49,7 +49,6 @@ public class DTakeMedicinePerDay
 		JSONObject    jsonObject             = null;
 		DTakeMedicine takeMedicine = null;
 		for (int index = 0; index < jsonArray.length(); index++)
-
 		{
 			jsonObject = (JSONObject)jsonArray.get(index);
 			takeMedicine = new DTakeMedicine();
