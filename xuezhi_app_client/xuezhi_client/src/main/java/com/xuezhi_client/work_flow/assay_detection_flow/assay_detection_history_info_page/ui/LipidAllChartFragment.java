@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -32,7 +32,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
@@ -59,8 +58,8 @@ public class LipidAllChartFragment extends Fragment
 	private View m_view = null;
 
 	//logical
-	private int[] m_colors = new int[]{ColorTemplate.VORDIPLOM_COLORS[0], ColorTemplate.VORDIPLOM_COLORS[1], ColorTemplate
-			.VORDIPLOM_COLORS[2], ColorTemplate.VORDIPLOM_COLORS[3]};
+	private int[] m_colors = new int[]{AssayDetectionConfig.COLOR_TG, AssayDetectionConfig.COLOR_TCHO, AssayDetectionConfig.COLOR_LOLC,
+			AssayDetectionConfig.COLOR_HDLC};
 
 
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = null;
@@ -246,10 +245,10 @@ public class LipidAllChartFragment extends Fragment
 		EnumConfig.AssayDetectionType assayDetectionType = getAssayDetectionTypeByIndex(index);
 
 		//02.
-		String yName = AssayDetectionConfig.getName(assayDetectionType);
-		String yUnit = AssayDetectionConfig.getUnit(assayDetectionType);
+		String yName    = AssayDetectionConfig.getName(assayDetectionType);
+		String yUnit    = AssayDetectionConfig.getUnit(assayDetectionType);
 		String unitTips = getActivity().getString(R.string.assay_detection_history_unit_tips);
-		yName = yName + "("+unitTips+yUnit+")";
+		yName = yName + "(" + unitTips + yUnit + ")";
 
 		return yName;
 	}
@@ -258,16 +257,16 @@ public class LipidAllChartFragment extends Fragment
 	{
 		switch (index)
 		{
-		case 0:
-			return EnumConfig.AssayDetectionType.TG;
-		case 1:
-			return EnumConfig.AssayDetectionType.TCHO;
-		case 2:
-			return EnumConfig.AssayDetectionType.LOLC;
-		case 3:
-			return EnumConfig.AssayDetectionType.HDLC;
-		default:
-			return EnumConfig.AssayDetectionType.TG;
+			case 0:
+				return EnumConfig.AssayDetectionType.TG;
+			case 1:
+				return EnumConfig.AssayDetectionType.TCHO;
+			case 2:
+				return EnumConfig.AssayDetectionType.LOLC;
+			case 3:
+				return EnumConfig.AssayDetectionType.HDLC;
+			default:
+				return EnumConfig.AssayDetectionType.TG;
 		}
 	}
 
@@ -280,16 +279,16 @@ public class LipidAllChartFragment extends Fragment
 
 		switch (assayDetectionType)
 		{
-		case TG:
-			return assayDetection.getTgValue();
-		case TCHO:
-			return assayDetection.getTchoValue();
-		case LOLC:
-			return assayDetection.getLolcValue();
-		case HDLC:
-			return assayDetection.getHdlcValue();
-		default:
-			return assayDetection.getTgValue();
+			case TG:
+				return assayDetection.getTgValue();
+			case TCHO:
+				return assayDetection.getTchoValue();
+			case LOLC:
+				return assayDetection.getLolcValue();
+			case HDLC:
+				return assayDetection.getHdlcValue();
+			default:
+				return assayDetection.getTgValue();
 		}
 	}
 
@@ -327,7 +326,7 @@ public class LipidAllChartFragment extends Fragment
 			}
 
 			String dateSetName = getLineName(indexType);
-			LineDataSet lineDataSet  = new LineDataSet(values, dateSetName);
+			LineDataSet lineDataSet = new LineDataSet(values, dateSetName);
 			lineDataSet.setLineWidth(1.5f);
 			lineDataSet.setCircleSize(4f);
 
@@ -341,9 +340,9 @@ public class LipidAllChartFragment extends Fragment
 		m_lineChart.setData(data);
 
 		//02. label tip
-		String molecule = String.valueOf(count);
+		String molecule    = String.valueOf(count);
 		String denominator = String.valueOf(m_assayDetectionArrayList.size());
-		String display = molecule+ "/"+denominator;
+		String display     = molecule + "/" + denominator;
 		m_xTV.setText(display);
 	}
 

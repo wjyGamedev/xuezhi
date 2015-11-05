@@ -353,6 +353,7 @@ public class SingleChartFragment extends Fragment
 		LineDataSet set1 = new LineDataSet(yVals, yName);
 		set1.setLineWidth(1.5f);
 		set1.setCircleSize(4f);
+		set1.setColor(AssayDetectionConfig.COLOR_DEFAULT);
 
 		// create a data object with the datasets
 		LineData data = new LineData(xVals, set1);
