@@ -271,14 +271,16 @@ public class MedicineReminderAddActivity extends BaseActivity
 		m_medicineReminderDisplay.setMedicineID(medicineID);
 
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineID);
+		DMedicineUnit medicineUnit = null;
 		if (medicine != null)
 		{
 			m_medicineNameTV.setText(medicine.getName());
 			setPrecaution(medicine.getPrecautions());
+
+			int medicineUnitID = medicine.getMUID();
+			medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineUnitID);
 		}
 
-		int medicineUnitID = medicine.getMUID();
-		DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineUnitID);
 		if (medicineUnit != null)
 		{
 			m_medicineUnit.setText(medicineUnit.getUnitName());

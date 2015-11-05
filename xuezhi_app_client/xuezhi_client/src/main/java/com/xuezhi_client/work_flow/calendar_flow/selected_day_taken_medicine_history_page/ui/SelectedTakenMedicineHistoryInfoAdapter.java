@@ -22,8 +22,10 @@ import android.widget.TextView;
 
 import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -108,8 +110,9 @@ public class SelectedTakenMedicineHistoryInfoAdapter extends IBaseAdapter
 
 final class ViewInfoHolder
 {
-	@Bind (R.id.name_tv) TextView m_nameTV = null;
-	@Bind (R.id.dose_tv) TextView     m_doseTV = null;
+	@Bind (R.id.name_tv)      TextView m_nameTV     = null;
+	@Bind (R.id.dose_tv)      TextView m_doseTV     = null;
+	@Bind (R.id.dose_unit_tv) TextView m_doseUnitTV = null;
 
 	private View m_view = null;
 
@@ -132,6 +135,17 @@ final class ViewInfoHolder
 		}
 
 		m_doseTV.setText(String.valueOf(takeMedicine.getDose()));
+
+		int UnitID = medicine.getMUID();
+		if (UnitID != DataConfig.DEFAULT_ID)
+		{
+			DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(UnitID);
+			if (medicineUnit != null)
+			{
+				m_doseUnitTV.setText(medicineUnit.getUnitName());
+			}
+		}
+
 
 	}
 

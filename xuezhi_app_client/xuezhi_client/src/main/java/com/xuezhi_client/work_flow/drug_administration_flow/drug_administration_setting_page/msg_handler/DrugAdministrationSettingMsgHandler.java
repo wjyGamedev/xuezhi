@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.module.widget.dialog.TipsDialog;
+import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxSetEvent;
@@ -117,7 +119,8 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 											m_context.getString(R.string.drug_administration_setting_click_dialog_positive_text),
 											clickEventOnDialogBtn,
 											m_context.getString(R.string.drug_administration_setting_click_dialog_negative_text),
-											clickEventOnDialogBtn);
+											clickEventOnDialogBtn
+										   );
 			TipsDialog.GetInstance().show();
 			return;
 		}
@@ -152,13 +155,27 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 	public void onEventMainThread(AnswerMedicineBoxSetEvent event)
 	{
 		DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
+		ClickTipsDialogButtonListener     clickTipsDialogButtonListener     = new ClickTipsDialogButtonListener();
 
 		//提示保存成功
-		TipsDialog.GetInstance().setMsg(drugAdministrationSettingActivity.getResources().getString(R.string.drug_administration_setting_click_setting_complete_text));
+		TipsDialog.GetInstance().setMsg(drugAdministrationSettingActivity.getResources().getString(R.string
+																										   .drug_administration_setting_click_setting_complete_text),
+										drugAdministrationSettingActivity,
+										clickTipsDialogButtonListener
+									   );
 		TipsDialog.GetInstance().show();
+	}
 
-		//关闭添加页面
-		drugAdministrationSettingActivity.finish();
+	private class ClickTipsDialogButtonListener implements DialogInterface.OnClickListener
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			DrugAdministrationSettingActivity drugAdministrationSettingActivity = (DrugAdministrationSettingActivity)m_context;
+
+			//关闭添加页面
+			drugAdministrationSettingActivity.finish();
+		}
 	}
 
 
@@ -195,10 +212,33 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		String           warningCalender = sdf.format(drugStockInfo.getWarningTime().getTime());
 		String drugName = DBusinessData.GetInstance().getMedicineList().getMedicineByID(drugStockInfo.getMID()
 																					   ).getName();
-		String        isMedicalReminderStateText = null;
-		int           drugID                     = drugStockInfo.getMID();
-		DMedicineUnit drugUnit                   = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(drugID);
-		String        drugUnitName               = drugUnit.getUnitName();
+		String isMedicalReminderStateText = null;
+
+		int drugID = drugStockInfo.getMID();
+		if (drugID == DataConfig.DEFAULT_VALUE)
+		{
+			return;
+		}
+
+		DMedicine drug = DBusinessData.GetInstance().getMedicineList().getMedicineByID(drugID);
+		if (drug == null)
+		{
+			return;
+		}
+
+		int drugUnitID = drug.getMUID();
+		if (drugUnitID == DataConfig.DEFAULT_VALUE)
+		{
+			return;
+		}
+
+		DMedicineUnit drugUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(drugUnitID);
+		if (drugUnit == null)
+		{
+			return;
+		}
+
+		String drugUnitName = drugUnit.getUnitName();
 
 		if (drugStockInfo.isMedicalReminderState())
 		{
