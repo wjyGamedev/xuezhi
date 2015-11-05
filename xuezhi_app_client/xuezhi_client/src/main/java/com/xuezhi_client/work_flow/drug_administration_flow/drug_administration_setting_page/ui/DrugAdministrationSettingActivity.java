@@ -27,7 +27,7 @@ import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -100,7 +100,31 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.drug_administration_setting_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBtn);
+
 	}
+
+	@OnTextChanged (R.id.drug_setting_drug_stock_num_et)
+	public void drugStockNumETonTextChanged(CharSequence s, int start, int before, int count)
+	{
+		if (inspection_data())
+		{
+			m_drugRunOutDateNumTV.setText(calculateRunOutData());
+		}
+
+		return;
+	}
+
+	@OnTextChanged (R.id.drug_setting_drug_alert_num_et)
+	public void drugAlertNumETonTextChanged(CharSequence s, int start, int before, int count)
+	{
+		if (inspection_data())
+		{
+			m_drugRunOutDateNumTV.setText(calculateRunOutData());
+		}
+
+		return;
+	}
+
 
 	@Override
 	protected void onStart()
@@ -133,33 +157,6 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 			setDrugSettingReminderState(isChecked);
 		}
-	}
-
-
-	@OnFocusChange (R.id.drug_setting_drug_stock_num_et)
-	public void leaveStockETEvent(View v, boolean hasFocus)
-	{
-		if (hasFocus)
-			return;
-		if (inspection_data())
-		{
-			m_drugRunOutDateNumTV.setText(calculateRunOutData());
-		}
-
-		return;
-	}
-
-	@OnFocusChange (R.id.drug_setting_drug_alert_num_et)
-	public void leaveAlertETEvent(View v, boolean hasFocus)
-	{
-		if (hasFocus)
-			return;
-		if (inspection_data())
-		{
-			m_drugRunOutDateNumTV.setText(calculateRunOutData());
-		}
-
-		return;
 	}
 
 	public boolean inspection_data()

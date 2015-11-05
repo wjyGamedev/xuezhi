@@ -28,6 +28,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/medication_reminder_temp_data_text"
+				android:singleLine="true"
 				android:textSize="20sp"
 				android:id="@+id/name_tv"/>
 
@@ -51,6 +52,13 @@
 				android:text="@string/medication_reminder_temp_data_text"
 				android:textSize="20sp"
 				android:id="@+id/dose_tv"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/medicine_reminder_add_medicine_uint_default"
+				android:textSize="20sp"
+				android:id="@+id/dose_unit_tv"/>
 
 		</LinearLayout>
 

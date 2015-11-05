@@ -25,7 +25,7 @@ import java.util.Calendar;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 
 /**
  * Created by Administrator on 2015/9/30.
@@ -92,11 +92,9 @@ public class DrugStockAddActivity extends BaseActivity
 
 	}
 
-	@OnFocusChange (R.id.drug_add_drug_stock_num_et)
-	public void leaveStockETEvent(View v, boolean hasFocus)
+	@OnTextChanged (R.id.drug_setting_drug_stock_num_et)
+	public void drugStockNumETonTextChanged(CharSequence s, int start, int before, int count)
 	{
-		if (hasFocus)
-			return;
 		if (inspection_data())
 		{
 			m_drugRunOutTV.setText(calculateRunOutData());
@@ -105,11 +103,9 @@ public class DrugStockAddActivity extends BaseActivity
 		return;
 	}
 
-	@OnFocusChange (R.id.drug_add_drug_alert_num_et)
-	public void leaveAlertETEvent(View v, boolean hasFocus)
+	@OnTextChanged (R.id.drug_setting_drug_alert_num_et)
+	public void drugAlertNumETonTextChanged(CharSequence s, int start, int before, int count)
 	{
-		if (hasFocus)
-			return;
 		if (inspection_data())
 		{
 			m_drugRunOutTV.setText(calculateRunOutData());
