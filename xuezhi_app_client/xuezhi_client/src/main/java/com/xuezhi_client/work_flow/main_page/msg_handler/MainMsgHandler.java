@@ -74,7 +74,9 @@ public class MainMsgHandler extends BaseUIMsgHandler
 {
 
 	//date
-	private DWaitForRemainder m_waitForRemainder = new DWaitForRemainder();
+	private DWaitForRemainder m_waitForRemainder      = new DWaitForRemainder();
+	private Object            m_asyncWaitForRemainder = new Object();
+
 	private DTakeMedicineReminder m_takeMedicineReminder = null; //当前显示提醒
 
 
@@ -150,13 +152,13 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		requestAssayDetectionListAction();
 
 		//0302. 请求发送用药提醒列表
-//		requestMedicinePromptGetListAction();
+		//		requestMedicinePromptGetListAction();
 
 		//0303. 请求发送药箱列表
 		requestMedicineBoxGetListAction();
 
 		//0304. 请求发送当月的日历
-//		requestTakeMedicineGetHistoryListAction();
+		//		requestTakeMedicineGetHistoryListAction();
 
 		return;
 	}
@@ -210,7 +212,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	public void onEventMainThread(AnswerMedicinePromptGetListEvent event)
 	{
-//		updateDWaitForRemainder();
+		//		updateDWaitForRemainder();
 		requestTakeMedicineGetHistoryListAction();
 	}
 
@@ -229,11 +231,11 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	public void onEventMainThread(AnswerTakeMedicineAddEvent event)
 	{
-		MainActivity activity = (MainActivity)m_context;
-		int httpStatus = event.getHttpStatus();
-		String errorMsg = event.getErrorMsg();
-		int MID = event.getMID();
-		Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
+		MainActivity activity   = (MainActivity)m_context;
+		int          httpStatus = event.getHttpStatus();
+		String       errorMsg   = event.getErrorMsg();
+		int          MID        = event.getMID();
+		Fragment     fragment   = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
 		if (fragment == null)
 		{
 			if (!LogicalUtil.IsHttpSuccess(httpStatus))
@@ -280,7 +282,10 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	private void updateDWaitForRemainder()
 	{
-		m_waitForRemainder.updateContent();
+		synchronized (m_asyncWaitForRemainder)
+		{
+			m_waitForRemainder.updateContent();
+		}
 		return;
 	}
 
@@ -318,167 +323,170 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	public void updateHomeFragmentContent()
 	{
-		MainActivity activity = (MainActivity)m_context;
-
-		//关闭等待框
-		AsyncWaitDialog asyncWaitDialog = activity.getAsyncWaitDialog();
-		asyncWaitDialog.dismiss();
-
-		Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
-		if (fragment == null)
-			return;
-
-		HomeTabFragment homeTabFragment = (HomeTabFragment)fragment;
-		if (homeTabFragment == null)
-			return;
-
-		//01. update 用药提示
-		//TODO:缺少没有提醒的处理方案layout
-		ArrayList<DTakeMedicineReminder> takeMedicineReminders = m_waitForRemainder.getTakeMedicineReminders();
-		Calendar                         minToday              = Calendar.getInstance();
-
-		Calendar tmpTakeTime = Calendar.getInstance();
-		//TODO:因为提醒是天天的，所以这里不需要有过滤。
-		DTakeMedicineReminder nextTakeMedicineReminder = null;
-		for (DTakeMedicineReminder takeMedicineReminder : takeMedicineReminders)
+		synchronized (m_asyncWaitForRemainder)
 		{
-			tmpTakeTime = takeMedicineReminder.getReminderTime();
-			int hour = tmpTakeTime.get(Calendar.HOUR_OF_DAY);
-			int minute = tmpTakeTime.get(Calendar.MINUTE);
-			if (nextTakeMedicineReminder == null)
-			{
-				nextTakeMedicineReminder = takeMedicineReminder;
-				minToday = nextTakeMedicineReminder.getReminderTime();
-			}
-			if (minToday.get(Calendar.HOUR_OF_DAY) > hour)
-			{
-				nextTakeMedicineReminder = takeMedicineReminder;
-				minToday = nextTakeMedicineReminder.getReminderTime();
-			}
-			else if (minToday.get(Calendar.HOUR_OF_DAY) == hour && minToday.get(Calendar.MINUTE) > minute)
-			{
-				nextTakeMedicineReminder = takeMedicineReminder;
-				minToday = nextTakeMedicineReminder.getReminderTime();
-			}
-		}
+			MainActivity activity = (MainActivity)m_context;
 
-		//今日提醒有内容
-		if (nextTakeMedicineReminder != null)
-		{
-			updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.EXIST, nextTakeMedicineReminder);
-		}
-		else
-		{
-			//今日无提醒
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(
-					Calendar.getInstance()
-																																				  );
+			//关闭等待框
+			AsyncWaitDialog asyncWaitDialog = activity.getAsyncWaitDialog();
+			asyncWaitDialog.dismiss();
 
-			ArrayList<DTakeMedicine> m_takeMedicines = null;
-			if (takeMedicinePerMonth == null)
+			Fragment        fragment        = activity.getSupportFragmentManager().findFragmentByTag(HomeTabFragment.class.getName());
+			if (fragment == null)
+				return;
+
+			HomeTabFragment homeTabFragment = (HomeTabFragment)fragment;
+			if (homeTabFragment == null)
+				return;
+
+			//01. update 用药提示
+			//TODO:缺少没有提醒的处理方案layout
+			ArrayList<DTakeMedicineReminder> takeMedicineReminders = m_waitForRemainder.getTakeMedicineReminders();
+			Calendar                         minToday              = Calendar.getInstance();
+
+			Calendar tmpTakeTime = Calendar.getInstance();
+			//TODO:因为提醒是天天的，所以这里不需要有过滤。
+			DTakeMedicineReminder nextTakeMedicineReminder = null;
+			for (DTakeMedicineReminder takeMedicineReminder : takeMedicineReminders)
 			{
-				updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
+				tmpTakeTime = takeMedicineReminder.getReminderTime();
+				int hour = tmpTakeTime.get(Calendar.HOUR_OF_DAY);
+				int minute = tmpTakeTime.get(Calendar.MINUTE);
+				if (nextTakeMedicineReminder == null)
+				{
+					nextTakeMedicineReminder = takeMedicineReminder;
+					minToday = nextTakeMedicineReminder.getReminderTime();
+				}
+				if (minToday.get(Calendar.HOUR_OF_DAY) > hour)
+				{
+					nextTakeMedicineReminder = takeMedicineReminder;
+					minToday = nextTakeMedicineReminder.getReminderTime();
+				}
+				else if (minToday.get(Calendar.HOUR_OF_DAY) == hour && minToday.get(Calendar.MINUTE) > minute)
+				{
+					nextTakeMedicineReminder = takeMedicineReminder;
+					minToday = nextTakeMedicineReminder.getReminderTime();
+				}
 			}
-			//今日已点击完。
+
+			//今日提醒有内容
+			if (nextTakeMedicineReminder != null)
+			{
+				updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.EXIST, nextTakeMedicineReminder);
+			}
 			else
 			{
-				DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(Calendar.getInstance());
-				if (takeMedicinePerDay == null)
+				//今日无提醒
+				DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(
+						Calendar.getInstance()
+																																					  );
+
+				ArrayList<DTakeMedicine> m_takeMedicines = null;
+				if (takeMedicinePerMonth == null)
 				{
 					updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
 				}
+				//今日已点击完。
 				else
 				{
-					m_takeMedicines = takeMedicinePerDay.getTakeMedicines();
-					if (m_takeMedicines.isEmpty())
+					DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(Calendar.getInstance());
+					if (takeMedicinePerDay == null)
 					{
 						updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
 					}
 					else
 					{
-						Calendar today = Calendar.getInstance();
-						int todayYear = today.get(Calendar.YEAR);
-						int todayMonth = today.get(Calendar.MONTH);
-						int todayDay = today.get(Calendar.DAY_OF_MONTH);
-						boolean bFindFlag = false;
-						for (DTakeMedicine takeMedicine : m_takeMedicines)
-						{
-							Calendar takeCalendar = takeMedicine.getTakeCalendar();
-							if (takeCalendar.get(Calendar.YEAR) == todayYear &&
-									takeCalendar.get(Calendar.MONTH) == todayMonth &&
-									takeCalendar.get(Calendar.DAY_OF_MONTH) == todayDay)
-							{
-								bFindFlag = true;
-								break;
-							}
-						}
-
-						if (bFindFlag)
-						{
-							updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.FINISHED, nextTakeMedicineReminder);
-						}
-						else
+						m_takeMedicines = takeMedicinePerDay.getTakeMedicines();
+						if (m_takeMedicines.isEmpty())
 						{
 							updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
 						}
+						else
+						{
+							Calendar today = Calendar.getInstance();
+							int todayYear = today.get(Calendar.YEAR);
+							int todayMonth = today.get(Calendar.MONTH);
+							int todayDay = today.get(Calendar.DAY_OF_MONTH);
+							boolean bFindFlag = false;
+							for (DTakeMedicine takeMedicine : m_takeMedicines)
+							{
+								Calendar takeCalendar = takeMedicine.getTakeCalendar();
+								if (takeCalendar.get(Calendar.YEAR) == todayYear &&
+										takeCalendar.get(Calendar.MONTH) == todayMonth &&
+										takeCalendar.get(Calendar.DAY_OF_MONTH) == todayDay)
+								{
+									bFindFlag = true;
+									break;
+								}
+							}
 
+							if (bFindFlag)
+							{
+								updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.FINISHED, nextTakeMedicineReminder);
+							}
+							else
+							{
+								updateTakeMedicineReminder(homeTabFragment, MainConfig.TodayReminderState.NONE, nextTakeMedicineReminder);
+							}
+
+						}
 					}
 				}
-			}
 
-		}
-		//02. update 药箱提醒
-		ArrayList<DMedicineReminder> medicineReminders = m_waitForRemainder.getMedicineReminders();
-		TextView medicineReminderTV = homeTabFragment.getMedicineReminderTV();
-		ImageView                    medicineReminderIV = homeTabFragment.getMedicineReminderIV();
-		//有
-		if (medicineReminders.isEmpty() == false)
-		{
-			String medicineTips02 = "";
-			String medicineTips04 = "";
-			DMedicineReminder medicineReminder = medicineReminders.get(0);
-			Calendar exhaustTime =  medicineReminder.getExhaustTime();
-			CalendarDay exhaustDate = CalendarDay.from(exhaustTime);
-			Calendar today = Calendar.getInstance();
-			CalendarDay todayDate = CalendarDay.from(today);
-			if (todayDate.getYear() > exhaustDate.getYear()	||
-					(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() > exhaustDate.getMonth())	||
-					(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() == exhaustDate.getMonth() && todayDate.getDay() > exhaustDate.getDay())
-					)
-			{
-				medicineTips02 = activity.getString(R.string.medicine_waring_content_05);
-				medicineTips04 = activity.getString(R.string.medicine_waring_content_06);
 			}
+			//02. update 药箱提醒
+			ArrayList<DMedicineReminder> medicineReminders = m_waitForRemainder.getMedicineReminders();
+			TextView medicineReminderTV = homeTabFragment.getMedicineReminderTV();
+			ImageView                    medicineReminderIV = homeTabFragment.getMedicineReminderIV();
+			//有
+			if (medicineReminders.isEmpty() == false)
+			{
+				String medicineTips02 = "";
+				String medicineTips04 = "";
+				DMedicineReminder medicineReminder = medicineReminders.get(0);
+				Calendar exhaustTime =  medicineReminder.getExhaustTime();
+				CalendarDay exhaustDate = CalendarDay.from(exhaustTime);
+				Calendar today = Calendar.getInstance();
+				CalendarDay todayDate = CalendarDay.from(today);
+				if (todayDate.getYear() > exhaustDate.getYear()	||
+						(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() > exhaustDate.getMonth())	||
+						(todayDate.getYear() == exhaustDate.getYear() && todayDate.getMonth() == exhaustDate.getMonth() && todayDate.getDay() > exhaustDate.getDay())
+						)
+				{
+					medicineTips02 = activity.getString(R.string.medicine_waring_content_05);
+					medicineTips04 = activity.getString(R.string.medicine_waring_content_06);
+				}
+				else
+				{
+					medicineTips02 = activity.getString(R.string.medicine_waring_content_02);
+					medicineTips04 = activity.getString(R.string.medicine_waring_content_04);
+				}
+
+				String medicineName = medicineReminder.getMedicineName();
+				String medicineTips01 = activity.getString(R.string.medicine_waring_content_01);
+				String medicineTips03 = activity.getString(R.string.medicine_waring_content_03);
+				String medicineReminderTimeDisplay = medicineReminder.getExhaustTimeDisplay();
+				String result = "";
+
+				int num = medicineReminders.size();
+				if (num > 1)
+				{
+					result = medicineName + medicineTips01 + String.valueOf(num) + medicineTips02 + medicineReminderTimeDisplay + medicineTips03;
+					medicineReminderIV.setVisibility(View.VISIBLE);
+				}
+				else
+				{
+					result = medicineName + medicineTips04 + medicineReminderTimeDisplay + medicineTips03;
+					medicineReminderIV.setVisibility(View.INVISIBLE);
+				}
+				medicineReminderTV.setText(result);
+			}
+			//没有
 			else
 			{
-				medicineTips02 = activity.getString(R.string.medicine_waring_content_02);
-				medicineTips04 = activity.getString(R.string.medicine_waring_content_04);
-			}
-
-			String medicineName = medicineReminder.getMedicineName();
-			String medicineTips01 = activity.getString(R.string.medicine_waring_content_01);
-			String medicineTips03 = activity.getString(R.string.medicine_waring_content_03);
-			String medicineReminderTimeDisplay = medicineReminder.getExhaustTimeDisplay();
-			String result = "";
-
-			int num = medicineReminders.size();
-			if (num > 1)
-			{
-				result = medicineName + medicineTips01 + String.valueOf(num) + medicineTips02 + medicineReminderTimeDisplay + medicineTips03;
-				medicineReminderIV.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				result = medicineName + medicineTips04 + medicineReminderTimeDisplay + medicineTips03;
+				medicineReminderTV.setText(R.string.medicine_not_waring_content);
 				medicineReminderIV.setVisibility(View.INVISIBLE);
 			}
-			medicineReminderTV.setText(result);
-		}
-		//没有
-		else
-		{
-			medicineReminderTV.setText(R.string.medicine_not_waring_content);
-			medicineReminderIV.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -773,5 +781,13 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
 		mainActivity.startActivity(new Intent(mainActivity, DrugStockAddActivity.class));
+	}
+
+	public DWaitForRemainder getWaitForRemainder()
+	{
+		synchronized (m_asyncWaitForRemainder)
+		{
+			return m_waitForRemainder;
+		}
 	}
 }

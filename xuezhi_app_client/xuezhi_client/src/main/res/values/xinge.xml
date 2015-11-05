@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="xinge_noticifation_take_medicine_title">吃药了---></string>
+	<string name="xinge_noticifation_new_line">\n</string>
+	<string name="xinge_noticifation_time">用药时间：</string>
+	<string name="xinge_noticifation_medicine_name">药品名称：</string>
+	<string name="xinge_noticifation_dose">用药剂量：</string>
+	<string name="xinge_noticifation_precaution">注意事项：</string>
+	<string name="xinge_noticifation_buy_medicine_title">该买药了---></string>
+	<string name="xinge_noticifation_will_be">将于</string>
+	<string name="xinge_noticifation_be">于</string>
+	<string name="xinge_noticifation_exhaust">用尽</string>
+</resources>

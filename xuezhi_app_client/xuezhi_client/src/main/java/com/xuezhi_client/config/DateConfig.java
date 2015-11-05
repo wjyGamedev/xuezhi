@@ -24,5 +24,5 @@ public class DateConfig
 	public final static String PATTERN_DATE_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND = "yyyy-MM-dd HH:mm:ss";    //YYYY年MM月dd日 HH:mm:ss
 	public final static String PATTERN_DATE_HOUR_MINUTE_SECOND= "HH:mm:ss";    //HH:mm:ss
 	public final static String PATTERN_DATE_HOUR_MINUTE= "HH:mm";
-
+	public final static String PATTERN_DATE_YEAR_MONTH_DAY_NO_LINE = "yyyyMMdd";
 }

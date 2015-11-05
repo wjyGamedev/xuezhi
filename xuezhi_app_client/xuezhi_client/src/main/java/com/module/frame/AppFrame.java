@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${泰心医护APP的数据wrapper类。}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -14,14 +14,16 @@
 
 package com.module.frame;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
 import com.module.data.DGlobal;
 import com.module.net.BaseHttp;
 import com.module.storage.StorageWrapper;
-import com.tencent.android.tpush.XGPushConfig;
-import com.tencent.android.tpush.XGPushManager;
+import com.third.part.xinge_tengxun.XinGe;
+
+import java.util.List;
 
 public class AppFrame extends Application
 {
@@ -54,6 +56,7 @@ public class AppFrame extends Application
 	{
 
 	}
+
 	private void onDataClearup()
 	{
 
@@ -64,14 +67,33 @@ public class AppFrame extends Application
 		DGlobal.GetInstance().setAppContext(this);
 		BaseHttp.getInstance().init(this);
 		StorageWrapper.GetInstance().init(this);
-		XGPushConfig.enableDebug(this, true);
-		Context context = getApplicationContext();
-		XGPushManager.registerPush(context);
+
+		// 在主进程设置信鸽相关的内容
+		if (isMainProcess())
+		{
+			XinGe.GetInstance().init();
+		}
 	}
+
 	private void onModuleClearup()
 	{
 
 	}
 
+	public boolean isMainProcess()
+	{
+		ActivityManager                             am              = ((ActivityManager)getSystemService(Context.ACTIVITY_SERVICE));
+		List<ActivityManager.RunningAppProcessInfo> processInfos    = am.getRunningAppProcesses();
+		String                                      mainProcessName = getPackageName();
+		int                                         myPid           = android.os.Process.myPid();
+		for (ActivityManager.RunningAppProcessInfo info : processInfos)
+		{
+			if (info.pid == myPid && mainProcessName.equals(info.processName))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

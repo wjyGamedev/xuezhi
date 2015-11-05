@@ -14,6 +14,7 @@
 
 package com.xuezhi_client.work_flow.main_page.data;
 
+import com.third.part.xinge_tengxun.XinGe;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
@@ -46,12 +47,9 @@ public class DWaitForRemainder
 		if (takeMedicinePerMonth != null)
 		{
 			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
-			if (takeMedicinePerDay != null)
+			if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
 			{
-				if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
-				{
-					updateTakeMedicineReminder(medicinePrompts, takeMedicinePerDay);
-				}
+				updateTakeMedicineReminder(medicinePrompts, takeMedicinePerDay);
 			}
 		}
 
@@ -100,6 +98,9 @@ public class DWaitForRemainder
 			DTakeMedicineReminder takeMedicineReminder = new DTakeMedicineReminder(pid);
 			m_takeMedicineReminders.add(takeMedicineReminder);
 		}
+
+		//添加本地用药提醒通知
+		XinGe.GetInstance().readyAddLocalTakeMedicineNotification(m_takeMedicineReminders);
 	}
 
 	private void updateMedicineReminder(ArrayList<DMedicineBox> medicineBoxes)
@@ -136,6 +137,9 @@ public class DWaitForRemainder
 
 			m_medicineReminders.add(medicineReminder);
 		}
+
+		//添加本地药品管理通知
+		XinGe.GetInstance().readyAddLocalMedicineNotification(m_medicineReminders);
 	}
 
 	public ArrayList<DTakeMedicineReminder> getTakeMedicineReminders()

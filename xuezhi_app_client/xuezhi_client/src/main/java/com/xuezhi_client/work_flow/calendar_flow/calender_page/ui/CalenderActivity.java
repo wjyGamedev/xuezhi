@@ -13,6 +13,7 @@ import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
@@ -20,6 +21,7 @@ import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.Calen
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -103,20 +105,111 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
-			Calendar today = Calendar.getInstance();
-			day.copyTo(today);
+			Calendar currCalendar = Calendar.getInstance();
+			day.copyTo(currCalendar);
 
+			//01. 如果当前时间小于提醒时间，则return false。
+			ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
+			if (medicinePrompts.isEmpty())
+				return false;
+
+			Calendar minCalendar = Calendar.getInstance();
+			for (DMedicinePrompt medicinePrompt : medicinePrompts)
+			{
+				Calendar addCalendar = medicinePrompt.getAddCalendar();
+				if (minCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+				else if (minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						minCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+				else if	(minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						minCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
+						minCalendar.get(Calendar.DAY_OF_MONTH) > addCalendar.get(Calendar.DAY_OF_MONTH))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+			}
+
+			if (currCalendar.get(Calendar.YEAR) < minCalendar.get(Calendar.YEAR))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) < minCalendar.get(Calendar.MONTH))
+			{
+				return false;
+			}
+			else if	(currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) == minCalendar.get(Calendar.MONTH)	&&
+					currCalendar.get(Calendar.DAY_OF_MONTH) < minCalendar.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
+
+			//02. 大于今天，return false
+			Calendar today = Calendar.getInstance();
+			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) > today.get(Calendar.MONTH))
+			{
+				return false;
+			}
+			else if	(currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH)	&&
+					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
+
+			//03. 当日提醒的数量如果小于历史信息的数量，return false。
+			//由于走到这里，提醒数量不为0.所以历史信息要大于0
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(today
+																	  .getMedicalHistoryBySelectedMonth(currCalendar
 																									   );
 			if (takeMedicinePerMonth == null)
 				return false;
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
 			if (takeMedicinePerDay == null)
 				return false;
 
-			return (!takeMedicinePerDay.getTakeMedicines().isEmpty());
+			//获取当日提醒数量
+			int count = 0;
+			for (DMedicinePrompt medicinePrompt : medicinePrompts)
+			{
+				Calendar addCalendar = medicinePrompt.getAddCalendar();
+				if (currCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				{
+					count++;
+					continue;
+				}
+				else if (currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						currCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				{
+					count++;
+					continue;
+				}
+				else if	(currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						currCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
+						currCalendar.get(Calendar.DAY_OF_MONTH) >= addCalendar.get(Calendar.DAY_OF_MONTH))
+				{
+					count++;
+					continue;
+				}
+			}
+
+			return (count == takeMedicinePerDay.getTakeMedicines().size());
+
 		}
 	}
 
@@ -125,20 +218,110 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
 		{
-			Calendar today = Calendar.getInstance();
-			day.copyTo(today);
+			Calendar currCalendar = Calendar.getInstance();
+			day.copyTo(currCalendar);
 
+			//01. 如果当前时间小于提醒时间，则return false。
+			ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
+			if (medicinePrompts.isEmpty())
+				return false;
+
+			Calendar minCalendar = Calendar.getInstance();
+			for (DMedicinePrompt medicinePrompt : medicinePrompts)
+			{
+				Calendar addCalendar = medicinePrompt.getAddCalendar();
+				if (minCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+				else if (minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						minCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+				else if	(minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						minCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
+						minCalendar.get(Calendar.DAY_OF_MONTH) > addCalendar.get(Calendar.DAY_OF_MONTH))
+				{
+					minCalendar.setTime(addCalendar.getTime());
+					break;
+				}
+			}
+
+			if (currCalendar.get(Calendar.YEAR) < minCalendar.get(Calendar.YEAR))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) < minCalendar.get(Calendar.MONTH))
+			{
+				return false;
+			}
+			else if	(currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) == minCalendar.get(Calendar.MONTH)	&&
+					currCalendar.get(Calendar.DAY_OF_MONTH) < minCalendar.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
+
+			//02. 大于今天，return false
+			Calendar today = Calendar.getInstance();
+			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) > today.get(Calendar.MONTH))
+			{
+				return false;
+			}
+			else if	(currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH)	&&
+					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
+
+			//03. 当日提醒的数量如果小于历史信息的数量，return false。
+			//由于走到这里，提醒数量不为0.所以历史信息要大于0
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(today
+																	  .getMedicalHistoryBySelectedMonth(currCalendar
 																									   );
 			if (takeMedicinePerMonth == null)
-				return true;
+				return false;
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
 			if (takeMedicinePerDay == null)
-				return true;
+				return false;
 
-			return takeMedicinePerDay.getTakeMedicines().isEmpty();
+			//获取当日提醒数量
+			int count = 0;
+			for (DMedicinePrompt medicinePrompt : medicinePrompts)
+			{
+				Calendar addCalendar = medicinePrompt.getAddCalendar();
+				if (currCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				{
+					count++;
+					continue;
+				}
+				else if (currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						currCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				{
+					count++;
+					continue;
+				}
+				else if	(currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
+						currCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
+						currCalendar.get(Calendar.DAY_OF_MONTH) >= addCalendar.get(Calendar.DAY_OF_MONTH))
+				{
+					count++;
+					continue;
+				}
+			}
+
+			return (count != takeMedicinePerDay.getTakeMedicines().size());
 		}
 	}
 

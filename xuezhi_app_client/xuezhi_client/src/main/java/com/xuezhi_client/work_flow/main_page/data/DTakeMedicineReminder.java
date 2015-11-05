@@ -35,6 +35,7 @@ public class DTakeMedicineReminder
 	private String   m_medicineUnitDisplay = null;
 	private Calendar m_reminderTime        = Calendar.getInstance();
 	private String   m_reminderTimeDisplay = "";
+	private boolean m_stateFlag = false;
 
 	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
@@ -94,6 +95,7 @@ public class DTakeMedicineReminder
 
 		m_reminderTime = medicinePrompt.getTakeCalendar();
 		m_reminderTimeDisplay = m_hmSDF.format(m_reminderTime.getTime());
+		m_stateFlag = medicinePrompt.isValid();
 	}
 
 	public int getPID()
@@ -135,4 +137,10 @@ public class DTakeMedicineReminder
 	{
 		return m_reminderTimeDisplay;
 	}
+
+	public boolean isStateFlag()
+	{
+		return m_stateFlag;
+	}
 }
+

@@ -14,6 +14,7 @@ import com.module.frame.BaseActivity;
 import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
+import com.third.part.xinge_tengxun.XinGe;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -52,8 +53,10 @@ public class MainActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
-		initAction();
 		initUmengUpdate();
+		initXinge();
+		initAction();
+
 	}
 
 	@Override
@@ -160,6 +163,11 @@ public class MainActivity extends BaseActivity
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 	}
 
+	private void initXinge()
+	{
+//		XGPushConfig.enableDebug(this, true);
+		XinGe.GetInstance().initMainContent(this);
+	}
 
 	private void updateContent()
 	{
@@ -167,6 +175,7 @@ public class MainActivity extends BaseActivity
 		//		m_mainMsgHandler.updateMainContent();
 		return;
 	}
+
 
 	/**
 	 * data:get
