@@ -2,167 +2,175 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="wrap_content"
-			  android:background="@color/white"
+			  android:background="@color/main_bg_color"
 			  android:orientation="vertical">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:id="@+id/item_medicine_region_ll">
+		android:layout_margin="10dp"
+		android:background="@color/white"
+		android:orientation="vertical">
 
 		<LinearLayout
+			android:id="@+id/item_medicine_region_ll"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:orientation="vertical">
+			android:orientation="horizontal">
 
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:layout_marginLeft="15dp"
-				android:layout_marginTop="5dp"
-				android:orientation="horizontal">
+				android:layout_weight="1"
+				android:orientation="vertical">
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_weight="1"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="15dp"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/medication_details_drug_time_title_text"
+							android:textSize="16sp"/>
+
+						<TextView
+							android:id="@+id/reminder_time_tv"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="@string/drug_administration_temp_data_text"
+							android:textSize="16sp"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="15dp"
+					android:layout_marginTop="5dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/medication_details_drug_time_title_text"
+						android:text="@string/drug_administration_alert_state_title_text"
 						android:textSize="16sp"/>
 
 					<TextView
-						android:id="@+id/reminder_time_tv"
+						android:id="@+id/medicine_reminder_state_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="@string/drug_administration_temp_data_text"
+						android:text="@string/drug_administration_alert_state_open_text"
 						android:textSize="16sp"/>
 
 				</LinearLayout>
 
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/medication_details_drug_name_title_text"
+						android:textSize="16sp"/>
+
+					<TextView
+						android:id="@+id/medicine_name_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/medication_details_temp_data_text"
+						android:textSize="16sp"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="15dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/medication_details_drug_dosage_title_text"
+						android:textSize="16sp"/>
+
+					<TextView
+						android:id="@+id/dose_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/medication_details_temp_data_text"
+						android:textSize="16sp"/>
+
+					<TextView
+						android:id="@+id/medicine_uint_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/medication_details_medicine_unit"
+						android:textSize="16sp"/>
+				</LinearLayout>
 			</LinearLayout>
 
-			<LinearLayout
+			<RelativeLayout
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:layout_marginLeft="15dp"
-				android:layout_marginTop="5dp"
-				android:orientation="horizontal">
+				android:layout_height="match_parent"
+				android:layout_marginRight="5dp">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/drug_administration_alert_state_title_text"
-					android:textSize="16sp"/>
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="30dp"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentStart="true"
+					android:layout_centerVertical="true"
+					android:layout_gravity="center"
+					android:background="@drawable/img_right"/>
 
-				<TextView
-					android:id="@+id/medicine_reminder_state_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/drug_administration_alert_state_open_text"
-					android:textSize="16sp"/>
+			</RelativeLayout>
 
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:layout_marginLeft="15dp"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/medication_details_drug_name_title_text"
-					android:textSize="16sp"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/medication_details_temp_data_text"
-					android:textSize="16sp"
-					android:id="@+id/medicine_name_tv"/>
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:layout_marginLeft="15dp"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/medication_details_drug_dosage_title_text"
-					android:textSize="16sp"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/medication_details_temp_data_text"
-					android:textSize="16sp"
-					android:id="@+id/dose_tv"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/medication_details_medicine_unit"
-					android:textSize="16sp"
-					android:id="@+id/medicine_uint_tv"/>
-			</LinearLayout>
 		</LinearLayout>
 
-		<RelativeLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_marginRight="5dp">
 
-			<ImageView
-				android:layout_width="20dp"
-				android:layout_height="30dp"
-				android:layout_alignParentLeft="true"
-				android:layout_alignParentStart="true"
-				android:layout_centerVertical="true"
-				android:layout_gravity="center"
-				android:background="@drawable/img_right"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="15dp">
 
-		</RelativeLayout>
+			<include layout="@layout/item_dividing_line_horizontal_fine"/>
 
-	</LinearLayout>
+		</LinearLayout>
 
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="15dp"
-		android:layout_marginRight="15dp">
-
-		<include layout="@layout/item_dividing_line_horizontal_fine"/>
+		<Button
+			android:id="@+id/medicine_reminder_delete_btn"
+			android:layout_width="80dp"
+			android:layout_height="30dp"
+			android:layout_gravity="right"
+			android:layout_marginBottom="5dp"
+			android:layout_marginRight="15dp"
+			android:layout_marginTop="5dp"
+			android:background="@color/main_color"
+			android:text="删除"
+			android:textColor="@color/white"
+			android:textSize="16sp"/>
 
 	</LinearLayout>
-
-	<Button
-		android:id="@+id/medicine_reminder_delete_btn"
-		android:layout_width="80dp"
-		android:layout_height="30dp"
-		android:layout_gravity="right"
-		android:layout_marginBottom="5dp"
-		android:layout_marginRight="15dp"
-		android:layout_marginTop="5dp"
-		android:background="@color/main_color"
-		android:text="删除"
-		android:textColor="@color/white"
-		android:textSize="16sp"/>
-
 </LinearLayout>

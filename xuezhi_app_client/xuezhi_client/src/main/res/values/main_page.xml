@@ -41,7 +41,7 @@
 	<string name="info_go_2_medicine_box">前往添加</string>
 
 
-	<string name="medicine_not_waring_content">当前药品充足，无需购买</string>
+	<string name="medicine_not_waring_content">药品充足，无需购买</string>
 	<!-- 血脂康等5种药品，将于2015年7月10日用尽。-->
 	<string name="medicine_waring_content_01">等</string>
 	<string name="medicine_waring_content_02">种药品，将于</string>

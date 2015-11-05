@@ -82,13 +82,13 @@ public class SelectMedicineTimeFragment extends Fragment
 
 		if (m_timePicker.is24HourView())
 		{
-			m_calendar.set(Calendar.HOUR, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
 			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
 		}
 		else
 		{
 			m_timePicker.setIs24HourView(true);
-			m_calendar.set(Calendar.HOUR, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
 			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
 		}
 
