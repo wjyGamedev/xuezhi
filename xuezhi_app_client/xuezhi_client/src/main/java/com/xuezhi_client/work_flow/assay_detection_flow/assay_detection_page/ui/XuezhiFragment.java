@@ -24,8 +24,13 @@ import com.module.frame.BaseFragment;
 public class XuezhiFragment extends BaseFragment
 {
 	@Override
-	public View onCreateViewImp(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		return null;
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
 	}
 }

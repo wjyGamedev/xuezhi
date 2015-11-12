@@ -44,5 +44,5 @@ public abstract class BaseFragment extends Fragment
 	}
 
 	abstract public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-	abstract public View onDestoryViewAction();
+	abstract public void onDestoryViewAction();
 }
