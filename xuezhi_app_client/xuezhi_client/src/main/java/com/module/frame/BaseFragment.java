@@ -14,7 +14,35 @@
 
 package com.module.frame;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class BaseFragment extends Fragment
-{ }
+import butterknife.ButterKnife;
+
+public abstract class BaseFragment extends Fragment
+{
+	private View m_view = null;
+
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		m_view = onCreateViewAction(inflater, container, savedInstanceState);
+		ButterKnife.bind(this, m_view);
+		return m_view;
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		onDestoryViewAction();
+		ButterKnife.unbind(m_view);
+		super.onDestroyView();
+	}
+
+	abstract public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+	abstract public View onDestoryViewAction();
+}
