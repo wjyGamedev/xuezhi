@@ -548,9 +548,15 @@ public class AssayDetectionActivity extends BaseActivity
 		return m_scrET;
 	}
 
+	public AssayDetectionMsgHandler getAssayDetectionMsgHandler()
+	{
+		return m_assayDetectionMsgHandler;
+	}
+
 	/**
 	 * logical
 	 */
+
 	public void popErrorDialog(String error)
 	{
 		TipsDialog.GetInstance().setMsg(error, this, m_popDialog_errorTips);
