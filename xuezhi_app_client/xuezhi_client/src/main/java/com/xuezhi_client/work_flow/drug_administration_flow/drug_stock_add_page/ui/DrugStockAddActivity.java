@@ -66,7 +66,6 @@ public class DrugStockAddActivity extends BaseActivity
 		ButterKnife.bind(this);
 
 		init();
-
 	}
 
 	/**
@@ -92,7 +91,7 @@ public class DrugStockAddActivity extends BaseActivity
 
 	}
 
-	@OnTextChanged (R.id.drug_setting_drug_stock_num_et)
+	@OnTextChanged (R.id.drug_add_drug_stock_num_et)
 	public void drugStockNumETonTextChanged(CharSequence s, int start, int before, int count)
 	{
 		if (inspection_data())
@@ -103,7 +102,7 @@ public class DrugStockAddActivity extends BaseActivity
 		return;
 	}
 
-	@OnTextChanged (R.id.drug_setting_drug_alert_num_et)
+	@OnTextChanged (R.id.drug_add_drug_alert_num_et)
 	public void drugAlertNumETonTextChanged(CharSequence s, int start, int before, int count)
 	{
 		if (inspection_data())
