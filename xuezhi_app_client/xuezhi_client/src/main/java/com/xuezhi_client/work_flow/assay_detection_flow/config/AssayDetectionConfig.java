@@ -15,11 +15,24 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.config;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 
+import com.module.data.DGlobal;
+import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.EnumConfig;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class AssayDetectionConfig
 {
+	public final static String ERROR01 = DGlobal.GetInstance().getAppContext().getString(R.string
+																								 .assay_detection_error_tips_invalid_input_01);
+
+	public final static String ERROR02 = DGlobal.GetInstance().getAppContext().getString(R.string
+																								 .assay_detection_error_tips_invalid_input_02);
+	public final static String ERROR03 = DGlobal.GetInstance().getAppContext().getString(R.string.assay_detection_error_tips_repeat_input);
+
+	public final static String ERROR = DGlobal.GetInstance().getAppContext().getString(R.string.assay_detection_error_tips_pleast_input);
+
 	public final static String SELECTED_ITEM_ID            = "selected_item_id";
 	public final static double CHART_LINE_WIDTH            = 1.5F;
 	public final static double CHART_CIRCLE_SIZE           = 4.0F;
@@ -49,7 +62,7 @@ public class AssayDetectionConfig
 	public final static String UINT_SCR   = "mmol/L";
 
 	//颜色
-	public final static int COLOR_DEFAULT    = Color.rgb(2, 141, 242);
+	public final static int COLOR_DEFAULT = Color.rgb(2, 141, 242);
 
 	public final static int COLOR_TG    = Color.rgb(0, 167, 55);
 	public final static int COLOR_TCHO  = Color.rgb(234, 171, 2);
@@ -131,19 +144,19 @@ public class AssayDetectionConfig
 
 		switch (assayDetectionType)
 		{
-			case TG:
-			case TCHO:
-			case LOLC:
-			case HDLC:
-			case ATL:
-			case AST:
-			case CK:
-			case GLU:
-			case HBA1C:
-			case SCR:
-				return assayDetectionType.getName();
-			default:
-				return CHART_X_AXIS_DEFAULT_NAME;
+		case TG:
+		case TCHO:
+		case LOLC:
+		case HDLC:
+		case ATL:
+		case AST:
+		case CK:
+		case GLU:
+		case HBA1C:
+		case SCR:
+			return assayDetectionType.getName();
+		default:
+			return CHART_X_AXIS_DEFAULT_NAME;
 		}
 	}
 
@@ -154,14 +167,14 @@ public class AssayDetectionConfig
 
 		switch (assayDetectionType)
 		{
-			case TG:
-				return UINT_TG;
-			case TCHO:
-				return UINT_TCHO;
-			case LOLC:
-				return UINT_LOLC;
-			case HDLC:
-				return UINT_HDLC;
+		case TG:
+			return UINT_TG;
+		case TCHO:
+			return UINT_TCHO;
+		case LOLC:
+			return UINT_LOLC;
+		case HDLC:
+			return UINT_HDLC;
 			case ATL:
 				return UINT_ATL;
 			case AST:
@@ -306,5 +319,184 @@ public class AssayDetectionConfig
 				return CHART_UPPER_DEFAULT;
 		}
 	}
+
+	private static boolean checkInputValid(double inputValue, EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		if (assayDetectionType == null)
+		{
+			return false;
+		}
+
+		double minValue = getMinValue(assayDetectionType);
+		double maxValue = getMaxValue(assayDetectionType);
+		if (inputValue < minValue || inputValue > maxValue)
+		{
+			String min = String.valueOf(minValue);
+			String max = String.valueOf(maxValue);
+			String result = ERROR01 + assayDetectionType.getName() + ERROR02 + "[" + min + "~" + max + "]" + ERROR03;
+			TipsDialog.GetInstance().setMsg(result);
+			TipsDialog.GetInstance().show();
+			return false;
+		}
+
+		return true;
+	}
+
+	private static void popNullDialog(EnumConfig.AssayDetectionType assayDetectionType)
+	{
+		String result = "";
+		if (assayDetectionType != null)
+		{
+			result = ERROR + assayDetectionType.getName();
+		}
+		TipsDialog.GetInstance().setMsg(result);
+		TipsDialog.GetInstance().show();
+		return;
+	}
+
+	//xuezhi
+	public static  boolean checkTg(String tmpTgValue)
+	{
+		if (TextUtils.isEmpty(tmpTgValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.TG);
+			return false;
+		}
+		double tgValue = Double.valueOf(tmpTgValue);
+		if (!checkInputValid(tgValue, EnumConfig.AssayDetectionType.TG))
+			return false;
+
+		return true;
+	}
+
+	public static  boolean checkTcho(String tmpTchoValue)
+	{
+		if (TextUtils.isEmpty(tmpTchoValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.TCHO);
+			return false;
+		}
+		double tchoValue = Double.valueOf(tmpTchoValue);
+		if (!checkInputValid(tchoValue, EnumConfig.AssayDetectionType.TCHO))
+			return false;
+
+		return true;
+	}
+
+	public static  boolean checkLolc(String tmpLolcValue)
+	{
+		if (TextUtils.isEmpty(tmpLolcValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.LOLC);
+			return false;
+		}
+		double lolcValue = Double.valueOf(tmpLolcValue);
+		if (!checkInputValid(lolcValue, EnumConfig.AssayDetectionType.LOLC))
+			return false;
+
+		return true;
+	}
+
+	public static  boolean checkHdlc(String tmpHdlcValue)
+	{
+		if (TextUtils.isEmpty(tmpHdlcValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.HDLC);
+			return false;
+		}
+		double hdlcValue = Double.valueOf(tmpHdlcValue);
+		if (!checkInputValid(hdlcValue, EnumConfig.AssayDetectionType.HDLC))
+			return false;
+
+		return true;
+	}
+
+	//shenghua
+	public static boolean checkAtl(String tmpAtlValue)
+	{
+		if (TextUtils.isEmpty(tmpAtlValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.ATL);
+			return false;
+		}
+		double atlValue = Double.valueOf(tmpAtlValue);
+		if (!checkInputValid(atlValue, EnumConfig.AssayDetectionType.ATL))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkAst(String tmpAstValue)
+	{
+		if (TextUtils.isEmpty(tmpAstValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.AST);
+			return false;
+		}
+		double astValue = Double.valueOf(tmpAstValue);
+		if (!checkInputValid(astValue, EnumConfig.AssayDetectionType.AST))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkCk(String tmpCkValue)
+	{
+		if (TextUtils.isEmpty(tmpCkValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.CK);
+			return false;
+		}
+		double ckValue = Double.valueOf(tmpCkValue);
+		if (!checkInputValid(ckValue, EnumConfig.AssayDetectionType.CK))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkGlu(String tmpGluValue)
+	{
+		if (TextUtils.isEmpty(tmpGluValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.GLU);
+			return false;
+		}
+		double gluValue = Double.valueOf(tmpGluValue);
+		if (!checkInputValid(gluValue, EnumConfig.AssayDetectionType.GLU))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkHba1c(String tmpHba1cValue)
+	{
+		if (TextUtils.isEmpty(tmpHba1cValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.HBA1C);
+			return false;
+		}
+		double hba1cValue = Double.valueOf(tmpHba1cValue);
+		if (!checkInputValid(hba1cValue, EnumConfig.AssayDetectionType.HBA1C))
+			return false;
+
+		return true;
+	}
+
+	public static boolean checkScr(String tmpScrValue)
+	{
+		if (TextUtils.isEmpty(tmpScrValue))
+		{
+			popNullDialog(EnumConfig.AssayDetectionType.SCR);
+			return false;
+		}
+		double srcValue = Double.valueOf(tmpScrValue);
+		if (!checkInputValid(srcValue, EnumConfig.AssayDetectionType.SCR))
+			return false;
+
+		return true;
+	}
+
+
+
 
 }

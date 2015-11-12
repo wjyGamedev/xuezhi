@@ -24,10 +24,12 @@ import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.lineedittext.LineEditText;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.msg_handler.AssayDetectionMsgHandler;
+import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
 
 public class XuezhiFragment extends BaseFragment
 {
@@ -37,6 +39,7 @@ public class XuezhiFragment extends BaseFragment
 	@Bind (R.id.hdlc_et)     LineEditText mHdlcEt;
 	@Bind (R.id.xuezhi_info) LinearLayout mXuezhiInfo;
 
+	private AssayDetectionActivity m_activity = null;
 	private AssayDetectionMsgHandler m_assayDetectionMsgHandler = null;
 
 	@Override
@@ -51,6 +54,12 @@ public class XuezhiFragment extends BaseFragment
 		init();
 	}
 
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
+	}
+
 	private void init()
 	{
 		AssayDetectionActivity activity = (AssayDetectionActivity)getActivity();
@@ -61,6 +70,7 @@ public class XuezhiFragment extends BaseFragment
 			return;
 		}
 		m_assayDetectionMsgHandler = activity.getAssayDetectionMsgHandler();
+		m_activity = (AssayDetectionActivity)getActivity();
 	}
 
 	@Override
@@ -77,5 +87,78 @@ public class XuezhiFragment extends BaseFragment
 	{
 		super.onDestroyView();
 		ButterKnife.unbind(this);
+	}
+
+	@OnFocusChange (R.id.tg_et)
+	public void leaveTgETEvent(View v, boolean hasFocus)
+	{
+
+		if (hasFocus)
+			return;
+
+		String tmpTgValue = mTgEt.getText().toString();
+		if (AssayDetectionConfig.checkTg(tmpTgValue))
+			return;
+
+		m_activity.setTgValue(tmpTgValue);
+	}
+
+	@OnFocusChange (R.id.tcho_et)
+	public void leaveTchoETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpTchoValue = mTchoEt.getText().toString();
+		if (AssayDetectionConfig.checkTcho(tmpTchoValue))
+			return;
+
+		m_activity.setTchoValue(tmpTchoValue);
+	}
+
+	@OnFocusChange (R.id.lolc_et)
+	public void leaveLolcETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpLolcValue = mLolcEt.getText().toString();
+		if (AssayDetectionConfig.checkLolc(tmpLolcValue))
+			return;
+
+		m_activity.setLolcValue(tmpLolcValue);
+	}
+
+	@OnFocusChange (R.id.hdlc_et)
+	public void leaveHdlcETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpHdlcValue = mHdlcEt.getText().toString();
+		if (AssayDetectionConfig.checkHdlc(tmpHdlcValue))
+			return;
+
+		m_activity.setHdlcValue(tmpHdlcValue);
+	}
+
+	public LineEditText getTgEt()
+	{
+		return mTgEt;
+	}
+
+	public LineEditText getTchoEt()
+	{
+		return mTchoEt;
+	}
+
+	public LineEditText getLolcEt()
+	{
+		return mLolcEt;
+	}
+
+	public LineEditText getHdlcEt()
+	{
+		return mHdlcEt;
 	}
 }
