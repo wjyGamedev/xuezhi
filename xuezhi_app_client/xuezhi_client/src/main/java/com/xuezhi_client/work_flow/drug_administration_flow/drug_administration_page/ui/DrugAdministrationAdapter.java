@@ -124,8 +124,8 @@ final class ViewHolder
 	private SimpleDateFormat m_simpleDateFormat = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 
-	private final static String MEDICALREMINDERSTATEOPEN  = DrugAdministrationConfig.MEDICALREMINDERSTATEOPEN;
-	private final static String MEDICALREMINDERSTATECLOSE = DrugAdministrationConfig.MEDICALREMINDERSTATECLOSE;
+	private final static String MEDICALREMINDERSTATEOPEN  = DrugAdministrationConfig.MEDICAL_REMINDER_STATE_OPEN;
+	private final static String MEDICALREMINDERSTATECLOSE = DrugAdministrationConfig.MEDICAL_REMINDER_STATE_CLOSE;
 
 	public ViewHolder(View view)
 	{
@@ -198,8 +198,8 @@ final class ViewHolder
 		}
 
 		DMedicineBox tmpMedicalStock = m_medicalStock.get(position);
-		int           medicalID       = tmpMedicalStock.getMID();
-		DMedicine tmpmedical      = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicalID);
+		int          medicalID       = tmpMedicalStock.getMID();
+		DMedicine    tmpmedical      = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicalID);
 
 		m_medicalStockID = tmpMedicalStock.getID();
 

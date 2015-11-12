@@ -10,6 +10,7 @@ import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGe
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxDeleteEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
+import com.xuezhi_client.work_flow.drug_administration_flow.DrugAdministrationEvent.NeedRefreshMedicineBoxListEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.DrugAdministrationSettingActivity;
@@ -88,7 +89,7 @@ public class DrugAdministrationMsgHandler extends BaseUIMsgHandler
 	public void onEventMainThread(AnswerMedicineBoxGetListEvent event)
 	{
 		DrugAdministrationActivity drugAdministrationActivity = (DrugAdministrationActivity)m_context;
-		drugAdministrationActivity.updateContent();
+		drugAdministrationActivity.updateContentComplete();
 		return;
 	}
 
@@ -121,6 +122,15 @@ public class DrugAdministrationMsgHandler extends BaseUIMsgHandler
 		drugAdministrationActivity.startActivity(intent);
 
 		return;
+	}
+
+	public void onEventMainThread(NeedRefreshMedicineBoxListEvent event)
+	{
+		DrugAdministrationActivity drugAdministrationActivity = (DrugAdministrationActivity)m_context;
+		if (drugAdministrationActivity != null)
+		{
+			drugAdministrationActivity.updateMedicineBoxGetList();
+		}
 	}
 
 }

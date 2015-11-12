@@ -33,7 +33,7 @@ public class DMedicine
 		m_ID = response.getInt(MedicineConfig.MID);
 		m_name = response.getString(MedicineConfig.NAME);
 		m_MUID = response.getInt(MedicineConfig.UNIT);
-		m_dose = response.getInt(MedicineConfig.DOSE);
+		m_dose = response.getDouble(MedicineConfig.DOSE);
 		m_precautions = response.getString(MedicineConfig.PRECAUTION);
 		return true;
 	}

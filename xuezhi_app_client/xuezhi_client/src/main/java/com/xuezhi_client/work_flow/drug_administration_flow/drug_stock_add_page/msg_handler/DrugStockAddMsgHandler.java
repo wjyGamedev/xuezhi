@@ -12,6 +12,7 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxAddEvent;
+import com.xuezhi_client.work_flow.drug_administration_flow.DrugAdministrationEvent.NeedRefreshMedicineBoxListEvent;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.SelectDrugFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -138,6 +139,9 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		public void onClick(DialogInterface dialog, int which)
 		{
 			DrugStockAddActivity drugStockAddActivity = (DrugStockAddActivity)m_context;
+
+			NeedRefreshMedicineBoxListEvent event = new NeedRefreshMedicineBoxListEvent();
+			m_eventBus.post(event);
 
 			//关闭添加页面
 			drugStockAddActivity.finish();

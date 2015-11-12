@@ -4,31 +4,32 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@color/white"
 	android:orientation="vertical">
 
 	<!--展示图片：公司/优惠信息-->
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@color/white">
+	<!--<LinearLayout-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:background="@color/white">-->
 
 
-		<LinearLayout
-			android:id="@+id/imgs_display_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="top|center_vertical"
-			android:layout_marginBottom="10dp"
-			android:layout_marginTop="10dp"
-			android:orientation="vertical">
+		<!--<LinearLayout-->
+			<!--android:id="@+id/imgs_display_region_ll"-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:layout_gravity="top|center_vertical"-->
+			<!--android:layout_marginBottom="10dp"-->
+			<!--android:layout_marginTop="10dp"-->
+			<!--android:orientation="vertical">-->
 
-			<ViewFlipper
-				android:id="@+id/imgs_display_vf"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+			<!--<ViewFlipper-->
+				<!--android:id="@+id/imgs_display_vf"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="match_parent"/>-->
 
-		</LinearLayout>
-	</LinearLayout>
+		<!--</LinearLayout>-->
+	<!--</LinearLayout>-->
 
 	<!--主要功能按钮-->
 	<LinearLayout
@@ -59,7 +60,7 @@
 					android:layout_gravity="left"
 					android:layout_marginBottom="5dp"
 					android:layout_marginLeft="15dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginTop="15dp"
 					android:text="@string/today_remind_title_text"
 					android:textSize="20sp"/>
 
@@ -214,7 +215,7 @@
 						<LinearLayout
 							android:id="@+id/reminder_bottom_tips_ll"
 							android:layout_width="match_parent"
-							android:layout_height="140dp"
+							android:layout_height="160dp"
 							android:orientation="horizontal">
 
 							<TextView
@@ -294,18 +295,24 @@
 
 				</LinearLayout>
 
-				<include layout="@layout/item_dividing_line_horizontal"/>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="15dp"
+					android:layout_marginRight="15dp"
+					android:orientation="vertical">
+
+					<include layout="@layout/item_dividing_line_horizontal_fine"/>
+				</LinearLayout>
 
 			</LinearLayout>
 
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
 				android:background="@color/white"
+				android:layout_marginTop="5dp"
 				android:orientation="vertical">
-
-				<include layout="@layout/item_dividing_line_horizontal"/>
 
 				<LinearLayout
 					android:layout_width="match_parent"

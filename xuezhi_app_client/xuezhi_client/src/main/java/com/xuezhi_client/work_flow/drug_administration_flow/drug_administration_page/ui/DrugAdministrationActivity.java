@@ -44,13 +44,13 @@ public class DrugAdministrationActivity extends BaseActivity
 	public void onAfterCreateAction()
 	{
 		init();
+		initContent();
 		initWaitAction();
 	}
 
 	@Override
 	protected void onStart()
 	{
-		updateMedicineBoxGetList();
 		super.onStart();
 	}
 
@@ -59,13 +59,15 @@ public class DrugAdministrationActivity extends BaseActivity
 	protected void onStop()
 	{
 		super.onStop();
-		m_asyncWaitDialog.dismiss();
+		if (m_asyncWaitDialog != null)
+		{
+			m_asyncWaitDialog.dismiss();
+		}
 	}
 
 	@Override
 	public void onDestoryAction()
 	{
-
 	}
 
 	private void initWaitAction()
@@ -81,12 +83,14 @@ public class DrugAdministrationActivity extends BaseActivity
 		m_asyncWaitDialog.show();
 	}
 
-	public void updateContent()
+	public void updateContentComplete()
 	{
-		m_asyncWaitDialog.dismiss();
+		if (m_asyncWaitDialog != null)
+		{
+			m_asyncWaitDialog.dismiss();
+		}
 		m_drugAdministrationAdapter.notifyDataSetChanged();
 	}
-
 
 	/**
 	 * inner func
@@ -104,6 +108,11 @@ public class DrugAdministrationActivity extends BaseActivity
 		m_drugAdministrationAdapter = new DrugAdministrationAdapter(this);
 		m_drugInfoDisplayLV.setAdapter(m_drugAdministrationAdapter);
 
+	}
+
+	private void initContent()
+	{
+		updateMedicineBoxGetList();
 	}
 
 	/**
