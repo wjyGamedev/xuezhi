@@ -15,6 +15,7 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionCon
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 
 public class ShenghuaFragment extends BaseFragment
 {
@@ -50,9 +51,14 @@ public class ShenghuaFragment extends BaseFragment
 	}
 
 	@Override
-	public void onDestoryViewAction()
+	public void onAfterCreateAction()
 	{
 		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
 	}
 
 	@Override
@@ -74,12 +80,9 @@ public class ShenghuaFragment extends BaseFragment
 		m_activity = (AssayDetectionActivity)getActivity();
 	}
 
-	@OnFocusChange (R.id.atl_et)
-	public void leaveAtlETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.atl_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterAtlETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpAtlValue = mAtlEt.getText().toString();
 		if (!AssayDetectionConfig.checkAtl(tmpAtlValue))
 			return;
@@ -88,12 +91,9 @@ public class ShenghuaFragment extends BaseFragment
 
 	}
 
-	@OnFocusChange (R.id.ast_et)
-	public void leaveAstETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.ast_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterAstETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpAstValue = mAstEt.getText().toString();
 		if (!AssayDetectionConfig.checkAst(tmpAstValue))
 			return;
@@ -102,12 +102,9 @@ public class ShenghuaFragment extends BaseFragment
 
 	}
 
-	@OnFocusChange (R.id.ck_et)
-	public void leaveCkETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.ck_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterCkETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpCkValue = mCkEt.getText().toString();
 		if (!AssayDetectionConfig.checkCk(tmpCkValue))
 			return;
@@ -115,12 +112,9 @@ public class ShenghuaFragment extends BaseFragment
 		m_activity.setCkValue(tmpCkValue);
 	}
 
-	@OnFocusChange (R.id.glu_et)
-	public void leaveGluETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.glu_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterGluETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpGluValue = mGluEt.getText().toString();
 		if (!AssayDetectionConfig.checkGlu(tmpGluValue))
 			return;
@@ -128,12 +122,9 @@ public class ShenghuaFragment extends BaseFragment
 		m_activity.setGlucValue(tmpGluValue);
 	}
 
-	@OnFocusChange (R.id.hba1c_et)
-	public void leaveHba1cETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.hba1c_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterHba1cETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpHba1cValue = mHba1cEt.getText().toString();
 		if (AssayDetectionConfig.checkHba1c(tmpHba1cValue))
 			return;
@@ -141,12 +132,9 @@ public class ShenghuaFragment extends BaseFragment
 		m_activity.setHba1cValue(tmpHba1cValue);
 	}
 
-	@OnFocusChange (R.id.scr_et)
-	public void leaveScrETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.scr_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterScrETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpScrValue = mScrEt.getText().toString();
 		if (!AssayDetectionConfig.checkScr(tmpScrValue))
 			return;

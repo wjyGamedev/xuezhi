@@ -139,6 +139,21 @@ public class AssayDetectionActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
+
+			int id = mFuncClickRegionRgrp.getCheckedRadioButtonId();
+			if (id == R.id.xuezhi_info)
+			{
+				m_assayDetectionMsgHandler.loadXuezhiData();
+			}
+			else if (id == R.id.shenghua_rbtn)
+			{
+				m_assayDetectionMsgHandler.loadShenghuaData();
+			}
+			else
+			{
+				m_assayDetectionMsgHandler.loadXuezhiData();
+			}
+
 			if (!check())
 				return;
 

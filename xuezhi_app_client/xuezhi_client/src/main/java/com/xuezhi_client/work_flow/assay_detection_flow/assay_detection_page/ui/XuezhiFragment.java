@@ -15,6 +15,7 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 
 public class XuezhiFragment extends BaseFragment
 {
@@ -49,9 +50,14 @@ public class XuezhiFragment extends BaseFragment
 	}
 
 	@Override
-	public void onDestoryViewAction()
+	public void onAfterCreateAction()
 	{
 		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
 	}
 
 	@Override
@@ -89,13 +95,9 @@ public class XuezhiFragment extends BaseFragment
 		ButterKnife.unbind(this);
 	}
 
-	@OnFocusChange (R.id.tg_et)
-	public void leaveTgETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.tg_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterTgETChanged(Editable s)
 	{
-
-		if (hasFocus)
-			return;
-
 		String tmpTgValue = mTgEt.getText().toString();
 		if (AssayDetectionConfig.checkTg(tmpTgValue))
 			return;
@@ -103,12 +105,9 @@ public class XuezhiFragment extends BaseFragment
 		m_activity.setTgValue(tmpTgValue);
 	}
 
-	@OnFocusChange (R.id.tcho_et)
-	public void leaveTchoETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.tcho_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterTchoETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpTchoValue = mTchoEt.getText().toString();
 		if (AssayDetectionConfig.checkTcho(tmpTchoValue))
 			return;
@@ -116,12 +115,9 @@ public class XuezhiFragment extends BaseFragment
 		m_activity.setTchoValue(tmpTchoValue);
 	}
 
-	@OnFocusChange (R.id.lolc_et)
-	public void leaveLolcETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.lolc_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterLolcETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpLolcValue = mLolcEt.getText().toString();
 		if (AssayDetectionConfig.checkLolc(tmpLolcValue))
 			return;
@@ -129,12 +125,9 @@ public class XuezhiFragment extends BaseFragment
 		m_activity.setLolcValue(tmpLolcValue);
 	}
 
-	@OnFocusChange (R.id.hdlc_et)
-	public void leaveHdlcETEvent(View v, boolean hasFocus)
+	@OnTextChanged (value=R.id.hdlc_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+	public void afterHdlcETChanged(Editable s)
 	{
-		if (hasFocus)
-			return;
-
 		String tmpHdlcValue = mHdlcEt.getText().toString();
 		if (AssayDetectionConfig.checkHdlc(tmpHdlcValue))
 			return;
