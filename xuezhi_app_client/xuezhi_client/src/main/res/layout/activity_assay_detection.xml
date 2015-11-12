@@ -18,25 +18,35 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_marginLeft="20dp"
-			android:layout_marginTop="10dp"
-			android:gravity="center"
-			android:text="@string/assay_detection_blood_lipid_title_text"
-			android:textColor="@color/text_color_gray"
-			android:textSize="20sp"/>
+		<RadioGroup
+			android:id="@+id/func_click_region_rgrp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_marginLeft="20dp"
-			android:layout_marginTop="10dp"
-			android:gravity="center"
-			android:text="@string/assay_detection_biochemical_title_text"
-			android:textColor="@color/text_color_gray"
-			android:textSize="20sp"/>
+			<RadioButton
+				android:id="@+id/xuezhi_rbtn"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="20dp"
+				android:layout_marginTop="10dp"
+				android:gravity="center"
+				android:text="@string/assay_detection_blood_lipid_title_text"
+				android:textColor="@color/text_color_gray"
+				android:textSize="20sp"/>
+
+			<RadioButton
+				android:id="@+id/shenghua_rbtn"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="20dp"
+				android:layout_marginTop="10dp"
+				android:gravity="center"
+				android:text="@string/assay_detection_biochemical_title_text"
+				android:textColor="@color/text_color_gray"
+				android:textSize="20sp"/>
+
+		</RadioGroup>
+
 
 	</LinearLayout>
 

@@ -24,10 +24,11 @@ import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.lineedittext.LineEditText;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.msg_handler.AssayDetectionMsgHandler;
+import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
 
 public class ShenghuaFragment extends BaseFragment
 {
@@ -39,6 +40,7 @@ public class ShenghuaFragment extends BaseFragment
 	@Bind (R.id.scr_et)      LineEditText mScrEt;
 	@Bind (R.id.xuezhi_info) LinearLayout mXuezhiInfo;
 
+	private AssayDetectionActivity m_activity = null;
 	private AssayDetectionMsgHandler m_assayDetectionMsgHandler = null;
 
 	@Override
@@ -53,6 +55,12 @@ public class ShenghuaFragment extends BaseFragment
 		init();
 	}
 
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
+	}
+
 	private void init()
 	{
 		AssayDetectionActivity activity = (AssayDetectionActivity)getActivity();
@@ -63,21 +71,116 @@ public class ShenghuaFragment extends BaseFragment
 			return;
 		}
 		m_assayDetectionMsgHandler = activity.getAssayDetectionMsgHandler();
+		m_activity = (AssayDetectionActivity)getActivity();
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	@OnFocusChange (R.id.atl_et)
+	public void leaveAtlETEvent(View v, boolean hasFocus)
 	{
-		// TODO: inflate a fragment view
-		View rootView = super.onCreateView(inflater, container, savedInstanceState);
-		ButterKnife.bind(this, rootView);
-		return rootView;
+		if (hasFocus)
+			return;
+
+		String tmpAtlValue = mAtlEt.getText().toString();
+		if (!AssayDetectionConfig.checkAtl(tmpAtlValue))
+			return;
+
+		m_activity.setAtlValue(tmpAtlValue);
+
 	}
 
-	@Override
-	public void onDestroyView()
+	@OnFocusChange (R.id.ast_et)
+	public void leaveAstETEvent(View v, boolean hasFocus)
 	{
-		super.onDestroyView();
-		ButterKnife.unbind(this);
+		if (hasFocus)
+			return;
+
+		String tmpAstValue = mAstEt.getText().toString();
+		if (!AssayDetectionConfig.checkAst(tmpAstValue))
+			return;
+
+		m_activity.setAstValue(tmpAstValue);
+
+	}
+
+	@OnFocusChange (R.id.ck_et)
+	public void leaveCkETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpCkValue = mCkEt.getText().toString();
+		if (!AssayDetectionConfig.checkCk(tmpCkValue))
+			return;
+
+		m_activity.setCkValue(tmpCkValue);
+	}
+
+	@OnFocusChange (R.id.glu_et)
+	public void leaveGluETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpGluValue = mGluEt.getText().toString();
+		if (!AssayDetectionConfig.checkGlu(tmpGluValue))
+			return;
+
+		m_activity.setGlucValue(tmpGluValue);
+	}
+
+	@OnFocusChange (R.id.hba1c_et)
+	public void leaveHba1cETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpHba1cValue = mHba1cEt.getText().toString();
+		if (AssayDetectionConfig.checkHba1c(tmpHba1cValue))
+			return;
+
+		m_activity.setHba1cValue(tmpHba1cValue);
+	}
+
+	@OnFocusChange (R.id.scr_et)
+	public void leaveScrETEvent(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		String tmpScrValue = mScrEt.getText().toString();
+		if (!AssayDetectionConfig.checkScr(tmpScrValue))
+			return;
+
+		m_activity.setScrValue(tmpScrValue);
+	}
+
+	public LineEditText getAtlEt()
+	{
+		return mAtlEt;
+	}
+
+	public LineEditText getAstEt()
+	{
+		return mAstEt;
+	}
+
+	public LineEditText getCkEt()
+	{
+		return mCkEt;
+	}
+
+	public LineEditText getGluEt()
+	{
+		return mGluEt;
+	}
+
+	public LineEditText getHba1cEt()
+	{
+		return mHba1cEt;
+	}
+
+	public LineEditText getScrEt()
+	{
+		return mScrEt;
 	}
 }
