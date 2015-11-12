@@ -61,6 +61,9 @@
 	<string name="login">登录</string>RequestRegisterEvent
 	<string name="logout">退出登录</string>
 
+	<!-- 客服-->
+	<string name="main_page_service_weixin_lable">微信公众号</string>
+	<string name="main_page_service_weixin_gongzhong_hao">PKU人民心脏时间</string>
 
 
 </resources>
