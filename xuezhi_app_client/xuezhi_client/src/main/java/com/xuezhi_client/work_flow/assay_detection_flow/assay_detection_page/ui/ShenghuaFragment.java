@@ -14,8 +14,25 @@
 
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.module.frame.BaseFragment;
+import com.xuzhi_client.xuzhi_app_client.R;
 
 public class ShenghuaFragment extends BaseFragment
 {
+	@Override
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		return inflater.inflate(R.layout.fragment_shenghua_info, container, false);
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+	}
+
 }
