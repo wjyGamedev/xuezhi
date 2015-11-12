@@ -1,7 +1,6 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
 import android.graphics.Rect;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -45,25 +44,34 @@ public class MainActivity extends BaseActivity
 
 	private HandleAsyncWaitDialogFinishedEvent m_handleAsyncWaitDialogFinishedEvent = new HandleAsyncWaitDialogFinishedEvent();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ButterKnife.bind(this);
-
-		init();
-		initUmengUpdate();
-		initXinge();
-		initAction();
-
-	}
 
 	@Override
 	protected void onStart()
 	{
 		super.onStart();
 		updateContent();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_main);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+		initUmengUpdate();
+		initXinge();
+		initAction();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 

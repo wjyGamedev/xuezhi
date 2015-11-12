@@ -60,13 +60,22 @@ public class AssayDetectionActivity extends BaseActivity
 	private final String INFO_HISTORY_PAGE = DGlobal.GetInstance().getAppContext().getString(R.string.assay_detection_history_btn_text);
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
+	public BaseActivity onCreateAction()
 	{
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_assay_detection);
-		ButterKnife.bind(this);
+		return this;
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	/**

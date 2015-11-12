@@ -65,15 +65,6 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	private ClickSaveBtn                        m_clickSaveBtn                        = new ClickSaveBtn();
 	private ClickDrugReminderStateCB            m_clickDrugReminderStateCB            = new ClickDrugReminderStateCB();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_drug_administration_setting);
-		ButterKnife.bind(this);
-		init();
-	}
-
 	/**
 	 * inner func
 	 */
@@ -131,6 +122,25 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 	{
 		m_drugAdministrationSettingMsgHandler.DrugSettingPageFillingContent();
 		super.onStart();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_drug_administration_setting);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	/**

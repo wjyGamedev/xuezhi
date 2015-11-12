@@ -1,7 +1,6 @@
 package com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page.ui;
 
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
@@ -20,7 +19,6 @@ import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -47,20 +45,30 @@ public class MedicineReminderActivity extends BaseActivity
 
 	private int m_waitDeletedMPID = DataConfig.DEFAULT_ID;
 
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_medication_reminder);
-		ButterKnife.bind(this);
-
-		init();
-	}
-
 	@Override
 	protected void onStart()
 	{
 		updateContent();
 		super.onStart();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_medication_reminder);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	/**

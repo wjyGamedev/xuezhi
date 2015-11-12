@@ -15,7 +15,6 @@
 package com.xuezhi_client.work_flow.register_page.ui;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -70,19 +69,28 @@ public class RegisterActivity extends BaseActivity
 	private String              m_CountryZipCode     = null;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onStart()
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_register);
-		ButterKnife.bind(this);
+		super.onStart();
+	}
 
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_register);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
 	}
 
 	@Override
-	protected void onStart()
+	public void onDestoryAction()
 	{
-		super.onStart();
+
 	}
 
 	@Override

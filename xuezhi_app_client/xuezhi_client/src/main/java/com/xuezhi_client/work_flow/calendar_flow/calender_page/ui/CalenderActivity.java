@@ -65,13 +65,23 @@ public class CalenderActivity extends BaseActivity
 
 	private Calendar m_selectedDay = Calendar.getInstance();
 
-	protected void onCreate(Bundle savedInstanceState)
+	@Override
+	public BaseActivity onCreateAction()
 	{
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
-		ButterKnife.bind(this);
+		return this;
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	class HandleDateChangedClickEvent implements OnDateChangedListener
