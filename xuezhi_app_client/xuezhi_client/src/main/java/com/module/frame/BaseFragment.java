@@ -31,7 +31,7 @@ public abstract class BaseFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = onCreateViewAction(inflater, container, savedInstanceState);
-		ButterKnife.bind(this, m_view);
+		ButterKnife.bind(getOwner(), m_view);
 		return m_view;
 	}
 
@@ -45,4 +45,5 @@ public abstract class BaseFragment extends Fragment
 
 	abstract public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 	abstract public void onDestoryViewAction();
+	abstract public BaseFragment getOwner();
 }
