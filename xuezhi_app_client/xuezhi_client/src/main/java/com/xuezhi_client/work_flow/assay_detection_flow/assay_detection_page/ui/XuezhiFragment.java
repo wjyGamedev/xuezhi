@@ -14,8 +14,18 @@
 
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.module.frame.BaseFragment;
 
 public class XuezhiFragment extends BaseFragment
 {
+	@Override
+	public View onCreateViewImp(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		return null;
+	}
 }

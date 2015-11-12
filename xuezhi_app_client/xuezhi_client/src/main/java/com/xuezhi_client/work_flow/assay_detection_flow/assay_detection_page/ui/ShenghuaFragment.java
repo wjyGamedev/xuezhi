@@ -14,6 +14,8 @@
 
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
-public class ShenghuaFragment
+import com.module.frame.BaseFragment;
+
+public class ShenghuaFragment extends BaseFragment
 {
 }
