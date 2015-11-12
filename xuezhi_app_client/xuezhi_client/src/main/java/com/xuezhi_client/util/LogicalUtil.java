@@ -14,6 +14,7 @@
 
 package com.xuezhi_client.util;
 
+import java.util.Date;
 import java.util.Calendar;
 
 public class LogicalUtil
@@ -41,50 +42,13 @@ public class LogicalUtil
 		}
 
 		int remainDays = (int)Math.floor(reminderValue / amountPerTime);
-		int todayYear  = startTime.get(Calendar.YEAR);
-		int todayMonth = startTime.get(Calendar.MONTH);
-		int todayDay   = startTime.get(Calendar.DAY_OF_MONTH);
-		int maxMonths  = startTime.getActualMaximum(Calendar.MONTH);
-		int maxDays    = 0;
 
 		Calendar tmpCalendar = Calendar.getInstance();
-		int      beginYear   = todayYear;
-		int      beginMonth  = todayMonth;
-		int      beginDay    = todayDay;
-		for (int index = 0; index < remainDays; ++index)
-		{
-			//今天
-			if (index == 0)
-			{
-				tmpCalendar.set(todayYear, todayMonth, todayDay);
-				continue;
-			}
 
-			maxDays = tmpCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-			if (beginDay >= maxDays)
-			{
-				beginDay = 1;
-				if (beginMonth >= maxMonths)
-				{
-					beginMonth = 1;
-					beginYear++;
-				}
-				else
-				{
-					beginMonth++;
-				}
-			}
-			else
-			{
-				beginDay++;
-			}
-
-			tmpCalendar.set(beginYear, beginMonth, beginDay);
-		}
-
+		Date date_starTime =startTime.getTime();
+		tmpCalendar.setTime(date_starTime);   //设置当前日期
+		tmpCalendar.add(Calendar.DATE, remainDays); //日期加1天
 		exhaustTime.setTime(tmpCalendar.getTime());
 		return exhaustTime;
 	}
-
-
 }
