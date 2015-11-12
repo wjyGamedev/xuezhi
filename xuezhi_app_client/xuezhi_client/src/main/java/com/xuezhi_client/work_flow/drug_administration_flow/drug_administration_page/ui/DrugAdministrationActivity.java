@@ -67,21 +67,17 @@ public class DrugAdministrationActivity extends BaseActivity
 
 	public void updateMedicineBoxGetList()
 	{
-
 		m_drugAdministrationMsgHandler.requestMedicineBoxGetListAction();
 		m_asyncWaitDialog = new AsyncWaitDialog();
 		m_asyncWaitDialog.initDefault(this);
 		m_asyncWaitDialog.setHandleWaitDialogFinishedEvent(m_handleWaitDialogFinishedEvent);
 		m_asyncWaitDialog.show();
-
-		return;
 	}
 
 	public void updateContent()
 	{
 		m_asyncWaitDialog.dismiss();
 		m_drugAdministrationAdapter.notifyDataSetChanged();
-		return;
 	}
 
 

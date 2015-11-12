@@ -166,7 +166,8 @@
 						android:hint="@string/drug_stock_add_click_fill_hint_text"
 						android:inputType="number"
 						android:singleLine="true"
-						android:textSize="20sp"/>
+						android:textSize="20sp"
+						android:maxLength="7"/>
 
 					<TextView
 						android:id="@+id/drug_add_drug_stock_unit_tv"
