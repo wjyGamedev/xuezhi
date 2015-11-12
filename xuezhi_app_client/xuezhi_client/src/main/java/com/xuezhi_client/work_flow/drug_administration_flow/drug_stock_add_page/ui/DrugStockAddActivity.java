@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -23,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
@@ -58,15 +56,6 @@ public class DrugStockAddActivity extends BaseActivity
 
 	private DrugStockAddMsgHandler m_drugStockAddMsgHandler = new DrugStockAddMsgHandler(this);
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_drug_stock_add);
-		ButterKnife.bind(this);
-
-		init();
-	}
 
 	/**
 	 * inner func
@@ -187,6 +176,25 @@ public class DrugStockAddActivity extends BaseActivity
 	{
 		updateContent();
 		super.onStart();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_drug_stock_add);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	public void updateContent()

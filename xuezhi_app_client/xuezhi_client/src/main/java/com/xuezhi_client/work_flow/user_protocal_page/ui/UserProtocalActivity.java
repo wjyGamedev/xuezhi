@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.user_protocal_page.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +10,6 @@ import com.xuezhi_client.work_flow.user_protocal_page.msg_handler.UserProtocalMs
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -28,13 +26,22 @@ public class UserProtocalActivity extends BaseActivity
 	private ClickBottomBtn         m_clickBottomBtn         = new ClickBottomBtn();
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	public BaseActivity onCreateAction()
 	{
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_protocal);
-		ButterKnife.bind(this);
+		return this;
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	/**

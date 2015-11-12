@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
@@ -13,7 +12,6 @@ import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -36,18 +34,17 @@ public class DrugAdministrationActivity extends BaseActivity
 	private HandleWaitDialogFinishedEvent m_handleWaitDialogFinishedEvent = new HandleWaitDialogFinishedEvent();
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	public BaseActivity onCreateAction()
 	{
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_drug_administration);
-		ButterKnife.bind(this);
-
-		init();
-		initWaitAction();
+		return this;
 	}
 
-	private void initWaitAction()
+	@Override
+	public void onAfterCreateAction()
 	{
+		init();
+		initWaitAction();
 	}
 
 	@Override
@@ -63,6 +60,16 @@ public class DrugAdministrationActivity extends BaseActivity
 	{
 		super.onStop();
 		m_asyncWaitDialog.dismiss();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
+	}
+
+	private void initWaitAction()
+	{
 	}
 
 	public void updateMedicineBoxGetList()

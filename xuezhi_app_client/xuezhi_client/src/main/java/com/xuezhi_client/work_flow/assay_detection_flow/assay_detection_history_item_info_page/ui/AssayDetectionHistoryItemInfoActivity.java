@@ -15,7 +15,6 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -29,8 +28,7 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.msg_handler
-		.AssayDetectionHistoryItemInfoMsgHandler;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.msg_handler.AssayDetectionHistoryItemInfoMsgHandler;
 import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -38,7 +36,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class AssayDetectionHistoryItemInfoActivity extends BaseActivity
 {
@@ -75,20 +72,29 @@ public class AssayDetectionHistoryItemInfoActivity extends BaseActivity
 	private DAssayDetection m_assayDetection = null;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_assay_detection_history_item);
-		ButterKnife.bind(this);
-
-		init();
-	}
-
-	@Override
 	protected void onStart()
 	{
 		super.onStart();
 		updateContent();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_assay_detection_history_item);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	@Override

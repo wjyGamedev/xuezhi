@@ -39,21 +39,30 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 	private int m_HistoryRegionFLHeight = 0;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onStart()
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_assay_detection_history_info);
-		ButterKnife.bind(this);
+		updateContent();
+		super.onStart();
+	}
 
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_assay_detection_history_info);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
 		initHightValues();
 	}
 
 	@Override
-	protected void onStart()
+	public void onDestoryAction()
 	{
-		updateContent();
-		super.onStart();
+
 	}
 
 	/**

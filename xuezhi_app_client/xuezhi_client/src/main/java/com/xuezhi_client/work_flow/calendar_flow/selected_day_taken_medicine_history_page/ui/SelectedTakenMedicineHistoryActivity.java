@@ -43,10 +43,7 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_medication_details);
 		ButterKnife.bind(this);
-
-		init();
 	}
 
 	@Override
@@ -54,6 +51,25 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	{
 		updateContent();
 		super.onStart();
+	}
+
+	@Override
+	public BaseActivity onCreateAction()
+	{
+		setContentView(R.layout.activity_medication_details);
+		return this;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryAction()
+	{
+
 	}
 
 	@Override
