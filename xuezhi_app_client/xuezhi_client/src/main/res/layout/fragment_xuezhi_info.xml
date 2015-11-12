@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:id="@+id/xuezhi_info"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:orientation="vertical">
+
+	<include layout="@layout/item_dividing_line_horizontal"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="@string/assay_detection_tg_title_text"
+			android:textSize="20sp"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:orientation="horizontal">
+
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/tg_et"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="8"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_TG"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="@string/assay_detection_tcho_title_text"
+			android:textSize="20sp"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:orientation="horizontal">
+
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/tcho_et"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="8"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_TCHO"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="@string/assay_detection_lol_c_title_text"
+			android:textSize="20sp"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:orientation="horizontal">
+
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/lolc_et"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="8"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_LOLC"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="@string/assay_detection_hdl_c_title_text"
+			android:textSize="20sp"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:orientation="horizontal">
+
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/hdlc_et"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="8"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_HDLC"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<include layout="@layout/item_dividing_line_horizontal"/>
+
+</LinearLayout>
