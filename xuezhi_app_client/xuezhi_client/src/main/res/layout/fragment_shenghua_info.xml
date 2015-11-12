@@ -7,8 +7,6 @@
 	android:background="@color/white"
 	android:orientation="vertical">
 
-	<include layout="@layout/item_dividing_line_horizontal"/>
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -273,7 +271,5 @@
 		</LinearLayout>
 
 	</LinearLayout>
-
-	<include layout="@layout/item_dividing_line_horizontal"/>
 
 </LinearLayout>
