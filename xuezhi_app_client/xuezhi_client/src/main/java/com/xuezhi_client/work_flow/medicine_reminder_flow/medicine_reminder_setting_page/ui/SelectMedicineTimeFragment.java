@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_setting_page.msg_handler.MedicationReminderSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -36,7 +37,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SelectMedicineTimeFragment extends Fragment
+public class SelectMedicineTimeFragment extends BaseFragment
 {
 	//widget
 	@Bind (R.id.header_bg_ll)   LinearLayout m_headerBGLL   = null;
@@ -56,14 +57,29 @@ public class SelectMedicineTimeFragment extends Fragment
 	private Calendar m_calendar = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_layoutInflater = inflater;
 		m_view = m_layoutInflater.inflate(R.layout.fragment_select_medicine_remainder_time, container, false);
-		ButterKnife.bind(this, m_view);
-
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	/**

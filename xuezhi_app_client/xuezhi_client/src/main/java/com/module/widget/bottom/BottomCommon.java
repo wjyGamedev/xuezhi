@@ -15,20 +15,19 @@
 package com.module.widget.bottom;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.module.frame.BaseFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BottomCommon extends Fragment
+public class BottomCommon extends BaseFragment
 {
 
 	@Bind (R.id.common_bottom_region_ll) LinearLayout m_commonBottomRegionLL = null;
@@ -50,12 +49,28 @@ public class BottomCommon extends Fragment
 	private View m_view = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.include_bottom, container, false);
-		ButterKnife.bind(this, m_view);
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	private void init()

@@ -21,6 +21,7 @@
 			android:id="@+id/atl_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -73,6 +74,7 @@
 			android:id="@+id/ast_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -124,6 +126,7 @@
 			android:id="@+id/ck_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -175,6 +178,7 @@
 			android:id="@+id/glu_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -226,6 +230,7 @@
 			android:id="@+id/hba1c_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -278,6 +283,7 @@
 			android:id="@+id/scr_horizontal_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:scrollbars="none"
 			>
 
 			<LinearLayout
@@ -315,12 +321,8 @@
 
 			</LinearLayout>
 
-
 		</HorizontalScrollView>
 
-
 	</LinearLayout>
-
-	<include layout="@layout/item_dividing_line_horizontal"/>
 
 </LinearLayout>

@@ -15,24 +15,18 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.lineedittext.LineEditText;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.msg_handler.AssayDetectionMsgHandler;
-import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.OnFocusChange;
 
 public class XuezhiFragment extends BaseFragment
 {
@@ -41,10 +35,10 @@ public class XuezhiFragment extends BaseFragment
 	@Bind (R.id.lolc_et)            LineEditText         mLolcEt;
 	@Bind (R.id.hdlc_et)            LineEditText         mHdlcEt;
 	@Bind (R.id.xuezhi_info)        LinearLayout         mXuezhiInfo;
-	@Bind (R.id.tg_horizontal_sv)   HorizontalScrollView mTgHorizontalSv;
-	@Bind (R.id.tcho_horizontal_sv) HorizontalScrollView mTchoHorizontalSv;
-	@Bind (R.id.lolc_horizontal_sv) HorizontalScrollView mLolcHorizontalSv;
-	@Bind (R.id.hdlc_horizontal_sv) HorizontalScrollView mHdlcHorizontalSv;
+//	@Bind (R.id.tg_horizontal_sv)   HorizontalScrollView mTgHorizontalSv;
+//	@Bind (R.id.tcho_horizontal_sv) HorizontalScrollView mTchoHorizontalSv;
+//	@Bind (R.id.lolc_horizontal_sv) HorizontalScrollView mLolcHorizontalSv;
+//	@Bind (R.id.hdlc_horizontal_sv) HorizontalScrollView mHdlcHorizontalSv;
 
 	private AssayDetectionActivity   m_activity                 = null;
 	private AssayDetectionMsgHandler m_assayDetectionMsgHandler = null;
@@ -84,259 +78,259 @@ public class XuezhiFragment extends BaseFragment
 		return this;
 	}
 
-	@OnFocusChange (R.id.tg_et)
-	public void OnFocusChangeTgET(View v, boolean hasFocus)
-	{
-		if (v == null)
-			return;
-
-		EditText editText = (EditText)v;
-		if (editText == null)
-			return;
-
-		if (!hasFocus)
-		{
-			if (!TextUtils.isEmpty(editText.getText()))
-			{
-				mTgValue = editText.getText().toString();
-			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mTgHorizontalSv != null)
-											  {
-												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() - m_activity
-																						 .getWindowManager().getDefaultDisplay()
-																						 .getWidth(),
-																				 (int)mTgHorizontalSv.getScrollY()
-																				);
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
-		}
-		else
-		{
-			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mTgHorizontalSv != null)
-											  {
-												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() + m_activity
-																						 .getWindowManager().getDefaultDisplay()
-																						 .getWidth(),
-																				 (int)mTgHorizontalSv.getScrollY()
-																				);
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
-		}
-
-	}
-
-	@OnFocusChange (R.id.tcho_et)
-	public void OnFocusChangeTchoET(View v, boolean hasFocus)
-	{
-		if (v == null)
-			return;
-
-		EditText editText = (EditText)v;
-		if (editText == null)
-			return;
-
-		if (!hasFocus)
-		{
-			if (!TextUtils.isEmpty(editText.getText()))
-			{
-				mTchoValue = editText.getText().toString();
-			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mTchoHorizontalSv != null)
-											  {
-												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() - m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-																				   (int)mTchoHorizontalSv.getScrollY()
-																				  );
-											  }
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
-		}
-		else
-		{
-			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mTchoHorizontalSv != null)
-											  {
-												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() + m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-																				   (int)mTchoHorizontalSv.getScrollY()
-																				  );
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
-		}
-
-	}
-
-	@OnFocusChange (R.id.lolc_et)
-	public void OnFocusChangeLolcET(View v, boolean hasFocus)
-	{
-		if (v == null)
-			return;
-
-		EditText editText = (EditText)v;
-		if (editText == null)
-			return;
-
-		if (!hasFocus)
-		{
-			if (!TextUtils.isEmpty(editText.getText()))
-			{
-				mLolcValue = editText.getText().toString();
-			}
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mLolcHorizontalSv != null)
-											  {
-												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() - m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-																				   (int)mLolcHorizontalSv.getScrollY()
-																				  );
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mLolcHorizontalSv != null)
-											  {
-												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() + m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-																				   (int)mLolcHorizontalSv.getScrollY()
-																				  );
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-
-	}
-
-	@OnFocusChange (R.id.hdlc_et)
-	public void OnFocusChangeHdlcET(View v, boolean hasFocus)
-	{
-		if (v == null)
-			return;
-
-		EditText editText = (EditText)v;
-		if (editText == null)
-			return;
-
-		if (!hasFocus)
-		{
-			if (!TextUtils.isEmpty(editText.getText()))
-			{
-				mHdlcValue = editText.getText().toString();
-			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mHdlcHorizontalSv != null)
-											  {
-												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() - m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-
-																				   (int)mHdlcHorizontalSv.getScrollY()
-																				  );
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mHdlcHorizontalSv != null)
-											  {
-												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() + m_activity
-																						   .getWindowManager().getDefaultDisplay()
-																						   .getWidth(),
-																				   (int)mHdlcHorizontalSv.getScrollY()
-																				  );
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
-		}
-
-	}
+//	@OnFocusChange (R.id.tg_et)
+//	public void OnFocusChangeTgET(View v, boolean hasFocus)
+//	{
+//		if (v == null)
+//			return;
+//
+//		EditText editText = (EditText)v;
+//		if (editText == null)
+//			return;
+//
+//		if (!hasFocus)
+//		{
+//			if (!TextUtils.isEmpty(editText.getText()))
+//			{
+//				mTgValue = editText.getText().toString();
+//			}
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mTgHorizontalSv != null)
+//											  {
+//												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() - m_activity
+//																						 .getWindowManager().getDefaultDisplay()
+//																						 .getWidth(),
+//																				 (int)mTgHorizontalSv.getScrollY()
+//																				);
+//											  }
+//
+//										  }
+//									  }, AssayDetectionConfig.DELTA_TIME
+//									 );
+//
+//
+//		}
+//		else
+//		{
+//			editText.setCursorVisible(true);
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mTgHorizontalSv != null)
+//											  {
+//												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() + m_activity
+//																						 .getWindowManager().getDefaultDisplay()
+//																						 .getWidth(),
+//																				 (int)mTgHorizontalSv.getScrollY()
+//																				);
+//											  }
+//
+//										  }
+//									  }
+//
+//					, AssayDetectionConfig.DELTA_TIME
+//									 );
+//
+//
+//		}
+//
+//	}
+//
+//	@OnFocusChange (R.id.tcho_et)
+//	public void OnFocusChangeTchoET(View v, boolean hasFocus)
+//	{
+//		if (v == null)
+//			return;
+//
+//		EditText editText = (EditText)v;
+//		if (editText == null)
+//			return;
+//
+//		if (!hasFocus)
+//		{
+//			if (!TextUtils.isEmpty(editText.getText()))
+//			{
+//				mTchoValue = editText.getText().toString();
+//			}
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mTchoHorizontalSv != null)
+//											  {
+//												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() - m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//																				   (int)mTchoHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//										  }
+//									  }, AssayDetectionConfig.DELTA_TIME
+//									 );
+//
+//
+//		}
+//		else
+//		{
+//			editText.setCursorVisible(true);
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mTchoHorizontalSv != null)
+//											  {
+//												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() + m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//																				   (int)mTchoHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//
+//										  }
+//									  }
+//
+//					, AssayDetectionConfig.DELTA_TIME
+//									 );
+//
+//
+//		}
+//
+//	}
+//
+//	@OnFocusChange (R.id.lolc_et)
+//	public void OnFocusChangeLolcET(View v, boolean hasFocus)
+//	{
+//		if (v == null)
+//			return;
+//
+//		EditText editText = (EditText)v;
+//		if (editText == null)
+//			return;
+//
+//		if (!hasFocus)
+//		{
+//			if (!TextUtils.isEmpty(editText.getText()))
+//			{
+//				mLolcValue = editText.getText().toString();
+//			}
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mLolcHorizontalSv != null)
+//											  {
+//												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() - m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//																				   (int)mLolcHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//
+//										  }
+//									  }, AssayDetectionConfig.DELTA_TIME
+//									 );
+//		}
+//		else
+//		{
+//			editText.setCursorVisible(true);
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mLolcHorizontalSv != null)
+//											  {
+//												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() + m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//																				   (int)mLolcHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//
+//										  }
+//									  }, AssayDetectionConfig.DELTA_TIME
+//									 );
+//		}
+//
+//	}
+//
+//	@OnFocusChange (R.id.hdlc_et)
+//	public void OnFocusChangeHdlcET(View v, boolean hasFocus)
+//	{
+//		if (v == null)
+//			return;
+//
+//		EditText editText = (EditText)v;
+//		if (editText == null)
+//			return;
+//
+//		if (!hasFocus)
+//		{
+//			if (!TextUtils.isEmpty(editText.getText()))
+//			{
+//				mHdlcValue = editText.getText().toString();
+//			}
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mHdlcHorizontalSv != null)
+//											  {
+//												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() - m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//
+//																				   (int)mHdlcHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//
+//										  }
+//									  }, AssayDetectionConfig.DELTA_TIME
+//									 );
+//		}
+//		else
+//		{
+//			editText.setCursorVisible(true);
+//
+//
+//			new Handler().postDelayed(new Runnable()
+//									  {
+//										  public void run()
+//										  {
+//											  if (mHdlcHorizontalSv != null)
+//											  {
+//												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() + m_activity
+//																						   .getWindowManager().getDefaultDisplay()
+//																						   .getWidth(),
+//																				   (int)mHdlcHorizontalSv.getScrollY()
+//																				  );
+//											  }
+//
+//										  }
+//									  }
+//
+//					, AssayDetectionConfig.DELTA_TIME
+//									 );
+//
+//
+//		}
+//
+//	}
 
 	private void init()
 	{

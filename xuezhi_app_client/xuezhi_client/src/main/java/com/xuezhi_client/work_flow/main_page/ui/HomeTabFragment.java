@@ -17,7 +17,6 @@ package com.xuezhi_client.work_flow.main_page.ui;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.main_page.config.MainConfig;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
-public class HomeTabFragment extends Fragment
+public class HomeTabFragment extends BaseFragment
 {
 	//widget
 	@Bind (R.id.today_reminder_title_tv) TextView m_todayReminderTitleTV = null;
@@ -70,14 +70,29 @@ public class HomeTabFragment extends Fragment
 
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_home, container, false);
-		ButterKnife.bind(this, m_view);
+		return m_view;
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
 		initContent();
-		return m_view;
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override

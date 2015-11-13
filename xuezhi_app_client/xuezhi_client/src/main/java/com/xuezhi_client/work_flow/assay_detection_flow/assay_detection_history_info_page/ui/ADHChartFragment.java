@@ -15,7 +15,6 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.EnumConfig;
@@ -33,11 +33,10 @@ import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionCon
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnPageChange;
 
-public class ADHChartFragment extends Fragment
+public class ADHChartFragment extends BaseFragment
 {
 	//widget
 	@Bind (R.id.history_chart_fragment_ll) LinearLayout m_historyChartFragmentLL = null;
@@ -66,14 +65,29 @@ public class ADHChartFragment extends Fragment
 	private int             m_indexPage       = 0;//血脂all，对应于AssayDetectionType中的ID。
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_history_chart, container, false);
-		ButterKnife.bind(this, m_view);
+		return m_view;
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
 		updateHeight();
-		return m_view;
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override
