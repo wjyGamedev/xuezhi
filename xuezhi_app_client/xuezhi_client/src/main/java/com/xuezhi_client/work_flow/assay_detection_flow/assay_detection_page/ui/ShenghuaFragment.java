@@ -15,20 +15,17 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.lineedittext.LineEditText;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.msg_handler.AssayDetectionMsgHandler;
-import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
@@ -45,12 +42,6 @@ public class ShenghuaFragment extends BaseFragment
 	@Bind (R.id.hba1c_et)            LineEditText         mHba1cEt;
 	@Bind (R.id.scr_et)              LineEditText         mScrEt;
 	@Bind (R.id.xuezhi_info)         LinearLayout         mXuezhiInfo;
-	@Bind (R.id.atl_horizontal_sv)   HorizontalScrollView mAtlHorizontalSv;
-	@Bind (R.id.ast_horizontal_sv)   HorizontalScrollView mAstHorizontalSv;
-	@Bind (R.id.ck_horizontal_sv)    HorizontalScrollView mCkHorizontalSv;
-	@Bind (R.id.glu_horizontal_sv)   HorizontalScrollView mGluHorizontalSv;
-	@Bind (R.id.hba1c_horizontal_sv) HorizontalScrollView mHba1cHorizontalSv;
-	@Bind (R.id.scr_horizontal_sv)   HorizontalScrollView mScrHorizontalSv;
 
 	private String mAtlValue   = "";
 	private String mAstValue   = "";
@@ -108,48 +99,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mAtlValue = editText.getText().toString();
 			}
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mAtlHorizontalSv != null)
-											  {
-												  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() - m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mAtlHorizontalSv.getScrollY()
-																				 );
-											  }
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mAtlHorizontalSv != null)
-											  {
-												  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() + m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-
-																				  (int)mAtlHorizontalSv.getScrollY()
-																				 );
-											  }
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
 		}
 
 	}
@@ -170,50 +123,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mAstValue = editText.getText().toString();
 			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mAstHorizontalSv != null)
-											  {
-												  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() - m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mAstHorizontalSv.getScrollY()
-																				 );
-											  }
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mAstHorizontalSv != null)
-											  {
-												  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() + m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mAstHorizontalSv.getScrollY()
-																				 );
-											  }
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 	}
 
@@ -233,50 +146,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mCkValue = editText.getText().toString();
 			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mCkHorizontalSv != null)
-											  {
-												  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() - m_activity
-																						 .getWindowManager().getDefaultDisplay()
-																						 .getWidth(),
-																				 (int)mCkHorizontalSv.getScrollY()
-																				);
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mCkHorizontalSv != null)
-											  {
-												  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() + m_activity
-																						 .getWindowManager().getDefaultDisplay()
-																						 .getWidth(),
-
-																				 (int)mCkHorizontalSv.getScrollY()
-																				);
-											  }
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
 		}
 
 	}
@@ -297,51 +170,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mGlucValue = editText.getText().toString();
 			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mGluHorizontalSv != null)
-											  {
-												  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() - m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mGluHorizontalSv.getScrollY()
-																				 );
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mGluHorizontalSv != null)
-											  {
-												  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() + m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mGluHorizontalSv.getScrollY()
-																				 );
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 	}
 
@@ -361,51 +193,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mHba1cValue = editText.getText().toString();
 			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mHba1cHorizontalSv != null)
-											  {
-												  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() - m_activity
-																							.getWindowManager().getDefaultDisplay()
-																							.getWidth(),
-																					(int)mHba1cHorizontalSv.getScrollY()
-																				   );
-											  }
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mHba1cHorizontalSv != null)
-											  {
-												  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() + m_activity
-																							.getWindowManager().getDefaultDisplay()
-																							.getWidth(),
-																					(int)mHba1cHorizontalSv.getScrollY()
-																				   );
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 	}
 
@@ -425,52 +216,10 @@ public class ShenghuaFragment extends BaseFragment
 			{
 				mScrValue = editText.getText().toString();
 			}
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mScrHorizontalSv != null)
-											  {
-												  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() - m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mScrHorizontalSv.getScrollY()
-																				 );
-											  }
-
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 		else
 		{
 			editText.setCursorVisible(true);
-
-
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  if (mScrHorizontalSv != null)
-											  {
-												  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() + m_activity
-																						  .getWindowManager().getDefaultDisplay()
-																						  .getWidth(),
-																				  (int)mScrHorizontalSv.getScrollY()
-																				 );
-											  }
-
-										  }
-									  }
-
-					, AssayDetectionConfig.DELTA_TIME
-									 );
-
-
 		}
 	}
 
