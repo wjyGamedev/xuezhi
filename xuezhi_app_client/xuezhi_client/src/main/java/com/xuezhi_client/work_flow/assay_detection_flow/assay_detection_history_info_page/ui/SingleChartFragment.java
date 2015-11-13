@@ -48,11 +48,6 @@ import java.util.Calendar;
 public class SingleChartFragment extends Fragment
 {
 	//widget
-	//	@Bind (R.id.chart1)   LineChart m_lineChart = null;
-	//	@Bind (R.id.seekBar1) SeekBar   m_seekBarX  = null;
-	//	@Bind (R.id.seekBar2) SeekBar   m_seekBarY  = null;
-	//	@Bind (R.id.tvXMax)   TextView  m_xTV       = null;
-	//	@Bind (R.id.tvYMax)   TextView  m_yTV       = null;
 	private LineChart m_lineChart = null;
 	private SeekBar   m_seekBarX  = null;
 	private SeekBar   m_seekBarY  = null;
@@ -237,8 +232,8 @@ public class SingleChartFragment extends Fragment
 		//设置Y轴
 		YAxis leftAxis = m_lineChart.getAxisLeft();
 		leftAxis.removeAllLimitLines();
-		leftAxis.addLimitLine(ll1);
-		leftAxis.addLimitLine(ll2);
+//		leftAxis.addLimitLine(ll1);
+//		leftAxis.addLimitLine(ll2);
 		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
 		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
 		leftAxis.setAxisMaxValue(maxValue);
@@ -334,6 +329,7 @@ public class SingleChartFragment extends Fragment
 		}
 
 		ArrayList<Entry> yVals = new ArrayList<Entry>();
+		double maxValue = 0;
 		for (int indexY = 0; indexY < count; indexY++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexY);
@@ -343,6 +339,11 @@ public class SingleChartFragment extends Fragment
 			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 
 			yVals.add(new Entry((float)yValue, indexY, displayDate));
+
+			if (yValue > maxValue)
+			{
+				maxValue = yValue;
+			}
 		}
 
 		// create a dataset and give it a type
@@ -365,6 +366,10 @@ public class SingleChartFragment extends Fragment
 		String display = molecule+ "/"+denominator;
 		m_xTV.setText(display);
 
+		//03. set axis y max value
+		YAxis leftAxis = m_lineChart.getAxisLeft();
+		maxValue = maxValue + maxValue/3;
+		leftAxis.setAxisMaxValue((float)maxValue);
 		return;
 	}
 

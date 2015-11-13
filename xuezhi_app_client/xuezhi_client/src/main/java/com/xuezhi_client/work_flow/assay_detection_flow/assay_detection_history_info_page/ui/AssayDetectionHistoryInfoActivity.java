@@ -1,7 +1,7 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui;
 
 import android.content.DialogInterface;
-import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -14,7 +14,6 @@ import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2015/9/22.
@@ -65,6 +64,17 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			m_assayDetectionHistoryInfoMsgHandler.backAction();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+
+	}
 	/**
 	 * overrider func
 	 */

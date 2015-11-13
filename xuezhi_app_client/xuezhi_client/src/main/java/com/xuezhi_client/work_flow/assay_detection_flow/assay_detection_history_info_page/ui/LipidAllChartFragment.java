@@ -189,7 +189,6 @@ public class LipidAllChartFragment extends Fragment
 
 		// if disabled, scaling can be done on x- and y-axis separately
 		m_lineChart.setPinchZoom(true);
-
 		// set an alternative background color
 		// m_lineChart.setBackgroundColor(Color.GRAY);
 
@@ -206,7 +205,7 @@ public class LipidAllChartFragment extends Fragment
 		xl.setAvoidFirstLastClipping(true);
 
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-		leftAxis.setInverted(true);
+		leftAxis.setInverted(false);
 
 		YAxis rightAxis = m_lineChart.getAxisRight();
 		rightAxis.setEnabled(false);
@@ -344,6 +343,8 @@ public class LipidAllChartFragment extends Fragment
 		String denominator = String.valueOf(m_assayDetectionArrayList.size());
 		String display     = molecule + "/" + denominator;
 		m_xTV.setText(display);
+
+		//04. 修改Y轴最大值，数据的最大值+1/4
 	}
 
 	/**

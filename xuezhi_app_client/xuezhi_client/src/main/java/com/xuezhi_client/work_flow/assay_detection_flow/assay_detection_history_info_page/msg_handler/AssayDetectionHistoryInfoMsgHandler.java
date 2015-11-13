@@ -13,6 +13,7 @@ import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.ADHListFragment;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui.AssayDetectionHistoryItemInfoActivity;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
 import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -152,4 +153,12 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 
 		return;
 	}
+
+	public void backAction()
+	{
+		AssayDetectionHistoryInfoActivity activity = (AssayDetectionHistoryInfoActivity)m_context;
+		activity.startActivity(new Intent( activity, AssayDetectionActivity.class));
+		activity.finish();
+	}
+
 }

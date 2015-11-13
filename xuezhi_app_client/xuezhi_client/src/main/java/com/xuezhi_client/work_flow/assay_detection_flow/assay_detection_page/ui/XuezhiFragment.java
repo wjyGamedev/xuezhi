@@ -101,33 +101,51 @@ public class XuezhiFragment extends BaseFragment
 				mTgValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() - m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mTgHorizontalSv.getScrollY()
-																			 );
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() + m_activity
-																					 .getWindowManager().getDefaultDisplay().getWidth(),
-																			 (int)mTgHorizontalSv.getScrollY()
-																			);
+											  if (mTgHorizontalSv != null)
+											  {
+												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() - m_activity
+																						 .getWindowManager().getDefaultDisplay()
+																						 .getWidth(),
+																				 (int)mTgHorizontalSv.getScrollY()
+																				);
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mTgHorizontalSv != null)
+											  {
+												  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() + m_activity
+																						 .getWindowManager().getDefaultDisplay()
+																						 .getWidth(),
+																				 (int)mTgHorizontalSv.getScrollY()
+																				);
+											  }
+
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 
 	}
@@ -149,33 +167,50 @@ public class XuezhiFragment extends BaseFragment
 				mTchoValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() - m_activity
-																					 .getWindowManager().getDefaultDisplay().getWidth(),
-																			 (int)mTchoHorizontalSv.getScrollY()
-																			);
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() + m_activity
-																					   .getWindowManager().getDefaultDisplay().getWidth(),
-																			   (int)mTchoHorizontalSv.getScrollY()
-																			  );
+											  if (mTchoHorizontalSv != null)
+											  {
+												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() - m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+																				   (int)mTchoHorizontalSv.getScrollY()
+																				  );
+											  }
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mTchoHorizontalSv != null)
+											  {
+												  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() + m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+																				   (int)mTchoHorizontalSv.getScrollY()
+																				  );
+											  }
+
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 
 	}
@@ -201,10 +236,15 @@ public class XuezhiFragment extends BaseFragment
 									  {
 										  public void run()
 										  {
-											  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() - m_activity
-																					   .getWindowManager().getDefaultDisplay().getWidth(),
-																			   (int)mLolcHorizontalSv.getScrollY()
-																			  );
+											  if (mLolcHorizontalSv != null)
+											  {
+												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() - m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+																				   (int)mLolcHorizontalSv.getScrollY()
+																				  );
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
@@ -217,10 +257,15 @@ public class XuezhiFragment extends BaseFragment
 									  {
 										  public void run()
 										  {
-											  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() + m_activity
-																					   .getWindowManager().getDefaultDisplay().getWidth(),
-																			   (int)mLolcHorizontalSv.getScrollY()
-																			  );
+											  if (mLolcHorizontalSv != null)
+											  {
+												  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() + m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+																				   (int)mLolcHorizontalSv.getScrollY()
+																				  );
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
@@ -245,14 +290,21 @@ public class XuezhiFragment extends BaseFragment
 				mHdlcValue = editText.getText().toString();
 			}
 
+
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() - m_activity
-																					   .getWindowManager().getDefaultDisplay().getWidth(),
-																			   (int)mHdlcHorizontalSv.getScrollY()
-																			  );
+											  if (mHdlcHorizontalSv != null)
+											  {
+												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() - m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+
+																				   (int)mHdlcHorizontalSv.getScrollY()
+																				  );
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
@@ -261,17 +313,27 @@ public class XuezhiFragment extends BaseFragment
 		{
 			editText.setCursorVisible(true);
 
+
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() + m_activity
-																					   .getWindowManager().getDefaultDisplay().getWidth(),
-																			   (int)mHdlcHorizontalSv.getScrollY()
-																			  );
+											  if (mHdlcHorizontalSv != null)
+											  {
+												  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() + m_activity
+																						   .getWindowManager().getDefaultDisplay()
+																						   .getWidth(),
+																				   (int)mHdlcHorizontalSv.getScrollY()
+																				  );
+											  }
+
 										  }
-									  }, AssayDetectionConfig.DELTA_TIME
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
 		}
 
 	}

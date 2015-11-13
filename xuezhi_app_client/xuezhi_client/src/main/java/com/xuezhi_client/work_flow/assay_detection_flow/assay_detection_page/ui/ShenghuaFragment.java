@@ -113,29 +113,43 @@ public class ShenghuaFragment extends BaseFragment
 									  {
 										  public void run()
 										  {
-											  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() - m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mAtlHorizontalSv.getScrollY()
-																			 );
+											  if (mAtlHorizontalSv != null)
+											  {
+												  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() - m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mAtlHorizontalSv.getScrollY()
+																				 );
+											  }
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
 		}
 		else
 		{
 			editText.setCursorVisible(true);
 
+
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() + m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mAtlHorizontalSv.getScrollY()
-																			 );
+											  if (mAtlHorizontalSv != null)
+											  {
+												  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() + m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+
+																				  (int)mAtlHorizontalSv.getScrollY()
+																				 );
+											  }
 										  }
-									  }, AssayDetectionConfig.DELTA_TIME
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
 									 );
+
 		}
 
 	}
@@ -157,33 +171,49 @@ public class ShenghuaFragment extends BaseFragment
 				mAstValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() - m_activity
-																				   .getWindowManager().getDefaultDisplay().getWidth(),
-																		   (int)mAstHorizontalSv.getScrollY()
-																		  );
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() + m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mAstHorizontalSv.getScrollY()
-																			 );
+											  if (mAstHorizontalSv != null)
+											  {
+												  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() - m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mAstHorizontalSv.getScrollY()
+																				 );
+											  }
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mAstHorizontalSv != null)
+											  {
+												  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() + m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mAstHorizontalSv.getScrollY()
+																				 );
+											  }
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 	}
 
@@ -204,34 +234,51 @@ public class ShenghuaFragment extends BaseFragment
 				mCkValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() - m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mCkHorizontalSv.getScrollY()
-																			 );
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() + m_activity
-																					 .getWindowManager().getDefaultDisplay().getWidth(),
-																			 (int)mCkHorizontalSv.getScrollY()
-																			);
+											  if (mCkHorizontalSv != null)
+											  {
+												  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() - m_activity
+																						 .getWindowManager().getDefaultDisplay()
+																						 .getWidth(),
+																				 (int)mCkHorizontalSv.getScrollY()
+																				);
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
 		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mCkHorizontalSv != null)
+											  {
+												  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() + m_activity
+																						 .getWindowManager().getDefaultDisplay()
+																						 .getWidth(),
+
+																				 (int)mCkHorizontalSv.getScrollY()
+																				);
+											  }
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+		}
+
 	}
 
 	@OnFocusChange (R.id.glu_et)
@@ -251,33 +298,50 @@ public class ShenghuaFragment extends BaseFragment
 				mGlucValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() - m_activity
-																					 .getWindowManager().getDefaultDisplay().getWidth(),
-																			 (int)mGluHorizontalSv.getScrollY()
-																			);
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() + m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mGluHorizontalSv.getScrollY()
-																			 );
+											  if (mGluHorizontalSv != null)
+											  {
+												  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() - m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mGluHorizontalSv.getScrollY()
+																				 );
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mGluHorizontalSv != null)
+											  {
+												  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() + m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mGluHorizontalSv.getScrollY()
+																				 );
+											  }
+
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 	}
 
@@ -298,33 +362,50 @@ public class ShenghuaFragment extends BaseFragment
 				mHba1cValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() - m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mHba1cHorizontalSv.getScrollY()
-																			 );
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() + m_activity
-																						.getWindowManager().getDefaultDisplay().getWidth(),
-																				(int)mHba1cHorizontalSv.getScrollY()
-																			   );
+											  if (mHba1cHorizontalSv != null)
+											  {
+												  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() - m_activity
+																							.getWindowManager().getDefaultDisplay()
+																							.getWidth(),
+																					(int)mHba1cHorizontalSv.getScrollY()
+																				   );
+											  }
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mHba1cHorizontalSv != null)
+											  {
+												  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() + m_activity
+																							.getWindowManager().getDefaultDisplay()
+																							.getWidth(),
+																					(int)mHba1cHorizontalSv.getScrollY()
+																				   );
+											  }
+
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 	}
 
@@ -345,33 +426,51 @@ public class ShenghuaFragment extends BaseFragment
 				mScrValue = editText.getText().toString();
 			}
 
-			new Handler().postDelayed(new Runnable()
-									  {
-										  public void run()
-										  {
-											  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() - m_activity
-																						.getWindowManager().getDefaultDisplay().getWidth(),
-																				(int)mScrHorizontalSv.getScrollY()
-																			   );
-										  }
-									  }, AssayDetectionConfig.DELTA_TIME
-									 );
-		}
-		else
-		{
-			editText.setCursorVisible(true);
 
 			new Handler().postDelayed(new Runnable()
 									  {
 										  public void run()
 										  {
-											  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() + m_activity
-																					  .getWindowManager().getDefaultDisplay().getWidth(),
-																			  (int)mScrHorizontalSv.getScrollY()
-																			 );
+											  if (mScrHorizontalSv != null)
+											  {
+												  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() - m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mScrHorizontalSv.getScrollY()
+																				 );
+											  }
+
 										  }
 									  }, AssayDetectionConfig.DELTA_TIME
 									 );
+
+
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  if (mScrHorizontalSv != null)
+											  {
+												  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() + m_activity
+																						  .getWindowManager().getDefaultDisplay()
+																						  .getWidth(),
+																				  (int)mScrHorizontalSv.getScrollY()
+																				 );
+											  }
+
+										  }
+									  }
+
+					, AssayDetectionConfig.DELTA_TIME
+									 );
+
+
 		}
 	}
 
