@@ -23,28 +23,33 @@
 		<RadioGroup
 			android:id="@+id/func_click_region_rgrp"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="50dp"
+			android:orientation="horizontal">
 
 			<RadioButton
 				android:id="@+id/xuezhi_rbtn"
+				style="@style/home_radio_button_style"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="20dp"
-				android:layout_marginTop="10dp"
+				android:layout_weight="1"
+				android:background="@drawable/bg_top_tab"
+				android:button="@null"
 				android:gravity="center"
 				android:text="@string/assay_detection_blood_lipid_title_text"
-				android:textColor="@color/text_color_gray"
+				android:textColor="@color/main_color"
 				android:textSize="20sp"/>
 
 			<RadioButton
 				android:id="@+id/shenghua_rbtn"
+				style="@style/home_radio_button_style"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="20dp"
-				android:layout_marginTop="10dp"
+				android:layout_weight="1"
+				android:background="@drawable/bg_top_tab"
+				android:button="@null"
 				android:gravity="center"
 				android:text="@string/assay_detection_biochemical_title_text"
-				android:textColor="@color/text_color_gray"
+				android:textColor="@color/main_color"
 				android:textSize="20sp"/>
 
 		</RadioGroup>
@@ -56,8 +61,8 @@
 		android:id="@+id/content_display_region_ll"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:weightSum="1">
+		android:layout_weight="1"
+		android:orientation="horizontal">
 
 	</LinearLayout>
 
