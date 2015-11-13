@@ -15,7 +15,6 @@
 package com.module.widget.header;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +22,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.module.frame.BaseFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HeaderCommon extends Fragment
+public class HeaderCommon extends BaseFragment
 {
 	@Bind (R.id.title_tv)  TextView    m_headerTV  = null;    //title
 	@Bind (R.id.back_ibtn) ImageButton m_backIBtn  = null;    //back btn
@@ -39,12 +38,28 @@ public class HeaderCommon extends Fragment
 
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.include_header, container, false);
-		ButterKnife.bind(this, m_view);
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	private void init()

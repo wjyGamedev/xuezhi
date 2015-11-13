@@ -15,18 +15,18 @@
 package com.xuezhi_client.work_flow.main_page.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.ButterKnife;
 
-public class ServiceTabFragment extends Fragment
+public class ServiceTabFragment extends BaseFragment
 {
     //widget
 
@@ -34,17 +34,32 @@ public class ServiceTabFragment extends Fragment
     private MainMsgHandler m_mainMsgHandler = null;
     private View           m_view           = null;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+	@Override
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
 		m_view = inflater.inflate(R.layout.fragment_service, container, false);
-		ButterKnife.bind(this, m_view);
-
-		init();
 		return m_view;
-    }
+	}
 
-    /**
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
+	}
+
+	/**
      * inner func
      */
     private void init()

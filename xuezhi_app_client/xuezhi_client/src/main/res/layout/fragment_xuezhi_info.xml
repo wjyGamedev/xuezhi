@@ -13,47 +13,48 @@
 		android:layout_marginTop="10dp"
 		android:orientation="horizontal">
 
-		<HorizontalScrollView
-			android:id="@+id/tg_horizontal_sv"
+		<!--<HorizontalScrollView-->
+		<!--android:id="@+id/tg_horizontal_sv"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="match_parent"-->
+		<!--android:scrollbars="none"-->
+		<!-->-->
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			>
+			android:layout_height="50sp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
 
-			<LinearLayout
+			<TextView
+				style="@style/assay_detection_text_size_style"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="20dp"
-				android:layout_marginRight="20dp"
-				android:layout_marginTop="10dp"
-				android:orientation="horizontal">
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/assay_detection_tg_title_text"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/assay_detection_tg_title_text"
-					android:textSize="20sp"/>
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/tg_et"
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="6"/>
 
-				<com.module.widget.lineedittext.LineEditText
-					android:id="@+id/tg_et"
-					android:layout_width="40dp"
-					android:layout_height="35dp"
-					android:layout_marginLeft="40dp"
-					android:layout_marginRight="5dp"
-					android:layout_weight="1"
-					android:background="@null"
-					android:inputType="number|numberDecimal"
-					android:maxLength="8"/>
+			<TextView
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_TG"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/unit_TG"
-					android:textSize="20sp"/>
-
-				</LinearLayout>
-			</HorizontalScrollView>
+		</LinearLayout>
+		<!--</HorizontalScrollView>-->
 
 
 	</LinearLayout>
@@ -64,48 +65,49 @@
 		android:layout_marginTop="10dp"
 		android:orientation="horizontal">
 
-		<HorizontalScrollView
-			android:id="@+id/tcho_horizontal_sv"
+		<!--<HorizontalScrollView-->
+		<!--android:id="@+id/tcho_horizontal_sv"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="match_parent"-->
+		<!--android:scrollbars="none"-->
+		<!-->-->
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			>
+			android:layout_height="50sp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
 
-			<LinearLayout
+			<TextView
+				style="@style/assay_detection_text_size_style"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="20dp"
-				android:layout_marginRight="20dp"
-				android:layout_marginTop="10dp"
-				android:orientation="horizontal">
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/assay_detection_tcho_title_text"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/assay_detection_tcho_title_text"
-					android:textSize="20sp"/>
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/tcho_et"
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="40dp"
+				android:layout_height="35dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="6"/>
 
-				<com.module.widget.lineedittext.LineEditText
-					android:id="@+id/tcho_et"
-					android:layout_width="40dp"
-					android:layout_height="35dp"
-					android:layout_marginLeft="40dp"
-					android:layout_marginRight="5dp"
-					android:layout_weight="1"
-					android:background="@null"
-					android:inputType="number|numberDecimal"
-					android:maxLength="8"/>
+			<TextView
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_TCHO"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/unit_TCHO"
-					android:textSize="20sp"/>
+		</LinearLayout>
 
-				</LinearLayout>
-
-			</HorizontalScrollView>
+		<!--</HorizontalScrollView>-->
 
 
 	</LinearLayout>
@@ -116,49 +118,50 @@
 		android:layout_marginTop="10dp"
 		android:orientation="horizontal">
 
-		<HorizontalScrollView
-			android:id="@+id/lolc_horizontal_sv"
+		<!--<HorizontalScrollView-->
+		<!--android:id="@+id/lolc_horizontal_sv"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="match_parent"-->
+		<!--android:scrollbars="none"-->
+		<!-->-->
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			>
+			android:layout_height="50sp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
 
-			<LinearLayout
+			<TextView
+				style="@style/assay_detection_text_size_style"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="20dp"
-				android:layout_marginRight="20dp"
-				android:layout_marginTop="10dp"
-				android:orientation="horizontal">
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/assay_detection_lol_c_title_text"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/assay_detection_lol_c_title_text"
-					android:textSize="20sp"/>
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/lolc_et"
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="40dp"
+				android:layout_height="35dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:inputType="number|numberDecimal"
+				android:maxLength="6"/>
 
-				<com.module.widget.lineedittext.LineEditText
-					android:id="@+id/lolc_et"
-					android:layout_width="40dp"
-					android:layout_height="35dp"
-					android:layout_marginLeft="40dp"
-					android:layout_marginRight="5dp"
-					android:layout_weight="1"
-					android:background="@null"
-					android:inputType="number|numberDecimal"
-					android:maxLength="8"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/unit_LOLC"
-					android:textSize="20sp"/>
+			<TextView
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_LOLC"/>
 
 
-				</LinearLayout>
+		</LinearLayout>
 
-			</HorizontalScrollView>
+		<!--</HorizontalScrollView>-->
 
 
 	</LinearLayout>
@@ -169,47 +172,50 @@
 		android:layout_marginTop="10dp"
 		android:orientation="horizontal">
 
-		<HorizontalScrollView
-			android:id="@+id/hdlc_horizontal_sv"
+		<!--<HorizontalScrollView-->
+		<!--android:id="@+id/hdlc_horizontal_sv"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="match_parent"-->
+		<!--android:scrollbars="none"-->
+		<!-->-->
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			>
-			<LinearLayout
+			android:layout_height="50sp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
+
+			<TextView
+				style="@style/assay_detection_text_size_style"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="20dp"
-				android:layout_marginRight="20dp"
-				android:layout_marginTop="10dp"
-				android:orientation="horizontal">
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/assay_detection_hdl_c_title_text"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/assay_detection_hdl_c_title_text"
-					android:textSize="20sp"/>
+			<com.module.widget.lineedittext.LineEditText
+				android:id="@+id/hdlc_et"
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="40dp"
+				android:layout_height="35dp"
+				android:layout_marginRight="5dp"
+				android:layout_weight="1"
+				android:background="@null"
+				android:hint="999.99"
+				android:inputType="number|numberDecimal"
+				android:maxLength="6"/>
 
-				<com.module.widget.lineedittext.LineEditText
-					android:id="@+id/hdlc_et"
-					android:layout_width="40dp"
-					android:layout_height="35dp"
-					android:layout_marginLeft="40dp"
-					android:layout_marginRight="5dp"
-					android:layout_weight="1"
-					android:background="@null"
-					android:inputType="number|numberDecimal"
-					android:maxLength="8"/>
+			<TextView
+				style="@style/assay_detection_text_size_style"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:text="@string/unit_HDLC"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
-					android:gravity="center"
-					android:text="@string/unit_HDLC"
-					android:textSize="20sp"/>
+		</LinearLayout>
 
-				</LinearLayout>
-
-			</HorizontalScrollView>
+		<!--</HorizontalScrollView>-->
 
 
 	</LinearLayout>

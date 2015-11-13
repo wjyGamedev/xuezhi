@@ -33,6 +33,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.module.frame.BaseFragment;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.config.EnumConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
@@ -46,7 +47,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class LipidAllChartFragment extends Fragment
+public class LipidAllChartFragment extends BaseFragment
 {
 	//widget
 	private LineChart    m_lineChart = null;
@@ -79,7 +80,7 @@ public class LipidAllChartFragment extends Fragment
 	{}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_linechart_single, container, false);
 		//TODO:由于嵌套fragment，所以不能用bind
@@ -103,8 +104,25 @@ public class LipidAllChartFragment extends Fragment
 		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
 		m_assayDetectionArrayList = assayDetectionList.getAssayDetections();
 
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override

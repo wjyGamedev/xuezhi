@@ -15,20 +15,19 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.msg_handler.AssayDetectionHistoryInfoMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
-public class ADHListFragment extends Fragment
+public class ADHListFragment extends BaseFragment
 {
 	//widget
 	@Bind (R.id.assay_detection_list_lv) ListView m_assayDetectionListLV = null;
@@ -40,13 +39,28 @@ public class ADHListFragment extends Fragment
 	private ADHListAdapter m_ADHListAdapter = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_history_list, container, false);
-		ButterKnife.bind(this, m_view);
-
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override

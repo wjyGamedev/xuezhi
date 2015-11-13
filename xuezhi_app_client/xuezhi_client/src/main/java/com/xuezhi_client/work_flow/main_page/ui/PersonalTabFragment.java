@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
@@ -32,7 +33,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PersonalTabFragment extends Fragment
+public class PersonalTabFragment extends BaseFragment
 {
 	//widget
 	//login/out region
@@ -53,14 +54,30 @@ public class PersonalTabFragment extends Fragment
 	private HandleClickEventOnLogoutDialog m_handleClickEventOnLogoutDialog = new HandleClickEventOnLogoutDialog();
 
 
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_personal_setting, container, false);
-		ButterKnife.bind(this, m_view);
-
-		init();
 		return m_view;
+	}
+
+	@Override
+	public void onAfterCreateAction()
+	{
+		init();
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override

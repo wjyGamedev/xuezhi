@@ -9,8 +9,18 @@
 	<string name="assay_detection_history_btn_text">历史</string>
 	<string name="assay_detection_test_time_title_text">化验时间：</string>
 	<string name="assay_detection_temp_data_btn_text">临时数据</string>
-	<string name="assay_detection_tg_title_text">甘油三酯（TG）:</string>
 	<string name="assay_detection_tg_unit_title_text">mmol/L</string>
+	<!--<string name="assay_detection_tg_title_text">甘油三酯:</string>-->
+	<!--<string name="assay_detection_tcho_title_text">总胆固醇:</string>-->
+	<!--<string name="assay_detection_lol_c_title_text">低密度脂蛋白胆固醇:</string>-->
+	<!--<string name="assay_detection_hdl_c_title_text">高密度脂蛋白胆固醇:</string>-->
+	<!--<string name="assay_detection_atl_title_text">谷丙转氨酶:</string>-->
+	<!--<string name="assay_detection_ast_title_text">谷草转氨酶:</string>-->
+	<!--<string name="assay_detection_ck_title_text">肌酸激酶:</string>-->
+	<!--<string name="assay_detection_glu_title_text">空腹血糖:</string>-->
+	<!--<string name="assay_detection_hba1c_title_text">糖化血红蛋白:</string>-->
+	<!--<string name="assay_detection_scr_title_text">肌酐:</string>-->
+	<string name="assay_detection_tg_title_text">甘油三酯（TG）:</string>
 	<string name="assay_detection_tcho_title_text">总胆固醇（TC）:</string>
 	<string name="assay_detection_lol_c_title_text">低密度脂蛋白胆固醇（LDL-C）:</string>
 	<string name="assay_detection_hdl_c_title_text">高密度脂蛋白胆固醇（HDL-C）:</string>
@@ -20,6 +30,23 @@
 	<string name="assay_detection_glu_title_text">空腹血糖（GLU）:</string>
 	<string name="assay_detection_hba1c_title_text">糖化血红蛋白（HbA1c）:</string>
 	<string name="assay_detection_scr_title_text">肌酐（SCr）:</string>
+	<!--<string name="assay_detection_tg_title_text">甘油三酯:\n（TG）</string>-->
+	<!--<string name="assay_detection_tcho_title_text">总胆固醇:\n（TC）</string>-->
+	<!--<string name="assay_detection_lol_c_title_text">低密度脂蛋白胆固醇:\n（LDL-C）</string>-->
+	<!--<string name="assay_detection_hdl_c_title_text">高密度脂蛋白胆固醇:\n（HDL-C）</string>-->
+	<!--<string name="assay_detection_atl_title_text">谷丙转氨酶:\n（ALT）</string>-->
+	<!--<string name="assay_detection_ast_title_text">谷草转氨酶:\n（AST）</string>-->
+	<!--<string name="assay_detection_ck_title_text">肌酸激酶:\n（CK）</string>-->
+	<!--<string name="assay_detection_glu_title_text">空腹血糖:\n（GLU）</string>-->
+	<!--<string name="assay_detection_hba1c_title_text">糖化血红蛋白:\n（HbA1c）</string>-->
+	<!--<string name="assay_detection_scr_title_text">肌酐:\n（SCr）</string>-->
+
+	<style name="assay_detection_text_size_style">
+		<item name="android:textSize">14sp</item>
+	</style>
+
+
+
 
 	<string name="assay_detection_save_content">保存</string>
 	<string name="assay_detection_add_success_tips">数据保存成功。</string>
