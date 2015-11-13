@@ -30,6 +30,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.xuezhi_client.config.DateConfig;
@@ -40,6 +41,7 @@ import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_
 import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,9 +68,11 @@ public class LipidAllChartFragment extends Fragment
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
 	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
+	private MyValueFormatter mMyValueFormatter = new MyValueFormatter();
+
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
-	ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
+	private ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
 
 	//TODO:待测试，从不活动状态，到活动状态，数据会否保存。
 	public LipidAllChartFragment()
@@ -151,6 +155,22 @@ public class LipidAllChartFragment extends Fragment
 		}
 	}
 
+	public class MyValueFormatter implements YAxisValueFormatter
+	{
+
+		private DecimalFormat mFormat;
+
+		public MyValueFormatter() {
+			mFormat = new DecimalFormat("##0.00"); // use one decimal
+		}
+
+		@Override
+		public String getFormattedValue(float v, YAxis yAxis)
+		{
+			return mFormat.format(v);
+		}
+	}
+
 	/**
 	 * inner func
 	 */
@@ -206,7 +226,7 @@ public class LipidAllChartFragment extends Fragment
 
 		YAxis leftAxis = m_lineChart.getAxisLeft();
 		leftAxis.setInverted(false);
-
+		leftAxis.setValueFormatter(mMyValueFormatter);
 		YAxis rightAxis = m_lineChart.getAxisRight();
 		rightAxis.setEnabled(false);
 
@@ -308,6 +328,7 @@ public class LipidAllChartFragment extends Fragment
 		}
 
 		//03. y轴
+		double maxValue = 0;
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 		for (int indexType = 0; indexType < 4; indexType++)
 		{
@@ -322,6 +343,11 @@ public class LipidAllChartFragment extends Fragment
 				String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 
 				values.add(new Entry((float)tgValue, indexEle, displayDate));
+
+				if (tgValue > maxValue)
+				{
+					maxValue = tgValue;
+				}
 			}
 
 			String dateSetName = getLineName(indexType);
@@ -336,6 +362,7 @@ public class LipidAllChartFragment extends Fragment
 		}
 
 		LineData data = new LineData(xVals, dataSets);
+//		data.setValueFormatter(mMyValueFormatter);
 		m_lineChart.setData(data);
 
 		//02. label tip
@@ -345,6 +372,9 @@ public class LipidAllChartFragment extends Fragment
 		m_xTV.setText(display);
 
 		//04. 修改Y轴最大值，数据的最大值+1/4
+		YAxis leftAxis = m_lineChart.getAxisLeft();
+		maxValue = maxValue + maxValue/4;
+		leftAxis.setAxisMaxValue((float)maxValue);
 	}
 
 	/**
