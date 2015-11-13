@@ -144,6 +144,23 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		if (xuezhiFragment == null)
 		{
 			xuezhiFragment = new XuezhiFragment();
+
+			String tmpValue = activity.getTgValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				xuezhiFragment.setTgValue(tmpValue);
+
+			tmpValue = activity.getTchoValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				xuezhiFragment.setTchoValue(tmpValue);
+
+			tmpValue = activity.getLolcValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				xuezhiFragment.setLolcValue(tmpValue);
+
+			tmpValue = activity.getHdlcValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				xuezhiFragment.setHdlcValue(tmpValue);
+
 		}
 
 		FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
@@ -164,10 +181,37 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		if (shenghuaFragment == null)
 		{
 			shenghuaFragment = new ShenghuaFragment();
+
+			String tmpValue = activity.getAtlValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setAtlValue(tmpValue);
+
+			tmpValue = activity.getAstValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setAstValue(tmpValue);
+
+			tmpValue = activity.getCkValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setCkValue(tmpValue);
+
+			tmpValue = activity.getGlucValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setGlucValue(tmpValue);
+
+			tmpValue = activity.getHba1cValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setHba1cValue(tmpValue);
+
+			tmpValue = activity.getScrValue();
+			if (!TextUtils.isEmpty(tmpValue))
+				shenghuaFragment.setScrValue(tmpValue);
+
 		}
+
 		FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
 		fragmentTransaction.replace(R.id.content_display_region_ll, shenghuaFragment, ShenghuaFragment.class.getName());
 		fragmentTransaction.commit();
+
 	}
 
 	public void loadXuezhiData()
@@ -181,17 +225,21 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		if (xuezhiFragment == null)
 			return;
 
-		if (!TextUtils.isEmpty(xuezhiFragment.getTgEt().getText()))
-			activity.setTgValue(xuezhiFragment.getTgEt().getText().toString());
+		String tmpValue = xuezhiFragment.getTgValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setTgValue(tmpValue);
 
-		if (!TextUtils.isEmpty(xuezhiFragment.getTchoEt().getText()))
-			activity.setTchoValue(xuezhiFragment.getTchoEt().getText().toString());
+		tmpValue = xuezhiFragment.getTchoValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setTchoValue(tmpValue);
 
-		if (!TextUtils.isEmpty(xuezhiFragment.getLolcEt().getText()))
-			activity.setLolcValue(xuezhiFragment.getLolcEt().getText().toString());
+		tmpValue = xuezhiFragment.getLolcValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setLolcValue(tmpValue);
 
-		if (!TextUtils.isEmpty(xuezhiFragment.getHdlcEt().getText()))
-			activity.setHdlcValue(xuezhiFragment.getHdlcEt().getText().toString());
+		tmpValue = xuezhiFragment.getHdlcValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setHdlcValue(tmpValue);
 
 		return;
 	}
@@ -207,23 +255,29 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		if (shenghuaFragment == null)
 			return;
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getAtlEt().getText()))
-			activity.setAtlValue(shenghuaFragment.getAtlEt().getText().toString());
+		String tmpValue = shenghuaFragment.getAtlValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setAtlValue(tmpValue);
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getAstEt().getText()))
-			activity.setAstValue(shenghuaFragment.getAstEt().getText().toString());
+		tmpValue = shenghuaFragment.getAstValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setAstValue(tmpValue);
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getCkEt().getText()))
-			activity.setCkValue(shenghuaFragment.getCkEt().getText().toString());
+		tmpValue = shenghuaFragment.getCkValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setCkValue(tmpValue);
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getGluEt().getText()))
-			activity.setGlucValue(shenghuaFragment.getGluEt().getText().toString());
+		tmpValue = shenghuaFragment.getGlucValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setGlucValue(tmpValue);
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getHba1cEt().getText()))
-			activity.setHba1cValue(shenghuaFragment.getHba1cEt().getText().toString());
+		tmpValue = shenghuaFragment.getHba1cValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setHba1cValue(tmpValue);
 
-		if (!TextUtils.isEmpty(shenghuaFragment.getScrEt().getText()))
-			activity.setScrValue(shenghuaFragment.getScrEt().getText().toString());
+		tmpValue = shenghuaFragment.getScrValue();
+		if (!TextUtils.isEmpty(tmpValue))
+			activity.setScrValue(tmpValue);
 
 	}
 }

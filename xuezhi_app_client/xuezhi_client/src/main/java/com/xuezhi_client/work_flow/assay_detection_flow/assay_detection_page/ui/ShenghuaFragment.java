@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -15,10 +15,13 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.module.frame.BaseFragment;
@@ -29,19 +32,34 @@ import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionCon
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.OnTextChanged;
+import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
 
 public class ShenghuaFragment extends BaseFragment
 {
-	@Bind (R.id.atl_et)      LineEditText mAtlEt;
-	@Bind (R.id.ast_et)      LineEditText mAstEt;
-	@Bind (R.id.ck_et)       LineEditText mCkEt;
-	@Bind (R.id.glu_et)      LineEditText mGluEt;
-	@Bind (R.id.hba1c_et)    LineEditText mHba1cEt;
-	@Bind (R.id.scr_et)      LineEditText mScrEt;
-	@Bind (R.id.xuezhi_info) LinearLayout mXuezhiInfo;
 
-	private AssayDetectionActivity m_activity = null;
+	@Bind (R.id.atl_et)              LineEditText         mAtlEt;
+	@Bind (R.id.ast_et)              LineEditText         mAstEt;
+	@Bind (R.id.ck_et)               LineEditText         mCkEt;
+	@Bind (R.id.glu_et)              LineEditText         mGluEt;
+	@Bind (R.id.hba1c_et)            LineEditText         mHba1cEt;
+	@Bind (R.id.scr_et)              LineEditText         mScrEt;
+	@Bind (R.id.xuezhi_info)         LinearLayout         mXuezhiInfo;
+	@Bind (R.id.atl_horizontal_sv)   HorizontalScrollView mAtlHorizontalSv;
+	@Bind (R.id.ast_horizontal_sv)   HorizontalScrollView mAstHorizontalSv;
+	@Bind (R.id.ck_horizontal_sv)    HorizontalScrollView mCkHorizontalSv;
+	@Bind (R.id.glu_horizontal_sv)   HorizontalScrollView mGluHorizontalSv;
+	@Bind (R.id.hba1c_horizontal_sv) HorizontalScrollView mHba1cHorizontalSv;
+	@Bind (R.id.scr_horizontal_sv)   HorizontalScrollView mScrHorizontalSv;
+
+	private String mAtlValue   = "";
+	private String mAstValue   = "";
+	private String mCkValue    = "";
+	private String mGlucValue  = "";
+	private String mHba1cValue = "";
+	private String mScrValue   = "";
+
+	private AssayDetectionActivity   m_activity                 = null;
 	private AssayDetectionMsgHandler m_assayDetectionMsgHandler = null;
 
 	@Override
@@ -57,6 +75,13 @@ public class ShenghuaFragment extends BaseFragment
 	}
 
 	@Override
+	public void onStart()
+	{
+		super.onStart();
+		updateContent();
+	}
+
+	@Override
 	public void onDestoryViewAction()
 	{
 	}
@@ -65,6 +90,289 @@ public class ShenghuaFragment extends BaseFragment
 	public BaseFragment getOwner()
 	{
 		return this;
+	}
+
+	@OnFocusChange (R.id.atl_et)
+	public void OnFocusChangeAtlET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mAtlValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() - m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mAtlHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mAtlHorizontalSv.smoothScrollTo((int)mAtlHorizontalSv.getScrollX() + m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mAtlHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+
+	}
+
+	@OnFocusChange (R.id.ast_et)
+	public void OnFocusChangeAstET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mAstValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() - m_activity
+																				   .getWindowManager().getDefaultDisplay().getWidth(),
+																		   (int)mAstHorizontalSv.getScrollY()
+																		  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mAstHorizontalSv.smoothScrollTo((int)mAstHorizontalSv.getScrollX() + m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mAstHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+	}
+
+	@OnFocusChange (R.id.ck_et)
+	public void OnFocusChangeCkET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mCkValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() - m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mCkHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mCkHorizontalSv.smoothScrollTo((int)mCkHorizontalSv.getScrollX() + m_activity
+																					 .getWindowManager().getDefaultDisplay().getWidth(),
+																			 (int)mCkHorizontalSv.getScrollY()
+																			);
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+	}
+
+	@OnFocusChange (R.id.glu_et)
+	public void OnFocusChangeGluET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mGlucValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() - m_activity
+																					 .getWindowManager().getDefaultDisplay().getWidth(),
+																			 (int)mGluHorizontalSv.getScrollY()
+																			);
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mGluHorizontalSv.smoothScrollTo((int)mGluHorizontalSv.getScrollX() + m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mGluHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+	}
+
+	@OnFocusChange (R.id.hba1c_et)
+	public void OnFocusChangeHba1cET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mHba1cValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() - m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mHba1cHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mHba1cHorizontalSv.smoothScrollTo((int)mHba1cHorizontalSv.getScrollX() + m_activity
+																						.getWindowManager().getDefaultDisplay().getWidth(),
+																				(int)mHba1cHorizontalSv.getScrollY()
+																			   );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+	}
+
+	@OnFocusChange (R.id.scr_et)
+	public void OnFocusChangeScrET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mScrValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() - m_activity
+																						.getWindowManager().getDefaultDisplay().getWidth(),
+																				(int)mScrHorizontalSv.getScrollY()
+																			   );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mScrHorizontalSv.smoothScrollTo((int)mScrHorizontalSv.getScrollX() + m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mScrHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
 	}
 
 	private void init()
@@ -80,95 +388,90 @@ public class ShenghuaFragment extends BaseFragment
 		m_activity = (AssayDetectionActivity)getActivity();
 	}
 
-	@OnTextChanged (value=R.id.atl_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterAtlETChanged(Editable s)
+	private void updateContent()
 	{
-		String tmpAtlValue = mAtlEt.getText().toString();
-		if (!AssayDetectionConfig.checkAtl(tmpAtlValue))
-			return;
-
-		m_activity.setAtlValue(tmpAtlValue);
-
+		mAtlEt.setText(mAtlValue);
+		mAstEt.setText(mAstValue);
+		mCkEt.setText(mCkValue);
+		mGluEt.setText(mGlucValue);
+		mHba1cEt.setText(mHba1cValue);
+		mScrEt.setText(mScrValue);
 	}
 
-	@OnTextChanged (value=R.id.ast_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterAstETChanged(Editable s)
+
+	public String getScrValue()
 	{
-		String tmpAstValue = mAstEt.getText().toString();
-		if (!AssayDetectionConfig.checkAst(tmpAstValue))
-			return;
-
-		m_activity.setAstValue(tmpAstValue);
-
+		return mScrValue;
 	}
 
-	@OnTextChanged (value=R.id.ck_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterCkETChanged(Editable s)
+	public void setScrValue(String scrValue)
 	{
-		String tmpCkValue = mCkEt.getText().toString();
-		if (!AssayDetectionConfig.checkCk(tmpCkValue))
-			return;
-
-		m_activity.setCkValue(tmpCkValue);
+		mScrValue = scrValue;
 	}
 
-	@OnTextChanged (value=R.id.glu_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterGluETChanged(Editable s)
+	public String getHba1cValue()
 	{
-		String tmpGluValue = mGluEt.getText().toString();
-		if (!AssayDetectionConfig.checkGlu(tmpGluValue))
-			return;
-
-		m_activity.setGlucValue(tmpGluValue);
+		return mHba1cValue;
 	}
 
-	@OnTextChanged (value=R.id.hba1c_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterHba1cETChanged(Editable s)
+	public void setHba1cValue(String hba1cValue)
 	{
-		String tmpHba1cValue = mHba1cEt.getText().toString();
-		if (AssayDetectionConfig.checkHba1c(tmpHba1cValue))
-			return;
-
-		m_activity.setHba1cValue(tmpHba1cValue);
+		mHba1cValue = hba1cValue;
 	}
 
-	@OnTextChanged (value=R.id.scr_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterScrETChanged(Editable s)
+	public String getGlucValue()
 	{
-		String tmpScrValue = mScrEt.getText().toString();
-		if (!AssayDetectionConfig.checkScr(tmpScrValue))
-			return;
-
-		m_activity.setScrValue(tmpScrValue);
+		return mGlucValue;
 	}
 
-	public LineEditText getAtlEt()
+	public void setGlucValue(String glucValue)
 	{
-		return mAtlEt;
+		mGlucValue = glucValue;
 	}
 
-	public LineEditText getAstEt()
+	public String getCkValue()
 	{
-		return mAstEt;
+		return mCkValue;
 	}
 
-	public LineEditText getCkEt()
+	public void setCkValue(String ckValue)
 	{
-		return mCkEt;
+		mCkValue = ckValue;
 	}
 
-	public LineEditText getGluEt()
+	public String getAstValue()
 	{
-		return mGluEt;
+		return mAstValue;
 	}
 
-	public LineEditText getHba1cEt()
+	public void setAstValue(String astValue)
 	{
-		return mHba1cEt;
+		mAstValue = astValue;
 	}
 
-	public LineEditText getScrEt()
+	public String getAtlValue()
 	{
-		return mScrEt;
+		return mAtlValue;
+	}
+
+	public void setAtlValue(String atlValue)
+	{
+		mAtlValue = atlValue;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		// TODO: inflate a fragment view
+		View rootView = super.onCreateView(inflater, container, savedInstanceState);
+		ButterKnife.bind(this, rootView);
+		return rootView;
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+		ButterKnife.unbind(this);
 	}
 }

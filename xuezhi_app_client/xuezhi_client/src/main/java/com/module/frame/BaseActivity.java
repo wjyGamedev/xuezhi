@@ -96,6 +96,9 @@ abstract public class BaseActivity extends FragmentActivity
 				if (imm != null)
 				{
 					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+					EditText editText = (EditText)v;
+					if (editText != null)
+						editText.clearFocus();
 				}
 			}
 			return super.dispatchTouchEvent(ev);

@@ -24,6 +24,8 @@ import com.xuzhi_client.xuzhi_app_client.R;
 
 public class AssayDetectionConfig
 {
+	public final static long DELTA_TIME = 100L;
+
 	public final static String ERROR01 = DGlobal.GetInstance().getAppContext().getString(R.string
 																								 .assay_detection_error_tips_invalid_input_01);
 

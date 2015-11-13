@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -15,10 +15,13 @@
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui;
 
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.module.frame.BaseFragment;
@@ -29,19 +32,27 @@ import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionCon
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnTextChanged;
+import butterknife.OnFocusChange;
 
 public class XuezhiFragment extends BaseFragment
 {
-	@Bind (R.id.tg_et)       LineEditText mTgEt;
-	@Bind (R.id.tcho_et)     LineEditText mTchoEt;
-	@Bind (R.id.lolc_et)     LineEditText mLolcEt;
-	@Bind (R.id.hdlc_et)     LineEditText mHdlcEt;
-	@Bind (R.id.xuezhi_info) LinearLayout mXuezhiInfo;
+	@Bind (R.id.tg_et)              LineEditText         mTgEt;
+	@Bind (R.id.tcho_et)            LineEditText         mTchoEt;
+	@Bind (R.id.lolc_et)            LineEditText         mLolcEt;
+	@Bind (R.id.hdlc_et)            LineEditText         mHdlcEt;
+	@Bind (R.id.xuezhi_info)        LinearLayout         mXuezhiInfo;
+	@Bind (R.id.tg_horizontal_sv)   HorizontalScrollView mTgHorizontalSv;
+	@Bind (R.id.tcho_horizontal_sv) HorizontalScrollView mTchoHorizontalSv;
+	@Bind (R.id.lolc_horizontal_sv) HorizontalScrollView mLolcHorizontalSv;
+	@Bind (R.id.hdlc_horizontal_sv) HorizontalScrollView mHdlcHorizontalSv;
 
-	private AssayDetectionActivity m_activity = null;
+	private AssayDetectionActivity   m_activity                 = null;
 	private AssayDetectionMsgHandler m_assayDetectionMsgHandler = null;
+
+	private String mTgValue   = "";
+	private String mTchoValue = "";
+	private String mLolcValue = "";
+	private String mHdlcValue = "";
 
 	@Override
 	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -56,6 +67,13 @@ public class XuezhiFragment extends BaseFragment
 	}
 
 	@Override
+	public void onStart()
+	{
+		super.onStart();
+		updateContent();
+	}
+
+	@Override
 	public void onDestoryViewAction()
 	{
 	}
@@ -64,6 +82,198 @@ public class XuezhiFragment extends BaseFragment
 	public BaseFragment getOwner()
 	{
 		return this;
+	}
+
+	@OnFocusChange (R.id.tg_et)
+	public void OnFocusChangeTgET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mTgValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() - m_activity
+																					  .getWindowManager().getDefaultDisplay().getWidth(),
+																			  (int)mTgHorizontalSv.getScrollY()
+																			 );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mTgHorizontalSv.smoothScrollTo((int)mTgHorizontalSv.getScrollX() + m_activity
+																					 .getWindowManager().getDefaultDisplay().getWidth(),
+																			 (int)mTgHorizontalSv.getScrollY()
+																			);
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+
+	}
+
+	@OnFocusChange (R.id.tcho_et)
+	public void OnFocusChangeTchoET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mTchoValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() - m_activity
+																					 .getWindowManager().getDefaultDisplay().getWidth(),
+																			 (int)mTchoHorizontalSv.getScrollY()
+																			);
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mTchoHorizontalSv.smoothScrollTo((int)mTchoHorizontalSv.getScrollX() + m_activity
+																					   .getWindowManager().getDefaultDisplay().getWidth(),
+																			   (int)mTchoHorizontalSv.getScrollY()
+																			  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+
+	}
+
+	@OnFocusChange (R.id.lolc_et)
+	public void OnFocusChangeLolcET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mLolcValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() - m_activity
+																					   .getWindowManager().getDefaultDisplay().getWidth(),
+																			   (int)mLolcHorizontalSv.getScrollY()
+																			  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mLolcHorizontalSv.smoothScrollTo((int)mLolcHorizontalSv.getScrollX() + m_activity
+																					   .getWindowManager().getDefaultDisplay().getWidth(),
+																			   (int)mLolcHorizontalSv.getScrollY()
+																			  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+
+	}
+
+	@OnFocusChange (R.id.hdlc_et)
+	public void OnFocusChangeHdlcET(View v, boolean hasFocus)
+	{
+		if (v == null)
+			return;
+
+		EditText editText = (EditText)v;
+		if (editText == null)
+			return;
+
+		if (!hasFocus)
+		{
+			if (!TextUtils.isEmpty(editText.getText()))
+			{
+				mHdlcValue = editText.getText().toString();
+			}
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() - m_activity
+																					   .getWindowManager().getDefaultDisplay().getWidth(),
+																			   (int)mHdlcHorizontalSv.getScrollY()
+																			  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+		else
+		{
+			editText.setCursorVisible(true);
+
+			new Handler().postDelayed(new Runnable()
+									  {
+										  public void run()
+										  {
+											  mHdlcHorizontalSv.smoothScrollTo((int)mHdlcHorizontalSv.getScrollX() + m_activity
+																					   .getWindowManager().getDefaultDisplay().getWidth(),
+																			   (int)mHdlcHorizontalSv.getScrollY()
+																			  );
+										  }
+									  }, AssayDetectionConfig.DELTA_TIME
+									 );
+		}
+
 	}
 
 	private void init()
@@ -79,79 +289,51 @@ public class XuezhiFragment extends BaseFragment
 		m_activity = (AssayDetectionActivity)getActivity();
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	private void updateContent()
 	{
-		// TODO: inflate a fragment view
-		View rootView = super.onCreateView(inflater, container, savedInstanceState);
-		ButterKnife.bind(this, rootView);
-		return rootView;
+		mTgEt.setText(mTgValue);
+		mTchoEt.setText(mTchoValue);
+		mLolcEt.setText(mLolcValue);
+		mHdlcEt.setText(mHdlcValue);
 	}
 
-	@Override
-	public void onDestroyView()
+	public String getTgValue()
 	{
-		super.onDestroyView();
-		ButterKnife.unbind(this);
+		return mTgValue;
 	}
 
-	@OnTextChanged (value=R.id.tg_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterTgETChanged(Editable s)
+	public void setTgValue(String tgValue)
 	{
-		String tmpTgValue = mTgEt.getText().toString();
-		if (AssayDetectionConfig.checkTg(tmpTgValue))
-			return;
-
-		m_activity.setTgValue(tmpTgValue);
+		mTgValue = tgValue;
 	}
 
-	@OnTextChanged (value=R.id.tcho_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterTchoETChanged(Editable s)
+	public String getTchoValue()
 	{
-		String tmpTchoValue = mTchoEt.getText().toString();
-		if (AssayDetectionConfig.checkTcho(tmpTchoValue))
-			return;
-
-		m_activity.setTchoValue(tmpTchoValue);
+		return mTchoValue;
 	}
 
-	@OnTextChanged (value=R.id.lolc_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterLolcETChanged(Editable s)
+	public void setTchoValue(String tchoValue)
 	{
-		String tmpLolcValue = mLolcEt.getText().toString();
-		if (AssayDetectionConfig.checkLolc(tmpLolcValue))
-			return;
-
-		m_activity.setLolcValue(tmpLolcValue);
+		mTchoValue = tchoValue;
 	}
 
-	@OnTextChanged (value=R.id.hdlc_et, callback= OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-	public void afterHdlcETChanged(Editable s)
+	public String getLolcValue()
 	{
-		String tmpHdlcValue = mHdlcEt.getText().toString();
-		if (AssayDetectionConfig.checkHdlc(tmpHdlcValue))
-			return;
-
-		m_activity.setHdlcValue(tmpHdlcValue);
+		return mLolcValue;
 	}
 
-	public LineEditText getTgEt()
+	public void setLolcValue(String lolcValue)
 	{
-		return mTgEt;
+		mLolcValue = lolcValue;
 	}
 
-	public LineEditText getTchoEt()
+	public String getHdlcValue()
 	{
-		return mTchoEt;
+		return mHdlcValue;
 	}
 
-	public LineEditText getLolcEt()
+	public void setHdlcValue(String hdlcValue)
 	{
-		return mLolcEt;
-	}
-
-	public LineEditText getHdlcEt()
-	{
-		return mHdlcEt;
+		mHdlcValue = hdlcValue;
 	}
 }
