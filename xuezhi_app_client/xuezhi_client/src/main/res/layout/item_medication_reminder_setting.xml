@@ -182,38 +182,40 @@
 			<include layout="@layout/item_dividing_line_horizontal_fine"/>
 		</LinearLayout>
 
-		<!--<LinearLayout-->
-			<!--android:layout_width="match_parent"-->
-			<!--android:layout_height="wrap_content"-->
-			<!--android:layout_marginLeft="15dp"-->
-			<!--android:layout_marginRight="15dp"-->
-			<!--android:orientation="horizontal">-->
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="15dp"
+			android:orientation="horizontal"
+			android:visibility="gone">
 
-			<!--<TextView-->
-				<!--android:layout_width="wrap_content"-->
-				<!--android:layout_height="wrap_content"-->
-				<!--android:layout_gravity="center"-->
-				<!--android:layout_marginBottom="10dp"-->
-				<!--android:layout_marginTop="10dp"-->
-				<!--android:text="注意事项："-->
-				<!--android:textSize="20sp"/>-->
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginBottom="10dp"
+				android:layout_marginTop="10dp"
+				android:text="注意事项："
+				android:textSize="20sp"/>
 
-			<!--<TextView-->
-				<!--android:id="@+id/precautions_tv"-->
-				<!--android:layout_width="match_parent"-->
-				<!--android:layout_height="wrap_content"-->
-				<!--android:layout_gravity="center"-->
-				<!--android:layout_marginBottom="10dp"-->
-				<!--android:layout_marginRight="10dp"-->
-				<!--android:layout_marginTop="10dp"-->
-				<!--android:layout_weight="1"-->
-				<!--android:gravity="right"-->
-				<!--android:hint="@string/medication_reminder_note_default_text"-->
-				<!--android:textSize="20sp"/>-->
+			<TextView
+				android:id="@+id/precautions_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginBottom="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="10dp"
+				android:layout_weight="1"
+				android:gravity="right"
+				android:hint="@string/medication_reminder_note_default_text"
+				android:textSize="20sp"/>
 
-		<!--</LinearLayout>-->
+		</LinearLayout>
 
-		<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
+		<include layout="@layout/item_dividing_line_horizontal"
+				 android:visibility="gone"/>
 
 		<LinearLayout
 			android:id="@+id/reminder_time_1_region_ll"
