@@ -18,15 +18,20 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DMedicineReminderDisplay
 {
-	private boolean  m_stateFlag    = false;    //开启状态。
-	private Calendar m_reminderTime = null;    //提醒时间
-	private int      m_medicineID   = DataConfig.DEFAULT_VALUE;    //药品ID
-	private double   m_dose         = 0f;    //用药剂量
-	private String   m_precaution   = "";    //
+	private boolean m_stateFlag  = false;    //开启状态。
+	private int     m_medicineID = DataConfig.DEFAULT_VALUE;    //药品ID
+	private int     mNumPerDay   = 0; //每天服药几次
+	private double  m_dose       = 0f;    //用药剂量
+	private String  m_precaution = "";    //
+
+	private ArrayList<Calendar> mReminderTimeArrayList = new ArrayList<>();
+	private Calendar            m_reminderTime         = null;    //提醒时间
+
 
 	public DMedicineReminderDisplay()
 	{
@@ -43,6 +48,7 @@ public class DMedicineReminderDisplay
 		m_stateFlag = medicinePrompt.isValid();
 		m_reminderTime = medicinePrompt.getTakeCalendar();
 		m_medicineID = medicinePrompt.getMID();
+		mNumPerDay = 1;
 		m_dose = medicinePrompt.getDose();
 		m_precaution = medicinePrompt.getPrecaution();
 		return true;
@@ -67,6 +73,16 @@ public class DMedicineReminderDisplay
 	public void setReminderTime(Calendar reminderTime)
 	{
 		m_reminderTime = reminderTime;
+	}
+
+	public int getNumPerDay()
+	{
+		return mNumPerDay;
+	}
+
+	public void setNumPerDay(int numPerDay)
+	{
+		mNumPerDay = numPerDay;
 	}
 
 	public int getMedicineID()

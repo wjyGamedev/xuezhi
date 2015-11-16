@@ -35,7 +35,7 @@ public class DMedicineReminder
 	private Calendar m_exhaustTime        = Calendar.getInstance();
 	private String   m_exhaustTimeDisplay = "";
 	private String   m_medicineName       = "";
-
+	private boolean  mStatusFlag          = false;
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -76,9 +76,10 @@ public class DMedicineReminder
 		m_MID = medicineBox.getMID();
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineBox.getMID());
 
-		double waringNum  = medicineBox.getWaringNum();
-		double remianNum = medicineBox.getRemianNum();
+		double waringNum     = medicineBox.getWaringNum();
+		double remianNum     = medicineBox.getRemianNum();
 		double amountPerTime = medicine.getDose();
+		mStatusFlag = medicineBox.isMedicalReminderState();
 
 		ArrayList<DMedicinePrompt> medicalPrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
 		for (DMedicinePrompt medicinePrompt : medicalPrompts)
@@ -121,6 +122,11 @@ public class DMedicineReminder
 		return m_MID;
 	}
 
+	public boolean isStatusFlag()
+	{
+		return mStatusFlag;
+	}
+
 	public Calendar getWaringTime()
 	{
 		return m_waringTime;
@@ -139,5 +145,66 @@ public class DMedicineReminder
 	public String getExhaustTimeDisplay()
 	{
 		return m_exhaustTimeDisplay;
+	}
+
+	public boolean equalsObject(DMedicineReminder rht)
+	{
+		if (m_MBID != rht.getMBID())
+			return false;
+
+		if (m_MID != rht.getMID())
+			return false;
+
+		if (m_waringTime.get(Calendar.YEAR) != rht.getWaringTime().get(Calendar.YEAR))
+			return false;
+
+		if (m_waringTime.get(Calendar.MONTH) != rht.getWaringTime().get(Calendar.MONTH))
+			return false;
+
+		if (m_waringTime.get(Calendar.DAY_OF_MONTH) != rht.getWaringTime().get(Calendar.DAY_OF_MONTH))
+			return false;
+
+		if (m_waringTime.get(Calendar.HOUR_OF_DAY) != rht.getWaringTime().get(Calendar.HOUR_OF_DAY))
+			return false;
+
+		if (m_waringTime.get(Calendar.MINUTE) != rht.getWaringTime().get(Calendar.MINUTE))
+			return false;
+
+		if (m_exhaustTime.get(Calendar.YEAR) != rht.getExhaustTime().get(Calendar.YEAR))
+			return false;
+
+		if (m_exhaustTime.get(Calendar.MONTH) != rht.getExhaustTime().get(Calendar.MONTH))
+			return false;
+
+		if (m_exhaustTime.get(Calendar.DAY_OF_MONTH) != rht.getExhaustTime().get(Calendar.DAY_OF_MONTH))
+			return false;
+
+		if (m_exhaustTime.get(Calendar.HOUR_OF_DAY) != rht.getExhaustTime().get(Calendar.HOUR_OF_DAY))
+			return false;
+
+		if (m_exhaustTime.get(Calendar.MINUTE) != rht.getExhaustTime().get(Calendar.MINUTE))
+			return false;
+
+		if (m_exhaustTimeDisplay.equals(rht.getExhaustTimeDisplay()) == false)
+			return false;
+
+		if (m_medicineName.equals(rht.getMedicineName()) == false)
+			return false;
+
+		if (mStatusFlag != rht.isStatusFlag())
+			return false;
+
+		return true;
+	}
+
+	public void copyFrom(DMedicineReminder rht)
+	{
+		m_MBID = rht.getMBID();
+		m_MID = rht.getMID();
+		m_waringTime.setTime(rht.getWaringTime().getTime());
+		m_exhaustTime.setTime(rht.getExhaustTime().getTime());
+		m_exhaustTimeDisplay = rht.getExhaustTimeDisplay();
+		m_medicineName = rht.getMedicineName();
+		mStatusFlag = rht.isStatusFlag();
 	}
 }

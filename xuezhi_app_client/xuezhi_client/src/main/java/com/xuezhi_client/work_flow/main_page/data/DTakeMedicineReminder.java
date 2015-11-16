@@ -32,7 +32,7 @@ public class DTakeMedicineReminder
 	private String   m_medicineName        = "";
 	private double   m_dose                = 0f;
 	private int      m_MUID                = DataConfig.DEFAULT_ID;
-	private String   m_medicineUnitDisplay = null;
+	private String   m_medicineUnitDisplay = "";
 	private Calendar m_reminderTime        = Calendar.getInstance();
 	private String   m_reminderTimeDisplay = "";
 	private boolean m_stateFlag = false;
@@ -50,6 +50,67 @@ public class DTakeMedicineReminder
 		}
 		postHandler();
 	}
+
+	public void copyFrom(DTakeMedicineReminder rht)
+	{
+		m_PID = rht.getPID();
+		m_MID = rht.getMID();
+		m_medicineName = rht.getMedicineName();
+		m_dose = rht.getDose();
+		m_MUID = rht.getMUID();
+		m_medicineUnitDisplay = rht.getMedicineUnitDisplay();
+		m_reminderTime.setTime(rht.getReminderTime().getTime());
+		m_reminderTimeDisplay = rht.getReminderTimeDisplay();
+		m_stateFlag = rht.isStateFlag();
+	}
+
+	public boolean equalsObject(DTakeMedicineReminder rht)
+	{
+		if (m_PID != rht.getPID())
+			return false;
+
+		if (m_MID != rht.getMID())
+			return false;
+
+		if (m_medicineName.equals(rht.getMedicineName()) == false)
+			return false;
+
+		if (m_dose != rht.getDose())
+			return false;
+
+		if (m_MUID != rht.getMUID())
+			return false;
+
+		if (m_medicineUnitDisplay.equals(rht.getMedicineUnitDisplay()) == false )
+			return false;
+
+		//因为是天天通知，所以不需要比较year，month，day，只需要比较hour，minute
+		if (m_reminderTime.get(Calendar.YEAR) != rht.getReminderTime().get(Calendar.YEAR))
+			return false;
+
+		if (m_reminderTime.get(Calendar.MONTH) != rht.getReminderTime().get(Calendar.MONTH))
+			return false;
+
+		if (m_reminderTime.get(Calendar.DAY_OF_MONTH) != rht.getReminderTime().get(Calendar.DAY_OF_MONTH))
+			return false;
+
+		if (m_reminderTime.get(Calendar.HOUR_OF_DAY) != rht.getReminderTime().get(Calendar.HOUR_OF_DAY))
+			return false;
+
+		if (m_reminderTime.get(Calendar.MINUTE) != rht.getReminderTime().get(Calendar.MINUTE))
+			return false;
+
+
+		if (m_reminderTimeDisplay.equals(rht.getReminderTimeDisplay()) == false)
+			return false;
+
+		if (m_stateFlag != rht.isStateFlag())
+			return false;
+
+		return true;
+	}
+
+
 
 	public static boolean checkValid(int PID)
 	{

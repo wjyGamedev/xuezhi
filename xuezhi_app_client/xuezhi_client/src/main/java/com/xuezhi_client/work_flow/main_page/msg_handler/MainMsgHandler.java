@@ -31,12 +31,15 @@ import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineCompanyGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicinePromptGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineUnitGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerTakeMedicineAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -123,19 +126,65 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 	public void initAction()
 	{
-		//01. 药品单位
-		DBusinessMsgHandler.GetInstance().requestMedicineUnitGetListAction();
+		//01. 由于在welcome中，已经发送了medicine，medicineuint，medicinecompant消息，如果其中有任何一个没有返回，则等待接收。
+		boolean bRetryFlag = false;
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty())
+		{
+			bRetryFlag = true;
+			DBusinessMsgHandler.GetInstance().answerMedicineGetListAction();
+		}
 
-		//02. 发送药品列表
-		DBusinessMsgHandler.GetInstance().requestMedicineGetListAction();
+		if (DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty())
+		{
+			bRetryFlag = true;
+			DBusinessMsgHandler.GetInstance().answerMedicineUnitGetListAction();
+		}
 
+		if (DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty())
+		{
+			bRetryFlag = true;
+			DBusinessMsgHandler.GetInstance().answerMedicineCompanyGetListAction();
+		}
+
+		if (!bRetryFlag)
+		{
+			initActionForLogin();
+		}
 		return;
+
 	}
 
 	public void onEventMainThread(AnswerMedicineGetListEvent event)
 	{
-		initActionForLogin();
+		//只有当三个消息都返回的时候，才可以继续向下进行，这里用来同步三个消息。由于是http，不能保证顺序
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty() == false &&
+				DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty() == false	&&
+				DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty() == false)
+		{
+			initActionForLogin();
+		}
 	}
+
+	public void onEventMainThread(AnswerMedicineUnitGetListEvent event)
+	{
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty() == false &&
+				DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty() == false	&&
+				DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty() == false)
+		{
+			initActionForLogin();
+		}
+	}
+
+	public void onEventMainThread(AnswerMedicineCompanyGetListEvent event)
+	{
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty() == false &&
+				DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty() == false	&&
+				DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty() == false)
+		{
+			initActionForLogin();
+		}
+	}
+
 
 	private void initActionForLogin()
 	{
@@ -148,19 +197,16 @@ public class MainMsgHandler extends BaseUIMsgHandler
 			return;
 		}
 
+		//化验检查和其他业务逻辑是并行的两条线。
+		//所以先发送化验检查消息，然后发送另外一个业务逻辑的开始消息。
 		//0301. 请求发送化验检查列表
 		requestAssayDetectionListAction();
 
-		//0302. 请求发送用药提醒列表
-		//		requestMedicinePromptGetListAction();
-
-		//0303. 请求发送药箱列表
+		//0302. 请求发送药箱列表->提醒列表->用药历史
 		requestMedicineBoxGetListAction();
 
-		//0304. 请求发送当月的日历
-		//		requestTakeMedicineGetHistoryListAction();
-
 		return;
+
 	}
 
 	private void requestAssayDetectionListAction()
@@ -463,6 +509,13 @@ public class MainMsgHandler extends BaseUIMsgHandler
 				}
 
 				String medicineName = medicineReminder.getMedicineName();
+				int MID = medicineReminder.getMID();
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(MID);
+				if (medicineCompany != null)
+				{
+					medicineName = medicineName + "(" + medicineCompany.getName() +")";
+				}
+
 				String medicineTips01 = activity.getString(R.string.medicine_waring_content_01);
 				String medicineTips03 = activity.getString(R.string.medicine_waring_content_03);
 				String medicineReminderTimeDisplay = medicineReminder.getExhaustTimeDisplay();

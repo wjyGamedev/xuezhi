@@ -30,13 +30,17 @@ public class EventID
 	public final static int QUEST_MEDICAL_UNIT_LIST  = RESPONSE_REGISTER + 1;
 	public final static int ANSWER_MEDICAL_UNIT_LIST = QUEST_MEDICAL_UNIT_LIST + 1;
 
-
 	//药品列表
 	public final static int QUEST_MEDICAL_LIST  = ANSWER_MEDICAL_UNIT_LIST + 1;
 	public final static int ANSWER_MEDICAL_LIST = QUEST_MEDICAL_LIST + 1;
 
+	//药品公司列表
+	public final static int QUEST_MEDICAL_COMPANY_LIST  = ANSWER_MEDICAL_LIST + 1;
+	public final static int ANSWER_MEDICAL_COMPANY_LIST = QUEST_MEDICAL_COMPANY_LIST + 1;
+
+
 	//库存列表
-	public final static int QUEST_MEDICAL_STOCK_LIST      = ANSWER_MEDICAL_LIST + 1;
+	public final static int QUEST_MEDICAL_STOCK_LIST      = ANSWER_MEDICAL_COMPANY_LIST + 1;
 	public final static int ANSWER_MEDICAL_STOCK_LIST     = QUEST_MEDICAL_STOCK_LIST + 1;
 	//添加药品到库存中
 	public final static int QUEST_MEDICAL_STOCK_ADD       = ANSWER_MEDICAL_STOCK_LIST + 1;

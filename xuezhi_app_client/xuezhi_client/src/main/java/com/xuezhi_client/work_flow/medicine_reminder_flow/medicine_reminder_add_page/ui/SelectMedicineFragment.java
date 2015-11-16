@@ -29,6 +29,7 @@ import com.module.widget.fragment.select_list_fragment.SelectListFragment;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.msg_handler.MedicineReminderAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -177,6 +178,7 @@ public class SelectMedicineFragment extends SelectListFragment
 		int      indexMedicine = 0;
 		DMedicine medical       = null;
 		String   tag           = null;
+
 		for (int indexRow = 0; indexRow < iMaxRow; ++indexRow)
 		{
 			for (int indexColumn = 0; indexColumn < iMaxColumn; ++indexColumn)
@@ -196,6 +198,11 @@ public class SelectMedicineFragment extends SelectListFragment
 					return;
 
 				String name = medical.getName();
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medical.getID());
+				if (medicineCompany != null)
+				{
+					name = name + "(" + medicineCompany.getName() + ")";
+				}
 				btn.setText(name);
 
 				DisplayMetrics metric = new DisplayMetrics();

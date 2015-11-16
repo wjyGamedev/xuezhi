@@ -6,6 +6,9 @@
 	<string name="medication_reminder_add_btn_text">增加</string>
 	<string name="medication_reminder_del_btn_text">删除</string>
 	<string name="medication_reminder_drug_name_title_text">用药名称：</string>
+	<string name="medication_reminder_drug_num_per_day_title">用药次数：</string>
+	<string name="medication_reminder_drug_per_day">每天</string>
+	<string name="medication_reminder_drug_per_day_unit">次</string>
 	<string name="medication_reminder_drug_dosage_title_text">用药剂量：</string>
 	<string name="medication_reminder_drug_time_title_text">用药时间：</string>
 	<string name="medication_reminder_alert_state_title_text">提醒状态：</string>
@@ -22,7 +25,10 @@
 	<string name="medication_reminder_setting_add_btn_text">添加药品</string>
 	<string name="medication_reminder_setting_del_btn_text">删除药品</string>
 	<string name="medication_reminder_setting_alert_state_title_text">提醒状态：</string>
-	<string name="medication_reminder_alert_time_title_text">提醒时间：</string>
+	<string name="medication_reminder_alert_time_1_title_text">第一次提醒时间：</string>
+	<string name="medication_reminder_alert_time_2_title_text">第二次提醒时间：</string>
+	<string name="medication_reminder_alert_time_3_title_text">第三次提醒时间：</string>
+	<string name="medication_reminder_alert_time_4_title_text">第四次提醒时间：</string>
 	<string name="medication_reminder_click_select_hint_text">点击选择</string>
 	<string name="medication_reminder_click_input_hint_text">点击填写</string>
 	<string name="medication_reminder_setting_drug_name_title_text">药品名称：</string>

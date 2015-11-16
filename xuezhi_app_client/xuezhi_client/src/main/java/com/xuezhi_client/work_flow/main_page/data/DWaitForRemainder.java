@@ -38,39 +38,46 @@ public class DWaitForRemainder
 
 	public void updateContent()
 	{
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty())
+			return;
+
+		if (DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty())
+			return;
+
+		if (DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty())
+			return;
+
+		//刷新用药提醒
+		updateTakeMedicineReminder();
+
+		//刷新药箱提醒
+		updateMedicineReminder();
+
+	}
+
+
+	private void updateTakeMedicineReminder()
+	{
 		ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
+		if (medicinePrompts.isEmpty())
+			return;
+
 		Calendar                   today           = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
 																  .getMedicalHistoryBySelectedMonth(today
 																								   );
 
-		if (takeMedicinePerMonth != null)
-		{
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
-			if (medicinePrompts != null && medicinePrompts.isEmpty() == false)
-			{
-				updateTakeMedicineReminder(medicinePrompts, takeMedicinePerDay);
-			}
-		}
+		if (takeMedicinePerMonth == null)
+			return;
 
-		ArrayList<DMedicineBox> medicineBoxes = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxs();
-		if (medicineBoxes != null && medicineBoxes.isEmpty() == false)
-		{
-			updateMedicineReminder(medicineBoxes);
-		}
-
-	}
-
-	private void updateTakeMedicineReminder(ArrayList<DMedicinePrompt> medicinePrompts, DTakeMedicinePerDay takeMedicinePerDay)
-	{
 		m_takeMedicineReminders.clear();
-
+		DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(today);
 		for (DMedicinePrompt medicinePrompt : medicinePrompts)
 		{
 			//TODO:因为是每天用药，所以不用添加是否当日的过滤条件。
-
 			int pid = medicinePrompt.getID();
 			boolean bFindFlag = false;
+
 			if (!DTakeMedicineReminder.checkValid(pid))
 				continue;
 
@@ -103,8 +110,12 @@ public class DWaitForRemainder
 		XinGe.GetInstance().readyAddLocalTakeMedicineNotification(m_takeMedicineReminders);
 	}
 
-	private void updateMedicineReminder(ArrayList<DMedicineBox> medicineBoxes)
+	private void updateMedicineReminder()
 	{
+		ArrayList<DMedicineBox> medicineBoxes = DBusinessData.GetInstance().getMedicineBoxList().getMedicineBoxs();
+		if (medicineBoxes.isEmpty())
+			return;
+
 		m_medicineReminders.clear();
 
 		//TODO:目前没把medicinebox中的rose和用药提醒的rose关联起来。

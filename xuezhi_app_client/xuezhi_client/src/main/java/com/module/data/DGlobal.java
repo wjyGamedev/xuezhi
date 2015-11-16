@@ -14,6 +14,7 @@
 
 package com.module.data;
 
+import android.app.Service;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -29,6 +30,10 @@ public class DGlobal
 	//当前显示的activity
 	private Context m_context        = null;
 	private Object  m_syncContextObj = new Object();
+
+	//service
+	private Service mService = null;
+	private Object mSyncServiceObject = new Object();
 
 	//应用区域高度
 	private Integer m_appRegionHeight        = -1;
@@ -84,6 +89,22 @@ public class DGlobal
 			}
 		}
 
+	}
+
+	public Service getService()
+	{
+		synchronized (mSyncServiceObject)
+		{
+			return mService;
+		}
+	}
+
+	public void setService(Service service)
+	{
+		synchronized (mSyncServiceObject)
+		{
+			mService = service;
+		}
 	}
 
 	public Integer getAppRegionHeight()

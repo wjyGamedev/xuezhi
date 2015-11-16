@@ -24,7 +24,6 @@ import com.tencent.android.tpush.XGLocalMessage;
 import com.tencent.android.tpush.XGNotifaction;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.android.tpush.XGPushNotifactionCallback;
-import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
@@ -69,12 +68,12 @@ public class XinGe
 
 
 	private long                    DELAY_TIME_MILLISENCENDS  = 5000;
-	private boolean m_firstTakeMedicineFlag = true;
+	private boolean                 m_firstTakeMedicineFlag   = true;
 	private TimerTaskWrapper        m_takeMedicineTask        = new TimerTaskWrapper();
 	private TakeMedicineTaskHandler m_takeMedicineTaskHandler = new TakeMedicineTaskHandler();
 
-	private boolean m_firstMedicineFlag = true;
-	private TimerTaskWrapper        m_medicineTask        = new TimerTaskWrapper();
+	private boolean             m_firstMedicineFlag   = true;
+	private TimerTaskWrapper    m_medicineTask        = new TimerTaskWrapper();
 	private MedicineTaskHandler m_medicineTaskHandler = new MedicineTaskHandler();
 
 
@@ -94,7 +93,8 @@ public class XinGe
 			if (activity == null)
 				return;
 
-			ArrayList<DTakeMedicineReminder> takeMedicineReminders = activity.getMainMsgHandler().getWaitForRemainder().getTakeMedicineReminders();
+			ArrayList<DTakeMedicineReminder> takeMedicineReminders = activity.getMainMsgHandler().getWaitForRemainder()
+																			 .getTakeMedicineReminders();
 			addLocalTakeMedicineNotification(takeMedicineReminders);
 			return;
 		}
@@ -152,20 +152,20 @@ public class XinGe
 		m_medicineTask.setTimerTaskListener(m_medicineTaskHandler);
 	}
 
-	private boolean findTakeMedicineByPID(int pid)
+	private DTakeMedicineReminder findTakeMedicineByPID(int pid)
 	{
 		if (m_takeMedicineReminders.isEmpty())
-			return false;
+			return null;
 
 		for (DTakeMedicineReminder srcTakeMedicineReminder : m_takeMedicineReminders)
 		{
 			if (pid == srcTakeMedicineReminder.getPID())
 			{
-				return true;
+				return srcTakeMedicineReminder;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	public void readyAddLocalTakeMedicineNotification(ArrayList<DTakeMedicineReminder> takeMedicineReminders)
@@ -180,28 +180,17 @@ public class XinGe
 			addLocalTakeMedicineNotification(takeMedicineReminders);
 		}
 	}
+
 	public void addLocalTakeMedicineNotification(ArrayList<DTakeMedicineReminder> takeMedicineReminders)
 	{
 		if (m_context == null)
 		{
-			TipsDialog.GetInstance().setMsg("m_context == null");
-			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		ArrayList<DTakeMedicineReminder> newTakeMedicineReminders = new ArrayList<>();
-		int pid = DataConfig.DEFAULT_ID;
-		for (DTakeMedicineReminder targetTakeMedicineReminder : takeMedicineReminders)
-		{
-			pid = targetTakeMedicineReminder.getPID();
-			if (!findTakeMedicineByPID(pid))
-			{
-				m_takeMedicineReminders.add(targetTakeMedicineReminder);
-				newTakeMedicineReminders.add(targetTakeMedicineReminder);
-			}
-		}
-
-		for (DTakeMedicineReminder takeMedicineReminder : newTakeMedicineReminders)
+		XGPushManager.clearLocalNotifications(m_context);
+		Calendar today = Calendar.getInstance();
+		for (DTakeMedicineReminder takeMedicineReminder : takeMedicineReminders)
 		{
 			XGLocalMessage local_msg = new XGLocalMessage();
 			// 设置本地消息类型，1:通知，2:消息
@@ -222,6 +211,20 @@ public class XinGe
 			Calendar reminderTime = takeMedicineReminder.getReminderTime();
 			notificationToday.set(Calendar.HOUR_OF_DAY, reminderTime.get(Calendar.HOUR_OF_DAY));
 			notificationToday.set(Calendar.MINUTE, reminderTime.get(Calendar.MINUTE));
+
+			//如果该通知已经通知了，即当前时间大于通知时间。
+			if (today.get(Calendar.HOUR_OF_DAY) > notificationToday.get(Calendar.HOUR_OF_DAY))
+			{
+				continue;
+			}
+
+			if (today.get(Calendar.HOUR_OF_DAY) == notificationToday.get(Calendar.HOUR_OF_DAY) && today.get(Calendar.MINUTE) >
+					notificationToday.get(
+					Calendar.MINUTE
+																																					))
+			{
+				continue;
+			}
 
 			String time = INFO_TIME;
 
@@ -282,20 +285,21 @@ public class XinGe
 			XGPushManager.addLocalNotification(m_context, local_msg);
 		}
 	}
-	private boolean findMedicineByMBID(int mbid)
+
+	private DMedicineReminder findMedicineByMBID(int mbid)
 	{
 		if (m_medicineReminders.isEmpty())
-			return false;
+			return null;
 
 		for (DMedicineReminder medicineReminder : m_medicineReminders)
 		{
 			if (mbid == medicineReminder.getMBID())
 			{
-				return true;
+				return medicineReminder;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	public void readyAddLocalMedicineNotification(ArrayList<DMedicineReminder> medicineReminders)
@@ -315,25 +319,12 @@ public class XinGe
 	{
 		if (m_context == null)
 		{
-			TipsDialog.GetInstance().setMsg("m_context == null");
-			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		ArrayList<DMedicineReminder> newMedicineReminders = new ArrayList<>();
-		int mbid = DataConfig.DEFAULT_ID;
-		for (DMedicineReminder targetMedicineReminder : medicineReminders)
-		{
-			mbid = targetMedicineReminder.getMBID();
-			if (!findMedicineByMBID(mbid))
-			{
-				m_medicineReminders.add(targetMedicineReminder);
-				newMedicineReminders.add(targetMedicineReminder);
-			}
-		}
-
 		boolean bOverTime = false;
-		for (DMedicineReminder medicineReminder : newMedicineReminders)
+		XGPushManager.clearLocalNotifications(m_context);
+		for (DMedicineReminder medicineReminder : medicineReminders)
 		{
 			XGLocalMessage local_msg = new XGLocalMessage();
 			// 设置本地消息类型，1:通知，2:消息
@@ -363,13 +354,12 @@ public class XinGe
 			{
 				bOverTime = true;
 			}
-			else if (currYear == warnYear	&&
-					currMonth > warnMonth)
+			else if (currYear == warnYear && currMonth > warnMonth)
 			{
 				bOverTime = true;
 			}
 			else if (currYear == warnYear &&
-					currMonth == warnMonth	&&
+					currMonth == warnMonth &&
 					currDay > warnDay)
 			{
 				bOverTime = true;
@@ -408,6 +398,19 @@ public class XinGe
 			// 获取消息触发的分钟，例如：05代表05分
 			String minute = String.valueOf(INFO_MEDICINE_MINITUE);
 			local_msg.setMin(minute);
+
+
+			//如果该通知已经通知了，即当前时间大于通知时间。
+			if (today.get(Calendar.HOUR_OF_DAY) > INFO_MEDICINE_HOUR)
+			{
+				continue;
+			}
+
+			if (today.get(Calendar.HOUR_OF_DAY) == INFO_MEDICINE_HOUR && today.get(Calendar.MINUTE) > INFO_MEDICINE_MINITUE)
+			{
+				continue;
+			}
+
 			// 设置消息样式，默认为0或不设置
 			// local_msg.setBuilderId(6);
 			// 设置拉起应用页面

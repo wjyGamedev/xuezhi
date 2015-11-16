@@ -179,8 +179,6 @@ public class MainActivity extends BaseActivity
 
 	private void updateContent()
 	{
-		//这里不调用update，依赖于服务器返回event。
-		//		m_mainMsgHandler.updateMainContent();
 		return;
 	}
 

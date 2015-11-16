@@ -23,6 +23,7 @@ import org.json.JSONObject;
 public class DMedicine
 {
 	private int    m_ID          = DataConfig.DEFAULT_VALUE;
+	private int mCID = DataConfig.DEFAULT_VALUE;
 	private String m_name        = null;
 	private int    m_MUID        = DataConfig.DEFAULT_VALUE;//药品单位ID
 	private double m_dose        = 0f;
@@ -31,6 +32,7 @@ public class DMedicine
 	public boolean serialization(JSONObject response) throws JSONException
 	{
 		m_ID = response.getInt(MedicineConfig.MID);
+		mCID = response.getInt(MedicineConfig.CID);
 		m_name = response.getString(MedicineConfig.NAME);
 		m_MUID = response.getInt(MedicineConfig.UNIT);
 		m_dose = response.getDouble(MedicineConfig.DOSE);
@@ -41,6 +43,11 @@ public class DMedicine
 	public int getID()
 	{
 		return m_ID;
+	}
+
+	public int getCID()
+	{
+		return mCID;
 	}
 
 	public String getName()

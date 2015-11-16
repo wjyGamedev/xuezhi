@@ -31,7 +31,8 @@ public class NetConfig
 	public final static String S_NORMAL_MEDICINE_GET_LIST     = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getMedicalList/";
 	//0103. 药品单位列表
 	public final static String S_NORMAL_MEDICAL_UNIT_GET_LIST = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getUnitList/";
-
+	//0104. 药品公司列表
+	public final static String S_NORMAL_MEDICAL_COMPANY_GET_LIST = "http://" + IP_ADDRESS_XUEZHI_TEST + "/company/getCompanyList/";
 	//02. 需要用户名和密码的
 	//TODO:都要发送用户名和密码
 

@@ -16,18 +16,24 @@ package com.module.frame;
 
 import android.app.ActivityManager;
 import android.app.Application;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.util.Log;
 
 import com.module.data.DGlobal;
 import com.module.net.BaseHttp;
 import com.module.storage.StorageWrapper;
+import com.third.part.local_notice.LocalNotificationReceiver;
 import com.third.part.xinge_tengxun.XinGe;
 
 import java.util.List;
 
 public class AppFrame extends Application
 {
-	@Override
 	public void onCreate()
 	{
 		super.onCreate();
@@ -73,6 +79,22 @@ public class AppFrame extends Application
 		{
 			XinGe.GetInstance().init();
 		}
+
+		Intent intent = new Intent(this, LocalNotificationReceiver.class);
+		bindService(intent, new ServiceConnection() {
+						@Override
+						public void onServiceConnected(ComponentName name, IBinder service)
+						{
+							Log.e("wjy", "onServiceConnected");
+						}
+
+						@Override
+						public void onServiceDisconnected(ComponentName name)
+						{
+							Log.e("wjy", "onServiceDisconnected");
+						}
+					}, Service.BIND_AUTO_CREATE);
+
 	}
 
 	private void onModuleClearup()

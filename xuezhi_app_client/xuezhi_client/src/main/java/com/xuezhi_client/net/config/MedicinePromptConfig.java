@@ -21,10 +21,19 @@ public class MedicinePromptConfig
 	public final static String ID = "id";
 	public final static String UID = "uid";
 	public final static String MID = "mid";
+
+	public final static String UNITID = "unit_id";
+
+	public final static String ADDTIME = "addtime";
+	public final static String VALID = "valid";
+
+	public final static String PRECAUTION = "precaution";
+
+	public final static String NUM_PER_DAY = "num_per_day";
 	public final static String DOSE = "dose";
 	public final static String TIME = "time";
-	public final static String VALID = "valid";
-	public final static String ADDTIME = "addtime";
-	public final static String PRECAUTION = "precaution";
+
+	public final static String PRE = "_";
+
 
 }

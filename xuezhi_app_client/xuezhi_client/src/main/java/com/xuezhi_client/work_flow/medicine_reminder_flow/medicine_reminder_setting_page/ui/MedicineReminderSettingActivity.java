@@ -93,11 +93,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		setStateFlag(isChecked);
 	}
 
-	@OnClick (R.id.reminder_time_region_ll)
-	public void selectMedicineTime(View v)
-	{
-		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
-	}
+//	@OnClick (R.id.reminder_time_region_ll)
+//	public void selectMedicineTime(View v)
+//	{
+//		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
+//	}
 
 	@OnClick (R.id.medicine_name_region_ll)
 	public void selectMedicine(View v)

@@ -69,7 +69,7 @@ public class LipidAllChartFragment extends BaseFragment
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
 	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
-	private MyValueFormatter mMyValueFormatter = new MyValueFormatter();
+	private FloatValueFormatter mFloatValueFormatter = new FloatValueFormatter();
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -173,12 +173,12 @@ public class LipidAllChartFragment extends BaseFragment
 		}
 	}
 
-	public class MyValueFormatter implements YAxisValueFormatter
+	public class FloatValueFormatter implements YAxisValueFormatter
 	{
 
 		private DecimalFormat mFormat;
 
-		public MyValueFormatter() {
+		public FloatValueFormatter() {
 			mFormat = new DecimalFormat("##0.00"); // use one decimal
 		}
 
@@ -244,7 +244,7 @@ public class LipidAllChartFragment extends BaseFragment
 
 		YAxis leftAxis = m_lineChart.getAxisLeft();
 		leftAxis.setInverted(false);
-		leftAxis.setValueFormatter(mMyValueFormatter);
+		leftAxis.setValueFormatter(mFloatValueFormatter);
 		YAxis rightAxis = m_lineChart.getAxisRight();
 		rightAxis.setEnabled(false);
 
@@ -262,8 +262,8 @@ public class LipidAllChartFragment extends BaseFragment
 
 		// modify the legend ...
 		// l.setPosition(LegendPosition.LEFT_OF_CHART);
-		l.setForm(Legend.LegendForm.LINE);
-
+		l.setForm(Legend.LegendForm.SQUARE);
+		l.setWordWrapEnabled(true);
 		// dont forget to refresh the drawing
 		m_lineChart.invalidate();
 
@@ -380,7 +380,6 @@ public class LipidAllChartFragment extends BaseFragment
 		}
 
 		LineData data = new LineData(xVals, dataSets);
-//		data.setValueFormatter(mMyValueFormatter);
 		m_lineChart.setData(data);
 
 		//02. label tip

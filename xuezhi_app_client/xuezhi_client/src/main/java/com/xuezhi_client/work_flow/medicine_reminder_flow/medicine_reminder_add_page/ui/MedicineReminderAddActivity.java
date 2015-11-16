@@ -19,6 +19,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,12 +52,21 @@ public class MedicineReminderAddActivity extends BaseActivity
 	private HeaderCommon m_headerCommon = null;
 
 	@Bind (R.id.reminder_state_cb)       CheckBox     m_reminderStateCB      = null;
-	@Bind (R.id.reminder_time_region_ll) LinearLayout m_medicineTimeRegionLL = null;
-	@Bind (R.id.reminder_time_tv)        TextView     m_medicineTimeTV       = null;
+
 	@Bind (R.id.medicine_name_tv)        TextView     m_medicineNameTV       = null;
-	@Bind (R.id.rose_tv)                 TextView     m_roseTV               = null;
+	@Bind (R.id.num_per_day_et)          EditText     mNumPerDayET           = null;
+	@Bind (R.id.rose_tv)                 EditText     m_roseTV               = null;
 	@Bind (R.id.medicine_unit_tv)        TextView     m_medicineUnit         = null;
 	@Bind (R.id.precautions_tv)          TextView     m_precautionsTV        = null;
+
+	@Bind (R.id.reminder_time_1_region_ll) LinearLayout mReminderTime1RegionLL = null;
+	@Bind (R.id.reminder_time_1_tv)        TextView     m_medicineTime1TV       = null;
+	@Bind (R.id.reminder_time_2_region_ll) LinearLayout mReminderTime2RegionLL = null;
+	@Bind (R.id.reminder_time_2_tv)        TextView     m_medicineTime2TV       = null;
+	@Bind (R.id.reminder_time_3_region_ll) LinearLayout mReminderTime3RegionLL = null;
+	@Bind (R.id.reminder_time_3_tv)        TextView     m_medicineTime3TV       = null;
+	@Bind (R.id.reminder_time_4_region_ll) LinearLayout mReminderTime4RegionLL = null;
+	@Bind (R.id.reminder_time_4_tv)        TextView     m_medicineTime4TV       = null;
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -120,6 +130,16 @@ public class MedicineReminderAddActivity extends BaseActivity
 	/**
 	 * widget:func
 	 */
+	@OnFocusChange(R.id.num_per_day_et)
+	public void leaveNumPerDayET(View v, boolean hasFocus)
+	{
+		if (hasFocus)
+			return;
+
+		setNumPerDay();
+		return;
+	}
+
 	@OnFocusChange (R.id.rose_tv)
 	public void leaveDoseEvent(View v, boolean hasFocus)
 	{
@@ -130,11 +150,11 @@ public class MedicineReminderAddActivity extends BaseActivity
 		return;
 	}
 
-	@OnClick (R.id.reminder_time_region_ll)
-	public void selectMedicineTime(View v)
-	{
-		m_medicineReminderAddMsgHandler.go2SelectMedicineTimeFragment();
-	}
+//	@OnClick (R.id.reminder_time_region_ll)
+//	public void selectMedicineTime(View v)
+//	{
+//		m_medicineReminderAddMsgHandler.go2SelectMedicineTimeFragment();
+//	}
 
 	@OnClick (R.id.medicine_name_region_ll)
 	public void selectMedicine(View v)
@@ -167,6 +187,76 @@ public class MedicineReminderAddActivity extends BaseActivity
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBtn);
 
+		mReminderTime1RegionLL.setVisibility(View.INVISIBLE);
+		mReminderTime2RegionLL.setVisibility(View.INVISIBLE);
+		mReminderTime3RegionLL.setVisibility(View.INVISIBLE);
+		mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+
+	}
+
+	private void setNumPerDay()
+	{
+		String numPerDayDisplay = mNumPerDayET.getText().toString();
+
+		int num = 1;
+		if (!TextUtils.isEmpty(numPerDayDisplay))
+		{
+			try
+			{
+				num = Integer.valueOf(numPerDayDisplay);
+				if (num <= 0)
+				{
+					num = 1;
+				}
+				else if (num >= 4)
+				{
+					num = 4;
+				}
+
+			}
+			catch (NumberFormatException e)
+			{
+				num = 1;
+			}
+		}
+		setNumPerDay(num);
+
+		if (num == 1)
+		{
+			mReminderTime1RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime2RegionLL.setVisibility(View.INVISIBLE);
+			mReminderTime3RegionLL.setVisibility(View.INVISIBLE);
+			mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+		}
+		else if (num == 2)
+		{
+			mReminderTime1RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime2RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime3RegionLL.setVisibility(View.INVISIBLE);
+			mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+		}
+		else if (num == 3)
+		{
+			mReminderTime1RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime2RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime3RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+		}
+		else if (num == 4)
+		{
+			mReminderTime1RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime2RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime3RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime4RegionLL.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			mReminderTime1RegionLL.setVisibility(View.VISIBLE);
+			mReminderTime2RegionLL.setVisibility(View.INVISIBLE);
+			mReminderTime3RegionLL.setVisibility(View.INVISIBLE);
+			mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+		}
+
 	}
 
 	private void setDose()
@@ -187,23 +277,23 @@ public class MedicineReminderAddActivity extends BaseActivity
 
 	private boolean check()
 	{
-		if (TextUtils.isEmpty(m_medicineTimeTV.getText()))
-		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_REMINDER_TIME,this);
-			TipsDialog.GetInstance().show();
-			return false;
-		}
+//		if (TextUtils.isEmpty(m_medicineTimeTV.getText()))
+//		{
+//			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_REMINDER_TIME, this);
+//			TipsDialog.GetInstance().show();
+//			return false;
+//		}
 
 		if (TextUtils.isEmpty(m_medicineNameTV.getText()))
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_MEDICINE_NAME,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_MEDICINE_NAME, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
 
 		if (TextUtils.isEmpty(m_roseTV.getText()))
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
@@ -222,18 +312,24 @@ public class MedicineReminderAddActivity extends BaseActivity
 			if (!check())
 				return;
 
-			if (!isStateFlag())
+			if (!m_medicineReminderDisplay.isStateFlag())
 				setStateFlag(m_reminderStateCB.isChecked());
 
 			setDose();
 
 			RequestMedicinePromptAddEvent event = new RequestMedicinePromptAddEvent();
 			event.setUID(DAccount.GetInstance().getId());
-			event.setMID(String.valueOf(getMedicineID()));
-			event.setTime(getReminderTime());
-			event.setValid(isStateFlag());
-			event.setDose(getDose());
-			event.setPrecaution(getPrecaution());
+			event.setMID(String.valueOf(m_medicineReminderDisplay.getMedicineID()));
+			event.setValid(m_medicineReminderDisplay.isStateFlag());
+			event.setPrecaution(m_medicineReminderDisplay.getPrecaution());
+			event.setNum(m_medicineReminderDisplay.getNumPerDay());
+
+			for (int index = 0; index < m_medicineReminderDisplay.getNumPerDay(); ++index)
+			{
+				event.setDose(m_medicineReminderDisplay.getDose(), index);
+//				event.setTime()
+			}
+
 			m_medicineReminderAddMsgHandler.requestAddMedicalPromptAction(event);
 		}
 	}
@@ -265,8 +361,8 @@ public class MedicineReminderAddActivity extends BaseActivity
 	{
 		m_medicineReminderDisplay.setReminderTime(remainderTime);
 
-		String reminderTimeDisplay =  m_hmSDF.format(remainderTime.getTime());
-		m_medicineTimeTV.setText(reminderTimeDisplay);
+		String reminderTimeDisplay = m_hmSDF.format(remainderTime.getTime());
+//		m_medicineTimeTV.setText(reminderTimeDisplay);
 	}
 
 	public int getMedicineID()
@@ -278,7 +374,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 	{
 		m_medicineReminderDisplay.setMedicineID(medicineID);
 
-		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineID);
+		DMedicine     medicine     = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineID);
 		DMedicineUnit medicineUnit = null;
 		if (medicine != null)
 		{
@@ -299,6 +395,12 @@ public class MedicineReminderAddActivity extends BaseActivity
 	public double getDose()
 	{
 		return m_medicineReminderDisplay.getDose();
+	}
+
+	public void setNumPerDay(int numPerDay)
+	{
+		m_medicineReminderDisplay.setNumPerDay(numPerDay);
+		mNumPerDayET.setText(String.valueOf(numPerDay));
 	}
 
 	public void setDose(double dose)
@@ -340,8 +442,8 @@ public class MedicineReminderAddActivity extends BaseActivity
 
 	public void nothingInMedicineBoxAction()
 	{
-		String tips = getString(R.string.medicine_reminder_add_to_medicinebox_tips);
-		String add = getString(R.string.medicine_reminder_add_medicinebox_content);
+		String tips   = getString(R.string.medicine_reminder_add_to_medicinebox_tips);
+		String add    = getString(R.string.medicine_reminder_add_medicinebox_content);
 		String cancel = getString(R.string.medicine_reminder_add_cancel_content);
 		TipsDialog.GetInstance().setMsg(tips, this, add, m_add2BoxEvent, cancel, m_add2BoxEvent);
 		TipsDialog.GetInstance().show();

@@ -131,6 +131,25 @@
 			android:name="UMENG_CHANNEL"
 			android:value="anzhuoshichang"/>
 
+		<!-- 本地通知-->
+		<receiver android:name="com.third.part.local_notice.LocalNotificationReceiver"
+				  android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="play_hskay" />
+			</intent-filter>
+		</receiver>
+
+		<!-- 欢迎界面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.welcome_page.ui.WelcomeActivity"
+			android:screenOrientation="portrait"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+
 		<!-- 01.主页面相关-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.main_page.ui.MainActivity"
@@ -138,8 +157,7 @@
 			android:launchMode="singleTask"
 			android:theme="@style/Theme.InCallScreen">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
+				<action android:name="android.intent.action.VIEW"/>
 			</intent-filter>
 		</activity>
 

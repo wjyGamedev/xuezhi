@@ -26,6 +26,9 @@ public class DBusinessData
 	private DMedicineUnitList m_medicalUnitList     = new DMedicineUnitList();
 	private Object            m_syncMedicalUnitList = new Object();
 
+	private DMedicineCompanyList mMedicineCompanyList      = new DMedicineCompanyList();
+	private Object               mSyncMedicineCompanyList = new Object();
+
 	//01. 药品列表
 	private DMedicineList m_medicalList     = new DMedicineList();
 	private Object        m_syncMedicalList = new Object();
@@ -53,10 +56,23 @@ public class DBusinessData
 	{
 		return s_dBusinessData;
 	}
+	//01. 药品公司
+	public DMedicineCompanyList getMedicineCompanyList()
+	{
+		synchronized (mSyncMedicineCompanyList)
+		{
+			return mMedicineCompanyList;
+		}
+	}
 
+	public void setMedicineCompanyList(DMedicineCompanyList medicineCompanyList)
+	{
+		synchronized (mSyncMedicineCompanyList)
+		{
+			mMedicineCompanyList = medicineCompanyList;
+		}
+	}
 	//01. 药品单位
-
-
 	public DMedicineUnitList getMedicalUnitList()
 	{
 		synchronized (m_syncMedicalUnitList)

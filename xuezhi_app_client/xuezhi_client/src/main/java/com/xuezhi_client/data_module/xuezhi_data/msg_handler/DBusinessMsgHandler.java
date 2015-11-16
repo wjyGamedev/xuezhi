@@ -26,8 +26,9 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 {
 	private static DBusinessMsgHandler s_DBusinessMsgHandler = new DBusinessMsgHandler();
 
-	private AnswerMedicineListHandler        m_answerMedicineListHandler        = new AnswerMedicineListHandler();
-	private AnswerMedicineUnitGetListHandler m_answerMedicineUnitGetListHandler = new AnswerMedicineUnitGetListHandler();
+	private AnswerMedicineListHandler           m_answerMedicineListHandler          = new AnswerMedicineListHandler();
+	private AnswerMedicineUnitGetListHandler    m_answerMedicineUnitGetListHandler   = new AnswerMedicineUnitGetListHandler();
+	private AnswerMedicineCompanyGetListHanlder mAnswerMedicineCompanyGetListHanlder = new AnswerMedicineCompanyGetListHanlder();
 
 	//我的药箱相关
 	private AnswerMedicineBoxGetListHandler m_answerMedicineBoxGetListHandler = new AnswerMedicineBoxGetListHandler();
@@ -118,11 +119,36 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 
 	public void answerMedicineUnitGetListAction()
 	{
-		AnswerMedicineUnitGetListHandler answerMedicalListEvent = new AnswerMedicineUnitGetListHandler();
-		m_eventBus.post(answerMedicalListEvent);
+		AnswerMedicineUnitGetListEvent event = new AnswerMedicineUnitGetListEvent();
+		m_eventBus.post(event);
 		return;
 	}
 
+	//0103. 药品公司列表
+	public void requestMedicineCompanyGetListAction()
+	{
+		RequestMedicineCompanyGetListEvent event = new RequestMedicineCompanyGetListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestMedicineCompanyGetListEvent event)
+	{
+		JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.GET,
+														NetConfig.S_NORMAL_MEDICAL_COMPANY_GET_LIST,
+														null, mAnswerMedicineCompanyGetListHanlder,
+														m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerMedicineCompanyGetListAction()
+	{
+		AnswerMedicineCompanyGetListEvent event = new AnswerMedicineCompanyGetListEvent();
+		m_eventBus.post(event);
+		return;
+	}
 	//02. 需要用户名和密码的
 	//0201. 我的药箱相关
 	//020101.获取我的药箱列表

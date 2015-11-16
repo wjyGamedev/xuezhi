@@ -16,22 +16,28 @@ package com.xuezhi_client.data_module.xuezhi_data.msg_handler;
 
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
-import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.net.config.MedicinePromptConfig;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class RequestMedicinePromptAddEvent extends BaseNetEvent
 {
-	private String   m_UID  = null;    //用户ID
-	private String   m_MID  = null;
-	private Calendar m_time = Calendar.getInstance();
-	private boolean m_valid = true;
-	private double   m_dose   = DataConfig.DEFAULT_VALUE;    //药品剂量
-	private String m_precaution = "";
+	private String  m_UID        = null;    //用户ID
+	private String  m_MID        = null;
+	private String mMUID = "";
+	private boolean m_valid      = true;
+	private String  m_precaution = "";
+
+	private int mNum = 1;
+
+	private ArrayList<Double>   mDoseArrayList     = new ArrayList<>();
+	private ArrayList<Calendar> mCalendarArrayList = new ArrayList<>();
 
 	private SimpleDateFormat m_hmsSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE_SECOND);
 
@@ -47,14 +53,26 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 		sendData.put(MedicinePromptConfig.UID, m_UID);
 		sendData.put(MedicinePromptConfig.MID, m_MID);
 
-		String display = m_hmsSDF.format(m_time.getTime());
-		sendData.put(MedicinePromptConfig.TIME, display);
-
 		int tmpValid = m_valid == true ? 1 : 0;
 		sendData.put(MedicinePromptConfig.VALID, String.valueOf(tmpValid));
-
-		sendData.put(MedicinePromptConfig.DOSE, String.valueOf(m_dose));
 		sendData.put(MedicinePromptConfig.PRECAUTION, String.valueOf(m_precaution));
+		sendData.put(MedicinePromptConfig.UNITID, mMUID);
+
+		String keyTime = MedicinePromptConfig.TIME;
+		String keyDos  = MedicinePromptConfig.DOSE;
+		String display = "";
+
+		sendData.put(MedicinePromptConfig.NUM_PER_DAY, String.valueOf(mNum));
+		for (int index = 1; index <= mNum; ++index)
+		{
+			keyTime = MedicinePromptConfig.TIME + MedicinePromptConfig.PRE + String.valueOf(index);
+			keyDos = MedicinePromptConfig.DOSE + MedicinePromptConfig.PRE + String.valueOf(index);
+
+			display = m_hmsSDF.format(mCalendarArrayList.get(index));
+			sendData.put(keyTime, display);
+
+			sendData.put(keyDos, String.valueOf(mDoseArrayList.get(index)));
+		}
 
 		return sendData;
 	}
@@ -67,11 +85,38 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 	public void setMID(String MID)
 	{
 		m_MID = MID;
+
+		Integer mid = 1;
+		try
+		{
+			mid = Integer.valueOf(m_MID);
+		}
+		catch (NumberFormatException e)
+		{
+			mid = 1;
+		}
+		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(mid);
+		if (medicine != null)
+		{
+			mMUID.valueOf(medicine.getMUID());
+		}
+		else
+		{
+			mMUID = "1";
+		}
 	}
 
-	public void setTime(Calendar time)
+	public void setNum(int num)
 	{
-		m_time = time;
+		mNum = num;
+		mDoseArrayList.clear();
+
+		for (int index = 0; index < mNum; index++)
+		{
+			mDoseArrayList.add(1.0);
+			Calendar today = Calendar.getInstance();
+			mCalendarArrayList.add(today);
+		}
 	}
 
 	public void setValid(boolean valid)
@@ -79,13 +124,25 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 		m_valid = valid;
 	}
 
-	public void setDose(double dose)
-	{
-		m_dose = dose;
-	}
-
 	public void setPrecaution(String precaution)
 	{
 		m_precaution = precaution;
+	}
+
+	public void setDose(double inputDose, int index)
+	{
+		if (index >= mDoseArrayList.size())
+			return;
+
+		mDoseArrayList.set(index, inputDose);
+	}
+
+	public void setTime(Calendar time, int index)
+	{
+		if (index >= mCalendarArrayList.size())
+			return;
+
+		Calendar calendar = mCalendarArrayList.get(index);
+		calendar.setTime(time.getTime());
 	}
 }

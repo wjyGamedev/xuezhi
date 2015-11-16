@@ -19,6 +19,7 @@ public class MedicineConfig
 	public final static String LIST = "medical_list";
 
 	public final static String MID  = "mid";
+	public final static String CID  = "cid";
 	public final static String NAME = "name";
 
 	public final static String UID    = "uid";

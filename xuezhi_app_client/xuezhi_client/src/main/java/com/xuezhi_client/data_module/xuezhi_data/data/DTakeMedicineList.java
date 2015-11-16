@@ -50,6 +50,18 @@ public class DTakeMedicineList
 
 	public synchronized boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
+		response = new JSONObject("{\n" +
+										  "  \"status\": 200,\n" +
+										  "  \"msg\": \"\",\n" +
+										  "  \"type\": \"take_history_list\",\n" +
+										  "  \"take_history_list\": [\n" +
+										  "    {\n" +
+										  "      \"date\": \"2015-11-04\",\n" +
+										  "      \"take_list\": []\n" +
+										  "    }\n" +
+										  "  ],\n" +
+										  "  \"version\": 1\n" +
+										  "}");
 		//01. 不需要清空容器。
 
 		//02. http is ok

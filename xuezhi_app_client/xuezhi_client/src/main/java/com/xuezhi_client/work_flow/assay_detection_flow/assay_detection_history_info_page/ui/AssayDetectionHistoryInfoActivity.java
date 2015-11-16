@@ -75,6 +75,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 		return super.onKeyDown(keyCode, event);
 
 	}
+
 	/**
 	 * overrider func
 	 */
@@ -204,6 +205,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 			checkChartRbtn();
 		}
 	}
+
 	private void checkChartRbtn()
 	{
 		m_chartRBtn.setTextColor(getResources().getColor(R.color.white));

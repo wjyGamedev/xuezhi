@@ -25,12 +25,12 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.module.frame.BaseFragment;
@@ -42,6 +42,7 @@ import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_
 import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,21 +50,22 @@ import java.util.Calendar;
 public class SingleChartFragment extends BaseFragment
 {
 	//widget
-	private LineChart m_lineChart = null;
-	private SeekBar   m_seekBarX  = null;
-	private SeekBar   m_seekBarY  = null;
-	private TextView  m_xTV       = null;
-	private TextView  m_yTV       = null;
-	private LinearLayout m_xAxisLL = null;
-	private LinearLayout m_yAxisLL = null;
+	private LineChart    m_lineChart = null;
+	private SeekBar      m_seekBarX  = null;
+	private SeekBar      m_seekBarY  = null;
+	private TextView     m_xTV       = null;
+	private TextView     m_yTV       = null;
+	private LinearLayout m_xAxisLL   = null;
+	private LinearLayout m_yAxisLL   = null;
 
 	private View m_view = null;
 
 	//logical
 	private AssayDetectionHistoryInfoMsgHandler m_assayDetectionHistoryInfoMsgHandler = null;
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
+	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
-	private HandleOnChartValueSelected m_handleOnChartValueSelected = new HandleOnChartValueSelected();
+	private FloatValueFormatter   mFloatValueFormatter   = new FloatValueFormatter();
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -179,6 +181,24 @@ public class SingleChartFragment extends BaseFragment
 		}
 	}
 
+
+	public class FloatValueFormatter implements YAxisValueFormatter
+	{
+
+		private DecimalFormat mFormat;
+
+		public FloatValueFormatter()
+		{
+			mFormat = new DecimalFormat("##0.00"); // use one decimal
+		}
+
+		@Override
+		public String getFormattedValue(float v, YAxis yAxis)
+		{
+			return mFormat.format(v);
+		}
+	}
+
 	/**
 	 * inner func
 	 */
@@ -194,7 +214,7 @@ public class SingleChartFragment extends BaseFragment
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
-//		m_seekBarY.setProgress(100);
+		//		m_seekBarY.setProgress(100);
 		m_seekBarY.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
 		m_lineChart.setOnChartValueSelectedListener(m_handleOnChartValueSelected);
@@ -231,36 +251,38 @@ public class SingleChartFragment extends BaseFragment
 		m_lineChart.setHighlightEnabled(false);
 
 
-		//设置 upper
-		String upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
-		LimitLine ll1 = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
-		ll1.setLineWidth(4f);
-		ll1.enableDashedLine(10f, 10f, 0f);
-		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-		ll1.setTextSize(10f);
-
-		//设置 lower
-		String lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
-		LimitLine ll2 = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
-		ll2.setLineWidth(4f);
-		ll2.enableDashedLine(10f, 10f, 0f);
-		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-		ll2.setTextSize(10f);
+//		//设置 upper
+//		String    upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
+//		LimitLine ll1       = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
+//		ll1.setLineWidth(4f);
+//		ll1.enableDashedLine(10f, 10f, 0f);
+//		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+//		ll1.setTextSize(10f);
+//
+//		//设置 lower
+//		String    lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
+//		LimitLine ll2       = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
+//		ll2.setLineWidth(4f);
+//		ll2.enableDashedLine(10f, 10f, 0f);
+//		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+//		ll2.setTextSize(10f);
 
 		//设置Y轴
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-		leftAxis.removeAllLimitLines();
-//		leftAxis.addLimitLine(ll1);
-//		leftAxis.addLimitLine(ll2);
-		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
-		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
-		leftAxis.setAxisMaxValue(maxValue);
-		leftAxis.setAxisMinValue(minValue);
-		leftAxis.setStartAtZero(false);
-		leftAxis.enableGridDashedLine(10f, 10f, 0f);
+//		leftAxis.removeAllLimitLines();
+		//		leftAxis.addLimitLine(ll1);
+		//		leftAxis.addLimitLine(ll2);
+//		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
+//		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
+//		leftAxis.setAxisMaxValue(maxValue);
+//		leftAxis.setAxisMinValue(minValue);
+//		leftAxis.setStartAtZero(false);
+//		leftAxis.enableGridDashedLine(10f, 10f, 0f);
 		leftAxis.setInverted(false);
 		// limit lines are drawn behind data (and not on top)
-		leftAxis.setDrawLimitLinesBehindData(true);
+//		leftAxis.setDrawLimitLinesBehindData(true);
+		leftAxis.setValueFormatter(mFloatValueFormatter);
+
 
 		//设置X轴
 		XAxis xl = m_lineChart.getXAxis();
@@ -283,7 +305,7 @@ public class SingleChartFragment extends BaseFragment
 
 		// modify the legend ...
 		// l.setPosition(LegendPosition.LEFT_OF_CHART);
-		l.setForm(Legend.LegendForm.LINE);
+		l.setForm(Legend.LegendForm.SQUARE);
 
 		// dont forget to refresh the drawing
 		m_lineChart.invalidate();
@@ -342,12 +364,13 @@ public class SingleChartFragment extends BaseFragment
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
- 			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
+			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 			xVals.add(displayDate);
 		}
 
-		ArrayList<Entry> yVals = new ArrayList<Entry>();
-		double maxValue = 0;
+		ArrayList<Entry> yVals    = new ArrayList<Entry>();
+		double           maxValue = 0;
+		double minValue = -1;
 		for (int indexY = 0; indexY < count; indexY++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexY);
@@ -362,6 +385,16 @@ public class SingleChartFragment extends BaseFragment
 			{
 				maxValue = yValue;
 			}
+
+			if (minValue < 0)
+			{
+				minValue = yValue;
+			}
+			if (minValue > yValue)
+			{
+				minValue = yValue;
+			}
+
 		}
 
 		// create a dataset and give it a type
@@ -384,11 +417,22 @@ public class SingleChartFragment extends BaseFragment
 		String display = molecule+ "/"+denominator;
 		m_xTV.setText(display);
 
-		//03. set axis y max value
+		//03. set axis y max/min value
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-		maxValue = maxValue + maxValue/3;
+		maxValue = maxValue + maxValue/4;
 		leftAxis.setAxisMaxValue((float)maxValue);
+
+		if (minValue - AssayDetectionConfig.DELTA_MIN < 0)
+		{
+			minValue = 0;
+		}
+		else
+		{
+			minValue = minValue - minValue/3;
+		}
+		leftAxis.setAxisMinValue((float)minValue);
 		return;
+
 	}
 
 	/**
