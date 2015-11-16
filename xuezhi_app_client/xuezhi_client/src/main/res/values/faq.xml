@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="faq_page_title_text">常见问题</string>
+	<string name="faq_page_go_back_home_btn_text">首页</string>
+
+	<string name="faq_q1">Q：注册时为什么提示“请输入有效的手机号码”？</string>
+	<string name="faq_a1">A：您需要输入所属中国的手机号码，第一位为1，第二位为3或5或8，共11位数字。</string>
+	<string name="faq_q2">Q：用药提醒设定后能修改吗？</string>
+	<string name="faq_a2">A：可以修改，您进入用药提醒页面后，点击您需要修改的用药信息，进入后您便可以修改内容，点击保存后完成修改。</string>
+	<string name="faq_q3">Q：为何提示时间不准确？</string>
+	<string name="faq_a3">A：由于您的网络不畅通，导致您的数据不能及时传达到您的手机终端，所以提醒的时间不能准确。</string>
+	<string name="faq_q4">Q：用药提醒可以取消吗？</string>
+	<string name="faq_a4">A：可以取消，并且有两种方式。第一种，你可以点击用药提醒按钮进入用药提醒页面，点击你要取消的用药提醒信息，进入后，点击“开启”后，点击保存按钮，完成关闭此提醒操作。第二种，点击用药提醒按钮进入用药提醒页面，点击你要取药的用药信息右下角“删除”按钮后，点击提示框中的“确定删除”按钮，完成删除操作。</string>
+	<string name="faq_q5">Q：化验检查数据填写错误后能修改吗？</string>
+	<string name="faq_a5">A：暂时还没有此功能，请您耐心等待，我们会尽快开发此功能，是您更方便的使用。</string>
+	<string name="faq_q6">Q：如何在药盒中添加药量？</string>
+	<string name="faq_a6">A：点击我的药盒图标进入我的药盒页面，点击您要添加的药品信息，修改“当前药品存量”，点击“保存”按钮，完成添加操作。</string>
+	<string name="faq_q7"></string>
+	<string name="faq_a7"></string>
+	<string name="faq_q8"></string>
+	<string name="faq_a8"></string>
+
+</resources>

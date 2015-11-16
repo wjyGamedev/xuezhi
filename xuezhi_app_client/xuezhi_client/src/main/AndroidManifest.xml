@@ -255,6 +255,13 @@
 			android:screenOrientation="portrait">
 		</activity>
 
+		<!-- 09. 常见问题-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.faq_page.ui.FaqActivity"
+			android:label="FaqActivity"
+			android:screenOrientation="portrait">
+		</activity>
+
 	</application>
 
 </manifest>
