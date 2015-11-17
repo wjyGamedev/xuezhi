@@ -9,7 +9,7 @@
 	<string name="medication_reminder_drug_num_per_day_title">用药次数：</string>
 	<string name="medication_reminder_drug_per_day">每天</string>
 	<string name="medication_reminder_drug_per_day_unit">次</string>
-	<string name="medication_reminder_drug_dosage_title_text">用药剂量：</string>
+	<string name="medication_reminder_drug_dosage_title_text">每次剂量：</string>
 	<string name="medication_reminder_drug_time_title_text">用药时间：</string>
 	<string name="medication_reminder_alert_state_title_text">提醒状态：</string>
 	<string name="medication_reminder_alert_state_open_text">开启</string>

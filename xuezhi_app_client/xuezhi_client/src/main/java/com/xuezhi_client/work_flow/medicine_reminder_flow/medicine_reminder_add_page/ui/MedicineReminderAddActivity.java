@@ -57,6 +57,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 	@Bind (R.id.num_per_day_et)          EditText     mNumPerDayET           = null;
 	@Bind (R.id.rose_tv)                 EditText     m_roseTV               = null;
 	@Bind (R.id.medicine_unit_tv)        TextView     m_medicineUnit         = null;
+	@Bind (R.id.precation_region_ll) LinearLayout mPrecationRegionLL = null;
 	@Bind (R.id.precautions_tv)          TextView     m_precautionsTV        = null;
 
 	@Bind (R.id.reminder_time_1_region_ll) LinearLayout mReminderTime1RegionLL = null;
@@ -191,6 +192,8 @@ public class MedicineReminderAddActivity extends BaseActivity
 		mReminderTime2RegionLL.setVisibility(View.INVISIBLE);
 		mReminderTime3RegionLL.setVisibility(View.INVISIBLE);
 		mReminderTime4RegionLL.setVisibility(View.INVISIBLE);
+
+		mPrecationRegionLL.setVisibility(View.INVISIBLE);
 
 	}
 
@@ -379,7 +382,6 @@ public class MedicineReminderAddActivity extends BaseActivity
 		if (medicine != null)
 		{
 			m_medicineNameTV.setText(medicine.getName());
-			setPrecaution(medicine.getPrecautions());
 
 			int medicineUnitID = medicine.getMUID();
 			medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineUnitID);
@@ -407,17 +409,6 @@ public class MedicineReminderAddActivity extends BaseActivity
 	{
 		m_medicineReminderDisplay.setDose(dose);
 		m_roseTV.setText(String.valueOf(dose));
-	}
-
-	public String getPrecaution()
-	{
-		return m_medicineReminderDisplay.getPrecaution();
-	}
-
-	public void setPrecaution(String precaution)
-	{
-		m_medicineReminderDisplay.setPrecaution(precaution);
-		m_precautionsTV.setText(precaution);
 	}
 
 	public MedicineReminderAddMsgHandler getMedicineReminderAddMsgHandler()

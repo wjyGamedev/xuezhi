@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
@@ -46,7 +47,9 @@ public class MedicineReminderSettingActivity extends BaseActivity
 	@Bind (R.id.medicine_name_tv)  TextView m_medicineNameTV  = null;
 	@Bind (R.id.rose_tv)           TextView m_roseTV          = null;
 	@Bind (R.id.medicine_unit_tv)  TextView m_medicineUnit    = null;
-	@Bind (R.id.precautions_tv)    TextView m_precautionsTV   = null;
+	@Bind (R.id.precation_region_ll) LinearLayout mPrecationRegionLL = null;
+	@Bind (R.id.precautions_tv) TextView m_precautionsTV = null;
+
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -93,11 +96,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		setStateFlag(isChecked);
 	}
 
-//	@OnClick (R.id.reminder_time_region_ll)
-//	public void selectMedicineTime(View v)
-//	{
-//		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
-//	}
+	//	@OnClick (R.id.reminder_time_region_ll)
+	//	public void selectMedicineTime(View v)
+	//	{
+	//		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
+	//	}
 
 	@OnClick (R.id.medicine_name_region_ll)
 	public void selectMedicine(View v)
@@ -203,6 +206,8 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBtn);
 
+		mPrecationRegionLL.setVisibility(View.INVISIBLE);
+
 		Intent intent = getIntent();
 		m_MPID = intent.getIntExtra(MedicineReminderPageConfig.SELECTED_MEDICINE_REMINDER_ID, DataConfig.DEFAULT_VALUE);
 		if (m_MPID == DataConfig.DEFAULT_VALUE)
@@ -237,7 +242,6 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		setReminderTime(m_oldMedicineReminderDisplay.getReminderTime());
 		setMedicineID(m_oldMedicineReminderDisplay.getMedicineID());
 		setDose(m_oldMedicineReminderDisplay.getDose());
-		setPrecaution(m_oldMedicineReminderDisplay.getPrecaution());
 	}
 
 	private boolean check()
@@ -245,28 +249,28 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		//01. 输入不能为空。
 		if (TextUtils.isEmpty(m_medicineTimeTV.getText()))
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_REMINDER_TIME,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_REMINDER_TIME, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
 
 		if (TextUtils.isEmpty(m_medicineNameTV.getText()))
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_MEDICINE_NAME,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_MEDICINE_NAME, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
 
 		if (TextUtils.isEmpty(m_roseTV.getText()))
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
 
 		if (m_newMedicineReminderDisplay.getDose() == 0)
 		{
-			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE_ZERO,this);
+			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE_ZERO, this);
 			TipsDialog.GetInstance().show();
 			return false;
 		}
@@ -286,7 +290,7 @@ public class MedicineReminderSettingActivity extends BaseActivity
 			return true;
 
 		//TODO：需要测试
-		if ( m_oldMedicineReminderDisplay.getPrecaution().equals(m_newMedicineReminderDisplay.getPrecaution()) == false )
+		if (m_oldMedicineReminderDisplay.getPrecaution().equals(m_newMedicineReminderDisplay.getPrecaution()) == false)
 			return true;
 
 		TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_NO_CHANGE,
@@ -299,7 +303,6 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		TipsDialog.GetInstance().show();
 		return false;
 	}
-
 
 
 	/**
@@ -330,7 +333,7 @@ public class MedicineReminderSettingActivity extends BaseActivity
 	{
 		m_newMedicineReminderDisplay.setReminderTime(remainderTime);
 
-		String reminderTimeDisplay =  m_hmSDF.format(remainderTime.getTime());
+		String reminderTimeDisplay = m_hmSDF.format(remainderTime.getTime());
 		m_medicineTimeTV.setText(reminderTimeDisplay);
 
 	}
@@ -348,7 +351,6 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		if (medicine != null)
 		{
 			m_medicineNameTV.setText(medicine.getName());
-			setPrecaution(medicine.getPrecautions());
 		}
 
 		DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineID);
@@ -368,17 +370,6 @@ public class MedicineReminderSettingActivity extends BaseActivity
 	{
 		m_newMedicineReminderDisplay.setDose(dose);
 		m_roseTV.setText(String.valueOf(dose));
-	}
-
-	public String getPrecaution()
-	{
-		return m_newMedicineReminderDisplay.getPrecaution();
-	}
-
-	public void setPrecaution(String precaution)
-	{
-		m_newMedicineReminderDisplay.setPrecaution(precaution);
-		m_precautionsTV.setText(precaution);
 	}
 
 	public MedicationReminderSettingMsgHandler getMedicationReminderSettingMsgHandler()
