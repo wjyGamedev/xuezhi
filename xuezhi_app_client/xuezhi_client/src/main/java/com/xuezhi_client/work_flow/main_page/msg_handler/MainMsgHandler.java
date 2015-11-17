@@ -52,6 +52,7 @@ import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_page.ui.DrugAdministrationActivity;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.ui.DrugStockAddActivity;
+import com.xuezhi_client.work_flow.faq_page.ui.FaqActivity;
 import com.xuezhi_client.work_flow.main_page.config.MainConfig;
 import com.xuezhi_client.work_flow.main_page.data.DMedicineReminder;
 import com.xuezhi_client.work_flow.main_page.data.DTakeMedicineReminder;
@@ -826,6 +827,15 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
 		mainActivity.startActivity(new Intent(mainActivity, UserProtocalActivity.class));
+
+		return;
+	}
+
+	//跳转到常见问题页面
+	public void go2Faq()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, FaqActivity.class));
 
 		return;
 	}

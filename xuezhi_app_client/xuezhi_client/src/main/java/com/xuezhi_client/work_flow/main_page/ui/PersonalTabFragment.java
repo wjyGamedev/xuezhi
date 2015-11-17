@@ -16,7 +16,6 @@ package com.xuezhi_client.work_flow.main_page.ui;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,6 @@ import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PersonalTabFragment extends BaseFragment
@@ -118,9 +116,9 @@ public class PersonalTabFragment extends BaseFragment
 	}
 
 	@OnClick(R.id.user_procotal_region_ll)
-	public void clickUserProtocalPage()
+	public void clickFaq()
 	{
-		m_mainMsgHandler.go2UserProtocalPage();
+		m_mainMsgHandler.go2Faq();
 		return;
 	}
 
