@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -33,7 +34,6 @@ import com.xuezhi_client.work_flow.main_page.msg_handler.MainMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
@@ -47,6 +47,8 @@ public class HomeTabFragment extends BaseFragment
 	@Bind (R.id.reminder_tips_tv)          TextView     m_reminderTipsTV         = null;
 	@Bind (R.id.right_func_region_ll)      LinearLayout m_rightFuncRegionLl      = null;
 	@Bind (R.id.take_medicine_reminder_iv) ImageView    m_takeMedicineReminderIV = null;
+
+	@Bind (R.id.right_region_setting_width_ll) LinearLayout m_rightRegionSettingWidthLL = null;
 
 	@Bind (R.id.medicine_reminder_region_ll) LinearLayout m_medicineReminderRegionLL = null;
 	@Bind (R.id.medicine_reminder_iv)        ImageView    m_medicineReminderIV       = null;
@@ -162,7 +164,7 @@ public class HomeTabFragment extends BaseFragment
 			return;
 		}
 		//今日有提醒，已完成
-		m_mainMsgHandler.go2MedicationReminderAction();
+		m_mainMsgHandler.go2MedicationReminderAddPageAction();
 		return;
 	}
 
@@ -232,7 +234,36 @@ public class HomeTabFragment extends BaseFragment
 			}
 			m_mainMsgHandler = mainActivity.getMainMsgHandler();
 		}
+
+		m_rightRegionSettingWidthLL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+																					{
+																						boolean isFirst = true;
+
+																						@Override
+																						public void onGlobalLayout()
+																						{
+																							if (isFirst)
+																							{
+																								isFirst = false;
+																								initWidget();
+																							}
+																						}
+																					}
+																				   );
+
 	}
+
+	public void initWidget()
+	{
+		int reminderHeadersLayoutWidth = m_reminderHeadersLL.getWidth();
+		int rightRegionSettingWidth    = m_rightRegionSettingWidthLL.getWidth();
+		if (rightRegionSettingWidth <= reminderHeadersLayoutWidth / 2)
+		{
+			rightRegionSettingWidth = reminderHeadersLayoutWidth / 2;
+		}
+		m_rightRegionSettingWidthLL.setMinimumWidth(rightRegionSettingWidth);
+	}
+
 
 	private void initContent()
 	{
