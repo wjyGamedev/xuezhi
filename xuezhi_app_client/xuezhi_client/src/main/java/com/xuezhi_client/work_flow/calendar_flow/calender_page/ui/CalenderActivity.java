@@ -116,7 +116,8 @@ public class CalenderActivity extends BaseActivity
 			//02. 等于今天，set
 			if (tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay == today.get(Calendar.DAY_OF_MONTH) )
 			{
-				m_selectedDay.setTime(tmpCalendar.getTime());
+				setSelectedTakeMedicineTime(tmpCalendar);
+				return;
 			}
 
 			//03. 小于今天
@@ -144,8 +145,8 @@ public class CalenderActivity extends BaseActivity
 				return;
 			}
 
-			boolean emptyNoTake = false;
-			boolean emptyTake = false;
+			boolean emptyNoTake = true;
+			boolean emptyTake = true;
 			if (noTakeMedicinePerDay != null)
 			{
 				emptyNoTake = noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
@@ -154,12 +155,11 @@ public class CalenderActivity extends BaseActivity
 			{
 				emptyTake = takeMedicinePerDay.getTakeMedicines().isEmpty();
 			}
-			if (emptyNoTake == true || emptyTake == true)
+			if (emptyNoTake == false || emptyTake == false)
 			{
-				m_selectedDay.setTime(tmpCalendar.getTime());
+				setSelectedTakeMedicineTime(tmpCalendar);
 			}
 			return;
-
 		}
 	}
 
@@ -357,11 +357,8 @@ public class CalenderActivity extends BaseActivity
 
 		DTakeMedicine takeMedicine = takeMedicinePerDay.getTakeMedicines().get(0);
 		Calendar      takeCalendar = takeMedicine.getTakeCalendar();
-		String        display      = m_ymdSDF.format(takeCalendar.getTime());
-		m_selectedTV.setText(display);
 		m_selectedIV.setVisibility(View.VISIBLE);
-		m_selectedDay = takeCalendar;
-
+		setSelectedTakeMedicineTime(takeCalendar);
 	}
 
 	private void setSelectedTakeMedicineTime(Calendar selectedDay)
@@ -370,6 +367,9 @@ public class CalenderActivity extends BaseActivity
 		{
 			return;
 		}
+
+		m_selectedDay.set(selectedDay.get(Calendar.YEAR), selectedDay.get(Calendar.MONTH), selectedDay.get(Calendar.DAY_OF_MONTH));
+
 		String display = m_ymdSDF.format(selectedDay.getTime());
 		m_selectedTV.setText(display);
 	}
