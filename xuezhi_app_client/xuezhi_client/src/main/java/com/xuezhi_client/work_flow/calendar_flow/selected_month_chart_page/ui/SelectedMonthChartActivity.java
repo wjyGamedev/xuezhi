@@ -25,7 +25,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
@@ -105,7 +104,7 @@ public class SelectedMonthChartActivity extends BaseActivity
 
 		//当前月份
 		Intent intent = getIntent();
-		String str    = intent.getStringExtra(CalendarFlowConfig.SELECTED_MONTH);
+		String str    = intent.getStringExtra(com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig.SELECTED_MONTH);
 		try
 		{
 			Date date = mYmSDF.parse(str);
@@ -303,23 +302,10 @@ public class SelectedMonthChartActivity extends BaseActivity
 
 		// add a lot of colors
 		ArrayList<Integer> colors = new ArrayList<Integer>();
-
-		for (int c : ColorTemplate.VORDIPLOM_COLORS)
-			colors.add(c);
-
-		for (int c : ColorTemplate.JOYFUL_COLORS)
-			colors.add(c);
-
-		for (int c : ColorTemplate.COLORFUL_COLORS)
-			colors.add(c);
-
-		for (int c : ColorTemplate.LIBERTY_COLORS)
-			colors.add(c);
-
-		for (int c : ColorTemplate.PASTEL_COLORS)
-			colors.add(c);
-
-		colors.add(ColorTemplate.getHoloBlue());
+		colors.add(CalendarFlowConfig.COLOR_NO_SETTING_REMINDER);
+		colors.add(CalendarFlowConfig.COLOR_TAKE_MEDICINE_FAILED);
+		colors.add(CalendarFlowConfig.COLOR_TAKE_MEDICINE_SUCCESSED);
+		colors.add(CalendarFlowConfig.COLOR_TAKE_MEDICINE_WAIT);
 
 		dataSet.setColors(colors);
 
