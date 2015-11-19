@@ -3,7 +3,7 @@
 
 	<!--calendar_page-->
 	<string name="calendar_page_title_text">日历</string>
-	<string name="calendar_bottom_btn_text">本月图表显示</string>
+	<string name="calendar_bottom_btn_text">本月用药概况</string>
 	<string name="calendar_medication_details_title_text">用药明细：</string>
 	<string name="calendar_medication_details_temp_date_text">2015年7月8日</string>
 	<string name="calendar_click_view_hint_text">点击查看</string>
@@ -23,13 +23,13 @@
 	<string name="medication_details_medicine_unit">用药单位</string>
 
 	<!-- selected_month_chart_page-->
-	<string name="selected_month_chart_page_title_text">单月图表</string>
+	<string name="selected_month_chart_page_title_text">本月用药概况</string>
 
-	<string name="selected_month_chart_page_no_setting_reminder">未设置用药提醒的天数</string>
-	<string name="selected_month_chart_page_take_medicine_failed">未完全服药的天数</string>
-	<string name="selected_month_chart_page_take_medicine_successed">完全服药的天数</string>
-	<string name="selected_month_chart_page_take_medicine_wait">待服药的天数</string>
-	<string name="selected_month_chart_page_take_medicine_analyse">%1$s用药分析</string>
+	<string name="selected_month_chart_page_no_setting_reminder">未设置用药提醒</string>
+	<string name="selected_month_chart_page_take_medicine_failed">未完全服药</string>
+	<string name="selected_month_chart_page_take_medicine_successed">完全服药</string>
+	<string name="selected_month_chart_page_take_medicine_wait">待服药</string>
+	<string name="selected_month_chart_page_take_medicine_analyse">%1$d年%2$d月\n用药概况</string>
 	<string name="selected_month_chart_page_bottom_text">首页</string>
 
 </resources>

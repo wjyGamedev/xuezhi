@@ -21,10 +21,13 @@ import android.view.View;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
@@ -39,6 +42,7 @@ import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
 import com.xuezhi_client.work_flow.calendar_flow.selected_month_chart_page.msg_handler.SelectedMonthChartMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,7 +99,8 @@ public class SelectedMonthChartActivity extends BaseActivity
 	private void init()
 	{
 		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
-		m_headerCommon.setTitle(R.string.calendar_bottom_btn_text);
+
+		m_headerCommon.setTitle(getString(R.string.selected_month_chart_page_title_text));
 
 		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
@@ -118,7 +123,7 @@ public class SelectedMonthChartActivity extends BaseActivity
 		}
 
 
-		mSelectedMonthPiechart.setUsePercentValues(true);
+		mSelectedMonthPiechart.setUsePercentValues(false);
 		mSelectedMonthPiechart.setDescription("");
 		mSelectedMonthPiechart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -127,8 +132,8 @@ public class SelectedMonthChartActivity extends BaseActivity
 		mSelectedMonthPiechart.setTransparentCircleColor(Color.WHITE);
 		mSelectedMonthPiechart.setTransparentCircleAlpha(110);
 
-		mSelectedMonthPiechart.setHoleRadius(58f);
-		mSelectedMonthPiechart.setTransparentCircleRadius(61f);
+		mSelectedMonthPiechart.setHoleRadius(45);
+		mSelectedMonthPiechart.setTransparentCircleRadius(48f);
 
 		mSelectedMonthPiechart.setDrawCenterText(true);
 
@@ -142,7 +147,15 @@ public class SelectedMonthChartActivity extends BaseActivity
 		// add a selection listener
 		//		mSelectedMonthPiechart.setOnChartValueSelectedListener(this);
 
-		mSelectedMonthPiechart.setCenterText("test\nby hahaha");
+
+		//获取该月的提醒
+		String currDate = mYmSDF.format(mSelectedMonth.getTime());
+		int currDateYear = mSelectedMonth.get(Calendar.YEAR);
+		int currDateMonth = mSelectedMonth.get(Calendar.MONTH) + 1;
+		String display  = String.format(getString(R.string.selected_month_chart_page_take_medicine_analyse), currDateYear,currDateMonth);
+
+		mSelectedMonthPiechart.setCenterText(display);
+		mSelectedMonthPiechart.setCenterTextSize(18f);
 
 		initChartData();
 
@@ -150,10 +163,14 @@ public class SelectedMonthChartActivity extends BaseActivity
 		// mChart.spin(2000, 0, 360);
 
 		Legend l = mSelectedMonthPiechart.getLegend();
-		l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-		l.setXEntrySpace(7f);
+		l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+		l.setXEntrySpace(20f);
+		l.setXOffset(20f);
 		l.setYEntrySpace(0f);
-		l.setYOffset(0f);
+		l.setYOffset(10f);
+		l.setTextSize(20f);
+		l.setFormSize(20f);
+		l.setWordWrapEnabled(true);
 	}
 
 	private void initChartData()
@@ -173,13 +190,11 @@ public class SelectedMonthChartActivity extends BaseActivity
 		}
 
 		DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
-																	  .getMedicalHistoryBySelectedMonth(
-				mSelectedMonth
-																																			 );
+																	  .getMedicalHistoryBySelectedMonth(mSelectedMonth
+																									   );
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																  .getMedicalHistoryBySelectedMonth(
-				mSelectedMonth
-																																			  );
+																  .getMedicalHistoryBySelectedMonth(mSelectedMonth
+																								   );
 
 		ArrayList<Entry> yVals1                     = new ArrayList<Entry>();
 		int              noTakeMedicineDays         = 0;    //1:未设置用药提醒的天数
@@ -286,9 +301,6 @@ public class SelectedMonthChartActivity extends BaseActivity
 		yVals1.add(new Entry(waitTakeMedicineDays, 2));
 		yVals1.add(new Entry(finishedTakeMedicineDays, 3));
 
-		//获取该月的提醒
-		String currDate = mYmSDF.format(mSelectedMonth.getTime());
-		String display  = String.format(getString(R.string.selected_month_chart_page_take_medicine_analyse), currDate);
 
 		ArrayList<String> xVals = new ArrayList<String>();
 		xVals.add(getString(R.string.selected_month_chart_page_no_setting_reminder));
@@ -296,8 +308,9 @@ public class SelectedMonthChartActivity extends BaseActivity
 		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_wait));
 		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_successed));
 
-		PieDataSet dataSet = new PieDataSet(yVals1, display);
-		dataSet.setSliceSpace(3f);
+
+		PieDataSet dataSet = new PieDataSet(yVals1, "");
+		dataSet.setSliceSpace(5f);
 		dataSet.setSelectionShift(5f);
 
 		// add a lot of colors
@@ -310,9 +323,10 @@ public class SelectedMonthChartActivity extends BaseActivity
 		dataSet.setColors(colors);
 
 		PieData data = new PieData(xVals, dataSet);
-		data.setValueFormatter(new PercentFormatter());
-		data.setValueTextSize(11f);
+		data.setValueFormatter(new NumberOfDaysFormatter());
+		data.setValueTextSize(18f);
 		data.setValueTextColor(Color.WHITE);
+
 		mSelectedMonthPiechart.setData(data);
 
 		// undo all highlights
@@ -326,5 +340,26 @@ public class SelectedMonthChartActivity extends BaseActivity
 		mSelectedMonthChartMsgHandler.go2MainPage();
 	}
 
+	private class NumberOfDaysFormatter implements ValueFormatter, YAxisValueFormatter
+	{
+		protected DecimalFormat mFormat = new DecimalFormat("#0");
+
+		public NumberOfDaysFormatter()
+		{
+		}
+
+
+		@Override
+		public String getFormattedValue(float value, Entry entry, int i, ViewPortHandler viewPortHandler)
+		{
+			return this.mFormat.format((double)value) + "天";
+		}
+
+		@Override
+		public String getFormattedValue(float value, YAxis yAxis)
+		{
+			return this.mFormat.format((double)value) + "天";
+		}
+	}
 
 }

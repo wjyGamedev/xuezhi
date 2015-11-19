@@ -78,6 +78,11 @@ public class HeaderCommon extends BaseFragment
 		m_headerTV.setText(resid);
 	}
 
+	public void setTitle(String titleText)
+	{
+		m_headerTV.setText(titleText);
+	}
+
 	public void setTitle(int resid, View.OnClickListener backBtnListener)
 	{
 		m_headerTV.setText(resid);
