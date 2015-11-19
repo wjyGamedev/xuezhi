@@ -1,24 +1,31 @@
 package com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
-import com.module.util.logcal.LogicalUtil;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
+import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.msg_handler.MedicationDetailsMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2015/9/22.
@@ -27,36 +34,32 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
-
-	@Bind (R.id.selected_day_taken_medicine_lv) ListView m_selectedDayTakenMedicineLV = null;
-
+	@Bind (R.id.taken_rbtn)             RadioButton  mTakenRbtn;
+	@Bind (R.id.no_taken_rbtn)          RadioButton  mNoTakenRbtn;
+	@Bind (R.id.func_click_region_rgrp) RadioGroup   mFuncClickRegionRgrp;
+	@Bind (R.id.taken_tv)               TextView     mTakenTv;
+	@Bind (R.id.taken_arrow_iv)         ImageView    mTakenArrowIv;
+	@Bind (R.id.taken_num_tv)           TextView     mTakenNumTv;
+	@Bind (R.id.taken_arrow_region_fl)  FrameLayout  mTakenArrowRegionFl;
+	@Bind (R.id.no_taken_tv)            TextView     mNoTakenTv;
+	@Bind (R.id.no_taken_arrow_iv)      ImageView    mNoTakenArrowIv;
+	@Bind (R.id.no_taken_num_tv)        TextView     mNoTakenNumTv;
+	@Bind (R.id.no_taken_region_fl)     FrameLayout  mNoTakenRegionFl;
+	@Bind (R.id.func_region_ll)         LinearLayout mFuncRegionLl;
 	private BottomCommon m_bottomCommon = null;
 
 	//logical
-	private MedicationDetailsMsgHandler m_medicationDetailsMsgHandler = new MedicationDetailsMsgHandler(this);
-	private ClickBottomBtn              m_clickBottomBtn              = new ClickBottomBtn();
+	private MedicationDetailsMsgHandler mMedicationDetailsMsgHandler = new MedicationDetailsMsgHandler(this);
+	private ClickBottomBtn              m_clickBottomBtn             = new ClickBottomBtn();
 
-	private SelectedTakenMedicineHistoryAdapter m_selectedTakenMedicineHistoryAdapter = null;
-	private Calendar                            m_selectedDay                         = Calendar.getInstance();
+	private Calendar mSelectedMonth = Calendar.getInstance();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		ButterKnife.bind(this);
-	}
-
-	@Override
-	protected void onStart()
-	{
-		updateContent();
-		super.onStart();
-	}
+	private SimpleDateFormat mYmdSDFF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 	@Override
 	public BaseActivity onCreateAction()
 	{
-		setContentView(R.layout.activity_medication_details);
+		setContentView(R.layout.activity_selected_day_taken_medicine_history);
 		return this;
 	}
 
@@ -65,6 +68,15 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	{
 		init();
 	}
+
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		updateContent();
+	}
+
 
 	@Override
 	public void onDestoryAction()
@@ -95,7 +107,6 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	private void init()
 	{
 		m_headerCommon = (HeaderCommon)getSupportFragmentManager().findFragmentById(R.id.common_header_fragment);
-		m_headerCommon.setTitle(R.string.medication_details_page_title_text);
 
 		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 
@@ -103,24 +114,83 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickBottomBtn);
 
 		Intent intent = this.getIntent();
-		m_selectedDay = (Calendar)intent.getSerializableExtra(TakeMedicineConfig.DATE);
-		if (m_selectedDay == null)
+		mSelectedMonth = (Calendar)intent.getSerializableExtra(TakeMedicineConfig.DATE);
+		if (mSelectedMonth == null)
 		{
-			TipsDialog.GetInstance().setMsg("m_selectedDay == null", this);
+			TipsDialog.GetInstance().setMsg("mSelectedMonth == null", this);
 			TipsDialog.GetInstance().show();
 			return;
 		}
+		String dateDisplay = mYmdSDFF.format(mSelectedMonth.getTime());
+		String headerText  = String.format(getString(R.string.medication_details_page_title_text), dateDisplay);
+		m_headerCommon.getHeaderTV().setText(headerText);
 
-		m_selectedTakenMedicineHistoryAdapter = new SelectedTakenMedicineHistoryAdapter(this);
-		m_selectedTakenMedicineHistoryAdapter.init(m_selectedDay);
-		m_selectedDayTakenMedicineLV.setAdapter(m_selectedTakenMedicineHistoryAdapter);
-		LogicalUtil.SetListViewHeightBasedOnChildren(m_selectedDayTakenMedicineLV);
+		mTakenRbtn.setChecked(true);
 
 	}
 
 	private void updateContent()
 	{
-		m_selectedTakenMedicineHistoryAdapter.notifyDataSetChanged();
+		//已服用图标
+		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																  .getMedicalHistoryBySelectedMonth(
+				mSelectedMonth
+																																			  );
+		if (takeMedicinePerMonth == null)
+		{
+			mTakenArrowRegionFl.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			if (takeMedicinePerMonth.getTakeMedicinePerDayHashMap().isEmpty())
+			{
+				mTakenArrowRegionFl.setVisibility(View.INVISIBLE);
+			}
+			else
+			{
+				mTakenArrowRegionFl.setVisibility(View.VISIBLE);
+				mTakenNumTv.setText(String.valueOf(takeMedicinePerMonth.getTakeMedicinePerDayHashMap().size()));
+			}
+
+		}
+		//未服用图标
+		DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
+																	  .getMedicalHistoryBySelectedMonth(
+				mSelectedMonth
+																																			 );
+		if (noTakeMedicinePerMonth == null)
+		{
+			mNoTakenRegionFl.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			if (noTakeMedicinePerMonth.getTakeMedicinePerDayHashMap().isEmpty())
+			{
+				mNoTakenRegionFl.setVisibility(View.INVISIBLE);
+			}
+			else
+			{
+				mNoTakenRegionFl.setVisibility(View.VISIBLE);
+				mNoTakenNumTv.setText(String.valueOf(noTakeMedicinePerMonth.getTakeMedicinePerDayHashMap().size())
+
+									 );
+			}
+		}
+
+		//子fragment
+		int selectedID = mFuncClickRegionRgrp.getCheckedRadioButtonId();
+		if (selectedID == R.id.taken_rbtn)
+		{
+			mMedicationDetailsMsgHandler.go2TakenFragment();
+		}
+		else if (selectedID == R.id.no_taken_rbtn)
+		{
+			mMedicationDetailsMsgHandler.go2NoTakenFragment();
+		}
+		else
+		{
+			mMedicationDetailsMsgHandler.go2TakenFragment();
+		}
 		return;
 	}
 
@@ -132,7 +202,7 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
-			m_medicationDetailsMsgHandler.go2MainPage();
+			mMedicationDetailsMsgHandler.go2MainPage();
 		}
 	}
 

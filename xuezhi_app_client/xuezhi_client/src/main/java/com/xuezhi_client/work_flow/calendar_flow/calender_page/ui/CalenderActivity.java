@@ -30,6 +30,7 @@ import butterknife.OnClick;
 import calendar.CalendarDay;
 import calendar.calendar.MaterialCalendarView;
 import calendar.calendar.OnDateChangedListener;
+import calendar.calendar.OnMonthChangedListener;
 import calendar.month.MonthView;
 
 /**
@@ -56,12 +57,14 @@ public class CalenderActivity extends BaseActivity
 	private HandleTakedDecorateListener    m_handleTakedDecorateListener    = new HandleTakedDecorateListener();
 	private HandleNotTakedDecorateListener m_handleNotTakedDecorateListener = new HandleNotTakedDecorateListener();
 	private HandleDateChangedClickEvent    m_handleDateChangedClickEvent    = new HandleDateChangedClickEvent();
+	private HandleMonthChangedClickEvent   mHandleMonthChangedClickEvent    = new HandleMonthChangedClickEvent();
+
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
 	private Calendar m_selectedDay = Calendar.getInstance();
+	private Calendar mCurrMonth    = Calendar.getInstance();
 
-	@Override
 	public BaseActivity onCreateAction()
 	{
 		setContentView(R.layout.activity_calendar);
@@ -87,6 +90,19 @@ public class CalenderActivity extends BaseActivity
 
 	}
 
+
+	class HandleMonthChangedClickEvent implements OnMonthChangedListener
+	{
+
+		@Override
+		public void onMonthChanged(MaterialCalendarView widget, CalendarDay date)
+		{
+			Calendar currCalendar = Calendar.getInstance();
+			date.copyTo(currCalendar);
+			mCurrMonth.set(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH), currCalendar.get(Calendar.DAY_OF_MONTH));
+		}
+	}
+
 	class HandleDateChangedClickEvent implements OnDateChangedListener
 	{
 		@Override
@@ -99,16 +115,16 @@ public class CalenderActivity extends BaseActivity
 			Calendar tmpCalendar = Calendar.getInstance();
 			date.copyTo(tmpCalendar);
 
-			int tmpYear = tmpCalendar.get(Calendar.YEAR);
+			int tmpYear  = tmpCalendar.get(Calendar.YEAR);
 			int tmpMonth = tmpCalendar.get(Calendar.MONTH);
-			int tmpDay = tmpCalendar.get(Calendar.DAY_OF_MONTH);
+			int tmpDay   = tmpCalendar.get(Calendar.DAY_OF_MONTH);
 
 			//01. 大于today return
 			Calendar today = Calendar.getInstance();
-			if (tmpYear > today.get(Calendar.YEAR)	||
-					(tmpYear == today.get(Calendar.YEAR) && tmpMonth > today.get(Calendar.MONTH))	||
-					(tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay > today.get(Calendar.DAY_OF_MONTH) )
-					)
+			if (tmpYear > today.get(Calendar.YEAR) ||
+					(tmpYear == today.get(Calendar.YEAR) && tmpMonth > today.get(Calendar.MONTH)) ||
+					(tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay > today.get(Calendar
+																																.DAY_OF_MONTH)))
 			{
 				return;
 			}
@@ -304,6 +320,9 @@ public class CalenderActivity extends BaseActivity
 		m_calenderMsgHandler.go2SelectedTakenMedicineHistoryPage(m_selectedDay);
 	}
 
+
+
+
 	/**
 	 * inner func
 	 */
@@ -322,11 +341,11 @@ public class CalenderActivity extends BaseActivity
 		m_calendarView.setDateTextAppearance(R.style.TextAppearance_AppCompat_Medium);
 		m_calendarView.setWeekDayTextAppearance(R.style.TextAppearance_AppCompat_Medium);
 		m_calendarView.setDateChangedListener(m_handleDateChangedClickEvent);
+		m_calendarView.setMonthChangedListener(mHandleMonthChangedClickEvent);
 
 		m_selectorNotTakedDecorator.setOnShouldDecorateListener(m_handleNotTakedDecorateListener);
 		m_selectorTakedDecorator.setOnShouldDecorateListener(m_handleTakedDecorateListener);
 		m_calendarView.addDecorators(m_selectorTakedDecorator, m_selectorNotTakedDecorator);
-
 
 		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
@@ -359,6 +378,8 @@ public class CalenderActivity extends BaseActivity
 		Calendar      takeCalendar = takeMedicine.getTakeCalendar();
 		m_selectedIV.setVisibility(View.VISIBLE);
 		setSelectedTakeMedicineTime(takeCalendar);
+
+		mCurrMonth.setTime(m_selectedDay.getTime());
 	}
 
 	private void setSelectedTakeMedicineTime(Calendar selectedDay)
@@ -382,7 +403,7 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
-			m_calenderMsgHandler.go2SelectedMonthChartPage(m_selectedDay);
+			m_calenderMsgHandler.go2SelectedMonthChartPage(mCurrMonth);
 		}
 	}
 
