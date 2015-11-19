@@ -25,7 +25,7 @@
 	<!-- selected_month_chart_page-->
 	<string name="selected_month_chart_page_title_text">本月用药概况</string>
 
-	<string name="selected_month_chart_page_no_setting_reminder">未设置用药提醒</string>
+	<string name="selected_month_chart_page_no_setting_reminder">未设置提醒</string>
 	<string name="selected_month_chart_page_take_medicine_failed">未完全服药</string>
 	<string name="selected_month_chart_page_take_medicine_successed">完全服药</string>
 	<string name="selected_month_chart_page_take_medicine_wait">待服药</string>

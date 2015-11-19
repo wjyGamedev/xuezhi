@@ -51,12 +51,13 @@
 						<ImageView
 							android:layout_width="30dp"
 							android:layout_height="30dp"
-							android:src="@drawable/have_been_taken"/>
+							android:src="@drawable/bg_have_taken_num"/>
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:text=":已经服用当天全部用药"
+							android:layout_marginLeft="10dp"
+							android:text="已完成当天全部用药"
 							android:gravity="center_vertical"
 							android:textSize="20dp"/>
 
@@ -74,12 +75,13 @@
 						<ImageView
 							android:layout_width="30dp"
 							android:layout_height="30dp"
-							android:src="@drawable/not_taken_img"/>
+							android:src="@drawable/bg_not_taken_num"/>
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:text=":至少有一次用药未服用"
+							android:layout_marginLeft="10dp"
+							android:text="未完成当天全部用药"
 							android:gravity="center_vertical"
 							android:textSize="20dp"/>
 
