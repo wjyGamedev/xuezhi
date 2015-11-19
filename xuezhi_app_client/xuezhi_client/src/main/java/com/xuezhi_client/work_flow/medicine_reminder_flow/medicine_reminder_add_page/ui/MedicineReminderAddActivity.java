@@ -67,6 +67,8 @@ public class MedicineReminderAddActivity extends BaseActivity
 	@Bind (R.id.reminder_time_container_ll) LinearLayout mReminderTimeCOntainerLl = null;
 	private                                 BottomCommon m_bottomCommon           = null;
 
+	private String[] mTakeMedicineNumPerDayText = null;
+	private int[]    mTakeMedicineNumPerDay;
 	//logical
 	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = new MedicineReminderAddMsgHandler(this);
 
@@ -77,7 +79,7 @@ public class MedicineReminderAddActivity extends BaseActivity
 	private ArrayList<ReminderTime> mReminderTimes = new ArrayList<>();
 
 	//date
-	private DMultiReminder           mMultiReminder            = new DMultiReminder();
+	private DMultiReminder mMultiReminder = new DMultiReminder();
 
 	private SimpleDateFormat m_hmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
@@ -180,6 +182,9 @@ public class MedicineReminderAddActivity extends BaseActivity
 		m_bottomCommon = (BottomCommon)getSupportFragmentManager().findFragmentById(R.id.common_bottom_fragment);
 		m_bottomCommon.getCommonBottomBtn().setText(R.string.medication_reminder_save_btn_text);
 		m_bottomCommon.getCommonBottomBtn().setOnClickListener(m_clickSaveBtn);
+
+		mTakeMedicineNumPerDayText = getResources().getStringArray(R.array.num_display_array);
+		mTakeMedicineNumPerDay = getResources().getIntArray(R.array.take_medicine_num_per_day_array);
 	}
 
 	private void setTakeMedicineNumPerDay()
@@ -211,7 +216,6 @@ public class MedicineReminderAddActivity extends BaseActivity
 		setTakeMedicineNumPerDay(num);
 
 
-
 	}
 
 	private boolean check()
@@ -234,7 +238,9 @@ public class MedicineReminderAddActivity extends BaseActivity
 		{
 			if (TextUtils.isEmpty(reminderTime.getTimeTv().getText()) == true)
 			{
-				String error = String.format(getString(R.string.medicine_reminder_add_error_input_take_medicine_x_time), reminderTime.getIndexDisplay());
+				String error = String.format(getString(R.string.medicine_reminder_add_error_input_take_medicine_x_time),
+											 reminderTime.getIndexDisplay()
+											);
 				TipsDialog.GetInstance().setMsg(error, this);
 				TipsDialog.GetInstance().show();
 				return false;
@@ -338,7 +344,8 @@ public class MedicineReminderAddActivity extends BaseActivity
 		if (medicine != null)
 		{
 			String name = medicine.getName();
-			DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medicine.getCID());
+			DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medicine.getCID
+																																   ());
 			if (medicineCompany != null)
 			{
 				name = name + "(" + medicineCompany.getName() + ")";
@@ -360,10 +367,22 @@ public class MedicineReminderAddActivity extends BaseActivity
 	{
 		return (index < mReminderTimes.size());
 	}
+
 	public void setTakeMedicineNumPerDay(int numPerDay)
 	{
+		String name = "";
+		int indexNumPerDayText = numPerDay -1;
+		if ( indexNumPerDayText < mTakeMedicineNumPerDayText.length)
+		{
+			name = mTakeMedicineNumPerDayText[indexNumPerDayText];
+		}
+		else
+		{
+			name = mTakeMedicineNumPerDayText[0];
+		}
+
 		mMultiReminder.setNumPerDay(numPerDay);
-		mNumPerDayTv.setText(String.valueOf(numPerDay));
+		mNumPerDayTv.setText(name);
 
 		//01. 如果没有则添加。可见
 		for (int index = 0; index < numPerDay; index++)

@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -36,7 +36,8 @@ public class SelectTakeMedicineNumPerDayFragment extends SelectListFragment
 	private MedicineReminderAddMsgHandler m_medicineReminderAddMsgHandler = null;
 	private ItemClickEvent                m_itemClickEvent                = new ItemClickEvent();
 
-	private int[] mTakeMedicineNumPerDay;
+	private int[]    mTakeMedicineNumPerDay;
+	private String[] mTakeMedicineNumPerDayText;
 
 	@Override
 	public void init()
@@ -63,6 +64,7 @@ public class SelectTakeMedicineNumPerDayFragment extends SelectListFragment
 		m_moreContentTipsTV.setVisibility(View.INVISIBLE);
 
 		mTakeMedicineNumPerDay = getActivity().getResources().getIntArray(R.array.take_medicine_num_per_day_array);
+		mTakeMedicineNumPerDayText = getActivity().getResources().getStringArray(R.array.num_display_array);
 	}
 
 	@Override
@@ -130,7 +132,10 @@ public class SelectTakeMedicineNumPerDayFragment extends SelectListFragment
 
 			if (indexTakeMedicineNum >= mTakeMedicineNumPerDay.length)
 			{
-				TipsDialog.GetInstance().setMsg("indexTakeMedicineNum >= mTakeMedicineNumPerDay.length。[indexTakeMedicineNum:="+indexTakeMedicineNum+"][mTakeMedicineNumPerDay.length:="+mTakeMedicineNumPerDay.length+"]");
+				TipsDialog.GetInstance().setMsg("indexTakeMedicineNum >= mTakeMedicineNumPerDay.length。[indexTakeMedicineNum:=" +
+														indexTakeMedicineNum + "][mTakeMedicineNumPerDay.length:=" +
+														mTakeMedicineNumPerDay.length + "]"
+											   );
 				TipsDialog.GetInstance().show();
 				return;
 			}
@@ -144,17 +149,17 @@ public class SelectTakeMedicineNumPerDayFragment extends SelectListFragment
 
 	private void initBtns()
 	{
-		int      size = mTakeMedicineNumPerDay.length;
+		int size = mTakeMedicineNumPerDay.length;
 		if (size == 0)
 			return;
 
 		//02. add btns
 		m_buttons.clear();
 
-		int      iMaxColumn    = getMaxColunms();
-		int      iMaxRow       = (size + iMaxColumn - 1) / iMaxColumn;
-		int      indexTakeMedicineNum = 0;
-		String   tag           = null;
+		int    iMaxColumn           = getMaxColunms();
+		int    iMaxRow              = (size + iMaxColumn - 1) / iMaxColumn;
+		int    indexTakeMedicineNum = 0;
+		String tag                  = null;
 
 		for (int indexRow = 0; indexRow < iMaxRow; ++indexRow)
 		{
@@ -170,7 +175,11 @@ public class SelectTakeMedicineNumPerDayFragment extends SelectListFragment
 				tag = String.valueOf(indexTakeMedicineNum);
 				Button btn = (Button)view.findViewById(R.id.item_id);
 				btn.setTag(tag);
-				btn.setText(String.valueOf(mTakeMedicineNumPerDay[indexTakeMedicineNum]));
+				btn.setText(String.format(getActivity().getResources().getString(R.string
+																						 .medicine_reminder_add_take_medicine_num_per_day_array_text),
+										  mTakeMedicineNumPerDayText[indexTakeMedicineNum]
+										 )
+						   );
 
 				DisplayMetrics metric = new DisplayMetrics();
 				getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);

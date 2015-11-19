@@ -66,6 +66,7 @@
 	<string name="medicine_reminder_add_error_input_medicine_name_time">请输入药品名称。</string>
 	<string name="medicine_reminder_add_error_input_rose_time">请输入用药剂量。</string>
 	<string name="medicine_reminder_add_error_input_take_medicine_x_time">请输入第%1$s次提醒时间</string>
+	<string name="medicine_reminder_add_take_medicine_num_per_day_array_text">每日%1$s次</string>
 	<integer-array name="take_medicine_num_per_day_array">
 		<item>1</item>
 		<item>2</item>
