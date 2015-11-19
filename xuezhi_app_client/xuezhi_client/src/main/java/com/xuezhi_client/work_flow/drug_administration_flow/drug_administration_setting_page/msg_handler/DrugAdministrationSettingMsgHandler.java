@@ -10,6 +10,7 @@ import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxSetEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -214,8 +215,6 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 		SimpleDateFormat sdf             = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 		String           addCalender     = sdf.format(drugStockInfo.getAddCalendar().getTime());
 		String           warningCalender = sdf.format(drugStockInfo.getWarningTime().getTime());
-		String drugName = DBusinessData.GetInstance().getMedicineList().getMedicineByID(drugStockInfo.getMID()
-																					   ).getName();
 		String isMedicalReminderStateText = null;
 
 		int drugID = drugStockInfo.getMID();
@@ -253,7 +252,14 @@ public class DrugAdministrationSettingMsgHandler extends BaseUIMsgHandler
 			isMedicalReminderStateText = m_context.getResources().getString(R.string.drug_administration_setting_alert_state_close_text);
 		}
 
+		String drugName = drug.getName();
+		DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(drug.getCID());
+		if (medicineCompany != null)
+		{
+			drugName = drugName + "(" + medicineCompany.getName() + ")";
+		}
 		drugAdministrationSettingActivity.getDrugNameTV().setText(drugName);
+
 		drugAdministrationSettingActivity.getDrugStockNumET().setText(String.valueOf(drugStockInfo.getRemianNum()));
 		drugAdministrationSettingActivity.getDrugAlertNumET().setText(String.valueOf(drugStockInfo.getWaringNum()));
 		drugAdministrationSettingActivity.getDrugAddDateNumTV().setText(addCalender);

@@ -29,6 +29,7 @@ import com.module.widget.fragment.select_list_fragment.SelectListFragment;
 import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler.DrugStockAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -116,6 +117,12 @@ public class SelectDrugFragment extends SelectListFragment implements View.OnTou
 					return;
 
 				String name = medical.getName();
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medical.getCID());
+				if (medicineCompany != null)
+				{
+					name = name + "(" + medicineCompany.getName() + ")";
+				}
+
 				btn.setText(name);
 
 				DisplayMetrics metric = new DisplayMetrics();

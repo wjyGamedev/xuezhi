@@ -15,6 +15,7 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBoxList;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -202,8 +203,13 @@ final class ViewHolder
 		DMedicine    tmpmedical      = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicalID);
 
 		m_medicalStockID = tmpMedicalStock.getID();
-
-		m_drugNameTV.setText(tmpmedical.getName());
+		String drugName = tmpmedical.getName();
+		DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(tmpmedical.getCID());
+		if (medicineCompany != null)
+		{
+			drugName = drugName + "(" + tmpmedical.getName() + ")";
+		}
+		m_drugNameTV.setText(drugName);
 
 		if (tmpMedicalStock.isMedicalReminderState())
 		{

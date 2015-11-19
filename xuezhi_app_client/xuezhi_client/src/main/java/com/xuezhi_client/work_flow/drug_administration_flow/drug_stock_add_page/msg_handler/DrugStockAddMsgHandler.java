@@ -8,6 +8,7 @@ import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicineBoxAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
@@ -128,8 +129,9 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 
 		//提示保存成功
 		TipsDialog.GetInstance().setMsg(drugStockAddActivity.getResources().getString(R.string.drug_stock_add_save_complete_text),
-																	 drugStockAddActivity,clickTipsDialogButtonListener
-																	);
+										drugStockAddActivity,
+										clickTipsDialogButtonListener
+									   );
 		TipsDialog.GetInstance().show();
 	}
 
@@ -180,7 +182,14 @@ public class DrugStockAddMsgHandler extends BaseUIMsgHandler
 		{
 			if (medical.getID() == medicalID)
 			{
-				activity.getDrugNameTV().setText(medical.getName());
+				String drugName = medical.getName();
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medicalID);
+				if (medicineCompany != null)
+				{
+					drugName = drugName + "(" + medicineCompany.getName() + ")";
+				}
+				activity.getDrugNameTV().setText(drugName);
+				break;
 			}
 		}
 
