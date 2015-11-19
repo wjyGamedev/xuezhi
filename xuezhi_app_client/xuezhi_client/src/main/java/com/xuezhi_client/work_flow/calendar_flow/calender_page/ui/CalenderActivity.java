@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
@@ -13,6 +12,8 @@ import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
@@ -44,7 +45,6 @@ public class CalenderActivity extends BaseActivity
 	@Bind (R.id.calendar_view)                          MaterialCalendarView m_calendarView        = null;    //calendarview
 	@Bind (R.id.selected_day_taked_medicine_history_tv) TextView             m_selectedTV          = null;
 	@Bind (R.id.selected_day_taked_medicine_history_iv) ImageView            m_selectedIV          = null;
-	@Bind (R.id.selected_day_region_ll)                 LinearLayout         m_selectedDayRegionLL = null;
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -74,6 +74,13 @@ public class CalenderActivity extends BaseActivity
 	public void onAfterCreateAction()
 	{
 		init();
+		m_calenderMsgHandler.initAction();
+	}
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
 	}
 
 	@Override
@@ -121,7 +128,25 @@ public class CalenderActivity extends BaseActivity
 			Calendar currCalendar = Calendar.getInstance();
 			day.copyTo(currCalendar);
 
-			//01. 如果当前时间小于提醒时间，则return false。
+			//01. 大于今天，return false
+			Calendar today = Calendar.getInstance();
+			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && currCalendar.get(Calendar.MONTH) > today.get(Calendar
+																																		 .MONTH))
+			{
+				return false;
+			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
+
+			//02. 如果当前时间小于提醒时间，则return false。
 			ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
 			if (medicinePrompts.isEmpty())
 				return false;
@@ -166,39 +191,17 @@ public class CalenderActivity extends BaseActivity
 			if (currMedicinePrompts.isEmpty())
 				return false;
 
-			//02. 大于今天，return false
-			Calendar today = Calendar.getInstance();
-			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
-			{
-				return false;
-			}
-			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && currCalendar.get(Calendar.MONTH) > today.get(Calendar
-																																		 .MONTH))
-			{
-				return false;
-			}
-			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
-					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
-					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
-			{
-				return false;
-			}
-
-			//03. 当日提醒的数量如果小于历史信息的数量，return false。
-			//由于走到这里，提醒数量不为0.所以历史信息要大于0
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(
 					currCalendar
-																																				  );
-			if (takeMedicinePerMonth == null)
-				return false;
+																																				 );
+			if (noTakeMedicinePerMonth == null)
+				return true;
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
-			if (takeMedicinePerDay == null)
-				return false;
+			DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
+			if (noTakeMedicinePerDay == null)
+				return true;
 
-			return (currMedicinePrompts.size() == takeMedicinePerDay.getTakeMedicines().size());
-
+			return noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
 		}
 	}
 
@@ -210,52 +213,7 @@ public class CalenderActivity extends BaseActivity
 			Calendar currCalendar = Calendar.getInstance();
 			day.copyTo(currCalendar);
 
-			//01. 如果当前时间小于提醒时间，则return false。
-			ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
-			if (medicinePrompts.isEmpty())
-				return false;
-
-			//获取小于等于今天的提醒
-			int                        currYear            = currCalendar.get(Calendar.YEAR);
-			int                        currMonth           = currCalendar.get(Calendar.MONTH);
-			int                        currDay             = currCalendar.get(Calendar.DAY_OF_MONTH);
-			ArrayList<DMedicinePrompt> currMedicinePrompts = new ArrayList<>();
-
-			for (DMedicinePrompt medicinePrompt : medicinePrompts)
-			{
-				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (currYear > addCalendar.get(Calendar.YEAR))
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) && currMonth > addCalendar.get(Calendar.MONTH))
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) &&
-						currMonth == addCalendar.get(Calendar.MONTH)	&&
-						currDay > addCalendar.get(Calendar.DAY_OF_MONTH)
-						)
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) &&
-						currMonth == addCalendar.get(Calendar.MONTH)	&&
-						currDay == addCalendar.get(Calendar.DAY_OF_MONTH)
-						)
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-			}
-
-			if (currMedicinePrompts.isEmpty())
-				return false;
-
-			//02. 大于今天，return false
+			//01. 大于今天，return false
 			Calendar today = Calendar.getInstance();
 			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
 			{
@@ -273,20 +231,17 @@ public class CalenderActivity extends BaseActivity
 				return false;
 			}
 
-			//03. 当日提醒的数量如果小于历史信息的数量，return false。
-			//由于走到这里，提醒数量不为0.所以历史信息要大于0
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(
 					currCalendar
-																																				  );
-			if (takeMedicinePerMonth == null)
-				return true;
+																																				 );
+			if (noTakeMedicinePerMonth == null)
+				return false;
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
-			if (takeMedicinePerDay == null)
-				return true;
+			DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
+			if (noTakeMedicinePerDay == null)
+				return false;
 
-			return (currMedicinePrompts.size() != takeMedicinePerDay.getTakeMedicines().size());
+			return (!noTakeMedicinePerDay.getNoTakeMedicines().isEmpty());
 		}
 	}
 

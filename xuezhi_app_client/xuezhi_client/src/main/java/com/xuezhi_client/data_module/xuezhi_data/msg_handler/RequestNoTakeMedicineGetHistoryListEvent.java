@@ -23,16 +23,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class RequestTakeMedicineGetHistoryListEvent extends BaseNetEvent
+public class RequestNoTakeMedicineGetHistoryListEvent extends BaseNetEvent
 {
 	private String   m_UID  = null;    //用户ID
 	private Calendar m_currMonth = null;    //月份
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
-	public RequestTakeMedicineGetHistoryListEvent()
+	public RequestNoTakeMedicineGetHistoryListEvent()
 	{
-		super(EventID.QUEST_TAKE_MEDICAL_HISTORY_LIST);
+		super(EventID.QUEST_NO_TAKE_MEDICAL_HISTORY_LIST);
 	}
 
 	public HashMap<String, String> getHashMap()

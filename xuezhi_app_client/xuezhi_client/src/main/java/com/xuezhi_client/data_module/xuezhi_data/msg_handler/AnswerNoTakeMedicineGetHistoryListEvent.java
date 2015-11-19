@@ -17,10 +17,10 @@ package com.xuezhi_client.data_module.xuezhi_data.msg_handler;
 import com.module.event.BaseNetEvent;
 import com.module.event.EventID;
 
-public class AnswerTakeMedicineGetHistoryListEvent extends BaseNetEvent
+public class AnswerNoTakeMedicineGetHistoryListEvent extends BaseNetEvent
 {
-	public AnswerTakeMedicineGetHistoryListEvent()
+	public AnswerNoTakeMedicineGetHistoryListEvent()
 	{
-		super(EventID.ANSWER_TAKE_MEDICAL_HISTORY_LIST);
+		super(EventID.ANSWER_NO_TAKE_MEDICAL_HISTORY_LIST);
 	}
 }

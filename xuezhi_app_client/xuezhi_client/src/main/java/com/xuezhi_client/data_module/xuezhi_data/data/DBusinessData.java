@@ -14,11 +14,6 @@
 
 package com.xuezhi_client.data_module.xuezhi_data.data;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
-
 public class DBusinessData
 {
 	private static DBusinessData s_dBusinessData = new DBusinessData();
@@ -26,7 +21,7 @@ public class DBusinessData
 	private DMedicineUnitList m_medicalUnitList     = new DMedicineUnitList();
 	private Object            m_syncMedicalUnitList = new Object();
 
-	private DMedicineCompanyList mMedicineCompanyList      = new DMedicineCompanyList();
+	private DMedicineCompanyList mMedicineCompanyList     = new DMedicineCompanyList();
 	private Object               mSyncMedicineCompanyList = new Object();
 
 	//01. 药品列表
@@ -45,6 +40,11 @@ public class DBusinessData
 	private DTakeMedicineList m_takeMedicineHistoryList = new DTakeMedicineList();
 	private Object            m_syncMedicalHistoryList  = new Object();
 
+	//忘记用药记录
+	private DNoTakeMedicineList mNoTakeMedicineList     = new DNoTakeMedicineList();
+	private Object              mSyncNoTakeMedicineList = new Object();
+
+
 	//05. 化验检查列表
 	private DAssayDetectionList m_assayDetectionList     = new DAssayDetectionList();
 	private Object              m_syncAssayDetectionList = new Object();
@@ -56,6 +56,7 @@ public class DBusinessData
 	{
 		return s_dBusinessData;
 	}
+
 	//01. 药品公司
 	public DMedicineCompanyList getMedicineCompanyList()
 	{
@@ -65,27 +66,12 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicineCompanyList(DMedicineCompanyList medicineCompanyList)
-	{
-		synchronized (mSyncMedicineCompanyList)
-		{
-			mMedicineCompanyList = medicineCompanyList;
-		}
-	}
 	//01. 药品单位
 	public DMedicineUnitList getMedicalUnitList()
 	{
 		synchronized (m_syncMedicalUnitList)
 		{
 			return m_medicalUnitList;
-		}
-	}
-
-	public void setMedicalUnitList(DMedicineUnitList medicalUnitList)
-	{
-		synchronized (m_syncMedicalUnitList)
-		{
-			m_medicalUnitList = medicalUnitList;
 		}
 	}
 
@@ -98,44 +84,12 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicalList(DMedicineList medicalList)
-	{
-		synchronized (m_syncMedicalList)
-		{
-			m_medicalList = medicalList;
-		}
-	}
-
-	public boolean serialMedicalList(JSONObject response) throws JSONException
-	{
-		synchronized (m_syncMedicalList)
-		{
-			return m_medicalList.serialization(response);
-		}
-	}
-
 	//02. 库存列表
 	public DMedicineBoxList getMedicineBoxList()
 	{
 		synchronized (m_syncMedicineBoxList)
 		{
 			return m_medicineBoxList;
-		}
-	}
-
-	public void setMedicineBoxList(DMedicineBoxList medicineBoxList)
-	{
-		synchronized (m_syncMedicineBoxList)
-		{
-			m_medicineBoxList = medicineBoxList;
-		}
-	}
-
-	public boolean serialMedicalStockList(JSONObject response) throws JSONException, ParseException
-	{
-		synchronized (m_syncMedicineBoxList)
-		{
-			return m_medicineBoxList.serialization(response);
 		}
 	}
 
@@ -148,19 +102,11 @@ public class DBusinessData
 		}
 	}
 
-	public void setTakeMedicineHistoryList(DTakeMedicineList takeMedicineHistoryList)
+	public DNoTakeMedicineList getNoTakeMedicineList()
 	{
-		synchronized (m_syncMedicalHistoryList)
+		synchronized (mSyncNoTakeMedicineList)
 		{
-			m_takeMedicineHistoryList = takeMedicineHistoryList;
-		}
-	}
-
-	public boolean serialMedicalHistoryList(JSONObject response) throws JSONException, ParseException
-	{
-		synchronized (m_syncMedicalHistoryList)
-		{
-			return m_takeMedicineHistoryList.serialization(response);
+			return mNoTakeMedicineList;
 		}
 	}
 
@@ -173,22 +119,6 @@ public class DBusinessData
 		}
 	}
 
-	public void setMedicinePromptList(DMedicinePromptList medicinePromptList)
-	{
-		synchronized (m_syncMedicalPromptList)
-		{
-			m_medicinePromptList = medicinePromptList;
-		}
-	}
-
-	public boolean serialMedicalPromptList(JSONObject response) throws JSONException, ParseException
-	{
-		synchronized (m_syncMedicalHistoryList)
-		{
-			return m_medicinePromptList.serialization(response);
-		}
-	}
-
 	//05. 化验检查页面
 	public DAssayDetectionList getAssayDetectionList()
 	{
@@ -198,19 +128,4 @@ public class DBusinessData
 		}
 	}
 
-	public void setAssayDetectionList(DAssayDetectionList assayDetectionList)
-	{
-		synchronized (m_syncAssayDetectionList)
-		{
-			m_assayDetectionList = assayDetectionList;
-		}
-	}
-
-	public boolean serialAssayDetectionList(JSONObject response) throws JSONException, ParseException
-	{
-		synchronized (m_syncAssayDetectionList)
-		{
-			return m_assayDetectionList.serialization(response);
-		}
-	}
 }
