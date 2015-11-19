@@ -23,4 +23,14 @@ public class MedicationDetailsMsgHandler extends BaseUIMsgHandler
 		activity.startActivity(new Intent(activity, MainActivity.class));
 		return;
 	}
+
+	public void go2TakenFragment()
+	{
+
+	}
+
+	public void go2NoTakenFragment()
+	{
+
+	}
 }
