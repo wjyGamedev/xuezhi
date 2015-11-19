@@ -34,6 +34,59 @@
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"/>
 
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginTop="5dp"
+						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="40dp"
+						android:orientation="horizontal">
+
+						<ImageView
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/have_been_taken"/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:text=":已经服用当天全部用药"
+							android:gravity="center_vertical"
+							android:textSize="20dp"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginTop="5dp"
+						android:layout_marginBottom="15dp"
+						android:layout_marginLeft="40dp"
+						android:orientation="horizontal">
+
+						<ImageView
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/not_taken_img"/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:text=":至少有一次用药未服用"
+							android:gravity="center_vertical"
+							android:textSize="20dp"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
 				<include
 					layout="@layout/item_dividing_line_horizontal"/>
 
@@ -52,8 +105,8 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:layout_weight="1"
-						android:textSize="20sp"
-						android:text="图例说明："/>
+						android:text="图例说明："
+						android:textSize="20sp"/>
 
 					<ImageView
 						android:layout_width="20dp"
@@ -66,55 +119,55 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:layout_weight="1"
-						android:textSize="20sp"
-						android:text="选中"/>
+						android:text="选中"
+						android:textSize="20sp"/>
 
 				</LinearLayout>
 
 				<!--<include-->
-					<!--layout="@layout/item_dividing_line_horizontal"/>-->
+				<!--layout="@layout/item_dividing_line_horizontal"/>-->
 
 				<LinearLayout
+					android:id="@+id/selected_day_region_ll"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
 					android:layout_marginLeft="15dp"
 					android:layout_marginRight="15dp"
-					android:layout_marginBottom="10dp"
-					android:orientation="horizontal"
-					android:id="@+id/selected_day_region_ll">
+					android:layout_marginTop="10dp"
+					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="10dp"
 						android:gravity="center"
-						android:textSize="20sp"
-						android:text="@string/calendar_medication_details_title_text"/>
+						android:text="@string/calendar_medication_details_title_text"
+						android:textSize="20sp"/>
 
 					<TextView
+						android:id="@+id/selected_day_taked_medicine_history_tv"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:gravity="center"
-						android:textSize="20sp"
 						android:text="@string/calendar_medication_details_temp_date_text"
-						android:id="@+id/selected_day_taked_medicine_history_tv"/>
+						android:textSize="20sp"/>
 
 					<!--<TextView-->
-						<!--android:layout_width="wrap_content"-->
-						<!--android:layout_height="wrap_content"-->
-						<!--android:gravity="center"-->
-						<!--android:layout_marginRight="5dp"-->
-						<!--android:textSize="20sp"-->
-						<!--android:text="@string/calendar_click_view_hint_text"/>-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content"-->
+					<!--android:gravity="center"-->
+					<!--android:layout_marginRight="5dp"-->
+					<!--android:textSize="20sp"-->
+					<!--android:text="@string/calendar_click_view_hint_text"/>-->
 
 					<ImageView
+						android:id="@+id/selected_day_taked_medicine_history_iv"
 						android:layout_width="16dp"
 						android:layout_height="16dp"
 						android:layout_gravity="center_vertical"
-						android:background="@drawable/img_right"
-						android:id="@+id/selected_day_taked_medicine_history_iv"/>
+						android:background="@drawable/img_right"/>
 
 				</LinearLayout>
 
@@ -122,6 +175,7 @@
 					layout="@layout/item_dividing_line_horizontal"/>
 
 			</LinearLayout>
+
 		</ScrollView>
 
 		<fragment

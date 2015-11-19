@@ -62,6 +62,7 @@ import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuezhi_client.work_flow.main_page.ui.PersonalTabFragment;
 import com.xuezhi_client.work_flow.main_page.ui.ServiceTabFragment;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page.ui.MedicineReminderActivity;
 import com.xuezhi_client.work_flow.register_page.ui.RegisterActivity;
 import com.xuezhi_client.work_flow.risk_assessment_page.ui.RiskAssessmentActivity;
@@ -613,14 +614,14 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 			String name = nextTakeMedicineReminder.getMedicineName();
 			DMedicine tmpMedicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(nextTakeMedicineReminder.getMID());
-			if (tmpMedicine != null)
-			{
-				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(tmpMedicine.getCID());
-				if (medicineCompany != null)
-				{
-					name = name + "(" + medicineCompany.getName() + ")";
-				}
-			}
+//			if (tmpMedicine != null)
+//			{
+//				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(tmpMedicine.getCID());
+//				if (medicineCompany != null)
+//				{
+//					name = name + "(" + medicineCompany.getName() + ")";
+//				}
+//			}
 
 			medicineNameTV.setText(name);
 			double tmpRose = nextTakeMedicineReminder.getDose();
@@ -802,6 +803,22 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		return;
 	}
 
+	// 准备跳转到添加用药提醒页面
+	public void go2MedicationReminderAddPageAction()
+	{
+		//01. 未注册
+		if (!DAccount.GetInstance().isRegisterSuccess())
+		{
+			go2RegisterPage();
+			return;
+		}
+
+		//02. 跳转页面到添加用药提醒
+		go2MedicationReminderAddPage();
+
+		return;
+	}
+
 	//跳转到化验检测
 	private void go2AssayDetectionPage()
 	{
@@ -816,6 +833,15 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		MainActivity mainActivity = (MainActivity)m_context;
 		mainActivity.startActivity(new Intent(mainActivity, MedicineReminderActivity.class));
+
+		return;
+	}
+
+	//跳转到添加用药提醒页面
+	private void go2MedicationReminderAddPage()
+	{
+		MainActivity mainActivity = (MainActivity)m_context;
+		mainActivity.startActivity(new Intent(mainActivity, MedicineReminderAddActivity.class));
 
 		return;
 	}
