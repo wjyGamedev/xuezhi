@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -32,7 +32,10 @@ import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
 import com.xuezhi_client.work_flow.calendar_flow.selected_month_chart_page.msg_handler.SelectedMonthChartMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -156,43 +159,133 @@ public class SelectedMonthChartActivity extends BaseActivity
 
 	private void initChartData()
 	{
-		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-		for (int index = 0; index < CalendarFlowConfig.SELECTED_MONTH_PIE_CHART_MAX_VALUE; index++)
+		int selectedYear  = mSelectedMonth.get(Calendar.YEAR);
+		int selectedMonth = mSelectedMonth.get(Calendar.MONTH);
+		int maxDays       = mSelectedMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+		Calendar today               = Calendar.getInstance();
+		int      todayYear           = today.get(Calendar.YEAR);
+		int      todayMonth          = today.get(Calendar.MONTH);
+		int      todayDay            = today.get(Calendar.DAY_OF_MONTH);
+		boolean  inSelectedMonthFlag = false;
+		if (selectedYear == todayYear && selectedMonth == todayMonth)
 		{
-			yVals1.add(new Entry(1, index));
+			inSelectedMonthFlag = true;
 		}
 
-		int currMaxDays = mSelectedMonth.getMaximum(Calendar.DAY_OF_MONTH);
-		int currYear    = mSelectedMonth.get(Calendar.YEAR);
-		int currMonth   = mSelectedMonth.get(Calendar.MONTH);
-		int currDay     = mSelectedMonth.get(Calendar.DAY_OF_MONTH);
+		DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
+																	  .getMedicalHistoryBySelectedMonth(
+				mSelectedMonth
+																																			 );
+		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																  .getMedicalHistoryBySelectedMonth(
+				mSelectedMonth
+																																			  );
 
-		//01. 获取小于等于mSelectedMonth的该月提醒
-		ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
-		if (medicinePrompts.isEmpty())
-			return;
-
-		ArrayList<DMedicinePrompt> currMedicinePrompts = new ArrayList<>();
-		for (DMedicinePrompt medicinePrompt : medicinePrompts)
+		ArrayList<Entry> yVals1                     = new ArrayList<Entry>();
+		int              noTakeMedicineDays         = 0;    //1:未设置用药提醒的天数
+		int              noFinishedTakeMedicineDays = 0;    //2:未完全服药的天数
+		int              waitTakeMedicineDays       = 0;    //3:待服药的天数
+		int              finishedTakeMedicineDays   = 0;    //4:完全服药的天数
+		//如果不是本月则全月loop
+		if (inSelectedMonthFlag == false)
 		{
-			Calendar addCalendar = medicinePrompt.getAddCalendar();
-			if (currYear > addCalendar.get(Calendar.YEAR))
+			waitTakeMedicineDays = 0;
+			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
-				currMedicinePrompts.add(medicinePrompt);
-				continue;
+				noTakeMedicineDays = mSelectedMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
+				noFinishedTakeMedicineDays = 0;
+				finishedTakeMedicineDays = 0;
 			}
-			else if (currYear == addCalendar.get(Calendar.YEAR) && currMonth > addCalendar.get(Calendar.MONTH))
+			else
 			{
-				currMedicinePrompts.add(medicinePrompt);
-				continue;
-			}
-			else if (currYear == addCalendar.get(Calendar.YEAR) &&
-					currMonth == addCalendar.get(Calendar.MONTH))
-			{
-				currMedicinePrompts.add(medicinePrompt);
-				continue;
+				for (int indexDay = 1; indexDay <= maxDays; indexDay++)
+				{
+					Calendar tmpCalendar = Calendar.getInstance();
+					tmpCalendar.set(selectedYear, selectedMonth, indexDay);
+
+					DNoTakeMedicinePerDay tmpNoTakeMedicinePerDay = null;
+					DTakeMedicinePerDay tmpTakeMedicinePerDay = null;
+					if (noTakeMedicinePerMonth != null)
+					{
+						tmpNoTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+					}
+					if (takeMedicinePerMonth != null)
+					{
+						tmpTakeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+					}
+
+					if (tmpNoTakeMedicinePerDay == null && tmpTakeMedicinePerDay == null)
+					{
+						noTakeMedicineDays++;
+						continue;
+					}
+					if (tmpNoTakeMedicinePerDay == null && tmpTakeMedicinePerDay != null)
+					{
+						finishedTakeMedicineDays++;
+						continue;
+					}
+					if (tmpNoTakeMedicinePerDay != null)
+					{
+						noFinishedTakeMedicineDays++;
+						continue;
+					}
+				}
 			}
 		}
+		//如果是本月，则loop到今天
+		else
+		{
+			waitTakeMedicineDays = maxDays - todayDay;
+			finishedTakeMedicineDays = maxDays - todayDay;
+			//今天算未完成
+			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
+			{
+				noTakeMedicineDays = todayDay - 1;
+				noFinishedTakeMedicineDays = 1;
+			}
+			else
+			{
+				noFinishedTakeMedicineDays++;//今天算未完成
+				for (int indexDay = 1; indexDay < todayDay; indexDay++)
+				{
+					Calendar tmpCalendar = Calendar.getInstance();
+					tmpCalendar.set(selectedYear, selectedMonth, indexDay);
+
+					DNoTakeMedicinePerDay tmpNoTakeMedicinePerDay = null;
+					DTakeMedicinePerDay tmpTakeMedicinePerDay = null;
+					if (noTakeMedicinePerMonth != null)
+					{
+						tmpNoTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+					}
+					if (takeMedicinePerMonth != null)
+					{
+						tmpTakeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+					}
+
+					if (tmpNoTakeMedicinePerDay == null && tmpTakeMedicinePerDay == null)
+					{
+						noTakeMedicineDays++;
+						continue;
+					}
+					if (tmpNoTakeMedicinePerDay == null && tmpTakeMedicinePerDay != null)
+					{
+						finishedTakeMedicineDays++;
+						continue;
+					}
+					if (tmpNoTakeMedicinePerDay != null)
+					{
+						noFinishedTakeMedicineDays++;
+						continue;
+					}
+				}
+			}
+
+		}
+		yVals1.add(new Entry(noTakeMedicineDays, 0));
+		yVals1.add(new Entry(noFinishedTakeMedicineDays, 1));
+		yVals1.add(new Entry(waitTakeMedicineDays, 2));
+		yVals1.add(new Entry(finishedTakeMedicineDays, 3));
 
 		//获取该月的提醒
 		String currDate = mYmSDF.format(mSelectedMonth.getTime());
@@ -201,8 +294,8 @@ public class SelectedMonthChartActivity extends BaseActivity
 		ArrayList<String> xVals = new ArrayList<String>();
 		xVals.add(getString(R.string.selected_month_chart_page_no_setting_reminder));
 		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_failed));
-		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_successed));
 		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_wait));
+		xVals.add(getString(R.string.selected_month_chart_page_take_medicine_successed));
 
 		PieDataSet dataSet = new PieDataSet(yVals1, display);
 		dataSet.setSliceSpace(3f);

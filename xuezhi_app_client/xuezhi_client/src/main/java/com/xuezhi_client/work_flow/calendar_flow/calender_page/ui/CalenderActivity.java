@@ -11,7 +11,6 @@ import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
@@ -21,7 +20,6 @@ import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.Calen
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,9 +40,9 @@ public class CalenderActivity extends BaseActivity
 	//widget
 	private HeaderCommon m_headerCommon = null;
 
-	@Bind (R.id.calendar_view)                          MaterialCalendarView m_calendarView        = null;    //calendarview
-	@Bind (R.id.selected_day_taked_medicine_history_tv) TextView             m_selectedTV          = null;
-	@Bind (R.id.selected_day_taked_medicine_history_iv) ImageView            m_selectedIV          = null;
+	@Bind (R.id.calendar_view)                          MaterialCalendarView m_calendarView = null;    //calendarview
+	@Bind (R.id.selected_day_taked_medicine_history_tv) TextView             m_selectedTV   = null;
+	@Bind (R.id.selected_day_taked_medicine_history_iv) ImageView            m_selectedIV   = null;
 
 	private BottomCommon m_bottomCommon = null;
 
@@ -101,21 +99,66 @@ public class CalenderActivity extends BaseActivity
 			Calendar tmpCalendar = Calendar.getInstance();
 			date.copyTo(tmpCalendar);
 
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(tmpCalendar
-																									   );
-			if (takeMedicinePerMonth == null)
-				return;
+			int tmpYear = tmpCalendar.get(Calendar.YEAR);
+			int tmpMonth = tmpCalendar.get(Calendar.MONTH);
+			int tmpDay = tmpCalendar.get(Calendar.DAY_OF_MONTH);
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
-			if (takeMedicinePerDay == null)
-				return;
-
-			if (!takeMedicinePerDay.getTakeMedicines().isEmpty())
+			//01. 大于today return
+			Calendar today = Calendar.getInstance();
+			if (tmpYear > today.get(Calendar.YEAR)	||
+					(tmpYear == today.get(Calendar.YEAR) && tmpMonth > today.get(Calendar.MONTH))	||
+					(tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay > today.get(Calendar.DAY_OF_MONTH) )
+					)
 			{
-				setSelectedTakeMedicineTime(tmpCalendar);
+				return;
+			}
+
+			//02. 等于今天，set
+			if (tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay == today.get(Calendar.DAY_OF_MONTH) )
+			{
 				m_selectedDay.setTime(tmpCalendar.getTime());
 			}
+
+			//03. 小于今天
+			//既没有notakehistory，有没有takehistory
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(tmpCalendar);
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(tmpCalendar);
+			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
+			{
+				return;
+			}
+
+			DNoTakeMedicinePerDay noTakeMedicinePerDay = null;
+			DTakeMedicinePerDay takeMedicinePerDay = null;
+			if (noTakeMedicinePerMonth != null)
+			{
+				noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+			}
+			if (takeMedicinePerMonth != null)
+			{
+				takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
+			}
+
+			if (noTakeMedicinePerDay == null && takeMedicinePerDay == null)
+			{
+				return;
+			}
+
+			boolean emptyNoTake = false;
+			boolean emptyTake = false;
+			if (noTakeMedicinePerDay != null)
+			{
+				emptyNoTake = noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
+			}
+			if (takeMedicinePerDay != null)
+			{
+				emptyTake = takeMedicinePerDay.getTakeMedicines().isEmpty();
+			}
+			if (emptyNoTake == true || emptyTake == true)
+			{
+				m_selectedDay.setTime(tmpCalendar.getTime());
+			}
+			return;
 
 		}
 	}
@@ -146,62 +189,56 @@ public class CalenderActivity extends BaseActivity
 				return false;
 			}
 
-			//02. 如果当前时间小于提醒时间，则return false。
-			ArrayList<DMedicinePrompt> medicinePrompts = DBusinessData.GetInstance().getMedicinePromptList().getMedicalPrompts();
-			if (medicinePrompts.isEmpty())
-				return false;
-
-			//获取小于定于今天的提醒
-			int                        currYear            = currCalendar.get(Calendar.YEAR);
-			int                        currMonth           = currCalendar.get(Calendar.MONTH);
-			int                        currDay             = currCalendar.get(Calendar.DAY_OF_MONTH);
-			ArrayList<DMedicinePrompt> currMedicinePrompts = new ArrayList<>();
-
-			for (DMedicinePrompt medicinePrompt : medicinePrompts)
+			//02. 既没有notakehistory，有没有takehistory
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(currCalendar);
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(currCalendar);
+			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
-				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (currYear > addCalendar.get(Calendar.YEAR))
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) && currMonth > addCalendar.get(Calendar.MONTH))
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) &&
-						currMonth == addCalendar.get(Calendar.MONTH)	&&
-						currDay > addCalendar.get(Calendar.DAY_OF_MONTH)
-						)
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
-				else if (currYear == addCalendar.get(Calendar.YEAR) &&
-						currMonth == addCalendar.get(Calendar.MONTH)	&&
-						currDay == addCalendar.get(Calendar.DAY_OF_MONTH)
-						)
-				{
-					currMedicinePrompts.add(medicinePrompt);
-					continue;
-				}
+				return false;
 			}
 
-			if (currMedicinePrompts.isEmpty())
+			DNoTakeMedicinePerDay noTakeMedicinePerDay = null;
+			DTakeMedicinePerDay takeMedicinePerDay = null;
+			if (noTakeMedicinePerMonth != null)
+			{
+				noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
+			}
+			if (takeMedicinePerMonth != null)
+			{
+				takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
+			}
+
+			if (noTakeMedicinePerDay == null && takeMedicinePerDay == null)
+			{
 				return false;
+			}
 
-			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(
-					currCalendar
-																																				 );
-			if (noTakeMedicinePerMonth == null)
-				return true;
+			boolean emptyNoTake = true;
+			boolean emptyTake = true;
+			if (noTakeMedicinePerDay != null)
+			{
+				emptyNoTake = noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
+			}
+			if (takeMedicinePerDay != null)
+			{
+				emptyTake = takeMedicinePerDay.getTakeMedicines().isEmpty();
+			}
+			if (emptyNoTake == true && emptyTake == false)
+			{
+				//如果是今天返回false，不是今天true
+				if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+						currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+						currCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH))
+				{
+					return false;
+				}
+				else
+				{
+					return true;
 
-			DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
-			if (noTakeMedicinePerDay == null)
-				return true;
-
-			return noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
+				}
+			}
+			return false;
 		}
 	}
 
@@ -231,15 +268,30 @@ public class CalenderActivity extends BaseActivity
 				return false;
 			}
 
-			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(
-					currCalendar
-																																				 );
+
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
+																		  .getMedicalHistoryBySelectedMonth(currCalendar
+																										   );
 			if (noTakeMedicinePerMonth == null)
 				return false;
 
 			DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
 			if (noTakeMedicinePerDay == null)
-				return false;
+			{
+				//如果是今天返回true，不是今天false
+				if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+						currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+						currCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+
+				}
+
+			}
 
 			return (!noTakeMedicinePerDay.getNoTakeMedicines().isEmpty());
 		}
@@ -278,9 +330,8 @@ public class CalenderActivity extends BaseActivity
 
 		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																  .getMedicalHistoryBySelectedMonth(
-				today
-																																			  );
+																  .getMedicalHistoryBySelectedMonth(today
+																								   );
 
 
 		m_selectedTV.setText(R.string.calendar_no_taked_medicine_history);
