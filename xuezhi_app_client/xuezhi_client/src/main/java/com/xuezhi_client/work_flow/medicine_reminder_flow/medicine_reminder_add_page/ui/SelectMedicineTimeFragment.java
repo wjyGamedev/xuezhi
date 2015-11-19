@@ -34,7 +34,6 @@ import com.xuzhi_client.xuzhi_app_client.R;
 import java.util.Calendar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectMedicineTimeFragment extends BaseFragment
@@ -55,6 +54,7 @@ public class SelectMedicineTimeFragment extends BaseFragment
 
 	//date
 	private Calendar m_calendar = null;
+	private int mIndex = 0;
 
 	@Override
 	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -108,7 +108,7 @@ public class SelectMedicineTimeFragment extends BaseFragment
 			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
 		}
 
-		m_medicineReminderAddMsgHandler.setRemainderTime(m_calendar);
+		m_medicineReminderAddMsgHandler.setRemainderTime(mIndex, m_calendar);
 		cancelAction();
 	}
 
@@ -190,4 +190,8 @@ public class SelectMedicineTimeFragment extends BaseFragment
 		fragmentTransaction.commit();
 	}
 
+	public void setIndex(int index)
+	{
+		mIndex = index;
+	}
 }

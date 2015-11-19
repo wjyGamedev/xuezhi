@@ -1,6 +1,5 @@
 package com.xuezhi_client.work_flow.calendar_flow.calender_page.ui;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -28,7 +27,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import calendar.CalendarDay;
 import calendar.calendar.MaterialCalendarView;
@@ -93,20 +91,25 @@ public class CalenderActivity extends BaseActivity
 				@Nullable
 				CalendarDay date)
 		{
-			date.copyTo(m_selectedDay);
+			Calendar tmpCalendar = Calendar.getInstance();
+			date.copyTo(tmpCalendar);
 
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(m_selectedDay
+																	  .getMedicalHistoryBySelectedMonth(tmpCalendar
 																									   );
 			if (takeMedicinePerMonth == null)
 				return;
 
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(m_selectedDay);
+			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
 			if (takeMedicinePerDay == null)
 				return;
 
 			if (!takeMedicinePerDay.getTakeMedicines().isEmpty())
-				setSelectedTakeMedicineTime(m_selectedDay);
+			{
+				setSelectedTakeMedicineTime(tmpCalendar);
+				m_selectedDay.setTime(tmpCalendar.getTime());
+			}
+
 		}
 	}
 
@@ -123,45 +126,45 @@ public class CalenderActivity extends BaseActivity
 			if (medicinePrompts.isEmpty())
 				return false;
 
-			Calendar minCalendar = Calendar.getInstance();
+			//获取小于定于今天的提醒
+			int                        currYear            = currCalendar.get(Calendar.YEAR);
+			int                        currMonth           = currCalendar.get(Calendar.MONTH);
+			int                        currDay             = currCalendar.get(Calendar.DAY_OF_MONTH);
+			ArrayList<DMedicinePrompt> currMedicinePrompts = new ArrayList<>();
+
 			for (DMedicinePrompt medicinePrompt : medicinePrompts)
 			{
 				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (minCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				if (currYear > addCalendar.get(Calendar.YEAR))
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
-				else if (minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						minCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				else if (currYear == addCalendar.get(Calendar.YEAR) && currMonth > addCalendar.get(Calendar.MONTH))
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
-				else if	(minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						minCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
-						minCalendar.get(Calendar.DAY_OF_MONTH) > addCalendar.get(Calendar.DAY_OF_MONTH))
+				else if (currYear == addCalendar.get(Calendar.YEAR) &&
+						currMonth == addCalendar.get(Calendar.MONTH)	&&
+						currDay > addCalendar.get(Calendar.DAY_OF_MONTH)
+						)
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
+				}
+				else if (currYear == addCalendar.get(Calendar.YEAR) &&
+						currMonth == addCalendar.get(Calendar.MONTH)	&&
+						currDay == addCalendar.get(Calendar.DAY_OF_MONTH)
+						)
+				{
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
 			}
 
-			if (currCalendar.get(Calendar.YEAR) < minCalendar.get(Calendar.YEAR))
-			{
+			if (currMedicinePrompts.isEmpty())
 				return false;
-			}
-			else if (currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) < minCalendar.get(Calendar.MONTH))
-			{
-				return false;
-			}
-			else if	(currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) == minCalendar.get(Calendar.MONTH)	&&
-					currCalendar.get(Calendar.DAY_OF_MONTH) < minCalendar.get(Calendar.DAY_OF_MONTH))
-			{
-				return false;
-			}
 
 			//02. 大于今天，return false
 			Calendar today = Calendar.getInstance();
@@ -169,13 +172,13 @@ public class CalenderActivity extends BaseActivity
 			{
 				return false;
 			}
-			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) > today.get(Calendar.MONTH))
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && currCalendar.get(Calendar.MONTH) > today.get(Calendar
+																																		 .MONTH))
 			{
 				return false;
 			}
-			else if	(currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH)	&&
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
 					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
 			{
 				return false;
@@ -184,8 +187,9 @@ public class CalenderActivity extends BaseActivity
 			//03. 当日提醒的数量如果小于历史信息的数量，return false。
 			//由于走到这里，提醒数量不为0.所以历史信息要大于0
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(currCalendar
-																									   );
+																	  .getMedicalHistoryBySelectedMonth(
+					currCalendar
+																																				  );
 			if (takeMedicinePerMonth == null)
 				return false;
 
@@ -193,32 +197,7 @@ public class CalenderActivity extends BaseActivity
 			if (takeMedicinePerDay == null)
 				return false;
 
-			//获取当日提醒数量
-			int count = 0;
-			for (DMedicinePrompt medicinePrompt : medicinePrompts)
-			{
-				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (currCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
-				{
-					count++;
-					continue;
-				}
-				else if (currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						currCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
-				{
-					count++;
-					continue;
-				}
-				else if	(currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						currCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
-						currCalendar.get(Calendar.DAY_OF_MONTH) >= addCalendar.get(Calendar.DAY_OF_MONTH))
-				{
-					count++;
-					continue;
-				}
-			}
-
-			return (count == takeMedicinePerDay.getTakeMedicines().size());
+			return (currMedicinePrompts.size() == takeMedicinePerDay.getTakeMedicines().size());
 
 		}
 	}
@@ -236,45 +215,45 @@ public class CalenderActivity extends BaseActivity
 			if (medicinePrompts.isEmpty())
 				return false;
 
-			Calendar minCalendar = Calendar.getInstance();
+			//获取小于等于今天的提醒
+			int                        currYear            = currCalendar.get(Calendar.YEAR);
+			int                        currMonth           = currCalendar.get(Calendar.MONTH);
+			int                        currDay             = currCalendar.get(Calendar.DAY_OF_MONTH);
+			ArrayList<DMedicinePrompt> currMedicinePrompts = new ArrayList<>();
+
 			for (DMedicinePrompt medicinePrompt : medicinePrompts)
 			{
 				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (minCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
+				if (currYear > addCalendar.get(Calendar.YEAR))
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
-				else if (minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						minCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
+				else if (currYear == addCalendar.get(Calendar.YEAR) && currMonth > addCalendar.get(Calendar.MONTH))
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
-				else if	(minCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						minCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
-						minCalendar.get(Calendar.DAY_OF_MONTH) > addCalendar.get(Calendar.DAY_OF_MONTH))
+				else if (currYear == addCalendar.get(Calendar.YEAR) &&
+						currMonth == addCalendar.get(Calendar.MONTH)	&&
+						currDay > addCalendar.get(Calendar.DAY_OF_MONTH)
+						)
 				{
-					minCalendar.setTime(addCalendar.getTime());
-					break;
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
+				}
+				else if (currYear == addCalendar.get(Calendar.YEAR) &&
+						currMonth == addCalendar.get(Calendar.MONTH)	&&
+						currDay == addCalendar.get(Calendar.DAY_OF_MONTH)
+						)
+				{
+					currMedicinePrompts.add(medicinePrompt);
+					continue;
 				}
 			}
 
-			if (currCalendar.get(Calendar.YEAR) < minCalendar.get(Calendar.YEAR))
-			{
+			if (currMedicinePrompts.isEmpty())
 				return false;
-			}
-			else if (currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) < minCalendar.get(Calendar.MONTH))
-			{
-				return false;
-			}
-			else if	(currCalendar.get(Calendar.YEAR) == minCalendar.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) == minCalendar.get(Calendar.MONTH)	&&
-					currCalendar.get(Calendar.DAY_OF_MONTH) < minCalendar.get(Calendar.DAY_OF_MONTH))
-			{
-				return false;
-			}
 
 			//02. 大于今天，return false
 			Calendar today = Calendar.getInstance();
@@ -282,13 +261,13 @@ public class CalenderActivity extends BaseActivity
 			{
 				return false;
 			}
-			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) > today.get(Calendar.MONTH))
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && currCalendar.get(Calendar.MONTH) > today.get(Calendar
+																																		 .MONTH))
 			{
 				return false;
 			}
-			else if	(currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)	&&
-					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH)	&&
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
 					currCalendar.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH))
 			{
 				return false;
@@ -297,41 +276,17 @@ public class CalenderActivity extends BaseActivity
 			//03. 当日提醒的数量如果小于历史信息的数量，return false。
 			//由于走到这里，提醒数量不为0.所以历史信息要大于0
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(currCalendar
-																									   );
+																	  .getMedicalHistoryBySelectedMonth(
+					currCalendar
+																																				  );
 			if (takeMedicinePerMonth == null)
-				return false;
+				return true;
 
 			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
 			if (takeMedicinePerDay == null)
-				return false;
+				return true;
 
-			//获取当日提醒数量
-			int count = 0;
-			for (DMedicinePrompt medicinePrompt : medicinePrompts)
-			{
-				Calendar addCalendar = medicinePrompt.getAddCalendar();
-				if (currCalendar.get(Calendar.YEAR) > addCalendar.get(Calendar.YEAR))
-				{
-					count++;
-					continue;
-				}
-				else if (currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						currCalendar.get(Calendar.MONTH) > addCalendar.get(Calendar.MONTH))
-				{
-					count++;
-					continue;
-				}
-				else if	(currCalendar.get(Calendar.YEAR) == addCalendar.get(Calendar.YEAR)	&&
-						currCalendar.get(Calendar.MONTH) == addCalendar.get(Calendar.MONTH)	&&
-						currCalendar.get(Calendar.DAY_OF_MONTH) >= addCalendar.get(Calendar.DAY_OF_MONTH))
-				{
-					count++;
-					continue;
-				}
-			}
-
-			return (count != takeMedicinePerDay.getTakeMedicines().size());
+			return (currMedicinePrompts.size() != takeMedicinePerDay.getTakeMedicines().size());
 		}
 	}
 
@@ -368,8 +323,9 @@ public class CalenderActivity extends BaseActivity
 
 		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																  .getMedicalHistoryBySelectedMonth(today
-																								   );
+																  .getMedicalHistoryBySelectedMonth(
+				today
+																																			  );
 
 
 		m_selectedTV.setText(R.string.calendar_no_taked_medicine_history);
@@ -385,8 +341,8 @@ public class CalenderActivity extends BaseActivity
 		if (!iterator.hasNext())
 			return;
 
-		Map.Entry<Calendar, DTakeMedicinePerDay> entry = iterator.next();
-		DTakeMedicinePerDay takeMedicinePerDay = entry.getValue();
+		Map.Entry<Calendar, DTakeMedicinePerDay> entry              = iterator.next();
+		DTakeMedicinePerDay                      takeMedicinePerDay = entry.getValue();
 		if (takeMedicinePerDay == null)
 			return;
 
@@ -394,8 +350,8 @@ public class CalenderActivity extends BaseActivity
 			return;
 
 		DTakeMedicine takeMedicine = takeMedicinePerDay.getTakeMedicines().get(0);
-		Calendar takeCalendar = takeMedicine.getTakeCalendar();
-		String display = m_ymdSDF.format(takeCalendar.getTime());
+		Calendar      takeCalendar = takeMedicine.getTakeCalendar();
+		String        display      = m_ymdSDF.format(takeCalendar.getTime());
 		m_selectedTV.setText(display);
 		m_selectedIV.setVisibility(View.VISIBLE);
 		m_selectedDay = takeCalendar;
@@ -420,7 +376,7 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
-			m_calenderMsgHandler.go2MainPage();
+			m_calenderMsgHandler.go2SelectedMonthChartPage(m_selectedDay);
 		}
 	}
 

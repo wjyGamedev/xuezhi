@@ -76,7 +76,7 @@ public class MedicationReminderSettingMsgHandler extends BaseUIMsgHandler
 		SelectMedicineTimeFragment selectMedicineTimeFragment = new SelectMedicineTimeFragment();
 
 		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineTimeFragment, SelectMedicineTimeFragment.class.getName());
+		transaction.replace(R.id.medicine_reminder_setting_page, selectMedicineTimeFragment, SelectMedicineTimeFragment.class.getName());
 		transaction.commit();
 	}
 
@@ -87,7 +87,7 @@ public class MedicationReminderSettingMsgHandler extends BaseUIMsgHandler
 		SelectMedicineFragment selectMedicineFragment = new SelectMedicineFragment();
 
 		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineFragment, SelectMedicineFragment.class.getName());
+		transaction.replace(R.id.medicine_reminder_setting_page, selectMedicineFragment, SelectMedicineFragment.class.getName());
 		transaction.commit();
 
 	}

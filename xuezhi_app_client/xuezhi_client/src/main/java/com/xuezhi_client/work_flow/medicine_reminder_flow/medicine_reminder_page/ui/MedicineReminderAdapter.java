@@ -27,6 +27,7 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePromptList;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
@@ -35,6 +36,8 @@ import com.xuzhi_client.xuzhi_app_client.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,7 +66,7 @@ public class MedicineReminderAdapter extends IBaseAdapter
 	{
 		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 		m_medicalPromptArrayList = m_medicalPromptList.getMedicalPrompts();
-
+		autoSort();
 		if (m_medicalPromptArrayList == null || m_medicalPromptArrayList.isEmpty())
 			return 0;
 
@@ -79,20 +82,10 @@ public class MedicineReminderAdapter extends IBaseAdapter
 	@Override
 	public long getItemId(int position)
 	{
-		m_medicalPromptList = DBusinessData.GetInstance().getMedicinePromptList();
 		if (m_medicalPromptList == null)
 			return 0;
-
-		if (position >= m_medicalPromptArrayList.size())
-		{
-			TipsDialog.GetInstance().setMsg("position >= m_medicalPromptArrayList.size()[position:=" + position +
-													"][m_medicalPromptArrayList.size():=" +
-													m_medicalPromptArrayList.size() + "]"
-										   );
-			TipsDialog.GetInstance().show();
+		if (m_medicalPromptArrayList == null || m_medicalPromptArrayList.isEmpty())
 			return 0;
-		}
-
 		DMedicinePrompt medicalPrompt = m_medicalPromptArrayList.get(position);
 		return medicalPrompt.getID();
 	}
@@ -119,6 +112,34 @@ public class MedicineReminderAdapter extends IBaseAdapter
 		viewHolder.initContent(medicalPrompt, MPID);
 		return convertView;
 	}
+
+	private void autoSort()
+	{
+		Collections.sort(m_medicalPromptArrayList, new Comparator<DMedicinePrompt>() {
+							  @Override
+							  public int compare(DMedicinePrompt lhs, DMedicinePrompt rhs)
+							  {
+								  Calendar left = lhs.getTakeCalendar();
+								  int leftHour = left.get(Calendar.HOUR_OF_DAY);
+								  int leftMin = left.get(Calendar.MINUTE);
+								  Calendar right = rhs.getTakeCalendar();
+								  int rightHour = right.get(Calendar.HOUR_OF_DAY);
+								  int rightMin = right.get(Calendar.MINUTE);
+
+								  if (leftHour > rightHour)
+									  return 1;
+
+								  if (leftHour == rightHour	&& leftMin > rightMin)
+									  return 1;
+
+								  if (leftHour == rightHour && leftMin  == rightMin)
+									  return 0;
+
+								  return -1;
+							  }
+						  });
+	}
+
 }
 
 final class ViewHolder
@@ -198,7 +219,15 @@ final class ViewHolder
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(MID);
 		if (medicine != null)
 		{
-			m_medicineName.setText(medicine.getName());
+			String name =  medicine.getName();
+			int cid = medicine.getCID();
+			DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(cid);
+			if (medicineCompany != null)
+			{
+				name = name + "(" +medicineCompany.getName() + ")";
+			}
+
+			m_medicineName.setText(name);
 			DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicine.getMUID());
 			if (medicineUnit != null)
 			{

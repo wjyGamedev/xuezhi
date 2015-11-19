@@ -47,5 +47,12 @@ public class MedicineReminderPageConfig
 
 	public static final String INFO_CONTINUE = DGlobal.GetInstance().getAppContext().getString(R.string
 																										 .medicine_reminder_set_continue);
+
+	public static final int TAKE_MEDICINE_NUM_MIN_VALUE = 1;
+	public static final int TAKE_MEDICINE_NUM_MAX_VALUE = 5;
+
+	public static final int TAKE_MEDICINE_TIME_MARGIN_LEFT_VALUE = 15;	//DP
+	public static final int TAKE_MEDICINE_TIME_MARGIN_RIGHT_VALUE= 15;	//DP
+	public static final float LINE_HEIGHT_VALUE= 0.5f;	//DP
 }
 

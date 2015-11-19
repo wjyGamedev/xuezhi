@@ -235,6 +235,14 @@
 			android:label="CalenderActivity"
 			android:screenOrientation="portrait">
 		</activity>
+
+		<!-- 图标页面-->
+		<activity
+			android:name="com.xuezhi_client.work_flow.calendar_flow.selected_month_chart_page.ui.SelectedMonthChartActivity"
+			android:label="SelectedMonthChartActivity"
+			android:screenOrientation="portrait">
+		</activity>
+
 		<!-- 用药明细页面-->
 		<activity
 			android:name="com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.ui.SelectedTakenMedicineHistoryActivity"

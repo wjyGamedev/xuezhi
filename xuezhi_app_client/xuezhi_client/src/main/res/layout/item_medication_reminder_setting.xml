@@ -12,15 +12,13 @@
 		android:background="@color/white"
 		android:orientation="vertical">
 
-		<include layout="@layout/item_dividing_line_horizontal"/>
-
 		<LinearLayout
-			android:id="@+id/medicine_name_region_ll"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="15dp"
 			android:layout_marginRight="15dp"
-			android:orientation="horizontal">
+			android:orientation="horizontal"
+			android:id="@+id/medicine_name_region_ll">
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -32,7 +30,6 @@
 				android:textSize="20sp"/>
 
 			<TextView
-				android:id="@+id/medicine_name_tv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
@@ -42,7 +39,8 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
+				android:textSize="20sp"
+				android:id="@+id/medicine_name_tv"/>
 
 			<ImageView
 				android:layout_width="20dp"
@@ -55,85 +53,19 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:orientation="vertical"
 			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
+			android:layout_marginRight="15dp">
 			<include layout="@layout/item_dividing_line_horizontal_fine"/>
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/num_per_day_region_ll"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="15dp"
 			android:layout_marginRight="15dp"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="10dp"
-				android:layout_marginTop="10dp"
-				android:text="@string/medication_reminder_drug_num_per_day_title"
-				android:textSize="20sp"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="10dp"
-				android:layout_marginTop="10dp"
-				android:layout_weight="1"
-				android:gravity="right"
-				android:text="@string/medication_reminder_drug_per_day"
-				android:textSize="20sp"/>
-
-			<EditText
-				android:id="@+id/num_per_day_et"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_margin="10dp"
-				android:background="@null"
-				android:gravity="right"
-				android:hint="@string/medication_reminder_click_input_hint_text"
-				android:inputType="number"
-				android:maxLength="1"
-				android:textSize="20sp"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="10dp"
-				android:layout_marginTop="10dp"
-				android:text="@string/medication_reminder_drug_per_day_unit"
-				android:textSize="20sp"
-				/>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-		</LinearLayout>
-
-		<!--<include layout="@layout/item_dividing_line_horizontal"/>-->
-
-		<LinearLayout
-			android:id="@+id/rose_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="horizontal">
+			android:orientation="horizontal"
+			android:id="@+id/rose_region_ll">
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -145,7 +77,6 @@
 				android:textSize="20sp"/>
 
 			<EditText
-				android:id="@+id/rose_tv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
@@ -153,31 +84,40 @@
 				android:layout_marginRight="10dp"
 				android:layout_marginTop="10dp"
 				android:layout_weight="1"
-				android:background="@null"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_input_hint_text"
+				android:textSize="20sp"
+				android:id="@+id/rose_tv"
 				android:inputType="number|numberDecimal"
-				android:textSize="20sp"/>
+				android:background="@null"/>
 
 			<TextView
-				android:id="@+id/medicine_unit_tv"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medicine_reminder_add_medicine_uint_default"
-				android:textSize="20sp"/>
+				android:textSize="20sp"
+				android:id="@+id/medicine_unit_tv"/>
 
 		</LinearLayout>
 
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:orientation="vertical"
 			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
+			android:layout_marginRight="15dp">
+			<include layout="@layout/item_dividing_line_horizontal_fine"/>
+		</LinearLayout>
 
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="15dp">
 			<include layout="@layout/item_dividing_line_horizontal_fine"/>
 		</LinearLayout>
 
@@ -187,225 +127,33 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="15dp"
 			android:layout_marginRight="15dp"
-			android:orientation="vertical"
-			android:visibility="gone">
+			android:orientation="horizontal">
 
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginBottom="10dp"
+				android:layout_marginTop="10dp"
+				android:text="注意事项："
+				android:textSize="20sp"/>
 
-			<LinearLayout
+			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal">
+				android:layout_gravity="center"
+				android:layout_marginBottom="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="10dp"
+				android:layout_weight="1"
+				android:gravity="right"
+				android:hint="@string/medication_reminder_note_default_text"
+				android:textSize="20sp"
+				android:id="@+id/precautions_tv"/>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginTop="10dp"
-					android:text="注意事项："
-					android:textSize="20sp"/>
-
-				<TextView
-					android:id="@+id/precautions_tv"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_weight="1"
-					android:gravity="right"
-					android:hint="@string/medication_reminder_note_default_text"
-					android:textSize="20sp"/>
-
-			</LinearLayout>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/reminder_time_1_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_weight="1"
-					android:text="@string/medication_reminder_alert_time_1_title_text"
-					android:textSize="20sp"/>
-
-				<TextView
-					android:id="@+id/reminder_time_1_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:hint="@string/click_select_hint_text"
-					android:textSize="20sp"/>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:layout_gravity="center"
-					android:background="@drawable/img_down"/>
-
-			</LinearLayout>
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/reminder_time_2_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_weight="1"
-					android:text="@string/medication_reminder_alert_time_2_title_text"
-					android:textSize="20sp"/>
-
-				<TextView
-					android:id="@+id/reminder_time_2_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:hint="@string/click_select_hint_text"
-					android:textSize="20sp"/>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:layout_gravity="center"
-					android:background="@drawable/img_down"/>
-
-			</LinearLayout>
-		</LinearLayout>
-
-
-		<LinearLayout
-			android:id="@+id/reminder_time_3_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_weight="1"
-					android:text="@string/medication_reminder_alert_time_3_title_text"
-					android:textSize="20sp"/>
-
-				<TextView
-					android:id="@+id/reminder_time_3_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:hint="@string/click_select_hint_text"
-					android:textSize="20sp"/>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:layout_gravity="center"
-					android:background="@drawable/img_down"/>
-
-			</LinearLayout>
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/reminder_time_4_region_ll"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="15dp"
-			android:orientation="vertical">
-
-			<include layout="@layout/item_dividing_line_horizontal_fine"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_weight="1"
-					android:text="@string/medication_reminder_alert_time_4_title_text"
-					android:textSize="20sp"/>
-
-				<TextView
-					android:id="@+id/reminder_time_4_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:layout_marginBottom="10dp"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:hint="@string/click_select_hint_text"
-					android:textSize="20sp"/>
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:layout_gravity="center"
-					android:background="@drawable/img_down"/>
-
-			</LinearLayout>
 		</LinearLayout>
 
 		<include layout="@layout/item_dividing_line_horizontal"/>
-
 	</LinearLayout>
 
 

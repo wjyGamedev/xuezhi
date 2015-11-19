@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment
 {
-	private View m_view = null;
+	protected View m_view = null;
 
 
 	@Override

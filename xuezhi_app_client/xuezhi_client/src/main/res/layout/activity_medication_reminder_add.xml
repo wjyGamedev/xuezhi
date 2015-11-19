@@ -71,7 +71,7 @@
 
 		</LinearLayout>
 
-		<include layout="@layout/item_medication_reminder_setting"/>
+		<include layout="@layout/item_medication_reminder_add"/>
 
 		<LinearLayout
 			android:layout_width="match_parent"

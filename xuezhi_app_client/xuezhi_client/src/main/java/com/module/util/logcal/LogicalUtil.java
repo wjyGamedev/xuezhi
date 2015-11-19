@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p/>
+ * <p>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -14,6 +14,8 @@
 
 package com.module.util.logcal;
 
+import android.content.Context;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -26,10 +28,12 @@ import java.util.Date;
 public class LogicalUtil
 {
 	private final static int LENGTH_PHONE_NUM = 11;
+
 	/**
 	 * 验证手机格式
 	 */
-	public static boolean isMobileNumValid(String mobiles) {
+	public static boolean isMobileNumValid(String mobiles)
+	{
 		String tmpPhoneNum = mobiles.trim();
 		/*
 		移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
@@ -56,10 +60,10 @@ public class LogicalUtil
 			return 0;
 
 		long beginTime = begin.getTime();
-		long endTime = end.getTime();
-		long days = Math.abs((long)(endTime - beginTime) / (24 * 60 * 60 * 1000));
-//		return (int)days;
-		return (int)(days+1);
+		long endTime   = end.getTime();
+		long days      = Math.abs((long)(endTime - beginTime) / (24 * 60 * 60 * 1000));
+		//		return (int)days;
+		return (int)(days + 1);
 	}
 
 	public static boolean IsHttpSuccess(int httpStatus)
@@ -67,27 +71,38 @@ public class LogicalUtil
 		return (httpStatus == ProtocalConfig.HTTP_OK);
 	}
 
-	public static void SetListViewHeightBasedOnChildren(ListView listView) {
+	public static void SetListViewHeightBasedOnChildren(ListView listView)
+	{
 		ListAdapter listAdapter = listView.getAdapter();
-		if (listAdapter == null) {
+		if (listAdapter == null)
+		{
 			// pre-condition
 			return;
 		}
 
-		int totalHeight = 0;
+		int totalHeight  = 0;
 		int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
-		for (int i = 0; i < listAdapter.getCount(); i++) {
+		for (int i = 0; i < listAdapter.getCount(); i++)
+		{
 			View listItem = listAdapter.getView(i, null, listView);
 			listItem.measure(0, 0);
 			totalHeight += listItem.getMeasuredHeight();
 		}
 
 		ViewGroup.LayoutParams params = listView.getLayoutParams();
-		params.height = totalHeight
-				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 		listView.requestLayout();
 	}
 
+	public static float DPFromPx(final Context context, final float px)
+	{
+		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px, context.getResources().getDisplayMetrics());
+	}
+
+	public static float PXFromDP(final Context context, final float dp)
+	{
+		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+	}
 
 }

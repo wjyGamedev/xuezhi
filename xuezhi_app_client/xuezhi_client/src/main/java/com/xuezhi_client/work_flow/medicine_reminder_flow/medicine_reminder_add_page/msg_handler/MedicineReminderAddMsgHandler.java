@@ -34,6 +34,7 @@ import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineFragment;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectMedicineTimeFragment;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.SelectTakeMedicineNumPerDayFragment;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.Calendar;
@@ -52,31 +53,7 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 		super(context);
 	}
 
-	public void go2SelectMedicineTimeFragment()
-	{
-		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
-
-		SelectMedicineTimeFragment selectMedicineTimeFragment = new SelectMedicineTimeFragment();
-
-		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineTimeFragment, SelectMedicineTimeFragment.class.getName());
-		transaction.commit();
-
-		return;
-	}
-
-	public void go2SelectMedicineFragment()
-	{
-		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
-
-		SelectMedicineFragment selectMedicineFragment = new SelectMedicineFragment();
-
-		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineFragment, SelectMedicineFragment.class.getName());
-		transaction.commit();
-
-		return;
-	}
+	//region 消息发送和处理
 
 	private void requestMedicineReminderListAction()
 	{
@@ -138,14 +115,15 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 		selectMedicineFragment.updateContent();
 	}
 
-	/**
-	 * set
-	 */
-	public void setRemainderTime(Calendar reminderTime)
+	//endregion
+
+	//region 对外fragment属性调用接口
+
+	public void setRemainderTime(int index, Calendar reminderTime)
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 
-		activity.setReminderTime(reminderTime);
+		activity.setReminderTime(index, reminderTime);
 	}
 
 	public void setMedicalID(int medicalID)
@@ -161,22 +139,58 @@ public class MedicineReminderAddMsgHandler extends BaseUIMsgHandler
 		}
 
 		activity.setMedicineID(medicalID);
-		return;
 	}
 
-	public void setRose(double rose)
+	public void setTakeMedicineTime(int num)
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
-		activity.setDose(rose);
-
-		return;
+		activity.setTakeMedicineNumPerDay(num);
 	}
+
+	//endregion
+
+	//region 跳转页面/fragment
+
 
 	public void go2AddMedicine2BoxPage()
 	{
 		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
 		activity.startActivity(new Intent(activity, DrugStockAddActivity.class));
 		activity.finish();
-		return;
 	}
+
+	public void go2SelectMedicineTimeFragment(int index)
+	{
+		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
+
+		SelectMedicineTimeFragment selectMedicineTimeFragment = new SelectMedicineTimeFragment();
+		selectMedicineTimeFragment.setIndex(index);
+
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineTimeFragment, SelectMedicineTimeFragment.class.getName());
+		transaction.commit();
+	}
+
+	public void go2SelectMedicineFragment()
+	{
+		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
+
+		SelectMedicineFragment selectMedicineFragment = new SelectMedicineFragment();
+
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+		transaction.replace(R.id.medicine_reminder_add_page, selectMedicineFragment, SelectMedicineFragment.class.getName());
+		transaction.commit();
+	}
+
+	public void go2SelectTakeMedicineNumPerDayFragment()
+	{
+		MedicineReminderAddActivity activity = (MedicineReminderAddActivity)m_context;
+
+		SelectTakeMedicineNumPerDayFragment selectTakeMedicineNumPerDayFragment = new SelectTakeMedicineNumPerDayFragment();
+		FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+		transaction.replace(R.id.medicine_reminder_add_page, selectTakeMedicineNumPerDayFragment, SelectTakeMedicineNumPerDayFragment.class.getName());
+		transaction.commit();
+	}
+
+	//endregion
 }

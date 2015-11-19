@@ -18,11 +18,12 @@ import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptSetEvent;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.config.MedicineReminderPageConfig;
-import com.xuezhi_client.work_flow.medicine_reminder_flow.data.DMedicineReminderDisplay;
+import com.xuezhi_client.work_flow.medicine_reminder_flow.data.DSingleReminder;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_setting_page.msg_handler.MedicationReminderSettingMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -42,13 +43,12 @@ public class MedicineReminderSettingActivity extends BaseActivity
 	//widget
 	private HeaderCommon m_headerCommon = null;
 
-	@Bind (R.id.reminder_state_cb) CheckBox m_reminderStateCB = null;
-	@Bind (R.id.reminder_time_tv)  TextView m_medicineTimeTV  = null;
-	@Bind (R.id.medicine_name_tv)  TextView m_medicineNameTV  = null;
-	@Bind (R.id.rose_tv)           TextView m_roseTV          = null;
-	@Bind (R.id.medicine_unit_tv)  TextView m_medicineUnit    = null;
+	@Bind (R.id.reminder_state_cb)   CheckBox     m_reminderStateCB  = null;
+	@Bind (R.id.reminder_time_tv)    TextView     m_medicineTimeTV   = null;
+	@Bind (R.id.medicine_name_tv)    TextView     m_medicineNameTV   = null;
+	@Bind (R.id.rose_tv)             TextView     m_roseTV           = null;
+	@Bind (R.id.medicine_unit_tv)    TextView     m_medicineUnit     = null;
 	@Bind (R.id.precation_region_ll) LinearLayout mPrecationRegionLL = null;
-	@Bind (R.id.precautions_tv) TextView m_precautionsTV = null;
 
 
 	private BottomCommon m_bottomCommon = null;
@@ -65,13 +65,14 @@ public class MedicineReminderSettingActivity extends BaseActivity
 
 	//date
 	private int                      m_MPID                       = DataConfig.DEFAULT_ID;
-	private DMedicineReminderDisplay m_oldMedicineReminderDisplay = new DMedicineReminderDisplay();
-	private DMedicineReminderDisplay m_newMedicineReminderDisplay = new DMedicineReminderDisplay();
+
+	private DSingleReminder mOldSingleReminder = new DSingleReminder();
+	private DSingleReminder mNewSingleReminder = new DSingleReminder();
 
 	@Override
 	public BaseActivity onCreateAction()
 	{
-		setContentView(R.layout.activity_medication_reminder_add);
+		setContentView(R.layout.activity_medication_reminder_setting);
 		return this;
 	}
 
@@ -96,11 +97,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		setStateFlag(isChecked);
 	}
 
-	//	@OnClick (R.id.reminder_time_region_ll)
-	//	public void selectMedicineTime(View v)
-	//	{
-	//		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
-	//	}
+	@OnClick(R.id.reminder_time_region_ll)
+	public void selectReminderTime()
+	{
+		m_medicationReminderSettingMsgHandler.go2SelectMedicineTimeFragment();
+	}
 
 	@OnClick (R.id.medicine_name_region_ll)
 	public void selectMedicine(View v)
@@ -119,11 +120,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 		{
 			try
 			{
-				m_newMedicineReminderDisplay.setDose(Double.valueOf(content));
+				mNewSingleReminder.setDose(Double.valueOf(content));
 			}
 			catch (NumberFormatException e)
 			{
-				m_newMedicineReminderDisplay.setDose(0);
+				mNewSingleReminder.setDose(0);
 			}
 		}
 		return;
@@ -165,11 +166,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 			{
 				try
 				{
-					m_newMedicineReminderDisplay.setDose(Double.valueOf(content));
+					mNewSingleReminder.setDose(Double.valueOf(content));
 				}
 				catch (NumberFormatException e)
 				{
-					m_newMedicineReminderDisplay.setDose(0);
+					mNewSingleReminder.setDose(0);
 				}
 			}
 
@@ -185,11 +186,11 @@ public class MedicineReminderSettingActivity extends BaseActivity
 			{
 				event.setMID(String.valueOf(medicinePrompt.getMID()));
 			}
-			event.setMID(String.valueOf(m_newMedicineReminderDisplay.getMedicineID()));
-			event.setTime(m_newMedicineReminderDisplay.getReminderTime());
-			event.setValid(m_newMedicineReminderDisplay.isStateFlag());
-			event.setDose(m_newMedicineReminderDisplay.getDose());
-			event.setPrecaution(m_newMedicineReminderDisplay.getPrecaution());
+			event.setMID(String.valueOf(mNewSingleReminder.getMedicineID()));
+			event.setTime(mNewSingleReminder.getReminderTime());
+			event.setValid(mNewSingleReminder.isStateFlag());
+			event.setDose(mNewSingleReminder.getDose());
+			event.setPrecaution(mNewSingleReminder.getPrecaution());
 			m_medicationReminderSettingMsgHandler.requestSettingMedicineReminderAction(event);
 		}
 	}
@@ -224,24 +225,26 @@ public class MedicineReminderSettingActivity extends BaseActivity
 			return;
 		}
 
-		if (!m_oldMedicineReminderDisplay.init(m_MPID))
+		if (!mOldSingleReminder.init(m_MPID))
 		{
 			TipsDialog.GetInstance().setMsg("m_MPID is invalid!", this);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		if (!m_newMedicineReminderDisplay.init(m_MPID))
+		if (!mNewSingleReminder.init(m_MPID))
 		{
 			TipsDialog.GetInstance().setMsg("m_MPID is invalid!", this);
 			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		setStateFlag(m_oldMedicineReminderDisplay.isStateFlag());
-		setReminderTime(m_oldMedicineReminderDisplay.getReminderTime());
-		setMedicineID(m_oldMedicineReminderDisplay.getMedicineID());
-		setDose(m_oldMedicineReminderDisplay.getDose());
+		setStateFlag(mOldSingleReminder.isStateFlag());
+		setReminderTime(mOldSingleReminder.getReminderTime());
+		setMedicineID(mOldSingleReminder.getMedicineID());
+		setDose(mOldSingleReminder.getDose());
+
+		mPrecationRegionLL.setVisibility(View.GONE);
 	}
 
 	private boolean check()
@@ -268,7 +271,7 @@ public class MedicineReminderSettingActivity extends BaseActivity
 			return false;
 		}
 
-		if (m_newMedicineReminderDisplay.getDose() == 0)
+		if (mNewSingleReminder.getDose() == 0)
 		{
 			TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_INPUT_ROSE_ZERO, this);
 			TipsDialog.GetInstance().show();
@@ -277,20 +280,20 @@ public class MedicineReminderSettingActivity extends BaseActivity
 
 
 		//02. 数据没有变化则不发送setting
-		if (m_oldMedicineReminderDisplay.isStateFlag() != m_newMedicineReminderDisplay.isStateFlag())
+		if (mOldSingleReminder.isStateFlag() != mNewSingleReminder.isStateFlag())
 			return true;
 
-		if (m_oldMedicineReminderDisplay.getMedicineID() != m_newMedicineReminderDisplay.getMedicineID())
+		if (mOldSingleReminder.getMedicineID() != mNewSingleReminder.getMedicineID())
 			return true;
 
-		if (m_oldMedicineReminderDisplay.getReminderTime() != m_newMedicineReminderDisplay.getReminderTime())
+		if (mOldSingleReminder.getReminderTime() != mNewSingleReminder.getReminderTime())
 			return true;
 
-		if (m_oldMedicineReminderDisplay.getDose() != m_newMedicineReminderDisplay.getDose())
+		if (mOldSingleReminder.getDose() != mNewSingleReminder.getDose())
 			return true;
 
 		//TODO：需要测试
-		if (m_oldMedicineReminderDisplay.getPrecaution().equals(m_newMedicineReminderDisplay.getPrecaution()) == false)
+		if (mOldSingleReminder.getPrecaution().equals(mNewSingleReminder.getPrecaution()) == false)
 			return true;
 
 		TipsDialog.GetInstance().setMsg(MedicineReminderPageConfig.ERROR_NO_CHANGE,
@@ -305,17 +308,13 @@ public class MedicineReminderSettingActivity extends BaseActivity
 	}
 
 
+
 	/**
 	 * date:get/set
 	 */
-	public boolean isStateFlag()
-	{
-		return m_newMedicineReminderDisplay.isStateFlag();
-	}
-
 	public void setStateFlag(boolean stateFlag)
 	{
-		m_newMedicineReminderDisplay.setStateFlag(stateFlag);
+		mNewSingleReminder.setStateFlag(stateFlag);
 
 		if (stateFlag)
 			m_reminderStateCB.setText(MedicineReminderPageConfig.OPEN);
@@ -326,12 +325,12 @@ public class MedicineReminderSettingActivity extends BaseActivity
 
 	public Calendar getReminderTime()
 	{
-		return m_newMedicineReminderDisplay.getReminderTime();
+		return mNewSingleReminder.getReminderTime();
 	}
 
 	public void setReminderTime(Calendar remainderTime)
 	{
-		m_newMedicineReminderDisplay.setReminderTime(remainderTime);
+		mNewSingleReminder.setReminderTime(remainderTime);
 
 		String reminderTimeDisplay = m_hmSDF.format(remainderTime.getTime());
 		m_medicineTimeTV.setText(reminderTimeDisplay);
@@ -340,17 +339,24 @@ public class MedicineReminderSettingActivity extends BaseActivity
 
 	public int getMedicineID()
 	{
-		return m_newMedicineReminderDisplay.getMedicineID();
+		return mNewSingleReminder.getMedicineID();
 	}
 
 	public void setMedicineID(int medicineID)
 	{
-		m_newMedicineReminderDisplay.setMedicineID(medicineID);
+		mNewSingleReminder.setMedicineID(medicineID);
 
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(medicineID);
 		if (medicine != null)
 		{
-			m_medicineNameTV.setText(medicine.getName());
+			String name = medicine.getName();
+			DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(medicine
+																																   .getCID());
+			if (medicineCompany != null)
+			{
+				name = name + "(" +medicineCompany.getName() + ")";
+			}
+			m_medicineNameTV.setText(name);
 		}
 
 		DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(medicineID);
@@ -363,12 +369,12 @@ public class MedicineReminderSettingActivity extends BaseActivity
 
 	public double getDose()
 	{
-		return m_newMedicineReminderDisplay.getDose();
+		return mNewSingleReminder.getDose();
 	}
 
 	public void setDose(double dose)
 	{
-		m_newMedicineReminderDisplay.setDose(dose);
+		mNewSingleReminder.setDose(dose);
 		m_roseTV.setText(String.valueOf(dose));
 	}
 

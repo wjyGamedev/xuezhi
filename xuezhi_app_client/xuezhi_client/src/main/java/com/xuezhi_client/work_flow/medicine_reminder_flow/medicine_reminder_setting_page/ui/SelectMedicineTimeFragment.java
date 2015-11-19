@@ -34,7 +34,6 @@ import com.xuzhi_client.xuzhi_app_client.R;
 import java.util.Calendar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectMedicineTimeFragment extends BaseFragment
@@ -94,6 +93,20 @@ public class SelectMedicineTimeFragment extends BaseFragment
 	@OnClick (R.id.confirm_btn)
 	public void clickConfirm()
 	{
+		m_timePicker.clearFocus();
+
+		if (m_timePicker.is24HourView())
+		{
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
+		}
+		else
+		{
+			m_timePicker.setIs24HourView(true);
+			m_calendar.set(Calendar.HOUR_OF_DAY, m_timePicker.getCurrentHour());
+			m_calendar.set(Calendar.MINUTE, m_timePicker.getCurrentMinute());
+		}
+
 		m_medicationReminderSettingMsgHandler.setRemainderTime(m_calendar);
 		cancelAction();
 	}
@@ -121,8 +134,17 @@ public class SelectMedicineTimeFragment extends BaseFragment
 		@Override
 		public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
 		{
-			m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			m_calendar.set(Calendar.MINUTE, minute);
+			if (m_timePicker.is24HourView())
+			{
+				m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				m_calendar.set(Calendar.MINUTE, minute);
+			}
+			else
+			{
+				m_timePicker.setIs24HourView(true);
+				m_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				m_calendar.set(Calendar.MINUTE, minute);
+			}
 		}
 	}
 

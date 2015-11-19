@@ -25,6 +25,9 @@
 	<string name="medication_reminder_setting_add_btn_text">添加药品</string>
 	<string name="medication_reminder_setting_del_btn_text">删除药品</string>
 	<string name="medication_reminder_setting_alert_state_title_text">提醒状态：</string>
+
+	<string name="medication_reminder_alert_time_x_title_text">第%1$s次提醒时间：</string>
+	<string name="medication_reminder_alert_time_title_text">提醒时间：</string>
 	<string name="medication_reminder_alert_time_1_title_text">第一次提醒时间：</string>
 	<string name="medication_reminder_alert_time_2_title_text">第二次提醒时间：</string>
 	<string name="medication_reminder_alert_time_3_title_text">第三次提醒时间：</string>
@@ -57,11 +60,28 @@
 	<string name="medicine_reminder_add_select_medicine_tips">请选择药品</string>
 	<string name="medicine_reminder_add_medicine_uint_default">mg</string>
 
+	<string name="medicine_reminder_add_select_medicine_num_per_day">请选择每天用药次数：</string>
+
 	<string name="medicine_reminder_add_error_input_reminder_time">请输入提醒时间。</string>
 	<string name="medicine_reminder_add_error_input_medicine_name_time">请输入药品名称。</string>
 	<string name="medicine_reminder_add_error_input_rose_time">请输入用药剂量。</string>
-
-
-
+	<string name="medicine_reminder_add_error_input_take_medicine_x_time">请输入第%1$s次提醒时间</string>
+	<integer-array name="take_medicine_num_per_day_array">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+	</integer-array>
+	<string-array name="num_display_array">
+		<item>一</item>
+		<item>二</item>
+		<item>三</item>
+		<item>四</item>
+		<item>五</item>
+		<item>六</item>
+		<item>七</item>
+		<item>八</item>
+		<item>九</item>
+	</string-array>
 
 </resources>

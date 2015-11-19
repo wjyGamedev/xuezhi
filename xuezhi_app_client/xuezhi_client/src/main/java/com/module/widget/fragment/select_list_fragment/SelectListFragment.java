@@ -15,7 +15,6 @@
 package com.module.widget.fragment.select_list_fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,16 +24,16 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.module.frame.BaseFragment;
 import com.module.widget.fragment.config.FragmentConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public abstract class SelectListFragment extends Fragment implements View.OnTouchListener
+public abstract class SelectListFragment extends BaseFragment implements View.OnTouchListener
 {
 	//widget
 	@Bind (R.id.header_bg_ll) protected      LinearLayout m_headerBgLL        = null;
@@ -44,21 +43,34 @@ public abstract class SelectListFragment extends Fragment implements View.OnTouc
 	@Bind (R.id.bottom_bg_ll) protected      LinearLayout m_bottomBgLL        = null;
 
 	protected LayoutInflater    m_layoutInflater = null;
-	protected View              m_view           = null;
 	protected ArrayList<Button> m_buttons        = new ArrayList<>();
 
 	protected int m_maxColunms = FragmentConfig.SELECT_LIST_FRAGMENT_MAX_COLUMN;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_layoutInflater = inflater;
-		m_view = m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
-		ButterKnife.bind(this, m_view);
+		return m_layoutInflater.inflate(R.layout.fragment_select_list, container, false);
+	}
 
+	@Override
+	public void onAfterCreateAction()
+	{
 		init();
 		initListeners();
-		return m_view;
+	}
+
+	@Override
+	public void onDestoryViewAction()
+	{
+
+	}
+
+	@Override
+	public BaseFragment getOwner()
+	{
+		return this;
 	}
 
 	@Override

@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.module.frame.BaseUIMsgHandler;
+import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
+import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
 import com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.ui.SelectedTakenMedicineHistoryActivity;
-import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
+import com.xuezhi_client.work_flow.calendar_flow.selected_month_chart_page.ui.SelectedMonthChartActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -16,17 +19,22 @@ import java.util.Calendar;
  */
 public class CalenderMsgHandler extends BaseUIMsgHandler
 {
+	private SimpleDateFormat mYmdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+
 	public CalenderMsgHandler(CalenderActivity activity)
 	{
 		super(activity);
 	}
 
-	public void go2MainPage()
+	public void go2SelectedMonthChartPage(Calendar selectedMonth)
 	{
 		CalenderActivity activity = (CalenderActivity)m_context;
-		activity.finish();
 
-		activity.startActivity(new Intent(activity, MainActivity.class));
+		String dateDisplay = mYmdSDF.format(selectedMonth.getTime());
+
+		Intent intent = new Intent(activity, SelectedMonthChartActivity.class);
+		intent.putExtra(CalendarFlowConfig.SELECTED_MONTH, dateDisplay);
+		activity.startActivity(intent);
 		return;
 	}
 

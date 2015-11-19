@@ -63,12 +63,12 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 		String display = "";
 
 		sendData.put(MedicinePromptConfig.NUM_PER_DAY, String.valueOf(mNum));
-		for (int index = 1; index <= mNum; ++index)
+		for (int index = 0; index < mNum; ++index)
 		{
-			keyTime = MedicinePromptConfig.TIME + MedicinePromptConfig.PRE + String.valueOf(index);
-			keyDos = MedicinePromptConfig.DOSE + MedicinePromptConfig.PRE + String.valueOf(index);
+			keyTime = MedicinePromptConfig.TIME + MedicinePromptConfig.PRE + String.valueOf(index + 1);
+			keyDos = MedicinePromptConfig.DOSE + MedicinePromptConfig.PRE + String.valueOf(index + 1);
 
-			display = m_hmsSDF.format(mCalendarArrayList.get(index));
+			display = m_hmsSDF.format(mCalendarArrayList.get(index).getTime());
 			sendData.put(keyTime, display);
 
 			sendData.put(keyDos, String.valueOf(mDoseArrayList.get(index)));
@@ -98,7 +98,7 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 		DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(mid);
 		if (medicine != null)
 		{
-			mMUID.valueOf(medicine.getMUID());
+			mMUID = medicine.getMUID() + "";
 		}
 		else
 		{
@@ -144,5 +144,15 @@ public class RequestMedicinePromptAddEvent extends BaseNetEvent
 
 		Calendar calendar = mCalendarArrayList.get(index);
 		calendar.setTime(time.getTime());
+	}
+
+	public void setCalendarArrayList(ArrayList<Calendar> calendarArrayList)
+	{
+		mCalendarArrayList = calendarArrayList;
+	}
+
+	public void setDoseArrayList(ArrayList<Double> doseArrayList)
+	{
+		mDoseArrayList = doseArrayList;
 	}
 }

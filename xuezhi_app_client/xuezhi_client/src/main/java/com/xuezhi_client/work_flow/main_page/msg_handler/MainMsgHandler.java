@@ -31,6 +31,7 @@ import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
@@ -609,7 +610,19 @@ public class MainMsgHandler extends BaseUIMsgHandler
 			m_todayReminderTitleTV.setText(R.string.today_remind_title_text);
 
 			medicineReminderTimeTV.setText(nextTakeMedicineReminder.getReminderTimeDisplay());
-			medicineNameTV.setText(nextTakeMedicineReminder.getMedicineName());
+
+			String name = nextTakeMedicineReminder.getMedicineName();
+			DMedicine tmpMedicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(nextTakeMedicineReminder.getMID());
+			if (tmpMedicine != null)
+			{
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(tmpMedicine.getCID());
+				if (medicineCompany != null)
+				{
+					name = name + "(" + medicineCompany.getName() + ")";
+				}
+			}
+
+			medicineNameTV.setText(name);
 			double tmpRose = nextTakeMedicineReminder.getDose();
 			roseTV.setText(String.valueOf(tmpRose));
 			medicineUnitTV.setText(nextTakeMedicineReminder.getMedicineUnitDisplay());
@@ -640,7 +653,19 @@ public class MainMsgHandler extends BaseUIMsgHandler
 			m_todayReminderTitleTV.setText(R.string.today_remind_title_text);
 
 			medicineReminderTimeTV.setText(nextTakeMedicineReminder.getReminderTimeDisplay());
-			medicineNameTV.setText(nextTakeMedicineReminder.getMedicineName());
+
+			String name = nextTakeMedicineReminder.getMedicineName();
+			DMedicine tmpMedicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(nextTakeMedicineReminder.getMID());
+			if (tmpMedicine != null)
+			{
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(tmpMedicine.getCID());
+				if (medicineCompany != null)
+				{
+					name = name + "(" + medicineCompany.getName() + ")";
+				}
+			}
+
+			medicineNameTV.setText(name);
 			double tmpRose = nextTakeMedicineReminder.getDose();
 			roseTV.setText(String.valueOf(tmpRose));
 			medicineUnitTV.setText(nextTakeMedicineReminder.getMedicineUnitDisplay());
