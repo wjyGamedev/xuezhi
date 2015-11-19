@@ -47,6 +47,7 @@ import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestAssayDetectionGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicineBoxGetListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptGetListEvent;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestNoTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestTakeMedicineAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.ui.AssayDetectionActivity;
@@ -207,8 +208,19 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		//0302. 请求发送药箱列表->提醒列表->用药历史
 		requestMedicineBoxGetListAction();
 
+		//0303. 请求发送忘记吃药的列表。
+		requestNoTakeMedicineGetHistoryListAction();
 		return;
 
+	}
+
+	private void requestNoTakeMedicineGetHistoryListAction()
+	{
+		RequestNoTakeMedicineGetHistoryListEvent event = new RequestNoTakeMedicineGetHistoryListEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		Calendar calendar = Calendar.getInstance();
+		event.setCurrMonth(calendar);
+		DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(event);
 	}
 
 	private void requestAssayDetectionListAction()

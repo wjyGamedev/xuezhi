@@ -51,6 +51,10 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 	private AnswerTakeMedicineGetHistoryListHandler m_answerTakeMedicineGetHistoryListHandler = new
 			AnswerTakeMedicineGetHistoryListHandler();
 
+	//忘记用药
+	private AnswerNoTakeMedicineGetHistoryListHandler mAnswerNoTakeMedicineGetHistoryListHandler = new
+			AnswerNoTakeMedicineGetHistoryListHandler();
+
 	private AnswerTakeMedicineAddHandler m_answerTakeMedicineAddHandler = new AnswerTakeMedicineAddHandler();
 
 	@Override
@@ -496,5 +500,33 @@ public class DBusinessMsgHandler extends BaseMsgHandler
 		m_eventBus.post(event);
 		return;
 	}
+
+	//020403. 忘记吃药的记录
+	public void requestNoTakeMedicineGetHistoryListAction(RequestNoTakeMedicineGetHistoryListEvent event)
+	{
+		m_eventBus.post(event);
+		return;
+	}
+
+	public void onEventAsync(RequestNoTakeMedicineGetHistoryListEvent event)
+	{
+		HashMap<String, String> sendData = event.getHashMap();
+
+		JsonObjectRequestForm myReq = new JsonObjectRequestForm(Request.Method.POST,
+																NetConfig.S_NORMAL_NO_TAKE_MEDICINE_GET_HISTORY_LIST,
+																sendData, mAnswerNoTakeMedicineGetHistoryListHandler,
+																m_baseErrorListener
+		);
+
+		m_requestQueue.add(myReq);
+	}
+
+	public void answerNoTakeMedicineGetHistoryListAction()
+	{
+		AnswerNoTakeMedicineGetHistoryListEvent event = new AnswerNoTakeMedicineGetHistoryListEvent();
+		m_eventBus.post(event);
+		return;
+	}
+
 
 }

@@ -78,5 +78,7 @@ public class NetConfig
 	//吃药
 	public final static String S_NORMAL_TAKE_MEDICINE_ADD              = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/addTakeHistory/";
 
+	//忘记用药的记录
+	public final static String S_NORMAL_NO_TAKE_MEDICINE_GET_HISTORY_LIST              = "http://" + IP_ADDRESS_XUEZHI_TEST + "/medical/getNoTakeHistory/";
 
 }

@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.module.frame.BaseUIMsgHandler;
 import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestNoTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.ui.CalenderActivity;
 import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
@@ -51,5 +54,14 @@ public class CalenderMsgHandler extends BaseUIMsgHandler
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
 
+	}
+
+	public void initAction()
+	{
+		RequestNoTakeMedicineGetHistoryListEvent event = new RequestNoTakeMedicineGetHistoryListEvent();
+		event.setUID(DAccount.GetInstance().getId());
+		Calendar calendar = Calendar.getInstance();
+		event.setCurrMonth(calendar);
+		DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(event);
 	}
 }
