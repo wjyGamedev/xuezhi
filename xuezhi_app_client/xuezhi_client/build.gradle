@@ -4,7 +4,7 @@ android {
 	signingConfigs {
 		xuezhitime_anzhuoshichang {
 			keyAlias 'xuezhitime_anzhuoshichang'
-			keyPassword 'xuezhitime_anzhuoshichang'
+			keyPassword 'sanrenxing123'
 			storeFile file('D:/tool_datas/android_studio/signed_apk/xuezhitime_anzhuoshichang.jks')
 			storePassword 'sanrenxing123'
 		}
@@ -15,18 +15,20 @@ android {
 		applicationId "com.xuzhi_client.xuzhi_app_client"
 		minSdkVersion 14
 		targetSdkVersion 14
-		versionName '1.1.8'
-		versionCode 8
+		versionName '1.1.7'
+		versionCode 7
 	}
 	buildTypes {
 		debug {
 			debuggable true
+			minifyEnabled false
 			signingConfig signingConfigs.xuezhitime_anzhuoshichang
 		}
 		release {
-			signingConfig signingConfigs.xuezhitime_anzhuoshichang
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			debuggable false
+			signingConfig signingConfigs.xuezhitime_anzhuoshichang
 		}
 	}
 	lintOptions {
