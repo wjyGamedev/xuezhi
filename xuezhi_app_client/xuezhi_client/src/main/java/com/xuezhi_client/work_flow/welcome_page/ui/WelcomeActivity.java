@@ -34,11 +34,11 @@ public class WelcomeActivity extends BaseActivity
 	@Bind (R.id.welcome_text1) ImageView m_welcomeText1IV = null;
 	@Bind (R.id.welcome_text2) ImageView m_welcomeText2IV = null;
 
-	private final static long ACTIVITY_SHOW_TIME_LENGTH = 4000;
+	private final static long ACTIVITY_SHOW_TIME_LENGTH = 8000;
 	private final static long AFTER_TIME_SHOW_ICON      = 500;
-	private final static long AFTER_TIME_SHOW_TEXT_1    = 1500;
-	private final static long AFTER_TIME_SHOW_TEXT_2    = 2500;
-	private final static int  SHOW_ITEM_TIME_LENGTH     = 1000;
+	private final static long AFTER_TIME_SHOW_TEXT_1    = 3000;
+	private final static long AFTER_TIME_SHOW_TEXT_2    = 5000;
+	private final static int  SHOW_ITEM_TIME_LENGTH     = 2000;
 
 	private TimerTaskWrapper    m_waitTimerTask             = new TimerTaskWrapper();
 	private ActivityShwoTimeEnd m_activityShwoTimeEnd       = new ActivityShwoTimeEnd();

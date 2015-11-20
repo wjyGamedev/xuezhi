@@ -48,7 +48,7 @@ public class DAssayDetection
 
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
-		m_ID = response.getInt(AssayDetectionConfig.TG);
+		m_ID = response.getInt(AssayDetectionConfig.ID);
 
 		String tmpAddDate = response.getString(AssayDetectionConfig.RECORD_DATE);
 		Date   date       = m_allSDF.parse(tmpAddDate);

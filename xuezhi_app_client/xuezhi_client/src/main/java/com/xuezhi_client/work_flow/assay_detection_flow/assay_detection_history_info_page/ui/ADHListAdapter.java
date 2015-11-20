@@ -23,7 +23,6 @@ import android.widget.TextView;
 import com.module.data.DGlobal;
 import com.module.frame.IBaseAdapter;
 import com.module.widget.dialog.TipsDialog;
-import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetectionList;
@@ -49,11 +48,11 @@ public class ADHListAdapter extends IBaseAdapter
 	{
 		m_assayDetectionList = DBusinessData.GetInstance().getAssayDetectionList();
 
-		ArrayList<DAssayDetection> assayDetections = m_assayDetectionList.getAssayDetections();
-		if (assayDetections == null || assayDetections.isEmpty())
+		m_assayDetections = m_assayDetectionList.getAssayDetections();
+		if (m_assayDetections == null || m_assayDetections.isEmpty())
 			return 0;
 
-		return assayDetections.size();
+		return m_assayDetections.size();
 	}
 
 	@Override
@@ -74,8 +73,7 @@ public class ADHListAdapter extends IBaseAdapter
 			return 0;
 		}
 
-		DAssayDetection tmpAssayDetection = m_assayDetections.get(position);
-		return tmpAssayDetection.getID();
+		return position;
 	}
 
 	@Override
@@ -83,11 +81,10 @@ public class ADHListAdapter extends IBaseAdapter
 	{
 		ViewHolder viewHolder = null;
 
-		m_assayDetections = m_assayDetectionList.getAssayDetections();
 		if (convertView == null)
 		{
 			convertView = m_layoutInflater.inflate(R.layout.item_assay_detection_history_list, null);
-			viewHolder = new ViewHolder(convertView, (int)getItemId(position));
+			viewHolder = new ViewHolder(convertView);
 			convertView.setTag(viewHolder);
 		}
 		else
@@ -95,17 +92,11 @@ public class ADHListAdapter extends IBaseAdapter
 			viewHolder = (ViewHolder)convertView.getTag();
 		}
 
-		//01. position invalid
-		if (position >= m_assayDetections.size())
+		if (!m_assayDetections.isEmpty())
 		{
-			TipsDialog.GetInstance().setMsg("position >= m_assayDetections.size()[position:=" + position + "][m_assayDetections.size():=" +
-													m_assayDetections.size() + "]"
-										   );
-			TipsDialog.GetInstance().show();
-			return convertView;
+			int index = (int)getItemId(position);
+			viewHolder.initContent(m_assayDetections.get(index));
 		}
-
-		viewHolder.initContent(m_assayDetections.get(position));
 		return convertView;
 	}
 
@@ -127,7 +118,6 @@ final class ViewHolder
 {
 	//widget
 	@Bind (R.id.assay_detection_record_date_tv) TextView m_recordDate = null;            //记录时间
-	@Bind (R.id.status_tv)                      TextView m_status     = null;            //状态
 
 	//logical
 	private View             m_view   = null;
@@ -135,39 +125,34 @@ final class ViewHolder
 
 	private final String INFO_ASSAY_DETECTION_STATUS_NORMAL = DGlobal.GetInstance().getAppContext().getString(R.string
 																													  .assay_detection_status_normal);
-
-	private int m_ID = DataConfig.DEFAULT_VALUE;
+	private DAssayDetection mAssayDetection = null;
 
 	@OnClick(R.id.click_region_ll)
 	public void clickRegionLL(View v)
 	{
 		AssayDetectionHistoryInfoActivity acitvity = (AssayDetectionHistoryInfoActivity)m_view.getContext();
-		acitvity.getAssayDetectionHistoryInfoMsgHandler().go2AssayDetectionItemInfoPage(m_ID);
+		acitvity.getAssayDetectionHistoryInfoMsgHandler().go2AssayDetectionItemInfoPage(mAssayDetection.getID());
 	}
 
 
-	public ViewHolder(View view, int id)
+	public ViewHolder(View view)
 	{
 		m_view = view;
-		m_ID = id;
 		ButterKnife.bind(this, m_view);
 	}
 
 
 	public void initContent(DAssayDetection assayDetection)
 	{
-		if (assayDetection == null)
+		mAssayDetection = assayDetection;
+		if (mAssayDetection == null)
 		{
-			TipsDialog.GetInstance().setMsg("assayDetection == null");
-			TipsDialog.GetInstance().show();
 			return;
 		}
 
-		Calendar recordCalendar    = assayDetection.getRecordCalendar();
+		Calendar recordCalendar    = mAssayDetection.getRecordCalendar();
 		String   strRecoreCalendar = m_allSDF.format(recordCalendar.getTime());
 		m_recordDate.setText(strRecoreCalendar);
-
-		m_status.setText(INFO_ASSAY_DETECTION_STATUS_NORMAL);
 
 	}
 

@@ -29,12 +29,13 @@
 
 	<ImageView
 		android:id="@+id/welcome_text2"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="240dp"
+		android:layout_height="30dp"
 		android:layout_below="@+id/welcome_text1"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="20dp"
 		android:src="@drawable/activity_welcome_text2"
-		android:visibility="invisible"/>
+		android:visibility="invisible"
+		android:scaleType="fitXY"/>
 
 </RelativeLayout>

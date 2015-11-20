@@ -65,26 +65,74 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		String tmpScrValue = activity.getScrValue();
 		try
 		{
-			double tgValue = Double.valueOf(tmpTgValue);
+			double tgValue = 0;
+			if (!TextUtils.isEmpty(tmpTgValue))
+			{
+				tgValue = Double.valueOf(tmpTgValue);
+			}
 			event.setTgValue(tgValue);
-			double tchoValue = Double.valueOf(tmpTchoValue);
+
+			double tchoValue = 0;
+			if (!TextUtils.isEmpty(tmpTchoValue))
+			{
+				tchoValue = Double.valueOf(tmpTchoValue);
+			}
 			event.setTchoValue(tchoValue);
-			double lolcValue = Double.valueOf(tmpLolcValue);
+
+			double lolcValue = 0;
+			if (!TextUtils.isEmpty(tmpLolcValue))
+			{
+				lolcValue = Double.valueOf(tmpLolcValue);
+			}
 			event.setLolcValue(lolcValue);
-			double hdlcValue = Double.valueOf(tmpHdlcValue);
+
+			double hdlcValue = 0;
+			if (!TextUtils.isEmpty(tmpHdlcValue))
+			{
+				hdlcValue = Double.valueOf(tmpHdlcValue);
+			}
 			event.setHdlcValue(hdlcValue);
 
-			double atlValue = Double.valueOf(tmpAtlValue);
+			double atlValue = 0;
+			if (!TextUtils.isEmpty(tmpAtlValue))
+			{
+				atlValue = Double.valueOf(tmpAtlValue);
+			}
 			event.setAtlValue(atlValue);
-			double astValue = Double.valueOf(tmpAstValue);
+
+			double astValue = 0;
+			if (!TextUtils.isEmpty(tmpAstValue))
+			{
+				astValue = Double.valueOf(tmpAstValue);
+			}
 			event.setAstValue(astValue);
-			double ckValue = Double.valueOf(tmpCkValue);
+
+			double ckValue = 0;
+			if (!TextUtils.isEmpty(tmpCkValue))
+			{
+				ckValue = Double.valueOf(tmpCkValue);
+			}
 			event.setCkValue(ckValue);
-			double glucValue = Double.valueOf(tmpGlucValue);
+
+			double glucValue = 0;
+			if (!TextUtils.isEmpty(tmpGlucValue))
+			{
+				glucValue = Double.valueOf(tmpGlucValue);
+			}
 			event.setGluValue(glucValue);
-			double hba1cValue = Double.valueOf(tmpHba1cValue);
+
+			double hba1cValue = 0;
+			if (!TextUtils.isEmpty(tmpHba1cValue))
+			{
+				hba1cValue = Double.valueOf(tmpHba1cValue);
+			}
 			event.setHba1cValue(hba1cValue);
-			double srcValue = Double.valueOf(tmpScrValue);
+
+			double srcValue = 0;
+			if (!TextUtils.isEmpty(tmpScrValue))
+			{
+				srcValue = Double.valueOf(tmpScrValue);
+			}
 			event.setScrValue(srcValue);
 
 		}

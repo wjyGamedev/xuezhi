@@ -15,7 +15,6 @@ import com.module.widget.dialog.AsyncWaitDialog;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_page.msg_handler.AssayDetectionMsgHandler;
-import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import butterknife.Bind;
@@ -252,46 +251,46 @@ public class AssayDetectionActivity extends BaseActivity
 
 	private boolean check()
 	{
-		try
-		{
-			//血脂
-			if (!AssayDetectionConfig.checkTg(mTgValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkTcho(mTchoValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkLolc(mLolcValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkHdlc(mHdlcValue))
-				return false;
-
-			//生化
-			if (!AssayDetectionConfig.checkAtl(mAtlValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkAst(mAstValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkCk(mCkValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkGlu(mGlucValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkHba1c(mHba1cValue))
-				return false;
-
-			if (!AssayDetectionConfig.checkScr(mScrValue))
-				return false;
-
-		}
-		catch (NumberFormatException e)
-		{
-			popErrorDialog(e.toString());
-			return false;
-		}
+//		try
+//		{
+//			//血脂
+//			if (!AssayDetectionConfig.checkTg(mTgValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkTcho(mTchoValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkLolc(mLolcValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkHdlc(mHdlcValue))
+//				return false;
+//
+//			//生化
+//			if (!AssayDetectionConfig.checkAtl(mAtlValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkAst(mAstValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkCk(mCkValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkGlu(mGlucValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkHba1c(mHba1cValue))
+//				return false;
+//
+//			if (!AssayDetectionConfig.checkScr(mScrValue))
+//				return false;
+//
+//		}
+//		catch (NumberFormatException e)
+//		{
+//			popErrorDialog(e.toString());
+//			return false;
+//		}
 
 		return true;
 	}
