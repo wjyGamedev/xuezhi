@@ -65,7 +65,6 @@ public class MainActivity extends BaseActivity
 		init();
 		initUmengUpdate();
 		initXinge();
-		initAction();
 	}
 
 	@Override
@@ -179,6 +178,7 @@ public class MainActivity extends BaseActivity
 
 	private void updateContent()
 	{
+		initAction();
 		return;
 	}
 
