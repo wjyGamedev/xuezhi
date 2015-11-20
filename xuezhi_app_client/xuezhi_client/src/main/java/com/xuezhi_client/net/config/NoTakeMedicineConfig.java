@@ -21,6 +21,7 @@ public class NoTakeMedicineConfig
 	public final static String NO_TAKE_LIST = "no_take_list";
 	public final static String ID = "id";
 	public final static String UID = "uid";
+	public final static String MID = "mid";
 	public final static String PID = "pid";
 	public final static String NO_TAKE_DATE = "no_take_date";
 

@@ -30,7 +30,7 @@ import java.util.Date;
 public class DNoTakeMedicine implements Serializable
 {
 	private int      mID           = DataConfig.DEFAULT_VALUE;
-	private int      mUID           = DataConfig.DEFAULT_VALUE;
+	private int      mMID          = DataConfig.DEFAULT_VALUE;    //药品ID
 	private int mPID = DataConfig.DEFAULT_VALUE;    //药品提醒ID
 	private Calendar mTakeCalendar = Calendar.getInstance();    //服药时间
 
@@ -39,7 +39,7 @@ public class DNoTakeMedicine implements Serializable
 	public boolean serialization(JSONObject response) throws JSONException, ParseException
 	{
 		mID = response.getInt(NoTakeMedicineConfig.ID);
-		mUID = response.getInt(NoTakeMedicineConfig.UID);
+		mMID = response.getInt(NoTakeMedicineConfig.MID);
 		mPID = response.getInt(NoTakeMedicineConfig.PID);
 		String tmpTakeDate = response.getString(NoTakeMedicineConfig.NO_TAKE_DATE);
 		Date   takeDate       = m_allSDF.parse(tmpTakeDate);
@@ -53,9 +53,9 @@ public class DNoTakeMedicine implements Serializable
 		return mID;
 	}
 
-	public int getUID()
+	public int getMID()
 	{
-		return mUID;
+		return mMID;
 	}
 
 	public int getPID()
