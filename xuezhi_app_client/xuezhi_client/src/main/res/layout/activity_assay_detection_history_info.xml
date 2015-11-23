@@ -19,7 +19,7 @@
 		android:id="@+id/history_region_fl"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_marginTop="10dp"
+		android:layout_marginTop="@dimen/widget_size_10dp"
 		android:orientation="vertical"
 		android:visibility="visible"
 		android:layout_weight="1">
@@ -29,9 +29,9 @@
 	<RadioGroup
 		android:id="@+id/history_tabs_rg"
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
+		android:layout_height="@dimen/widget_size_50dp"
 		android:orientation="horizontal"
-		android:paddingTop="2.5dp"
+		android:paddingTop="@dimen/widget_size_2.5dp"
 		android:visibility="visible">
 
 		<RadioButton

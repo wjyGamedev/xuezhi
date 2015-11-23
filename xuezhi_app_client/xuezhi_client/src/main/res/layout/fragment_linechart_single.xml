@@ -19,8 +19,8 @@
 		<!--<TextView-->
 			<!--android:layout_width="wrap_content"-->
 			<!--android:layout_height="wrap_content"-->
-			<!--android:layout_marginLeft="15dp"-->
-			<!--android:layout_marginRight="5dp"-->
+			<!--android:layout_marginLeft="@dimen/widget_size_15dp"-->
+			<!--android:layout_marginRight="@dimen/widget_size_5dp"-->
 			<!--android:layout_weight="1"-->
 			<!--android:gravity="left"-->
 			<!--android:text="X单位：年/月/日"-->
@@ -31,8 +31,8 @@
 		<!--<TextView-->
 			<!--android:layout_width="wrap_content"-->
 			<!--android:layout_height="wrap_content"-->
-			<!--android:layout_marginLeft="15dp"-->
-			<!--android:layout_marginRight="5dp"-->
+			<!--android:layout_marginLeft="@dimen/widget_size_15dp"-->
+			<!--android:layout_marginRight="@dimen/widget_size_5dp"-->
 			<!--android:layout_weight="1"-->
 			<!--android:gravity="left"-->
 			<!--android:text="Y轴单位：mmol/L"-->
@@ -51,8 +51,8 @@
 			android:id="@+id/seekBarX"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
+			android:layout_marginLeft="@dimen/widget_size_15dp"
+			android:layout_marginRight="@dimen/widget_size_5dp"
 			android:layout_weight="1"
 			android:max="200"/>
 
@@ -60,7 +60,7 @@
 			android:id="@+id/tvXMax"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:layout_marginRight="15dp"
+			android:layout_marginRight="@dimen/widget_size_15dp"
 			android:gravity="center"
 			android:text="X轴缩放"
 			android:textAppearance="?android:attr/textAppearanceMedium"/>
@@ -77,8 +77,8 @@
 			android:id="@+id/seekBarY"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="15dp"
-			android:layout_marginRight="5dp"
+			android:layout_marginLeft="@dimen/widget_size_15dp"
+			android:layout_marginRight="@dimen/widget_size_5dp"
 			android:layout_weight="1"
 			android:max="500"/>
 
@@ -86,7 +86,7 @@
 			android:id="@+id/tvYMax"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:layout_marginRight="15dp"
+			android:layout_marginRight="@dimen/widget_size_15dp"
 			android:gravity="center"
 			android:text="Y轴缩放"
 			android:textAppearance="?android:attr/textAppearanceMedium"/>

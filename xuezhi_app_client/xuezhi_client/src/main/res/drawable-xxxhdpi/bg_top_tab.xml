@@ -5,7 +5,7 @@
 			<item>
 				<shape>
 					<solid android:color="@color/main_color" />
-					<padding android:left="1dp" android:top="1dp" android:right="1dp"/>
+					<padding android:left="@dimen/widget_size_1dp" android:top="@dimen/widget_size_1dp" android:right="@dimen/widget_size_1dp"/>
 				</shape>
 			</item>
 			<item android:drawable="@color/white" />
@@ -16,7 +16,7 @@
 			<item>
 				<shape>
 					<solid android:color="@color/main_color" />
-					<padding android:bottom="1dp" />
+					<padding android:bottom="@dimen/widget_size_1dp" />
 				</shape>
 			</item>
 			<item android:drawable="@color/umeng_fb_gray" />
@@ -30,7 +30,7 @@
 	<!--<item>-->
 	<!--<shape>-->
 	<!--<solid android:color="@color/main_color"/>-->
-	<!--<padding android:bottom="0.5dp"/>-->
+	<!--<padding android:bottom="@dimen/widget_size_0.5dp"/>-->
 	<!--</shape>-->
 	<!--</item>-->
 	<!--<item android:color="@color/mask" />-->
@@ -41,7 +41,7 @@
 	<!--<item>-->
 	<!--<shape>-->
 	<!--<solid android:color="@color/main_color"/>-->
-	<!--<padding android:left="1.0dp" android:right="1.0dp" android:top="1.0dp"/>-->
+	<!--<padding android:left="@dimen/widget_size_1dp" android:right="@dimen/widget_size_1dp" android:top="@dimen/widget_size_1dp"/>-->
 	<!--</shape>-->
 	<!--</item>-->
 	<!--<item android:color="@color/white" />-->

@@ -5,7 +5,7 @@
 			<item>
 				<shape>
 					<solid android:color="@color/main_color"/>
-					<corners android:radius="10dp"/>
+					<corners android:radius="@dimen/widget_size_10dp"/>
 				</shape>
 			</item>
 		</layer-list>
@@ -15,7 +15,7 @@
 			<item>
 				<shape>
 					<solid android:color="@color/grey"/>
-					<corners android:radius="10dp"/>
+					<corners android:radius="@dimen/widget_size_10dp"/>
 				</shape>
 			</item>
 		</layer-list>

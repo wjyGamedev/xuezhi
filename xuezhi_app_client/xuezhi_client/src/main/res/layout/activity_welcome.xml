@@ -13,7 +13,7 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="160dp"
+		android:layout_marginTop="@dimen/widget_size_160dp"
 		android:src="@drawable/activity_welcome_icon"
 		android:visibility="invisible"/>
 
@@ -23,7 +23,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/welcome_icon"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="20dp"
+		android:layout_marginTop="@dimen/widget_size_20dp"
 		android:text="血脂时间"
 		android:textSize="@dimen/font_size_35sp"
 		android:textStyle="bold"

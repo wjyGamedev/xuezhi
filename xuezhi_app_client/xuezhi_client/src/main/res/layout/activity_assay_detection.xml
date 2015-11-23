@@ -23,7 +23,7 @@
 		<RadioGroup
 			android:id="@+id/func_click_region_rgrp"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
+			android:layout_height="@dimen/widget_size_50dp"
 			android:orientation="horizontal">
 
 			<RadioButton

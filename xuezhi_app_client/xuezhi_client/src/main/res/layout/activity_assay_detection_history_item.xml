@@ -26,7 +26,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="vertical">
 
 				<include layout="@layout/item_dividing_line_horizontal"/>
@@ -36,15 +36,15 @@
 					android:layout_height="wrap_content"
 					android:background="@color/white"
 					android:orientation="horizontal"
-					android:paddingLeft="15dp"
+					android:paddingLeft="@dimen/widget_size_15dp"
 
-					android:paddingRight="15dp">
+					android:paddingRight="@dimen/widget_size_15dp">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:layout_weight="1"
 						android:text="@string/assay_detection_page_recording_time_text"
 						android:textSize="@dimen/font_size_20sp"
@@ -54,8 +54,8 @@
 						android:id="@+id/record_time_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:text="2015-10-20  23:00:00"
 						android:textSize="@dimen/font_size_20sp"/>
 
@@ -68,8 +68,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="20dp"
-				android:layout_marginTop="10dp"
+				android:layout_marginLeft="@dimen/widget_size_20dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:gravity="center"
 				android:text="@string/assay_detection_blood_lipid_title_text"
 				android:textColor="@color/text_color_gray"
@@ -78,7 +78,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical">
 
@@ -87,9 +87,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -102,16 +102,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/tg_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -131,9 +131,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -146,16 +146,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/tcho_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -176,9 +176,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -191,16 +191,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/lolc_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -221,10 +221,10 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="10dp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginBottom="@dimen/widget_size_10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -237,16 +237,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/hdlc_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -272,8 +272,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="20dp"
-				android:layout_marginTop="10dp"
+				android:layout_marginLeft="@dimen/widget_size_20dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:gravity="center"
 				android:text="@string/assay_detection_biochemical_title_text"
 				android:textColor="@color/text_color_gray"
@@ -282,7 +282,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical">
 
@@ -291,9 +291,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -306,16 +306,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/atl_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -336,9 +336,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -351,16 +351,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/ast_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -381,9 +381,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -396,16 +396,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/ck_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -426,9 +426,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -441,16 +441,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/glu_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -471,9 +471,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -486,16 +486,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/hba1c_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"
@@ -516,10 +516,10 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="10dp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginBottom="@dimen/widget_size_10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="vertical">
 
 					<TextView
@@ -532,16 +532,16 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="20dp"
-						android:layout_marginRight="20dp"
+						android:layout_marginLeft="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_20dp"
 						android:orientation="horizontal">
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/scr_et"
 							android:layout_width="match_parent"
-							android:layout_height="35dp"
-							android:layout_marginLeft="40dp"
-							android:layout_marginRight="5dp"
+							android:layout_height="@dimen/widget_size_35dp"
+							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
 							android:focusable="false"

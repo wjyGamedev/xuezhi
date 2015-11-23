@@ -21,7 +21,7 @@
 				android:id="@+id/atl_click_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -34,9 +34,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -49,8 +49,8 @@
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/atl_et"
 						android:layout_width="match_parent"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"
@@ -73,7 +73,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -86,9 +86,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -100,9 +100,9 @@
 
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/ast_et"
-						android:layout_width="40dp"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_40dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"
@@ -124,7 +124,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -137,9 +137,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -151,9 +151,9 @@
 
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/ck_et"
-						android:layout_width="40dp"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_40dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"
@@ -175,7 +175,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -188,9 +188,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -202,9 +202,9 @@
 
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/glu_et"
-						android:layout_width="40dp"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_40dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"
@@ -226,7 +226,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -239,9 +239,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -253,9 +253,9 @@
 
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/hba1c_et"
-						android:layout_width="40dp"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_40dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"
@@ -278,7 +278,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:orientation="horizontal">
 
 				<!--<HorizontalScrollView-->
@@ -291,9 +291,9 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="@dimen/font_size_50sp"
-					android:layout_marginLeft="20dp"
-					android:layout_marginRight="20dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginRight="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
@@ -305,9 +305,9 @@
 
 					<com.module.widget.lineedittext.LineEditText
 						android:id="@+id/scr_et"
-						android:layout_width="40dp"
-						android:layout_height="35dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_40dp"
+						android:layout_height="@dimen/widget_size_35dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:layout_weight="1"
 						android:background="@null"
 						android:inputType="number|numberDecimal"

@@ -18,8 +18,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		android:paddingBottom="5dp"
-		android:layout_marginBottom="20dp"
+		android:paddingBottom="@dimen/widget_size_5dp"
+		android:layout_marginBottom="@dimen/widget_size_20dp"
 		/>
 
 	<fragment

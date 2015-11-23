@@ -8,13 +8,13 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="48dp"></LinearLayout>
+		android:layout_height="@dimen/widget_size_48dp"></LinearLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="30dp"
-		android:layout_marginBottom="5dp"
-		android:layout_marginTop="5dp"
+		android:layout_height="@dimen/widget_size_30dp"
+		android:layout_marginBottom="@dimen/widget_size_5dp"
+		android:layout_marginTop="@dimen/widget_size_5dp"
 		android:gravity="center"
 		android:orientation="horizontal">
 
@@ -25,8 +25,8 @@
 
 			<ImageButton
 				android:id="@+id/left_arrow_ib"
-				android:layout_width="30dp"
-				android:layout_height="30dp"
+				android:layout_width="@dimen/widget_size_30dp"
+				android:layout_height="@dimen/widget_size_30dp"
 				android:layout_gravity="center_vertical"
 				android:background="@drawable/arrow_left"/>
 
@@ -35,15 +35,15 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
-				android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
+				android:layout_marginLeft="@dimen/widget_size_5dp"
+				android:layout_marginRight="@dimen/widget_size_5dp"
 				android:text="@string/assay_detection_lol_c_title_text"
 				android:textSize="@dimen/font_size_20sp"/>
 
 			<ImageButton
 				android:id="@+id/right_arrow_ib"
-				android:layout_width="30dp"
-				android:layout_height="30dp"
+				android:layout_width="@dimen/widget_size_30dp"
+				android:layout_height="@dimen/widget_size_30dp"
 				android:layout_gravity="center_vertical"
 				android:background="@drawable/arrow_right"/>
 
@@ -63,86 +63,86 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:layout_marginBottom="5dp"
+		android:layout_marginBottom="@dimen/widget_size_5dp"
 		android:orientation="horizontal">
 
 		<RadioButton
 			android:id="@+id/point_1_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_2_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_3_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_4_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_5_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_6_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_7_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_8_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_9_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
 		<RadioButton
 			android:id="@+id/point_10_rb"
 			style="@style/tick_radio_button_style"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
@@ -150,6 +150,6 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="48dp"></LinearLayout>
+		android:layout_height="@dimen/widget_size_48dp"></LinearLayout>
 
 </LinearLayout>

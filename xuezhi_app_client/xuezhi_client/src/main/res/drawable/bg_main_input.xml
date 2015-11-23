@@ -4,17 +4,17 @@
     <item android:state_focused="false">
         <shape>
             <solid android:color="@android:color/white" />
-            <stroke android:width="1dp" android:color="@color/main_color" />
-            <padding android:left="10dp" android:top="5dp" android:right="10dp" android:bottom="5dp" />
-            <corners android:radius="3dp" />
+            <stroke android:width="@dimen/widget_size_1dp" android:color="@color/main_color" />
+            <padding android:left="@dimen/widget_size_10dp" android:top="@dimen/widget_size_5dp" android:right="@dimen/widget_size_10dp" android:bottom="@dimen/widget_size_5dp" />
+            <corners android:radius="@dimen/widget_size_3dp" />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape>
             <solid android:color="@android:color/white" />
-            <stroke android:width="1dp" android:color="@color/main_color" />
-            <padding android:left="10dp" android:top="5dp" android:right="10dp" android:bottom="5dp" />
-            <corners android:radius="3dp" />
+            <stroke android:width="@dimen/widget_size_1dp" android:color="@color/main_color" />
+            <padding android:left="@dimen/widget_size_10dp" android:top="@dimen/widget_size_5dp" android:right="@dimen/widget_size_10dp" android:bottom="@dimen/widget_size_5dp" />
+            <corners android:radius="@dimen/widget_size_3dp" />
         </shape>
     </item>
 </selector>

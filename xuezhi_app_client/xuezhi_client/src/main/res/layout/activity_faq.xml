@@ -26,15 +26,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q1"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -49,10 +49,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a1"/>
 
 			</LinearLayout>
@@ -60,15 +60,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q2"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -83,10 +83,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a2"/>
 
 			</LinearLayout>
@@ -94,15 +94,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q3"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -117,10 +117,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a3"/>
 
 			</LinearLayout>
@@ -128,15 +128,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q4"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -151,10 +151,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a4"/>
 
 			</LinearLayout>
@@ -162,15 +162,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q5"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -185,10 +185,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a5"/>
 
 			</LinearLayout>
@@ -196,15 +196,15 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="15dp">
+				android:layout_marginTop="@dimen/widget_size_15dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_q6"
 					android:textColor="@color/main_color"
 					android:textStyle="bold"/>
@@ -219,10 +219,10 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="30dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_30dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:text="@string/faq_a6"/>
 
 			</LinearLayout>

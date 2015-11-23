@@ -15,7 +15,7 @@
 	<!--<LinearLayout-->
 		<!--android:layout_width="match_parent"-->
 		<!--android:layout_height="wrap_content"-->
-		<!--android:layout_margin="10dp"-->
+		<!--android:layout_margin="@dimen/widget_size_10dp"-->
 		<!--android:gravity="center"-->
 		<!--android:orientation="horizontal">-->
 
@@ -41,7 +41,7 @@
 		<RadioGroup
 			android:id="@+id/func_click_region_rgrp"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
+			android:layout_height="@dimen/widget_size_50dp"
 			android:orientation="horizontal">
 
 			<RadioButton
@@ -74,7 +74,7 @@
 
 		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
+			android:layout_height="@dimen/widget_size_50dp"
 			android:orientation="horizontal">
 
 			<LinearLayout
@@ -97,12 +97,12 @@
 					android:id="@+id/taken_arrow_region_fl"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="5dp">
+					android:layout_marginLeft="@dimen/widget_size_5dp">
 
 					<ImageView
 						android:id="@+id/taken_arrow_iv"
-						android:layout_width="30dp"
-						android:layout_height="30dp"
+						android:layout_width="@dimen/widget_size_30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center_vertical|right"
 						android:src="@drawable/bg_have_taken_num"/>
 
@@ -139,12 +139,12 @@
 					android:id="@+id/no_taken_region_fl"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="5dp">
+					android:layout_marginLeft="@dimen/widget_size_5dp">
 
 					<ImageView
 						android:id="@+id/no_taken_arrow_iv"
-						android:layout_width="30dp"
-						android:layout_height="30dp"
+						android:layout_width="@dimen/widget_size_30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center_vertical|right"
 						android:src="@drawable/bg_not_taken_num"/>
 
@@ -180,7 +180,7 @@
 			android:background="@color/white"
 			android:choiceMode="singleChoice"
 			android:divider="@color/divider_color"
-			android:dividerHeight="0.100000024dp"
+			android:dividerHeight="@dimen/widget_size_0.100000024dp"
 			android:listSelector="@drawable/bg_btn_translucent"
 			android:scrollbars="none"/>
 

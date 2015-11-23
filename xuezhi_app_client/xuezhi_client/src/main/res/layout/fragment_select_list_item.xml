@@ -13,8 +13,8 @@
 		android:layout_weight="1.0"
 		android:background="@drawable/bg_btn_city_selector"
 		android:gravity="center"
-		android:paddingBottom="8dp"
-		android:paddingTop="8dp"
+		android:paddingBottom="@dimen/widget_size_8dp"
+		android:paddingTop="@dimen/widget_size_8dp"
 		android:textColor="@drawable/city_btn_color"
 		android:textSize="@dimen/font_size_14sp"
 		android:visibility="visible"/>

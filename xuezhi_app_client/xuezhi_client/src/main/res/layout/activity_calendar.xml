@@ -43,23 +43,23 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:layout_marginTop="5dp"
-						android:layout_marginBottom="5dp"
-						android:layout_marginLeft="40dp"
+						android:layout_marginTop="@dimen/widget_size_5dp"
+						android:layout_marginBottom="@dimen/widget_size_5dp"
+						android:layout_marginLeft="@dimen/widget_size_40dp"
 						android:orientation="horizontal">
 
 						<ImageView
-							android:layout_width="30dp"
-							android:layout_height="30dp"
+							android:layout_width="@dimen/widget_size_30dp"
+							android:layout_height="@dimen/widget_size_30dp"
 							android:src="@drawable/bg_have_taken_num"/>
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:layout_marginLeft="10dp"
+							android:layout_marginLeft="@dimen/widget_size_10dp"
 							android:text="已完成当天全部用药"
 							android:gravity="center_vertical"
-							android:textSize="20dp"/>
+							android:textSize="@dimen/widget_size_20dp"/>
 
 					</LinearLayout>
 
@@ -67,23 +67,23 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:layout_marginTop="5dp"
-						android:layout_marginBottom="15dp"
-						android:layout_marginLeft="40dp"
+						android:layout_marginTop="@dimen/widget_size_5dp"
+						android:layout_marginBottom="@dimen/widget_size_15dp"
+						android:layout_marginLeft="@dimen/widget_size_40dp"
 						android:orientation="horizontal">
 
 						<ImageView
-							android:layout_width="30dp"
-							android:layout_height="30dp"
+							android:layout_width="@dimen/widget_size_30dp"
+							android:layout_height="@dimen/widget_size_30dp"
 							android:src="@drawable/bg_not_taken_num"/>
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:layout_marginLeft="10dp"
+							android:layout_marginLeft="@dimen/widget_size_10dp"
 							android:text="未完成当天全部用药"
 							android:gravity="center_vertical"
-							android:textSize="20dp"/>
+							android:textSize="@dimen/widget_size_20dp"/>
 
 					</LinearLayout>
 
@@ -95,10 +95,10 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginLeft="50dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginBottom="@dimen/widget_size_5dp"
+					android:layout_marginLeft="@dimen/widget_size_50dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_5dp"
 					android:orientation="horizontal"
 					android:visibility="gone">
 
@@ -111,9 +111,9 @@
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
-						android:layout_width="20dp"
-						android:layout_height="20dp"
-						android:layout_marginRight="5dp"
+						android:layout_width="@dimen/widget_size_20dp"
+						android:layout_height="@dimen/widget_size_20dp"
+						android:layout_marginRight="@dimen/widget_size_5dp"
 						android:src="@mipmap/ic_launcher"/>
 
 					<TextView
@@ -133,16 +133,16 @@
 					android:id="@+id/selected_day_region_ll"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="10dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginTop="10dp"
+					android:layout_marginBottom="@dimen/widget_size_10dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="10dp"
+						android:layout_marginLeft="@dimen/widget_size_10dp"
 						android:gravity="center"
 						android:text="@string/calendar_medication_details_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
@@ -160,14 +160,14 @@
 					<!--android:layout_width="wrap_content"-->
 					<!--android:layout_height="wrap_content"-->
 					<!--android:gravity="center"-->
-					<!--android:layout_marginRight="5dp"-->
+					<!--android:layout_marginRight="@dimen/widget_size_5dp"-->
 					<!--android:textSize="@dimen/font_size_20sp"-->
 					<!--android:text="@string/calendar_click_view_hint_text"/>-->
 
 					<ImageView
 						android:id="@+id/selected_day_taked_medicine_history_iv"
-						android:layout_width="16dp"
-						android:layout_height="16dp"
+						android:layout_width="@dimen/widget_size_16dp"
+						android:layout_height="@dimen/widget_size_16dp"
 						android:layout_gravity="center_vertical"
 						android:background="@drawable/img_right"/>
 

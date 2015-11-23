@@ -31,7 +31,7 @@
         android:layout_height="fill_parent"
         android:clickable="true"
         android:focusable="true"
-        android:paddingLeft="7dp" >
+        android:paddingLeft="@dimen/widget_size_7dp" >
 
         <LinearLayout
             android:id="@+id/umeng_common_notification_controller"
@@ -39,15 +39,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="@dimen/widget_size_3dp"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/umeng_common_rich_notification_continue"
-                android:layout_width="50dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/widget_size_50dp"
+                android:layout_height="@dimen/widget_size_25dp"
                 android:background="@drawable/umeng_common_gradient_orange"
                 android:singleLine="true"
                 android:text="@string/umeng_common_action_pause"
@@ -55,10 +55,10 @@
 
             <Button
                 android:id="@+id/umeng_common_rich_notification_cancel"
-                android:layout_width="50dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_width="@dimen/widget_size_50dp"
+                android:layout_height="@dimen/widget_size_25dp"
+                android:layout_marginLeft="@dimen/widget_size_2dp"
+                android:layout_marginRight="@dimen/widget_size_2dp"
                 android:background="@drawable/umeng_common_gradient_red"
                 android:singleLine="true"
                 android:text="@string/umeng_common_action_cancel"
@@ -74,7 +74,7 @@
             android:clickable="true"
             android:focusable="true"
             android:orientation="vertical"
-            android:paddingTop="10dp" >
+            android:paddingTop="@dimen/widget_size_10dp" >
 
             <TextView
                 android:id="@+id/umeng_common_title"
@@ -98,10 +98,10 @@
             android:id="@+id/umeng_common_progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
-            android:layout_height="12dp"
+            android:layout_height="@dimen/widget_size_12dp"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="8dp"
-            android:paddingRight="25dp" />
+            android:paddingBottom="@dimen/widget_size_8dp"
+            android:paddingRight="@dimen/widget_size_25dp" />
     </RelativeLayout>
 
 </LinearLayout>

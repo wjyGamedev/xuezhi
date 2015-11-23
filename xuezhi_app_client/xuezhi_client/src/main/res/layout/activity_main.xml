@@ -38,10 +38,10 @@
 	<RadioGroup
 		android:id="@+id/tabs_rg"
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
+		android:layout_height="@dimen/widget_size_50dp"
 		android:background="#ffffffff"
 		android:orientation="horizontal"
-		android:paddingTop="2.5dp"
+		android:paddingTop="@dimen/widget_size_2.5dp"
 		android:visibility="visible">
 
 		<RadioButton

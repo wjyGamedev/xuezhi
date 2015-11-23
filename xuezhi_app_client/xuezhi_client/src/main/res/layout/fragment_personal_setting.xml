@@ -19,7 +19,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical"
 				android:id="@+id/loginout_region_ll">
@@ -29,16 +29,16 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal"
 					android:id="@+id/loginout_inner_region_ll">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="150******56"
@@ -48,9 +48,9 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
-						android:layout_marginRight="30dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
+						android:layout_marginRight="@dimen/widget_size_30dp"
 						android:text="退出登录"
 						android:textSize="@dimen/font_size_18sp"
 						android:id="@+id/loginout_tv"/>
@@ -64,7 +64,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical"
 				android:id="@+id/risk_assessment_region_ll">
@@ -74,24 +74,24 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="风险评估："
 						android:textSize="@dimen/font_size_18sp"/>
 
 					<ImageView
-						android:layout_width="20dp"
-						android:layout_height="20dp"
+						android:layout_width="@dimen/widget_size_20dp"
+						android:layout_height="@dimen/widget_size_20dp"
 						android:layout_gravity="center"
 						android:background="@drawable/img_right"/>
 
@@ -103,7 +103,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical"
 				android:id="@+id/user_procotal_region_ll">
@@ -113,23 +113,23 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="常见问题："
 						android:textSize="@dimen/font_size_18sp"/>
 
 					<ImageView
-						android:layout_width="20dp"
-						android:layout_height="20dp"
+						android:layout_width="@dimen/widget_size_20dp"
+						android:layout_height="@dimen/widget_size_20dp"
 						android:layout_gravity="center"
 						android:background="@drawable/img_right"/>
 

@@ -21,11 +21,11 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:orientation="vertical"
-			android:padding="15dp">
+			android:padding="@dimen/widget_size_15dp">
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="44dp"
+				android:layout_height="@dimen/widget_size_44dp"
 				android:orientation="horizontal">
 
 				<EditText
@@ -43,7 +43,7 @@
 					android:id="@+id/verification_btn"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:layout_marginLeft="10dp"
+					android:layout_marginLeft="@dimen/widget_size_10dp"
 					android:layout_weight="3.0"
 					android:background="@drawable/btn_main_fillet"
 					android:text="@string/rf_verification_context"
@@ -55,8 +55,8 @@
 			<EditText
 				android:id="@+id/auth_code_et"
 				android:layout_width="match_parent"
-				android:layout_height="44dp"
-				android:layout_marginTop="15dp"
+				android:layout_height="@dimen/widget_size_44dp"
+				android:layout_marginTop="@dimen/widget_size_15dp"
 				android:background="@drawable/bg_main_input"
 				android:hint="验证码"
 				android:inputType="numberSigned"
@@ -65,8 +65,8 @@
 			<Button
 				android:id="@+id/register_btn"
 				android:layout_width="match_parent"
-				android:layout_height="44dp"
-				android:layout_marginTop="10dp"
+				android:layout_height="@dimen/widget_size_44dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@drawable/btn_main_fillet"
 				android:text="注册"
 				android:textColor="#ffffffff"

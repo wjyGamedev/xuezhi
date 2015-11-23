@@ -14,7 +14,7 @@
 		<Button
 			android:id="@+id/common_bottom_btn"
 			android:layout_width="match_parent"
-			android:layout_height="48dp"
+			android:layout_height="@dimen/widget_size_48dp"
 			android:layout_weight="1"
 			android:background="@drawable/bg_btn_main_color"
 			android:text="@string/goto_mian_btn_text"
@@ -34,7 +34,7 @@
 			<Button
 				android:id="@+id/common_bottom_btn_2"
 				android:layout_width="match_parent"
-				android:layout_height="48dp"
+				android:layout_height="@dimen/widget_size_48dp"
 				android:background="@drawable/bg_btn_main_color"
 				android:text="@string/goto_mian_btn_text"
 				android:textColor="@color/white"
@@ -55,7 +55,7 @@
 			<Button
 				android:id="@+id/common_bottom_btn_3"
 				android:layout_width="match_parent"
-				android:layout_height="48dp"
+				android:layout_height="@dimen/widget_size_48dp"
 				android:background="@drawable/bg_btn_main_color"
 				android:text="@string/goto_mian_btn_text"
 				android:textColor="@color/white"

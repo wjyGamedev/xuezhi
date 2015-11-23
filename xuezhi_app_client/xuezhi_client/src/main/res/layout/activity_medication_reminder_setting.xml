@@ -29,7 +29,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical">
 
@@ -38,16 +38,16 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:layout_weight="1"
 						android:text="@string/medication_reminder_alert_state_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
@@ -55,8 +55,8 @@
 					<CheckBox
 						android:id="@+id/reminder_state_cb"
 						style="@style/drug_stock_add_radio_button_style"
-						android:layout_width="80dp"
-						android:layout_height="30dp"
+						android:layout_width="@dimen/widget_size_80dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center"
 						android:background="@drawable/bg_radio_button_drug_stock_add"
 						android:checked="true"
@@ -75,7 +75,7 @@
 				android:id="@+id/reminder_time_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical">
 
@@ -84,16 +84,16 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:layout_weight="1"
 						android:text="@string/medication_reminder_alert_time_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
@@ -103,15 +103,15 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginRight="10dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginRight="@dimen/widget_size_10dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:hint="@string/click_select_hint_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
-						android:layout_width="20dp"
-						android:layout_height="20dp"
+						android:layout_width="@dimen/widget_size_20dp"
+						android:layout_height="@dimen/widget_size_20dp"
 						android:layout_gravity="center"
 						android:background="@drawable/img_down"/>
 
@@ -124,7 +124,7 @@
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="20dp">
+				android:layout_height="@dimen/widget_size_20dp">
 
 			</LinearLayout>
 

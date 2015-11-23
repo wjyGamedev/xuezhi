@@ -13,7 +13,7 @@
 		android:background="#ffffffff"
 		android:choiceMode="singleChoice"
 		android:divider="@color/divider_color"
-		android:dividerHeight="0.100000024dp"
+		android:dividerHeight="@dimen/widget_size_0.100000024dp"
 		android:listSelector="@drawable/bg_btn_translucent"
 		android:scrollbars="none"/>
 </LinearLayout>

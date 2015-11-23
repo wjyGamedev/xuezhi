@@ -10,7 +10,7 @@
 	<LinearLayout
 		android:id="@+id/header_bg_ll"
 		android:layout_width="match_parent"
-		android:layout_height="93dp"
+		android:layout_height="@dimen/widget_size_93dp"
 		android:background="@color/mask"
 		android:clickable="true"
 		android:orientation="vertical"/>
@@ -23,7 +23,7 @@
 		android:background="#ffffffff"
 		android:gravity="center"
 		android:orientation="vertical"
-		android:padding="15dp">
+		android:padding="@dimen/widget_size_15dp">
 
 		<TimePicker
 			android:id="@+id/timePicker"
@@ -32,10 +32,10 @@
 			android:layout_gravity="center_horizontal"/>
 
 		<Button
-			android:layout_width="80dp"
-			android:layout_height="30dp"
+			android:layout_width="@dimen/widget_size_80dp"
+			android:layout_height="@dimen/widget_size_30dp"
 			android:layout_gravity="center_horizontal"
-			android:layout_marginTop="10dp"
+			android:layout_marginTop="@dimen/widget_size_10dp"
 			android:background="@drawable/corners_bg"
 			android:gravity="center"
 			android:text="@string/confirm_btn_text"

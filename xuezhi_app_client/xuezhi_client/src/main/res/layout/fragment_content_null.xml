@@ -16,8 +16,8 @@
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="3dp"
-		android:textSize="28dp"
+		android:layout_marginRight="@dimen/widget_size_3dp"
+		android:textSize="@dimen/widget_size_28dp"
 		android:text="您还没有添\n加检查记录"
 		android:layout_centerVertical="true"
 		android:layout_alignEnd="@+id/imageView"/>

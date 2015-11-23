@@ -24,7 +24,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/widget_size_10dp"
 				android:background="@color/white"
 				android:orientation="vertical">
 
@@ -32,16 +32,16 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="35dp"
+						android:layout_marginLeft="@dimen/widget_size_35dp"
 						android:text="@string/name_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
@@ -49,15 +49,15 @@
 					<!--android:layout_width="match_parent"-->
 					<!--android:layout_height="wrap_content"-->
 					<!--android:layout_gravity="center"-->
-					<!--android:layout_marginRight="50dp"-->
+					<!--android:layout_marginRight="@dimen/widget_size_50dp"-->
 					<!--android:hint="@string/click_fill_hint_text"-->
 					<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 					<com.module.widget.lineedittext.LineEditText
 						android:layout_width="match_parent"
-						android:layout_height="30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center"
-						android:layout_marginRight="50dp"
+						android:layout_marginRight="@dimen/widget_size_50dp"
 						android:background="@null"
 						android:gravity="center"
 						android:hint="@string/click_fill_hint_text"
@@ -68,8 +68,8 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="vertical">
 
 					<include layout="@layout/item_dividing_line_horizontal_fine"/>
@@ -77,22 +77,22 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="35dp"
+						android:layout_marginLeft="@dimen/widget_size_35dp"
 						android:text="@string/gender_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:layout_width="match_parent"
-						android:layout_height="30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center"
 						android:layout_weight="1"
 						android:gravity="center"
@@ -100,10 +100,10 @@
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginRight="35dp"
+						android:layout_marginRight="@dimen/widget_size_35dp"
 						android:background="@drawable/img_down"/>
 
 				</LinearLayout>
@@ -111,8 +111,8 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="vertical">
 
 					<include layout="@layout/item_dividing_line_horizontal_fine"/>
@@ -120,24 +120,24 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginLeft="35dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginLeft="@dimen/widget_size_35dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:text="@string/age_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:layout_width="match_parent"
-						android:layout_height="30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center"
 						android:layout_weight="1"
 						android:gravity="center"
@@ -145,10 +145,10 @@
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginRight="35dp"
+						android:layout_marginRight="@dimen/widget_size_35dp"
 						android:background="@drawable/img_down"/>
 
 				</LinearLayout>
@@ -156,8 +156,8 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="vertical">
 
 					<include layout="@layout/item_dividing_line_horizontal_fine"/>
@@ -165,26 +165,26 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginBottom="10dp"
-						android:layout_marginLeft="35dp"
-						android:layout_marginTop="10dp"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
+						android:layout_marginLeft="@dimen/widget_size_35dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:text="@string/weight_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<com.module.widget.lineedittext.LineEditText
 						android:layout_width="match_parent"
-						android:layout_height="30dp"
+						android:layout_height="@dimen/widget_size_30dp"
 						android:layout_gravity="center"
-						android:layout_marginRight="35dp"
+						android:layout_marginRight="@dimen/widget_size_35dp"
 						android:background="@null"
 						android:gravity="center"
 						android:hint="@string/click_fill_hint_text"
@@ -195,8 +195,8 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="vertical">
 
 					<include layout="@layout/item_dividing_line_horizontal_fine"/>
@@ -204,99 +204,99 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="50dp"
+						android:layout_marginLeft="@dimen/widget_size_50dp"
 						android:text="@string/disease_A_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginLeft="25dp"
+						android:layout_marginLeft="@dimen/widget_size_25dp"
 						android:background="@drawable/bg_radio_button_tick"/>
 
 				</LinearLayout>
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="50dp"
+						android:layout_marginLeft="@dimen/widget_size_50dp"
 						android:text="@string/disease_B_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginLeft="25dp"
+						android:layout_marginLeft="@dimen/widget_size_25dp"
 						android:background="@drawable/bg_radio_button_tick"/>
 
 				</LinearLayout>
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="50dp"
+						android:layout_marginLeft="@dimen/widget_size_50dp"
 						android:text="@string/disease_C_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginLeft="25dp"
+						android:layout_marginLeft="@dimen/widget_size_25dp"
 						android:background="@drawable/bg_radio_button_tick"/>
 				</LinearLayout>
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
-					android:layout_marginLeft="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_height="@dimen/widget_size_50dp"
+					android:layout_marginLeft="@dimen/widget_size_15dp"
+					android:layout_marginRight="@dimen/widget_size_15dp"
 					android:orientation="horizontal">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:layout_marginLeft="50dp"
+						android:layout_marginLeft="@dimen/widget_size_50dp"
 						android:text="@string/disease_D_title_text"
 						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
-						android:layout_width="25dp"
-						android:layout_height="25dp"
+						android:layout_width="@dimen/widget_size_25dp"
+						android:layout_height="@dimen/widget_size_25dp"
 						android:layout_gravity="center"
-						android:layout_marginLeft="25dp"
+						android:layout_marginLeft="@dimen/widget_size_25dp"
 						android:background="@drawable/bg_radio_button_tick"/>
 
 				</LinearLayout>
