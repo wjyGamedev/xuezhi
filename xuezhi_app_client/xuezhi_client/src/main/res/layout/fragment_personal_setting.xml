@@ -42,7 +42,7 @@
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="150******56"
-						android:textSize="18sp"
+						android:textSize="@dimen/font_size_18sp"
 						android:id="@+id/loginout_tips_tv"/>
 
 					<TextView
@@ -52,7 +52,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_marginRight="30dp"
 						android:text="退出登录"
-						android:textSize="18sp"
+						android:textSize="@dimen/font_size_18sp"
 						android:id="@+id/loginout_tv"/>
 
 				</LinearLayout>
@@ -87,7 +87,7 @@
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="风险评估："
-						android:textSize="18sp"/>
+						android:textSize="@dimen/font_size_18sp"/>
 
 					<ImageView
 						android:layout_width="20dp"
@@ -125,7 +125,7 @@
 						android:gravity="left"
 						android:layout_weight="1"
 						android:text="常见问题："
-						android:textSize="18sp"/>
+						android:textSize="@dimen/font_size_18sp"/>
 
 					<ImageView
 						android:layout_width="20dp"

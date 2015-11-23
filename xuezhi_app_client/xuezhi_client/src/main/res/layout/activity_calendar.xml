@@ -108,7 +108,7 @@
 						android:layout_gravity="center"
 						android:layout_weight="1"
 						android:text="图例说明："
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
 						android:layout_width="20dp"
@@ -122,7 +122,7 @@
 						android:layout_gravity="center"
 						android:layout_weight="1"
 						android:text="选中"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -145,7 +145,7 @@
 						android:layout_marginLeft="10dp"
 						android:gravity="center"
 						android:text="@string/calendar_medication_details_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/selected_day_taked_medicine_history_tv"
@@ -154,14 +154,14 @@
 						android:layout_weight="1"
 						android:gravity="center"
 						android:text="@string/calendar_medication_details_temp_date_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<!--<TextView-->
 					<!--android:layout_width="wrap_content"-->
 					<!--android:layout_height="wrap_content"-->
 					<!--android:gravity="center"-->
 					<!--android:layout_marginRight="5dp"-->
-					<!--android:textSize="20sp"-->
+					<!--android:textSize="@dimen/font_size_20sp"-->
 					<!--android:text="@string/calendar_click_view_hint_text"/>-->
 
 					<ImageView

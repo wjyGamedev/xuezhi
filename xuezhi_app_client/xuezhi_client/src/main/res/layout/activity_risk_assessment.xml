@@ -43,7 +43,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="35dp"
 						android:text="@string/name_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<!--<com.module.widget.lineedittext.LineEditTextEditText-->
 					<!--android:layout_width="match_parent"-->
@@ -51,7 +51,7 @@
 					<!--android:layout_gravity="center"-->
 					<!--android:layout_marginRight="50dp"-->
 					<!--android:hint="@string/click_fill_hint_text"-->
-					<!--android:textSize="20sp"/>-->
+					<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 					<com.module.widget.lineedittext.LineEditText
 						android:layout_width="match_parent"
@@ -61,7 +61,7 @@
 						android:background="@null"
 						android:gravity="center"
 						android:hint="@string/click_fill_hint_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -88,7 +88,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="35dp"
 						android:text="@string/gender_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:layout_width="match_parent"
@@ -97,7 +97,7 @@
 						android:layout_weight="1"
 						android:gravity="center"
 						android:hint="@string/click_select_hint_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
 						android:layout_width="25dp"
@@ -133,7 +133,7 @@
 						android:layout_marginLeft="35dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/age_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:layout_width="match_parent"
@@ -142,7 +142,7 @@
 						android:layout_weight="1"
 						android:gravity="center"
 						android:hint="@string/click_select_hint_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
 						android:layout_width="25dp"
@@ -178,7 +178,7 @@
 						android:layout_marginLeft="35dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/weight_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<com.module.widget.lineedittext.LineEditText
 						android:layout_width="match_parent"
@@ -188,7 +188,7 @@
 						android:background="@null"
 						android:gravity="center"
 						android:hint="@string/click_fill_hint_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -215,7 +215,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="50dp"
 						android:text="@string/disease_A_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
@@ -240,7 +240,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="50dp"
 						android:text="@string/disease_B_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
@@ -265,7 +265,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="50dp"
 						android:text="@string/disease_C_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"
@@ -289,7 +289,7 @@
 						android:layout_gravity="center"
 						android:layout_marginLeft="50dp"
 						android:text="@string/disease_D_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						style="@style/tick_radio_button_style"

@@ -55,7 +55,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:text="提醒状态："
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<CheckBox
 						android:id="@+id/drug_reminder_state_cb"
@@ -68,7 +68,7 @@
 						android:gravity="center"
 						android:text="开启"
 						android:textColor="@color/white"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -101,7 +101,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/drug_stock_add_drug_name_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/drug_stock_add_drug_name"
@@ -115,7 +115,7 @@
 						android:layout_weight="1"
 						android:gravity="right"
 						android:hint="@string/drug_stock_add_click_select_hint_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<ImageView
 						android:layout_width="20dp"
@@ -149,7 +149,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/drug_stock_add_drug_stock_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<EditText
 						android:id="@+id/drug_add_drug_stock_num_et"
@@ -166,7 +166,7 @@
 						android:hint="@string/drug_stock_add_click_fill_hint_text"
 						android:inputType="number"
 						android:singleLine="true"
-						android:textSize="20sp"
+						android:textSize="@dimen/font_size_20sp"
 						android:maxLength="7"/>
 
 					<TextView
@@ -175,7 +175,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="mg"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<!--<ImageView-->
 					<!--android:layout_width="20dp"-->
@@ -209,7 +209,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/drug_stock_add_drug_alert_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<EditText
 						android:id="@+id/drug_add_drug_alert_num_et"
@@ -226,7 +226,7 @@
 						android:hint="@string/drug_stock_add_click_fill_hint_text"
 						android:inputType="number"
 						android:singleLine="true"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/drug_add_drug_alert_unit_tv"
@@ -234,7 +234,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="mg"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<!--<ImageView-->
 					<!--android:layout_width="20dp"-->
@@ -269,7 +269,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/drug_stock_add_add_time_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/drug_add_date_tv"
@@ -281,7 +281,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:gravity="right"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -309,7 +309,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="@string/drug_stock_add_exhausted_time_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/drug_add_run_out_tv"
@@ -321,7 +321,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:gravity="right"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 

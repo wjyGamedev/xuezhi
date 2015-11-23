@@ -30,14 +30,14 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/medication_reminder_drug_time_title_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<TextView
 					android:id="@+id/taken_medicine_time_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="8:00"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 			</LinearLayout>
 
@@ -52,7 +52,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/medication_reminder_drug_name_title_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<TextView
 					android:id="@+id/name_tv"
@@ -60,7 +60,7 @@
 					android:layout_height="wrap_content"
 					android:singleLine="true"
 					android:text="@string/medication_reminder_temp_data_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 			</LinearLayout>
 
@@ -77,21 +77,21 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/medication_reminder_drug_dosage_title_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<TextView
 					android:id="@+id/dose_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/medication_reminder_temp_data_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<TextView
 					android:id="@+id/dose_unit_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/medicine_reminder_add_medicine_uint_default"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 			</LinearLayout>
 

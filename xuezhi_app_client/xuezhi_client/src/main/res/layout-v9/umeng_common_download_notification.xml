@@ -51,7 +51,7 @@
                 android:background="@drawable/umeng_common_gradient_orange"
                 android:singleLine="true"
                 android:text="@string/umeng_common_action_pause"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_size_12sp" />
 
             <Button
                 android:id="@+id/umeng_common_rich_notification_cancel"
@@ -62,7 +62,7 @@
                 android:background="@drawable/umeng_common_gradient_red"
                 android:singleLine="true"
                 android:text="@string/umeng_common_action_cancel"
-                android:textSize="12sp" />
+                android:textSize="@dimen/font_size_12sp" />
         </LinearLayout>
 
         <LinearLayout

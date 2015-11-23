@@ -37,7 +37,7 @@
 				android:gravity="center"
 				android:text="@string/assay_detection_blood_lipid_title_text"
 				android:textColor="@color/main_color"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<RadioButton
 				android:id="@+id/shenghua_rbtn"
@@ -50,7 +50,7 @@
 				android:gravity="center"
 				android:text="@string/assay_detection_biochemical_title_text"
 				android:textColor="@color/main_color"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 		</RadioGroup>
 

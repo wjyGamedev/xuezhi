@@ -30,7 +30,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:textColor="@color/text_color_gray"
-			android:textSize="14.0sp"/>
+			android:textSize="@dimen/font_size_14sp"/>
 
 		<TextView
 			android:id="@+id/more_content_tips"
@@ -38,7 +38,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="0.0"
 			android:textColor="@color/text_color_gray"
-			android:textSize="14.0sp"/>
+			android:textSize="@dimen/font_size_14sp"/>
 	</LinearLayout>
 	<!--</LinearLayout>-->
 	<!--</LinearLayout>-->

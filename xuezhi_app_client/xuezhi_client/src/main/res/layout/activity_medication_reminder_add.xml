@@ -50,7 +50,7 @@
 					android:layout_marginTop="10dp"
 					android:layout_weight="1"
 					android:text="@string/medication_reminder_alert_state_title_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<CheckBox
 					android:id="@+id/reminder_state_cb"
@@ -63,7 +63,7 @@
 					android:gravity="center"
 					android:text="开启"
 					android:textColor="@color/white"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 			</LinearLayout>
 

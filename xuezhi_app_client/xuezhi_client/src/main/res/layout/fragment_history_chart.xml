@@ -38,7 +38,7 @@
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
 				android:text="@string/assay_detection_lol_c_title_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<ImageButton
 				android:id="@+id/right_arrow_ib"

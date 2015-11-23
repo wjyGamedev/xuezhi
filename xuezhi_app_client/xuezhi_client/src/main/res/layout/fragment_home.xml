@@ -62,7 +62,7 @@
 					android:layout_marginLeft="15dp"
 					android:layout_marginTop="15dp"
 					android:text="@string/today_remind_title_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -115,7 +115,7 @@
 										android:layout_weight="1"
 										android:gravity="right"
 										android:text="@string/medication_time_title_text"
-										android:textSize="20sp"/>
+										android:textSize="@dimen/font_size_20sp"/>
 
 									<TextView
 										android:layout_width="match_parent"
@@ -124,7 +124,7 @@
 										android:layout_weight="1"
 										android:gravity="right"
 										android:text="@string/medication_name_title_text"
-										android:textSize="20sp"/>
+										android:textSize="@dimen/font_size_20sp"/>
 
 									<TextView
 										android:layout_width="match_parent"
@@ -132,7 +132,7 @@
 										android:layout_weight="1"
 										android:gravity="right"
 										android:text="@string/medication_dose_title_text"
-										android:textSize="20sp"/>
+										android:textSize="@dimen/font_size_20sp"/>
 
 								</LinearLayout>
 
@@ -149,7 +149,7 @@
 										android:layout_marginBottom="5dp"
 										android:layout_weight="1"
 										android:text="8:00"
-										android:textSize="20sp"/>
+										android:textSize="@dimen/font_size_20sp"/>
 
 									<TextView
 										android:id="@+id/medicine_name_tv"
@@ -159,7 +159,7 @@
 										android:layout_marginBottom="5dp"
 										android:layout_weight="1"
 										android:text="弹性酶"
-										android:textSize="20sp"/>
+										android:textSize="@dimen/font_size_20sp"/>
 
 									<LinearLayout
 										android:id="@+id/right_region_setting_width_ll"
@@ -175,7 +175,7 @@
 											android:layout_height="wrap_content"
 											android:layout_gravity="left"
 											android:text="20"
-											android:textSize="20sp"/>
+											android:textSize="@dimen/font_size_20sp"/>
 
 										<TextView
 											android:id="@+id/medicine_unit_tv"
@@ -183,7 +183,7 @@
 											android:layout_height="wrap_content"
 											android:layout_gravity="left"
 											android:text="mg"
-											android:textSize="20sp"/>
+											android:textSize="@dimen/font_size_20sp"/>
 
 									</LinearLayout>
 
@@ -233,7 +233,7 @@
 									android:gravity="center"
 									android:text="@string/take_medicine_wait"
 									android:textColor="@color/white"
-									android:textSize="20sp"/>
+									android:textSize="@dimen/font_size_20sp"/>
 
 							</LinearLayout>
 						</LinearLayout>
@@ -252,7 +252,7 @@
 								android:layout_weight="1"
 								android:gravity="center"
 								android:text="@string/take_medication_reminder_conent_none"
-								android:textSize="20sp"/>
+								android:textSize="@dimen/font_size_20sp"/>
 
 							<LinearLayout
 								android:id="@+id/right_func_region_ll"
@@ -308,7 +308,7 @@
 							android:layout_gravity="left"
 							android:layout_weight="1"
 							android:text="@string/medicine_not_waring_content"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<ImageView
 							android:id="@+id/medicine_reminder_iv"
@@ -371,7 +371,7 @@
 							android:layout_weight="1"
 							android:gravity="center"
 							android:text="@string/assay_detection_btn_text"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -401,7 +401,7 @@
 							android:layout_weight="1"
 							android:gravity="center"
 							android:text="@string/medication_reminder_btn_text"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -440,7 +440,7 @@
 							android:layout_weight="1"
 							android:gravity="center"
 							android:text="@string/drug_administration_btn_text"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -471,7 +471,7 @@
 							android:layout_weight="1"
 							android:gravity="center"
 							android:text="@string/calendar_btn_text"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 

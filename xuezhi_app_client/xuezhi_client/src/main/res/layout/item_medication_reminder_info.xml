@@ -22,13 +22,13 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/medication_reminder_drug_name_title_text"
-				android:textSize="16sp"/>
+				android:textSize="@dimen/font_size_16sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/medication_reminder_temp_data_text"
-				android:textSize="16sp"/>
+				android:textSize="@dimen/font_size_16sp"/>
 
 		</LinearLayout>
 
@@ -42,13 +42,13 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/medication_reminder_drug_dosage_title_text"
-				android:textSize="16sp"/>
+				android:textSize="@dimen/font_size_16sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/medication_reminder_temp_data_text"
-				android:textSize="16sp"/>
+				android:textSize="@dimen/font_size_16sp"/>
 
 		</LinearLayout>
 

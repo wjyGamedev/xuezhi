@@ -23,14 +23,14 @@
 		<!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
 		<!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
 		<!--&lt;!&ndash;android:text="日期："&ndash;&gt;-->
-		<!--&lt;!&ndash;android:textSize="20sp"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;android:textSize="@dimen/font_size_20sp"/>&ndash;&gt;-->
 
 		<!--<TextView-->
 			<!--android:id="@+id/date_tv"-->
 			<!--android:layout_width="wrap_content"-->
 			<!--android:layout_height="wrap_content"-->
 			<!--android:text="2015年11月11日"-->
-			<!--android:textSize="20sp"/>-->
+			<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 	<!--</LinearLayout>-->
 
@@ -55,7 +55,7 @@
 				android:gravity="center"
 				android:text=""
 				android:textColor="@color/main_color"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<RadioButton
 				android:id="@+id/no_taken_rbtn"
@@ -68,7 +68,7 @@
 				android:gravity="center"
 				android:text=""
 				android:textColor="@color/main_color"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 		</RadioGroup>
 
@@ -91,7 +91,7 @@
 					android:gravity="center"
 					android:text="已服用"
 					android:textColor="@color/main_color"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<FrameLayout
 					android:id="@+id/taken_arrow_region_fl"
@@ -113,7 +113,7 @@
 						android:layout_gravity="center"
 						android:text="99"
 						android:textColor="@color/white"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</FrameLayout>
 
@@ -133,7 +133,7 @@
 					android:gravity="center"
 					android:text="未服用"
 					android:textColor="#ff0000"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<FrameLayout
 					android:id="@+id/no_taken_region_fl"
@@ -155,7 +155,7 @@
 						android:layout_gravity="center"
 						android:text="99"
 						android:textColor="@color/white"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</FrameLayout>
 

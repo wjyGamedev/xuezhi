@@ -27,7 +27,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medication_reminder_drug_name_title_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:layout_width="match_parent"
@@ -39,7 +39,7 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_size_20sp"
 				android:id="@+id/medicine_name_tv"/>
 
 			<ImageView
@@ -74,7 +74,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medication_reminder_drug_dosage_title_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<EditText
 				android:layout_width="match_parent"
@@ -86,7 +86,7 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_input_hint_text"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_size_20sp"
 				android:id="@+id/rose_tv"
 				android:inputType="number|numberDecimal"
 				android:background="@null"/>
@@ -98,7 +98,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medicine_reminder_add_medicine_uint_default"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_size_20sp"
 				android:id="@+id/medicine_unit_tv"/>
 
 		</LinearLayout>
@@ -136,7 +136,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="注意事项："
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:layout_width="match_parent"
@@ -148,7 +148,7 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_note_default_text"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_size_20sp"
 				android:id="@+id/precautions_tv"/>
 
 		</LinearLayout>

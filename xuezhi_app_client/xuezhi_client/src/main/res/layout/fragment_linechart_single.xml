@@ -25,7 +25,7 @@
 			<!--android:gravity="left"-->
 			<!--android:text="X单位：年/月/日"-->
 			<!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-			<!--android:textSize="8sp"/>-->
+			<!--android:textSize="@dimen/font_size_8sp"/>-->
 
 
 		<!--<TextView-->
@@ -37,7 +37,7 @@
 			<!--android:gravity="left"-->
 			<!--android:text="Y轴单位：mmol/L"-->
 			<!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-			<!--android:textSize="8sp"/>-->
+			<!--android:textSize="@dimen/font_size_8sp"/>-->
 
 	<!--</LinearLayout>-->
 

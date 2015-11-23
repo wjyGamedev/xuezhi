@@ -47,7 +47,7 @@
 						android:layout_marginTop="10dp"
 						android:layout_weight="1"
 						android:text="@string/assay_detection_page_recording_time_text"
-						android:textSize="20sp"
+						android:textSize="@dimen/font_size_20sp"
 						/>
 
 					<TextView
@@ -57,7 +57,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_marginTop="10dp"
 						android:text="2015-10-20  23:00:00"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 				</LinearLayout>
 
@@ -73,7 +73,7 @@
 				android:gravity="center"
 				android:text="@string/assay_detection_blood_lipid_title_text"
 				android:textColor="@color/text_color_gray"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -97,7 +97,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_tg_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -123,7 +123,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_TG"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 				</LinearLayout>
@@ -141,7 +141,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_tcho_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -167,7 +167,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_TCHO"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -186,7 +186,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_lol_c_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -212,7 +212,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_LOLC"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -232,7 +232,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_hdl_c_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -258,7 +258,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_HDLC"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -277,7 +277,7 @@
 				android:gravity="center"
 				android:text="@string/assay_detection_biochemical_title_text"
 				android:textColor="@color/text_color_gray"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -301,7 +301,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_atl_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -327,7 +327,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_ATL"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -346,7 +346,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_ast_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -372,7 +372,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_AST"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -391,7 +391,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_ck_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -417,7 +417,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_CK"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -436,7 +436,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_glu_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -462,7 +462,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_GLU"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -481,7 +481,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_hba1c_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -507,7 +507,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_HBA1C"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 
@@ -527,7 +527,7 @@
 						android:layout_height="match_parent"
 						android:gravity="center"
 						android:text="@string/assay_detection_scr_title_text"
-						android:textSize="20sp"/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -554,7 +554,7 @@
 							android:layout_height="match_parent"
 							android:gravity="center"
 							android:text="@string/unit_SCR"
-							android:textSize="20sp"/>
+							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
 

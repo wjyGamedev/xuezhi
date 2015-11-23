@@ -48,7 +48,7 @@
 					android:background="@drawable/btn_main_fillet"
 					android:text="@string/rf_verification_context"
 					android:textColor="#ffffffff"
-					android:textSize="16.0sp"
+					android:textSize="@dimen/font_size_16sp"
 					/>
 			</LinearLayout>
 
@@ -70,7 +70,7 @@
 				android:background="@drawable/btn_main_fillet"
 				android:text="注册"
 				android:textColor="#ffffffff"
-				android:textSize="16.0sp" />
+				android:textSize="@dimen/font_size_16sp" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

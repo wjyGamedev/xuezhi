@@ -29,7 +29,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medication_reminder_drug_name_title_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:id="@+id/medicine_name_tv"
@@ -42,7 +42,7 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_select_hint_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<ImageView
 				android:layout_width="20dp"
@@ -77,7 +77,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medication_reminder_drug_num_per_day_title"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
 				android:layout_weight="1"
 				android:gravity="right"
 				android:text="@string/medication_reminder_drug_per_day"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:id="@+id/num_per_day_tv"
@@ -100,7 +100,7 @@
 				android:inputType="number"
 				android:maxLength="1"
 				android:text="一"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
 				android:layout_marginTop="10dp"
 				android:layout_marginRight="10dp"
 				android:text="@string/medication_reminder_drug_per_day_unit"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_size_20sp"
 				/>
 
 			<ImageView
@@ -146,7 +146,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medication_reminder_drug_dosage_title_text"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<EditText
 				android:id="@+id/rose_tv"
@@ -161,7 +161,7 @@
 				android:gravity="right"
 				android:hint="@string/medication_reminder_click_input_hint_text"
 				android:inputType="number|numberDecimal"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 			<TextView
 				android:id="@+id/medicine_unit_tv"
@@ -171,7 +171,7 @@
 				android:layout_marginBottom="10dp"
 				android:layout_marginTop="10dp"
 				android:text="@string/medicine_reminder_add_medicine_uint_default"
-				android:textSize="20sp"/>
+				android:textSize="@dimen/font_size_20sp"/>
 
 		</LinearLayout>
 
@@ -198,7 +198,7 @@
 					android:layout_marginBottom="10dp"
 					android:layout_marginTop="10dp"
 					android:text="注意事项："
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<TextView
 					android:id="@+id/precautions_tv"
@@ -211,7 +211,7 @@
 					android:layout_weight="1"
 					android:gravity="right"
 					android:hint="@string/medication_reminder_note_default_text"
-					android:textSize="20sp"/>
+					android:textSize="@dimen/font_size_20sp"/>
 
 			</LinearLayout>
 
@@ -249,7 +249,7 @@
 						<!--android:layout_marginTop="10dp"-->
 						<!--android:layout_weight="1"-->
 						<!--android:text="@string/medication_reminder_alert_time_1_title_text"-->
-						<!--android:textSize="20sp"/>-->
+						<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 					<!--<TextView-->
 						<!--android:id="@+id/reminder_time_1_tv"-->
@@ -260,7 +260,7 @@
 						<!--android:layout_marginRight="10dp"-->
 						<!--android:layout_marginTop="10dp"-->
 						<!--android:hint="@string/click_select_hint_text"-->
-						<!--android:textSize="20sp"/>-->
+						<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 					<!--<ImageView-->
 						<!--android:layout_width="20dp"-->
@@ -297,7 +297,7 @@
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:layout_weight="1"-->
 		<!--android:text="@string/medication_reminder_alert_time_1_title_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<TextView-->
 		<!--android:id="@+id/reminder_time_1_tv"-->
@@ -308,7 +308,7 @@
 		<!--android:layout_marginRight="10dp"-->
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:hint="@string/click_select_hint_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<ImageView-->
 		<!--android:layout_width="20dp"-->
@@ -342,7 +342,7 @@
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:layout_weight="1"-->
 		<!--android:text="@string/medication_reminder_alert_time_2_title_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<TextView-->
 		<!--android:id="@+id/reminder_time_2_tv"-->
@@ -353,7 +353,7 @@
 		<!--android:layout_marginRight="10dp"-->
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:hint="@string/click_select_hint_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<ImageView-->
 		<!--android:layout_width="20dp"-->
@@ -388,7 +388,7 @@
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:layout_weight="1"-->
 		<!--android:text="@string/medication_reminder_alert_time_3_title_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<TextView-->
 		<!--android:id="@+id/reminder_time_3_tv"-->
@@ -399,7 +399,7 @@
 		<!--android:layout_marginRight="10dp"-->
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:hint="@string/click_select_hint_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<ImageView-->
 		<!--android:layout_width="20dp"-->
@@ -433,7 +433,7 @@
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:layout_weight="1"-->
 		<!--android:text="@string/medication_reminder_alert_time_4_title_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<TextView-->
 		<!--android:id="@+id/reminder_time_4_tv"-->
@@ -444,7 +444,7 @@
 		<!--android:layout_marginRight="10dp"-->
 		<!--android:layout_marginTop="10dp"-->
 		<!--android:hint="@string/click_select_hint_text"-->
-		<!--android:textSize="20sp"/>-->
+		<!--android:textSize="@dimen/font_size_20sp"/>-->
 
 		<!--<ImageView-->
 		<!--android:layout_width="20dp"-->

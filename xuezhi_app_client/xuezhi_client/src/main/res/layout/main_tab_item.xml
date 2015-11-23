@@ -19,7 +19,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/main_tab_imgview"
 		android:layout_marginTop="2dp"
-		android:textSize="13sp"
+		android:textSize="@dimen/font_size_13sp"
 		android:layout_centerHorizontal="true"
 		android:text="Medium Text"
 		android:textColor="@android:color/holo_green_dark"

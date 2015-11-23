@@ -30,14 +30,14 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="记录时间："
-					android:textSize="16sp"/>
+					android:textSize="@dimen/font_size_16sp"/>
 
 				<TextView
 					android:id="@+id/assay_detection_record_date_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="2015年7月18日 10:00:00"
-					android:textSize="16sp"/>
+					android:textSize="@dimen/font_size_16sp"/>
 
 			</LinearLayout>
 
@@ -46,7 +46,7 @@
 			<!--android:layout_height="wrap_content"-->
 			<!--android:layout_marginLeft="10dp"-->
 			<!--android:text="0：34"-->
-			<!--android:textSize="16sp"/>-->
+			<!--android:textSize="@dimen/font_size_16sp"/>-->
 
 			<!--<LinearLayout-->
 				<!--android:layout_width="match_parent"-->
@@ -57,7 +57,7 @@
 					<!--android:layout_width="wrap_content"-->
 					<!--android:layout_height="wrap_content"-->
 					<!--android:text="状态："-->
-					<!--android:textSize="16sp"/>-->
+					<!--android:textSize="@dimen/font_size_16sp"/>-->
 
 				<!--<TextView-->
 					<!--android:id="@+id/status_tv"-->
@@ -65,7 +65,7 @@
 					<!--android:layout_height="wrap_content"-->
 					<!--android:layout_weight="1"-->
 					<!--android:text="正常"-->
-					<!--android:textSize="16sp"/>-->
+					<!--android:textSize="@dimen/font_size_16sp"/>-->
 			<!--</LinearLayout>-->
 		</LinearLayout>
 

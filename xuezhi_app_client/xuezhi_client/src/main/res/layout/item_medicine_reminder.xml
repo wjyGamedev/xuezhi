@@ -42,7 +42,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="@string/medication_details_drug_time_title_text"
-							android:textSize="16sp"/>
+							android:textSize="@dimen/font_size_16sp"/>
 
 						<TextView
 							android:id="@+id/reminder_time_tv"
@@ -50,7 +50,7 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:text="@string/drug_administration_temp_data_text"
-							android:textSize="16sp"/>
+							android:textSize="@dimen/font_size_16sp"/>
 
 					</LinearLayout>
 
@@ -68,14 +68,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_alert_state_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:id="@+id/medicine_reminder_state_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_alert_state_open_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -90,14 +90,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/medication_details_drug_name_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:id="@+id/medicine_name_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/medication_details_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -112,21 +112,21 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/medication_details_drug_dosage_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:id="@+id/dose_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/medication_details_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:id="@+id/medicine_uint_tv"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/medication_details_medicine_unit"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 				</LinearLayout>
 			</LinearLayout>
 
@@ -170,7 +170,7 @@
 			android:background="@color/main_color"
 			android:text="删除"
 			android:textColor="@color/white"
-			android:textSize="16sp"/>
+			android:textSize="@dimen/font_size_16sp"/>
 
 	</LinearLayout>
 </LinearLayout>

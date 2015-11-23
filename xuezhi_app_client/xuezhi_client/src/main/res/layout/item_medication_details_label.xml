@@ -35,14 +35,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_page_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -56,14 +56,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_alert_state_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_alert_state_open_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -87,14 +87,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_drug_stock_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -119,14 +119,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_drug_alert_title_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -150,14 +150,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_add_time_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
@@ -181,14 +181,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/drug_administration_exhausted_time_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:text="@string/drug_administration_temp_data_text"
-						android:textSize="16sp"/>
+						android:textSize="@dimen/font_size_16sp"/>
 
 				</LinearLayout>
 
