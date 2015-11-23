@@ -17,25 +17,28 @@
 		android:src="@drawable/activity_welcome_icon"
 		android:visibility="invisible"/>
 
-	<ImageView
+	<TextView
 		android:id="@+id/welcome_text1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/welcome_icon"
 		android:layout_centerHorizontal="true"
 		android:layout_marginTop="20dp"
-		android:src="@drawable/activity_welcome_text1"
+		android:text="血脂时间"
+		android:textSize="35sp"
+		android:textStyle="bold"
 		android:visibility="invisible"/>
 
-	<ImageView
+	<com.module.widget.custom_font_spacing_text_view.LetterSpacingTextView
 		android:id="@+id/welcome_text2"
-		android:layout_width="240dp"
-		android:layout_height="30dp"
-		android:layout_below="@+id/welcome_text1"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="20dp"
-		android:src="@drawable/activity_welcome_text2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="fitXY"
+		android:text="我的血脂，我做主！"
+		android:textSize="30sp"
+		android:textStyle="bold"
 		android:visibility="invisible"
-		android:scaleType="fitXY"/>
+		android:layout_below="@+id/welcome_text1"
+		android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

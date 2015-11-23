@@ -19,9 +19,11 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.util.timer.TimerTaskWrapper;
+import com.module.widget.custom_font_spacing_text_view.LetterSpacingTextView;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuezhi_client.work_flow.welcome_page.msg_handler.WelcomeMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -30,9 +32,9 @@ import butterknife.Bind;
 
 public class WelcomeActivity extends BaseActivity
 {
-	@Bind (R.id.welcome_icon)  ImageView m_welcomeIcomIV  = null;
-	@Bind (R.id.welcome_text1) ImageView m_welcomeText1IV = null;
-	@Bind (R.id.welcome_text2) ImageView m_welcomeText2IV = null;
+	@Bind (R.id.welcome_icon)  ImageView             m_welcomeIcomIV    = null;
+	@Bind (R.id.welcome_text1) TextView              m_welcomeText1TV   = null;
+	@Bind (R.id.welcome_text2) LetterSpacingTextView m_welcomeText2LSTV = null;
 
 	private final static long ACTIVITY_SHOW_TIME_LENGTH = 8000;
 	private final static long AFTER_TIME_SHOW_ICON      = 500;
@@ -40,12 +42,12 @@ public class WelcomeActivity extends BaseActivity
 	private final static long AFTER_TIME_SHOW_TEXT_2    = 5000;
 	private final static int  SHOW_ITEM_TIME_LENGTH     = 2000;
 
-	private TimerTaskWrapper    m_waitTimerTask             = new TimerTaskWrapper();
-	private ActivityShwoTimeEnd m_activityShwoTimeEnd       = new ActivityShwoTimeEnd();
+	private TimerTaskWrapper    m_waitTimerTask       = new TimerTaskWrapper();
+	private ActivityShwoTimeEnd m_activityShwoTimeEnd = new ActivityShwoTimeEnd();
 
 	private WelcomeMsgHandler m_welcomeMsgHandler = new WelcomeMsgHandler(this);
 
-	private AlphaAnimation m_showIconAnimation = null;
+	private AlphaAnimation m_showIconAnimation  = null;
 	private AlphaAnimation m_showText1Animation = null;
 	private AlphaAnimation m_showText2Animation = null;
 
@@ -76,7 +78,7 @@ public class WelcomeActivity extends BaseActivity
 								  {
 									  public void run()
 									  {
-										  setShowAnimation(m_showIconAnimation,m_welcomeIcomIV, SHOW_ITEM_TIME_LENGTH);
+										  setShowAnimation(m_showIconAnimation, m_welcomeIcomIV, SHOW_ITEM_TIME_LENGTH);
 									  }
 								  }, AFTER_TIME_SHOW_ICON
 								 );
@@ -84,7 +86,7 @@ public class WelcomeActivity extends BaseActivity
 								  {
 									  public void run()
 									  {
-										  setShowAnimation(m_showText1Animation,m_welcomeText1IV, SHOW_ITEM_TIME_LENGTH);
+										  setShowAnimation(m_showText1Animation, m_welcomeText1TV, SHOW_ITEM_TIME_LENGTH);
 									  }
 								  }, AFTER_TIME_SHOW_TEXT_1
 								 );
@@ -92,9 +94,10 @@ public class WelcomeActivity extends BaseActivity
 								  {
 									  public void run()
 									  {
-										  setShowAnimation(m_showText2Animation,m_welcomeText2IV, SHOW_ITEM_TIME_LENGTH);
+										  setShowAnimation(m_showText2Animation, m_welcomeText2LSTV, SHOW_ITEM_TIME_LENGTH);
 									  }
-								  }, AFTER_TIME_SHOW_TEXT_2);
+								  }, AFTER_TIME_SHOW_TEXT_2
+								 );
 	}
 
 	private void init()
@@ -105,8 +108,10 @@ public class WelcomeActivity extends BaseActivity
 
 		//02. 请求消息
 		m_welcomeMsgHandler.initAction();
+		m_welcomeText2LSTV.setLetterSpacing(0f);
+		m_welcomeText2LSTV.setScaleX(0.96f);
+		m_welcomeText2LSTV.setText("我的血脂,我做主!", TextView.BufferType.SPANNABLE);
 	}
-
 
 	/**
 	 * View渐现动画效果
