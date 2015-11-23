@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.util.timer.TimerTaskWrapper;
-import com.module.widget.custom_font_spacing_text_view.LetterSpacingTextView;
+import com.module.widget.custom_font_spacing_text_view.CustomFontSpacingTextView;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuezhi_client.work_flow.welcome_page.msg_handler.WelcomeMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
@@ -32,9 +32,9 @@ import butterknife.Bind;
 
 public class WelcomeActivity extends BaseActivity
 {
-	@Bind (R.id.welcome_icon)  ImageView             m_welcomeIcomIV    = null;
-	@Bind (R.id.welcome_text1) TextView              m_welcomeText1TV   = null;
-	@Bind (R.id.welcome_text2) LetterSpacingTextView m_welcomeText2LSTV = null;
+	@Bind (R.id.welcome_icon)  ImageView                 m_welcomeIcomIV    = null;
+	@Bind (R.id.welcome_text1) TextView                  m_welcomeText1TV   = null;
+	@Bind (R.id.welcome_text2) CustomFontSpacingTextView m_welcomeText2LSTV = null;
 
 	private final static long ACTIVITY_SHOW_TIME_LENGTH = 8000;
 	private final static long AFTER_TIME_SHOW_ICON      = 500;
