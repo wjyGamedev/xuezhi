@@ -101,6 +101,7 @@ public class HomeTabFragment extends BaseFragment
 	public void onStart()
 	{
 		updateContent();
+		initWidget();
 		super.onStart();
 	}
 
@@ -235,6 +236,10 @@ public class HomeTabFragment extends BaseFragment
 			m_mainMsgHandler = mainActivity.getMainMsgHandler();
 		}
 
+	}
+
+	public void initWidget()
+	{
 		m_rightRegionSettingWidthLL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
 																					{
 																						boolean isFirst = true;
@@ -245,23 +250,17 @@ public class HomeTabFragment extends BaseFragment
 																							if (isFirst)
 																							{
 																								isFirst = false;
-																								initWidget();
+																								int reminderHeadersLayoutWidth = m_reminderHeadersLL.getWidth();
+																								int rightRegionSettingWidth    = m_rightRegionSettingWidthLL.getWidth();
+																								if (rightRegionSettingWidth <= reminderHeadersLayoutWidth / 2)
+																								{
+																									rightRegionSettingWidth = reminderHeadersLayoutWidth / 2;
+																								}
+																								m_rightRegionSettingWidthLL.setMinimumWidth(rightRegionSettingWidth);
 																							}
 																						}
 																					}
 																				   );
-
-	}
-
-	public void initWidget()
-	{
-		int reminderHeadersLayoutWidth = m_reminderHeadersLL.getWidth();
-		int rightRegionSettingWidth    = m_rightRegionSettingWidthLL.getWidth();
-		if (rightRegionSettingWidth <= reminderHeadersLayoutWidth / 2)
-		{
-			rightRegionSettingWidth = reminderHeadersLayoutWidth / 2;
-		}
-		m_rightRegionSettingWidthLL.setMinimumWidth(rightRegionSettingWidth);
 	}
 
 
