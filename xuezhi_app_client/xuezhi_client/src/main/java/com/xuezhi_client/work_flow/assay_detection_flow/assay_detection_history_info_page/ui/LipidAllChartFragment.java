@@ -75,6 +75,8 @@ public class LipidAllChartFragment extends BaseFragment
 
 	private ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
 
+	private boolean m_isNullContentPage = false;
+
 	//TODO:待测试，从不活动状态，到活动状态，数据会否保存。
 	public LipidAllChartFragment()
 	{}
@@ -83,16 +85,6 @@ public class LipidAllChartFragment extends BaseFragment
 	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_linechart_single, container, false);
-		//TODO:由于嵌套fragment，所以不能用bind
-		//		ButterKnife.bind(this, m_view);
-		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
-		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBarX);
-		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
-		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
-		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
-		m_xAxisLL = (LinearLayout)m_view.findViewById(R.id.x_axis_region_ll);
-		m_yAxisLL = (LinearLayout)m_view.findViewById(R.id.y_axis_region_ll);
-		m_yAxisLL.setVisibility(View.GONE);
 
 		AssayDetectionHistoryInfoActivity assayDetectionHistoryInfoActivity = (AssayDetectionHistoryInfoActivity)getActivity();
 		if (assayDetectionHistoryInfoActivity == null)
@@ -103,14 +95,70 @@ public class LipidAllChartFragment extends BaseFragment
 		m_assayDetectionHistoryInfoMsgHandler = assayDetectionHistoryInfoActivity.getAssayDetectionHistoryInfoMsgHandler();
 		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
 		m_assayDetectionArrayList = assayDetectionList.getAssayDetections();
+		int xSize = m_assayDetectionArrayList.size();
+		// add data
+		int xMax = getXMax(xSize);
+		if (xMax <= 0)
+		{
+			m_isNullContentPage = true;
+			return m_view = inflater.inflate(R.layout.fragment_content_null, container, false);
+		}
+		else
+		{
+			m_isNullContentPage = false;
+		}
 
+		//TODO:由于嵌套fragment，所以不能用bind
+		//		ButterKnife.bind(this, m_view);
+		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
+		m_seekBarX = (SeekBar)m_view.findViewById(R.id.seekBarX);
+		m_seekBarY = (SeekBar)m_view.findViewById(R.id.seekBarY);
+		m_xTV = (TextView)m_view.findViewById(R.id.tvXMax);
+		m_yTV = (TextView)m_view.findViewById(R.id.tvYMax);
+		m_xAxisLL = (LinearLayout)m_view.findViewById(R.id.x_axis_region_ll);
+		m_yAxisLL = (LinearLayout)m_view.findViewById(R.id.y_axis_region_ll);
+		m_yAxisLL.setVisibility(View.GONE);
 		return m_view;
+	}
+
+	private int getXMax(int xSize)
+	{
+		//01. 有效性
+		if (xSize > m_assayDetectionArrayList.size())
+			return 0;
+
+		ArrayList<String> xVals = new ArrayList<String>();
+		for (int indexType = 0; indexType < 4; indexType++)
+		{
+			for (int indexEle = 0; indexEle < xSize; indexEle++)
+			{
+				DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexEle);
+				Calendar recordCalendar = assayDetection.getRecordCalendar();
+				String displayDate = m_ymdSDF.format(recordCalendar.getTime());
+
+				double tgValue = getYValue(assayDetection, indexType);
+
+				if (tgValue == 0.0)
+				{
+					continue;
+				}
+
+				if (!isHaveSameVal(displayDate, xVals))
+				{
+					xVals.add(displayDate);
+				}
+			}
+		}
+		return xVals.size();
 	}
 
 	@Override
 	public void onAfterCreateAction()
 	{
-		init();
+		if (!m_isNullContentPage)
+		{
+			init();
+		}
 	}
 
 	@Override
@@ -140,7 +188,7 @@ public class LipidAllChartFragment extends BaseFragment
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 		{
-			setData(m_seekBarX.getProgress());
+			setData(m_assayDetectionArrayList.size(), m_seekBarX.getProgress() + 1);
 			m_lineChart.invalidate();
 		}
 
@@ -178,7 +226,8 @@ public class LipidAllChartFragment extends BaseFragment
 
 		private DecimalFormat mFormat;
 
-		public FloatValueFormatter() {
+		public FloatValueFormatter()
+		{
 			mFormat = new DecimalFormat("##0.00"); // use one decimal
 		}
 
@@ -195,12 +244,27 @@ public class LipidAllChartFragment extends BaseFragment
 	private void init()
 	{
 		int xSize = m_assayDetectionArrayList.size();
-		if (xSize > AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
+
+		int xMax = getXMax(xSize);
+
+		if (xMax > AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
 		{
-			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
+			xMax = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
-		int xMax = m_assayDetectionArrayList.size();
-		m_seekBarX.setProgress(xSize);
+
+		//m_seekBarX 滑动控件没有设置最小值的方法，实际显示数据与控件数据相关联解决最小值问题
+		//例如：seekbarTextView显示最小值为1，最大值为2，seekbar最小值为0，最大值为1
+		//		当需要setData范围为1-2，控件getProgress为0-1
+		if (xMax <= 1)
+		{
+			xMax = 0;
+		}
+		else
+		{
+			xMax -= 1;
+		}
+
+		m_seekBarX.setProgress(xMax);
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
@@ -249,7 +313,7 @@ public class LipidAllChartFragment extends BaseFragment
 		rightAxis.setEnabled(false);
 
 		// add data
-		setData(xSize);
+		setData(xSize, xMax + 1);
 
 		// // restrain the maximum scale-out factor
 		// m_lineChart.setScaleMinima(3f, 3f);
@@ -272,8 +336,10 @@ public class LipidAllChartFragment extends BaseFragment
 
 	public void updateContent()
 	{
-		m_lineChart.invalidate();
-		return;
+		if (!m_isNullContentPage)
+		{
+			m_lineChart.invalidate();
+		}
 	}
 
 	private String getLineName(int index)
@@ -329,38 +395,46 @@ public class LipidAllChartFragment extends BaseFragment
 		}
 	}
 
-	private void setData(int count)
+	private int setData(int dataCount, int displayCount)
 	{
 		//01. 有效性
-		if (count > m_assayDetectionArrayList.size())
-			return;
+		if (dataCount > m_assayDetectionArrayList.size())
+			return 0;
 
 		//02. x轴
-		ArrayList<String> xVals = new ArrayList<String>();
-		for (int indexX = 0; indexX < count; indexX++)
-		{
-			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
-			Calendar recordCalendar = assayDetection.getRecordCalendar();
-			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
-			xVals.add(displayDate);
-		}
-
 		//03. y轴
-		double maxValue = 0;
+		double                 maxValue = 0;
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+		ArrayList<String>      xVals    = new ArrayList<String>();
 		for (int indexType = 0; indexType < 4; indexType++)
 		{
 			ArrayList<Entry> values = new ArrayList<Entry>();
 
-			for (int indexEle = 0; indexEle < count; indexEle++)
+			for (int indexEle = 0; indexEle < dataCount; indexEle++)
 			{
-				DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexEle);
-				double tgValue = getYValue(assayDetection, indexType);
 
+				DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexEle);
 				Calendar recordCalendar = assayDetection.getRecordCalendar();
 				String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 
-				values.add(new Entry((float)tgValue, indexEle, displayDate));
+				double tgValue = getYValue(assayDetection, indexType);
+
+				if (tgValue == 0.0)
+				{
+					continue;
+				}
+
+				if (!isHaveSameVal(displayDate, xVals))
+				{
+					if (xVals.size() >= displayCount && displayCount != -1)
+						continue;
+					xVals.add(displayDate);
+				}
+
+				if (findIndexFromXvalsList(xVals, displayDate) != -1)
+				{
+					values.add(new Entry((float)tgValue, findIndexFromXvalsList(xVals, displayDate), displayDate));
+				}
 
 				if (tgValue > maxValue)
 				{
@@ -383,15 +457,43 @@ public class LipidAllChartFragment extends BaseFragment
 		m_lineChart.setData(data);
 
 		//02. label tip
-		String molecule    = String.valueOf(count);
-		String denominator = String.valueOf(m_assayDetectionArrayList.size());
+		String molecule;
+		if (displayCount == -1)
+		{
+			molecule = String.valueOf(xVals.size());
+		}
+		else
+		{
+			molecule = String.valueOf(displayCount);
+		}
+		String denominator = String.valueOf(xVals.size());
 		String display     = molecule + "/" + denominator;
 		m_xTV.setText(display);
 
 		//04. 修改Y轴最大值，数据的最大值+1/4
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-		maxValue = maxValue + maxValue/4;
+		maxValue = maxValue + maxValue / 4;
 		leftAxis.setAxisMaxValue((float)maxValue);
+
+		return xVals.size();
+	}
+
+	private int findIndexFromXvalsList(ArrayList<String> xVals, String displayDate)
+	{
+		for (int i = 0; i < xVals.size(); i++)
+		{
+			if (xVals.get(i).equals(displayDate)) {return i;}
+		}
+		return -1;
+	}
+
+	private boolean isHaveSameVal(String displayDate, ArrayList<String> xVals)
+	{
+		for (String xVal : xVals)
+		{
+			if (xVal.equals(displayDate)) {return true;}
+		}
+		return false;
 	}
 
 	/**

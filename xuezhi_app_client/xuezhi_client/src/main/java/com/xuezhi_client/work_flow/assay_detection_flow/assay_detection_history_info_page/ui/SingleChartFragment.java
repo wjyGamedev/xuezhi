@@ -73,6 +73,8 @@ public class SingleChartFragment extends BaseFragment
 	private EnumConfig.AssayDetectionType m_assayDetectionType = null;
 	ArrayList<DAssayDetection> m_assayDetectionArrayList = null;
 
+	private boolean m_isNullContentPage = false;
+
 	//TODO:待测试，从不活动状态，到活动状态，数据会否保存。
 	public SingleChartFragment()
 	{}
@@ -92,6 +94,35 @@ public class SingleChartFragment extends BaseFragment
 	public View onCreateViewAction(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		m_view = inflater.inflate(R.layout.fragment_linechart_single, container, false);
+
+		AssayDetectionHistoryInfoActivity assayDetectionHistoryInfoActivity = (AssayDetectionHistoryInfoActivity)getActivity();
+
+		m_assayDetectionHistoryInfoMsgHandler = assayDetectionHistoryInfoActivity.getAssayDetectionHistoryInfoMsgHandler();
+
+		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
+
+		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList
+				.getAssayValidDetectionHashMap();
+
+		m_assayDetectionArrayList = assayDetectionList.getAssayDetections();
+
+		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
+		if (validIndexList == null)
+		{
+			return m_view;
+		}
+		int xSize = validIndexList.size();
+		if (xSize <= 0)
+		{
+			m_isNullContentPage = true;
+			return m_view = inflater.inflate(R.layout.fragment_content_null, container, false);
+		}
+		else
+		{
+			m_isNullContentPage = false;
+		}
+
+
 		//TODO:由于嵌套fragment，所以不能用bind
 		//		ButterKnife.bind(this, m_view);
 		m_lineChart = (LineChart)m_view.findViewById(R.id.chart1);
@@ -103,15 +134,11 @@ public class SingleChartFragment extends BaseFragment
 		m_yAxisLL = (LinearLayout)m_view.findViewById(R.id.y_axis_region_ll);
 		m_yAxisLL.setVisibility(View.GONE);
 
-		AssayDetectionHistoryInfoActivity assayDetectionHistoryInfoActivity = (AssayDetectionHistoryInfoActivity)getActivity();
 		if (assayDetectionHistoryInfoActivity == null)
 		{
 			return m_view;
 		}
 
-		m_assayDetectionHistoryInfoMsgHandler = assayDetectionHistoryInfoActivity.getAssayDetectionHistoryInfoMsgHandler();
-		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
-		m_assayDetectionArrayList = assayDetectionList.getAssayDetections();
 
 		return m_view;
 	}
@@ -119,7 +146,10 @@ public class SingleChartFragment extends BaseFragment
 	@Override
 	public void onAfterCreateAction()
 	{
-		init();
+		if (!m_isNullContentPage)
+		{
+			init();
+		}
 	}
 
 	@Override
@@ -208,8 +238,7 @@ public class SingleChartFragment extends BaseFragment
 		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
 		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList
 				.getAssayValidDetectionHashMap();
-		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType
-																		  );
+		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
 		if (validIndexList == null)
 		{
 			return;
@@ -338,8 +367,10 @@ public class SingleChartFragment extends BaseFragment
 
 	public void updateContent()
 	{
-		m_lineChart.invalidate();
-		return;
+		if (!m_isNullContentPage)
+		{
+			m_lineChart.invalidate();
+		}
 	}
 
 	private double getYValue(DAssayDetection assayDetection)
