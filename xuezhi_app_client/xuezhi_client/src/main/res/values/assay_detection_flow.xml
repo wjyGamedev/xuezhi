@@ -55,6 +55,7 @@
 	<string name="assay_detection_error_tips_pleast_input">请输入</string>
 	<string name="assay_detection_error_tips_invalid_input_01">您输入的</string>
 	<string name="assay_detection_error_tips_invalid_input_02">数值不在有效范围内</string>
+	<string name="assay_detection_error_tips_invalid_input_03">您需要输入一个有效的化验结果</string>
 	<string name="assay_detection_error_tips_repeat_input">。请重新输入。</string>
 
 	<!--assay_detection_history_info_page-->

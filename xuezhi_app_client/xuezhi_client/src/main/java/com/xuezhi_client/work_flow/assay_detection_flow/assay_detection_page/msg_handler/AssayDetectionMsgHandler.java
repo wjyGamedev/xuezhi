@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 
 import com.module.frame.BaseUIMsgHandler;
+import com.module.widget.dialog.TipsDialog;
 import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionAddEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerAssayDetectionGetListEvent;
@@ -57,78 +58,80 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		String tmpLolcValue = activity.getLolcValue();
 		String tmpHdlcValue = activity.getHdlcValue();
 
-		String tmpAtlValue = activity.getAtlValue();
-		String tmpAstValue = activity.getAstValue();
-		String tmpCkValue = activity.getCkValue();
-		String tmpGlucValue = activity.getGlucValue();
+		String tmpAtlValue   = activity.getAtlValue();
+		String tmpAstValue   = activity.getAstValue();
+		String tmpCkValue    = activity.getCkValue();
+		String tmpGlucValue  = activity.getGlucValue();
 		String tmpHba1cValue = activity.getHba1cValue();
-		String tmpScrValue = activity.getScrValue();
+		String tmpScrValue   = activity.getScrValue();
+
+		double tgValue    = 0;
+		double tchoValue  = 0;
+		double lolcValue  = 0;
+		double hdlcValue  = 0;
+		double atlValue   = 0;
+		double astValue   = 0;
+		double ckValue    = 0;
+		double glucValue  = 0;
+		double hba1cValue = 0;
+		double srcValue   = 0;
+
 		try
 		{
-			double tgValue = 0;
 			if (!TextUtils.isEmpty(tmpTgValue))
 			{
 				tgValue = Double.valueOf(tmpTgValue);
 			}
 			event.setTgValue(tgValue);
 
-			double tchoValue = 0;
 			if (!TextUtils.isEmpty(tmpTchoValue))
 			{
 				tchoValue = Double.valueOf(tmpTchoValue);
 			}
 			event.setTchoValue(tchoValue);
 
-			double lolcValue = 0;
 			if (!TextUtils.isEmpty(tmpLolcValue))
 			{
 				lolcValue = Double.valueOf(tmpLolcValue);
 			}
 			event.setLolcValue(lolcValue);
 
-			double hdlcValue = 0;
 			if (!TextUtils.isEmpty(tmpHdlcValue))
 			{
 				hdlcValue = Double.valueOf(tmpHdlcValue);
 			}
 			event.setHdlcValue(hdlcValue);
 
-			double atlValue = 0;
 			if (!TextUtils.isEmpty(tmpAtlValue))
 			{
 				atlValue = Double.valueOf(tmpAtlValue);
 			}
 			event.setAtlValue(atlValue);
 
-			double astValue = 0;
 			if (!TextUtils.isEmpty(tmpAstValue))
 			{
 				astValue = Double.valueOf(tmpAstValue);
 			}
 			event.setAstValue(astValue);
 
-			double ckValue = 0;
 			if (!TextUtils.isEmpty(tmpCkValue))
 			{
 				ckValue = Double.valueOf(tmpCkValue);
 			}
 			event.setCkValue(ckValue);
 
-			double glucValue = 0;
 			if (!TextUtils.isEmpty(tmpGlucValue))
 			{
 				glucValue = Double.valueOf(tmpGlucValue);
 			}
 			event.setGluValue(glucValue);
 
-			double hba1cValue = 0;
 			if (!TextUtils.isEmpty(tmpHba1cValue))
 			{
 				hba1cValue = Double.valueOf(tmpHba1cValue);
 			}
 			event.setHba1cValue(hba1cValue);
 
-			double srcValue = 0;
 			if (!TextUtils.isEmpty(tmpScrValue))
 			{
 				srcValue = Double.valueOf(tmpScrValue);
@@ -139,6 +142,13 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 		catch (NumberFormatException e)
 		{
 			activity.popErrorDialog(e.toString());
+			return;
+		}
+
+		if ((tgValue <= 0) && (tchoValue <= 0) && (lolcValue <= 0) && (hdlcValue <= 0) && (atlValue <= 0) && (astValue <= 0) && (ckValue
+				<= 0) && (glucValue <= 0) && (hba1cValue <= 0) && (srcValue <= 0))
+		{
+			TipsDialog.GetInstance().setMsg(activity.getString(R.string.assay_detection_error_tips_invalid_input_03)).show();
 			return;
 		}
 
@@ -182,9 +192,9 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 
 	public void go2XuezhiFragment()
 	{
-		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
-		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(XuezhiFragment.class.getName());
-		XuezhiFragment xuezhiFragment = null;
+		AssayDetectionActivity activity       = (AssayDetectionActivity)m_context;
+		Fragment               fragment       = activity.getSupportFragmentManager().findFragmentByTag(XuezhiFragment.class.getName());
+		XuezhiFragment         xuezhiFragment = null;
 		if (fragment != null)
 		{
 			xuezhiFragment = (XuezhiFragment)fragment;
@@ -219,9 +229,9 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 
 	public void go2ShenghuaFragment()
 	{
-		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
-		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(ShenghuaFragment.class.getName());
-		ShenghuaFragment shenghuaFragment = null;
+		AssayDetectionActivity activity         = (AssayDetectionActivity)m_context;
+		Fragment               fragment         = activity.getSupportFragmentManager().findFragmentByTag(ShenghuaFragment.class.getName());
+		ShenghuaFragment       shenghuaFragment = null;
 		if (fragment != null)
 		{
 			shenghuaFragment = (ShenghuaFragment)fragment;
@@ -265,7 +275,7 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 	public void loadXuezhiData()
 	{
 		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
-		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(XuezhiFragment.class.getName());
+		Fragment               fragment = activity.getSupportFragmentManager().findFragmentByTag(XuezhiFragment.class.getName());
 		if (fragment == null)
 			return;
 
@@ -295,7 +305,7 @@ public class AssayDetectionMsgHandler extends BaseUIMsgHandler
 	public void loadShenghuaData()
 	{
 		AssayDetectionActivity activity = (AssayDetectionActivity)m_context;
-		Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(ShenghuaFragment.class.getName());
+		Fragment               fragment = activity.getSupportFragmentManager().findFragmentByTag(ShenghuaFragment.class.getName());
 		if (fragment == null)
 			return;
 
