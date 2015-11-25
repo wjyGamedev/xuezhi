@@ -14,10 +14,7 @@
 
 package com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.msg_handler;
 
-import android.content.Intent;
-
 import com.module.frame.BaseUIMsgHandler;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_info_page.ui.AssayDetectionHistoryInfoActivity;
 import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.ui.AssayDetectionHistoryItemInfoActivity;
 
 public class AssayDetectionHistoryItemInfoMsgHandler extends BaseUIMsgHandler
@@ -30,7 +27,6 @@ public class AssayDetectionHistoryItemInfoMsgHandler extends BaseUIMsgHandler
 	public void backAction()
 	{
 		AssayDetectionHistoryItemInfoActivity activity = (AssayDetectionHistoryItemInfoActivity)m_context;
-		activity.startActivity(new Intent( activity, AssayDetectionHistoryInfoActivity.class));
 		activity.finish();
 	}
 }

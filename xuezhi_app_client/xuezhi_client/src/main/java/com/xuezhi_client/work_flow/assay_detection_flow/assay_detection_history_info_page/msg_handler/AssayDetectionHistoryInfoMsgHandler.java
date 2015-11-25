@@ -100,7 +100,7 @@ public class AssayDetectionHistoryInfoMsgHandler extends BaseUIMsgHandler
 
 		transaction = activity.getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.history_region_fl, adhListFragment, ADHListFragment.class.getName());
-		transaction.commit();
+		transaction.commitAllowingStateLoss();
 
 		return;
 
