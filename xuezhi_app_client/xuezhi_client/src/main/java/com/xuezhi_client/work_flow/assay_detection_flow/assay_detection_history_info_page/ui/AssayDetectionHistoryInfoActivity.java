@@ -35,7 +35,11 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 	private PopDialog_ErrorTips                 m_popDialog_errorTips                 = new PopDialog_ErrorTips();
 	private chickBottomRadioGroup               m_chickBottomRadioGroupListener       = new chickBottomRadioGroup();
 
+	private final String SELECTED_CHART_PAGE = "selected_chart_page";
+	private final String SELECTED_LIST_PAGE = "selected_list_page";
+
 	private int m_HistoryRegionFLHeight = 0;
+	private String m_SelectedPageID = null;
 
 	@Override
 	protected void onStart()
@@ -84,6 +88,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
+			m_SelectedPageID = SELECTED_CHART_PAGE;
 			m_assayDetectionHistoryInfoMsgHandler.go2ChartFragment();
 		}
 	}
@@ -93,6 +98,7 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 		@Override
 		public void onClick(View v)
 		{
+			m_SelectedPageID = SELECTED_LIST_PAGE;
 			m_assayDetectionHistoryInfoMsgHandler.go2ListFragment();
 		}
 	}
@@ -124,6 +130,8 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 
 		m_tabsRG.setOnCheckedChangeListener(m_chickBottomRadioGroupListener);
 
+		m_SelectedPageID = SELECTED_CHART_PAGE;
+
 		return;
 	}
 
@@ -138,12 +146,11 @@ public class AssayDetectionHistoryInfoActivity extends BaseActivity
 
 	private void updateContent()
 	{
-		int selectedID = m_tabsRG.getCheckedRadioButtonId();
-		if (selectedID == R.id.chart_rbtn)
+		if (m_SelectedPageID.equals(SELECTED_CHART_PAGE))
 		{
 			m_assayDetectionHistoryInfoMsgHandler.go2ChartFragment();
 		}
-		else if (selectedID == R.id.list_rbtn)
+		else if (m_SelectedPageID.equals(SELECTED_LIST_PAGE))
 		{
 			m_assayDetectionHistoryInfoMsgHandler.go2ListFragment();
 		}
