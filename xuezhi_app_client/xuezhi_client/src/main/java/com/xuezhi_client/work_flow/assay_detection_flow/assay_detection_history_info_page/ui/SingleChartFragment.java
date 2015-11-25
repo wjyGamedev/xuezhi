@@ -66,7 +66,7 @@ public class SingleChartFragment extends BaseFragment
 	private HandleOnSeekBarChange               m_handleOnSeekBarChange               = new HandleOnSeekBarChange();
 	private HandleOnChartValueSelected          m_handleOnChartValueSelected          = new HandleOnChartValueSelected();
 
-	private FloatValueFormatter   mFloatValueFormatter   = new FloatValueFormatter();
+	private FloatValueFormatter mFloatValueFormatter = new FloatValueFormatter();
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -149,7 +149,7 @@ public class SingleChartFragment extends BaseFragment
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 		{
-			setData(m_seekBarX.getProgress());
+			setData(m_seekBarX.getProgress() + 1);
 			m_lineChart.invalidate();
 		}
 
@@ -206,8 +206,10 @@ public class SingleChartFragment extends BaseFragment
 	private void init()
 	{
 		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
-		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList.getAssayValidDetectionHashMap();
-		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
+		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList
+				.getAssayValidDetectionHashMap();
+		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType
+																		  );
 		if (validIndexList == null)
 		{
 			return;
@@ -217,9 +219,22 @@ public class SingleChartFragment extends BaseFragment
 		{
 			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
+
+		//m_seekBarX 滑动控件没有设置最小值的方法，实际显示数据与控件数据相关联解决最小值问题
+		//例如：seekbarTextView显示最小值为1，最大值为2，seekbar最小值为0，最大值为1
+		//		当需要setData范围为1-2，控件getProgress为0-1
 		int xMax = assayValidDetectionHashMap.get(m_assayDetectionType).size();
-		m_seekBarX.setProgress(xSize);
+		if (xMax <= 1)
+		{
+			xMax = 0;
+		}
+		else
+		{
+			xMax -= 1;
+		}
+
 		m_seekBarX.setMax(xMax);
+		m_seekBarX.setProgress(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
 
 		//		m_seekBarY.setProgress(100);
@@ -259,36 +274,36 @@ public class SingleChartFragment extends BaseFragment
 		m_lineChart.setHighlightEnabled(false);
 
 
-//		//设置 upper
-//		String    upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
-//		LimitLine ll1       = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
-//		ll1.setLineWidth(4f);
-//		ll1.enableDashedLine(10f, 10f, 0f);
-//		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-//		ll1.setTextSize(10f);
-//
-//		//设置 lower
-//		String    lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
-//		LimitLine ll2       = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
-//		ll2.setLineWidth(4f);
-//		ll2.enableDashedLine(10f, 10f, 0f);
-//		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-//		ll2.setTextSize(10f);
+		//		//设置 upper
+		//		String    upperTips = getActivity().getString(R.string.assay_detection_history_upper_limit);
+		//		LimitLine ll1       = new LimitLine((float)AssayDetectionConfig.getUpperValue(m_assayDetectionType), upperTips);
+		//		ll1.setLineWidth(4f);
+		//		ll1.enableDashedLine(10f, 10f, 0f);
+		//		ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+		//		ll1.setTextSize(10f);
+		//
+		//		//设置 lower
+		//		String    lowerTips = getActivity().getString(R.string.assay_detection_history_lower_limit);
+		//		LimitLine ll2       = new LimitLine((float)AssayDetectionConfig.getLowerValue(m_assayDetectionType), lowerTips);
+		//		ll2.setLineWidth(4f);
+		//		ll2.enableDashedLine(10f, 10f, 0f);
+		//		ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+		//		ll2.setTextSize(10f);
 
 		//设置Y轴
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-//		leftAxis.removeAllLimitLines();
+		//		leftAxis.removeAllLimitLines();
 		//		leftAxis.addLimitLine(ll1);
 		//		leftAxis.addLimitLine(ll2);
-//		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
-//		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
-//		leftAxis.setAxisMaxValue(maxValue);
-//		leftAxis.setAxisMinValue(minValue);
-//		leftAxis.setStartAtZero(false);
-//		leftAxis.enableGridDashedLine(10f, 10f, 0f);
+		//		float maxValue = (float)AssayDetectionConfig.getMaxValue(m_assayDetectionType);
+		//		float minValue = (float)AssayDetectionConfig.getMinValue(m_assayDetectionType);
+		//		leftAxis.setAxisMaxValue(maxValue);
+		//		leftAxis.setAxisMinValue(minValue);
+		//		leftAxis.setStartAtZero(false);
+		//		leftAxis.enableGridDashedLine(10f, 10f, 0f);
 		leftAxis.setInverted(false);
 		// limit lines are drawn behind data (and not on top)
-//		leftAxis.setDrawLimitLinesBehindData(true);
+		//		leftAxis.setDrawLimitLinesBehindData(true);
 		leftAxis.setValueFormatter(mFloatValueFormatter);
 
 
@@ -337,28 +352,28 @@ public class SingleChartFragment extends BaseFragment
 
 		switch (m_assayDetectionType)
 		{
-		case TG:
-			return assayDetection.getTgValue();
-		case TCHO:
-			return assayDetection.getTchoValue();
-		case LOLC:
-			return assayDetection.getLolcValue();
-		case HDLC:
-			return assayDetection.getHdlcValue();
-		case ATL:
-			return assayDetection.getAtlValue();
-		case AST:
-			return assayDetection.getAstValue();
-		case CK:
-			return assayDetection.getCkValue();
-		case GLU:
-			return assayDetection.getGluValue();
-		case HBA1C:
-			return assayDetection.getHba1cValue();
-		case SCR:
-			return assayDetection.getScrValue();
-		default:
-			return assayDetection.getTgValue();
+			case TG:
+				return assayDetection.getTgValue();
+			case TCHO:
+				return assayDetection.getTchoValue();
+			case LOLC:
+				return assayDetection.getLolcValue();
+			case HDLC:
+				return assayDetection.getHdlcValue();
+			case ATL:
+				return assayDetection.getAtlValue();
+			case AST:
+				return assayDetection.getAstValue();
+			case CK:
+				return assayDetection.getCkValue();
+			case GLU:
+				return assayDetection.getGluValue();
+			case HBA1C:
+				return assayDetection.getHba1cValue();
+			case SCR:
+				return assayDetection.getScrValue();
+			default:
+				return assayDetection.getTgValue();
 		}
 	}
 
@@ -368,7 +383,8 @@ public class SingleChartFragment extends BaseFragment
 			return;
 
 		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
-		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList.getAssayValidDetectionHashMap();
+		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList
+				.getAssayValidDetectionHashMap();
 
 		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
 		if (validIndexList == null)
@@ -386,7 +402,7 @@ public class SingleChartFragment extends BaseFragment
 
 		ArrayList<Entry> yVals    = new ArrayList<Entry>();
 		double           maxValue = 0;
-		double minValue = -1;
+		double           minValue = -1;
 		for (int indexY = 0; indexY < count; indexY++)
 		{
 			DAssayDetection assayDetection = m_assayDetectionArrayList.get(validIndexList.get(indexY));
@@ -414,10 +430,10 @@ public class SingleChartFragment extends BaseFragment
 		}
 
 		// create a dataset and give it a type
-		String yName = AssayDetectionConfig.getName(m_assayDetectionType);
-		String yUnit = AssayDetectionConfig.getUnit(m_assayDetectionType);
+		String yName    = AssayDetectionConfig.getName(m_assayDetectionType);
+		String yUnit    = AssayDetectionConfig.getUnit(m_assayDetectionType);
 		String unitTips = getActivity().getString(R.string.assay_detection_history_unit_tips);
-		yName = yName + "("+unitTips+yUnit+")";
+		yName = yName + "(" + unitTips + yUnit + ")";
 		LineDataSet set1 = new LineDataSet(yVals, yName);
 		set1.setLineWidth(1.5f);
 		set1.setCircleSize(4f);
@@ -428,14 +444,14 @@ public class SingleChartFragment extends BaseFragment
 		m_lineChart.setData(data);
 
 		//02. label tip
-		String molecule = String.valueOf(count);
+		String molecule    = String.valueOf(count);
 		String denominator = String.valueOf(validIndexList.size());
-		String display = molecule+ "/"+denominator;
+		String display     = molecule + "/" + denominator;
 		m_xTV.setText(display);
 
 		//03. set axis y max/min value
 		YAxis leftAxis = m_lineChart.getAxisLeft();
-		maxValue = maxValue + maxValue/4;
+		maxValue = maxValue + maxValue / 4;
 		leftAxis.setAxisMaxValue((float)maxValue);
 
 		if (minValue - AssayDetectionConfig.DELTA_MIN < 0)
@@ -444,7 +460,7 @@ public class SingleChartFragment extends BaseFragment
 		}
 		else
 		{
-			minValue = minValue - minValue/3;
+			minValue = minValue - minValue / 3;
 		}
 		leftAxis.setAxisMinValue((float)minValue);
 		return;
