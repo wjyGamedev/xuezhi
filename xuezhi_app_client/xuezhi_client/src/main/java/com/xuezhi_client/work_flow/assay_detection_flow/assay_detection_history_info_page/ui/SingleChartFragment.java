@@ -46,6 +46,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class SingleChartFragment extends BaseFragment
 {
@@ -204,12 +205,19 @@ public class SingleChartFragment extends BaseFragment
 	 */
 	private void init()
 	{
-		int xSize = m_assayDetectionArrayList.size();
+		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
+		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList.getAssayValidDetectionHashMap();
+		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
+		if (validIndexList == null)
+		{
+			return;
+		}
+		int xSize = validIndexList.size();
 		if (xSize > AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH)
 		{
 			xSize = AssayDetectionConfig.CHART_X_AXIS_DEFAULT_LENGTH;
 		}
-		int xMax = m_assayDetectionArrayList.size();
+		int xMax = assayValidDetectionHashMap.get(m_assayDetectionType).size();
 		m_seekBarX.setProgress(xSize);
 		m_seekBarX.setMax(xMax);
 		m_seekBarX.setOnSeekBarChangeListener(m_handleOnSeekBarChange);
@@ -359,10 +367,18 @@ public class SingleChartFragment extends BaseFragment
 		if (count > m_assayDetectionArrayList.size())
 			return;
 
+		DAssayDetectionList assayDetectionList = m_assayDetectionHistoryInfoMsgHandler.getAssayDetectionList();
+		HashMap<EnumConfig.AssayDetectionType, ArrayList<Integer>> assayValidDetectionHashMap = assayDetectionList.getAssayValidDetectionHashMap();
+
+		ArrayList<Integer> validIndexList = assayValidDetectionHashMap.get(m_assayDetectionType);
+		if (validIndexList == null)
+		{
+			return;
+		}
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int indexX = 0; indexX < count; indexX++)
 		{
-			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexX);
+			DAssayDetection assayDetection = m_assayDetectionArrayList.get(validIndexList.get(indexX));
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
 			String displayDate = m_ymdSDF.format(recordCalendar.getTime());
 			xVals.add(displayDate);
@@ -373,7 +389,7 @@ public class SingleChartFragment extends BaseFragment
 		double minValue = -1;
 		for (int indexY = 0; indexY < count; indexY++)
 		{
-			DAssayDetection assayDetection = m_assayDetectionArrayList.get(indexY);
+			DAssayDetection assayDetection = m_assayDetectionArrayList.get(validIndexList.get(indexY));
 			double yValue = getYValue(assayDetection);
 
 			Calendar recordCalendar = assayDetection.getRecordCalendar();
@@ -413,7 +429,7 @@ public class SingleChartFragment extends BaseFragment
 
 		//02. label tip
 		String molecule = String.valueOf(count);
-		String denominator = String.valueOf(m_assayDetectionArrayList.size());
+		String denominator = String.valueOf(validIndexList.size());
 		String display = molecule+ "/"+denominator;
 		m_xTV.setText(display);
 
