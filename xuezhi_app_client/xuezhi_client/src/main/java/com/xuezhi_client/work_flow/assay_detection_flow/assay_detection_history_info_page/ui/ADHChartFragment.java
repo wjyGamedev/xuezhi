@@ -54,6 +54,7 @@ public class ADHChartFragment extends BaseFragment
 	@Bind (R.id.point_8_rb) RadioButton m_point8RB = null;
 	@Bind (R.id.point_9_rb) RadioButton m_point9RB = null;
 	@Bind (R.id.point_10_rb) RadioButton m_point10RB = null;
+	@Bind (R.id.point_11_rb) RadioButton m_point11RB = null;
 
 
 	//logical
@@ -230,6 +231,9 @@ public class ADHChartFragment extends BaseFragment
 			return;
 		case 9:
 			m_point10RB.setChecked(true);
+			return;
+		case 10:
+			m_point11RB.setChecked(true);
 			return;
 		default:
 			m_point1RB.setChecked(true);

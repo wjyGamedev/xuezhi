@@ -146,6 +146,14 @@
 			android:background="@drawable/bg_radio_button_select_point"
 			android:enabled="false"/>
 
+		<RadioButton
+			android:id="@+id/point_11_rb"
+			style="@style/tick_radio_button_style"
+			android:layout_width="@dimen/widget_size_20dp"
+			android:layout_height="@dimen/widget_size_20dp"
+			android:background="@drawable/bg_radio_button_select_point"
+			android:enabled="false"/>
+
 	</RadioGroup>
 
 	<LinearLayout
