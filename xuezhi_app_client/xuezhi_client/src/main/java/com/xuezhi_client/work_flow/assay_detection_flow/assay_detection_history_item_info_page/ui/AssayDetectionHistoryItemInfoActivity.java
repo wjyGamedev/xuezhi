@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
@@ -28,7 +29,8 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DAssayDetection;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.msg_handler.AssayDetectionHistoryItemInfoMsgHandler;
+import com.xuezhi_client.work_flow.assay_detection_flow.assay_detection_history_item_info_page.msg_handler
+		.AssayDetectionHistoryItemInfoMsgHandler;
 import com.xuezhi_client.work_flow.assay_detection_flow.config.AssayDetectionConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
@@ -41,6 +43,20 @@ public class AssayDetectionHistoryItemInfoActivity extends BaseActivity
 {
 	//widget
 	private HeaderCommon m_headerCommon = null;
+
+
+	@Bind (R.id.xuezhi_region_ll)   LinearLayout m_xuezhiRegionLL   = null;        //血脂
+	@Bind (R.id.tg_region_ll)       LinearLayout m_tgRegionLL       = null;        //甘油三酯
+	@Bind (R.id.tcho_region_ll)     LinearLayout m_tchoRegionLL     = null;        //总胆固醇
+	@Bind (R.id.lolc_region_ll)     LinearLayout m_lolcRegionLL     = null;        //低密度脂蛋白胆固醇
+	@Bind (R.id.hdlc_region_ll)     LinearLayout m_hdlcRegionLL     = null;        //高密度脂蛋白胆固醇
+	@Bind (R.id.shenghua_region_ll) LinearLayout m_shenghuaRegionLL = null;        //生化
+	@Bind (R.id.atl_region_ll)      LinearLayout m_atlRegionLL      = null;        //谷丙转氨酶
+	@Bind (R.id.ast_region_ll)      LinearLayout m_astRegionLL      = null;        //谷草转氨酶
+	@Bind (R.id.ck_region_ll)       LinearLayout m_ckRegionLL       = null;        //肌酸激酶
+	@Bind (R.id.glu_region_ll)      LinearLayout m_gluRegionLL      = null;        //空腹血糖
+	@Bind (R.id.hba1c_region_ll)    LinearLayout m_hba1cRegionLL    = null;        //糖化血红蛋白
+	@Bind (R.id.scr_region_ll)      LinearLayout m_scrRegionLL      = null;        //肌酐
 
 	//记录时间
 	@Bind (R.id.record_time_tv) TextView m_recordTimeTV = null;    //甘油三酯
@@ -152,41 +168,122 @@ public class AssayDetectionHistoryItemInfoActivity extends BaseActivity
 			return;
 
 		//记录时间
-		Calendar calendar = m_assayDetection.getRecordCalendar();
-		String displayTime = m_allSDF.format(calendar.getTime());
+		Calendar calendar    = m_assayDetection.getRecordCalendar();
+		String   displayTime = m_allSDF.format(calendar.getTime());
 		m_recordTimeTV.setText(displayTime);
 
 		//血脂
 		double tgValue = m_assayDetection.getTgValue();
-		m_tgET.setText(String.valueOf(tgValue));
+		if (tgValue == 0.0)
+		{
+			m_tgRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_tgET.setText(String.valueOf(tgValue));
+		}
 
 		double tchoValue = m_assayDetection.getTchoValue();
-		m_tchoET.setText(String.valueOf(tchoValue));
+		if (tchoValue == 0.0)
+		{
+			m_tchoRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_tchoET.setText(String.valueOf(tchoValue));
+		}
 
 		double lolcValue = m_assayDetection.getLolcValue();
-		m_lolcET.setText(String.valueOf(lolcValue));
+		if (lolcValue == 0.0)
+		{
+			m_lolcRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_lolcET.setText(String.valueOf(lolcValue));
+		}
 
 		double hdlcValue = m_assayDetection.getHdlcValue();
-		m_hdlcET.setText(String.valueOf(hdlcValue));
+		if (hdlcValue == 0.0)
+		{
+			m_hdlcRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_hdlcET.setText(String.valueOf(hdlcValue));
+		}
+
+		if (tgValue == 0.0 && tchoValue == 0.0 && lolcValue == 0.0 && hdlcValue == 0.0)
+		{
+			m_xuezhiRegionLL.setVisibility(View.GONE);
+		}
+
 
 		//生化
 		double atlValue = m_assayDetection.getAtlValue();
-		m_atlET.setText(String.valueOf(atlValue));
+		if (atlValue == 0.0)
+		{
+			m_atlRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_atlET.setText(String.valueOf(atlValue));
+		}
 
 		double astValue = m_assayDetection.getAstValue();
-		m_astET.setText(String.valueOf(astValue));
+		if (astValue == 0.0)
+		{
+			m_astRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_astET.setText(String.valueOf(astValue));
+		}
 
 		double ckValue = m_assayDetection.getCkValue();
-		m_ckET.setText(String.valueOf(ckValue));
+		if (ckValue == 0.0)
+		{
+			m_ckRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_ckET.setText(String.valueOf(ckValue));
+		}
 
 		double gluValue = m_assayDetection.getGluValue();
-		m_gluET.setText(String.valueOf(gluValue));
+		if (gluValue == 0.0)
+		{
+			m_gluRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_gluET.setText(String.valueOf(gluValue));
+		}
 
 		double hba1cValue = m_assayDetection.getHba1cValue();
-		m_hba1cET.setText(String.valueOf(hba1cValue));
+		if (hba1cValue == 0.0)
+		{
+			m_hba1cRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_hba1cET.setText(String.valueOf(hba1cValue));
+		}
 
 		double scrValue = m_assayDetection.getScrValue();
-		m_scrET.setText(String.valueOf(scrValue));
+		if (scrValue == 0.0)
+		{
+			m_scrRegionLL.setVisibility(View.GONE);
+		}
+		else
+		{
+			m_scrET.setText(String.valueOf(scrValue));
+		}
+
+		if (atlValue == 0.0 && astValue == 0.0 && ckValue == 0.0 && gluValue == 0.0 && hba1cValue == 0.0 && scrValue == 0.0)
+		{
+			m_shenghuaRegionLL.setVisibility(View.GONE);
+		}
 
 		return;
 	}

@@ -47,8 +47,7 @@
 						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:layout_weight="1"
 						android:text="@string/assay_detection_page_recording_time_text"
-						android:textSize="@dimen/font_size_20sp"
-						/>
+						android:textSize="@dimen/font_size_20sp"/>
 
 					<TextView
 						android:id="@+id/record_time_tv"
@@ -65,52 +64,52 @@
 
 			</LinearLayout>
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_marginLeft="@dimen/widget_size_20dp"
-				android:layout_marginTop="@dimen/widget_size_10dp"
-				android:gravity="center"
-				android:text="@string/assay_detection_blood_lipid_title_text"
-				android:textColor="@color/text_color_gray"
-				android:textSize="@dimen/font_size_20sp"/>
-
 			<LinearLayout
+				android:id="@+id/xuezhi_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/widget_size_10dp"
-				android:background="@color/white"
 				android:orientation="vertical">
 
-				<include layout="@layout/item_dividing_line_horizontal"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
+					android:gravity="center"
+					android:text="@string/assay_detection_blood_lipid_title_text"
+					android:textColor="@color/text_color_gray"
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
 					android:layout_marginTop="@dimen/widget_size_10dp"
+					android:background="@color/white"
 					android:orientation="vertical">
 
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_tg_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
+					<include layout="@layout/item_dividing_line_horizontal"/>
 
 					<LinearLayout
+						android:id="@+id/tg_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_tg_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/tg_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -126,35 +125,28 @@
 							android:textSize="@dimen/font_size_20sp"/>
 
 					</LinearLayout>
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_tcho_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
 
 					<LinearLayout
+						android:id="@+id/tcho_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_tcho_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/tcho_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -171,35 +163,27 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_lol_c_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/lolc_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_lol_c_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/lolc_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -216,36 +200,28 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="@dimen/widget_size_10dp"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_hdl_c_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/hdlc_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_hdl_c_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/hdlc_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -262,59 +238,59 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
+					<include layout="@layout/item_dividing_line_horizontal"/>
 
-				<include layout="@layout/item_dividing_line_horizontal"/>
+				</LinearLayout>
 
 			</LinearLayout>
 
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_marginLeft="@dimen/widget_size_20dp"
-				android:layout_marginTop="@dimen/widget_size_10dp"
-				android:gravity="center"
-				android:text="@string/assay_detection_biochemical_title_text"
-				android:textColor="@color/text_color_gray"
-				android:textSize="@dimen/font_size_20sp"/>
-
 			<LinearLayout
+				android:id="@+id/shenghua_region_ll"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/widget_size_10dp"
-				android:background="@color/white"
 				android:orientation="vertical">
 
-				<include layout="@layout/item_dividing_line_horizontal"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="@dimen/widget_size_20dp"
+					android:layout_marginTop="@dimen/widget_size_10dp"
+					android:gravity="center"
+					android:text="@string/assay_detection_biochemical_title_text"
+					android:textColor="@color/text_color_gray"
+					android:textSize="@dimen/font_size_20sp"/>
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
 					android:layout_marginTop="@dimen/widget_size_10dp"
+					android:background="@color/white"
 					android:orientation="vertical">
 
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_atl_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
+					<include layout="@layout/item_dividing_line_horizontal"/>
 
 					<LinearLayout
+						android:id="@+id/atl_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_atl_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/atl_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -331,35 +307,27 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_ast_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/ast_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_ast_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/ast_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -376,35 +344,27 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_ck_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/ck_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_ck_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/ck_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -421,35 +381,27 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_glu_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/glu_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_glu_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/glu_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -466,35 +418,27 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_hba1c_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/hba1c_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_hba1c_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/hba1c_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -511,36 +455,28 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="@dimen/widget_size_10dp"
-					android:layout_marginLeft="@dimen/widget_size_20dp"
-					android:layout_marginRight="@dimen/widget_size_20dp"
-					android:layout_marginTop="@dimen/widget_size_10dp"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/assay_detection_scr_title_text"
-						android:textSize="@dimen/font_size_20sp"/>
-
 					<LinearLayout
+						android:id="@+id/scr_region_ll"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/widget_size_10dp"
 						android:layout_marginLeft="@dimen/widget_size_20dp"
 						android:layout_marginRight="@dimen/widget_size_20dp"
+						android:layout_marginTop="@dimen/widget_size_10dp"
 						android:orientation="horizontal">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:gravity="center"
+							android:text="@string/assay_detection_scr_title_text"
+							android:textSize="@dimen/font_size_20sp"/>
 
 						<com.module.widget.lineedittext.LineEditText
 							android:id="@+id/scr_et"
 							android:layout_width="match_parent"
 							android:layout_height="@dimen/widget_size_35dp"
-							android:layout_marginLeft="@dimen/widget_size_40dp"
+							android:layout_marginLeft="@dimen/widget_size_5dp"
 							android:layout_marginRight="@dimen/widget_size_5dp"
 							android:layout_weight="1"
 							android:background="@null"
@@ -558,9 +494,9 @@
 
 					</LinearLayout>
 
-				</LinearLayout>
+					<include layout="@layout/item_dividing_line_horizontal"/>
 
-				<include layout="@layout/item_dividing_line_horizontal"/>
+				</LinearLayout>
 
 			</LinearLayout>
 
