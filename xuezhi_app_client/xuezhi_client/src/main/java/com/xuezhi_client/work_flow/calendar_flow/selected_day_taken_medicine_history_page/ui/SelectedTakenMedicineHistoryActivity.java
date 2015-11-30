@@ -16,16 +16,15 @@ import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
-import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
-import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
-import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.net.config.TakeMedicineConfig;
 import com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.msg_handler.MedicationDetailsMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.Bind;
@@ -104,7 +103,7 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 
 	}
 
-	@OnClick(R.id.taken_rbtn)
+	@OnClick (R.id.taken_rbtn)
 	public void clickTakenRbtn()
 	{
 		updateRbtnRegion();
@@ -112,14 +111,13 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		mSelectedTakenMedicineHistoryAdapter.notifyDataSetChanged();
 	}
 
-	@OnClick(R.id.no_taken_rbtn)
+	@OnClick (R.id.no_taken_rbtn)
 	public void clickNoTakenRbtn()
 	{
 		updateRbtnRegion();
 		mSelectedTakenMedicineHistoryAdapter.setTaken(false);
 		mSelectedTakenMedicineHistoryAdapter.notifyDataSetChanged();
 	}
-
 
 
 	private void backAction()
@@ -183,59 +181,44 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 	private void updateRbtnRegion()
 	{
 		//已服用图标
-		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																  .getMedicalHistoryBySelectedMonth(mSelectedDay
-																								   );
-		if (takeMedicinePerMonth == null)
+		ArrayList<DTakeMedicine> takeMedicineArrayList = mMedicationDetailsMsgHandler.getValidTakeMedicines();
+		if (takeMedicineArrayList.size() == 0)
 		{
 			mTakenArrowRegionFl.setVisibility(View.INVISIBLE);
 		}
 		else
 		{
-			DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(mSelectedDay);
-			if (takeMedicinePerDay == null)
-			{
-				mTakenArrowRegionFl.setVisibility(View.INVISIBLE);
-			}
-			else
-			{
-				if (takeMedicinePerDay.getTakeMedicines().isEmpty())
-				{
-					mTakenArrowRegionFl.setVisibility(View.INVISIBLE);
-				}
-				else
-				{
-					mTakenArrowRegionFl.setVisibility(View.VISIBLE);
-					mTakenNumTv.setText(String.valueOf(takeMedicinePerDay.getTakeMedicines().size()));
-				}
-			}
+			mTakenArrowRegionFl.setVisibility(View.VISIBLE);
+			mTakenNumTv.setText(String.valueOf(takeMedicineArrayList.size()));
+		}
 
-		}
 		//未服用图标
-		DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
-																	  .getMedicalHistoryBySelectedMonth(mSelectedDay
-																									   );
-		if (noTakeMedicinePerMonth == null)
+		if (mSelectedDay.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
+				mSelectedDay.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
+				mSelectedDay.get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))//所选日期是今天
 		{
-			mNoTakenRegionFl.setVisibility(View.INVISIBLE);
-		}
-		else
-		{
-			DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(mSelectedDay);
-			if (noTakeMedicinePerDay == null)
+			ArrayList<DMedicinePrompt> todayNoTakeMedicineArrayList = mMedicationDetailsMsgHandler.getValidNoTakeMedicinesIncludeToday();
+			if (todayNoTakeMedicineArrayList.size() == 0)
 			{
 				mNoTakenRegionFl.setVisibility(View.INVISIBLE);
 			}
 			else
 			{
-				if (noTakeMedicinePerDay.getNoTakeMedicines().isEmpty())
-				{
-					mNoTakenRegionFl.setVisibility(View.INVISIBLE);
-				}
-				else
-				{
-					mNoTakenNumTv.setText(String.valueOf(noTakeMedicinePerDay.getNoTakeMedicines().size()));
-				}
+				mNoTakenRegionFl.setVisibility(View.VISIBLE);
+				mNoTakenNumTv.setText(String.valueOf(todayNoTakeMedicineArrayList.size()));
+			}
+		}
+		else
+		{
+			ArrayList<DNoTakeMedicine> NoTakeMedicineArrayList = mMedicationDetailsMsgHandler.getValidNoTakeMedicinesExcludeToday();
+			if (NoTakeMedicineArrayList.size() == 0)
+			{
+				mNoTakenRegionFl.setVisibility(View.INVISIBLE);
+			}
+			else
+			{
+				mNoTakenRegionFl.setVisibility(View.VISIBLE);
+				mNoTakenNumTv.setText(String.valueOf(NoTakeMedicineArrayList.size()));
 			}
 		}
 	}
@@ -252,6 +235,13 @@ public class SelectedTakenMedicineHistoryActivity extends BaseActivity
 		}
 	}
 
+	public Calendar getSelectedDay()
+	{
+		return mSelectedDay;
+	}
 
-
+	public MedicationDetailsMsgHandler getMedicationDetailsMsgHandler()
+	{
+		return mMedicationDetailsMsgHandler;
+	}
 }

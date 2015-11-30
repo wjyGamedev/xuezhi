@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -26,13 +26,12 @@ import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineCompany;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineUnit;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
-import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.work_flow.calendar_flow.selected_day_taken_medicine_history_page.msg_handler.MedicationDetailsMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
@@ -48,59 +47,41 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 	private Calendar       m_selectedDay    = Calendar.getInstance();
 	private boolean        mTakenFlag       = false;
 
-	private ArrayList<DTakeMedicine>   mTakeMedicineArrayList   = new ArrayList<>();
-	private ArrayList<DNoTakeMedicine> mNoTakeMedicineArrayList = new ArrayList<>();
+	private ArrayList<DTakeMedicine>   mTakeMedicineArrayList        = new ArrayList<>();
+	private ArrayList<DNoTakeMedicine> mNoTakeMedicineArrayList      = new ArrayList<>();
+	private ArrayList<DMedicinePrompt> mTodayNoTakeMedicineArrayList = new ArrayList<>();
 
 	@Override
 	public int getCount()
 	{
 		if (mTakenFlag)
 		{
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(
-
-																			  m_selectedDay
-																									   );
-			if (takeMedicinePerMonth == null)
-			{
-				return 0;
-			}
-			else
-			{
-				DTakeMedicinePerDay takeMedicinePerDay = takeMedicinePerMonth.getMedicalHistoryBySelectedDay(m_selectedDay);
-				if (takeMedicinePerDay == null)
-				{
-					return 0;
-				}
-				else
-				{
-					mTakeMedicineArrayList = takeMedicinePerDay.getTakeMedicines();
-					return mTakeMedicineArrayList.size();
-				}
-			}
+			SelectedTakenMedicineHistoryActivity activity = (SelectedTakenMedicineHistoryActivity)m_context;
+			MedicationDetailsMsgHandler msgHandler = activity.getMedicationDetailsMsgHandler();
+			mTakeMedicineArrayList = msgHandler.getValidTakeMedicines();
+			return mTakeMedicineArrayList.size();
 		}
 		else
 		{
+			//获取本月未服用数据
 			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
 																		  .getMedicalHistoryBySelectedMonth(m_selectedDay
 																										   );
-
-			if (noTakeMedicinePerMonth == null)
+			if (m_selectedDay.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
+					m_selectedDay.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
+					m_selectedDay.get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))//所选日期是今天
 			{
-				return 0;
+				SelectedTakenMedicineHistoryActivity activity = (SelectedTakenMedicineHistoryActivity)m_context;
+				MedicationDetailsMsgHandler msgHandler = activity.getMedicationDetailsMsgHandler();
+				mTodayNoTakeMedicineArrayList = msgHandler.getValidNoTakeMedicinesIncludeToday();
+				return mTodayNoTakeMedicineArrayList.size();
 			}
-			else
+			else    //不是今天
 			{
-				DNoTakeMedicinePerDay noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(m_selectedDay);
-				if (noTakeMedicinePerDay == null)
-				{
-					return 0;
-				}
-				else
-				{
-					mNoTakeMedicineArrayList = noTakeMedicinePerDay.getNoTakeMedicines();
-					return mNoTakeMedicineArrayList.size();
-				}
+				SelectedTakenMedicineHistoryActivity activity = (SelectedTakenMedicineHistoryActivity)m_context;
+				MedicationDetailsMsgHandler msgHandler = activity.getMedicationDetailsMsgHandler();
+				mNoTakeMedicineArrayList = msgHandler.getValidNoTakeMedicinesExcludeToday();
+				return mNoTakeMedicineArrayList.size();
 			}
 		}
 	}
@@ -127,13 +108,30 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 		}
 		else
 		{
-			if (position >= mNoTakeMedicineArrayList.size())
+			if (m_selectedDay.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
+					m_selectedDay.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
+					m_selectedDay.get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))//所选日期是今天
 			{
-				return 0;
+				if (position >= mTodayNoTakeMedicineArrayList.size())
+				{
+					return 0;
+				}
+				else
+				{
+					return position;
+				}
+
 			}
 			else
 			{
-				return position;
+				if (position >= mNoTakeMedicineArrayList.size())
+				{
+					return 0;
+				}
+				else
+				{
+					return position;
+				}
 			}
 		}
 	}
@@ -160,7 +158,16 @@ public class SelectedTakenMedicineHistoryAdapter extends IBaseAdapter
 		}
 		else
 		{
-			viewHolder.initNoTakenContent(mNoTakeMedicineArrayList, index);
+			if (m_selectedDay.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
+					m_selectedDay.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
+					m_selectedDay.get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))//所选日期是今天
+			{
+				viewHolder.initTodayNoTakenContent(mTodayNoTakeMedicineArrayList, index);
+			}
+			else
+			{
+				viewHolder.initNoTakenContent(mNoTakeMedicineArrayList, index);
+			}
 		}
 
 		return convertView;
@@ -195,8 +202,9 @@ final class ViewHolder
 
 	private View m_view = null;
 
-	private DTakeMedicine mTakeMedicine = null;
-	private DNoTakeMedicine mNoTakeMedicine = null;
+	private DTakeMedicine   mTakeMedicine        = null;
+	private DNoTakeMedicine mNoTakeMedicine      = null;
+	private DMedicinePrompt mTodayNoTakeMedicine = null;
 
 	private SimpleDateFormat mHmSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_HOUR_MINUTE);
 
@@ -238,7 +246,7 @@ final class ViewHolder
 				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(cid);
 				if (medicineCompany != null)
 				{
-					medicineName = medicineName + "(" + medicineCompany.getName()+ ")";
+					medicineName = medicineName + "(" + medicineCompany.getName() + ")";
 				}
 			}
 			mNameTv.setText(medicineName);
@@ -297,7 +305,7 @@ final class ViewHolder
 				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(cid);
 				if (medicineCompany != null)
 				{
-					medicineName = medicineName + "(" + medicineCompany.getName()+ ")";
+					medicineName = medicineName + "(" + medicineCompany.getName() + ")";
 				}
 			}
 			mNameTv.setText(medicineName);
@@ -320,7 +328,64 @@ final class ViewHolder
 				}
 			}
 			mDoseUnitTv.setText(unit);
+		}
+	}
 
+	public void initTodayNoTakenContent(ArrayList<DMedicinePrompt> todayNoTakeMedicineArrayList, int index)
+	{
+		if (todayNoTakeMedicineArrayList.isEmpty())
+		{
+			mMedicineDetailsRegionLl.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			mMedicineDetailsRegionLl.setVisibility(View.VISIBLE);
+			if (index >= todayNoTakeMedicineArrayList.size())
+			{
+				mTodayNoTakeMedicine = todayNoTakeMedicineArrayList.get(0);
+			}
+			else
+			{
+				mTodayNoTakeMedicine = todayNoTakeMedicineArrayList.get(index);
+			}
+
+			Calendar takeCalendar = mTodayNoTakeMedicine.getTakeCalendar();
+			String takeDisplay = mHmSDF.format(takeCalendar.getTime());
+			mTakenMedicineTimeTv.setText(takeDisplay);
+
+			int mid = mTodayNoTakeMedicine.getMID();
+			DMedicine medicine = DBusinessData.GetInstance().getMedicineList().getMedicineByID(mid);
+			String medicineName = "";
+			if (medicine != null)
+			{
+				medicineName = medicine.getName();
+				int cid = medicine.getCID();
+				DMedicineCompany medicineCompany = DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanyByID(cid);
+				if (medicineCompany != null)
+				{
+					medicineName = medicineName + "(" + medicineCompany.getName() + ")";
+				}
+			}
+			mNameTv.setText(medicineName);
+
+			double dose = 0;
+			if (medicine != null)
+			{
+				dose = medicine.getDose();
+			}
+			mDoseTv.setText(String.valueOf(dose));
+
+			String unit = "";
+			if (medicine != null)
+			{
+				int unitID = medicine.getMUID();
+				DMedicineUnit medicineUnit = DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnitByID(unitID);
+				if (medicineUnit != null)
+				{
+					unit = medicineUnit.getUnitName();
+				}
+			}
+			mDoseUnitTv.setText(unit);
 		}
 	}
 }
