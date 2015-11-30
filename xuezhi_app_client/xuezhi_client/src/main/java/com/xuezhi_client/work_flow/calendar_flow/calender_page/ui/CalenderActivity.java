@@ -53,7 +53,9 @@ public class CalenderActivity extends BaseActivity
 
 	private SelectorNotTakedDecorator m_selectorNotTakedDecorator = new SelectorNotTakedDecorator();
 	private SelectorTakedDecorator    m_selectorTakedDecorator    = new SelectorTakedDecorator();
+	private TodayDecorator            m_todayDecorator            = new TodayDecorator();
 
+	private HandleTodayDecorateListener    m_handleTodayDecorateListener    = new HandleTodayDecorateListener();
 	private HandleTakedDecorateListener    m_handleTakedDecorateListener    = new HandleTakedDecorateListener();
 	private HandleNotTakedDecorateListener m_handleNotTakedDecorateListener = new HandleNotTakedDecorateListener();
 	private HandleDateChangedClickEvent    m_handleDateChangedClickEvent    = new HandleDateChangedClickEvent();
@@ -130,7 +132,7 @@ public class CalenderActivity extends BaseActivity
 			}
 
 			//02. 等于今天，set
-			if (tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay == today.get(Calendar.DAY_OF_MONTH) )
+			if (tmpYear == today.get(Calendar.YEAR) && tmpMonth == today.get(Calendar.MONTH) && tmpDay == today.get(Calendar.DAY_OF_MONTH))
 			{
 				setSelectedTakeMedicineTime(tmpCalendar);
 				return;
@@ -138,15 +140,19 @@ public class CalenderActivity extends BaseActivity
 
 			//03. 小于今天
 			//既没有notakehistory，有没有takehistory
-			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(tmpCalendar);
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(tmpCalendar);
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
+																		  .getMedicalHistoryBySelectedMonth(tmpCalendar
+																										   );
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																	  .getMedicalHistoryBySelectedMonth(tmpCalendar
+																									   );
 			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
 				return;
 			}
 
 			DNoTakeMedicinePerDay noTakeMedicinePerDay = null;
-			DTakeMedicinePerDay takeMedicinePerDay = null;
+			DTakeMedicinePerDay   takeMedicinePerDay   = null;
 			if (noTakeMedicinePerMonth != null)
 			{
 				noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(tmpCalendar);
@@ -162,7 +168,7 @@ public class CalenderActivity extends BaseActivity
 			}
 
 			boolean emptyNoTake = true;
-			boolean emptyTake = true;
+			boolean emptyTake   = true;
 			if (noTakeMedicinePerDay != null)
 			{
 				emptyNoTake = noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
@@ -179,6 +185,29 @@ public class CalenderActivity extends BaseActivity
 		}
 	}
 
+	class HandleTodayDecorateListener implements BaseSelectorDecorator.OnShouldDecorateListener
+	{
+		@Override
+		public boolean shouldDecorate(CalendarDay day, MonthView monthView)
+		{
+			Calendar currCalendar = Calendar.getInstance();
+			day.copyTo(currCalendar);
+
+			//01. 等于今天return true
+			Calendar today = Calendar.getInstance();
+			if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+					currCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+
 	class HandleTakedDecorateListener implements BaseSelectorDecorator.OnShouldDecorateListener
 	{
 		@Override
@@ -187,7 +216,7 @@ public class CalenderActivity extends BaseActivity
 			Calendar currCalendar = Calendar.getInstance();
 			day.copyTo(currCalendar);
 
-			//01. 大于今天，return false
+			//01. 大于今天，return false  等于今天return false
 			Calendar today = Calendar.getInstance();
 			if (currCalendar.get(Calendar.YEAR) > today.get(Calendar.YEAR))
 			{
@@ -204,17 +233,27 @@ public class CalenderActivity extends BaseActivity
 			{
 				return false;
 			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+					currCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
 
 			//02. 既没有notakehistory，有没有takehistory
-			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList().getMedicalHistoryBySelectedMonth(currCalendar);
-			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList().getMedicalHistoryBySelectedMonth(currCalendar);
+			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
+																		  .getMedicalHistoryBySelectedMonth(currCalendar
+																										   );
+			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
+																	  .getMedicalHistoryBySelectedMonth(currCalendar
+																									   );
 			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
 				return false;
 			}
 
 			DNoTakeMedicinePerDay noTakeMedicinePerDay = null;
-			DTakeMedicinePerDay takeMedicinePerDay = null;
+			DTakeMedicinePerDay   takeMedicinePerDay   = null;
 			if (noTakeMedicinePerMonth != null)
 			{
 				noTakeMedicinePerDay = noTakeMedicinePerMonth.getMedicalHistoryBySelectedDay(currCalendar);
@@ -230,7 +269,7 @@ public class CalenderActivity extends BaseActivity
 			}
 
 			boolean emptyNoTake = true;
-			boolean emptyTake = true;
+			boolean emptyTake   = true;
 			if (noTakeMedicinePerDay != null)
 			{
 				emptyNoTake = noTakeMedicinePerDay.getNoTakeMedicines().isEmpty();
@@ -283,6 +322,12 @@ public class CalenderActivity extends BaseActivity
 			{
 				return false;
 			}
+			else if (currCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+					currCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+					currCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH))
+			{
+				return false;
+			}
 
 
 			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
@@ -321,8 +366,6 @@ public class CalenderActivity extends BaseActivity
 	}
 
 
-
-
 	/**
 	 * inner func
 	 */
@@ -345,7 +388,8 @@ public class CalenderActivity extends BaseActivity
 
 		m_selectorNotTakedDecorator.setOnShouldDecorateListener(m_handleNotTakedDecorateListener);
 		m_selectorTakedDecorator.setOnShouldDecorateListener(m_handleTakedDecorateListener);
-		m_calendarView.addDecorators(m_selectorTakedDecorator, m_selectorNotTakedDecorator);
+		m_todayDecorator.setOnShouldDecorateListener(m_handleTodayDecorateListener);
+		m_calendarView.addDecorators(m_todayDecorator, m_selectorTakedDecorator, m_selectorNotTakedDecorator);
 
 		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
