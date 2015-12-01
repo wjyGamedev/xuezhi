@@ -9,6 +9,7 @@ import com.xuezhi_client.data_module.xuezhi_data.msg_handler.AnswerMedicinePromp
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptDeleteEvent;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestMedicinePromptGetListEvent;
+import com.xuezhi_client.work_flow.data.DWaitForRemainder;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_add_page.ui.MedicineReminderAddActivity;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.config.MedicineReminderPageConfig;
 import com.xuezhi_client.work_flow.medicine_reminder_flow.medicine_reminder_page.ui.MedicineReminderActivity;
@@ -73,8 +74,8 @@ public class MedicationReminderMsgHandler extends BaseUIMsgHandler
 	{
 		MedicineReminderActivity activity = (MedicineReminderActivity)m_context;
 		activity.updateContent();
-
 		activity.closeAsyncDialog();
+		DWaitForRemainder.GetInstance().updateTakeMedicineReminderContent();
 	}
 
 }
