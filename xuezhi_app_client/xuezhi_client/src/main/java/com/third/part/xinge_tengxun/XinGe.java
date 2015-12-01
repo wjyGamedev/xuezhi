@@ -27,6 +27,7 @@ import com.tencent.android.tpush.XGPushNotifactionCallback;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.work_flow.data.DWaitForRemainder;
 import com.xuezhi_client.work_flow.main_page.data.DMedicineReminder;
 import com.xuezhi_client.work_flow.main_page.data.DTakeMedicineReminder;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
@@ -93,7 +94,7 @@ public class XinGe
 			if (activity == null)
 				return;
 
-			ArrayList<DTakeMedicineReminder> takeMedicineReminders = activity.getMainMsgHandler().getWaitForRemainder()
+			ArrayList<DTakeMedicineReminder> takeMedicineReminders = DWaitForRemainder.GetInstance()
 																			 .getTakeMedicineReminders();
 			addLocalTakeMedicineNotification(takeMedicineReminders);
 			return;
@@ -109,7 +110,7 @@ public class XinGe
 			if (activity == null)
 				return;
 
-			ArrayList<DMedicineReminder> medicineReminders = activity.getMainMsgHandler().getWaitForRemainder().getMedicineReminders();
+			ArrayList<DMedicineReminder> medicineReminders = DWaitForRemainder.GetInstance().getMedicineReminders();
 			addLocalMedicineNotification(medicineReminders);
 			return;
 		}

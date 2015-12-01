@@ -12,7 +12,7 @@
  * 2015/10/27		WangJY		1.0.0		create
  */
 
-package com.xuezhi_client.work_flow.main_page.data;
+package com.xuezhi_client.work_flow.data;
 
 import com.third.part.xinge_tengxun.XinGe;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
@@ -21,12 +21,15 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.work_flow.main_page.data.DMedicineReminder;
+import com.xuezhi_client.work_flow.main_page.data.DTakeMedicineReminder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DWaitForRemainder
 {
+	private static DWaitForRemainder s_dWaitForRemainder = new DWaitForRemainder();
 	//data
 	private ArrayList<DTakeMedicineReminder> m_takeMedicineReminders = new ArrayList<>();
 	private ArrayList<DMedicineReminder>     m_medicineReminders     = new ArrayList<>();
@@ -34,6 +37,11 @@ public class DWaitForRemainder
 	public DWaitForRemainder()
 	{
 		updateContent();
+	}
+
+	public static DWaitForRemainder GetInstance()
+	{
+		return s_dWaitForRemainder;
 	}
 
 	public void updateContent()
@@ -55,6 +63,22 @@ public class DWaitForRemainder
 
 	}
 
+	public void updateTakeMedicineReminderContent()
+	{
+		if (DBusinessData.GetInstance().getMedicineList().getMedicals().isEmpty())
+			return;
+
+		if (DBusinessData.GetInstance().getMedicalUnitList().getMedicalUnits().isEmpty())
+			return;
+
+		if (DBusinessData.GetInstance().getMedicineCompanyList().getMedicineCompanies().isEmpty())
+			return;
+
+		//刷新用药提醒
+		updateTakeMedicineReminder();
+
+	}
+
 
 	private void updateTakeMedicineReminder()
 	{
@@ -62,7 +86,7 @@ public class DWaitForRemainder
 		if (medicinePrompts.isEmpty())
 			return;
 
-		Calendar                   today           = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
 																  .getMedicalHistoryBySelectedMonth(today
 																								   );

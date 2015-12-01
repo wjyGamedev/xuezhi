@@ -58,7 +58,7 @@ import com.xuezhi_client.work_flow.faq_page.ui.FaqActivity;
 import com.xuezhi_client.work_flow.main_page.config.MainConfig;
 import com.xuezhi_client.work_flow.main_page.data.DMedicineReminder;
 import com.xuezhi_client.work_flow.main_page.data.DTakeMedicineReminder;
-import com.xuezhi_client.work_flow.main_page.data.DWaitForRemainder;
+import com.xuezhi_client.work_flow.data.DWaitForRemainder;
 import com.xuezhi_client.work_flow.main_page.ui.HomeTabFragment;
 import com.xuezhi_client.work_flow.main_page.ui.MainActivity;
 import com.xuezhi_client.work_flow.main_page.ui.PersonalTabFragment;
@@ -81,7 +81,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 {
 
 	//date
-	private DWaitForRemainder m_waitForRemainder      = new DWaitForRemainder();
+//	private DWaitForRemainder m_waitForRemainder      = new DWaitForRemainder();
 	private Object            m_asyncWaitForRemainder = new Object();
 
 	private DTakeMedicineReminder m_takeMedicineReminder = null; //当前显示提醒
@@ -345,7 +345,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 	{
 		synchronized (m_asyncWaitForRemainder)
 		{
-			m_waitForRemainder.updateContent();
+			DWaitForRemainder.GetInstance().updateContent();
 		}
 		return;
 	}
@@ -402,7 +402,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 			//01. update 用药提示
 			//TODO:缺少没有提醒的处理方案layout
-			ArrayList<DTakeMedicineReminder> takeMedicineReminders = m_waitForRemainder.getTakeMedicineReminders();
+			ArrayList<DTakeMedicineReminder> takeMedicineReminders = DWaitForRemainder.GetInstance().getTakeMedicineReminders();
 			Calendar                         minToday              = Calendar.getInstance();
 
 			Calendar tmpTakeTime = Calendar.getInstance();
@@ -496,7 +496,7 @@ public class MainMsgHandler extends BaseUIMsgHandler
 
 			}
 			//02. update 药箱提醒
-			ArrayList<DMedicineReminder> medicineReminders = m_waitForRemainder.getMedicineReminders();
+			ArrayList<DMedicineReminder> medicineReminders = DWaitForRemainder.GetInstance().getMedicineReminders();
 			TextView medicineReminderTV = homeTabFragment.getMedicineReminderTV();
 			ImageView                    medicineReminderIV = homeTabFragment.getMedicineReminderIV();
 			//有
@@ -909,11 +909,4 @@ public class MainMsgHandler extends BaseUIMsgHandler
 		mainActivity.startActivity(new Intent(mainActivity, DrugStockAddActivity.class));
 	}
 
-	public DWaitForRemainder getWaitForRemainder()
-	{
-		synchronized (m_asyncWaitForRemainder)
-		{
-			return m_waitForRemainder;
-		}
-	}
 }
