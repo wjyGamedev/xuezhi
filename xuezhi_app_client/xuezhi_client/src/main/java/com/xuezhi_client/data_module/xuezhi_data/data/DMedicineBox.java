@@ -5,7 +5,7 @@
  * @version : 1.0.0
  * @author : WangJY
  * @description : ${TODO}
- * <p>
+ * <p/>
  * Modification History:
  * Date         	Author 		Version		Description
  * ----------------------------------------------------------------
@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,7 +42,7 @@ public class DMedicineBox
 	private Calendar m_addCalendar          = null;    //添加时间
 	private boolean  m_medicalReminderState = false;    //药品警报状态，true开启，false关闭
 	private Calendar m_warningTime          = Calendar.getInstance();//预警时间
-	private Calendar m_exhaustTime = Calendar.getInstance();//用尽时间
+	private Calendar m_exhaustTime          = Calendar.getInstance();//用尽时间
 
 	private SimpleDateFormat m_yearMonthDaySDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -85,10 +86,29 @@ public class DMedicineBox
 			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + m_MID + "]");
 		}
 
-		amountPerTime = medical.getDose();
+		DMedicinePromptList medicinePromptList = DBusinessData.GetInstance().getMedicinePromptList();
+		if (medicinePromptList != null)
+		{
+			ArrayList<DMedicinePrompt> medicinePrompt = medicinePromptList.getMedicalPrompts();
+			if (medicinePrompt != null)
+			{
+				for (DMedicinePrompt tmpMedicinePrompt : medicinePrompt)
+				{
+					if (tmpMedicinePrompt.getMID() == medical.getID())
+					{
+						amountPerTime += tmpMedicinePrompt.getDose();
+					}
+				}
+			}
+		}
+
 		if (amountPerTime == 0)
 		{
-			throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_MID + "]");
+			amountPerTime = medical.getDose();
+			if (amountPerTime == 0)
+			{
+				throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + m_MID + "]");
+			}
 		}
 
 		//01. m_warningTime
