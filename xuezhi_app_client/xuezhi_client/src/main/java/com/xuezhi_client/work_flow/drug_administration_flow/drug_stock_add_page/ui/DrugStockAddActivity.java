@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.header.HeaderCommon;
@@ -14,11 +15,14 @@ import com.xuezhi_client.config.DataConfig;
 import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePromptList;
 import com.xuezhi_client.util.LogicalUtil;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_stock_add_page.msg_handler.DrugStockAddMsgHandler;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.Bind;
@@ -120,7 +124,32 @@ public class DrugStockAddActivity extends BaseActivity
 	public String calculateRunOutData()
 	{
 		DMedicine drug          = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
-		double    amountPerTime = drug.getDose();
+		double    amountPerTime = 0f;
+
+		DMedicinePromptList medicinePromptList = DBusinessData.GetInstance().getMedicinePromptList();
+		if (medicinePromptList != null)
+		{
+			ArrayList<DMedicinePrompt> medicinePrompt = medicinePromptList.getMedicalPrompts();
+			if (medicinePrompt != null)
+			{
+				for (DMedicinePrompt tmpMedicinePrompt : medicinePrompt)
+				{
+					if (tmpMedicinePrompt.getMID() == drug.getID())
+					{
+						amountPerTime += tmpMedicinePrompt.getDose();
+					}
+				}
+			}
+		}
+
+		if (amountPerTime == 0)
+		{
+			amountPerTime = drug.getDose();
+			if (amountPerTime == 0)
+			{
+				throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + drug.getID() + "]");
+			}
+		}
 
 		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
 		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());

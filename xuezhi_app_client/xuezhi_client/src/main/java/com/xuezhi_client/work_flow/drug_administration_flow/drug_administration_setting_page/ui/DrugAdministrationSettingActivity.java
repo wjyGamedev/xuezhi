@@ -7,6 +7,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.module.exception.RuntimeExceptions.net.JsonSerializationException;
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
 import com.module.widget.dialog.TipsDialog;
@@ -16,6 +17,8 @@ import com.xuezhi_client.config.DateConfig;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DMedicineBox;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePrompt;
+import com.xuezhi_client.data_module.xuezhi_data.data.DMedicinePromptList;
 import com.xuezhi_client.util.LogicalUtil;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_config.DrugAdministrationConfig;
 import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_setting_page.msg_handler
@@ -23,6 +26,7 @@ import com.xuezhi_client.work_flow.drug_administration_flow.drug_administration_
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.Bind;
@@ -185,8 +189,38 @@ public class DrugAdministrationSettingActivity extends BaseActivity
 
 	public String calculateRunOutData()
 	{
-		DMedicine drug          = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
-		double    amountPerTime = drug.getDose();
+		DMedicine medical          = DBusinessData.GetInstance().getMedicineList().getMedicineByID(m_drugID);
+
+		double    amountPerTime = 0f; //每次用量
+		if (medical == null)
+		{
+			throw new JsonSerializationException("medical == null!m_MID is invalid![m_MID:=" + medical.getID() + "]");
+		}
+
+		DMedicinePromptList medicinePromptList = DBusinessData.GetInstance().getMedicinePromptList();
+		if (medicinePromptList != null)
+		{
+			ArrayList<DMedicinePrompt> medicinePrompt = medicinePromptList.getMedicalPrompts();
+			if (medicinePrompt != null)
+			{
+				for (DMedicinePrompt tmpMedicinePrompt : medicinePrompt)
+				{
+					if (tmpMedicinePrompt.getMID() == medical.getID())
+					{
+						amountPerTime += tmpMedicinePrompt.getDose();
+					}
+				}
+			}
+		}
+
+		if (amountPerTime == 0)
+		{
+			amountPerTime = medical.getDose();
+			if (amountPerTime == 0)
+			{
+				throw new JsonSerializationException("amountPerTime == 0![m_MID:=" + medical.getID() + "]");
+			}
+		}
 
 		String drugStockNum  = String.valueOf(m_drugStockNumET.getText());
 		String drugwaringNum = String.valueOf(m_drugAlertNumET.getText());
