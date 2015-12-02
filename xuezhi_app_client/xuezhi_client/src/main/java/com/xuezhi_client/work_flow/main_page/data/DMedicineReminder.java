@@ -86,8 +86,7 @@ public class DMedicineReminder
 		{
 			if (medicinePrompt.getMID() == m_MID)
 			{
-				amountPerTime = medicinePrompt.getDose();
-				break;
+				amountPerTime += medicinePrompt.getDose();
 			}
 		}
 
@@ -107,9 +106,7 @@ public class DMedicineReminder
 		}
 		m_waringTime = resultTime;
 
-
 		m_medicineName = medicine.getName();
-
 	}
 
 	public int getMBID()
