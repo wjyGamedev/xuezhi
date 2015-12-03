@@ -69,7 +69,8 @@ public class CalenderActivity extends BaseActivity
 
 	private String mClickArrowDirection = null;
 
-	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+	//	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
+	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_2);
 
 	private Calendar m_selectedDay = Calendar.getInstance();
 	private Calendar mCurrMonth    = Calendar.getInstance();
@@ -157,11 +158,13 @@ public class CalenderActivity extends BaseActivity
 			//03. 小于今天
 			//既没有notakehistory，有没有takehistory
 			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
-																		  .getMedicalHistoryBySelectedMonth(tmpCalendar
-																										   );
+																		  .getMedicalHistoryBySelectedMonth(
+					tmpCalendar
+																																				 );
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(tmpCalendar
-																									   );
+																	  .getMedicalHistoryBySelectedMonth(
+					tmpCalendar
+																																				  );
 			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
 				return;
@@ -206,18 +209,18 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClickLeftAction(View v, Calendar currMonth)
 		{
-//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
-//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
-//			RotationWaittingDialog.GetInstance().dialogOpen();
-//
-//			int nowMonth = currMonth.get(Calendar.MONTH) - 1;//月份减1
-//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_LEFT;
-//			//请求新的一个月的数据
-//			currMonth.set(Calendar.MONTH, nowMonth);
-//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
-//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
-//			takeMedicineEvent.setCurrMonth(currMonth);
-//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
+			//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+			//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+			//			RotationWaittingDialog.GetInstance().dialogOpen();
+			//
+			//			int nowMonth = currMonth.get(Calendar.MONTH) - 1;//月份减1
+			//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_LEFT;
+			//			//请求新的一个月的数据
+			//			currMonth.set(Calendar.MONTH, nowMonth);
+			//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+			//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+			//			takeMedicineEvent.setCurrMonth(currMonth);
+			//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
@@ -226,18 +229,18 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClickRightAction(View v, Calendar currMonth)
 		{
-//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
-//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
-//			RotationWaittingDialog.GetInstance().dialogOpen();
-//
-//			int nowMonth = currMonth.get(Calendar.MONTH) + 1;//月份加1
-//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_RIGHT;
-//			//请求新的一个月的数据
-//			currMonth.set(Calendar.MONTH, nowMonth);
-//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
-//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
-//			takeMedicineEvent.setCurrMonth(currMonth);
-//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
+			//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+			//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+			//			RotationWaittingDialog.GetInstance().dialogOpen();
+			//
+			//			int nowMonth = currMonth.get(Calendar.MONTH) + 1;//月份加1
+			//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_RIGHT;
+			//			//请求新的一个月的数据
+			//			currMonth.set(Calendar.MONTH, nowMonth);
+			//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+			//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+			//			takeMedicineEvent.setCurrMonth(currMonth);
+			//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
@@ -298,11 +301,13 @@ public class CalenderActivity extends BaseActivity
 
 			//02. 既没有notakehistory，有没有takehistory
 			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
-																		  .getMedicalHistoryBySelectedMonth(currCalendar
-																										   );
+																		  .getMedicalHistoryBySelectedMonth(
+					currCalendar
+																																				 );
 			DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																	  .getMedicalHistoryBySelectedMonth(currCalendar
-																									   );
+																	  .getMedicalHistoryBySelectedMonth(
+					currCalendar
+																																				  );
 			if (noTakeMedicinePerMonth == null && takeMedicinePerMonth == null)
 			{
 				return false;
@@ -387,8 +392,9 @@ public class CalenderActivity extends BaseActivity
 
 
 			DNoTakeMedicinePerMonth noTakeMedicinePerMonth = DBusinessData.GetInstance().getNoTakeMedicineList()
-																		  .getMedicalHistoryBySelectedMonth(currCalendar
-																										   );
+																		  .getMedicalHistoryBySelectedMonth(
+					currCalendar
+																																				 );
 			if (noTakeMedicinePerMonth == null)
 				return false;
 
@@ -448,11 +454,14 @@ public class CalenderActivity extends BaseActivity
 
 		Calendar today = Calendar.getInstance();
 		DTakeMedicinePerMonth takeMedicinePerMonth = DBusinessData.GetInstance().getTakeMedicineHistoryList()
-																  .getMedicalHistoryBySelectedMonth(today
-																								   );
+																  .getMedicalHistoryBySelectedMonth(
+				today
+																																			  );
 
 
-		m_selectedTV.setText(R.string.calendar_no_taked_medicine_history);
+		String displayDate = m_ymdSDF.format(m_selectedDay.getTime());
+		m_selectedTV.setText(displayDate);
+
 		m_selectedIV.setVisibility(View.INVISIBLE);
 		if (takeMedicinePerMonth == null)
 			return;

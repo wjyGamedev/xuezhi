@@ -27,4 +27,5 @@ public class DateConfig
 	public final static String PATTERN_DATE_YEAR_MONTH_DAY_NO_LINE = "yyyyMMdd";
 	public final static String PATTERN_DATE_YEAR_MONTH = "yyyy-MM";
 	public final static String PATTERN_DATE_YEAR_MONTH_1 = "yyyy年MM月";
+	public final static String PATTERN_DATE_YEAR_MONTH_2 = "yyyy年MM月dd日";
 }
