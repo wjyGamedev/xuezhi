@@ -75,7 +75,10 @@ public class MaterialCalendarView extends FrameLayout
 	private HandleDateChangeListener      m_handleDateChangeListener      = new HandleDateChangeListener();
 	private HandleMonthPageChangeListener m_handleMonthPageChangeListener = new HandleMonthPageChangeListener();
 	private HandleMonthPageTransformer    m_handleMonthPageTransformer    = new HandleMonthPageTransformer();
+	private OnClickLeftArrowAction        mOnClickLeftArrowAction         = null;
+	private OnClickRightArrowAction       mOnClickRightArrowAction        = null;
 	private ClickMonthArrow               m_clickMonthArrow               = new ClickMonthArrow();
+
 
 	private OnDateChangedListener  m_dateChangedListener  = null;
 	private OnMonthChangedListener m_monthChangedListener = null;
@@ -86,7 +89,7 @@ public class MaterialCalendarView extends FrameLayout
 	private CalendarDay                 m_maxDate           = null;
 
 	private CalendarDay m_beginDate = null;
-	private CalendarDay m_endDate = null;
+	private CalendarDay m_endDate   = null;
 
 
 	//TODO:以后用外观类替代
@@ -118,6 +121,16 @@ public class MaterialCalendarView extends FrameLayout
 	/**
 	 * override func
 	 */
+	public interface OnClickLeftArrowAction
+	{
+		void onClickLeftAction(View v, Calendar currMonth);
+	}
+
+	public interface OnClickRightArrowAction
+	{
+		void onClickRightAction(View v, Calendar currMonth);
+	}
+
 	class ClickMonthArrow implements View.OnClickListener
 	{
 		@Override
@@ -125,15 +138,30 @@ public class MaterialCalendarView extends FrameLayout
 		{
 			int id           = v.getId();
 			int itemPosIndex = m_monthCalendarRegionVP.getCurrentItem();
+			//right action
 			if (id == R.id.month_right_btn)
 			{
 				itemPosIndex = m_monthCalendarRegionVP.getCurrentItem() + 1;
+				if (mOnClickRightArrowAction != null)
+				{
+					Calendar currMonth = Calendar.getInstance();
+					m_currentMonth.copyTo(currMonth);
+					mOnClickRightArrowAction.onClickRightAction(v, currMonth);
+				}
 			}
+			//left action
 			else if (id == R.id.month_left_btn)
 			{
 				itemPosIndex = m_monthCalendarRegionVP.getCurrentItem() - 1;
+				if (mOnClickLeftArrowAction != null)
+				{
+					Calendar currMonth = Calendar.getInstance();
+					m_currentMonth.copyTo(currMonth);
+					mOnClickLeftArrowAction.onClickLeftAction(v, currMonth);
+				}
+
 			}
-			m_monthCalendarRegionVP.setCurrentItem(itemPosIndex, true);
+//			m_monthCalendarRegionVP.setCurrentItem(itemPosIndex, true);
 
 			return;
 		}
@@ -376,6 +404,16 @@ public class MaterialCalendarView extends FrameLayout
 	/**
 	 * logical data:get/set
 	 */
+	public void setOnClickLeftListener(OnClickLeftArrowAction onClickLeftListener)
+	{
+		mOnClickLeftArrowAction = onClickLeftListener;
+	}
+
+	public void setOnClickRightListener(OnClickRightArrowAction onClickRightListener)
+	{
+		mOnClickRightArrowAction = onClickRightListener;
+	}
+
 	public OnDateChangedListener getDateChangedListener()
 	{
 		return m_dateChangedListener;
@@ -419,6 +457,11 @@ public class MaterialCalendarView extends FrameLayout
 	public MonthPagerAdapter getMonthAdapter()
 	{
 		return m_monthAdapter;
+	}
+
+	public ViewPager getMonthCalendarRegionVP()
+	{
+		return m_monthCalendarRegionVP;
 	}
 
 	/**
@@ -811,54 +854,47 @@ public class MaterialCalendarView extends FrameLayout
 	}
 
 
-
-
-
-
-
-
-
 	//TODO:等待被改进
 
-//	/**
-//	 * @return the currently selected day, or null if no selection
-//	 */
-//	public CalendarDay getSelectedDate()
-//	{
-//		return m_monthAdapter.getSelectedDate();
-//	}
+	//	/**
+	//	 * @return the currently selected day, or null if no selection
+	//	 */
+	//	public CalendarDay getSelectedDate()
+	//	{
+	//		return m_monthAdapter.getSelectedDate();
+	//	}
 
 
-//	/**
-//	 * @param calendar a Calendar set to a day to select. Null to clear selection
-//	 */
-//	public void setSelectedDate(
-//			@Nullable
-//			Calendar calendar)
-//	{
-//		setSelectedDate(CalendarDay.from(calendar));
-//	}
+	//	/**
+	//	 * @param calendar a Calendar set to a day to select. Null to clear selection
+	//	 */
+	//	public void setSelectedDate(
+	//			@Nullable
+	//			Calendar calendar)
+	//	{
+	//		setSelectedDate(CalendarDay.from(calendar));
+	//	}
 
-//	/**
-//	 * @param date a Date to set as selected. Null to clear selection
-//	 */
-//	public void setSelectedDate(
-//			@Nullable
-//			Date date)
-//	{
-//		setSelectedDate(CalendarDay.from(date));
-//	}
-//
-//	/**
-//	 * @param day a CalendarDay to set as selected. Null to clear selection
-//	 */
-//	public void setSelectedDate(
-//			@Nullable
-//			CalendarDay day)
-//	{
-//		m_monthAdapter.setSelectedDate(day);
-//		setCurrentDate(day);
-//	}
+	//	/**
+	//	 * @param date a Date to set as selected. Null to clear selection
+	//	 */
+	//	public void setSelectedDate(
+	//			@Nullable
+	//			Date date)
+	//	{
+	//		setSelectedDate(CalendarDay.from(date));
+	//	}
+	//
+	//	/**
+	//	 * @param day a CalendarDay to set as selected. Null to clear selection
+	//	 */
+	//	public void setSelectedDate(
+	//			@Nullable
+	//			CalendarDay day)
+	//	{
+	//		m_monthAdapter.setSelectedDate(day);
+	//		setCurrentDate(day);
+	//	}
 
 	private void setRangeDates(CalendarDay min, CalendarDay max)
 	{
@@ -1065,118 +1101,118 @@ public class MaterialCalendarView extends FrameLayout
 	}
 
 	//TODO:之后在弄存储部分。
-//	@Override
-//	protected Parcelable onSaveInstanceState()
-//	{
-//		SavedState ss = new SavedState(super.onSaveInstanceState());
-//		ss.color = getSelectionColor();
-//		ss.dateTextAppearance = m_monthAdapter.getDateTextAppearance();
-//		ss.weekDayTextAppearance = m_monthAdapter.getWeekDayTextAppearance();
-//		ss.showOtherDates = getShowOtherDates();
-//		ss.minDate = getMinimumDate();
-//		ss.maxDate = getMaximumDate();
-//		ss.selectedDate = getSelectedDate();
-//		ss.firstDayOfWeek = getFirstDayOfWeek();
-//		ss.tileSizePx = getTileSize();
-//		ss.topbarVisible = getTopbarVisible();
-//		return ss;
-//	}
-//
-//	@Override
-//	protected void onRestoreInstanceState(Parcelable state)
-//	{
-//		SavedState ss = (SavedState)state;
-//		super.onRestoreInstanceState(ss.getSuperState());
-//		setSelectionColor(ss.color);
-//		setDateTextAppearance(ss.dateTextAppearance);
-//		setWeekDayTextAppearance(ss.weekDayTextAppearance);
-//		setShowOtherDates(ss.showOtherDates);
-//		setRangeDates(ss.minDate, ss.maxDate);
-//		setSelectedDate(ss.selectedDate);
-//		setFirstDayOfWeek(ss.firstDayOfWeek);
-//		setTileSize(ss.tileSizePx);
-//		setTopbarVisible(ss.topbarVisible);
-//	}
-//
-//	@Override
-//	protected void dispatchSaveInstanceState(SparseArray<Parcelable> container)
-//	{
-//		//super.dispatchSaveInstanceState(container);
-//		super.dispatchFreezeSelfOnly(container);
-//	}
-//
-//	@Override
-//	protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container)
-//	{
-//		//super.dispatchRestoreInstanceState(container);
-//		super.dispatchThawSelfOnly(container);
-//	}
-//
-//
-//	public static class SavedState extends BaseSavedState
-//	{
-//
-//		int         color                 = 0;
-//		int         dateTextAppearance    = 0;
-//		int         weekDayTextAppearance = 0;
-//		boolean     showOtherDates        = false;
-//		CalendarDay minDate               = null;
-//		CalendarDay maxDate               = null;
-//		CalendarDay selectedDate          = null;
-//		int         firstDayOfWeek        = Calendar.SUNDAY;
-//		int         tileSizePx            = 0;
-//		boolean     topbarVisible         = true;
-//
-//		SavedState(Parcelable superState)
-//		{
-//			super(superState);
-//		}
-//
-//		@Override
-//		public void writeToParcel(Parcel out, int flags)
-//		{
-//			super.writeToParcel(out, flags);
-//			out.writeInt(color);
-//			out.writeInt(dateTextAppearance);
-//			out.writeInt(weekDayTextAppearance);
-//			out.writeInt(showOtherDates ? 1 : 0);
-//			out.writeParcelable(minDate, 0);
-//			out.writeParcelable(maxDate, 0);
-//			out.writeParcelable(selectedDate, 0);
-//			out.writeInt(firstDayOfWeek);
-//			out.writeInt(tileSizePx);
-//			out.writeInt(topbarVisible ? 1 : 0);
-//		}
-//
-//		public static final Creator<SavedState> CREATOR = new Creator<SavedState>()
-//		{
-//			public SavedState createFromParcel(Parcel in)
-//			{
-//				return new SavedState(in);
-//			}
-//
-//			public SavedState[] newArray(int size)
-//			{
-//				return new SavedState[size];
-//			}
-//		};
-//
-//		private SavedState(Parcel in)
-//		{
-//			super(in);
-//			color = in.readInt();
-//			dateTextAppearance = in.readInt();
-//			weekDayTextAppearance = in.readInt();
-//			showOtherDates = in.readInt() == 1;
-//			ClassLoader loader = CalendarDay.class.getClassLoader();
-//			minDate = in.readParcelable(loader);
-//			maxDate = in.readParcelable(loader);
-//			selectedDate = in.readParcelable(loader);
-//			firstDayOfWeek = in.readInt();
-//			tileSizePx = in.readInt();
-//			topbarVisible = in.readInt() == 1;
-//		}
-//	}
+	//	@Override
+	//	protected Parcelable onSaveInstanceState()
+	//	{
+	//		SavedState ss = new SavedState(super.onSaveInstanceState());
+	//		ss.color = getSelectionColor();
+	//		ss.dateTextAppearance = m_monthAdapter.getDateTextAppearance();
+	//		ss.weekDayTextAppearance = m_monthAdapter.getWeekDayTextAppearance();
+	//		ss.showOtherDates = getShowOtherDates();
+	//		ss.minDate = getMinimumDate();
+	//		ss.maxDate = getMaximumDate();
+	//		ss.selectedDate = getSelectedDate();
+	//		ss.firstDayOfWeek = getFirstDayOfWeek();
+	//		ss.tileSizePx = getTileSize();
+	//		ss.topbarVisible = getTopbarVisible();
+	//		return ss;
+	//	}
+	//
+	//	@Override
+	//	protected void onRestoreInstanceState(Parcelable state)
+	//	{
+	//		SavedState ss = (SavedState)state;
+	//		super.onRestoreInstanceState(ss.getSuperState());
+	//		setSelectionColor(ss.color);
+	//		setDateTextAppearance(ss.dateTextAppearance);
+	//		setWeekDayTextAppearance(ss.weekDayTextAppearance);
+	//		setShowOtherDates(ss.showOtherDates);
+	//		setRangeDates(ss.minDate, ss.maxDate);
+	//		setSelectedDate(ss.selectedDate);
+	//		setFirstDayOfWeek(ss.firstDayOfWeek);
+	//		setTileSize(ss.tileSizePx);
+	//		setTopbarVisible(ss.topbarVisible);
+	//	}
+	//
+	//	@Override
+	//	protected void dispatchSaveInstanceState(SparseArray<Parcelable> container)
+	//	{
+	//		//super.dispatchSaveInstanceState(container);
+	//		super.dispatchFreezeSelfOnly(container);
+	//	}
+	//
+	//	@Override
+	//	protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container)
+	//	{
+	//		//super.dispatchRestoreInstanceState(container);
+	//		super.dispatchThawSelfOnly(container);
+	//	}
+	//
+	//
+	//	public static class SavedState extends BaseSavedState
+	//	{
+	//
+	//		int         color                 = 0;
+	//		int         dateTextAppearance    = 0;
+	//		int         weekDayTextAppearance = 0;
+	//		boolean     showOtherDates        = false;
+	//		CalendarDay minDate               = null;
+	//		CalendarDay maxDate               = null;
+	//		CalendarDay selectedDate          = null;
+	//		int         firstDayOfWeek        = Calendar.SUNDAY;
+	//		int         tileSizePx            = 0;
+	//		boolean     topbarVisible         = true;
+	//
+	//		SavedState(Parcelable superState)
+	//		{
+	//			super(superState);
+	//		}
+	//
+	//		@Override
+	//		public void writeToParcel(Parcel out, int flags)
+	//		{
+	//			super.writeToParcel(out, flags);
+	//			out.writeInt(color);
+	//			out.writeInt(dateTextAppearance);
+	//			out.writeInt(weekDayTextAppearance);
+	//			out.writeInt(showOtherDates ? 1 : 0);
+	//			out.writeParcelable(minDate, 0);
+	//			out.writeParcelable(maxDate, 0);
+	//			out.writeParcelable(selectedDate, 0);
+	//			out.writeInt(firstDayOfWeek);
+	//			out.writeInt(tileSizePx);
+	//			out.writeInt(topbarVisible ? 1 : 0);
+	//		}
+	//
+	//		public static final Creator<SavedState> CREATOR = new Creator<SavedState>()
+	//		{
+	//			public SavedState createFromParcel(Parcel in)
+	//			{
+	//				return new SavedState(in);
+	//			}
+	//
+	//			public SavedState[] newArray(int size)
+	//			{
+	//				return new SavedState[size];
+	//			}
+	//		};
+	//
+	//		private SavedState(Parcel in)
+	//		{
+	//			super(in);
+	//			color = in.readInt();
+	//			dateTextAppearance = in.readInt();
+	//			weekDayTextAppearance = in.readInt();
+	//			showOtherDates = in.readInt() == 1;
+	//			ClassLoader loader = CalendarDay.class.getClassLoader();
+	//			minDate = in.readParcelable(loader);
+	//			maxDate = in.readParcelable(loader);
+	//			selectedDate = in.readParcelable(loader);
+	//			firstDayOfWeek = in.readInt();
+	//			tileSizePx = in.readInt();
+	//			topbarVisible = in.readInt() == 1;
+	//		}
+	//	}
 
 
 }

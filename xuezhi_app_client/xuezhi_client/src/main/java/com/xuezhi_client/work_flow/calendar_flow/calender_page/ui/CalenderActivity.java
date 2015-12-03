@@ -8,15 +8,20 @@ import android.widget.TextView;
 
 import com.module.frame.BaseActivity;
 import com.module.widget.bottom.BottomCommon;
+import com.module.widget.dialog.RotationWaittingDialog;
 import com.module.widget.header.HeaderCommon;
 import com.xuezhi_client.config.DateConfig;
+import com.xuezhi_client.data_module.register_account.data.DAccount;
 import com.xuezhi_client.data_module.xuezhi_data.data.DBusinessData;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DNoTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicine;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerDay;
 import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
+import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestNoTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.CalenderMsgHandler;
+import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
@@ -60,7 +65,10 @@ public class CalenderActivity extends BaseActivity
 	private HandleNotTakedDecorateListener m_handleNotTakedDecorateListener = new HandleNotTakedDecorateListener();
 	private HandleDateChangedClickEvent    m_handleDateChangedClickEvent    = new HandleDateChangedClickEvent();
 	private HandleMonthChangedClickEvent   mHandleMonthChangedClickEvent    = new HandleMonthChangedClickEvent();
+	private HandleClickLeftArrowListener   mHandleClickLeftArrowListener    = new HandleClickLeftArrowListener();
+	private HandleClickRightArrowListener  mHandleClickRightArrowListener   = new HandleClickRightArrowListener();
 
+	private String mClickArrowDirection = null;
 
 	private SimpleDateFormat m_ymdSDF = new SimpleDateFormat(DateConfig.PATTERN_DATE_YEAR_MONTH_DAY);
 
@@ -95,13 +103,15 @@ public class CalenderActivity extends BaseActivity
 
 	class HandleMonthChangedClickEvent implements OnMonthChangedListener
 	{
-
 		@Override
 		public void onMonthChanged(MaterialCalendarView widget, CalendarDay date)
 		{
 			Calendar currCalendar = Calendar.getInstance();
 			date.copyTo(currCalendar);
 			mCurrMonth.set(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH), currCalendar.get(Calendar.DAY_OF_MONTH));
+
+
+
 		}
 	}
 
@@ -182,6 +192,46 @@ public class CalenderActivity extends BaseActivity
 				setSelectedTakeMedicineTime(tmpCalendar);
 			}
 			return;
+		}
+	}
+
+	class HandleClickLeftArrowListener implements MaterialCalendarView.OnClickLeftArrowAction
+	{
+		@Override
+		public void onClickLeftAction(View v, Calendar currMonth)
+		{
+			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+			RotationWaittingDialog.GetInstance().dialogOpen();
+
+			int nowMonth = currMonth.get(Calendar.MONTH) - 1;//月份减1
+			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_LEFT;
+			//请求新的一个月的数据
+			currMonth.set(Calendar.MONTH,nowMonth);
+			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+			takeMedicineEvent.setCurrMonth(currMonth);
+			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
+		}
+	}
+
+	class HandleClickRightArrowListener implements MaterialCalendarView.OnClickRightArrowAction
+	{
+		@Override
+		public void onClickRightAction(View v, Calendar currMonth)
+		{
+			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+			RotationWaittingDialog.GetInstance().dialogOpen();
+
+			int nowMonth = currMonth.get(Calendar.MONTH) + 1;//月份加1
+			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_RIGHT;
+			//请求新的一个月的数据
+			currMonth.set(Calendar.MONTH,nowMonth);
+			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+			takeMedicineEvent.setCurrMonth(currMonth);
+			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
@@ -349,11 +399,8 @@ public class CalenderActivity extends BaseActivity
 				else
 				{
 					return false;
-
 				}
-
 			}
-
 			return (!noTakeMedicinePerDay.getNoTakeMedicines().isEmpty());
 		}
 	}
@@ -385,6 +432,8 @@ public class CalenderActivity extends BaseActivity
 		m_calendarView.setWeekDayTextAppearance(R.style.TextAppearance_AppCompat_Medium);
 		m_calendarView.setDateChangedListener(m_handleDateChangedClickEvent);
 		m_calendarView.setMonthChangedListener(mHandleMonthChangedClickEvent);
+		m_calendarView.setOnClickLeftListener(mHandleClickLeftArrowListener);
+		m_calendarView.setOnClickRightListener(mHandleClickRightArrowListener);
 
 		m_selectorNotTakedDecorator.setOnShouldDecorateListener(m_handleNotTakedDecorateListener);
 		m_selectorTakedDecorator.setOnShouldDecorateListener(m_handleTakedDecorateListener);
@@ -426,6 +475,7 @@ public class CalenderActivity extends BaseActivity
 		mCurrMonth.setTime(m_selectedDay.getTime());
 	}
 
+
 	private void setSelectedTakeMedicineTime(Calendar selectedDay)
 	{
 		if (selectedDay == null)
@@ -451,4 +501,23 @@ public class CalenderActivity extends BaseActivity
 		}
 	}
 
+	public Calendar getCurrMonth()
+	{
+		return mCurrMonth;
+	}
+
+	public MaterialCalendarView getCalendarView()
+	{
+		return m_calendarView;
+	}
+
+	public String getClickArrowDirection()
+	{
+		return mClickArrowDirection;
+	}
+
+	public void setClickArrowDirection(String clickArrowDirection)
+	{
+		mClickArrowDirection = clickArrowDirection;
+	}
 }
