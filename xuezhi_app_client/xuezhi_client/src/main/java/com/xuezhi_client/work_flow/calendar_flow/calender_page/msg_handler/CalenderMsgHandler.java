@@ -91,21 +91,23 @@ public class CalenderMsgHandler extends BaseUIMsgHandler
 		ViewPager        monthCalendarRegionVP = activity.getCalendarView().getMonthCalendarRegionVP();
 		if (monthCalendarRegionVP != null)
 		{
-			int itemPosIndex = monthCalendarRegionVP.getCurrentItem();
-			if (activity.getClickArrowDirection().equals(CalendarFlowConfig.ARROW_DIRECTION_LEFT))
-			{
-				activity.getCalendarView().getMonthCalendarRegionVP().setCurrentItem(itemPosIndex - 1, true);
-				activity.setClickArrowDirection(null);
-				activity.getCalendarView().getMonthAdapter().invalidateDecorators();
-				RotationWaittingDialog.GetInstance().dialogClose();
-			}
-			else if (activity.getClickArrowDirection().equals(CalendarFlowConfig.ARROW_DIRECTION_RIGHT))
-			{
-				activity.getCalendarView().getMonthCalendarRegionVP().setCurrentItem(itemPosIndex + 1, true);
-				activity.setClickArrowDirection(null);
-				activity.getCalendarView().getMonthAdapter().invalidateDecorators();
-				RotationWaittingDialog.GetInstance().dialogClose();
-			}
+//			int itemPosIndex = monthCalendarRegionVP.getCurrentItem();
+//			if (activity.getClickArrowDirection().equals(CalendarFlowConfig.ARROW_DIRECTION_LEFT))
+//			{
+//				activity.getCalendarView().getMonthCalendarRegionVP().setCurrentItem(itemPosIndex - 1, true);
+//				activity.setClickArrowDirection(null);
+//				activity.getCalendarView().getMonthAdapter().invalidateDecorators();
+//				RotationWaittingDialog.GetInstance().dialogClose();
+//			}
+//			else if (activity.getClickArrowDirection().equals(CalendarFlowConfig.ARROW_DIRECTION_RIGHT))
+//			{
+//				activity.getCalendarView().getMonthCalendarRegionVP().setCurrentItem(itemPosIndex + 1, true);
+//				activity.setClickArrowDirection(null);
+//				activity.getCalendarView().getMonthAdapter().invalidateDecorators();
+//				RotationWaittingDialog.GetInstance().dialogClose();
+//			}
+			activity.getCalendarView().getMonthAdapter().invalidateDecorators();
+			RotationWaittingDialog.GetInstance().dialogClose();
 		}
 	}
 }

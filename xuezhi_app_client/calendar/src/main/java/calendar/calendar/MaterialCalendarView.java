@@ -161,7 +161,7 @@ public class MaterialCalendarView extends FrameLayout
 				}
 
 			}
-//			m_monthCalendarRegionVP.setCurrentItem(itemPosIndex, true);
+			m_monthCalendarRegionVP.setCurrentItem(itemPosIndex, true);
 
 			return;
 		}
@@ -187,6 +187,9 @@ public class MaterialCalendarView extends FrameLayout
 		@Override
 		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
 		{
+			System.err.println("position = "+position);
+			System.err.println("positionOffset = "+positionOffset);
+			System.err.println("positionOffsetPixels = "+positionOffsetPixels);
 		}
 
 		@Override

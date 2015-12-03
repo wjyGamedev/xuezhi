@@ -21,7 +21,6 @@ import com.xuezhi_client.data_module.xuezhi_data.data.DTakeMedicinePerMonth;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.DBusinessMsgHandler;
 import com.xuezhi_client.data_module.xuezhi_data.msg_handler.RequestNoTakeMedicineGetHistoryListEvent;
 import com.xuezhi_client.work_flow.calendar_flow.calender_page.msg_handler.CalenderMsgHandler;
-import com.xuezhi_client.work_flow.calendar_flow.config.CalendarFlowConfig;
 import com.xuzhi_client.xuzhi_app_client.R;
 
 import java.text.SimpleDateFormat;
@@ -110,8 +109,15 @@ public class CalenderActivity extends BaseActivity
 			date.copyTo(currCalendar);
 			mCurrMonth.set(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH), currCalendar.get(Calendar.DAY_OF_MONTH));
 
+			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+			RotationWaittingDialog.GetInstance().dialogOpen();
 
-
+			currCalendar.set(Calendar.MONTH, currCalendar.get(Calendar.MONTH));
+			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+			takeMedicineEvent.setCurrMonth(currCalendar);
+			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
@@ -200,18 +206,18 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClickLeftAction(View v, Calendar currMonth)
 		{
-			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
-			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
-			RotationWaittingDialog.GetInstance().dialogOpen();
-
-			int nowMonth = currMonth.get(Calendar.MONTH) - 1;//月份减1
-			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_LEFT;
-			//请求新的一个月的数据
-			currMonth.set(Calendar.MONTH,nowMonth);
-			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
-			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
-			takeMedicineEvent.setCurrMonth(currMonth);
-			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
+//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+//			RotationWaittingDialog.GetInstance().dialogOpen();
+//
+//			int nowMonth = currMonth.get(Calendar.MONTH) - 1;//月份减1
+//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_LEFT;
+//			//请求新的一个月的数据
+//			currMonth.set(Calendar.MONTH, nowMonth);
+//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+//			takeMedicineEvent.setCurrMonth(currMonth);
+//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
@@ -220,18 +226,18 @@ public class CalenderActivity extends BaseActivity
 		@Override
 		public void onClickRightAction(View v, Calendar currMonth)
 		{
-			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
-			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
-			RotationWaittingDialog.GetInstance().dialogOpen();
-
-			int nowMonth = currMonth.get(Calendar.MONTH) + 1;//月份加1
-			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_RIGHT;
-			//请求新的一个月的数据
-			currMonth.set(Calendar.MONTH,nowMonth);
-			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
-			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
-			takeMedicineEvent.setCurrMonth(currMonth);
-			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
+//			RotationWaittingDialog.GetInstance().setM_pageID(R.id.calendar_page);
+//			RotationWaittingDialog.GetInstance().setM_activity(m_activity);
+//			RotationWaittingDialog.GetInstance().dialogOpen();
+//
+//			int nowMonth = currMonth.get(Calendar.MONTH) + 1;//月份加1
+//			mClickArrowDirection = CalendarFlowConfig.ARROW_DIRECTION_RIGHT;
+//			//请求新的一个月的数据
+//			currMonth.set(Calendar.MONTH, nowMonth);
+//			RequestNoTakeMedicineGetHistoryListEvent takeMedicineEvent = new RequestNoTakeMedicineGetHistoryListEvent();
+//			takeMedicineEvent.setUID(DAccount.GetInstance().getId());
+//			takeMedicineEvent.setCurrMonth(currMonth);
+//			DBusinessMsgHandler.GetInstance().requestNoTakeMedicineGetHistoryListAction(takeMedicineEvent);
 		}
 	}
 
